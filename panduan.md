@@ -66,5 +66,3 @@ Kirim kembali pekerjaan ke GitHub agar siap untuk besok pagi.
 
 1.  **Jangan Ubah Folder `_book`:** Folder ini berisi hasil _render_ (HTML) dan biasanya tidak perlu di-track secara ketat oleh Git jika Anda hanya fokus pada _source code_ (`.Rmd`). Namun, jika Anda ingin menyimpannya, pastikan selalu di-_render_ ulang sebelum _push_.
 2.  **Jika Lupa `git pull`:** Jika Anda tidak sengaja mengedit di rumah sebelum melakukan `pull`, Antigravity mungkin akan memperingatkan adanya "Merge Conflict". Jika ini terjadi, minta bantuan agen: _"Saya lupa pull dan sekarang ada konflik, tolong bantu selesaikan dengan memprioritaskan perubahan terbaru saya."_
-
-Apakah panduan ini sudah cukup jelas untuk Anda simpan?
