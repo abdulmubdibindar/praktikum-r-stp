@@ -17,9 +17,11 @@ Perangkat lunak yang sedang Anda gunakan bernama [**RStudio**](https://posit.co/
 
 Bayangkan RStudio seperti sebuah dapur yang sangat lengkap. Bahan-bahan makanan tersimpan di kulkas. Peralatan memasak seperti pisau, alas memotong, panci, semua tersusun pada raknya masing-masing. Untuk dapat memasak, Anda bisa menyuruh koki Anda untuk melakukannya. Tetapi, koki Anda itu hanya mengerti satu bahasa saja: bahasa R. Untuk itu, Anda harus bisa menguasai bahasa tersebut untuk memintanya membuat masakan yang Anda kehendaki.
 
-Gambar berikut memberikan penjelasan singkat tentang tampilan jendela RStudio yang terdiri atas 4 panel.
+Gambar \@ref(fig:rstudio-window) memberikan penjelasan singkat tentang tampilan jendela RStudio yang terdiri atas 4 panel.
 
-![Bagian-bagian Jendela RStudio](images/jendela_rstudio.png)
+```{r rstudio-window, fig.align='center', out.height='200px', out.width='auto', fig.cap='Pembagian Jendela RStudio', echo=FALSE}
+knitr::include_graphics("images/jendela_rstudio.png")
+```
 
 1.  Panel *Environment* yang menampilkan daftar data atau variabel yang telah kita impor atau buat.
 2.  Panel *Files, Plots, dan Help*, tempat kita melihat daftar *file* yang tersedia, grafik yang dihasilkan, dan menemukan dokumen bantuan untuk berbagai bagian dari R.
@@ -122,12 +124,12 @@ menghasilkan:
 ### Gambar
 
 ``` markdown
-![Gerbang Kampus ITERA](images/ITERA-2.png)
+![Gerbang Kampus ITERA](images/ITERA-2.jpg)
 ```
 
 menghasilkan:
 
-knitr::include_graphics("images/ITERA-2.jpg")
+![Gerbang Kampus ITERA](images/ITERA-2.jpg)
 
 *File* `ITERA-2.jpg` harus berada di satu folder yang sama dengan file R Markdown Anda. Jika tidak, Anda harus menuliskan *path* relatif berdasarkan posisi file markdown Anda di folder tersebut seperti yang tertulis di contoh. Nama dan ekstensi *file* harus sama persis.
 
@@ -660,7 +662,7 @@ Salbina; 21
 Hasilnya adalah:
 
 | Nama    | umur |
-|---------|------|
+| ------- | ---- |
 | Ifna    | 20   |
 | Salbina | 21   |
 

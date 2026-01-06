@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 Modul-5: Uji Hipotesis | Modul Praktik Statistika Untuk Perencanaan</title>
   <meta name="description" content="5 Modul-5: Uji Hipotesis | Modul Praktik Statistika Untuk Perencanaan" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 Modul-5: Uji Hipotesis | Modul Praktik Statistika Untuk Perencanaan" />
   <meta property="og:type" content="book" />
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -380,7 +379,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="modul-5-uji-hipotesis.html#cb223-1" tabindex="-1"></a>data_mahasiswa <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/data_mahasiswa.csv&quot;</span>) </span></code></pre></div>
 <pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
 <pre><code>## Rows: 1206 Columns: 4
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;;&quot;
 ## chr (3): kampus, jenis_tinggal, tipe_tinggal_baku
 ## dbl (1): jarak_km
@@ -830,7 +829,8 @@ H_0 : \mu_0 = 4\newline H_1 : \mu_0 \ne 4
 <span id="cb274-4"><a href="modul-5-uji-hipotesis.html#cb274-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proporsi =</span> Jumlah<span class="sc">/</span><span class="fu">sum</span>(Jumlah)) <span class="sc">|&gt;</span> <span class="co"># menghitung proporsi tiap kategori.</span></span>
 <span id="cb274-5"><a href="modul-5-uji-hipotesis.html#cb274-5" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Jumlah) <span class="sc">|&gt;</span> </span>
 <span id="cb274-6"><a href="modul-5-uji-hipotesis.html#cb274-6" tabindex="-1"></a>  <span class="fu">spread</span>(tipe_tinggal_baku, proporsi) <span class="co"># mengubah data long menjadi wide (kolom                                          # kategori jadi variabel).</span></span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;kampus&#39;. You can override using the `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;kampus&#39;. You can override using the `.groups`
+## argument.</code></pre>
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="modul-5-uji-hipotesis.html#cb276-1" tabindex="-1"></a>summarize_tempatTinggal2Pop</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ## # Groups:   kampus [3]

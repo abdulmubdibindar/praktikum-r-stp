@@ -1,3 +1,4 @@
+fig:rstudio-window
 modul-1-pengolahan-data-terstruktur
 r
 rstudio

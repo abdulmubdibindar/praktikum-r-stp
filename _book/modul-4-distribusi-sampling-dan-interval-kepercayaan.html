@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Modul-4: Distribusi Sampling dan Interval Kepercayaan | Modul Praktik Statistika Untuk Perencanaan</title>
   <meta name="description" content="4 Modul-4: Distribusi Sampling dan Interval Kepercayaan | Modul Praktik Statistika Untuk Perencanaan" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Modul-4: Distribusi Sampling dan Interval Kepercayaan | Modul Praktik Statistika Untuk Perencanaan" />
   <meta property="og:type" content="book" />
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -374,36 +373,36 @@ div.csl-indent {
 <span id="cb166-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb166-2" tabindex="-1"></a>df_uinril <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUINRIL.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.</code></pre>
 <pre><code>## Rows: 400 Columns: 25
-## ── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## ── Column specification ──────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;;&quot;
-## chr (11): Kampus_PT, Jenis Kelamin, Fakultas, Prodi, Tingkat Semester, Uang Saku, kendaraan utama, kelurahan, jenis tempat tinggal, nama ...
-## dbl (14): Nomor urut, Umur, kepemilikan mobil, kepemilikan motor, kepemilikan sepedan, jarak (km), biaya dalam ribu2, Jumlah Perjalanan S...
+## chr (11): Kampus_PT, Jenis Kelamin, Fakultas, Prodi, Tingkat Semester, Uang Saku, kend...
+## dbl (14): Nomor urut, Umur, kepemilikan mobil, kepemilikan motor, kepemilikan sepedan,...
 ## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb169-1" tabindex="-1"></a>df_ubl <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUBL.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.
-## Rows: 379 Columns: 26── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## Rows: 379 Columns: 26── Column specification ──────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;;&quot;
-## chr (14): Timestamp, Kampus_PT, Jenis Kelamin, Fakultas, Prodi, Tingkat Semester, Uang Saku, kendaraan utama, kelurahan, jenis tempat tin...
-## dbl (12): Nomor urut, Umur, kepemilikan mobil, kepemilikan motor, kepemilikan sepeda, jarak (km), Jumlah Perjalanan Selasa, Jumlah Perjal...
+## chr (14): Timestamp, Kampus_PT, Jenis Kelamin, Fakultas, Prodi, Tingkat Semester, Uang...
+## dbl (12): Nomor urut, Umur, kepemilikan mobil, kepemilikan motor, kepemilikan sepeda, ...
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb171-1" tabindex="-1"></a>df_unila <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUNILA.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.
-## Rows: 393 Columns: 25── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## Rows: 393 Columns: 25── Column specification ──────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;;&quot;
-## chr (11): Timestamp, Kampus_PT, Jenis Kelamin, Fakultas, Prodi, Tingkat Semester, Uang Saku, endaraan Utama, Jenis Tempat Tinggal, Alamat...
-## dbl (13): Nomor urut, Umur, kepemilikan mobil, Jumlah motor, Jumlah Sepeda, Biaya perjalanan, Jumlah Perjalanan Senin, Jumlah Perjalanan ...
+## chr (11): Timestamp, Kampus_PT, Jenis Kelamin, Fakultas, Prodi, Tingkat Semester, Uang...
+## dbl (13): Nomor urut, Umur, kepemilikan mobil, Jumlah motor, Jumlah Sepeda, Biaya perj...
 ## lgl  (1): jara
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb173-1" tabindex="-1"></a>df_itera <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsITERA.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## ℹ Using &quot;&#39;,&#39;&quot; as decimal and &quot;&#39;.&#39;&quot; as grouping mark. Use `read_delim()` for more control.
-## Rows: 428 Columns: 26── Column specification ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+## Rows: 428 Columns: 26── Column specification ──────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;;&quot;
-## chr (11): Timestamp, Kampus_PT, Jenis Kelamin, Fakultas, Prodi, Uang Saku, kendaraan utama, kelurahan, jenis tempat tinggal, nama jalan t...
-## dbl (15): Nomor urut, Umur, Tingkat Semester, kepemilikan mobil, kepemilikan motor, kepemilikan sepeda, jarak (km), biaya dalam ribu2, Ju...
+## chr (11): Timestamp, Kampus_PT, Jenis Kelamin, Fakultas, Prodi, Uang Saku, kendaraan u...
+## dbl (15): Nomor urut, Umur, Tingkat Semester, kepemilikan mobil, kepemilikan motor, ke...
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb175-1" tabindex="-1"></a><span class="co"># Membersihkan dan menggabungkan data</span></span>
