@@ -5,6 +5,9 @@ Setelah mempelajari modul ini, Anda diharapkan dapat:
 1. mampu menghasilkan koefisien korelasi variabel di tingkat nominal dengan perangkat lunak komputer **`STP-9.2`**
 2. mampu menghasilkan koefisien korelasi variabel di tingkat ordinal dengan perangkat lunak komputer **`STP-10.2`**
 
+
+---
+
 ## Pendahuluan
 
 Analisis korelasi adalah salah satu teknik analisis yang termasuk ke dalam lingkup statistika bivariat, statistika yang analisisnya melibatkan dua variabel **sekaligus**. Pada praktikum-praktikum sebelumnya kita hanya melibatkan satu variabel saja, misalnya:

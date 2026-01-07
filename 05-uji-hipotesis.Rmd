@@ -5,6 +5,9 @@ Setelah mempelajari modul ini, Anda diharapkan dapat:
 1. mampu menghasilkan uji hipotesis satu populasi dengan menggunakan perangkat lunak komputer **`STP-6.2`**
 2. mampu menghasilkan uji hipotesis dua atau lebih populasi pada suatu kasus menggunakan perangkat lunak komputer **`STP-7.2`**
 
+
+---
+
 ## Pendahuluan
 
 Uji hipotesis adalah salah satu teknik dalam analisis statistik inferensial yang memperkirakan parameter melalui pernyataan-pernyataan dugaan atau **hipotesis**. Hipotesis di sini adalah pernyataan yang mengandung dugaan bahwa nilai parameter adalah sama dengan suatu nilai atau berbeda. Hipotesis yang sama dengan suatu nilai kita sebut dengan **hipotesis kosong *(null hypothesis)***, sementara yang berbeda disebut **hipotesis alternatif *(alternative hypothesis)***
@@ -229,7 +232,13 @@ if (Z_meanJarak < Z.crit_2tail) {
 ```
 
 ```{r menarik-kesimpulan-mean1poptt}
-# Coba sendiri
+if (Z_meanJarak < Z.crit_2tail) {
+  tolak_h0 <- FALSE
+  cat("Hipotesis kosong gagal ditolak. Perbedaan rata-rata sampel", round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan")
+} else {
+  tolak_h0 <- TRUE  
+  cat("Hipotesis kosong ditolak. Rata-rata jarak pada sampel mahasiswa sebesar", round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan")
+}
 ```
 
 #### *One-tailed Test* (Berarah)
@@ -248,7 +257,8 @@ cat("H0 : rata-rata jarak = 4 km",
 Dengan cara ini, kita hanya akan menolak H0 jika bukti menunjukkan bahwa rata-rata memang lebih kecil. Jika ternyata rata-rata lebih besar, maka hal itu tidak mendukung H1.
 
 ```{r merumuskan-hipotesis-mean1popot}
-# Coba sendiri
+cat("H0 : rata-rata jarak = 4 km",
+    "\n\nH1 : rata-rata jarak < 4 km")
 ```
 
 **Memilih distribusi sampling, wilayah, serta titik kritis**
@@ -268,7 +278,15 @@ cat("Titik kritis uji one-tailed:",Z.crit_1tail)
 ```
 
 ```{r memilih-distribusi-sampling-wil-titik-kritis-mean1popot}
-# Coba sendiri
+tail <- "kiri" # H1 menyatakan lebih kecil dari (left-tailed)
+
+if (tail == "kiri") {
+  Z.crit_1tail <- qnorm(alpha)
+} else {
+  Z.crit_1tail <- qnorm(1-alpha)
+}
+
+cat("Titik kritis uji one-tailed:", Z.crit_1tail)
 ```
 
 **Menghitung statistik uji**
@@ -283,7 +301,10 @@ cat("Hasil statistik uji rata-rata:", Z_meanJarak)
 ```
 
 ```{r menghitung-stat-uji-mean1popot}
-# Coba sendiri
+# Hasil perhitungan statistik uji TIDAK diabsolutkan
+Z_meanJarak <- ht_mean_1pop(sample_mean, pop_mean, sample_sd, ukuran_sampel)
+
+cat("Hasil statistik uji rata-rata:", Z_meanJarak)
 ```
 
 **Menarik kesimpulan**
@@ -301,7 +322,13 @@ if (Z_meanJarak < Z.crit_1tail) {
 ```
 
 ```{r menarik-kesimpulan-mean1popot}
-
+if (Z_meanJarak < Z.crit_1tail) {
+  tolak_h0 <- TRUE
+  cat("Hipotesis kosong ditolak. Rata-rata jarak pada sampel mahasiswa sebesar", round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan (lebih kecil)")
+} else {
+  tolak_h0 <- FALSE  
+  cat("Hipotesis kosong gagal ditolak. Perbedaan rata-rata sampel dengan populasi hanyalah kebetulan")
+}
 ```
 
 ### Proporsi
@@ -330,7 +357,11 @@ ht_prop_1pop <- function(p_hat, P, n) {
 ```
 
 ```{r membuat-fungsi-prop1pop}
-
+ht_prop_1pop <- function(p_hat, P, n) {
+  se <- sqrt((p_hat * (1-p_hat))/n) # menghitung standard error untuk rata-rata
+  Z_hitung <- (p_hat - P)/se # menghitung nilai Z dari statistik
+  return(Z_hitung)
+}
 ```
 
 **Meringkas Data**
@@ -347,7 +378,12 @@ summarize_tempatTinggal
 ```
 
 ```{r meringkas-data-1}
+summarize_tempatTinggal <- data_mahasiswa |> 
+  group_by("Tipe tinggal" = tipe_tinggal_baku) |> 
+  summarize("Jumlah" = n()) |> 
+  mutate("proporsi" = Jumlah/sum(Jumlah))
 
+summarize_tempatTinggal
 ```
 
 **Menyimpan Nilai Proporsi**
@@ -360,7 +396,8 @@ proporsi_kosAsrama
 ```
 
 ```{r menyimpan-nilai-proporsi-2}
-
+proporsi_kosAsrama <- summarize_tempatTinggal$proporsi[1]
+proporsi_kosAsrama
 ```
 
 **Mendeklarasikan variabel pengujian**
@@ -385,7 +422,20 @@ cat("Proporsi penghuni Kos/Asrama sampel adalah", sample_prop,
 ```
 
 ```{r mendeklarasikan-variabel-uji-3}
+# Mendeklarasikan variabel-variabel yang akan diuji
+sample_prop <- proporsi_kosAsrama
+pop_prop <- 0.5
 
+# Menghasilkan data frame ringkasan dataset dengan menghitung jumlah mahasiswa sebagai ukuran sampel
+ukuran_sampel <- data_mahasiswa |>
+  summarize(ukuran_sampel = n())
+# Menyimpan angka jumlah mahasiswa sebagai variabel n
+ukuran_sampel <- ukuran_sampel$ukuran_sampel
+
+# Menampilkan variabel-variabel yang akan diuji
+cat("Proporsi penghuni Kos/Asrama sampel adalah", sample_prop,
+    "\nParameter proporsi penghuni Kos/Asrama yang diuji adalah", pop_prop,
+    "\nUkuran sampel adalah", ukuran_sampel, "orang.")
 ```
 
 #### *Two-tailed Test*
@@ -402,7 +452,8 @@ cat("H0 : prop. Kos/Asrama = 0,5",
 ```
 
 ```{r merumuskan-hipotesis-4}
-
+cat("H0 : prop. Kos/Asrama = 0,5",
+    "\n\nH1 : prop. Kos/Asrama != 0,5")
 ```
 
 **Memilih distribusi sampling, wilayah dan titik kritis**
@@ -418,7 +469,11 @@ cat("Titik kritis uji two-tailed:",Z.crit_2tail)
 ```
 
 ```{r memilih-distribusi-sampling-wil-titik-kritis-5}
+# Hipotesis yang dipakai tidak berarah, maka wilayah kritis adalah alpha/2
+alpha <- 0.10 # (tingkat signifikansi 10%)
+Z.crit_2tail <- abs(qnorm(alpha/2)) # Nilai yang digunakan adalah nilai absolut
 
+cat("Titik kritis uji two-tailed:", Z.crit_2tail)
 ```
 
 **Menghitung Statistik Uji**
@@ -433,7 +488,10 @@ Z_propKos
 ```
 
 ```{r menghitung-stat-uji-6}
+# Hasil perhitungan statistik uji diabsolutkan
+Z_propKos <- abs(ht_prop_1pop(sample_prop, pop_prop, ukuran_sampel))
 
+Z_propKos
 ```
 
 **Menarik kesimpulan**
@@ -451,7 +509,13 @@ if (Z_propKos < Z.crit_2tail) {
 ```
 
 ```{r menarik-kesimpulan-7}
-
+if (Z_propKos < Z.crit_2tail) {
+  tolak_h0 <- FALSE
+  cat("Hipotesis kosong gagal ditolak. Perbedaan proporsi penghuni Kos/Asrama sebanyak", round(sample_prop, 3), "dari", pop_prop, "hanyalah kebetulan")
+} else {
+  tolak_h0 <- TRUE  
+  cat("Hipotesis kosong ditolak. Perbedaan proporsi penghuni Kos/Asrama sebanyak", round(sample_prop, 3), "dari", pop_prop, "adalah signifikan")
+}
 ```
 
 #### *One-tailed Test*
@@ -468,7 +532,8 @@ cat("H0 : prop. Kos/Asrama = 0,5",
 ```
 
 ```{r merumuskan-hipotesis-8}
-
+cat("H0 : prop. Kos/Asrama = 0,5",
+    "\n\nH1 : prop. Kos/Asrama < 0,5")
 ```
 
 **Memilih distribusi Sampling, wilayah dan titik kritis**
@@ -492,7 +557,15 @@ cat("Titik kritis uji one-tailed:",Z.crit_1tail)
 ```
 
 ```{r memilih-distribusi-sampling-wil-titik-kritis-9}
+tail <- "kiri"
 
+if (tail == "kiri") {
+  Z.crit_1tail <- qnorm(alpha)
+} else {
+  Z.crit_1tail <- qnorm(1-alpha)
+}
+
+cat("Titik kritis uji one-tailed:", Z.crit_1tail)
 ```
 
 **Menghitung statistik uji**
@@ -507,7 +580,10 @@ Z_propKos
 ```
 
 ```{r menghitung-stat-uji-10}
+# Hasil perhitungan statistik uji TIDAK diabsolutkan
+Z_propKos <- ht_prop_1pop(sample_prop, pop_prop, ukuran_sampel)
 
+Z_propKos
 ```
 
 **Menarik kesimpulan**
@@ -525,7 +601,13 @@ if (Z_propKos < Z.crit_1tail) {
 ```
 
 ```{r menarik-kesimpulan-11}
-
+if (Z_propKos < Z.crit_1tail) {
+  tolak_h0 <- TRUE
+  cat("Hipotesis kosong ditolak. Perbedaan proporsi penghuni Kos/Asrama sebanyak", round(sample_prop, 3), "dari", pop_prop, "adalah signifikan (lebih kecil)")
+} else {
+  tolak_h0 <- FALSE  
+  cat("Hipotesis kosong gagal ditolak. Perbedaan proporsi penghuni Kos/Asrama sebanyak", round(sample_prop, 3), "dari", pop_prop, "hanyalah kebetulan")
+}
 ```
 
 ## Uji Hipotesis 2 Populasi Independen
@@ -563,7 +645,17 @@ ht_mean_2popIn <- function(xbar1, xbar2, sd1, sd2, n1, n2) {
 ```
 
 ```{r merumuskan-fungsi-12}
-
+ht_mean_2popIn <- function(xbar1, xbar2, sd1, sd2, n1, n2) {
+  se <- sqrt(             # Indentasi diberikan untuk memudahkan
+    (                     # pembacaan karena banyaknya tanda kurung
+      (sd1^2)/(n1 - 1)
+    ) + (
+      (sd2^2)/(n2 - 1)
+    )
+  )
+  Z_hitung <- (xbar1 - xbar2)/se # menghitung nilai Z dari statistik
+  return(Z_hitung)
+}
 ```
 
 **Menghitung mean 2 populasi**
@@ -582,7 +674,13 @@ summarize_Jarak2Pop
 ```
 
 ```{r menghitung-mean-2-populasi-12}
+summarize_Jarak2Pop <- data_mahasiswa |>
+  group_by(Kampus = kampus) |>
+  summarize(`Rata-rata` = mean(jarak_km),
+            `Simpangan baku` = sd(jarak_km),
+            Jumlah = n())
 
+summarize_Jarak2Pop
 ```
 
 **Mendeklarasikan variabel uji**
@@ -599,7 +697,14 @@ n_jarakITERA <- summarize_Jarak2Pop$Jumlah[1]
 ```
 
 ```{r mendeklarasikan-variabel-uji-13s}
+mean_jarakUINRIL <- summarize_Jarak2Pop$`Rata-rata`[3]
+mean_jarakITERA <- summarize_Jarak2Pop$`Rata-rata`[1]
 
+sd_jarakUINRIL <- summarize_Jarak2Pop$`Simpangan baku`[3]
+sd_jarakITERA <- summarize_Jarak2Pop$`Simpangan baku`[1]
+
+n_jarakUINRIL <- summarize_Jarak2Pop$Jumlah[3]
+n_jarakITERA <- summarize_Jarak2Pop$Jumlah[1]
 ```
 
 #### *Two-tailed Test*
@@ -609,12 +714,13 @@ n_jarakITERA <- summarize_Jarak2Pop$Jumlah[1]
 Sama seerti sebelumnya, langkah pertama dalam uji hipotesis adalah menyusun hipotesis nol (H0) dan hipotesis alternatif (H1). Untuk kasus two-tailed test, hipotesis alternatif menyatakan adanya perbedaan rata-rata tanpa menyebutkan arah (lebih besar atau lebih kecil). Artinya, kita hanya ingin tahu apakah terdapat perbedaan signifikan atau tidak, tanpa peduli siapa yang lebih besar. Hipotesis nol menyatakan tidak ada perbedaan, atau selisih rata-rata sama dengan nol.
 
 ``` r
-cat("H0: mu_jarakUINRIL - mu_jarakITERA = 0", H0: 
+cat("H0: mu_jarakUINRIL - mu_jarakITERA = 0",
     "\n\nH1: mu_jarakUINRIL - mu_jarakITERA != 0")
 ```
 
 ```{r merumuskan-hipotesis-15}
-
+cat("H0: mu_jarakUINRIL - mu_jarakITERA = 0",
+    "\n\nH1: mu_jarakUINRIL - mu_jarakITERA != 0")
 ```
 
 **Memilih distribusi sampling, wilayah, dan titik kritis**
@@ -631,7 +737,12 @@ cat("Titik kritis uji two-tailed:",Z.crit_2tail)
 ```
 
 ```{r memilih-distribusi-sampling-wil-titik-kritis-15}
+# Hipotesis yang dipakai tidak berarah, maka wilayah kritis adalah alpha/2
+alpha <- 0.001
 
+Z.crit_2tail <- abs(qnorm(alpha/2)) # Nilai yang digunakan adalah nilai absolut
+
+cat("Titik kritis uji two-tailed:", Z.crit_2tail)
 ```
 
 **Menghitung statistik uji**
@@ -648,7 +759,12 @@ Z_meanJarak2Pop
 ```
 
 ```{r menghitung-stat-uji-a}
+# Hasil perhitungan statistik uji diabsolutkan
+Z_meanJarak2Pop <- abs(ht_mean_2popIn(mean_jarakUINRIL, mean_jarakITERA,
+                                      sd_jarakUINRIL, sd_jarakITERA,
+                                      n_jarakUINRIL, n_jarakITERA))
 
+Z_meanJarak2Pop
 ```
 
 **Menarik kesimpulan**
@@ -666,7 +782,13 @@ if (Z_meanJarak2Pop < Z.crit_2tail) {
 ```
 
 ```{r menarik-kesimpulan-b}
-
+if (Z_meanJarak2Pop < Z.crit_2tail) {
+  tolak_h0 <- FALSE
+  cat("Hipotesis kosong gagal ditolak. Perbedaan rata-rata jarak mahasiswa UINRIL dengan ITERA dari sampel hanyalah kebetulan.")
+} else {
+  tolak_h0 <- TRUE  
+  cat("Hipotesis kosong ditolak. Perbedaan rata-rata jarak mahasiswa UINRIL dengan ITERA dari sampel signifikan.")
+}
 ```
 
 #### *One-tailed Test*
@@ -681,7 +803,8 @@ cat("H0: mu_jarakUINRIL - mu_jarakITERA = 0",
 ```
 
 ```{r merumuskan-hipotesis-c}
-
+cat("H0: mu_jarakUINRIL - mu_jarakITERA = 0",
+    "\n\nH1: mu_jarakUINRIL - mu_jarakITERA < 0")
 ```
 
 **Memilih distribusi sampling, wilayah, dan titik kritis**
@@ -705,7 +828,15 @@ cat("Titik kritis uji one-tailed:",Z.crit_1tail)
 ```
 
 ```{r memilih-distribusi-sampling-wil-titik-kritis-a}
+tail <- "kiri"
 
+if (tail == "kiri") {
+  Z.crit_1tail <- qnorm(alpha)
+} else {
+  Z.crit_1tail <- qnorm(1-alpha)
+}
+
+cat("Titik kritis uji one-tailed:", Z.crit_1tail)
 ```
 
 **Menghitung Statistik uji**
@@ -722,7 +853,12 @@ Z_meanJarak2Pop
 ```
 
 ```{r menghitung-stat-uji-d}
+# Hasil perhitungan statistik uji TIDAK diabsolutkan
+Z_meanJarak2Pop <- ht_mean_2popIn(mean_jarakUINRIL, mean_jarakITERA,
+                                  sd_jarakUINRIL, sd_jarakITERA,
+                                  n_jarakUINRIL, n_jarakITERA)
 
+Z_meanJarak2Pop
 ```
 
 **Menarik kesimpulan**
@@ -740,7 +876,13 @@ if (Z_meanJarak2Pop < Z.crit_1tail) {
 ```
 
 ```{r menarik-kesimpulan-c}
-
+if (Z_meanJarak2Pop < Z.crit_1tail) {
+  tolak_h0 <- TRUE
+  cat("Hipotesis kosong ditolak. Mahasiswa ITERA secara rata-rata tinggal lebih jauh dari kampus dibandingkan mahasiswa UINRIL significanly.")
+} else {
+  tolak_h0 <- FALSE  
+  cat("Hipotesis kosong gagal ditolak. Tidak cukup bukti menyatakan mahasiswa ITERA tinggal lebih jauh.")
+}
 ```
 
 ### Proporsi
@@ -801,13 +943,51 @@ n_kosAsrama_UINRIL <- n_kosAsrama_2Pop$n[3]
 ####*Two-tailed Test*
 
 ```{r coba-sendiri0}
-# Gunakan CI = 93%
+# Gunakan CI = 93%, artinya alpha = 7% = 0.07
+alpha <- 0.07
+
+# Hitung Z kritis 2-tailed
+Z.crit_2tail <- abs(qnorm(alpha/2))
+
+# Hitung statistik uji proporsi 2 populasi
+# Asumsi: Menggunakan data proporsi kos/asrama ITERA vs UINRIL yang sudah disiapkan sebelumnya
+Z_prop2Pop <- abs(ht_prop_2popIn(proporsi_kosAsrama_UINRIL, proporsi_kosAsrama_ITERA,
+                             n_kosAsrama_UINRIL, n_kosAsrama_ITERA))
+
+cat("Titik Kritis:", Z.crit_2tail, "\nZ Hitung:", Z_prop2Pop, "\n")
+
+if (Z_prop2Pop < Z.crit_2tail) {
+  cat("Hipotesis nol gagal ditolak.")
+} else {
+  cat("Hipotesis nol ditolak.")
+}
 ```
 
 #### *One-tailed Test*
 
 ```{r coba-sendiri1}
-# Gunakan CI = 96%
+# Gunakan CI = 96%, artinya alpha = 4% = 0.04
+alpha <- 0.04
+tail <- "kiri" # Asumsi uji lebih kecil (UINRIL < ITERA misalnya)
+
+# Hitung Z kritis 1-tailed
+if (tail == "kiri") {
+  Z.crit_1tail <- qnorm(alpha)
+} else {
+  Z.crit_1tail <- qnorm(1-alpha)
+}
+
+# Hitung statistik uji (tidak absolut)
+Z_prop2Pop <- ht_prop_2popIn(proporsi_kosAsrama_UINRIL, proporsi_kosAsrama_ITERA,
+                             n_kosAsrama_UINRIL, n_kosAsrama_ITERA)
+
+cat("Titik Kritis:", Z.crit_1tail, "\nZ Hitung:", Z_prop2Pop, "\n")
+
+if (Z_prop2Pop < Z.crit_1tail) {
+  cat("Hipotesis nol ditolak (Signifikan).")
+} else {
+  cat("Hipotesis nol gagal ditolak.")
+}
 ```
 
 ## Uji Hipotesis 2 Populasi Dependen

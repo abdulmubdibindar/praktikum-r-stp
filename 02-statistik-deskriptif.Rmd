@@ -2,6 +2,8 @@
 
 Setelah mempelajari modul ini, Anda diharapkan dapat mengoperasikan perhitungan persentase/proporsi, rasio, laju, ukuran pemusatan, dan ukuran penyebaran untuk suatu data kuantitatif dengan menggunakan perangkat lunak **`STP-2.4`**
 
+---
+
 Dalam praktikum ini kita akan melanjutkan analisis data terstruktur kita dengan analisis statistika deskriptif untuk variabel-variabel **kategoris** dan **numerik**. Kedua jenis variabel ini berkaitan juga dengan tingkat pengukurannya yang terdiri atas **nominal**, **ordinal**, dan **interval/rasio (metrik).**
 
 Analisis statistik deskriptif yang akan kita lakukan mencakup **persentase/proporsi**, **rata-rata *(mean)***, **median**, dan **standar deviasi**. Ada beberapa ukuran statistik yang tidak kita pelajari di kelas tetapi dikenalkan pada praktikum ini, seperti **persentil** dan **kuartil**. Perhitungan IQV akan dilakukan dengan sekaligus mengenalkan mekanisme `function` di R.

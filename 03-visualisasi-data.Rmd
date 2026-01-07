@@ -8,6 +8,9 @@ Setelah mempelajari modul ini, Anda diharapkan dapat:
 3. menjelaskan pentingnya menentukan tingkat pengukuran untuk sebuah variabel dari kaitannya dengan analisis statistik deskriptif dan diagram yang dipilih untuk menyajikan informasi **`STP-3.4`**
 4. menghasilkan grafik yang tepat sesuai variabel yang akan disajikan **`STP-3.3`**
 
+
+---
+
 ## Visualisasi Data dengan `ggplot2`
 
 `ggplot2` adalah sebuah paket R yang dibuat oleh Hadley Wickham untuk membuat grafik dan visualisasi data. Paket ini didasarkan pada "Grammar of Graphics", sebuah kerangka kerja yang memecah visualisasi menjadi komponen-komponen terpisah seperti data, sistem koordinat, dan elemen-elemen visual (geometries). Dengan pendekatan ini, Anda dapat membangun grafik lapis demi lapis *(layer by layer)*.

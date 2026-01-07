@@ -5,6 +5,9 @@ Setelah mempelajari modul ini, Anda diharapkan dapat:
 1. mampu menghasilkan regresi linear sederhana dengan perangkat lunak komputer **`STP-13.3`**
 2. mampu menghasilkan persamaan regresi linear berganda dengan perangkat lunak komputer **`STP-14.3`**
 
+
+---
+
 ## Pendahuluan
 
 Analisis regresi linear adalah analisis statistik untuk menyatakan hubungan sebab-akibat (kausalitas) antar minimal dua variabel. Analisis regresi linear yang melibatkan *dua variabel saja* (*satu variabel dependen* dan *satu variabel independen*), kita sebut sebagai **regresi linear sederhana**, sedangkan analisis regresi linar yang melibatkan lebih dari dua variabel (*satu variabel dependen* dan *lebih dari satu variabel independen*) kita sebut sebagai **regresi linear berganda *(multiple linear regression)***

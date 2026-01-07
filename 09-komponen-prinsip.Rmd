@@ -2,6 +2,9 @@
 
 Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan komponen prinsip menggunakan perangkat lunak komputer **`STP-14.3`**
 
+
+---
+
 ## Pendahuluan
 
 Analisis Komponen Prinsip (*Principal Component Analysis*, PCA) dan Analisis Faktor (*Common Factor Analysis*) adalah metode analisis multivariat yang digunakan untuk meringkas atau mereduksi jumlah variabel yang banyak menjadi beberapa dimensi baru (disebut komponen atau faktor) yang lebih sedikit, namun tetap merepresentasikan informasi dari variabel asli.
@@ -181,7 +184,7 @@ scree(data_analisis_final, pc=TRUE)
 1.  Berdasarkan **Kaiser's Criterion** (Nilai Eigen \> 1) pada sub-bab 9.7.1, berapa komponen yang sebaiknya diekstrak?
 2.  Berdasarkan **Scree Plot** di atas (lihat titik siku/ *elbow*), berapa komponen yang sebaiknya diekstrak?
 
-Berdasarkan analisis di Modul 13, kita memutuskan untuk menggunakan **4 dimensi**.
+Berdasarkan analisis-analisis sebelumnya, diputuskan untuk menggunakan **4 dimensi**.
 
 ## Melakukan Analisis Faktor dan Rotasi
 

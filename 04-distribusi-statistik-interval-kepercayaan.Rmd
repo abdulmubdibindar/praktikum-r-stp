@@ -5,6 +5,9 @@ Setelah mempelajari modul ini, Anda diharapkan dapat:
 1. menghasilkan distribusi statistik sampel dan menghitung standard error-nya **`STP-4.3`**
 2. menghasilkan interval kepercayaan dengan menggunaan perangkat lunak komputer **`STP-5.2`**
 
+
+---
+
 ## Pendahuluan
 
 Dalam statistika inferensial, kita seringkali ingin mengetahui karakteristik dari sebuah populasi (misalnya, rata-rata uang saku seluruh mahasiswa di Indonesia). Namun, mengumpulkan data dari seluruh populasi seringkali tidak memungkinkan. Sebagai solusinya, kita mengambil sampel acak dari populasi tersebut dan menggunakan statistik dari sampel (seperti rata-rata sampel) untuk menduga parameter populasi.
