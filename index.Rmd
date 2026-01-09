@@ -9,6 +9,26 @@ bibliography: referensi.bib
 link-citations: true
 ---
 
+# Sistematika Praktikum {-}
+
+Modul praktikum ini terdiri atas **9 modul** yang disusun secara bertahap, dimulai dari pengenalan dasar hingga analisis multivariat:
+
+| Modul | Topik                                      | Deskripsi Singkat                                                              |
+| :---: | ------------------------------------------ | ------------------------------------------------------------------------------ |
+|   1   | Pengolahan Data Terstruktur                | Pengenalan R, RStudio, R Markdown, dan pengolahan data terstruktur             |
+|   2   | Statistika Deskriptif                      | Perhitungan proporsi, mean, median, standar deviasi, dan IQV                   |
+|   3   | Visualisasi Data                           | Pembuatan grafik dengan `ggplot2`: bar chart, histogram, boxplot, scatter plot |
+|   4   | Distribusi Sampling & Interval Kepercayaan | Simulasi sampling, standard error, dan estimasi parameter                      |
+|   5   | Uji Hipotesis                              | Uji hipotesis 1 dan 2 populasi untuk rata-rata dan proporsi                    |
+|   6   | Korelasi Nominal & Ordinal                 | Koefisien V Cramer, Lambda, dan Gamma                                          |
+|   7   | Korelasi Metrik                            | Koefisien Spearman's ρ dan Pearson's r                                         |
+|   8   | Regresi Linear                             | Regresi linear sederhana dan berganda                                          |
+|   9   | Analisis Komponen Prinsip                  | PCA dan Analisis Faktor                                                        |
+
+Setiap modul dilengkapi dengan **capaian pembelajaran**, **contoh kode**, dan **soal latihan** yang harus dikerjakan.
+
+---
+
 # Pengantar: Pengenalan R, RStudio, dan R Markdown {-}
 
 Selamat datang di dunia pengolahan data yang lebih canggih! Dalam praktikum ini, kalian akan berkenalan dengan teknik pengolahan dan analisis data yang lebih canggih, yakni dengan menggunakan bahasa pemrograman bernama R. R adalah bahasa pemrograman yang dibuat khusus untuk keperluan analisis statistik. 
