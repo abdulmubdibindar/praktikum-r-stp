@@ -1,0 +1,10 @@
+.rmdnote {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 10px;
+    background: #e6f3ff;
+    /* Warna biru muda */
+    border-left: 5px solid #2196F3;
+    /* Garis tebal di kiri */
+    border-radius: 4px;
+}
