@@ -9,7 +9,9 @@ bibliography: referensi.bib
 link-citations: true
 ---
 
-# Sistematika Praktikum {-}
+# Pengantar {-}
+
+Selamat datang di modul daring Praktikum Statistika untuk Perencanaan. Modul ini digunakan untuk mendampingi kalian mengikuti Praktikum dalam mata kuliah Statistika untuk Perencanaan, mata kuliah di Program Studi Perencanaan Wilayah dan Kota, Institut Teknologi Sumatera.
 
 Modul praktikum ini terdiri atas **9 modul** yang disusun secara bertahap, dimulai dari pengenalan dasar hingga analisis multivariat:
 
@@ -29,6 +31,10 @@ Setiap modul dilengkapi dengan **capaian pembelajaran**, **contoh kode**, dan **
 
 ---
 
-# Pengantar: Pengenalan R, RStudio, dan R Markdown {-}
+# Pengenalan R, RStudio, dan R Markdown {-}
 
 Selamat datang di dunia pengolahan data yang lebih canggih! Dalam praktikum ini, kalian akan berkenalan dengan teknik pengolahan dan analisis data yang lebih canggih, yakni dengan menggunakan bahasa pemrograman bernama R. R adalah bahasa pemrograman yang dibuat khusus untuk keperluan analisis statistik. 
+
+## Apa itu R?
+
+
