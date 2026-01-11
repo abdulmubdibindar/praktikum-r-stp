@@ -13,10 +13,10 @@ link-citations: true
 
 Selamat datang di modul daring Praktikum Statistika untuk Perencanaan. Modul ini digunakan untuk mendampingi kalian mengikuti Praktikum dalam mata kuliah Statistika untuk Perencanaan, mata kuliah di Program Studi Perencanaan Wilayah dan Kota, Institut Teknologi Sumatera.
 
-Modul praktikum ini terdiri atas **9 modul** yang disusun secara bertahap, dimulai dari pengenalan dasar hingga analisis multivariat:
+Modul praktikum ini akan mendampingi Anda mempelajari pengolahan statistik menggunakan bahasa pemrograman R. Untuk itu, modul ini terbagi menjadi **9 modul** yang disusun secara bertahap, dimulai dari pengenalan dasar hingga analisis multivariat:
 
 | Modul | Topik                                      | Deskripsi Singkat                                                              |
-| :---: | ------------------------------------------ | ------------------------------------------------------------------------------ |
+| :---: | :----------------------------------------: | :----------------------------------------------------------------------------: |
 |   1   | Pengolahan Data Terstruktur                | Pengenalan R, RStudio, R Markdown, dan pengolahan data terstruktur             |
 |   2   | Statistika Deskriptif                      | Perhitungan proporsi, mean, median, standar deviasi, dan IQV                   |
 |   3   | Visualisasi Data                           | Pembuatan grafik dengan `ggplot2`: bar chart, histogram, boxplot, scatter plot |
@@ -37,4 +37,151 @@ Selamat datang di dunia pengolahan data yang lebih canggih! Dalam praktikum ini,
 
 ## Apa itu R?
 
+R adalah lingkungan perangkat lunak (_software environment_) dan bahasa pemrograman yang digunakan untuk komputasi statistik dan grafik. R dikembangkan oleh Ross Ihaka dan Robert Gentleman di Universitas Auckland, Selandia Baru, pada awal tahun 1990-an sebagai evolusi dari bahasa S yang sebelumnya dikembangkan di Bell Laboratories [@history_overview_r]. R bersifat _open-source_ (berlisensi GNU GPL), yang berarti dapat digunakan secara gratis dan dikembangkan secara kolaboratif oleh komunitas global [@r_wikipedia].
 
+Keunggulan utama R dalam konteks perencanaan dan pemerintahan meliputi:
+
+1.  **Ekosistem Paket yang Luas**: R memiliki puluhan ribu paket (_packages_) di CRAN untuk berbagai keperluan, mulai dari manipulasi data, pemodelan statistik, hingga analisis geospasial menggunakan `sf` dan `terra` [@spatial_r_sf; @spatial_data_science_terra].
+2.  **Visualisasi Data**: Dengan paket seperti `ggplot2` dan `Shiny`, R memungkinkan pembuatan grafik berkualitas tinggi dan dashboard interaktif yang informatif [@shiny_gallery].
+3.  **Dukungan Kebijakan Berbasis Data**: R mendukung implementasi kebijakan "Satu Data Indonesia" dengan kemampuan standardisasi, interoperabilitas, dan transparansi metode analisis yang dapat diaudit [@satu_data_local_govt]. R memfasilitasi proses ETL (_Extract-Transform-Load_) otomatis untuk membersihkan data dari berbagai instansi [@r_public_data].
+
+Dalam bidang perencanaan wilayah, R digunakan untuk:
+*   **Analisis Geospasial**: Mengelola data vektor dan raster untuk pemetaan dan pemodelan lingkungan [@spatial_data_science_terra].
+*   **Perencanaan Transportasi**: Menggunakan paket seperti `stplanr` untuk analisis jaringan, rute, dan pemodelan transportasi berkelanjutan [@stplanr_cran; @sustainable_transport_stplanr].
+*   **Simulasi Kebijakan**: Melakukan simulasi dampak kebijakan publik, seperti perubahan penggunaan lahan atau intervensi sosial, sebelum diterapkan secara nyata [@simulation_public_policies].
+
+## Apa itu RStudio?
+
+RStudio (yang kini bertransformasi menjadi **Posit**) adalah _Integrated Development Environment_ (IDE) untuk R. Diluncurkan pertama kali pada tahun 2009, RStudio menyediakan antarmuka visual yang lebih ramah pengguna dibandingkan antarmuka baris perintah (_command line_) asli R [@about_posit]. Fitur-fitur seperti penyorotan sintaksis (_syntax highlighting_), _auto-completion_, dan manajemen _workspace_ membuat pengguna baru lebih mudah mempelajari dan menggunakan R. Transformasi menjadi Posit mencerminkan komitmen terhadap ekosistem _data science_ modern yang lebih luas, termasuk dukungan untuk Python [@goodbye_rstudio].
+
+## Apa itu R Markdown?
+
+R Markdown adalah format dokumen yang memungkinkan pengguna untuk menggabungkan kode R, hasil analisis (seperti tabel dan grafik), serta narasi teks dalam satu dokumen yang dinamis. Prinsip ini mendukung _reproducible data science_, di mana seluruh proses dari data mentah hingga laporan akhir dapat dilacak dan diulang. R Markdown sangat berguna untuk otomatisasi pelaporan di instansi pemerintahan, memungkinkan pembuatan laporan rutin yang efisien dan konsisten [@bindar2026analisis].
+
+---
+
+# Pengenalan Teknis R {-}
+
+Sebelum memulai praktikum dengan set data sesungguhnya, ada baiknya kita memahami beberapa konsep teknis dasar dalam bahasa pemrograman R. Bagian ini merangkum keterampilan-keterampilan dasar yang akan kalian temui tersebar di modul-modul praktikum.
+
+## Sintaks Dasar
+
+### Komentar
+
+Di R, segala sesuatu yang ditulis setelah tanda pagar (`#`) dianggap sebagai komentar dan tidak akan dieksekusi oleh komputer. Komentar berguna untuk memberikan catatan pada kode kita.
+
+```r
+# Ini adalah komentar
+1 + 1 # Kode ini akan menghitung 1 + 1
+```
+
+### *Assignment* (Pemberian Nilai)
+
+Untuk menyimpan nilai ke dalam variabel/objek, kita menggunakan tanda panah kiri (`<-`). Kalian juga bisa menggunakan tanda sama dengan (`=`), namun `<-` adalah standar yang lebih disarankan di komunitas R.
+
+```r
+x <- 10
+nama <- "Budi"
+```
+
+### *Case Sensitivity*
+
+R membedakan huruf besar dan huruf kecil (*case sensitive*). Variabel `Data` dianggap berbeda dengan `data`.
+
+## Paket (*Packages*)
+
+R memiliki ribuan paket tambahan yang menyediakan fungsi-fungsi khusus.
+
+-   **`install.packages("nama_paket")`**: Digunakan untuk mengunduh dan menginstal paket dari internet ke komputer kita. Ini cukup dilakukan satu kali saja.
+-   **`library(nama_paket)`**: Digunakan untuk memuat paket yang sudah terinstal ke dalam sesi kerja kita agar isinya bisa digunakan. Ini harus dilakukan setiap kali kita membuka RStudio baru.
+
+Paket utama yang akan sering kita gunakan adalah:
+
+-   **`tidyverse`**: Kumpulan paket untuk pengolahan data modern.
+-   **`openxlsx`**: Untuk membaca dan menulis file Excel.
+
+## Fungsi (*Functions*)
+
+Fungsi adalah serangkaian instruksi yang dibungkus menjadi satu perintah untuk melakukan tugas tertentu. R memiliki banyak fungsi bawaan, dan kita juga bisa membuat fungsi sendiri.
+
+### Menggunakan Fungsi
+
+Untuk menggunakan fungsi, kita memanggil namanya diikuti dengan tanda kurung `()`. Di dalam tanda kurung, kita bisa memasukkan **argumen** (input).
+
+```r
+# Contoh fungsi bawaan: mean (rata-rata)
+nilai <- c(10, 20, 30)
+rata_rata <- mean(nilai) # Hasil: 20
+```
+
+### Membuat Fungsi Sendiri
+
+Kita dapat membuat fungsi kustom menggunakan perintah `function()`. Struktur dasarnya adalah:
+
+```r
+nama_fungsi <- function(input) {
+  # Proses yang dilakukan
+  hasil <- input * 2
+  return(hasil)
+}
+```
+
+Ini akan sangat berguna ketika kita ingin melakukan perhitungan yang sama berulang kali, seperti pada perhitungan IQV di Modul 2.
+
+## Struktur Data Dasar
+
+### Vektor
+
+Vektor adalah struktur data paling dasar di R yang menampung deretan nilai dengan tipe yang sama. Kita membuatnya dengan fungsi `c()` (*combine*).
+
+```r
+angka <- c(1, 2, 3, 4, 5)
+huruf <- c("a", "b", "c")
+```
+
+### Tipe Data
+
+Saat mengolah data, kalian akan sering menemukan singkatan tipe data berikut:
+
+-   **`dbl` (Double)**: Angka numerik (bisa desimal).
+-   **`chr` (Character)**: Teks atau *string*. Ditandai dengan tanda kutip.
+-   **`fct` (Factor)**: Data kategorik (bisa nominal atau ordinal). Factor menyimpan nilai sebagai angka di belakang layar namun menampilkan label teks, yang berguna untuk analisis statistik dan plot.
+
+### Data Frame dan Tibble
+
+Data dalam R biasanya disimpan dalam bentuk tabel yang disebut *Data Frame*. Di era modern (tidyverse), kita sering menggunakan versi yang lebih canggih disebut **Tibble**. Strukturnya mirip spreadsheet: baris mewakili observasi, kolom mewakili variabel.
+
+## Operator Pipa (`|>`)
+
+Dalam `tidyverse`, kita sering menggunakan operator pipa (`|>`) untuk merangkai beberapa perintah sekaligus. Bayangkan ini sebagai penyambung proses:
+
+```r
+# Tanpa pipa
+hasil <- fungsi_2(fungsi_1(data))
+
+# Dengan pipa (lebih mudah dibaca)
+data |> 
+  fungsi_1() |> 
+  fungsi_2()
+```
+
+Artinya: "Ambil `data`, lalu `fungsi_1`, kemudian hasilnya dimasukkan ke `fungsi_2`."
+
+## Manajemen Data (Input/Output)
+
+### Membaca Data
+
+Kita sering menggunakan `read.xlsx()` dari paket `openxlsx` untuk membaca file Excel.
+
+```r
+data <- read.xlsx("folder/nama_file.xlsx", sheet = "nama_sheet")
+```
+
+### Menyimpan Data
+
+Setelah diolah, data bisa disimpan kembali ke Excel atau CSV.
+
+```r
+write.xlsx(data, "folder/nama_file_baru.xlsx")
+write.csv2(data, "folder/nama_file_baru.csv") # Format CSV Excel Indonesia (pemisah titik koma)
+```

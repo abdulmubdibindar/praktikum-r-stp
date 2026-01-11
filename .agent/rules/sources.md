@@ -1,0 +1,1 @@
+Gunakan dokumentasi [Bookdown](https://bookdown.org/yihui/bookdown/), [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/), dan [R Mardown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/) dalam memformat dokumen-dokumen tutorial praktikum di proyek ini.
