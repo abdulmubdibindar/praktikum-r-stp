@@ -56,7 +56,7 @@ RStudio (yang kini bertransformasi menjadi **Posit**) adalah _Integrated Develop
 
 ## Apa itu R Markdown?
 
-R Markdown adalah format dokumen yang memungkinkan pengguna untuk menggabungkan kode R, hasil analisis (seperti tabel dan grafik), serta narasi teks dalam satu dokumen yang dinamis. Prinsip ini mendukung _reproducible data science_, di mana seluruh proses dari data mentah hingga laporan akhir dapat dilacak dan diulang. R Markdown sangat berguna untuk otomatisasi pelaporan di instansi pemerintahan, memungkinkan pembuatan laporan rutin yang efisien dan konsisten [@bindar2026analisis].
+R Markdown adalah format dokumen yang memungkinkan pengguna untuk menggabungkan kode R, hasil analisis (seperti tabel dan grafik), serta narasi teks dalam satu dokumen yang dinamis. Prinsip ini mendukung _reproducible data science_, di mana seluruh proses dari data mentah hingga laporan akhir dapat dilacak dan diulang. R Markdown sangat berguna untuk otomatisasi pelaporan di instansi pemerintahan, memungkinkan pembuatan laporan rutin yang efisien dan konsisten.
 
 ---
 

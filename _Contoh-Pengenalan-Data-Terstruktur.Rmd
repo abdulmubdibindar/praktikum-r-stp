@@ -1,18 +1,3 @@
----
-title: "Praktikum-01 Pengenalan Data Terstruktur"
-author: "PL25-12001 Statistika Untuk Perencanaan"
-date: "2025-08-20"
-output:
-  word_document: default
-  html_document: default
-  pdf_document:
-    latex_engine: lualatex
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, eval = FALSE)
-```
-
 # Praktikum-1: Pengenalan Data Terstruktur
 
 > Setelah mempelajari praktikum ini mahasiswa diharapkan dapat:
