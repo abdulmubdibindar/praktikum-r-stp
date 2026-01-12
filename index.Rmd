@@ -5,7 +5,9 @@ site: bookdown::bookdown_site
 output:
     bookdown::gitbook:
         css: style.css
+        split_bib: false
 bibliography: referensi.bib
+biblio-title: "Referensi"
 link-citations: true
 ---
 
@@ -17,7 +19,7 @@ Modul praktikum ini akan mendampingi Anda mempelajari pengolahan statistik mengg
 
 | Modul | Topik                                      | Deskripsi Singkat                                                              |
 | :---: | :----------------------------------------: | :----------------------------------------------------------------------------: |
-|   1   | Pengolahan Data Terstruktur                | Pengenalan R, RStudio, R Markdown, dan pengolahan data terstruktur             |
+|   1   | Pengolahan Data Terstruktur                | Dasar *data wrangling*: Impor, seleksi, standardisasi, penggabungan, dan ekspor data/dataset    |
 |   2   | Statistika Deskriptif                      | Perhitungan proporsi, mean, median, standar deviasi, dan IQV                   |
 |   3   | Visualisasi Data                           | Pembuatan grafik dengan `ggplot2`: bar chart, histogram, boxplot, scatter plot |
 |   4   | Distribusi Sampling & Interval Kepercayaan | Simulasi sampling, standard error, dan estimasi parameter                      |

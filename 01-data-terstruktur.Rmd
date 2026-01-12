@@ -5,8 +5,7 @@ Setelah mempelajari modul ini Anda diharapkan dapat:
 1.  menganalisis variabel dan objek dalam sebuah format data terstruktur **`STP-1.3`**
 2.  mengelola data terstruktur dengan tepat menggunakan perangkat komputer **`STP-1.4`**
 
-
-## Pengolahan Data Terstruktur
+---
 
 Kita akan mempelajari cara pengolahan data terstruktur atau *dataset*/set data dari hasil kuesioner kepada mahasiswa-mahasiswa Universitas Islam Negeri Raden Intan Lampung (UINRIL) dan Universitas Bandar Lampung (UBL) tentang pola perjalanan mereka.
 
@@ -14,7 +13,6 @@ Dalam R, pengolahan data terstruktur dipermudah dengan adanya paket `tidyverse`.
 
 ```{r}
 library(tidyverse)
-library(openxlsx)
 ```
 
 Seperti yang kalian lihat, paket `tidyverse` menyertakan paket-paket berikut yang mempunyai kegunaan masing-masing:
@@ -31,7 +29,11 @@ Seperti yang kalian lihat, paket `tidyverse` menyertakan paket-paket berikut yan
 
 Selain paket `tidyverse`, kita juga akan menggunakan paket `openxlsx` untuk mengoperasikan *file* Excel.
 
-### Mengimpor set data *(dataset)* dari Excel
+```{r}
+library(openxlsx)
+```
+
+## Mengimpor set data *(dataset)* dari Excel
 
 Untuk membuat set data di lingkungan kerja R kita, gunakan fungsi `read.xlsx()` seperti berikut. Fungsi `read.xlsx()` mempunyai atribut utama berupa *file path* lokasi file yang ditempatkan di dalam tanda kurung.
 
@@ -74,7 +76,7 @@ View(data)
 View(data_ubl)
 ```
 
-### Analisis data terstruktur pada set data
+## Analisis data terstruktur pada set data
 
 Kita sudah mempelajari bahwa data terstruktur terdiri atas **objek**, **variabel**, dan **nilai**. Satu objek diwakili oleh satu baris, variabel oleh kolom, dan nilai berada di dalam sel-sel yang merupakan perpotongan kolom dan baris.
 
@@ -97,7 +99,7 @@ Rincian nama-nama variabel ditunjukkan pada baris keluaran yang diawali oleh sim
 
 Terlihat dalam data kita bahwa hanya ada dua tipe nilai variabel: `dbl` dan `chr` yang berarti *double* (bilangan desimal) dan *character* (huruf/*string*).
 
-### Mengolah set data
+## Mengolah set data
 
 Dalam bagian ini kita akan mengolah set data kita yang bertujuan untuk memenuhi kebutuhan pengolahan data kita. Sebelum melakukan pengolahan, maka kita perlu menjawab pertanyaan terlebih dahulu "apa yang kita butuhkan untuk pengolahan data kita?"
 
@@ -105,7 +107,7 @@ Dalam praktikum ini kita sudah mengetahui bahwa terdapat dua jenis set data hasi
 
 Pengolahan set data seperti ini punya istilah yang keren: ***data wrangling*** (bisa dibaca "data rengling")
 
-#### Merancang Algoritma (Urutan kerja)
+### Merancang Algoritma (Urutan kerja)
 
 Karena R adalah program yang mayoritasnya *character user interface* (CUI) alih-alih *graphical user interface*, maka pekerjaan kita tidak bisa seleluasa GUI yang dapat kita bolak-balik urutannya. Kita sebaiknya memiliki "rencana kerja" yang jelas, yang dalam bahasa pemrograman disebut **algoritma**.
 
@@ -122,7 +124,7 @@ Algoritma yang akan kita lakukan dalam praktikum ini adalah sebagai berikut:
 >
 > Sebisa mungkin rancang setiap langkah pada urutan kerja kita dengan rinci agar kita dapat menerjemahkan langkah-langkah tersebut dengan lebih mudah ke baris kode.
 
-#### Mengidentifikasi Nama-nama Kolom
+### Mengidentifikasi Nama-nama Kolom
 
 Untuk mengidentifikasi nama-nama kolom kita dapat menggunakan fungsi `colnames()` yang mengambil argumen nama set data.
 
@@ -163,7 +165,7 @@ Dari kedua fungsi tersebut, kita dapat mengetahui bahwa terdapat perbedaan jumla
 
 Perbedaan-perbedaan inilah yang membuat kita tidak bisa langsung menggabungkan data. Kita harus menyeragamkannya terlebih dahulu,
 
-#### Menentukan Kolom-kolom yang Akan Diambil di Set Data Baru
+### Menentukan Kolom-kolom yang Akan Diambil di Set Data Baru
 
 Setelah mengidentifikasi nama-nama variabel dan jumlahnya, kita putuskan untuk mengambil variabel-variabel berikut: (1) `Nomor.urut`, (2) `Jenis.Kelamin`, (3) `Umur`, (4) `Fakultas`, (5) `Prodi`, (6) `Tingkat.Semester`, (7) `Uang.Saku`, (8) `kepemilikan.mobil`, (9) `kepemilikan.motor`, (10) `kepemilikan.sepeda`, (11) `kendaraan.utama`, (12) `jenis.tempat.tinggal`, (13) `jarak`, (14) `biaya.dalam.seminggu`, (15) `Jumlah.perjalanan.Senin`, (16) `Jumlah.perjalanan.Selasa`, (17) `Jumlah.perjalanan.Rabu`, (18) `Jumlah.perjalanan.Kamis`, (19) `Jumlah.perjalanan.Jumat`, (20) `Jumlah.perjalanan.Sabtu`, (21) `Jumlah.perjalanan.Ahad`.
 
@@ -184,7 +186,7 @@ kolom_final <- c(
 )
 ```
 
-#### Menyeleksi Kolom-kolom Yang Akan Dipakai
+### Menyeleksi Kolom-kolom Yang Akan Dipakai
 
 Kita akan menggunakan fungsi `select()` dari `dplyr` (bagian dari `tidyverse`) untuk memilih hanya kolom-kolom yang relevan dari masing-masing set data. Perhatikan baik-baik, kita harus menggunakan **nama kolom asli** saat menyeleksi.
 
@@ -222,7 +224,7 @@ data_ubl_selected <- select(data_ubl,
 
 Sekarang kita punya dua *data frame* baru (`data_uin_selected` dan `data_ubl_selected`) yang isinya hanya kolom-kolom yang kita butuhkan.
 
-#### Mengubah Nama Kolom Menjadi Nama Standar
+### Mengubah Nama Kolom Menjadi Nama Standar
 
 Ini adalah langkah kuncinya. Kita cukup menimpa nama-nama kolom di kedua *data frame* yang sudah kita seleksi tadi dengan nama-nama kolom dari vektor `kolom_final` yang kita buat di 3.3.3.
 
@@ -243,7 +245,7 @@ colnames(data_ubl_selected)
 
 Hasil dari kedua perintah di atas seharusnya adalah daftar nama yang identik.
 
-#### Menyatukan Kedua Set Data
+### Menyatukan Kedua Set Data
 
 Ini adalah langkah terakhir kita. Karena kedua set data kini memiliki struktur kolom yang sama persis, kita bisa menyatukannya menjadi satu *data frame* besar dengan fungsi `bind_rows()`.
 
@@ -266,7 +268,7 @@ glimpse(data_ubl_selected)
 
 Ini adalah kasus yang tepat untuk menggambarkan bahwa dalam data terstruktur, jenis nilai harus sama persis. Untuk kesederhanaan praktikum, kita akan melewati dulu variabel `biaya.dalam.sepekan` dan `Jumlah.perjalanan.Senin` tersebut.
 
-#### Memperbaiki Set Data yang Akan Digabungkan
+### Memperbaiki Set Data yang Akan Digabungkan
 
 Kita akan menghapus `biaya.dalam.sepekan` dari kedua set data kita. Untuk menghapus suatu kolom, kita dapat menggunakan fungsi `select()` juga, akan tetapi kita tambahkan tanda negatif (`-`) di depan nama variabelnya.
 
@@ -289,7 +291,7 @@ data_ubl_selected <- select(data_ubl_selected,
 glimpse(data_ubl_selected)
 ```
 
-#### Menyatukan Kedua Set Data Setelah Diperbaiki
+### Menyatukan Kedua Set Data Setelah Diperbaiki
 
 Kita akan coba menggabungkan kedua set data tadi.
 
@@ -305,7 +307,7 @@ Selesai! 🥳 Mari kita lihat hasil akhir dari kerja keras kita dengan `glimpse(
 glimpse(data_gabungan)
 ```
 
-#### Mengekspor Set Data Hasil Pengolahan ke Fail *(File)* Terpisah
+### Mengekspor Set Data Hasil Pengolahan ke Fail *(File)* Terpisah
 
 Dalam dunia data sains dikenal jenis fail `.csv` yang merupakan singkatan dari *"comma-separated values."* Fail ini menyimpan nilai-nilai sehingga dapat dibaca sebagai tabel seperti contoh berikut:
 
@@ -334,7 +336,7 @@ write.xlsx(variabel_dataset, "nama_file_ekspor.xlsx")
 
 Seluruh fail yang diekspor lokasi direktorinya **sama seperti lokasi file .Rproj** kita.
 
-##### Mengekspor set data ke fail `.csv`
+#### Mengekspor set data ke fail `.csv`
 
 Terdapat dua jenis fungsi untuk mengekspor set data ke fail `.csv`: `write.csv()` dan `write.csv2()`. Perbedaan antara keduanya adalah **pemisah nilainya**.
 
@@ -347,7 +349,7 @@ Sementara itu, `write.csv2()` menggunakan pemisah **titik-koma (;)** *(semicolon
 write.csv2(data_gabungan, "Data UINRIL & UBL.csv")
 ```
 
-##### Mengekspor set data ke fail `.xlsx`
+#### Mengekspor set data ke fail `.xlsx`
 
 Sama seperti write.csv2(), fungsi write.xlsx() juga mengikuti format yang sama.
 

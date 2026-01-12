@@ -8,3 +8,67 @@
     /* Garis tebal di kiri */
     border-radius: 4px;
 }
+/* --- MULAI CUSTOM BLOCKS BARU --- */
+
+/* 1. Catatan (Update) */
+.rmdnote {
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 15px;
+  background-color: #e7f2fa;
+  border-left: 6px solid #2196F3;
+  border-radius: 4px;
+  color: #2c3e50;
+}
+
+/* 2. Tips (Tip) - Hijau */
+.rmdtip {
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 15px;
+  background-color: #e6ffed;
+  border-left: 6px solid #00c853;
+  border-radius: 4px;
+  color: #2c3e50;
+}
+
+/* 3. Penting (Important) - Ungu */
+.rmdimportant {
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 15px;
+  background-color: #f3e5f5;
+  border-left: 6px solid #9c27b0;
+  border-radius: 4px;
+  color: #2c3e50;
+}
+
+/* 4. Peringatan (Warning) - Kuning/Oranye */
+.rmdwarning {
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 15px;
+  background-color: #fff8e1;
+  border-left: 6px solid #ffab00;
+  border-radius: 4px;
+  color: #2c3e50;
+}
+
+/* 5. Soal Latihan (Exercise) - Merah Bata */
+.rmdexercise {
+  padding: 1em;
+  margin: 1em 0;
+  padding-left: 15px;
+  background-color: #fbe9e7;
+  border-left: 6px solid #ff5722;
+  border-radius: 4px;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+/* Styling teks bold di dalam block agar lebih tegas */
+.rmdnote strong, .rmdtip strong, .rmdimportant strong, .rmdwarning strong, .rmdexercise strong {
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 1.1em;
+}

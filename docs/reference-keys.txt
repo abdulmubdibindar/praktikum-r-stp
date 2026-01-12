@@ -18,7 +18,6 @@ manajemen-data-inputoutput
 membaca-data
 menyimpan-data
 modul-1-pengolahan-data-terstruktur
-pengolahan-data-terstruktur
 mengimpor-set-data-dataset-dari-excel
 analisis-data-terstruktur-pada-set-data
 mengolah-set-data
