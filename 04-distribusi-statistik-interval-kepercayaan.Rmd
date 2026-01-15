@@ -220,7 +220,7 @@ Untuk bagian ini kita akan menggunakan *library* bernama `MKinfer`yang berguna u
 
 Lakukan instalasi *library* ini dengan perintah berikut.
 
-```{r instalasi-MKinfer, eval:FALSE}
+```{r instalasi-MKinfer, eval=FALSE}
 install.packages("MKinfer")
 ```
 

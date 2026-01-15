@@ -23,54 +23,53 @@ link-citations: true
 options(cli.hyperlink = FALSE)
 ```
 
-# Pengantar {-}
+# Pengantar {.unnumbered}
 
 Selamat datang di modul daring Praktikum Statistika untuk Perencanaan. Modul ini digunakan untuk mendampingi kalian mengikuti Praktikum dalam mata kuliah Statistika untuk Perencanaan, mata kuliah di Program Studi Perencanaan Wilayah dan Kota, Institut Teknologi Sumatera.
 
 Modul praktikum ini akan mendampingi Anda mempelajari pengolahan statistik menggunakan bahasa pemrograman R. Untuk itu, modul ini terbagi menjadi **9 modul** yang disusun secara bertahap, dimulai dari pengenalan dasar hingga analisis multivariat:
 
-| Modul | Topik                                      | Deskripsi Singkat                                                              |
-| :---: | :----------------------------------------: | :----------------------------------------------------------------------------: |
-|   1   | Pengolahan Data Terstruktur                | Dasar *data wrangling*: Impor, seleksi, standardisasi, penggabungan, dan ekspor data/dataset    |
-|   2   | Statistika Deskriptif                      | Perhitungan proporsi, mean, median, standar deviasi, dan IQV                   |
-|   3   | Visualisasi Data                           | Pembuatan grafik dengan `ggplot2`: bar chart, histogram, boxplot, scatter plot |
-|   4   | Distribusi Sampling & Interval Kepercayaan | Simulasi sampling, standard error, dan estimasi parameter                      |
-|   5   | Uji Hipotesis                              | Uji hipotesis 1 dan 2 populasi untuk rata-rata dan proporsi                    |
-|   6   | Korelasi Nominal & Ordinal                 | Koefisien V Cramer, Lambda, dan Gamma                                          |
-|   7   | Korelasi Metrik                            | Koefisien Spearman's ρ dan Pearson's r                                         |
-|   8   | Regresi Linear                             | Regresi linear sederhana dan berganda                                          |
-|   9   | Analisis Komponen Prinsip                  | PCA dan Analisis Faktor                                                        |
+| Modul |                   Topik                    |                                      Deskripsi Singkat                                       |
+| :---: | :----------------------------------------: | :------------------------------------------------------------------------------------------: |
+|   1   |        Pengolahan Data Terstruktur         | Dasar *data wrangling*: Impor, seleksi, standardisasi, penggabungan, dan ekspor data/dataset |
+|   2   |           Statistika Deskriptif            |                 Perhitungan proporsi, mean, median, standar deviasi, dan IQV                 |
+|   3   |              Visualisasi Data              |        Pembuatan grafik dengan `ggplot2`: bar chart, histogram, boxplot, scatter plot        |
+|   4   | Distribusi Sampling & Interval Kepercayaan |                  Simulasi sampling, standard error, dan estimasi parameter                   |
+|   5   |               Uji Hipotesis                |                 Uji hipotesis 1 dan 2 populasi untuk rata-rata dan proporsi                  |
+|   6   |         Korelasi Nominal & Ordinal         |                            Koefisien V Cramer, Lambda, dan Gamma                             |
+|   7   |              Korelasi Metrik               |                            Koefisien Spearman's ρ dan Pearson's r                            |
+|   8   |               Regresi Linear               |                            Regresi linear sederhana dan berganda                             |
+|   9   |         Analisis Komponen Prinsip          |                                   PCA dan Analisis Faktor                                    |
 
 Setiap modul dilengkapi dengan **capaian pembelajaran**, **contoh kode**, dan **soal latihan** yang harus dikerjakan.
 
----
+------------------------------------------------------------------------
 
-# Pengenalan R dan RStudio {-}
+# Pengenalan R dan RStudio {.unnumbered}
 
-Selamat datang di dunia pengolahan data yang lebih canggih! Dalam praktikum ini, kalian akan berkenalan dengan teknik pengolahan dan analisis data dengan menggunakan bahasa pemrograman bernama R. R adalah bahasa pemrograman yang dibuat khusus untuk keperluan analisis statistik. 
+Selamat datang di dunia pengolahan data yang lebih canggih! Dalam praktikum ini, kalian akan berkenalan dengan teknik pengolahan dan analisis data dengan menggunakan bahasa pemrograman bernama R. R adalah bahasa pemrograman yang dibuat khusus untuk keperluan analisis statistik.
 
 ## Apa itu R?
 
-R adalah lingkungan perangkat lunak (_software environment_) dan bahasa pemrograman yang digunakan untuk komputasi statistik dan grafik. R dikembangkan oleh Ross Ihaka dan Robert Gentleman di Universitas Auckland, Selandia Baru, pada awal tahun 1990-an sebagai evolusi dari bahasa S yang sebelumnya dikembangkan di Bell Laboratories [@history_overview_r]. R bersifat _open-source_ (berlisensi GNU GPL), yang berarti dapat digunakan secara gratis dan dikembangkan secara kolaboratif oleh komunitas global [@r_wikipedia].
+R adalah lingkungan perangkat lunak (*software environment*) dan bahasa pemrograman yang digunakan untuk komputasi statistik dan grafik. R dikembangkan oleh Ross Ihaka dan Robert Gentleman di Universitas Auckland, Selandia Baru, pada awal tahun 1990-an sebagai evolusi dari bahasa S yang sebelumnya dikembangkan di Bell Laboratories [@history_overview_r]. R bersifat *open-source* (berlisensi GNU GPL), yang berarti dapat digunakan secara gratis dan dikembangkan secara kolaboratif oleh komunitas global [@r_wikipedia].
 
 Keunggulan utama R dalam konteks perencanaan dan pemerintahan meliputi:
 
-1.  **Ekosistem Paket yang Luas**: R memiliki puluhan ribu paket (_packages_) di CRAN untuk berbagai keperluan, mulai dari manipulasi data, pemodelan statistik, hingga analisis geospasial menggunakan `sf` dan `terra` [@spatial_r_sf; @spatial_data_science_terra].
+1.  **Ekosistem Paket yang Luas**: R memiliki puluhan ribu paket (*packages*) di CRAN untuk berbagai keperluan, mulai dari manipulasi data, pemodelan statistik, hingga analisis geospasial menggunakan `sf` dan `terra` [@spatial_r_sf; @spatial_data_science_terra].
 2.  **Visualisasi Data**: Dengan paket seperti `ggplot2` dan `Shiny`, R memungkinkan pembuatan grafik berkualitas tinggi dan dashboard interaktif yang informatif [@shiny_gallery].
-3.  **Dukungan Kebijakan Berbasis Data**: R mendukung implementasi kebijakan "Satu Data Indonesia" dengan kemampuan standardisasi, interoperabilitas, dan transparansi metode analisis yang dapat diaudit [@satu_data_local_govt]. R memfasilitasi proses ETL (_Extract-Transform-Load_) otomatis untuk membersihkan data dari berbagai instansi [@r_public_data].
+3.  **Dukungan Kebijakan Berbasis Data**: R mendukung implementasi kebijakan "Satu Data Indonesia" dengan kemampuan standardisasi, interoperabilitas, dan transparansi metode analisis yang dapat diaudit [@satu_data_local_govt]. R memfasilitasi proses ETL (*Extract-Transform-Load*) otomatis untuk membersihkan data dari berbagai instansi [@r_public_data].
 
 Dalam bidang perencanaan wilayah dan kota, R digunakan untuk:
 
-* **Analisis Geospasial**: Mengelola data vektor dan raster untuk pemetaan dan pemodelan lingkungan [@spatial_data_science_terra].
-* **Perencanaan Transportasi**: Menggunakan paket seperti `stplanr` untuk analisis jaringan, rute, dan pemodelan transportasi berkelanjutan [@stplanr_cran; @sustainable_transport_stplanr].
-* **Simulasi Kebijakan**: Melakukan simulasi dampak kebijakan publik, seperti perubahan penggunaan lahan atau intervensi sosial, sebelum diterapkan secara nyata [@simulation_public_policies].
+-   **Analisis Geospasial**: Mengelola data vektor dan raster untuk pemetaan dan pemodelan lingkungan [@spatial_data_science_terra].
+-   **Perencanaan Transportasi**: Menggunakan paket seperti `stplanr` untuk analisis jaringan, rute, dan pemodelan transportasi berkelanjutan [@stplanr_cran; @sustainable_transport_stplanr].
+-   **Simulasi Kebijakan**: Melakukan simulasi dampak kebijakan publik, seperti perubahan penggunaan lahan atau intervensi sosial, sebelum diterapkan secara nyata [@simulation_public_policies].
 
 ## Apa itu RStudio?
 
-RStudio (yang kini bertransformasi menjadi **Posit**) adalah _Integrated Development Environment_ (IDE) untuk R. Diluncurkan pertama kali pada tahun 2009, RStudio menyediakan antarmuka visual yang lebih ramah pengguna dibandingkan antarmuka baris perintah (_command line_) asli R [@about_posit]. Fitur-fitur seperti penyorotan sintaksis (_syntax highlighting_), _auto-completion_, dan manajemen _workspace_ membuat pengguna baru lebih mudah mempelajari dan menggunakan R. Transformasi menjadi Posit mencerminkan komitmen terhadap ekosistem _data science_ modern yang lebih luas, termasuk dukungan untuk Python [@goodbye_rstudio].
+RStudio (yang kini bertransformasi menjadi **Posit**) adalah *Integrated Development Environment* (IDE) untuk R. Diluncurkan pertama kali pada tahun 2009, RStudio menyediakan antarmuka visual yang lebih ramah pengguna dibandingkan antarmuka baris perintah (*command line*) asli R [@about_posit]. Fitur-fitur seperti penyorotan sintaksis (*syntax highlighting*), *auto-completion*, dan manajemen *workspace* membuat pengguna baru lebih mudah mempelajari dan menggunakan R. Transformasi menjadi Posit mencerminkan komitmen terhadap ekosistem *data science* modern yang lebih luas, termasuk dukungan untuk Python [@goodbye_rstudio].
 
 Gambar \@ref(fig:jendela-rstudio) memberikan penjelasan singkat tentang tampilan jendela RStudio yang terdiri atas 4 panel.
-
 
 ```{r jendela-rstudio, fig.cap = "Bagian-bagian jendela RStudio", echo=FALSE, fig.align='center'}
 knitr::include_graphics("images/jendela_rstudio.png")
@@ -81,14 +80,13 @@ knitr::include_graphics("images/jendela_rstudio.png")
 3.  Panel *Console*, digunakan untuk menjalankan kode.
 4.  Panel *Script*, digunakan untuk menulis kode. Di sinilah kita akan menghabiskan sebagian besar waktu kerja kita.
 
-
 ## Cara Menjalankan R
 
-Cara (paling) utama untuk menjalankan perintah bahasa pemrograman R adalah dengan mengetikkannya langsung di **Console** (jendela nomor 3 pada Gambar\@ref(fig:jendela-rstudio)). 
+Cara (paling) utama untuk menjalankan perintah bahasa pemrograman R adalah dengan mengetikkannya langsung di **Console** (jendela nomor 3 pada Gambar\@ref(fig:jendela-rstudio)).
 
 Misalnya, jika Anda mengetikkan `1 + 1` di Console lalu menekan **Enter**, R akan langsung memberikan jawabannya.
 
-::: {.rmdexercise}
+::: rmdexercise
 **Latihan: Halo Dunia**
 
 Cobalah ketik perintah berikut di Console, lalu tekan Enter:
@@ -98,36 +96,120 @@ Cobalah ketik perintah berikut di Console, lalu tekan Enter:
 Selamat! Anda baru saja menjalankan kode R pertama Anda.
 :::
 
-Namun, mengetik satu per satu di Console akan melelahkan jika perintahnya banyak. Oleh karena itu, kita biasanya menulis kode dalam sebuah file _source code_ (ekstensi `.R`).
+Namun, mengetik satu per satu di Console akan melelahkan jika perintahnya banyak. Oleh karena itu, kita biasanya menulis kode dalam sebuah file *source code* (ekstensi `.R`).
 
-Untuk menjalankan kode dari file `.R` ke Console tanpa mengetik ulang:
-1.  Sorot (blok) baris kode yang ingin dijalankan di panel *Script* (jendela kiri atas).
-2.  Tekan kombinasi tombol **Ctrl + Enter** (Windows/Linux) atau **Cmd + Enter** (Mac).
+Untuk menjalankan kode dari file `.R` ke Console tanpa mengetik ulang: 1. Sorot (blok) baris kode yang ingin dijalankan di panel *Script* (jendela kiri atas). 2. Tekan kombinasi tombol **Ctrl + Enter** (Windows/Linux) atau **Cmd + Enter** (Mac).
 
 Kode yang disorot akan otomatis dikirim ke *Console* dan dijalankan. Ini adalah cara kerja standar yang efisien dalam menggunakan R.
 
-::: {.rmdexercise}
+::: rmdexercise
 **Latihan: Membuat Kode Sumber R**
 
-1. Buatlah dokumen baru dalam RStudio bernama `kode_R_pertama_saya.R`
-2. Isikan di dalamnya baris-baris berikut
+1.  Buatlah dokumen baru dalam RStudio bernama `kode_R_pertama_saya.R`
+2.  Isikan di dalamnya baris-baris berikut
 
-```r
+``` r
 print("Halo dunia!")
 print("Hari ini saya mulai belajar R!")
 ```
 
-3. Sorot kedua baris tersebut, tekan **Ctrl + Enter**
-4. Perhatikan jendela *Console*.
-5. Selamat, Anda baru saja membuat file kode sumber R pertama Anda!
+3.  Sorot kedua baris tersebut, tekan **Ctrl + Enter**
+4.  Perhatikan jendela *Console*.
+5.  Selamat, Anda baru saja membuat file kode sumber R pertama Anda!
 :::
 
+------------------------------------------------------------------------
 
----
-
-# Pengenalan Teknis R {-}
+# Pengenalan Teknis R {.unnumbered}
 
 Sebelum memulai praktikum dengan set data sesungguhnya, ada baiknya kita memahami beberapa konsep teknis dasar dalam bahasa pemrograman R. Bagian ini merangkum keterampilan-keterampilan dasar yang akan kalian temui tersebar di modul-modul praktikum.
+
+## Pengaturan Direktori
+
+Salah satu keterampilan penting dalam bekerja dengan R adalah mengorganisasi *file* dan data dengan baik. Sepanjang semester ini, kalian akan bekerja dengan berbagai dataset, kode R, dan hasil analisis. Pengaturan direktori yang terstruktur akan memudahkan kalian dalam mengelola semua file tersebut dan memastikan kode dapat berjalan dengan lancar.
+
+### Struktur Direktori yang Ideal
+
+Sebelum memulai praktikum, kalian perlu menyiapkan direktori kerja (*working directory*) yang terorganisir dengan baik. Berikut adalah struktur direktori yang **wajib** kalian gunakan sepanjang semester:
+
+```
+Praktikum STP 2026/
+├── Praktikum STP 2026.Rproj
+├── datasets/
+│   ├── data_penduduk.xlsx
+│   ├── data_transportasi.csv
+│   └── survei_persepsi.xlsx
+├── output/
+│   └── hasil_analisis.xlsx
+├── modul_1.R
+└── modul_2.R
+```
+
+**Komponen-komponen penting:**
+
+-   **`Praktikum STP 2026.Rproj`**: File RStudio Project yang mengatur *working directory* secara otomatis dan menyimpan *environment* kerja kalian.
+-   **`datasets/`**: Folder khusus untuk menyimpan **semua dataset mentah** (file Excel, CSV, atau format lainnya yang kalian terima dari asisten praktikum).
+-   **`output/`**: Folder khusus untuk menyimpan **hasil-hasil analisis** seperti file Excel yang sudah diolah, file CSV hasil export, atau grafik yang dihasilkan.
+-   **`modul_1.R`, `modul_2.R`, ...**: File-file kode R (script) yang akan kalian buat untuk setiap modul praktikum.
+
+Dengan struktur seperti ini, kode R kalian akan lebih **ringkas** dan **portabel**. Sebagai contoh, untuk membaca data, kalian cukup menulis:
+
+``` r
+data <- read.xlsx("datasets/data_penduduk.xlsx")
+```
+
+Tanpa perlu menulis *path* lengkap seperti `C:\Users\NamaAnda\Documents\praktikum\data_penduduk.xlsx` yang panjang, rumit, dan berbeda-beda di setiap komputer.
+
+### Membuat dan Mengatur Direktori Praktikum
+
+Ikuti langkah-langkah berikut untuk menyiapkan direktori praktikum kalian:
+
+#### Langkah 1: Membuat Folder Utama
+
+Buatlah sebuah folder di komputer kalian dengan nama **`Praktikum STP 2026`** (sesuai tahun ajaran yang sedang berjalan). Penamaan yang seragam ini **sangat penting** agar asisten praktikum dapat dengan mudah membantu kalian jika terjadi masalah atau kesalahan.
+
+Folder ini akan menjadi **direktori kerja** (*working directory*) kalian selama satu semester penuh.
+
+#### Langkah 2: Membuat Subfolder `datasets` dan `output`
+
+Di dalam folder `Praktikum STP 2026`, buatlah **dua subfolder**:
+
+1.  Subfolder **`datasets`** - untuk menyimpan semua data mentah
+2.  Subfolder **`output`** - untuk menyimpan hasil analisis
+
+**Cara membuat folder:**
+
+-   **Di Windows**: Klik kanan di dalam folder `Praktikum STP 2026` → pilih *New* → *Folder* → beri nama `datasets`, lalu ulangi untuk membuat folder `output`
+-   **Di Mac/Linux**: Klik kanan di dalam folder `Praktikum STP 2026` → pilih *New Folder* → beri nama `datasets`, lalu ulangi untuk membuat folder `output`
+
+Setiap kali kalian mendapatkan dataset baru untuk praktikum (misalnya file Excel atau CSV dari asisten), **simpanlah di dalam folder `datasets`**. Setiap kali kalian menghasilkan output analisis, **simpanlah di dalam folder `output`**.
+
+#### Langkah 3: Mengubahnya Menjadi RStudio Project
+
+Setelah struktur folder dasar sudah siap, langkah selanjutnya adalah mengubahnya menjadi **RStudio Project**. RStudio Project adalah fitur yang sangat berguna untuk mengelola sesi kerja R kalian.
+
+**Keuntungan RStudio Project:**
+
+1.  **Otomatis mengatur *working directory***: Ketika kalian membuka sebuah Project, RStudio otomatis mengatur *working directory* ke folder tersebut, sehingga kalian tidak perlu menggunakan perintah `setwd()` lagi.
+2.  **Mempertahankan status kerja**: RStudio menyimpan *environment* (variabel, data yang sudah dimuat) sehingga kalian bisa melanjutkan pekerjaan dari tempat terakhir kalian berhenti.
+3.  **Memudahkan manajemen path**: Kalian cukup menulis *relative path* (misalnya `datasets/data.xlsx`) tanpa perlu mengetik *path* lengkap yang panjang dan berisiko error.
+4.  **Portabilitas**: Project folder bisa dipindahkan ke komputer lain atau dibagikan ke rekan tanpa perlu mengubah kode, karena semua path bersifat relatif.
+
+**Cara membuat RStudio Project:**
+
+1.  Buka RStudio
+2.  Pilih menu **File → New Project...**
+3.  Pilih **Existing Directory** (karena folder sudah dibuat)
+4.  Klik **Browse...** dan cari folder **`Praktikum STP 2026`** yang sudah kalian buat
+5.  Klik **Create Project**
+
+Setelah itu, RStudio akan membuat file **`Praktikum STP 2026.Rproj`** di dalam folder kalian. File `.Rproj` ini adalah "pintu masuk" ke Project kalian.
+
+**Setiap kali ingin bekerja**: Cukup *double-click* file **`Praktikum STP 2026.Rproj`** tersebut, dan RStudio akan terbuka dengan *working directory* yang sudah otomatis diatur ke folder praktikum kalian. Kalian siap untuk mulai bekerja!
+
+::: rmdnote
+**Catatan Penting:** Selalu buka RStudio melalui file `.Rproj`, bukan dengan membuka RStudio terlebih dahulu lalu membuka script. Ini memastikan *working directory* selalu benar dan kode kalian berjalan sebagaimana mestinya.
+:::
 
 ## Sintaks Dasar
 
@@ -135,7 +217,7 @@ Sebelum memulai praktikum dengan set data sesungguhnya, ada baiknya kita memaham
 
 Di R, segala sesuatu yang ditulis setelah tanda pagar (`#`) dianggap sebagai komentar dan tidak akan dieksekusi oleh komputer. Komentar berguna untuk memberikan catatan pada kode kita.
 
-```r
+``` r
 # Ini adalah komentar
 1 + 1 # Kode ini akan menghitung 1 + 1
 ```
@@ -144,7 +226,7 @@ Di R, segala sesuatu yang ditulis setelah tanda pagar (`#`) dianggap sebagai kom
 
 Untuk menyimpan nilai ke dalam variabel/objek, kita menggunakan tanda panah kiri (`<-`). Gunakanlah selalu `<-` sebagai penanda bahwa kita sedang memasukkan nilai ke dalam objek, karena ini adalah standar baku dalam pemrograman R.
 
-```r
+``` r
 x <- 10
 nama <- "Budi"
 ```
@@ -165,10 +247,7 @@ Paket utama yang akan sering kita gunakan adalah:
 -   **`tidyverse`**: Kumpulan paket untuk pengolahan data modern.
 -   **`openxlsx`**: Untuk membaca dan menulis file Excel.
 
-
-
-
-::: {.rmdexercise}
+::: rmdexercise
 **Latihan: Instalasi Paket**
 
 Cobalah untuk menginstal paket `tidyverse` dan `openxlsx` di komputer Anda dengan mengetikkan perintah berikut di *Console*:
@@ -186,7 +265,7 @@ Fungsi adalah serangkaian instruksi yang dibungkus menjadi satu perintah untuk m
 
 Untuk menggunakan fungsi, kita memanggil namanya diikuti dengan tanda kurung `()`. Di dalam tanda kurung, kita bisa memasukkan **argumen** (input).
 
-```r
+``` r
 # Contoh fungsi bawaan: mean (rata-rata)
 nilai <- c(10, 20, 30)
 rata_rata <- mean(nilai) # Hasil: 20
@@ -196,7 +275,7 @@ rata_rata <- mean(nilai) # Hasil: 20
 
 Kita dapat membuat fungsi kustom menggunakan perintah `function()`. Struktur dasarnya adalah:
 
-```r
+``` r
 nama_fungsi <- function(input) {
   # Proses yang dilakukan
   hasil <- input * 2
@@ -212,7 +291,7 @@ Ini akan sangat berguna ketika kita ingin melakukan perhitungan yang sama berula
 
 Vektor adalah struktur data paling dasar di R yang menampung deretan nilai dengan tipe yang sama. Kita membuatnya dengan fungsi `c()` (*combine*).
 
-```r
+``` r
 angka <- c(1, 2, 3, 4, 5)
 huruf <- c("a", "b", "c")
 ```
@@ -233,7 +312,7 @@ Data dalam R biasanya disimpan dalam bentuk tabel yang disebut *Data Frame*. Di 
 
 Dalam `tidyverse`, kita sering menggunakan operator pipa (`|>`) untuk merangkai beberapa perintah sekaligus. Bayangkan ini sebagai penyambung proses:
 
-```r
+``` r
 # Tanpa pipa
 hasil <- fungsi_2(fungsi_1(data))
 
@@ -251,7 +330,7 @@ Artinya: "Ambil `data`, lalu `fungsi_1`, kemudian hasilnya dimasukkan ke `fungsi
 
 Kita sering menggunakan `read.xlsx()` dari paket `openxlsx` untuk membaca file Excel.
 
-```r
+``` r
 data <- read.xlsx("folder/nama_file.xlsx", sheet = "nama_sheet")
 ```
 
@@ -259,7 +338,7 @@ data <- read.xlsx("folder/nama_file.xlsx", sheet = "nama_sheet")
 
 Setelah diolah, data bisa disimpan kembali ke Excel atau CSV.
 
-```r
+``` r
 write.xlsx(data, "folder/nama_file_baru.xlsx")
 write.csv2(data, "folder/nama_file_baru.csv") # Format CSV Excel Indonesia (pemisah titik koma)
 ```

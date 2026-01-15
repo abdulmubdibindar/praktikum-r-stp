@@ -2,6 +2,12 @@ fig:jendela-rstudio
 apa-itu-r
 apa-itu-rstudio
 cara-menjalankan-r
+pengaturan-direktori
+struktur-direktori-yang-ideal
+membuat-dan-mengatur-direktori-praktikum
+langkah-1-membuat-folder-utama
+langkah-2-membuat-subfolder-datasets-dan-output
+langkah-3-mengubahnya-menjadi-rstudio-project
 sintaks-dasar
 komentar
 assignment-pemberian-nilai
