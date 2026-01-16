@@ -139,7 +139,7 @@ Dalam uji hipotesis, kita menggunakan distribusi normal standar (kurva Z) untuk 
 
 Untuk memahami konsep area kritis, perhatikan Gambar \@ref(fig:dist-normal-two-tailed). Gambar tersebut menunjukkan bahwa untuk uji two-tailed dengan α = 0.05, area kritis terbagi menjadi dua bagian (masing-masing 2.5%) di kedua ekor distribusi.
 
-```{r dist-normal-two-tailed, echo=FALSE, fig.cap=\"Distribusi Normal dengan Area Kritis Two-Tailed (α = 0.05)\", fig.align='center', fig.width=8, fig.height=5}
+```{r dist-normal-two-tailed, echo=FALSE, fig.cap='Distribusi Normal dengan Area Kritis Two-Tailed (α = 0.05)', fig.align='center', fig.width=8, fig.height=5}
 library(ggplot2)
 # Data untuk kurva normal
 x <- seq(-4, 4, length.out = 1000)
@@ -196,7 +196,7 @@ ggplot(df_normal, aes(x = x, y = y)) +
 
 #### Visualisasi Left-Tailed Test (α = 0.05)
 
-```{r dist-normal-left-tailed, echo=FALSE, fig.cap=\"Distribusi Normal dengan Area Kritis Left-Tailed (α = 0.05)\", fig.align='center', fig.width=8, fig.height=5}
+```{r dist-normal-left-tailed, echo=FALSE, fig.cap='Distribusi Normal dengan Area Kritis Left-Tailed (α = 0.05)', fig.align='center', fig.width=8, fig.height=5}
 # Z kritis untuk left-tailed
 z_kritis_left <- qnorm(0.05)  # -1.64
 ggplot(df_normal, aes(x = x, y = y)) +
@@ -232,7 +232,7 @@ ggplot(df_normal, aes(x = x, y = y)) +
 
 #### Visualisasi Right-Tailed Test (α = 0.05)
 
-```{r dist-normal-right-tailed, echo=FALSE, fig.cap=\"Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)\", fig.align='center', fig.width=8, fig.height=5}
+```{r dist-normal-right-tailed, echo=FALSE, fig.cap='Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)', fig.align='center', fig.width=8, fig.height=5}
 # Z kritis untuk right-tailed
 z_kritis_right <- qnorm(0.95)  # 1.64
 ggplot(df_normal, aes(x = x, y = y)) +

@@ -1,7 +1,12 @@
 fig:jendela-rstudio
+fig:dist-normal-two-tailed
+fig:dist-normal-left-tailed
+fig:dist-normal-right-tailed
 apa-itu-r
 apa-itu-rstudio
+instalasi-r-dan-rstudio
 cara-menjalankan-r
+membuat-file-kode-sumber-r-.r
 pengaturan-direktori
 struktur-direktori-yang-ideal
 membuat-dan-mengatur-direktori-praktikum
@@ -39,7 +44,6 @@ menyatukan-kedua-set-data-setelah-diperbaiki
 mengekspor-set-data-hasil-pengolahan-ke-fail-file-terpisah
 mengekspor-set-data-ke-fail-.csv
 mengekspor-set-data-ke-fail-.xlsx
-soal-latihan
 modul-2-analisis-statistika-deskriptif
 persiapan
 mengimpor-dataset
@@ -51,7 +55,6 @@ menyesuaikan-variabel-nominal-dan-ordinal-dengan-factor
 analisis-statistika-deskriptif
 variabel-kategoris
 variabel-numerik
-soal-latihan-1
 modul-3-visualisasi-data-kuantitatif
 visualisasi-data-dengan-ggplot2
 mengimpor-library-mengatur-dataset
@@ -66,7 +69,6 @@ diagram-treemap
 histogram
 boxplot
 grafik-pencar-scatter-plot
-soal-praktikum
 modul-4-distribusi-sampling-dan-interval-kepercayaan
 pendahuluan
 perangkat-lunak-dan-pustaka-libraries
@@ -83,7 +85,6 @@ estimasi-parameter-2-interval-kepercayaan-proporsi
 parameter-proporsi
 mengambil-satu-sampel-dan-menghitung-proporsinya
 menghasilkan-interval-kepercayaan-untuk-proporsi
-soal-latihan-2
 modul-5-uji-hipotesis
 pendahuluan-1
 perangkat-lunak-dan-pustaka-libraries-1
@@ -91,6 +92,11 @@ memuat-data
 perkenalan-markdown-latex
 uji-hipotesis-satu-populasi
 rata-rata
+memahami-distribusi-normal-dan-area-kritis
+visualisasi-two-tailed-test-α-0.05
+visualisasi-left-tailed-test-α-0.05
+visualisasi-right-tailed-test-α-0.05
+hubungan-dengan-fungsi-qnorm
 two-tailed-test-tidak-berarah
 merumuskan-hipotesis
 memilih-distribusi-sampling-wilayah-dan-titik-kritis
@@ -136,7 +142,7 @@ membuat-fungsi-1
 mendeklarasikan-variabel-uji-1
 one-tailed-test-2
 uji-hipotesis-2-populasi-dependen
-soal-latihan-3
+soal-latihan
 modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal
 pendahuluan-2
 pustaka-libraries-yang-diperlukan-dan-memuat-data
