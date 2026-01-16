@@ -1,10 +1,6 @@
+# Folder yang di-ignore
+guides/
+.secrets/
+
+# File sementara
 images/Cuplikan layar 2026-01-10 195525.png
-_Contoh-Pengenalan-Data-Terstruktur.Rmd
-DOCKER_LAB_SETUP.md
-PANDUAN_CUSTOM_BLOCKS.md
-PANDUAN_EKSPOR_PDF.md
-panduan_alur_kerja.md
-why_page_not_found.md
-PANDUAN_MEDIA_TABEL.md
-Panduan Instalasi R dan RStudio.md
-Panduan_Rename_Project.md
