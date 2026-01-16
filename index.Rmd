@@ -80,6 +80,26 @@ knitr::include_graphics("images/jendela_rstudio.png")
 3.  Panel *Console*, digunakan untuk menjalankan kode.
 4.  Panel *Script*, digunakan untuk menulis kode. Di sinilah kita akan menghabiskan sebagian besar waktu kerja kita.
 
+## Instalasi R dan RStudio
+
+Sebelum memulai praktikum, kalian perlu menginstal R dan RStudio terlebih dahulu. R harus diinstal **sebelum** RStudio, karena RStudio memerlukan instalasi R yang berfungsi untuk dapat berjalan.
+
+**Langkah 1: Instalasi R**
+
+1. Kunjungi situs resmi CRAN di **[cran.r-project.org](https://cran.r-project.org)**
+2. Pilih sistem operasi Anda (Windows/macOS/Linux)
+3. Untuk **Windows**: Klik "base" lalu unduh installer terbaru
+4. Untuk **macOS**: Pilih versi sesuai prosesor (Apple Silicon M1/M2/M3/M4/M5 atau Intel)
+5. Jalankan file installer dan ikuti petunjuk hingga selesai
+
+**Langkah 2: Instalasi RStudio**
+
+1. Kunjungi situs resmi Posit di **[posit.co/downloads](https://posit.co/downloads)**
+2. Unduh **RStudio Desktop** versi gratis sesuai sistem operasi Anda
+3. Jalankan installer dan ikuti petunjuk hingga selesai
+
+**Verifikasi**: Buka RStudio setelah instalasi selesai. RStudio akan otomatis mendeteksi instalasi R yang sudah ada.
+
 ## Cara Menjalankan R
 
 Cara (paling) utama untuk menjalankan perintah bahasa pemrograman R adalah dengan mengetikkannya langsung di **Console** (jendela nomor 3 pada Gambar\@ref(fig:jendela-rstudio)).
