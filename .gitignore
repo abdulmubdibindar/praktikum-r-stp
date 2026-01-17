@@ -1,6 +1,13 @@
 # Folder yang di-ignore
-guides/
 .secrets/
 
 # File sementara
 images/Cuplikan layar 2026-01-10 195525.png
+
+# File yang di-ignore
+guides/bookdown-demo-main
+guides/_Contoh-Pengenalan-Data-Terstruktur.Rmd
+guides/DOCKER_LAB_SETUP.md
+guides/Panduan Instalasi R dan RStudio.dan
+guides/R\ -\ Sosial,\ Perencanaan,\ dan\ Pemerintahan.md
+guides/why-page-not-found.md
