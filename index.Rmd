@@ -175,11 +175,13 @@ print("Halo dunia!")
 print("Hari ini saya mulai belajar R!")
 
 # Operasi matematika sederhana
+```
 
 3. Simpan file dengan nama `kode_R_pertama_saya.R` di dalam folder **Praktikum STP 2026**
 4. Sorot baris-baris kode `print`, lalu tekan **Ctrl + Enter** (Windows/Linux) atau **Cmd + Enter** (Mac). Setelah itu, sorot baris-baris operasi matematika, lalu tekan **Ctrl + Enter** (Windows/Linux) atau **Cmd + Enter** (Mac) lagi.
 5. Perhatikan jendela *Console* - Anda akan melihat hasil eksekusi kode Anda
 6. Selamat! Anda baru saja membuat file kode sumber R pertama Anda yang dapat disimpan dan dijalankan kapan saja. Jangan lupa tekan **Ctrl + S** / **Cmd + S** untuk menyimpan file Anda setiap kali Anda selesai mengeditnya.
+
 :::
 
 ------------------------------------------------------------------------
