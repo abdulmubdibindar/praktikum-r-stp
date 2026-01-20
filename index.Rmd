@@ -65,6 +65,10 @@ Dalam bidang perencanaan wilayah dan kota, R digunakan untuk:
 -   **Perencanaan Transportasi**: Menggunakan paket seperti `stplanr` untuk analisis jaringan, rute, dan pemodelan transportasi berkelanjutan [@stplanr_cran; @sustainable_transport_stplanr].
 -   **Simulasi Kebijakan**: Melakukan simulasi dampak kebijakan publik, seperti perubahan penggunaan lahan atau intervensi sosial, sebelum diterapkan secara nyata [@simulation_public_policies].
 
+## Mengapa Menggunakan R?
+
+R memiliki kelebihan yang signifikan dibandingkan dengan bahasa pemrograman lainnya. Karena R adalah bahasa pemrograman yang dirancang khusus untuk analisis data dan visualisasi, R memiliki kelebihan-kelebihan tertentu
+
 ## Apa itu RStudio?
 
 RStudio (yang kini bertransformasi menjadi **Posit**) adalah *Integrated Development Environment* (IDE) untuk R. Diluncurkan pertama kali pada tahun 2009, RStudio menyediakan antarmuka visual yang lebih ramah pengguna dibandingkan antarmuka baris perintah (*command line*) asli R [@about_posit]. Fitur-fitur seperti penyorotan sintaksis (*syntax highlighting*), *auto-completion*, dan manajemen *workspace* membuat pengguna baru lebih mudah mempelajari dan menggunakan R. Transformasi menjadi Posit mencerminkan komitmen terhadap ekosistem *data science* modern yang lebih luas, termasuk dukungan untuk Python [@goodbye_rstudio].
@@ -159,14 +163,11 @@ print("Halo dunia!")
 print("Hari ini saya mulai belajar R!")
 
 # Operasi matematika sederhana
-2 + 2
-10 * 5
-```
 
 3. Simpan file dengan nama `kode_R_pertama_saya.R` di dalam folder **Praktikum STP 2026**
-4. Sorot semua baris kode (kecuali komentar jika mau), lalu tekan **Ctrl + Enter** (Windows/Linux) atau **Cmd + Enter** (Mac)
+4. Sorot baris-baris kode `print`, lalu tekan **Ctrl + Enter** (Windows/Linux) atau **Cmd + Enter** (Mac). Setelah itu, sorot baris-baris operasi matematika, lalu tekan **Ctrl + Enter** (Windows/Linux) atau **Cmd + Enter** (Mac) lagi.
 5. Perhatikan jendela *Console* - Anda akan melihat hasil eksekusi kode Anda
-6. Selamat! Anda baru saja membuat file kode sumber R pertama Anda yang dapat disimpan dan dijalankan kapan saja.
+6. Selamat! Anda baru saja membuat file kode sumber R pertama Anda yang dapat disimpan dan dijalankan kapan saja. Jangan lupa tekan **Ctrl + S** / **Cmd + S** untuk menyimpan file Anda setiap kali Anda selesai mengeditnya.
 :::
 
 ------------------------------------------------------------------------
@@ -183,15 +184,15 @@ Salah satu keterampilan penting dalam bekerja dengan R adalah mengorganisasi *fi
 
 Sebelum memulai praktikum, kalian perlu menyiapkan direktori kerja (*working directory*) yang terorganisir dengan baik. Berikut adalah struktur direktori yang **wajib** kalian gunakan sepanjang semester:
 
-```
+```text
 Praktikum STP 2026/
 ├── Praktikum STP 2026.Rproj
 ├── datasets/
-│   ├── data_penduduk.xlsx
-│   ├── data_transportasi.csv
-│   └── survei_persepsi.xlsx
+│   ├── data.csv
+│   └── ...
 ├── output/
-│   └── hasil_analisis.xlsx
+│   ├── output_1.xlsx
+│   └── ...
 ├── modul_1.R
 └── modul_2.R
 ```
@@ -242,6 +243,17 @@ Setelah struktur folder dasar sudah siap, langkah selanjutnya adalah mengubahnya
 **Keuntungan RStudio Project:**
 
 1.  **Otomatis mengatur *working directory***: Ketika kalian membuka sebuah Project, RStudio otomatis mengatur *working directory* ke folder tersebut, sehingga kalian tidak perlu menggunakan perintah `setwd()` lagi.
+
+::: rmdnote
+Perintah `setwd()` digunakan untuk mengatur *working directory* secara manual. Misalnya, jika kita ingin mengatur *working directory* ke folder `Praktikum STP 2026` yang terletak dalam folder `Documents` pada direktori `C:/Users/NamaAnda/`, kita bisa menggunakan perintah 
+
+```r
+setwd("C:/Users/NamaAnda/Documents/Praktikum STP 2026")
+```
+
+Namun, jika kita sudah membuat direktori Anda sebagai Project, dalam praktikum ini, kita tidak perlu menggunakan perintah ini lagi.
+:::
+
 2.  **Mempertahankan status kerja**: RStudio menyimpan *environment* (variabel, data yang sudah dimuat) sehingga kalian bisa melanjutkan pekerjaan dari tempat terakhir kalian berhenti.
 3.  **Memudahkan manajemen path**: Kalian cukup menulis *relative path* (misalnya `datasets/data.xlsx`) tanpa perlu mengetik *path* lengkap yang panjang dan berisiko error.
 4.  **Portabilitas**: Project folder bisa dipindahkan ke komputer lain atau dibagikan ke rekan tanpa perlu mengubah kode, karena semua path bersifat relatif.
@@ -258,20 +270,26 @@ Setelah itu, RStudio akan membuat file **`Praktikum STP 2026.Rproj`** di dalam f
 
 **Setiap kali ingin bekerja**: Cukup *double-click* file **`Praktikum STP 2026.Rproj`** tersebut, dan RStudio akan terbuka dengan *working directory* yang sudah otomatis diatur ke folder praktikum kalian. Kalian siap untuk mulai bekerja!
 
-::: rmdnote
-**Catatan Penting:** Selalu buka RStudio melalui file `.Rproj`, bukan dengan membuka RStudio terlebih dahulu lalu membuka script. Ini memastikan *working directory* selalu benar dan kode kalian berjalan sebagaimana mestinya.
+::: rmdwarning
+**Catatan Penting:** Selalu buka RStudio melalui file `.Rproj`, bukan dengan membuka RStudio terlebih dahulu lalu membuka *script*. Ini memastikan *working directory* selalu benar dan kode kalian berjalan sebagaimana mestinya.
 :::
 
-## Sintaks Dasar
+## Sintaks Dasar Bahasa r
+
+Dalam subbab ini, kita akan membahas sintaks dasar bahasa R yang akan sering digunakan dalam praktikum ini.
 
 ### Komentar
 
-Di R, segala sesuatu yang ditulis setelah tanda pagar (`#`) dianggap sebagai komentar dan tidak akan dieksekusi oleh komputer. Komentar berguna untuk memberikan catatan pada kode kita.
+Pada dasarnya, semua yang kita tulis di *script* akan dijalankan oleh R. Akan tetapi, kita bisa memberi tahu R untuk tidak menjalankan kode yang kita tulis dengan mengubah formatnya menjadi **komentar** (*comment*). Kita bisa menuliskan komentar dengan menggunakan tanda pagar (`#`) sebelum kode yang ingin kita komentari.
 
 ``` r
-# Ini adalah komentar
-1 + 1 # Kode ini akan menghitung 1 + 1
+# Kode ini akan menghitung 1 + 1
+1 + 1 
 ```
+
+::: rmdimportant
+Komentar sangat berperan penting dalam kode kalian. Malahan, ini adalah kekuatan terbesar dari penggunaan R dalam Kita akan sering menggunakan komentar dalam kode kalian. Jadi, jangan ragu untuk menggunakan komentar untuk menjelaskan kode kalian.
+:::
 
 ### *Assignment* (Pemberian Nilai)
 
