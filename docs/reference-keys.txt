@@ -8,6 +8,8 @@ apa-itu-rstudio
 instalasi-r-dan-rstudio
 cara-menjalankan-r
 membuat-file-kode-sumber-r-.r
+pengaturan-direktori
+struktur-direktori-yang-ideal
 membuat-dan-mengatur-direktori-praktikum
 langkah-1-membuat-folder-utama
 langkah-2-membuat-subfolder-datasets-dan-output
