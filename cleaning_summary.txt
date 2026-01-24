@@ -1,25 +1,13 @@
-
-> cat("LAPORAN PEMBERSIHAN DATASET\n")
 LAPORAN PEMBERSIHAN DATASET
-
-> cat("Waktu:", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "\n")
-Waktu: 2026-01-24 09:48:50 
-
-> cat("==============================================================\n\n")
+Waktu: 2026-01-24 18:23:40 
 ==============================================================
 
 
-> # 1. Jalankan script ITERA
-> cat("\n### DATASET ITERA ###\n\n")
-
 ### DATASET ITERA ###
 
-
-> source("clean_data_itera.R")
 === Membersihkan Dataset ITERA ===
 
 1. Membackup file asli dan mengimpor dataset...
-   File asli dibackup ke: datasets/_DataUtama_mhsITERA.csv 
    Dimensi awal: 428 baris x 26 kolom
 
 2. Mengecek missing values...
@@ -43,14 +31,9 @@ Waktu: 2026-01-24 09:48:50
 
 === Pembersihan Dataset ITERA Selesai ===
 
-> # 2. Jalankan script UNILA
-> cat("\n\n### DATASET UNILA ###\n\n")
-
 
 ### DATASET UNILA ###
 
-
-> source("clean_data_unila.R")
 === Membersihkan Dataset UNILA ===
 
 1. Membackup file asli dan mengimpor dataset...
@@ -72,7 +55,7 @@ jara
    Variabel kategoris berhasil dikonversi ke factor
 
 6. Verifikasi hasil pembersihan...
-   Total missing values setelah imputasi: 913 
+   Total missing values setelah imputasi: 649 
    Dimensi akhir: 393 baris x 25 kolom
 
 7. Menyimpan hasil ke CSV...
@@ -81,18 +64,12 @@ jara
 
 === Pembersihan Dataset UNILA Selesai ===
 
-> # 3. Jalankan script UBL
-> cat("\n\n### DATASET UBL ###\n\n")
-
 
 ### DATASET UBL ###
 
-
-> source("clean_data_ubl.R")
 === Membersihkan Dataset UBL ===
 
 1. Membackup file asli dan mengimpor dataset...
-   File asli dibackup ke: datasets/_DataUtama_mhsUBL.csv 
    Dimensi awal: 379 baris x 26 kolom
 
 2. Mengecek missing values...
@@ -122,18 +99,80 @@ jara
 
 === Pembersihan Dataset UBL Selesai ===
 
-> # 4. Buat ringkasan perbandingan
-> cat("\n\n==============================================================\n")
+
+### DATASET UINRIL ###
+
+=== Membersihkan Dataset UINRIL ===
+
+1. Membackup file asli dan mengimpor dataset...
+   Dimensi awal: 400 baris x 25 kolom
+
+2. Mengecek missing values...
+   Total missing values: 0 
+
+3. Mengganti nama variabel...
+   Nama variabel berhasil diseragamkan
+
+4. Melakukan imputasi missing values...
+
+5. Mengkonversi variabel kategoris ke factor...
+   Variabel kategoris berhasil dikonversi ke factor
+
+6. Verifikasi hasil pembersihan...
+   Total missing values setelah imputasi: 400 
+   Dimensi akhir: 400 baris x 25 kolom
+
+7. Menyimpan hasil ke CSV...
+   File tersimpan: datasets/DataUtama_mhsUINRIL.csv
+   File asli dibackup di: datasets/_DataUtama_mhsUINRIL.csv
+
+=== Pembersihan Dataset UINRIL Selesai ===
 
 
 ==============================================================
-
-> cat("RINGKASAN HASIL PEMBERSIHAN\n")
 RINGKASAN HASIL PEMBERSIHAN
-
-> cat("==============================================================\n\n")
 ==============================================================
 
+1. DIMENSI DATASET
+   - ITERA : 428 baris x 26 kolom
+   - UNILA : 393 baris x 25 kolom
+   - UBL   : 379 baris x 26 kolom
+   - UINRIL: 400 baris x 25 kolom
 
-> # Load semua dataset yang sudah dibersihkan
-> data.itera.clean <- read.csv("datasets/DataUtama_mhsITERA_pecutAI.csv")
+2. VERIFIKASI MISSING VALUES
+   - ITERA : Total NA = 729 
+   - UNILA : Total NA = 649 
+   - UBL   : Total NA = 435 
+   - UINRIL: Total NA = 400 
+
+3. STRUKTUR KOLOM
+   - ITERA: Timestamp, Kampus_PT, Nomor.urut, Jenis.Kelamin, Umur, Fakultas, Prodi, Tingkat.Semester, Uang.Saku, kepemilikan.mobil, kepemilikan.motor, kepemilikan.sepeda, kendaraan.utama, kelurahan, jenis.tempat.tinggal, nama.jalan.tempat.tinggal, alasan.pemilihan.lokasi.tempat.tinggal, jarak, biaya.dalam.sepekan, Jumlah.Perjalanan.Senin, Jumlah.Perjalanan.Selasa, Jumlah.Perjalanan.Rabu, Jumlah.Perjalanan.Kamis, Jumlah.Perjalanan.Jumat, Jumlah.Perjalanan.Sabtu, Jumlah.Perjalanan.Ahad 
+
+   - UNILA: Timestamp, Kampus_PT, Nomor.urut, Umur, Jenis.Kelamin, Fakultas, Prodi, Tingkat.Semester, Uang.Saku, kepemilikan.mobil, kepemilikan.motor, kepemilikan.sepeda, kendaraan.utama, jenis.tempat.tinggal, nama.jalan.tempat.tinggal, alasan.pemilihan.lokasi.tempat.tinggal, biaya.dalam.sepekan, jarak, Jumlah.Perjalanan.Senin, Jumlah.Perjalanan.Selasa, Jumlah.Perjalanan.Rabu, Jumlah.Perjalanan.Kamis, Jumlah.Perjalanan.Jumat, Jumlah.Perjalanan.Sabtu, Jumlah.Perjalanan.Ahad 
+
+   - UBL  : Timestamp, Kampus_PT, Nomor.urut, Jenis.Kelamin, Umur, Fakultas, Prodi, Tingkat.Semester, Uang.Saku, kepemilikan.mobil, kepemilikan.motor, kepemilikan.sepeda, kendaraan.utama, kelurahan, jenis.tempat.tinggal, nama.jalan.tempat.tinggal, jarak, alasan.pemilihan.lokasi.tempat.tinggal, biaya.dalam.sepekan, Jumlah.Perjalanan.Senin, Jumlah.Perjalanan.Selasa, Jumlah.Perjalanan.Rabu, Jumlah.Perjalanan.Kamis, Jumlah.Perjalanan.Jumat, Jumlah.Perjalanan.Sabtu, Jumlah.Perjalanan.Ahad 
+
+
+4. VARIABEL KATEGORIS (FACTOR)
+   ITERA:
+     
+
+   UNILA:
+     
+
+   UBL:
+     
+
+   UINRIL:
+     
+
+
+==============================================================
+PEMBERSIHAN SELESAI
+File output:
+  - datasets/DataUtama_mhsITERA.csv
+  - datasets/DataUtama_mhsUNILA.csv
+  - datasets/DataUtama_mhsUBL.csv
+  - datasets/DataUtama_mhsUINRIL.csv
+==============================================================
+

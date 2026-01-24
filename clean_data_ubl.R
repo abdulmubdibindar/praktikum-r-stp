@@ -124,20 +124,24 @@ prodi <- sort(unique(data.ubl$Prodi))
 
 # Variabel ordinal (sesuai urutan tingkatan)
 tingkat <- c(
-    "1 (Semester 1 – Semester 2)",
-    "2 (Semester 3 – Semester 4)",
-    "3 (Semester 5 - Semester 6)",
-    "4 (Semester 7 - Semester 8)"
+    "1 (Semester 1 s.d. Semester 2)",
+    "2 (Semester 3 s.d. Semester 4)",
+    "3 (Semester 5 s.d. Semester 6)",
+    "4 (Semester 7 s.d. Semester 8)"
 )
 
 uang_saku <- c(
-    "< 1 jt", "1 jt – 2 jt", "2,1 jt – 3 jt",
-    "3,1 jt – 4 jt", "> 4 jt"
+    "< 1 jt", "1 jt s.d. 2 jt", "2,1 jt s.d. 3 jt",
+    "3,1 jt s.d. 4 jt", "> 4 jt"
 )
 
 # Konversi ke factor
 data.ubl <- data.ubl |>
     mutate(
+        # Normalisasi simbol separator agar sesuai dengan levels
+        Tingkat.Semester = str_replace_all(Tingkat.Semester, " [-–] ", " s.d. "),
+        Uang.Saku = str_replace_all(Uang.Saku, " [-–] ", " s.d. "),
+
         Jenis.Kelamin = factor(Jenis.Kelamin, levels = jk),
         Fakultas = factor(Fakultas, levels = fakultas),
         Prodi = factor(Prodi, levels = prodi),
