@@ -21,6 +21,15 @@ link-citations: true
 ```{r setup, include=FALSE}
 # Opsi ini penting untuk mencegah error LaTeX karena karakter khusus dari pesan warning/error
 options(cli.hyperlink = FALSE)
+
+# Konfigurasi knitr untuk output gambar
+knitr::opts_chunk$set(
+    echo = FALSE,
+    fig.path = "figures/", # Gunakan folder tanpa underscore untuk GitHub Pages
+    message = FALSE,
+    warning = FALSE
+)
+
 ```
 
 # Pengantar {.unnumbered}
