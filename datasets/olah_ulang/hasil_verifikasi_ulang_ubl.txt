@@ -1,0 +1,155 @@
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+==================================================
+VERIFIKASI ULANG DATASET UBL (POST-FIX)
+==================================================
+
+DATASET INFO:
+-------------
+Jumlah baris: 379 
+Jumlah variabel: 27 
+
+NAMA KOLOM:
+ 1. Timestamp
+ 2. Kampus_PT
+ 3. Nomor urut
+ 4. Jenis Kelamin
+ 5. Umur
+ 6. Fakultas
+ 7. Prodi
+ 8. Tingkat Semester
+ 9. Uang Saku
+10. kepemilikan mobil
+11. kepemilikan motor
+12. kepemilikan sepeda
+13. kendaraan utama
+14. kelurahan
+15. jenis tempat tinggal
+16. nama jalan tempat tinggal
+17. jarak (km)
+18. alasan pemilihan lokasi tempat tinggal
+19. biaya dalam seminggu
+20. Jumlah perjalanan Senin
+21. Jumlah Perjalanan Selasa
+22. Jumlah Perjalanan Rabu
+23. Jumlah Perjalanan Kamis
+24. Jumlah Perjalanan Jumat
+25. Jumlah Perjalanan Sabtu
+26. Jumlah Perjalanan Ahad
+27. biaya.dalam.ribu2
+
+
+==================================================
+1️⃣ VERIFIKASI: FAKULTAS DAN PRODI
+==================================================
+
+✅ Kolom FAKULTAS ditemukan!
+   Tipe data: character
+   Unique values: 6 
+   Sample 5 nilai:
+      1 : Fakultas Ilmu Sosial dan Politik 
+      2 : Fakultas Hukum 
+      3 : Fakultas Ekonomi dan Bisnis 
+      4 : Fakultas Ekonomi dan Bisnis 
+      5 : Fakultas Ekonomi dan Bisnis 
+
+   Semua unique values:
+      1 : Fakultas Ekonomi dan Bisnis 
+      2 : Fakultas Hukum 
+      3 : Fakultas Ilmu Komputer 
+      4 : Fakultas Ilmu Sosial dan Politik 
+      5 : Fakultas Keguruan dan Ilmu Pendidikan 
+      6 : Fakultas Teknik 
+
+✅ Kolom PRODI ditemukan!
+   Tipe data: character
+   Unique values: 12 
+   Sample 5 nilai:
+      1 : Ilmu Komunikasi 
+      2 : Ilmu Hukum 
+      3 : Manajemen 
+      4 : Akuntansi 
+      5 : Manajemen 
+
+   Semua unique values:
+      1 : Administrasi Bisnis 
+      2 : Administrasi Publik 
+      3 : Akuntansi 
+      4 : Arsitektur 
+      5 : Ilmu Hukum 
+      6 : Ilmu Komunikasi 
+      7 : Informatika 
+      8 : Manajemen 
+      9 : Pendidikan Bahasa Inggris 
+      10 : Sistem Informasi 
+      11 : Teknik Mesin 
+      12 : Teknik Sipil 
+
+
+==================================================
+2️⃣ VERIFIKASI: JENIS TEMPAT TINGGAL
+==================================================
+
+✅ Kolom ditemukan: jenis tempat tinggal 
+   Sample 10 nilai:
+      1: Rumah pribadi/rumah keluarga
+      2: Rumah pribadi/rumah keluarga
+      3: Rumah pribadi/rumah keluarga
+      4: Rumah pribadi/rumah keluarga
+      5: Rumah pribadi/rumah keluarga
+      6: Rumah pribadi/rumah keluarga
+      7: Rumah pribadi/rumah keluarga
+      8: Rumah pribadi/rumah keluarga
+      9: Rumah pribadi/rumah keluarga
+     10: Rumah pribadi/rumah keluarga
+
+   FREKUENSI NILAI (Semua kategori):
+    1. Rumah pribadi/rumah keluarga                       : 253
+    2. Kos Sendiri                                        :  62
+    3. Rumah bersama saudara                              :  27
+    4. Kos bersama-sama                                   :  22
+    5. Rumah mengontrak bersama-sama                      :   9
+    6. Rumah mengontrak pribadi                           :   5
+    7. Asrama                                             :   1
+
+   Total kategori unik: 7 
+
+   ✅ Tidak ada nilai encoded - semua text kategoris
+
+
+==================================================
+3️⃣ VERIFIKASI: MISSING VALUES
+==================================================
+
+Variabel dengan missing values:
+
+ 1. kepemilikan mobil                        :   3 ( 0.79%)
+ 2. kepemilikan sepeda                       :   1 ( 0.26%)
+ 3. nama jalan tempat tinggal                :   4 ( 1.06%)
+ 4. biaya.dalam.ribu2                        :   1 ( 0.26%)
+
+
+==================================================
+4️⃣ VERIFIKASI: BIAYA.DALAM.RIBU2 (Hasil Konversi)
+==================================================
+
+✅ Kolom biaya.dalam.ribu2 ditemukan!
+   Summary statistik:
+   - Min: 0 
+   - Max: 600 
+   - Mean: 99.18 
+   - Median: 70 
+   - Missing (NA): 1 
+   - Non-missing: 378 
+
+
+✅ VERIFIKASI SELESAI

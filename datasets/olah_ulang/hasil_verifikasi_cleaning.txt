@@ -1,0 +1,257 @@
+
+Attaching package: 'dplyr'
+
+The following objects are masked from 'package:stats':
+
+    filter, lag
+
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+
+==================================================
+VERIFIKASI DATASET HASIL CLEANING
+==================================================
+
+
+-------------------------------------------------
+Dataset: ITERA 
+-------------------------------------------------
+✓ Rows: 428 
+✓ Columns: 24 
+
+Struktur Kolom:
+---------------
+spc_tbl_ [428 × 24] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ - attr(*, "spec")=
+  .. cols(
+  ..   kampus = col_character(),
+  ..   nomor.urut = col_double(),
+  ..   jenis.kelamin = col_character(),
+  ..   usia = col_double(),
+  ..   fakultas = col_character(),
+  ..   prodi = col_character(),
+  ..   tingkat.semester = col_character(),
+  ..   uang.saku = col_character(),
+  ..   jumlah.mobil = col_double(),
+  ..   jumlah.motor = col_double(),
+  ..   jumlah.sepeda = col_double(),
+  ..   kendaraan.utama = col_character(),
+  ..   jenis.tempat.tinggal = col_character(),
+  ..   alamat = col_character(),
+  ..   alasan.lokasi = col_character(),
+  ..   jarak.km = col_double(),
+  ..   `biaya dalam ribu2` = col_double(),
+  ..   jumlah.perjalanan.senin = col_double(),
+  ..   `Jumlah perjalanan Selasa` = col_double(),
+  ..   `Jumlah perjalanan Rabu` = col_double(),
+  ..   `Jumlah perjalanan Kamis` = col_double(),
+  ..   `Jumlah perjalanan Jumat` = col_double(),
+  ..   `Jumlah perjalanan Sabtu` = col_double(),
+  ..   `Jumlah perjalanan Ahad` = col_double()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+
+
+Faktor Levels:
+-------------
+ jenis.kelamin:  
+   Frekuensi: 210, 218 
+ tingkat.semester:  
+   Frekuensi: 37, 67, 109, 215 
+ uang.saku:  
+   Frekuensi: 124, 3, 228, 65, 8 
+ kendaraan.utama:  
+   Frekuensi: 34, 53, 19, 260, 62 
+ jenis.tempat.tinggal:  
+   Frekuensi: 11, 25, 200, 21, 107, 1, 63 
+
+Missing Values:
+---------------
+ ✓ No missing values!
+
+
+-------------------------------------------------
+Dataset: UNILA 
+-------------------------------------------------
+✓ Rows: 394 
+✓ Columns: 24 
+
+Struktur Kolom:
+---------------
+spc_tbl_ [394 × 24] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ - attr(*, "spec")=
+  .. cols(
+  ..   kampus = col_character(),
+  ..   nomor.urut = col_double(),
+  ..   usia = col_double(),
+  ..   jenis.kelamin = col_character(),
+  ..   fakultas = col_character(),
+  ..   prodi = col_character(),
+  ..   tingkat.semester = col_character(),
+  ..   uang.saku = col_character(),
+  ..   jumlah.mobil = col_double(),
+  ..   `Jumlah motor` = col_double(),
+  ..   jumlah.sepeda = col_double(),
+  ..   kendaraan.utama = col_character(),
+  ..   `Jenis Tempat Tinggal` = col_character(),
+  ..   Alamat = col_character(),
+  ..   alasan.lokasi = col_character(),
+  ..   `biaya dalam ribu2` = col_double(),
+  ..   jarak.km = col_double(),
+  ..   `Jumlah Perjalanan Senin` = col_double(),
+  ..   jumlah.perjalanan.selasa = col_double(),
+  ..   jumlah.perjalanan.rabu = col_double(),
+  ..   jumlah.perjalanan.kamis = col_double(),
+  ..   jumlah.perjalanan.jumat = col_double(),
+  ..   jumlah.perjalanan.sabtu = col_double(),
+  ..   jumlah.perjalanan.minggu = col_double()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+
+
+Faktor Levels:
+-------------
+ jenis.kelamin:  
+   Frekuensi: 198, 196 
+ tingkat.semester:  
+   Frekuensi: 134, 93, 81, 86 
+ uang.saku:  
+   Frekuensi: 84, 16, 123, 98, 73 
+ kendaraan.utama:  
+   Frekuensi: 41, 8, 51, 230, 64 
+
+Missing Values:
+---------------
+ ✓ No missing values!
+
+
+-------------------------------------------------
+Dataset: UBL 
+-------------------------------------------------
+✓ Rows: 378 
+✓ Columns: 25 
+
+Struktur Kolom:
+---------------
+spc_tbl_ [378 × 25] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ - attr(*, "spec")=
+  .. cols(
+  ..   kampus = col_character(),
+  ..   nomor.urut = col_double(),
+  ..   jenis.kelamin = col_character(),
+  ..   usia = col_double(),
+  ..   fakultas = col_character(),
+  ..   prodi = col_character(),
+  ..   tingkat.semester = col_character(),
+  ..   uang.saku = col_character(),
+  ..   jumlah.mobil = col_double(),
+  ..   jumlah.motor = col_double(),
+  ..   jumlah.sepeda = col_double(),
+  ..   kendaraan.utama = col_character(),
+  ..   kelurahan = col_character(),
+  ..   jenis.tempat.tinggal = col_character(),
+  ..   alamat = col_character(),
+  ..   jarak.km = col_double(),
+  ..   alasan.lokasi = col_character(),
+  ..   jumlah.perjalanan.senin = col_double(),
+  ..   jumlah.perjalanan.selasa = col_double(),
+  ..   jumlah.perjalanan.rabu = col_double(),
+  ..   jumlah.perjalanan.kamis = col_double(),
+  ..   jumlah.perjalanan.jumat = col_double(),
+  ..   jumlah.perjalanan.sabtu = col_double(),
+  ..   jumlah.perjalanan.minggu = col_double(),
+  ..   biaya.dalam.ribu = col_double()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+
+
+Faktor Levels:
+-------------
+ jenis.kelamin:  
+   Frekuensi: 186, 192 
+ tingkat.semester:  
+   Frekuensi: 37, 56, 70, 215 
+ uang.saku:  
+   Frekuensi: 35, 2, 187, 129, 25 
+ kendaraan.utama:  
+   Frekuensi: 17, 10, 71, 244, 36 
+ jenis.tempat.tinggal:  
+   Frekuensi: 1, 22, 62, 27, 9, 5, 252 
+
+Missing Values:
+---------------
+  alamat : 4 
+
+
+-------------------------------------------------
+Dataset: UINRIL 
+-------------------------------------------------
+✓ Rows: 400 
+✓ Columns: 25 
+
+Struktur Kolom:
+---------------
+spc_tbl_ [400 × 25] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ - attr(*, "spec")=
+  .. cols(
+  ..   kampus = col_character(),
+  ..   nomor.urut = col_double(),
+  ..   jenis.kelamin = col_character(),
+  ..   usia = col_double(),
+  ..   fakultas = col_character(),
+  ..   prodi = col_character(),
+  ..   tingkat.semester = col_character(),
+  ..   uang.saku = col_character(),
+  ..   jumlah.mobil = col_double(),
+  ..   jumlah.motor = col_double(),
+  ..   jumlah.sepeda = col_double(),
+  ..   kendaraan.utama = col_character(),
+  ..   kelurahan = col_character(),
+  ..   jenis.tempat.tinggal = col_character(),
+  ..   alamat = col_character(),
+  ..   alasan.lokasi = col_character(),
+  ..   jarak.km = col_double(),
+  ..   `biaya dalam ribu2` = col_double(),
+  ..   `Jumlah Perjalanan Senin` = col_double(),
+  ..   jumlah.perjalanan.selasa = col_double(),
+  ..   jumlah.perjalanan.rabu = col_double(),
+  ..   jumlah.perjalanan.kamis = col_double(),
+  ..   jumlah.perjalanan.jumat = col_double(),
+  ..   jumlah.perjalanan.sabtu = col_double(),
+  ..   jumlah.perjalanan.minggu = col_double()
+  .. )
+ - attr(*, "problems")=<externalptr> 
+
+
+Faktor Levels:
+-------------
+ jenis.kelamin:  
+   Frekuensi: 188, 212 
+ tingkat.semester:  
+   Frekuensi: 22, 76, 96, 206 
+ uang.saku:  
+   Frekuensi: 144, 7, 199, 42, 8 
+ kendaraan.utama:  
+   Frekuensi: 38, 27, 15, 290, 30 
+ jenis.tempat.tinggal:  
+   Frekuensi: 3, 33, 148, 23, 63, 2, 128 
+
+Missing Values:
+---------------
+ ✓ No missing values!
+
+
+==================================================
+RINGKASAN FINAL
+==================================================
+
+  Dataset Rows Columns
+1   ITERA  428      24
+2   UNILA  394      24
+3     UBL  378      25
+4  UINRIL  400      25
+5   TOTAL 1600       -
+
+✅ VERIFIKASI SELESAI!
+
