@@ -1,6 +1,14 @@
 # Folder yang di-ignore
 .secrets/
+datasets/olah_ulang
+datasets/pernah_dipakai
+.tmp/
 
 # File sementara
 images/Cuplikan layar 2026-01-10 195525.png
+
+# Agent Architecture - Sensitive Files
+.env
+credentials.json
+token.json
 

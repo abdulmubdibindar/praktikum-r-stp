@@ -1,0 +1,3 @@
+- Check logic of the guide based on the datasets mentioned. Delve into the datasets, observe what works and what doesn't, and apply that to the R code chunks.
+- Inherit what are already available in the @.agent/rules and @.agent/workflows
+- Learn the already written R codes in the main folder, the ones that are Rmd files.
