@@ -49,7 +49,7 @@ Korelasi yang akan kita pelajari adalah korelasi pada pasangan variabel dengan t
 
 Seperti biasa, kita perlu memuat pustaka *(libraries)* yang diperlukan dalam pengolahan data kita. Untuk memuat tabel silang kita akan gunakan pustaka `gtsummary` kembali seperti pada praktikum ke-2
 
-```{r }
+```{r mod06-load-libraries}
 library(tidyverse)
 library(readr)
 ```
@@ -58,7 +58,7 @@ library(readr)
 
 Kita akan menggunakan dataset keempat kampus di Kota Bandar Lampung dan sekitarnya sebagai bahan. Tulis ulang dan jalankan baris perintah berikut untuk mengolah data keempat kampus
 
-```{r}
+```{r mod06-load-data}
 # Membaca data
 data_mahasiswa <- read_csv2("datasets/Data Praktikum 06.csv")
 ```
@@ -69,7 +69,7 @@ Setelah membaca data, kita perlu mengatur variabel-variabel nominal dan ordinal 
 
 Namun sebelum itu, kita akan membuat vektor-vektor untuk kita aplikasikan menjadi *factor* dengan memanfaatkan `group_by` dan `summarize` yang berasal dari pustaka `dplyr`.
 
-```{r membuat-vektor}
+```{r mod06-create-factor-vectors}
 # MEMBUAT FAKTOR UNTUK KAMPUS
 # Meringkas data berdasarkan kolom Kampus PT
 faktor_kampus <- data_mahasiswa |>
@@ -148,7 +148,7 @@ faktor_jenistempattinggal <- faktor_jenistempattinggal$tempat_tinggal
 
 Barulah selanjutnya kita bisa mengatur *factor* untuk setiap variabel kategoris
 
-```{r mengatur-faktor}
+```{r mod06-set-factors}
 data_mahasiswa <- data_mahasiswa |>
   mutate (Kampus_PT = factor(Kampus_PT, levels = faktor_kampus),
          `Jenis Kelamin` = factor(`Jenis Kelamin`, levels = faktor_jk),
@@ -165,7 +165,7 @@ data_mahasiswa <- data_mahasiswa |>
 
 Kita dapat memeriksa hasil pekerjaan kita dengan perintah `glimpse`
 
-```{r memeriksa-hasil-factor}
+```{r mod06-check-factors}
 # Memeriksa hasil pengaturan factor
 glimpse(data_mahasiswa)
 ```
@@ -178,7 +178,7 @@ Korelasi antarvariabel kategoris memerlukan "bahan baku" berupa **tabel silang**
 
 *Chunk* berikut memperlihatkan bagaimana membuat tabel silang antara variabel `jenis tempat tinggal` dengan `kendaraan utama`.
 
-```{r membuat-tabel-silang}
+```{r mod06-create-crosstab-presentation}
 library(gtsummary)
 library(flextable)
 
@@ -202,7 +202,7 @@ Perhatikan cara menginterpretasi informasi dari tabel tersebut:
 
 Selain dengan `tbl_summary()` yang gunanya cenderung untuk presentasi, kita dapat menggunakan perintah `table()` untuk menghasilkan tabel silang yang siap dioperasikan ke dalam perhitungan koefisien korelasi di tahap selanjutnya. Perintah `table()` mengambil dua masukan, yakni vektor variabel-variabel yang kita akan analisis, dipisahkan dengan tanda koma (`,`).
 
-```{r perintah-table()}
+```{r mod06-create-crosstab-calculation}
 table(data_mahasiswa$`jenis tempat tinggal`,  # vektor variabel-variabel ini kita akses dari 
       data_mahasiswa$`kendaraan utama`)       # dataset menggunakan operator '$'
 ```
@@ -223,7 +223,7 @@ Yang pertama adalah koefisien korelasi berbasis nilai $\chi^2$ . Karena berbasis
 
 Untuk menghitung $\chi^2$ kita menggunakan dua perintah utama dalam R, yakni `table()` dan `chisq.test()`. Perintah `table()` berfungsi membuat tabel silang yang berguna sebagai "bahan baku" perhitungan $\chi^2$ kita, kemudian perintah `chisq.test()` menghitung nilai $\chi^2$ tersebut.
 
-```{r menghitung-chi-square}
+```{r mod06-calculate-chi-square}
 # Menyimpan tabel
 t4tinggal_kend <- table(data_mahasiswa$`kendaraan utama`,
                         data_mahasiswa$`jenis tempat tinggal`)
@@ -246,7 +246,7 @@ Seperti yang bisa kita lihat, hasil perhitungan berupa variabel R `chisq_t4tingg
 
 Tampilkan seluruh nilai tersebut
 
-```{r menampilkan-nilai-penting}
+```{r mod06-display-chi-square-values}
 chisq_t4tinggal_kend$statistic
 
 chisq_t4tinggal_kend$parameter
@@ -262,7 +262,7 @@ $$
 V = \sqrt{\frac{\chi^2}{n \times min(c−1,r−1)}}​​
 $$
 
-```{r menghitung-koefisien-V}
+```{r mod06-calculate-cramer-v}
 # Menyimpan nilai Chi-squared menggunakan metode "as.numeric"
 chisq_t4tinggal_kend <- as.numeric(chisq_t4tinggal_kend$statistic)
 
@@ -294,11 +294,11 @@ v_t4tinggal_kend
 
 Tentunya kita harus menginstal pustaka tersebut jika belum memilikinya dengan perintah `install.packages('rcompanion')`.
 
-```{r, eval=FALSE}
+```{r mod06-install-rcompanion, eval=FALSE}
 install.packages("rcompanion")
 ```
 
-```{r menggunakan-pustaka-rcompanion}
+```{r mod06-use-rcompanion}
 library(rcompanion)
 
 cramerV(data_mahasiswa$`jenis tempat tinggal`, data_mahasiswa$`kendaraan utama`)
@@ -310,11 +310,11 @@ Untuk analisis korelasi variabel nominal berbasis *error* yang menggunakan koefi
 
 Perintah `lambda()` mengambil masukan berupa tabel silang seperti yang kita buat pada perhitungan $\chi^2$, yakni perintah `table()` .
 
-```{r, eval=FALSE}
+```{r mod06-install-rcpa3, eval=FALSE}
 install.packages("RCPA3")
 ```
 
-```{r menghitung-lambda}
+```{r mod06-calculate-lambda}
 library(RCPA3)
 
 # Menghitung koefisien lambda
@@ -335,11 +335,11 @@ Perintah `GKgamma()` mengambil masukan sama seperti `chisq.test()`, yakni tabel 
 
 Dalam praktikum ini, kita akan menganalisis kekuatan dan arah hubungan antara Uang Saku dan Tingkat Semester. Apakah mahasiswa dengan tingkat semester makin tinggi uang sakunya makin tinggi pula, atau sebaliknya?
 
-```{r, eval=FALSE}
+```{r mod06-install-vcdextra, eval=FALSE}
 install.packages("vcdExtra")
 ```
 
-```{r menghitung-koefisien-gamma}
+```{r mod06-calculate-gamma}
 library(vcdExtra)
 
 # Membuat variabel table() sebagai masukan
@@ -361,7 +361,7 @@ $$
 G = \frac{C-D}{C+D}
 $$
 
-```{r mengakses-penyusun-rumus-gamma}
+```{r mod06-display-gamma-components}
 # Menampilkan nilai C dan D
 print(G_uangSaku_tingkatSemester$C)
 print(G_uangSaku_tingkatSemester$D)

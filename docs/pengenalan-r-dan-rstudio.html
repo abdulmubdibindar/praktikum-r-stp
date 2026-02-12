@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Pengenalan R dan RStudio | Modul Praktik Statistika Untuk Perencanaan</title>
   <meta name="description" content="Pengenalan R dan RStudio | Modul Praktik Statistika Untuk Perencanaan" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Pengenalan R dan RStudio | Modul Praktik Statistika Untuk Perencanaan" />
   <meta property="og:type" content="book" />
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -170,7 +169,8 @@ div.csl-indent {
 <li class="chapter" data-level="0.4" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#instalasi-r-dan-rstudio"><i class="fa fa-check"></i><b>0.4</b> Instalasi R dan RStudio</a></li>
 <li class="chapter" data-level="0.5" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#cara-menjalankan-r"><i class="fa fa-check"></i><b>0.5</b> Cara Menjalankan R</a>
 <ul>
-<li class="chapter" data-level="0.5.1" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#membuat-file-kode-sumber-r-.r"><i class="fa fa-check"></i><b>0.5.1</b> Membuat File Kode Sumber R (<code>.R</code>)</a></li>
+<li class="chapter" data-level="0.5.1" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#langsung-di-console"><i class="fa fa-check"></i><b>0.5.1</b> Langsung di <em>Console</em></a></li>
+<li class="chapter" data-level="0.5.2" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#menggunakan-file-kode-sumber"><i class="fa fa-check"></i><b>0.5.2</b> Menggunakan <em>File</em> Kode Sumber</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html"><i class="fa fa-check"></i>Pengenalan Teknis R</a>
@@ -179,12 +179,13 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="0.6.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#struktur-direktori-yang-ideal"><i class="fa fa-check"></i><b>0.6.1</b> Struktur Direktori yang Ideal</a></li>
 <li class="chapter" data-level="0.6.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#membuat-dan-mengatur-direktori-praktikum"><i class="fa fa-check"></i><b>0.6.2</b> Membuat dan Mengatur Direktori Praktikum</a></li>
+<li class="chapter" data-level="0.6.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#mengunduh-dataset-praktikum-dari-github"><i class="fa fa-check"></i><b>0.6.3</b> Mengunduh Dataset Praktikum dari GitHub</a></li>
 </ul></li>
-<li class="chapter" data-level="0.7" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#sintaks-dasar-bahasa-r"><i class="fa fa-check"></i><b>0.7</b> Sintaks Dasar Bahasa r</a>
+<li class="chapter" data-level="0.7" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#sintaks-dasar-bahasa-r"><i class="fa fa-check"></i><b>0.7</b> Sintaks Dasar Bahasa R</a>
 <ul>
 <li class="chapter" data-level="0.7.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#komentar"><i class="fa fa-check"></i><b>0.7.1</b> Komentar</a></li>
-<li class="chapter" data-level="0.7.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#assignment-pemberian-nilai"><i class="fa fa-check"></i><b>0.7.2</b> <em>Assignment</em> (Pemberian Nilai)</a></li>
-<li class="chapter" data-level="0.7.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#case-sensitivity"><i class="fa fa-check"></i><b>0.7.3</b> <em>Case Sensitivity</em></a></li>
+<li class="chapter" data-level="0.7.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#variabel"><i class="fa fa-check"></i><b>0.7.2</b> Variabel</a></li>
+<li class="chapter" data-level="0.7.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#konvensi-penamaan-dalam-r"><i class="fa fa-check"></i><b>0.7.3</b> Konvensi Penamaan dalam R</a></li>
 </ul></li>
 <li class="chapter" data-level="0.8" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#paket-packages"><i class="fa fa-check"></i><b>0.8</b> Paket (<em>Packages</em>)</a></li>
 <li class="chapter" data-level="0.9" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#fungsi-functions"><i class="fa fa-check"></i><b>0.9</b> Fungsi (<em>Functions</em>)</a>
@@ -195,8 +196,9 @@ div.csl-indent {
 <li class="chapter" data-level="0.10" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#struktur-data-dasar"><i class="fa fa-check"></i><b>0.10</b> Struktur Data Dasar</a>
 <ul>
 <li class="chapter" data-level="0.10.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#vektor"><i class="fa fa-check"></i><b>0.10.1</b> Vektor</a></li>
-<li class="chapter" data-level="0.10.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#tipe-data"><i class="fa fa-check"></i><b>0.10.2</b> Tipe Data</a></li>
-<li class="chapter" data-level="0.10.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#data-frame-dan-tibble"><i class="fa fa-check"></i><b>0.10.3</b> Data Frame dan Tibble</a></li>
+<li class="chapter" data-level="0.10.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#list"><i class="fa fa-check"></i><b>0.10.2</b> List</a></li>
+<li class="chapter" data-level="0.10.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#tipe-data"><i class="fa fa-check"></i><b>0.10.3</b> Tipe Data</a></li>
+<li class="chapter" data-level="0.10.4" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#data-frame-dan-tibble"><i class="fa fa-check"></i><b>0.10.4</b> Data Frame dan Tibble</a></li>
 </ul></li>
 <li class="chapter" data-level="0.11" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#operator-pipa"><i class="fa fa-check"></i><b>0.11</b> Operator Pipa (<code>|&gt;</code>)</a></li>
 <li class="chapter" data-level="0.12" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#manajemen-data-inputoutput"><i class="fa fa-check"></i><b>0.12</b> Manajemen Data (Input/Output)</a>
@@ -205,34 +207,32 @@ div.csl-indent {
 <li class="chapter" data-level="0.12.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#menyimpan-data"><i class="fa fa-check"></i><b>0.12.2</b> Menyimpan Data</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html"><i class="fa fa-check"></i><b>1</b> Modul-1: Pengolahan Data Terstruktur</a>
+<li class="chapter" data-level="1" data-path="modul-1.html"><a href="modul-1.html"><i class="fa fa-check"></i><b>1</b> Modul-1: Pengolahan Data Terstruktur</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#mengimpor-set-data-dataset-dari-excel"><i class="fa fa-check"></i><b>1.1</b> Mengimpor set data <em>(dataset)</em> dari Excel</a></li>
-<li class="chapter" data-level="1.2" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#analisis-data-terstruktur-pada-set-data"><i class="fa fa-check"></i><b>1.2</b> Analisis data terstruktur pada set data</a></li>
-<li class="chapter" data-level="1.3" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#mengolah-set-data"><i class="fa fa-check"></i><b>1.3</b> Mengolah set data</a>
+<li class="chapter" data-level="1.1" data-path="modul-1.html"><a href="modul-1.html#mengimpor-set-data-dataset-dari-excel"><i class="fa fa-check"></i><b>1.1</b> Mengimpor set data <em>(dataset)</em> dari Excel</a></li>
+<li class="chapter" data-level="1.2" data-path="modul-1.html"><a href="modul-1.html#analisis-data-terstruktur-pada-set-data"><i class="fa fa-check"></i><b>1.2</b> Analisis data terstruktur pada set data</a></li>
+<li class="chapter" data-level="1.3" data-path="modul-1.html"><a href="modul-1.html#mengolah-set-data"><i class="fa fa-check"></i><b>1.3</b> Mengolah set data</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#merancang-algoritma-urutan-kerja"><i class="fa fa-check"></i><b>1.3.1</b> Merancang Algoritma (Urutan kerja)</a></li>
-<li class="chapter" data-level="1.3.2" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#mengidentifikasi-nama-nama-kolom"><i class="fa fa-check"></i><b>1.3.2</b> Mengidentifikasi Nama-nama Kolom</a></li>
-<li class="chapter" data-level="1.3.3" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#menentukan-kolom-kolom-yang-akan-diambil-di-set-data-baru"><i class="fa fa-check"></i><b>1.3.3</b> Menentukan Kolom-kolom yang Akan Diambil di Set Data Baru</a></li>
-<li class="chapter" data-level="1.3.4" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#menyeleksi-kolom-kolom-yang-akan-dipakai"><i class="fa fa-check"></i><b>1.3.4</b> Menyeleksi Kolom-kolom Yang Akan Dipakai</a></li>
-<li class="chapter" data-level="1.3.5" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#mengubah-nama-kolom-menjadi-nama-standar"><i class="fa fa-check"></i><b>1.3.5</b> Mengubah Nama Kolom Menjadi Nama Standar</a></li>
-<li class="chapter" data-level="1.3.6" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#menyatukan-kedua-set-data"><i class="fa fa-check"></i><b>1.3.6</b> Menyatukan Kedua Set Data</a></li>
-<li class="chapter" data-level="1.3.7" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#memperbaiki-set-data-yang-akan-digabungkan"><i class="fa fa-check"></i><b>1.3.7</b> Memperbaiki Set Data yang Akan Digabungkan</a></li>
-<li class="chapter" data-level="1.3.8" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#menyatukan-kedua-set-data-setelah-diperbaiki"><i class="fa fa-check"></i><b>1.3.8</b> Menyatukan Kedua Set Data Setelah Diperbaiki</a></li>
-<li class="chapter" data-level="1.3.9" data-path="modul-1-pengolahan-data-terstruktur.html"><a href="modul-1-pengolahan-data-terstruktur.html#mengekspor-set-data-hasil-pengolahan-ke-fail-file-terpisah"><i class="fa fa-check"></i><b>1.3.9</b> Mengekspor Set Data Hasil Pengolahan ke Fail <em>(File)</em> Terpisah</a></li>
+<li class="chapter" data-level="1.3.1" data-path="modul-1.html"><a href="modul-1.html#merancang-algoritma-urutan-kerja"><i class="fa fa-check"></i><b>1.3.1</b> Merancang Algoritma (Urutan kerja)</a></li>
+<li class="chapter" data-level="1.3.2" data-path="modul-1.html"><a href="modul-1.html#mengidentifikasi-nama-nama-kolom"><i class="fa fa-check"></i><b>1.3.2</b> Mengidentifikasi Nama-nama Kolom</a></li>
+<li class="chapter" data-level="1.3.3" data-path="modul-1.html"><a href="modul-1.html#menentukan-kolom-kolom-yang-akan-diambil-di-set-data-baru"><i class="fa fa-check"></i><b>1.3.3</b> Menentukan Kolom-kolom yang Akan Diambil di Set Data Baru</a></li>
+<li class="chapter" data-level="1.3.4" data-path="modul-1.html"><a href="modul-1.html#menyeleksi-kolom-kolom-yang-akan-dipakai"><i class="fa fa-check"></i><b>1.3.4</b> Menyeleksi Kolom-kolom Yang Akan Dipakai</a></li>
+<li class="chapter" data-level="1.3.5" data-path="modul-1.html"><a href="modul-1.html#mengubah-nama-kolom-menjadi-nama-standar"><i class="fa fa-check"></i><b>1.3.5</b> Mengubah Nama Kolom Menjadi Nama Standar</a></li>
+<li class="chapter" data-level="1.3.6" data-path="modul-1.html"><a href="modul-1.html#menyatukan-kedua-set-data"><i class="fa fa-check"></i><b>1.3.6</b> Menyatukan Kedua Set Data</a></li>
+<li class="chapter" data-level="1.3.7" data-path="modul-1.html"><a href="modul-1.html#memperbaiki-set-data-yang-akan-digabungkan"><i class="fa fa-check"></i><b>1.3.7</b> Memperbaiki Set Data yang Akan Digabungkan</a></li>
+<li class="chapter" data-level="1.3.8" data-path="modul-1.html"><a href="modul-1.html#menyatukan-kedua-set-data-setelah-diperbaiki"><i class="fa fa-check"></i><b>1.3.8</b> Menyatukan Kedua Set Data Setelah Diperbaiki</a></li>
+<li class="chapter" data-level="1.3.9" data-path="modul-1.html"><a href="modul-1.html#mengekspor-set-data-hasil-pengolahan-ke-fail-file-terpisah"><i class="fa fa-check"></i><b>1.3.9</b> Mengekspor Set Data Hasil Pengolahan ke Fail <em>(File)</em> Terpisah</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html"><i class="fa fa-check"></i><b>2</b> Modul-2: Analisis Statistika Deskriptif</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#persiapan"><i class="fa fa-check"></i><b>2.1</b> Persiapan</a>
+<li class="chapter" data-level="2.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#persiapan"><i class="fa fa-check"></i><b>2.1</b> Persiapan</a></li>
+<li class="chapter" data-level="2.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#mengimpor-dataset"><i class="fa fa-check"></i><b>2.2</b> Mengimpor Dataset</a></li>
+<li class="chapter" data-level="2.3" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#merapikan-dataset-data-wrangling"><i class="fa fa-check"></i><b>2.3</b> Merapikan Dataset <em>(Data Wrangling)</em></a></li>
+<li class="chapter" data-level="2.4" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#analisis-statistika-deskriptif"><i class="fa fa-check"></i><b>2.4</b> Analisis Statistika Deskriptif</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#mengimpor-dataset"><i class="fa fa-check"></i><b>2.1.1</b> Mengimpor Dataset</a></li>
-<li class="chapter" data-level="2.1.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#merapikan-dataset-data-wrangling"><i class="fa fa-check"></i><b>2.1.2</b> Merapikan Dataset <em>(Data Wrangling)</em></a></li>
-</ul></li>
-<li class="chapter" data-level="2.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#analisis-statistika-deskriptif"><i class="fa fa-check"></i><b>2.2</b> Analisis Statistika Deskriptif</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#variabel-kategoris"><i class="fa fa-check"></i><b>2.2.1</b> Variabel Kategoris</a></li>
-<li class="chapter" data-level="2.2.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#variabel-numerik"><i class="fa fa-check"></i><b>2.2.2</b> Variabel Numerik</a></li>
+<li class="chapter" data-level="2.4.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#variabel-kategoris"><i class="fa fa-check"></i><b>2.4.1</b> Variabel Kategoris</a></li>
+<li class="chapter" data-level="2.4.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#variabel-numerik"><i class="fa fa-check"></i><b>2.4.2</b> Variabel Numerik</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html"><i class="fa fa-check"></i><b>3</b> Modul-3: Visualisasi Data Kuantitatif</a>
@@ -311,9 +311,8 @@ div.csl-indent {
 <li class="chapter" data-level="7.1" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#pendahuluan-3"><i class="fa fa-check"></i><b>7.1</b> Pendahuluan</a></li>
 <li class="chapter" data-level="7.2" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#pustaka-libraries-yang-diperlukan-dan-memuat-data-1"><i class="fa fa-check"></i><b>7.2</b> Pustaka <em>(Libraries)</em> yang Diperlukan dan Memuat Data</a></li>
 <li class="chapter" data-level="7.3" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#pola-hubungan-data"><i class="fa fa-check"></i><b>7.3</b> Pola Hubungan Data</a></li>
-<li class="chapter" data-level="7.4" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#pola-hubungan-data-1"><i class="fa fa-check"></i><b>7.4</b> 6.3. Pola Hubungan Data</a></li>
-<li class="chapter" data-level="7.5" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#analisis-korelasi-spearmans-rho"><i class="fa fa-check"></i><b>7.5</b> Analisis Korelasi Spearman’s <span class="math inline">\(\rho\)</span></a></li>
-<li class="chapter" data-level="7.6" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#analisis-korelasi-pearsons-r"><i class="fa fa-check"></i><b>7.6</b> Analisis Korelasi Pearson’s <em>r</em></a></li>
+<li class="chapter" data-level="7.4" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#analisis-korelasi-spearmans-rho"><i class="fa fa-check"></i><b>7.4</b> Analisis Korelasi Spearman’s <span class="math inline">\(\rho\)</span></a></li>
+<li class="chapter" data-level="7.5" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#analisis-korelasi-pearsons-r"><i class="fa fa-check"></i><b>7.5</b> Analisis Korelasi Pearson’s <em>r</em></a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><i class="fa fa-check"></i><b>8</b> Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a>
 <ul>
@@ -321,7 +320,7 @@ div.csl-indent {
 <li class="chapter" data-level="8.2" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penjelasan-kasus"><i class="fa fa-check"></i><b>8.2</b> Penjelasan Kasus</a></li>
 <li class="chapter" data-level="8.3" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#memuat-pustaka-libraries-yang-diperlukan"><i class="fa fa-check"></i><b>8.3</b> Memuat Pustaka <em>(Libraries)</em> yang Diperlukan</a></li>
 <li class="chapter" data-level="8.4" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#memuat-dataset"><i class="fa fa-check"></i><b>8.4</b> Memuat Dataset</a></li>
-<li class="chapter" data-level="8.5" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#pola-hubungan-data-2"><i class="fa fa-check"></i><b>8.5</b> Pola Hubungan Data</a></li>
+<li class="chapter" data-level="8.5" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#pola-hubungan-data-1"><i class="fa fa-check"></i><b>8.5</b> Pola Hubungan Data</a></li>
 <li class="chapter" data-level="8.6" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#model-regresi-linear-sederhana"><i class="fa fa-check"></i><b>8.6</b> Model Regresi Linear Sederhana</a>
 <ul>
 <li class="chapter" data-level="8.6.1" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penyusunan-model"><i class="fa fa-check"></i><b>8.6.1</b> Penyusunan Model</a></li>
@@ -383,7 +382,7 @@ div.csl-indent {
 <p>Selamat datang di dunia pengolahan data yang lebih canggih! Dalam praktikum ini, kalian akan berkenalan dengan teknik pengolahan dan analisis data dengan menggunakan bahasa pemrograman bernama R. R adalah bahasa pemrograman yang dibuat khusus untuk keperluan analisis statistik.</p>
 <div id="apa-itu-r" class="section level2 hasAnchor" number="0.1">
 <h2><span class="header-section-number">0.1</span> Apa itu R?<a href="pengenalan-r-dan-rstudio.html#apa-itu-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>R adalah lingkungan perangkat lunak (<em>software environment</em>) dan bahasa pemrograman yang digunakan untuk komputasi statistik dan grafik. R dikembangkan oleh Ross Ihaka dan Robert Gentleman di Universitas Auckland, Selandia Baru, pada awal tahun 1990-an sebagai evolusi dari bahasa S yang sebelumnya dikembangkan di Bell Laboratories <span class="citation">(<a href="referensi.html#ref-history_overview_r">R. D. Peng 2026</a>)</span>. R bersifat <em>open-source</em> (berlisensi GNU GPL), yang berarti dapat digunakan secara gratis dan dikembangkan secara kolaboratif oleh komunitas global <span class="citation">(<a href="referensi.html#ref-r_wikipedia">Wikipedia contributors 2026</a>)</span>.</p>
+<p>R adalah lingkungan perangkat lunak (<em>software environment</em>) dan bahasa pemrograman yang digunakan untuk komputasi statistik dan grafik. R dikembangkan oleh Ross Ihaka dan Robert Gentleman di Universitas Auckland, Selandia Baru, pada awal tahun 1990-an sebagai evolusi dari bahasa S yang sebelumnya dikembangkan di Bell Laboratories <span class="citation">(<a href="referensi.html#ref-history_overview_r">Peng 2026</a>)</span>. R bersifat <em>open-source</em> (berlisensi GNU GPL), yang berarti dapat digunakan secara gratis dan dikembangkan secara kolaboratif oleh komunitas global <span class="citation">(<a href="referensi.html#ref-r_wikipedia">Wikipedia contributors 2026</a>)</span>.</p>
 <p>Keunggulan utama R dalam konteks perencanaan dan pemerintahan meliputi:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Ekosistem Paket yang Luas</strong>: R memiliki puluhan ribu paket (<em>packages</em>) di CRAN untuk berbagai keperluan, mulai dari manipulasi data, pemodelan statistik, hingga analisis geospasial menggunakan <code>sf</code> dan <code>terra</code> <span class="citation">(<a href="referensi.html#ref-spatial_r_sf">UVA Library 2026</a>; <a href="referensi.html#ref-spatial_data_science_terra">R Spatial 2026</a>)</span>.</li>
@@ -393,7 +392,7 @@ div.csl-indent {
 <p>Dalam bidang perencanaan wilayah dan kota, R digunakan untuk:</p>
 <ul>
 <li><strong>Analisis Geospasial</strong>: Mengelola data vektor dan raster untuk pemetaan dan pemodelan lingkungan <span class="citation">(<a href="referensi.html#ref-spatial_data_science_terra">R Spatial 2026</a>)</span>.</li>
-<li><strong>Perencanaan Transportasi</strong>: Menggunakan paket seperti <code>stplanr</code> untuk analisis jaringan, rute, dan pemodelan transportasi berkelanjutan <span class="citation">(<a href="referensi.html#ref-stplanr_cran">CRAN 2026</a>; <a href="referensi.html#ref-sustainable_transport_stplanr">rOpenSci 2026</a>)</span>.</li>
+<li><strong>Perencanaan Transportasi</strong>: Menggunakan paket seperti <code>stplanr</code> untuk analisis jaringan, rute, dan pemodelan transportasi berkelanjutan <span class="citation">(<a href="referensi.html#ref-stplanr_cran">CRAN 2026</a>; <a href="referensi.html#ref-sustainable_transport_stplanr"><span class="nocase">rOpenSci</span> 2026</a>)</span>.</li>
 <li><strong>Simulasi Kebijakan</strong>: Melakukan simulasi dampak kebijakan publik, seperti perubahan penggunaan lahan atau intervensi sosial, sebelum diterapkan secara nyata <span class="citation">(<a href="referensi.html#ref-simulation_public_policies">ResearchGate 2026a</a>)</span>.</li>
 </ul>
 </div>
@@ -402,7 +401,7 @@ div.csl-indent {
 <p>R memiliki kelebihan yang signifikan dibandingkan dengan alat analisis berbasis antarmuka grafis (<em>Graphical User Interface</em> - GUI) seperti SPSS atau Microsoft Excel. Berikut adalah beberapa alasan utama mengapa R menjadi standar de facto dalam sains data modern:</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Reproduksibilitas (<em>Reproducibility</em>)</strong>:
-Berbeda dengan perangkat lunak berbasis <em>point-and-click</em> di mana langkah-langkah analisis seringkali sulit dilacak kembali, R bekerja berbasis skript (<em>script-based</em>). Setiap langkah analisis, mulai dari pembersihan data hingga pembuatan model, terekam secara eksplisit dalam kode. Hal ini memungkinkan analisis untuk diverifikasi, diaudit, dan dijalankan ulang oleh orang lain (atau diri kita sendiri di masa depan) dengan hasil yang identik, sebuah prinsip fundamental dalam penelitian ilmiah yang kredibel <span class="citation">(<a href="referensi.html#ref-peng2011reproducible">Roger D. Peng 2011</a>; <a href="referensi.html#ref-gandrud2013reproducible">Gandrud 2013</a>)</span>.</p></li>
+Berbeda dengan perangkat lunak berbasis <em>point-and-click</em> di mana langkah-langkah analisis seringkali sulit dilacak kembali, R bekerja berbasis skript (<em>script-based</em>). Setiap langkah analisis, mulai dari pembersihan data hingga pembuatan model, terekam secara eksplisit dalam kode. Hal ini memungkinkan analisis untuk diverifikasi, diaudit, dan dijalankan ulang oleh orang lain (atau diri kita sendiri di masa depan) dengan hasil yang identik, sebuah prinsip fundamental dalam penelitian ilmiah yang kredibel <span class="citation">(<a href="referensi.html#ref-peng2011reproducible">Peng 2011</a>; <a href="referensi.html#ref-gandrud2013reproducible">Gandrud 2013</a>)</span>.</p></li>
 <li><p><strong>Fleksibilitas dan Kemampuan Kostumisasi</strong>:
 R tidak membatasi pengguna pada menu yang sudah tersedia. Sebagai bahasa pemrograman, R memungkinkan kita untuk membangun alat analisis sendiri atau memodifikasi metode yang sudah ada sesuai dengan kebutuhan spesifik penelitian, memberikan fleksibilitas yang hampir tak terbatas dibandingkan perangkat lunak tertutup (<em>proprietary</em>) <span class="citation">(<a href="referensi.html#ref-wickham2016r">Wickham and Grolemund 2016</a>)</span>.</p></li>
 <li><p><strong>Gratis dan <em>Open Source</em></strong>:
@@ -449,45 +448,44 @@ Gambar 0.1: Bagian-bagian jendela RStudio
 </div>
 <div id="cara-menjalankan-r" class="section level2 hasAnchor" number="0.5">
 <h2><span class="header-section-number">0.5</span> Cara Menjalankan R<a href="pengenalan-r-dan-rstudio.html#cara-menjalankan-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Cara (paling) utama untuk menjalankan perintah bahasa pemrograman R adalah dengan mengetikkannya langsung di <strong>Console</strong> (jendela nomor 3 pada Gambar <a href="pengenalan-r-dan-rstudio.html#fig:jendela-rstudio">0.1</a>).</p>
-<p>Misalnya, jika Anda mengetikkan <code>1 + 1</code> di Console lalu menekan <strong>Enter</strong>, R akan langsung memberikan jawabannya.</p>
+<div id="langsung-di-console" class="section level3 hasAnchor" number="0.5.1">
+<h3><span class="header-section-number">0.5.1</span> Langsung di <em>Console</em><a href="pengenalan-r-dan-rstudio.html#langsung-di-console" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pertama, silakan buka program <strong>RGui</strong>. Caranya, buka Start Menu, ketikkan <code>R x.x.x</code>. Ganti <code>x.x.x</code> dengan nomor versi yang Anda unduh sebelumnya. Kemudian tekan <em>Enter</em>. Tampilannya adalah seperti yang terlihat pada Gambar <a href="pengenalan-r-dan-rstudio.html#fig:jendela-r">0.2</a> berikut.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:jendela-r"></span>
+<img src="images/jendela-r.png" alt="Jendela R 4.5.2" width="714" />
+<p class="caption">
+Gambar 0.2: Jendela R 4.5.2
+</p>
+</div>
 <div class="rmdexercise">
-<p><strong>Aktivitas Mandiri: Halo Dunia</strong></p>
-<p>Cobalah ketik perintah berikut di Console, lalu tekan Enter:</p>
-<p><code>print("Halo dunia!")</code></p>
+<p><strong>Aktivitas Mandiri: Kode R Pertama</strong></p>
+<p>Cobalah ketik perintah berikut di jendela yang terdapat kursor di dalamnya, lalu tekan Enter setelah mengetikkan kode berikut:</p>
+<p><code>print(2 + 2)</code></p>
+<p>Anda akan melihat angka <code>4</code> sebagai hasilnya.</p>
 <p>Selamat! Anda baru saja menjalankan kode R pertama Anda.</p>
 </div>
-<p>Namun, mengetik satu per satu di Console akan melelahkan jika perintahnya banyak. Oleh karena itu, kita biasanya menulis kode dalam sebuah file <em>source code</em> (ekstensi <code>.R</code>).</p>
-<div id="membuat-file-kode-sumber-r-.r" class="section level3 hasAnchor" number="0.5.1">
-<h3><span class="header-section-number">0.5.1</span> Membuat File Kode Sumber R (<code>.R</code>)<a href="pengenalan-r-dan-rstudio.html#membuat-file-kode-sumber-r-.r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Anda akan menyadari bahwa antarmuka RGui tidak bersahabat dengan pengguna <em>(user friendly)</em>. Selain itu tidak ada juga alat-alat yang memudahkan kita memanajemen pekerjaan seperti menampilkan lokasi file atau <em>script</em> kode sumber.</p>
+<p>Oleh karena itu, kita membutuhkan cara kedua, yakni menggunakan <strong>RStudio</strong> melalui panel <strong>Console</strong> (jendela nomor 3 pada Gambar <a href="pengenalan-r-dan-rstudio.html#fig:jendela-rstudio">0.1</a>).</p>
+<div class="rmdexercise">
+<p><strong>Aktivitas Mandiri: Kode R pertama di RStudio</strong></p>
+<p>Cobalah ketik perintah berikut di Console, lalu tekan Enter:</p>
+<p><code>print(2 + 2)</code></p>
+<p>Anda akan melihat hasil yang sama seperti yang Anda dapat di RGui. Inilah tempat menjalankan kode R di RStudio.</p>
+<p>Selamat! Anda baru saja menjalankan kode R pertama Anda di RStudio.</p>
+</div>
+</div>
+<div id="menggunakan-file-kode-sumber" class="section level3 hasAnchor" number="0.5.2">
+<h3><span class="header-section-number">0.5.2</span> Menggunakan <em>File</em> Kode Sumber<a href="pengenalan-r-dan-rstudio.html#menggunakan-file-kode-sumber" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Namun, mengetik satu per satu di Console akan melelahkan jika perintahnya banyak. Oleh karena itu, kita biasanya menulis kode dalam sebuah file <em>source code</em> yang berekstensi (berakhiran) <code>.R</code>.</p>
+<div id="membuat-file-kode-sumber-r-.r" class="section level4 hasAnchor" number="0.5.2.1">
+<h4><span class="header-section-number">0.5.2.1</span> Membuat <em>File</em> Kode Sumber R (<code>.R</code>)<a href="pengenalan-r-dan-rstudio.html#membuat-file-kode-sumber-r-.r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>File kode sumber R (berekstensi <code>.R</code>) adalah dokumen teks yang berisi rangkaian perintah R yang dapat disimpan, diedit, dan dijalankan berulang kali. Ini adalah cara profesional dalam bekerja dengan R, karena kode kita menjadi <strong>terdokumentasi</strong>, <strong>dapat direproduksi</strong>, dan <strong>mudah dibagikan</strong>.</p>
-<p><strong>Langkah-langkah membuat file <code>.R</code> baru:</strong></p>
+<div class="rmdexercise">
+<p><strong>Aktivitas Mandiri: Membuat <em>file</em> Kode Sumber R Pertama</strong></p>
 <ol style="list-style-type: decimal">
 <li>Di RStudio, pilih menu <strong>File → New File → R Script</strong> (atau tekan <strong>Ctrl + Shift + N</strong> di Windows/Linux, <strong>Cmd + Shift + N</strong> di Mac)</li>
 <li>Sebuah tab baru akan muncul di panel <em>Script</em> (jendela kiri atas)</li>
-<li>Ketikkan kode R Anda di dalam tab tersebut</li>
-<li>Simpan file dengan memilih <strong>File → Save</strong> (atau <strong>Ctrl + S</strong> / <strong>Cmd + S</strong>)</li>
-<li>Beri nama file dengan ekstensi <code>.R</code>, misalnya <code>kode_R_pertama_saya.R</code></li>
-</ol>
-<p><strong>Menjalankan kode dari file <code>.R</code>:</strong></p>
-<p>Untuk menjalankan kode dari file <code>.R</code> ke Console tanpa mengetik ulang:</p>
-<ol style="list-style-type: decimal">
-<li>Sorot (blok) baris kode yang ingin dijalankan di panel <em>Script</em></li>
-<li>Tekan kombinasi tombol <strong>Ctrl + Enter</strong> (Windows/Linux) atau <strong>Cmd + Enter</strong> (Mac)</li>
-<li>Kode yang disorot akan otomatis dikirim ke <em>Console</em> dan dijalankan</li>
-</ol>
-<p>Ini adalah cara kerja standar yang efisien dalam menggunakan R. Dengan cara ini, kita bisa:</p>
-<ul>
-<li><strong>Menyimpan pekerjaan</strong> untuk digunakan di lain waktu</li>
-<li><strong>Menjalankan ulang</strong> analisis dengan mudah</li>
-<li><strong>Berbagi kode</strong> dengan rekan kerja atau asisten praktikum</li>
-<li><strong>Mendokumentasikan</strong> setiap langkah analisis kita</li>
-</ul>
-<div class="rmdexercise">
-<p><strong>Aktivitas Mandiri: Membuat Kode Sumber R</strong></p>
-<ol style="list-style-type: decimal">
-<li>Buatlah file R Script baru melalui menu <strong>File → New File → R Script</strong></li>
-<li>Ketikkan kode berikut di dalam file tersebut:</li>
+<li>Ketikkan kode R berikut di dalam tab tersebut</li>
 </ol>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="pengenalan-r-dan-rstudio.html#cb1-1" tabindex="-1"></a><span class="co"># File kode R pertama saya</span></span>
 <span id="cb1-2"><a href="pengenalan-r-dan-rstudio.html#cb1-2" tabindex="-1"></a><span class="co"># Dibuat pada: [isi dengan tanggal hari ini]</span></span>
@@ -498,14 +496,53 @@ Gambar 0.1: Bagian-bagian jendela RStudio
 <span id="cb1-7"><a href="pengenalan-r-dan-rstudio.html#cb1-7" tabindex="-1"></a><span class="co"># Operasi matematika sederhana</span></span>
 <span id="cb1-8"><a href="pengenalan-r-dan-rstudio.html#cb1-8" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span>
 <span id="cb1-9"><a href="pengenalan-r-dan-rstudio.html#cb1-9" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span></code></pre></div>
-<ol start="3" style="list-style-type: decimal">
-<li>Simpan file dengan nama <code>kode_R_pertama_saya.R</code> di dalam folder <strong>Praktikum STP 2026</strong></li>
-<li>Sorot baris-baris kode <code>print</code>, lalu tekan <strong>Ctrl + Enter</strong> (Windows/Linux) atau <strong>Cmd + Enter</strong> (Mac). Setelah itu, sorot baris-baris operasi matematika, lalu tekan <strong>Ctrl + Enter</strong> (Windows/Linux) atau <strong>Cmd + Enter</strong> (Mac) lagi.</li>
-<li>Perhatikan jendela <em>Console</em> - Anda akan melihat hasil eksekusi kode Anda</li>
-<li>Selamat! Anda baru saja membuat file kode sumber R pertama Anda yang dapat disimpan dan dijalankan kapan saja. Jangan lupa tekan <strong>Ctrl + S</strong> / <strong>Cmd + S</strong> untuk menyimpan file Anda setiap kali Anda selesai mengeditnya.</li>
+<ol start="4" style="list-style-type: decimal">
+<li>Simpan file dengan memilih <strong>File → Save</strong> (atau <strong>Ctrl + S</strong> / <strong>Cmd + S</strong>) di direktori/folder pertama muncul di jendela Anda tersebut</li>
+<li>Beri nama file dengan ekstensi <code>.R</code>, misalnya <code>kode_R_pertama_saya.R</code></li>
 </ol>
 </div>
+</div>
+<div id="menjalankan-kode-dari-file-.r" class="section level4 hasAnchor" number="0.5.2.2">
+<h4><span class="header-section-number">0.5.2.2</span> Menjalankan kode dari file <code>.R</code><a href="pengenalan-r-dan-rstudio.html#menjalankan-kode-dari-file-.r" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Untuk menjalankan kode dari file <code>.R</code> ke Console tanpa mengetik ulang:</p>
+<ol style="list-style-type: decimal">
+<li>Anda bisa melakukan salah satu dari sekian cara ini:
+<ol style="list-style-type: decimal">
+<li>Sorot (blok) baris-baris kode yang ingin dijalankan di panel <em>Script</em>. Ini akan menjalankan kode yang Anda sorot saja.</li>
+<li>Klik angka baris di sebelah kiri untuk memilh seluruh kode yang ada dalam satu baris.</li>
+<li><strong>REKOMENDASI</strong>: menempatkan kursor pada baris yang kodenya akan dijalankan. Ini akan secara otomatis meminta R menjalankan baris kode yang dianggap satu paket.</li>
+</ol></li>
+<li>Tekan kombinasi tombol <strong>Ctrl + Enter</strong> (Windows/Linux) atau <strong>Cmd + Enter</strong> (Mac)</li>
+<li>Kode tersebut akan otomatis dikirim ke <em>Console</em> dan dijalankan</li>
+</ol>
+<div class="rmdexercise">
+<p><strong>Aktivitas Mandiri: Menjalankan Kode R dari File Kode Sumber</strong></p>
+<ol style="list-style-type: decimal">
+<li>Masih dari <em>script</em> <code>kode_R_pertama_saya.R</code> tadi, tempatkan kursor pada baris berikut</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="pengenalan-r-dan-rstudio.html#cb2-1" tabindex="-1"></a>...</span>
+<span id="cb2-2"><a href="pengenalan-r-dan-rstudio.html#cb2-2" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Halo dunia!&quot;</span>)</span>
+<span id="cb2-3"><a href="pengenalan-r-dan-rstudio.html#cb2-3" tabindex="-1"></a>...</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Jalankan baris tersebut dengan menekan tombol kombinasi sesuai penjelasan.</li>
+<li>Kemudian, tempatkan kursor pada baris berikut</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="pengenalan-r-dan-rstudio.html#cb3-1" tabindex="-1"></a>...</span>
+<span id="cb3-2"><a href="pengenalan-r-dan-rstudio.html#cb3-2" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span>
+<span id="cb3-3"><a href="pengenalan-r-dan-rstudio.html#cb3-3" tabindex="-1"></a>...</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>Jalankan baris tersebut kembali.</li>
+</ol>
+</div>
+<p>Ini adalah cara kerja standar yang efisien dalam menggunakan R. Dengan cara ini, kita bisa:</p>
+<ul>
+<li><strong>Menyimpan pekerjaan</strong> untuk digunakan di lain waktu</li>
+<li><strong>Menjalankan ulang</strong> analisis dengan mudah</li>
+<li><strong>Berbagi kode</strong> dengan rekan kerja atau asisten praktikum</li>
+<li><strong>Mendokumentasikan</strong> setiap langkah analisis kita</li>
+</ul>
 <hr />
+</div>
 </div>
 </div>
 </div>
@@ -557,7 +594,7 @@ gitbook.start({
     "link": null,
     "text": null
   },
-  "download": ["_main.pdf"],
+  "download": null,
   "search": {
     "engine": "fuse",
     "options": null

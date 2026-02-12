@@ -18,7 +18,7 @@ Modul ini akan membahas dua konsep fundamental dalam statistika inferensial: **D
 
 Pastikan Anda telah menginstal pustaka `tidyverse` yang akan sangat membantu dalam proses manipulasi dan visualisasi data.
 
-```{r}
+```{r mod04-load-libraries}
 library(tidyverse)
 library(readr)
 ```
@@ -27,7 +27,7 @@ library(readr)
 
 Langkah pertama adalah memuat data survei mahasiswa dari empat universitas. Kita akan menggabungkan dan membersihkan data tersebut untuk analisis. Variabel yang akan menjadi fokus kita adalah **jarak tempuh (km)** dan **jenis tempat tinggal**.
 
-```{r baca-gabung-bersihkan-data}
+```{r mod04-load-and-clean-data}
 # Membaca 4 file CSV
 df_uinril <- read_csv2("datasets/DataUtama_mhsUINRIL.csv")
 df_ubl <- read_csv2("datasets/DataUtama_mhsUBL.csv")
@@ -35,48 +35,43 @@ df_unila <- read_csv2("datasets/DataUtama_mhsUNILA.csv")
 df_itera <- read_csv2("datasets/DataUtama_mhsITERA.csv")
 
 # Membersihkan dan menggabungkan data
+# Perhatikan: UNILA memiliki nama kolom dengan huruf besar "Jenis Tempat Tinggal"
 data_mahasiswa <- bind_rows(
   df_uinril |>
     select(
-      kampus = Kampus_PT,
-      jarak_km = `jarak (km)`,
-      jenis_tinggal = `jenis tempat tinggal`
+      kampus = kampus,
+      jarak_km = jarak.km,
+      jenis_tinggal = jenis.tempat.tinggal
     ),
   df_ubl |>
     select(
-      kampus = Kampus_PT,
-      jarak_km = `jarak (km)`,
-      jenis_tinggal = `jenis tempat tinggal`
+      kampus = kampus,
+      jarak_km = jarak.km,
+      jenis_tinggal = jenis.tempat.tinggal
     ),
-  # Perhatikan nama kolom 'jarak' dan 'jenis tempat tinggal' berbeda di file UNILA
   df_unila |>
     select(
-      kampus = Kampus_PT,
-      jarak_km = jara,
-      jenis_tinggal = `Jenis Tempat Tinggal`
+      kampus = kampus,
+      jarak_km = jarak.km,
+      jenis_tinggal = `Jenis Tempat Tinggal`  # Perhatikan: huruf kapital
     ),
   df_itera |>
     select(
-      kampus = Kampus_PT,
-      jarak_km = `jarak (km)`,
-      jenis_tinggal = `jenis tempat tinggal`
+      kampus = kampus,
+      jarak_km = jarak.km,
+      jenis_tinggal = jenis.tempat.tinggal
     )
 ) |>
-  # Mengubah tipe data 'jarak_km' menjadi numerik
-  mutate(jarak_km = as.numeric(jarak_km)) |>
-  # Menghapus baris dengan data yang kosong (NA)
-  drop_na(jarak_km, jenis_tinggal) |>
-  # Melakukan filter sederhana untuk data jarak yang lebih masuk akal
-  filter(jarak_km > 0 & jarak_km < 50) |>
-  # Membuat variabel baru yang disederhanakan untuk jenis tempat tinggal
+  drop_na(jarak_km, jenis_tinggal) |> # menghilangkan missing values
   mutate(
+    jarak_km = as.numeric(jarak_km),
     tipe_tinggal_baku = case_when(
-      # Menggunakan str_detect untuk mencari kata kunci "kos", "asrama", atau "rusunawa" (tidak case-sensitive)
-      str_detect(tolower(jenis_tinggal), "kos|asrama|rusunawa") ~ "Kos/Asrama",
-      # Selain itu, dikategorikan sebagai "Rumah Keluarga/Pribadi"
+      grepl("Kos", jenis_tinggal, ignore.case = TRUE) ~ "Kos/Asrama",
+      grepl("Asrama", jenis_tinggal, ignore.case = TRUE) ~ "Kos/Asrama",
       TRUE ~ "Rumah Keluarga/Pribadi"
     )
-  )
+  ) |>
+  filter(jarak_km > 0 & jarak_km < 100) # membatasi jarak yang realistis
 
 # Menampilkan beberapa baris pertama dari data gabungan
 head(data_mahasiswa)
@@ -123,7 +118,7 @@ Teorema Limit Pusat (*Central Limit Theorem*) menyatakan bahwa jika kita mengamb
 
 Pertama, mari kita hitung rata-rata dan standar deviasi "populasi" kita sebagai acuan.
 
-```{r mean-sd-parameter}
+```{r mod04-population-parameters}
 # Menghitung rata-rata jarak "populasi"
 pop_mean <- mean(data_mahasiswa$jarak_km)
 # Menghitung standar deviasi jarak "populasi"
@@ -137,7 +132,7 @@ paste("Standar Deviasi Populasi (σ):", round(pop_sd, 2), "km")
 
 Sekarang, kita akan mensimulasikan proses pengambilan sampel secara berulang. Kita akan mengambil 1000 sampel acak, masing-masing berukuran 50 mahasiswa (`n=50`), lalu menghitung rata-rata jarak untuk setiap sampel.
 
-```{r simulasi-sampling}
+```{r mod04-simulate-sampling}
 # Menetapkan parameter simulasi
 ukuran_sampel <- 50
 jumlah_simulasi <- 1000
@@ -172,7 +167,7 @@ Modifikasi kode simulasi di atas:
 
 Kumpulan dari 1000 rata-rata sampel inilah yang membentuk **distribusi sampling**. Mari kita visualisasikan dalam bentuk histogram.
 
-```{r visualisasi-simulasi}
+```{r mod04-visualize-sampling-distribution}
 # Visualisasi Distribusi Sampling dengan Histogram
 ggplot(df_sampling, aes(x = rataan_sampel)) +
   geom_histogram(aes(y = ..density..), bins = 30, fill = "skyblue", color = "black", alpha = 0.7) +
@@ -201,7 +196,7 @@ Perhatikan bagaimana distribusi dari rata-rata sampel berbentuk seperti lonceng 
 
 3.  **Estimasi (dari sampel)**: Dalam praktik statistika inferensial, kita hampir tidak pernah mengetahui . Oleh karena itu, kita mengestimasinya menggunakan standar deviasi dari sampel kita sendiri (s). Rumusnya menjadi $SE=\frac{s}{\sqrt{n}}$. **Inilah nilai yang sebenarnya digunakan saat kita membuat interval kepercayaan atau melakukan uji hipotesis dari data sampel nyata.**
 
-```{r standard-error}
+```{r mod04-calculate-standard-error}
 # 1. Standard Error Empiris (dari 1000 sampel)
 se_empiris <- sd(df_sampling$rataan_sampel)
 
@@ -214,7 +209,7 @@ paste("Standard Error (Teoritis, dari populasi):", round(se_teoritis, 3))
 
 Mari kita hitung estimasi standard error dari satu sampel acak yang akan kita gunakan nanti di Bagian 4.5.
 
-```{r standar-error-dari-sampel}
+```{r mod04-estimate-se-from-sample}
 # Mengambil satu sampel acak (sama seperti di Bagian 4.1)
 set.seed(42)
 sampel_tunggal_untuk_se <- sample(data_mahasiswa$jarak_km, ukuran_sampel)
@@ -233,19 +228,19 @@ Untuk bagian ini kita akan menggunakan *library* bernama `MKinfer`yang berguna u
 
 Lakukan instalasi *library* ini dengan perintah berikut.
 
-```{r instalasi-MKinfer, eval=FALSE}
+```{r mod04-install-mkinfer, eval=FALSE}
 install.packages("MKinfer")
 ```
 
 Kemudian muat paket `MKinfer` tersebut.
 
-```{r muat-MKinfer}
+```{r mod04-load-mkinfer}
 library(MKinfer)
 ```
 
 ### Mengambil Satu Sampel
 
-```{r mean-sd-sampel-tunggal}
+```{r mod04-sample-mean-sd}
 # Kita gunakan sampel yang sudah dibuat sebelumnya
 sampel_tunggal <- sampel_tunggal_untuk_se
 mean_sampel_tunggal <- mean(sampel_tunggal)
@@ -256,7 +251,7 @@ cat(paste("Standar Deviasi Sampel Tunggal:", round(sd_sampel_tunggal, 2), "km\n"
 
 ### Menghasilkan Interval Kepercayaan
 
-```{r interval-kepercayaan-rata2}
+```{r mod04-confidence-interval-mean}
 # Menghitung interval kepercayaan 95% menggunakan MKinfer
 hasil_ci_mean <- meanCI(sampel_tunggal, conf.level = 0.95)
 
@@ -270,7 +265,7 @@ Hasil dari fungsi `meanCI` tersebut langsung menunjukkan rentang kepercayaan yan
 
 Berapakah rentang kepercayaan untuk rata-rata jarak tempat tinggal dari kampus dari sampel kita? Tuliskan interpretasinya yang tepat. Bandingkan dengan rata-rata parameter
 
-```{r pertanyaan-ci-mean}
+```{r mod04-question-ci-mean}
 # Jawablah pertanyaan di atas dengan menuliskannya sebagai komentar di chunk ini
 # Rentang kepercayaannya adalah 2,81 - 3,95 km
 
@@ -287,7 +282,7 @@ Selain rata-rata, kita juga sering tertarik untuk mengestimasi proporsi dari sua
 
 Pertama, mari kita hitung proporsi "populasi" yang sebenarnya dari data kita. Kita akan mencari proporsi mahasiswa yang tinggal di "Kos/Asrama".
 
-```{r parameter-proporsi}
+```{r mod04-population-proportion}
 # Menghitung proporsi populasi
 tabel_populasi <- table(data_mahasiswa$tipe_tinggal_baku)
 pop_prop <- prop.table(tabel_populasi)["Kos/Asrama"]
@@ -301,7 +296,7 @@ cat(paste("\nProporsi Mahasiswa di Kos/Asrama (p):", round(pop_prop, 4)))
 
 Sekarang, kita ambil satu sampel acak (misalnya, `n=100`) dan hitung proporsi sampel $\hat{p}$ mahasiswa yang tinggal di kos/asrama.
 
-```{r statistik-proporsi}
+```{r mod04-sample-proportion}
 # Menetapkan ukuran sampel
 ukuran_sampel_prop <- 100
 
@@ -323,7 +318,7 @@ cat(paste("\nProporsi Sampel Mahasiswa di Kos/Asrama (p-hat):", round(prop_sampe
 
 Kita akan menggunakan fungsi `binomCI()` di R. Fungsi ini memerlukan jumlah "sukses", yakni jumlah mahasiswa di kos/asrama, dan total ukuran sampel.
 
-```{r estimasi-proporsi}
+```{r mod04-confidence-interval-proportion}
 # Mendapatkan jumlah "sukses" dari tabel sampel
 jumlah_sukses <- tabel_sampel["Kos/Asrama"]
 total_sampel <- ukuran_sampel_prop
@@ -338,7 +333,7 @@ print(hasil_prop_test)
 
 Berapakah rentang kepercayaan untuk proporsi mahasiswa yang tinggal di kos/asrama? Tuliskan interpretasinya yang tepat. Bandingkan dengan proporsi parameter.
 
-```{r pertanyaan-ci-prop}
+```{r mod04-question-ci-proportion}
 # Jawablah pertanyaan di atas dengan menuliskannya sebagai komentar di chunk ini  # Rentang kepercayaannya adalah 0,37 hingga 0,56
 
 # Tuliskan interpretasi dari rentang tersebut

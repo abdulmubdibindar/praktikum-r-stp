@@ -48,7 +48,7 @@ Untuk **regresi linear berganda**, kita akan melibatkan satu variabel tambahan s
 
 Seperti biasa, kita perlu memuat pustaka *(libraries)* yang diperlukan dalam pengolahan data kita. Seperti halnya juga analisis korelasi variabel metrik, kita tidak lagi menggunakan tabel silang, tetapi kita langsung menganalisis kolom-kolom yang ada di dataset kita.
 
-```{r }
+```{r mod08-load-libraries}
 library(tidyverse) # untuk mengolah data terstruktur
 library(readr) # untuk membaca file csv
 library(gtsummary) # untuk memproduksi tabel hasil pembuatan regresi dengan cepat dan rapi
@@ -58,7 +58,7 @@ library(gtsummary) # untuk memproduksi tabel hasil pembuatan regresi dengan cepa
 
 Kita akan menggunakan dataset keempat kampus di Kota Bandar Lampung dan sekitarnya sebagai bahan. Kemudian kita akan menyaring objek-objek yang memiliki nilai variabel `kendaraan utama` sama dengan `'Layanan online'`.
 
-```{r}
+```{r mod08-load-and-filter-data}
 # Membaca data dari file csv
 data_mahasiswa <- read_csv2("datasets/Data Praktikum 08.csv")
 
@@ -77,7 +77,7 @@ Pola hubungan akan kita analisis dengan membuat diagram pencar *(scatter plot)* 
 
 Menghitung koefisien korelasi Pearson's $r$ dapat kita lakukan dengan perintah `cor()` dengan atribut `method = "pearson"` setelah terlebih dahulu menyimpan nilai masing-masing variabel ke dalam suatu vektor.
 
-```{r}
+```{r mod08-calculate-correlation}
 # Menyimpan vektor jarak dan biaya (perjalanan) sepekan ke dalam variabel 
 # 'x' dan 'y'
 x <- data_mahasiswa_online$jarak
@@ -94,7 +94,7 @@ cor(x, y, use = "complete.obs", method = "pearson")
 
 Membuat diagram pencar dapat dilakukan dengan menerapkan perintah `geom_point()` dari pustaka `ggplot2` yang dimuat bersama pustaka `tidyverse`.
 
-```{r}
+```{r mod08-create-initial-scatterplot}
 # Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
 # untuk mahasiswa yang pakai layanan online
 scp <- ggplot(data = data_mahasiswa_online,
@@ -117,7 +117,7 @@ Setelah Anda melakukan pembuatan diagram pencar tersebut, Anda akan menyadari ba
 
 Keberadaan pencilan ini akan mengganggu hasil analisis kita. Mari kita buktikan dengan menghilangkan data pencilan tersebut.
 
-```{r}
+```{r mod08-remove-outliers}
 # Menghilangkan observasi pencilan dengan menyaring observasi dengan
 # jarak < 15 km
 data_mahasiswa_online <- data_mahasiswa_online |> 
@@ -126,7 +126,7 @@ data_mahasiswa_online <- data_mahasiswa_online |>
 
 Di sini kita akan menghitung ulang nilai koefisien korelasi kita.
 
-```{r}
+```{r mod08-recalculate-correlation}
 # Menghitung korelasi antara biaya sepekan dengan jarak dari dataset yang
 # sudah dihilangkan pencilannya
 x <- data_mahasiswa_online$jarak
@@ -139,7 +139,7 @@ cor(x, y, method = "pearson")
 
 Kita pun dapat memeriksa hasil perbaikan dataset kita dari diagram pencar yang baru berikut.
 
-```{r}
+```{r mod08-create-clean-scatterplot}
 # Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
 # untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan
 scp <- ggplot(data = data_mahasiswa_online,
@@ -165,7 +165,7 @@ Dalam bagian ini kita akan mempelajari cara menyusun, menampilkan, menafsirkan/m
 
 Untuk membuat persamaan model regresi linear, kita akan menggunakan perintah `lm` yang sudah disediakan secara bawaan oleh R. Hasil dari perintah ini dapat kita simpan sebagai variabel tertentu.
 
-```{r}
+```{r mod08-create-simple-model}
 # Membuat model regresi linear
 model <- lm(y ~ x, data = data_mahasiswa_online)
 ```
@@ -178,7 +178,7 @@ Sebelumnya kita sudah mendefinisikan `y` dan `x` sebagai variabel untuk vektor b
 
 Untuk menampilkan hasil penyusunan model regresi linear, kita akan menggunakan perintah `summary` yang juga sudah disediakan secara bawaan oleh R.
 
-```{r hasil-regresi}
+```{r mod08-display-model-summary}
 # Menampilkan hasil model regresi linear
 summary(model)
 ```
@@ -195,7 +195,7 @@ Yang ditampilkan dengan perintah tersebut antara lain adalah sebagai berikut. Pe
 
 Selain menggunakan `summary`, kita juga dapat menggunakan perintah `tbl_regression`, perintah yang disediakan oleh paket/*library* `gtsummary`. Hasil dari perintah ini adalah tabel yang sudah diformat sesuai dengan *templat* artikel ilmiah.
 
-```{r}
+```{r mod08-display-model-table-basic}
 # Menampilkan hasil model regresi linear dengan tbl_regression
 tbl_regression(model)
 ```
@@ -204,7 +204,7 @@ Jika kalian menemukan pertanyaan untuk menginstal sebuah paket di *console*, yak
 
 Secara bawaan, tabel tidak menampilkan nilai konstanta *(intercept)*, menampilkan nilai *confidence level* 95%, dan menampilkan nilai dari variabel independen sesuai variabel yang kita tetapkan sebelumnya, dalam hal ini adalah `x`. Untuk menggantinya, kita dapat melakukan penyesuaian perintah sebagai berikut.
 
-```{r}
+```{r mod08-display-model-table-custom}
 tbl_regression(
   model,
   intercept = TRUE, # mengatur intercept-nya ditampilkan
@@ -245,7 +245,7 @@ $$
 
 Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik data kita. Ini merupakan persamaan garis terbaik dari seluruh kemungkinan persamaan garis yang ada, yang kita tentukan dengan meminimalkan kuadrat terkecil.
 
-```{r}
+```{r mod08-visualize-regression-line-1}
 # Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
 # untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,
 # ditambah garis dari persamaan regresi
@@ -289,7 +289,7 @@ $$
 
 Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik data kita. Ini merupakan persamaan garis terbaik dari seluruh kemungkinan persamaan garis yang ada, yang kita tentukan dengan meminimalkan kuadrat terkecil.
 
-```{r}
+```{r mod08-visualize-regression-line-2}
 # Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
 # untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,
 # ditambah garis dari persamaan regresi
@@ -363,7 +363,7 @@ Nilai `Pr(>|t|)` variabel `x` adalah `1,721e-05` yang berarti koefisien senilai 
 
 Kita melakukan prediksi dengan menggunakan perintah `predict`. Misalkan kita ingin melakukan prediksi biaya perjalanan sepekan untuk mahasiswa yang tinggal di jarak 90 dan 120 km dari kampus
 
-```{r}
+```{r mod08-predict-simple-model}
 bahan_pred <- tibble(x = c(90, 120))
 
 predict(model, bahan_pred)
@@ -379,14 +379,14 @@ Dalam bagian ini kita hanya akan mempelajari penggunaan variabel *dummy* untuk m
 
 Kita akan menggunakan variabel `jenis tempat tinggal` untuk variabel *dummy*. Pertama, kita akan mengatur jenis nilai pada kolom `jenis tempat tinggal` menggunakan perintah `factor`.
 
-```{r}
+```{r mod08-create-factor-housing}
 # Membuat nilai kolom menjadi variabel kategoris dengan 'factor'
 data_mahasiswa_online$`jenis tempat tinggal` <- factor(data_mahasiswa_online$`jenis tempat tinggal`)
 ```
 
 Kedua, kita akan membuat model seperti halnya yang kita lakukan dalam analisis regresi linear sederhana. Kita akan menggunakan nama yang lebih representatif.
 
-```{r}
+```{r mod08-create-multiple-model}
 # Membuat variabel-variabel
 jarak <- x # variabel 'x' saja diubah menjadi 'jarak'
 biaya <- y # variabel 'y' saja diubah menjadi 'biaya'
@@ -443,7 +443,7 @@ Interpretasi koefisien variabel *dummy* adalah dengan memahami bahwa nilai varia
 
 Dari persamaan model regresi linear kita, kita juga dapat memprediksi nilai biaya perjalanan sepekan untuk mahasiswa-mahasiswa dengan kondisi lain. Misalnya kita ingin memprediksi biaya sepekan transportasi mahasiswa yang tinggal di Rumah saudara berjarak 7,9 km dari kampus dan di Rumah kontrakan bersama yang berjarak 10 km dari kampus.
 
-```{r}
+```{r mod08-predict-multiple-model}
 # Menyusun dataset untuk diprediksi
 mhs <- tibble(jarak = c(7.9, 10),
               ling = c("Rumah saudara", "Rumah mengontrak bersama")

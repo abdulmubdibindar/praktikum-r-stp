@@ -462,6 +462,41 @@ Pada dasarnya, semua yang kita tulis di *script* akan dijalankan oleh R. Akan te
 Komentar sangat berperan penting dalam kode kalian. Malahan, ini adalah kekuatan terbesar dari penggunaan R dalam Kita akan sering menggunakan komentar dalam kode kalian. Jadi, jangan ragu untuk menggunakan komentar untuk menjelaskan kode kalian.
 :::
 
+#### Komentar Blok (*Block Comment*)
+
+Untuk menulis komentar yang panjang (lebih dari satu baris), kita bisa menggunakan **komentar blok**. Ada dua cara:
+
+**Cara 1: Tanda Pagar di Setiap Baris**
+
+``` r
+# Ini adalah komentar blok
+# yang terdiri dari beberapa baris
+# untuk menjelaskan konsep yang kompleks
+hasil <- data.ubl |>
+  filter(Jenis.Kelamin == "Laki-Laki") |>
+  summarize(rata_rata = mean(jarak))
+```
+
+**Cara 2: Menggunakan if(FALSE)**
+
+``` r
+if(FALSE) {
+  Ini adalah komentar blok alternatif.
+  Semua teks di dalam kurung kurawal tidak akan dijalankan.
+  Berguna untuk men-disable blok kode sementara saat debugging.
+}
+```
+
+::: rmdnote
+**Kapan Menggunakan Komentar Blok?**
+
+- Menulis jawaban analisis yang panjang (misalnya interpretasi hasil statistik)
+- Mendokumentasikan proses pemikiran Anda
+- Men-disable sementara kode yang tidak ingin dihapus
+- Menjawab soal Aktivitas Mandiri dalam bentuk teks
+:::
+
+
 ### Variabel
 
 Variabel adalah tempat menyimpan data dan informasi di R. Variabel terdiri atas nama variabel dan nilainya, Cara mendeklarasikan variabel adalah dengan operator `<-`. Operator deklarasi bisa dimasukkan dengan *hotkey* `Alt` + `I`.
@@ -493,9 +528,34 @@ b
 hasil
 ```
 
-### *Case Sensitivity*
+### Konvensi Penamaan dalam R
 
-R membedakan huruf besar dan huruf kecil (*case sensitive*). Variabel `Data` dianggap berbeda dengan `data`.
+R mendukung beberapa gaya penamaan variabel. Penting untuk diingat bahwa **R membedakan huruf besar dan kecil** (*case-sensitive*), sehingga `data` berbeda dengan `Data`, `JenisKelamin` berbeda dengan `jeniskelamin`, dan `"Laki-Laki"` berbeda dengan `"Laki-laki"`. Kesalahan dalam kapitalisasi adalah sumber *error* yang sangat umum bagi pemula.
+
+**Konvensi Penamaan Variabel:**
+
+R mendukung beberapa gaya penamaan variabel:
+
+1. **snake_case** (disarankan untuk variabel R):
+   - `data_mahasiswa`, `jarak_tempuh`, `biaya_sepekan`
+   - Menggunakan garis bawah (`_`) untuk memisahkan kata
+   
+2. **dot.notation** (umum untuk nama kolom):
+   - `data.ubl`, `Jenis.Kelamin`, `biaya.dalam.sepekan`
+   - Menggunakan titik (`.`) untuk memisahkan kata
+   - Sering muncul saat mengimpor data dari Excel
+
+3. **camelCase** (jarang dipakai di R):
+   - `dataMahasiswa`, `jarakTempuh`
+   - Huruf besar menandai awal kata baru
+
+**Rekomendasi:**
+
+- Gunakan **snake_case** untuk nama variabel/objek R yang Anda buat sendiri
+- Gunakan **dot.notation** untuk nama kolom dataset (konsisten dengan output dari Excel)
+- Hindari spasi dan karakter khusus dalam nama variabel
+- Gunakan nama yang deskriptif: `data_ubl` lebih baik dari `d1`
+- Konsisten: Pilih satu gaya dan gunakan terus sepanjang kode Anda
 
 ::: rmdexercise
 **Aktivitas Mandiri: Membuat Variabel Disertai Komentar**
@@ -616,7 +676,7 @@ campuran <- c(1, "a", TRUE) # R akan mengubah tipe data elemen tersebut menjadi 
 1. Buatlah vektor dengan nama `nilai_ujian` yang berisi nilai ujian 5 mahasiswa berikut: 85, 90, 78, 92, 88
 2. Buatlah vektor dengan nama `fakultas` yang berisi nama-nama fakultas di ITERA
 3. Buatlah vektor dengan nama `apa_saja` yang berisi nilai `1` dan `"a"`
-4. Tampilkan tipe data dari variabel `nilai_ujian`, `fakultas`, dan `apa_saja`. Perhatikan hasil pada bagian `apa_saja`.
+4. Tampilkan tipe data dari variabel `nilai_ujian`, `fakultas`, dan `apa_saja`. Perhatikan hasil pada bagian `apa_saja`. Apa jenis nilai-nilai dalam vektor tersebut?
 
 :::
 
@@ -679,7 +739,13 @@ data |>
 
 Artinya: "Ambil `data`, lalu `fungsi_1`, kemudian hasilnya dimasukkan ke `fungsi_2`."
 
+Kita akan mempelajari penggunaan operator pipa (`|>`) secara lebih praktis dalam \@ref(modul-1). 
+
 ## Manajemen Data (Input/Output)
+
+Ini adalah kemampuan yang penting dalam pengolahan data di R karena seringkali kita perlu mengolah data dari file eksternal (seperti Excel) atau menyimpan data hasil pengolahan ke file eksternal.
+
+Kita akan mempraktikkan kemampuan ini lebih banyak mulai di \@ref(modul-1).
 
 ### Membaca Data
 

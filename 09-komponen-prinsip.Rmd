@@ -32,7 +32,7 @@ Kita akan menggunakan data @bindar2022faktor, yaitu penelitian mengenai preferen
 
 Kita membutuhkan paket `tidyverse` untuk manipulasi data dan `psych` untuk melakukan uji KMO, Bartlett, serta fungsi analisis faktor dan PCA.
 
-```{r }
+```{r mod09-load-libraries}
 library(tidyverse)
 library(psych)
 ```
@@ -46,7 +46,7 @@ Sebelum melakukan analisis komponen prinsip atau analisis faktor, idealnya kita 
 
 Kita dapat melakukan inspeksi visual menggunakan matriks diagram pencar (*scatter plot matrix*). Di sini kita menggunakan fungsi `pairs.panels` dari paket `psych` yang memberikan informasi lengkap berupa scatter plot, histogram, dan nilai korelasi.
 
-```{r asumsi-awal, fig.width=10, fig.height=10, results='asis'}
+```{r mod09-check-assumptions, fig.width=10, fig.height=10, results='asis'}
 # Membaca data (Kita muat di sini untuk keperluan inspeksi awal)
 # Jika data belum dimuat, baris ini akan memuatnya.
 data_cfd <- read_csv2("datasets/Data Praktikum 09.csv")
@@ -92,7 +92,7 @@ Berdasarkan *Scatter Plot Matrix* di atas:
 
 Kita memastikan kembali variabel yang akan digunakan dalam analisis ini.
 
-```{r}
+```{r mod09-prepare-data}
 # Memilih variabel yang akan dianalisis
 data_analisis <- data_cfd |> 
   select(ongkos, bparkir, durasi, bareng, toplajur, usia, 
@@ -117,7 +117,7 @@ Sebelum melakukan ekstraksi dimensi, kita perlu memastikan data layak untuk dian
 
 Uji ini melihat apakah terdapat korelasi antarvariabel dalam data. Syarat: Nilai $p < 0,05$.
 
-```{r uji-bartlett}
+```{r mod09-bartlett-test}
 # Uji Bartlett
 cortest.bartlett(data_analisis)
 ```
@@ -130,7 +130,7 @@ Lihat nilai $p.value$ pada output di atas. Apakah nilai tersebut $< 0.05$? Apa k
 
 Nilai KMO keseluruhan harus $> 0,5$. Selain itu, nilai MSA per variabel (diagonal pada matriks anti-image correlation) juga harus $> 0,5$.
 
-```{r uji-kmo}
+```{r mod09-kmo-test}
 # Uji KMO
 KMO(data_analisis)
 ```
@@ -139,7 +139,7 @@ Berdasarkan hasil di atas: - Nilai KMO Keseluruhan (*Overall MSA*) = 0,63 (Layak
 
 Sesuai prosedur, kita harus mengeluarkan variabel yang tidak memenuhi syarat MSA.
 
-```{r revisi-data}
+```{r mod09-revise-data}
 # Mengeluarkan variabel jmldewasa dan jmlanak
 data_analisis_final <- data_analisis |> 
   select(-jmldewasa, -jmlanak)
@@ -158,7 +158,7 @@ Langkah selanjutnya adalah menentukan berapa jumlah dimensi (faktor/komponen) ya
 
 Kita akan melihat berapa banyak variansi yang bisa dijelaskan oleh setiap komponen.
 
-```{r eigen-values}
+```{r mod09-eigenvalues}
 # Melakukan PCA tanpa rotasi untuk melihat Eigenvalues
 analisis_awal <- principal(data_analisis_final, nfactors = 10, rotate = "none")
 
@@ -174,7 +174,7 @@ Dari nilai eigen di atas, terdapat 4 komponen dengan nilai \> 1 (2.488, 1.650, 1
 
 Grafik ini menunjukkan penurunan nilai eigen. Titik di mana grafik mulai melandai (siku) menunjukkan batas jumlah faktor.
 
-```{r scree-plot}
+```{r mod09-scree-plot}
 # Membuat Scree Plot
 scree(data_analisis_final, pc=TRUE)
 ```
@@ -194,7 +194,7 @@ Kita akan melakukan ekstraksi 4 faktor menggunakan metode **Analisis Faktor** (u
 
 Analisis ini bertujuan mengelompokkan variabel-variabel yang mirip (korelasi tinggi) ke dalam faktor laten.
 
-```{r analisis-faktor}
+```{r mod09-factor-analysis}
 # Analisis Faktor dengan 4 faktor dan rotasi Varimax
 # fm="pa" (Principal Axis) adalah metode umum untuk Common Factor Analysis di R (mirip SPSS)
 af_result <- fa(data_analisis_final, nfactors = 4, rotate = "varimax", fm = "pa")
@@ -221,7 +221,7 @@ Berdasarkan output di atas, tentukan variabel pembentuk faktor lainnya:
 
 Jika tujuan kita adalah mereduksi data menjadi skor komponen untuk analisis lanjutan (misal regresi), kita menggunakan PCA.
 
-```{r pca-rotasi}
+```{r mod09-pca-rotation}
 # PCA dengan 4 komponen dan rotasi Varimax
 pca_result <- principal(data_analisis_final, nfactors = 4, rotate = "varimax")
 
@@ -244,7 +244,7 @@ Maka persamaannya: $$RC1 \approx 0.524(Z_{durasi}) + 0.451(Z_{jarak}) + \dots$$
 
 Untuk mendapatkan nilai skor komponen setiap observasi secara otomatis, kita dapat mengakses objek `$scores` dari hasil PCA.
 
-```{r component-scores}
+```{r mod09-component-scores}
 # Menampilkan 6 baris pertama dari skor komponen
 head(pca_result$scores)
 ```

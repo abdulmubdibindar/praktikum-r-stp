@@ -23,7 +23,7 @@ Pertama, kita perlu memuat paket `tidyverse` yang sudah mencakup `ggplot2` untuk
 
 Tak lupa, kita juga akan menyertakan `openxlsx` dan `gtsummary` untuk mengolah data secara tabular jika sekiranya diperlukan dalam menunjang alur kerja kita.
 
-```{r load-lib}
+```{r mod03-load-lib}
 library(tidyverse)
 library(openxlsx)
 library(gtsummary)
@@ -31,7 +31,7 @@ library(gtsummary)
 
 Selanjutnya, kita akan mengimpor *dataset* kita, yakni hasil kuesioner kepada mahasiswa UBL., seperti halnya praktikum-praktikum sebelumnya.
 
-```{r import-data}
+```{r mod03-import-data}
 # Mengeset variabel tersendiri untuk nama file nama sheet}
 file.dibaca <- "datasets/Data Praktikum 03.xlsx"
 sheet.ubl <- "DataUtama_mhsUBL"
@@ -45,7 +45,7 @@ head(data.ubl)
 
 Kemudian kita perlu menetapkan `factor` untuk variabel-variabel kategoris kita agar data kita lebih 'bersih.'
 
-```{r factor}
+```{r mod03-setup-factors}
 # Menetapkan vektor untuk factor variabel kategoris
 jk <- c("Laki-Laki", "Perempuan")
 

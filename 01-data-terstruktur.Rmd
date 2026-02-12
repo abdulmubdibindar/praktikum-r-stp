@@ -1,4 +1,4 @@
-# Modul-1: Pengolahan Data Terstruktur
+# Modul-1: Pengolahan Data Terstruktur {#modul-1}
 
 Setelah mempelajari modul ini Anda diharapkan dapat:
 
@@ -11,7 +11,7 @@ Kita akan mempelajari cara pengolahan data terstruktur atau *dataset*/set data d
 
 Dalam R, pengolahan data terstruktur dipermudah dengan adanya paket `tidyverse`. Paket ini menyertakan paket-paket lain yang mempunyai kegunaan unik dalam pengolahan data terstruktur.
 
-```{r}
+```{r mod01-load-tidyverse}
 library(tidyverse)
 ```
 
@@ -29,7 +29,7 @@ Seperti yang kalian lihat, paket `tidyverse` menyertakan paket-paket berikut yan
 
 Selain paket `tidyverse`, kita juga akan menggunakan paket `openxlsx` untuk mengoperasikan *file* Excel.
 
-```{r}
+```{r load-openxlsx}
 library(openxlsx)
 ```
 
@@ -45,8 +45,8 @@ Pastikan file Excel yang akan diimpor sudah tertutup, karena mengimpor file yang
 :::
 
 
-```{r}
-# Memuat dataset dari file Excel "Data Gabungan.xlsx" yang terletak di folder yang sama dengan file R Markdown ini.
+```{r mod01-import-first-sheet}
+# Memuat dataset dari file Excel "Data Praktikum 01.xlsx" yang terletak di folder datasets/
 data <- read.xlsx("datasets/Data Praktikum 01.xlsx")
 
 # Menampilkan 6 baris pertama dataset
@@ -59,7 +59,7 @@ Apabila kita ingin mengimpor set data dari *sheet* lainnya, kita harus menyertak
 
 *Dataset* yang kita impor akan menjadi objek dengan jenis *tibble*.
 
-```{r}
+```{r mod01-import-ubl-sheet}
 # Menyimpan file sebagai variabel tersendiri sehingga lebih fleksibel
 file_dibaca <- "datasets/Data Praktikum 01.xlsx" # nama variabel bukan 'file' saja karena sudah ada fungsi R tersendiri dengan nama tersebut
 
@@ -72,7 +72,7 @@ head(data_ubl)
 
 Kita juga dapat melihat *dataset* kita secara lengkap dengan perintah `View()`
 
-```{r, eval=FALSE}
+```{r mod01-view-data, eval=FALSE}
 # Melihat set data UINRIL
 View(data)
 
@@ -92,7 +92,7 @@ Kita sudah mempelajari bahwa data terstruktur terdiri atas **objek**, **variabel
 
 Untuk mengetahui ringkasan struktur data, kita dapat menggunakan fungsi `glimpse()` yang membutuhkan set data yang kita simpan sebagai argumen.
 
-```{r}
+```{r mod01-glimpse-uinril}
 # ringkasan struktur data UIN RIL
 glimpse(data)
 ```
@@ -143,28 +143,30 @@ Algoritma yang akan kita lakukan dalam praktikum ini adalah sebagai berikut:
 
 Untuk mengidentifikasi nama-nama kolom kita dapat menggunakan fungsi `colnames()` yang mengambil argumen nama set data.
 
-```{r}
+```{r mod01-colnames-uinril}
 # data UIN RIL
 colnames(data)
 ```
 
-```{r}
+```{r mod01-colnames-ubl}
 # data UIN RIL
 colnames(data_ubl)
 ```
 
 Kita dapat mengetahui jumlah kolom setiap set data secara langsung dengan fungsi `length()`.
 
-```{r}
+```{r mod01-count-columns}
 length(colnames(data)) # jumlah kolom set data UIN RIL
 length(colnames(data_ubl)) # jumlah kolom set data UBL
 ```
+
+Hasil ini menunjukkan bahwa kedua dataset memiliki jumlah kolom yang sama (25 kolom). Meskipun jumlahnya sama, kita sudah melihat bahwa ada perbedaan penamaan di antara keduanya yang perlu diseragamkan.
 
 > ⚠️ Penting!
 >
 > Fungsi `length()` pada dasarnya adalah fungsi penghitung jumlah elemen dalam suatu vektor atau jenis data lain yang berupa daftar.
 
-```{r}
+```{r mod01-vector-length-demo}
 # Mendefinisikan suatu vektor
 suatu_vektor <- c(1, 2, 3, 4, 5)
 
@@ -186,7 +188,7 @@ Setelah mengidentifikasi nama-nama variabel dan jumlahnya, kita putuskan untuk m
 
 Kita akan menyimpan nama-nama kolom yang sudah kita tentukan tersebut menjadi sebuah vektor.
 
-```{r}
+```{r mod01-define-final-columns}
 # Membuat vektor berisi nama-nama kolom final yang kita inginkan
 kolom_final <- c(
   "Nomor.urut", "Jenis.Kelamin", "Umur", "Fakultas", "Prodi", 
@@ -205,23 +207,24 @@ kolom_final <- c(
 
 Kita akan menggunakan fungsi `select()` dari `dplyr` (bagian dari `tidyverse`) untuk memilih hanya kolom-kolom yang relevan dari masing-masing set data. Perhatikan baik-baik, kita harus menggunakan **nama kolom asli** saat menyeleksi.
 
-```{r}
+```{r mod01-select-uinril}
 # 4. Menyeleksi kolom dari data UIN RIL
+# Fungsi select() memilih kolom yang kita butuhkan dari 25 kolom yang ada
 data_uin_selected <- select(data,
   Nomor.urut, Jenis.Kelamin, Umur, Fakultas, Prodi, Tingkat.Semester,
   Uang.Saku, 
   kepemilikan.mobil, kepemilikan.motor, 
-  kepemilikan.sepedan, # Ingat, nama aslinya pakai 'n'
+  kepemilikan.sepedan, # Perhatian: Nama asli pakai 'n'
   kendaraan.utama, jenis.tempat.tinggal, 
-  `jarak.(km)`, # Gunakan backtick (`) karena ada karakter spesial, yakni tanda kurung.
-  `biaya.dalam.ribu2`,
+  `jarak.(km)`, # Backtick (`) WAJIB untuk nama kolom dengan karakter spesial
+  `biaya.dalam.ribu2`,  # Backtick melindungi tanda kurung dan angka
   Jumlah.Perjalanan.Senin, Jumlah.Perjalanan.Selasa, Jumlah.Perjalanan.Rabu,
   Jumlah.Perjalanan.Kamis, Jumlah.Perjalanan.Jumat, Jumlah.Perjalanan.Sabtu,
   Jumlah.Perjalanan.Ahad
 )
 ```
 
-```{r}
+```{r mod01-select-ubl}
 # 5. Menyeleksi kolom dari data UBL
 data_ubl_selected <- select(data_ubl,
   Nomor.urut, Jenis.Kelamin, Umur, Fakultas, Prodi, Tingkat.Semester,
@@ -243,7 +246,7 @@ Sekarang kita punya dua *data frame* baru (`data_uin_selected` dan `data_ubl_sel
 
 Ini adalah langkah kuncinya. Kita cukup menimpa nama-nama kolom di kedua *data frame* yang sudah kita seleksi tadi dengan nama-nama kolom dari vektor `kolom_final` yang kita buat di 3.3.3.
 
-```{r}
+```{r mod01-rename-columns}
 # Mengganti nama kolom di kedua data frame
 colnames(data_uin_selected) <- kolom_final
 colnames(data_ubl_selected) <- kolom_final
@@ -251,7 +254,7 @@ colnames(data_ubl_selected) <- kolom_final
 
 Untuk membuktikan bahwa namanya sudah berubah, kita bisa cek lagi.
 
-```{r}
+```{r mod01-verify-rename}
 # Cek nama kolom setelah diubah
 colnames(data_uin_selected)
 print("============================================================")
@@ -275,14 +278,14 @@ Gunakan dataset `data_ubl` yang sudah diimpor:
 
 Ini adalah langkah terakhir kita. Karena kedua set data kini memiliki struktur kolom yang sama persis, kita bisa menyatukannya menjadi satu *data frame* besar dengan fungsi `bind_rows()`.
 
-```{r, eval = FALSE}
+```{r mod01-bind-rows-error, eval=FALSE}
 # Menggabungkan kedua data frame menjadi satu
 data_gabungan <- bind_rows(data_uin_selected, data_ubl_selected)
 ```
 
-Hasil dari penggabungan tersebut menyebabkan *error* pada kolom `biaya.dalam.sepekan` . Ini disebabkan oleh biaya.dalam.sepekan dalam set data UINRIL (`data`) berbeda jenisnya dengan set data UBL (`data_ubl`). Begitu pula `Jumlah.perjalanan.Senin`
+Hasil dari penggabungan tersebut menyebabkan *error* pada kolom `biaya.dalam.sepekan` . Ini disebabkan oleh `biaya.dalam.sepekan` dalam set data UINRIL (`data`) berbeda jenisnya dengan set data UBL (`data_ubl`). Begitu pula `Jumlah.perjalanan.Senin`
 
-```{r}
+```{r mod01-check-data-types}
 # Mengecek tipe data dalam set data UINRIL
 glimpse(data_uin_selected)
 
@@ -298,7 +301,7 @@ Ini adalah kasus yang tepat untuk menggambarkan bahwa dalam data terstruktur, je
 
 Kita akan menghapus `biaya.dalam.sepekan` dari kedua set data kita. Untuk menghapus suatu kolom, kita dapat menggunakan fungsi `select()` juga, akan tetapi kita tambahkan tanda negatif (`-`) di depan nama variabelnya.
 
-```{r}
+```{r mod01-remove-columns-uinril}
 # 'Menimpa' data_uin_selected dengan data_uin_selected yang variabel biaya.dalam.sepekan sudah dihapus
 data_uin_selected <- select(data_uin_selected, 
                             -`biaya.dalam.sepekan`, -`Jumlah.perjalanan.Senin`)
@@ -308,7 +311,7 @@ glimpse(data_uin_selected)
 colnames(data_uin_selected)
 ```
 
-```{r}
+```{r mod01-remove-columns-ubl}
 # 'Menimpa' data_ubl_selected dengan data_ubl_selected yang variabel biaya.dalam.sepekan sudah dihapus
 data_ubl_selected <- select(data_ubl_selected, 
                             -`biaya.dalam.sepekan`, -`Jumlah.perjalanan.Senin`)
@@ -321,17 +324,25 @@ glimpse(data_ubl_selected)
 
 Kita akan coba menggabungkan kedua set data tadi.
 
-```{r}
+```{r mod01-bind-rows-success}
 # Menggabungkan kedua data frame menjadi satu
+# bind_rows() menumpuk baris-baris dari kedua dataset (seperti menumpuk kartu)
+# PENTING: Nama kolom harus sama PERSIS agar penggabungan berhasil
 data_gabungan <- bind_rows(data_uin_selected, data_ubl_selected)
 ```
 
 Selesai! 🥳 Mari kita lihat hasil akhir dari kerja keras kita dengan `glimpse()`. Hasil akan menunjukkan bahwa kita mempunyai 779 objek yang merupakan gabungan responden mahasiswa UIN RIL dan UBL.
 
-```{r}
+```{r mod01-glimpse-final}
 # Tampilkan struktur data gabungan yang sudah rapi
 glimpse(data_gabungan)
 ```
+
+🎉 **Selamat!** Kita telah berhasil menggabungkan dataset dari dua kampus berbeda. Dataset gabungan kita sekarang memiliki:
+
+- **779 baris** (400 dari UIN RIL + 379 dari UBL)
+- **19 kolom** yang sudah diseragamkan namanya
+- Sudah siap untuk analisis lebih lanjut!
 
 ### Mengekspor Set Data Hasil Pengolahan ke Fail *(File)* Terpisah
 
@@ -370,7 +381,7 @@ Fungsi `write.csv()` digunakan untuk set data yang menggunakan **tanda titik** s
 
 Sementara itu, `write.csv2()` menggunakan pemisah **titik-koma (;)** *(semicolon)*. Ini digunakan untuk set data yang pemisah desimalnya adalah **tanda koma**.
 
-```{r}
+```{r mod01-export-csv}
 # Mengekspor data_gabungan dalam format csv
 write.csv2(data_gabungan, "Data UINRIL & UBL.csv")
 ```
@@ -379,7 +390,7 @@ write.csv2(data_gabungan, "Data UINRIL & UBL.csv")
 
 Sama seperti write.csv2(), fungsi write.xlsx() juga mengikuti format yang sama.
 
-```{r}
+```{r mod01-export-xlsx}
 write.xlsx(data_gabungan, "Data UINRIL & UBL.xlsx")
 ```
 
