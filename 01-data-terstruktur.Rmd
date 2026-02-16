@@ -191,15 +191,15 @@ Kita akan menyimpan nama-nama kolom yang sudah kita tentukan tersebut menjadi se
 ```{r mod01-define-final-columns, echo=TRUE}
 # Membuat vektor berisi nama-nama kolom final yang kita inginkan
 kolom_final <- c(
-  "Nomor.urut", "Jenis.Kelamin", "Umur", "Fakultas", "Prodi", 
-  "Tingkat.Semester", "Uang.Saku",
-  "kepemilikan.mobil", 
-  "kepemilikan.motor", "kepemilikan.sepeda", "kendaraan.utama", 
-  "jenis.tempat.tinggal", "jarak", "biaya.dalam.sepekan", 
-  "Jumlah.perjalanan.Senin", "Jumlah.perjalanan.Selasa", 
-  "Jumlah.perjalanan.Rabu", "Jumlah.perjalanan.Kamis", 
-  "Jumlah.perjalanan.Jumat", "Jumlah.perjalanan.Sabtu", 
-  "Jumlah.perjalanan.Ahad"
+  "nomor_urut", "jenis_kelamin", "umur", "fakultas", "prodi", 
+  "tingkat_semester", "uang_saku",
+  "kepemilikan_mobil", 
+  "kepemilikan_motor", "kepemilikan_sepeda", "kendaraan_utama", 
+  "jenis_tempat_tinggal", "jarak", "biaya_dalam_sepekan", 
+  "jumlah_perjalanan_senin", "jumlah_perjalanan_selasa", 
+  "jumlah_perjalanan_rabu", "jumlah_perjalanan_kamis", 
+  "jumlah_perjalanan_jumat", "jumlah_perjalanan_sabtu", 
+  "jumlah_perjalanan_ahad"
 )
 ```
 
@@ -304,7 +304,7 @@ Kita akan menghapus `biaya.dalam.sepekan` dari kedua set data kita. Untuk mengha
 ```{r mod01-remove-columns-uinril, echo=TRUE}
 # 'Menimpa' data_uin_selected dengan data_uin_selected yang variabel biaya.dalam.sepekan sudah dihapus
 data_uin_selected <- select(data_uin_selected, 
-                            -`biaya.dalam.sepekan`, -`Jumlah.perjalanan.Senin`)
+                            -`biaya_dalam_sepekan`, -`jumlah_perjalanan_senin`)
 
 # Melihat hasilnya
 glimpse(data_uin_selected)
@@ -314,7 +314,7 @@ colnames(data_uin_selected)
 ```{r mod01-remove-columns-ubl, echo=TRUE}
 # 'Menimpa' data_ubl_selected dengan data_ubl_selected yang variabel biaya.dalam.sepekan sudah dihapus
 data_ubl_selected <- select(data_ubl_selected, 
-                            -`biaya.dalam.sepekan`, -`Jumlah.perjalanan.Senin`)
+                            -`biaya_dalam_sepekan`, -`jumlah_perjalanan_senin`)
 
 # Melihat hasilnya
 glimpse(data_ubl_selected)

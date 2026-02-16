@@ -112,38 +112,38 @@ faktor_semester <- faktor_semester$semester
 
 # MEMBUAT FAKTOR UNTUK UANG SAKU
 # Meringkas data berdasarkan kolom Uang Saku
-faktor_uangsaku <- data_mahasiswa |>
+faktor_uang_saku <- data_mahasiswa |>
   group_by(uang = `Uang Saku`) |>
   summarize(jumlah = n())
 # Memperbaiki urutan uang saku
-faktor_uangsaku$uang[c(1,4)] <- faktor_uangsaku$uang[c(4,1)]
-faktor_uangsaku$jumlah[c(1,4)] <- faktor_uangsaku$jumlah[c(4,1)]
+faktor_uang_saku$uang[c(1,4)] <- faktor_uang_saku$uang[c(4,1)]
+faktor_uang_saku$jumlah[c(1,4)] <- faktor_uang_saku$jumlah[c(4,1)]
 
-faktor_uangsaku$uang[c(2,4)] <- faktor_uangsaku$uang[c(4,2)]
-faktor_uangsaku$jumlah[c(2,4)] <- faktor_uangsaku$jumlah[c(4,2)]
+faktor_uang_saku$uang[c(2,4)] <- faktor_uang_saku$uang[c(4,2)]
+faktor_uang_saku$jumlah[c(2,4)] <- faktor_uang_saku$jumlah[c(4,2)]
 
-faktor_uangsaku$uang[c(3,4)] <- faktor_uangsaku$uang[c(4,3)]
-faktor_uangsaku$jumlah[c(3,4)] <- faktor_uangsaku$jumlah[c(4,3)]
+faktor_uang_saku$uang[c(3,4)] <- faktor_uang_saku$uang[c(4,3)]
+faktor_uang_saku$jumlah[c(3,4)] <- faktor_uang_saku$jumlah[c(4,3)]
 
 # Membuat vektor faktor Tingkat Uang Saku dari kolom Uang Saku
-faktor_uangsaku <- faktor_uangsaku$uang
+faktor_uang_saku <- faktor_uang_saku$uang
 
 # MEMBUAT FAKTOR UNTUK KENDARAAN UTAMA
 # Meringkas data berdasarkan kolom Kendaraan Utama
-faktor_kendaraanutama <- data_mahasiswa |>
+faktor_kendaraan_utama <- data_mahasiswa |>
   group_by(kendaraan = `kendaraan utama`) |>
   summarize(jumlah = n())
 # Membuat vektpr faktor untuk kendaraan utama dari kolom 'kendaraan'
-faktor_kendaraanutama <- faktor_kendaraanutama$kendaraan
+faktor_kendaraan_utama <- faktor_kendaraan_utama$kendaraan
 
 
 # MEMBUAT FAKTOR JENIS TEMPAT TINGGAL
 # Meringkas data berdasarkan kolom Jenis Tempat Tinggal
-faktor_jenistempattinggal <- data_mahasiswa |>
+faktor_jenis_tempat_tinggal <- data_mahasiswa |>
   group_by(tempat_tinggal = `jenis tempat tinggal`) |>
   summarize(jumlah = n())
 # Membuat vektor faktor untuk jenis tempat tinggal berdasarkan kolom Jenis Tempat Tinggal
-faktor_jenistempattinggal <- faktor_jenistempattinggal$tempat_tinggal
+faktor_jenis_tempat_tinggal <- faktor_jenis_tempat_tinggal$tempat_tinggal
 ```
 
 Barulah selanjutnya kita bisa mengatur *factor* untuk setiap variabel kategoris
@@ -156,10 +156,10 @@ data_mahasiswa <- data_mahasiswa |>
          Prodi = factor(Prodi, levels = faktor_prodi),
          `Tingkat Semester` = factor(`Tingkat Semester`, levels = faktor_semester,
                                      ordered = TRUE), # Variabel ordinal
-         `Uang Saku` = factor(`Uang Saku`, levels = faktor_uangsaku,
+         `Uang Saku` = factor(`Uang Saku`, levels = faktor_uang_saku,
                               ordered = TRUE), # Variabel ordinal
-         `kendaraan utama` = factor(`kendaraan utama`, levels = faktor_kendaraanutama),
-         `jenis tempat tinggal` = factor(`jenis tempat tinggal`, levels = faktor_jenistempattinggal)
+         `kendaraan utama` = factor(`kendaraan utama`, levels = faktor_kendaraan_utama),
+         `jenis tempat tinggal` = factor(`jenis tempat tinggal`, levels = faktor_jenis_tempat_tinggal)
          )
 ```
 
@@ -225,16 +225,16 @@ Untuk menghitung $\chi^2$ kita menggunakan dua perintah utama dalam R, yakni `ta
 
 ```{r mod06-calculate-chi-square, echo=TRUE}
 # Menyimpan tabel
-t4tinggal_kend <- table(data_mahasiswa$`kendaraan utama`,
+tempat_tinggal_kend <- table(data_mahasiswa$`kendaraan utama`,
                         data_mahasiswa$`jenis tempat tinggal`)
 # Menyimpan hasil chi-square test
-chisq_t4tinggal_kend <- 
-  t4tinggal_kend |>
+chisq_tempat_tinggal_kend <- 
+  tempat_tinggal_kend |>
   chisq.test()
 
 ```
 
-Seperti yang bisa kita lihat, hasil perhitungan berupa variabel R `chisq_t4tinggal_kend` berada di bagian data, dan jika kita perluas, maka di dalamnya terdapat banyak variabel-variabel lain. Variabel-variabel lain tersebut menyimpan berbagai nilai yang menjadi bagian dari hasil perhitungan. Nilai-nilai yang penting untuk
+Seperti yang bisa kita lihat, hasil perhitungan berupa variabel R `chisq_tempat_tinggal_kend` berada di bagian data, dan jika kita perluas, maka di dalamnya terdapat banyak variabel-variabel lain. Variabel-variabel lain tersebut menyimpan berbagai nilai yang menjadi bagian dari hasil perhitungan. Nilai-nilai yang penting untuk
 
 -   `.$statistic` menyimpan nilai $\chi^2$ dari tabel. Ini digunakan untuk menghitung kekuatan korelasi
 
@@ -247,13 +247,13 @@ Seperti yang bisa kita lihat, hasil perhitungan berupa variabel R `chisq_t4tingg
 Tampilkan seluruh nilai tersebut
 
 ```{r mod06-display-chi-square-values, echo=TRUE}
-chisq_t4tinggal_kend$statistic
+chisq_tempat_tinggal_kend$statistic
 
-chisq_t4tinggal_kend$parameter
+chisq_tempat_tinggal_kend$parameter
 
-chisq_t4tinggal_kend$p.value
+chisq_tempat_tinggal_kend$p.value
 
-chisq_t4tinggal_kend$expected
+chisq_tempat_tinggal_kend$expected
 ```
 
 Kita akan menghitung nilai koefisien V Cramer untuk menyatakan korelasi antara jenis kendaraan yang digunakan sebagai moda ke kampus dan jenis tempat tinggal mahasiswa menggunakan rumus berikut dan berdasarkan nilai $\chi^2$ yang kita dapatkan dari tes sebelumnya.
@@ -264,7 +264,7 @@ $$
 
 ```{r mod06-calculate-cramer-v, echo=TRUE}
 # Menyimpan nilai Chi-squared menggunakan metode "as.numeric"
-chisq_t4tinggal_kend <- as.numeric(chisq_t4tinggal_kend$statistic)
+chisq_tempat_tinggal_kend <- as.numeric(chisq_tempat_tinggal_kend$statistic)
 
 # Menghitung jumlah data
 n <- data_mahasiswa |>
@@ -284,8 +284,8 @@ baris <- data_mahasiswa |>
 baris <- length(baris$kend)
 
 # Menghitung koefisien V
-v_t4tinggal_kend <- sqrt(chisq_t4tinggal_kend/(n * min(kolom-1, baris-1)))
-v_t4tinggal_kend
+v_tempat_tinggal_kend <- sqrt(chisq_tempat_tinggal_kend/(n * min(kolom-1, baris-1)))
+v_tempat_tinggal_kend
 ```
 
 **Kesimpulan:** Hasil dari perhitungan koefisien V adalah **0,253**. Angka ini menunjukkan hubungan yang sedikit lemah, karena berada di bawah nilai tengah-tengah yaitu 0,5. Artinya, hubungan antara jenis tempat tinggal dengan jenis kendaraan yang sering digunakan ke kampus tidak begitu kuat.
@@ -318,7 +318,7 @@ install.packages("RCPA3")
 library(RCPA3)
 
 # Menghitung koefisien lambda
-lambda_t4tinggal_kend <- lambda(t4tinggal_kend, digits = 3, detailed = TRUE)
+lambda_tempat_tinggal_kend <- lambda(tempat_tinggal_kend, digits = 3, detailed = TRUE)
 # digits menandakan berapa desimal angka yang kita hasilkan
 # detailed menandakan apakah kita memperlihatkan nilai-nilai error yang dihitung
 ```
@@ -343,14 +343,14 @@ install.packages("vcdExtra")
 library(vcdExtra)
 
 # Membuat variabel table() sebagai masukan
-uangSaku_tingkatSemester <- table(data_mahasiswa$`Uang Saku`,
+uang_saku_tingkat_semester <- table(data_mahasiswa$`Uang Saku`,
                                   data_mahasiswa$`Tingkat Semester`)
 
 # Menghitung nilai Gamma dari variabel table() yang sudah dibuat
-G_uangSaku_tingkatSemester <- GKgamma(uangSaku_tingkatSemester)
+gamma_uang_saku_tingkat_semester <- GKgamma(uang_saku_tingkat_semester)
 
 # Menampilkan nilai Gamma
-G_uangSaku_tingkatSemester
+gamma_uang_saku_tingkat_semester
 ```
 
 Seperti halnya nilai variabel hasil perhitungan `chisq.test()`, hasil perhitungan `GKgamma()` juga terdiri atas banyak variabel. Nilai gamma sendiri dapat kita akses dengan `.$gamma`.
@@ -363,8 +363,8 @@ $$
 
 ```{r mod06-display-gamma-components, echo=TRUE}
 # Menampilkan nilai C dan D
-print(G_uangSaku_tingkatSemester$C)
-print(G_uangSaku_tingkatSemester$D)
+print(gamma_uang_saku_tingkat_semester$C)
+print(gamma_uang_saku_tingkat_semester$D)
 ```
 
 ::: {.rmdexercise}

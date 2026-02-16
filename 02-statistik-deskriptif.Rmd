@@ -24,18 +24,18 @@ Kita menggunakan data mahasiswa UBL yang sudah lengkap karena sudah diolah kemba
 
 ```{r mod02-import-data, echo=TRUE}
 # Mengeset variabel tersendiri untuk nama file nama sheet
-file.dibaca <- "datasets/Data Praktikum 02.xlsx"
-sheet.ubl <- "DataUtama_mhsUBL"
+file_dibaca <- "datasets/Data Praktikum 02.xlsx"
+sheet_ubl <- "DataUtama_mhsUBL"
 
 # Mengimpor file menjadi dataset memanfaatkan variabel nama file dan nama sheet yang kita buat tadi
-data.ubl <- read.xlsx(file.dibaca, sheet = sheet.ubl)
+data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
 ```
 
 Sebelumnya kita sudah mengenal `glimpse()` yang berasal dari *library* `dplyr`, sekarang kita akan mengenal perintah untuk menampilkan ringkasan dataset bawaan R (disebut juga *'base R'*) bernama `summary()`.
 
 ```{r mod02-summary-data, echo=TRUE}
 # Melihat ringkasan dataset (cara lain)
-summary(data.ubl)
+summary(data_ubl)
 ```
 
 ## Merapikan Dataset *(Data Wrangling)*
@@ -56,13 +56,13 @@ rename(dataset_kita, nama_kolom_baru = nama_kolom_lama)
 
 ```{r mod02-rename-conventional, echo=TRUE}
 # Membaca ulang dataset supaya menjadi kondisi semula
-data.ubl <- read.xlsx(file.dibaca, sheet = sheet.ubl)
-colnames(data.ubl)
+data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
+colnames(data_ubl)
 
 # Mengganti nama variabel-variabel
-data.ubl <- rename(data.ubl, biaya.dalam.sepekan = biaya.dalam.seminggu)
-data.ubl <- rename(data.ubl, Jumlah.Perjalanan.Senin = Jumlah.perjalanan.Senin)
-data.ubl <- rename(data.ubl, jarak = `jarak.(km)`)  # tanda backtick (`) digunakan di antara "jarak.(km)" 
+data_ubl <- rename(data_ubl, biaya_dalam_sepekan = biaya.dalam.seminggu)
+data_ubl <- rename(data_ubl, jumlah_perjalanan_senin = Jumlah.perjalanan.Senin)
+data_ubl <- rename(data_ubl, jarak = `jarak.(km)`)  # tanda backtick (`) digunakan di antara "jarak.(km)" 
                                                     # karena ada tanda kurung yang dianggap oleh R mempunyai fungsi khusus
 ```
 
@@ -75,36 +75,36 @@ Dalam pengolahan data dengan `tidyverse` penting untuk kita kuasai penggunaan op
 # CARA-1: CARA KONVENSIONAL
 
 # Membaca ulang dataset supaya menjadi kondisi semula
-data.ubl <- read.xlsx(file.dibaca, sheet = sheet.ubl)
-colnames(data.ubl)
+data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
+colnames(data_ubl)
 
 # Mengganti nama variabel-variabel
-data.ubl <- rename(data.ubl, biaya.dalam.sepekan = biaya.dalam.seminggu)
-data.ubl <- rename(data.ubl, Jumlah.Perjalanan.Senin = Jumlah.perjalanan.Senin)
-data.ubl <- rename(data.ubl, jarak = `jarak.(km)`)
+data_ubl <- rename(data_ubl, biaya_dalam_sepekan = biaya.dalam.seminggu)
+data_ubl <- rename(data_ubl, jumlah_perjalanan_senin = Jumlah.perjalanan.Senin)
+data_ubl <- rename(data_ubl, jarak = `jarak.(km)`)
 ```
 
 ```{r mod02-rename-demo2-pipe, echo=TRUE}
 # CARA-2: MENGGUNAKAN PIPE OPERATOR
 
 # Membaca ulang dataset supaya menjadi kondisi semula
-data.ubl <- read.xlsx(file.dibaca, sheet = sheet.ubl)
+data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
 
 # Mengganti nama variabel-variabel
-data.ubl <- data.ubl |> 
-  rename(biaya.dalam.sepekan = biaya.dalam.seminggu) |>
+data_ubl <- data_ubl |> 
+  rename(biaya_dalam_sepekan = biaya.dalam.seminggu) |>
   # setiap baris yang masih ada proses selanjutnya harus diisi dengan pipe operator
-  rename(Jumlah.Perjalanan.Senin = Jumlah.perjalanan.Senin) |> 
+  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |> 
   rename(jarak = `jarak.(km)`)
 ```
 
-Dalam cara 1, kita harus menulis `data.ubl` berkali-kali untuk setiap perintah. Ini mungkin tidak akan terasa jika jumlah kolom yang kita miliki sedikit. Tetapi, akan lain ceritanya jika jumlahnya banyak. Selain itu, data kita tidak bisa secara intuitif seperti biasanya kita membaca suatu teks dari kiri ke kanan.
+Dalam cara 1, kita harus menulis `data_ubl` berkali-kali untuk setiap perintah. Ini mungkin tidak akan terasa jika jumlah kolom yang kita miliki sedikit. Tetapi, akan lain ceritanya jika jumlahnya banyak. Selain itu, data kita tidak bisa secara intuitif seperti biasanya kita membaca suatu teks dari kiri ke kanan.
 
 Operator pipa (`|>`) memungkinkan hal tersebut. Selain kita tidak perlu menuliskan dataset kita berkali-kali, kita dengan lebih mudah memahami baris-baris kode kita tersebut sebagai proses dari atas ke bawah, dari kiri ke kanan, seperti pipa.
 
 Berikut adalah penjelasan cara-2:
 
--   `data.ubl |>`: perintah "Ambil dataset `data.ubl`."
+-   `data_ubl |>`: perintah "Ambil dataset `data_ubl`."
 
 -   Kirimkan dataset itu ke fungsi berikutnya (`rename`).
 
@@ -121,8 +121,8 @@ Berikut adalah penjelasan cara-2:
 
 Dengan satu blok kode menggunakan pipe operator `|>`:
 1. Baca dataset UBL dari file dan sheet yang sudah ditentukan
-2. Ubah nama variabel `biaya.dalam.seminggu` menjadi `biaya.dalam.sepekan`
-3. Ubah nama variabel `Jumlah.perjalanan.Senin` menjadi `Jumlah.Perjalanan.Senin`
+2. Ubah nama variabel `biaya.dalam.seminggu` menjadi `biaya_dalam_sepekan`
+3. Ubah nama variabel `Jumlah.perjalanan.Senin` menjadi `jumlah_perjalanan_senin`
 4. Buang baris yang mengandung missing values dengan fungsi `drop_na()`
 5. Simpan hasilnya ke variabel `data_ubl_bersih`
 6. Verifikasi dengan `glimpse(data_ubl_bersih)` - pastikan tidak ada NA
@@ -135,11 +135,11 @@ Pengecekan *missing values* dilakukan dengan perintah `is.na()` yang menghasilka
 `colSums()` menjumlahkan nilai-nilai `TRUE` pada setiap kolom, menandakan berapa jumlah objek yang kosong nilainya.
 
 ```{r mod02-check-missing-values, echo=TRUE}
-checkMV_ubl <- is.na(data.ubl)
+check_mv_ubl <- is.na(data_ubl)
 
-head(checkMV_ubl)
+head(check_mv_ubl)
 
-colSums(checkMV_ubl)
+colSums(check_mv_ubl)
 ```
 
 #### Menghapus *Missing Values*
@@ -148,12 +148,12 @@ Penghapusan *missing values* juga dapat digunakan dengan *pipe operator.* Adapun
 
 ```{r mod02-drop-missing-values, echo=TRUE}
 # Menghapus observasi yang memiliki Missing Values
-data.ubl <- data.ubl |>
+data_ubl <- data_ubl |>
   drop_na()
 
 # Mengecek kembali Missing Values
-checkMV_ubl <- is.na(data.ubl)
-colSums(checkMV_ubl)
+check_mv_ubl <- is.na(data_ubl)
+colSums(check_mv_ubl)
 ```
 
 #### Menyesuaikan Variabel Nominal dan Ordinal dengan `factor()`
@@ -162,7 +162,7 @@ Apabila kita mengimpor dataset dengan variabel nonangka, bentuknya akan terbaca 
 
 ```{r mod02-identify-factor-vars, echo=TRUE}
 # Mengidentifikasi variabel-variabel yang bisa diubah menjadi factor
-glimpse(data.ubl)
+glimpse(data_ubl)
 ```
 
 Contoh pertama kita adalah variabel yang paling mudah: `Jenis.Kelamin`.
@@ -172,11 +172,11 @@ Contoh pertama kita adalah variabel yang paling mudah: `Jenis.Kelamin`.
 jk <- c("Laki-laki", "Perempuan") # Membuat vektor rincian nilai nominal
 
 # Mengubah jenis variabel "Jenis.Kelamin" dari chr ke fct dengan 'mutate()'
-data.ubl <- data.ubl |> 
+data_ubl <- data_ubl |> 
   mutate(Jenis.Kelamin = factor(Jenis.Kelamin,jk))
 
 # Mengecek hasil
-glimpse(data.ubl)
+glimpse(data_ubl)
 ```
 
 Ternyata, hasil pendefinisian `factor` ke dalam data kita mengandung `NA` yang berarti data kosong atau *missing value*. Hal tersebut terjadi karena kita mendefinisikan vektor `jk` berisi `c("Laki-laki", "Perempuan")`.
@@ -185,9 +185,9 @@ Sementara itu, jika kita cermat, sebelumnya nilai jenis kelamin ditulis dengan `
 
 ```{r mod02-create-factor-gender-correct, echo=TRUE}
 # Mengulangi pembacaan file sekaligus merapikan nama variabel-variabelnya serta menghilangkan Missing Values menggunakan Pipe operator
-data.ubl <- read.xlsx(file.dibaca, sheet = sheet.ubl) |> 
-  rename(biaya.dalam.sepekan = biaya.dalam.seminggu) |>
-  rename(Jumlah.Perjalanan.Senin = Jumlah.perjalanan.Senin) |> 
+data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl) |> 
+  rename(biaya_dalam_sepekan = biaya.dalam.seminggu) |>
+  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |> 
   rename(jarak = `jarak.(km)`) |> 
   drop_na()
 
@@ -195,11 +195,11 @@ data.ubl <- read.xlsx(file.dibaca, sheet = sheet.ubl) |>
 jk <- c("Laki-Laki", "Perempuan")
 
 # Mengubah lagi jenis variabel "Jenis.Kelamin" dari chr ke fct dengan 'mutate()
-data.ubl <- data.ubl |> 
+data_ubl <- data_ubl |> 
   mutate(Jenis.Kelamin = factor(Jenis.Kelamin,jk))
 
 # Mengecek hasil
-glimpse(data.ubl)
+glimpse(data_ubl)
 ```
 
 Kita sudah berhasil menjadikan variabel `Jenis.Kelamin` sebagai factor. Selanjutnya, kita akan mengubah variabel-variabel kategoris lain menjadi factor juga. Variabel-variabel tersebut di antaranya adalah `Prodi`, `Tingkat.Semester`, `Uang.Saku`, dan `jenis.tempat.tinggal`.
@@ -208,15 +208,15 @@ Sekarang kita akan mengecek nilai variabel-variabel kategoris tersebut dengan du
 
 ```{r mod02-check-categorical-values, echo=TRUE}
 # Mengecek rincian nilai-nilai variabel lain secara bersamaan 
-table(data.ubl$Fakultas) # cara 1
+table(data_ubl$Fakultas) # cara 1
 
-data.ubl |>  # cara 2
+data_ubl |>  # cara 2
   count(Prodi)
-data.ubl |> 
+data_ubl |> 
   count(Tingkat.Semester)
-data.ubl |> 
+data_ubl |> 
   count(Uang.Saku)
-table(data.ubl$jenis.tempat.tinggal)
+table(data_ubl$jenis.tempat.tinggal)
 ```
 
 Kemudian kita buat vektor-vektor yang menyimpan nilai-nilai yang mungkinnya.
@@ -249,7 +249,7 @@ Sekarang kita sudah bisa mengubah nilai-nilai di variabel kategoris tersebut dar
 
 ```{r mod02-apply-factors, echo=TRUE}
 # Mengubah variabel-variabel tersebut menjadi factor
-data.ubl <- data.ubl |> 
+data_ubl <- data_ubl |> 
   mutate(Jenis.Kelamin = factor(Jenis.Kelamin, levels = jk),
          Fakultas = factor(Fakultas, levels = fakultas),
          Prodi = factor(Prodi, levels = prodi),
@@ -260,7 +260,7 @@ data.ubl <- data.ubl |>
          Uang.Saku = factor(Uang.Saku, levels = uang_saku, ordered = TRUE))
 
 # Mengecek hasil
-glimpse(data.ubl)
+glimpse(data_ubl)
 ```
 
 Sekarang, tipe data untuk variabel-variabel kategoris kita tadi sudah menampilkan `<fct>` yang berarti "factor". Variabel ordinal diidentifikasi dengan tipe `<ord>`.
@@ -269,8 +269,8 @@ Kita dapat mengecek urutan factor kita dengan perintah `levels()` berikut.
 
 ```{r mod02-check-factor-levels, echo=TRUE}
 # Mengecek hasil dengan mengidentifikasi level factor untuk data kategoris-ordinal
-levels(data.ubl$Tingkat.Semester)
-levels(data.ubl$Uang.Saku)
+levels(data_ubl$Tingkat.Semester)
+levels(data_ubl$Uang.Saku)
 ```
 
 ::: {.rmdexercise}
@@ -278,10 +278,10 @@ levels(data.ubl$Uang.Saku)
 
 Untuk dataset UBL yang sudah dibersihkan:
 1. Buat vektor `tempat_tinggal` dengan nilai-nilai jenis tempat tinggal yang ada di data
-   (Gunakan `table(data.ubl$jenis.tempat.tinggal)` untuk melihat nilai-nilainya)
+   (Gunakan `table(data_ubl$jenis.tempat.tinggal)` untuk melihat nilai-nilainya)
 2. Gunakan `mutate()` untuk mengubah `jenis.tempat.tinggal` menjadi factor
 3. Verifikasi dengan `glimpse()` - tipe harus `<fct>`
-4. Cek level dengan `levels(data.ubl$jenis.tempat.tinggal)`
+4. Cek level dengan `levels(data_ubl$jenis.tempat.tinggal)`
 :::
 
 ## Analisis Statistika Deskriptif
@@ -303,7 +303,7 @@ Kita masih akan menggunakan *pipe operator* dalam mengoperasikan analisis ini. P
 Untuk menampilkan persentase/proporsi, kita cukup memasukkan variabel-variabel kategoris ke dalam tabel dengan atribut `include`. Atribut tersebut menerima masukan berupa vektor nama-nama variabel kategoris dalam dataset kita. Fungsi `tbl_summary` ini akan menampilkan secara otomatis tabel distribusi frekuensinya disertai dengan nilai persentasenya di samping nilai frekuensi tersebut.
 
 ```{r mod02-tbl-summary-categorical, echo=TRUE}
-data.ubl |> 
+data_ubl |> 
   tbl_summary(include = c(Jenis.Kelamin,
                           Fakultas,
                           Tingkat.Semester,
@@ -352,10 +352,10 @@ Untuk menghasilkan nilai IQV suatu variabel, kita perlu memasukkan vektor yang b
 ```{r mod02-calculate-iqv, echo=TRUE}
 # Menampilkan vektor jenis.tempat.tinggal (opsional. Hapus komentar pada baris 
 # berikut jika ingin mencobanya)
-# data.ubl$jenis.tempat.tinggal
+# data_ubl$jenis.tempat.tinggal
 
 # Menghitung IQV variabel jenis.tempat.tinggal
-iqv(data.ubl$jenis.tempat.tinggal)
+iqv(data_ubl$jenis.tempat.tinggal)
 ```
 
 ### Variabel Numerik
@@ -363,7 +363,7 @@ iqv(data.ubl$jenis.tempat.tinggal)
 Perintah `tbl_summary` akan menentukan jenis statistik deskriptif yang ditampilkan secara intuitif berdasarkan dataset yang dibacanya. Perhatikan hasil dari `tbl_summary` berikut untuk variabel `kepemilikan.mobil` dan `jarak`.
 
 ```{r mod02-tbl-summary-numeric, echo=TRUE}
-data.ubl |> 
+data_ubl |> 
   tbl_summary(include = c(kepemilikan.mobil,
                           jarak)) |> 
   as_flex_table()
@@ -376,7 +376,7 @@ Hal ini berbeda lagi dengan variabel `jarak` yang menampilkan statistik deskript
 Untuk meminta `tbl_summary` menampilkan analisis statistik deskriptif untuk variabel numerik seperti mean, median, kuartil, dan standar deviasi (simpangan baku), kita dapat menyatakannya dalam atribut-atribut berikut.
 
 ```{r mod02-tbl-summary-numeric-advanced, echo=TRUE}
-data.ubl |> 
+data_ubl |> 
   tbl_summary(include = c(kepemilikan.mobil,
                           kepemilikan.motor,
                           jarak),
@@ -444,7 +444,7 @@ a. **Persentase/Proporsi:**
    - Gunakan `tbl_summary(include = Uang.Saku)` dan `as_flex_table()`
 
 b. **Ukuran Pemusatan (Median dan Kuartil):**
-   - Untuk variabel `Jumlah.Perjalanan.Senin` (atau hari lain jika variabel ini tidak ada)
+   - Untuk variabel `jumlah_perjalanan_senin` (atau hari lain jika variabel ini tidak ada)
    - Tampilkan Median, Q1 (p25), dan Q3 (p75)
    - Gunakan `statistic = "{median} ({p25}, {p75})"`
 

@@ -103,12 +103,12 @@ Sebagaimana koefisien-koefisien korelasi lainnya, nilai $\rho$ Spearman berkisar
 
 Untuk analisis menggunakan koefisien korelasi Pearson's r, kita akan memodifikasi sedikit data kita. Kita akan melihat hubungan antara jumlah perjalanan di hari kerja *(weekdays)* dengan jarak tempat tinggal ke kampus **untuk pengguna transportasi online saja**. Dengan demikian, kita perlu membuat dataset terpisah dari dataset utama kita.
 
-Terlebih dahulu, kita perlu membuat variabel khusus `Jumlah Perjalanan Weekdays` yang merupakan penjumlahan dari kolom-kolom `Jumlah Perjalanan Senin` hingga `Jumlah Perjalanan Jumat`. Perhatikan cara pembuatannya yang menggunakan perintah `rowSums()` dan `across()` yang merupakan perintah khusus untuk operasi-operasi antarkolom. Tanda `:` bermakna "pilih kolom dari jumlah perjalanan hari senin sampai kolom jumlah perjalanan hari jumat". Hal ini memungkinkan karena dalam dataset kita kolom-kolom tersebut posisinya berdekatan.
+Terlebih dahulu, kita perlu membuat variabel khusus `jumlah_perjalanan_weekdays` yang merupakan penjumlahan dari kolom-kolom `Jumlah Perjalanan Senin` hingga `Jumlah Perjalanan Jumat`. Perhatikan cara pembuatannya yang menggunakan perintah `rowSums()` dan `across()` yang merupakan perintah khusus untuk operasi-operasi antarkolom. Tanda `:` bermakna "pilih kolom dari jumlah perjalanan hari senin sampai kolom jumlah perjalanan hari jumat". Hal ini memungkinkan karena dalam dataset kita kolom-kolom tersebut posisinya berdekatan.
 
 ```{r mod07-create-weekdays-column, echo=TRUE}
 # Membuat kolom jumlah perjalanan weekdays
 data_mahasiswa <- data_mahasiswa |> 
-  mutate(`Jumlah Perjalanan Weekdays` = rowSums(
+  mutate(`jumlah_perjalanan_weekdays` = rowSums(
     across(`Jumlah Perjalanan Senin`:`Jumlah Perjalanan Jumat`)
   ))
 ```
@@ -136,7 +136,7 @@ Kemudian, kita bisa menghitung koefisien korelasi Pearson's $r$-nya.
 ```{r mod07-correlation-pearson, echo=TRUE}
 # Mengatur variabel x dan y
 x <- data_mahasiswa_online$jarak
-y <- data_mahasiswa_online$`Jumlah Perjalanan Weekdays`
+y <- data_mahasiswa_online$`jumlah_perjalanan_weekdays`
 
 cor(x, y, method = "pearson")
 ```
@@ -151,11 +151,11 @@ Kita akan menelaah hubungan antara dua variabel tersebut berdasarkan tampilan vi
 # Membuat diagram pencar antara variabel jumlah perjalanan weekdays dan jarak tempat tinggal pengguna online
 scatter_plot <- ggplot(data = data_mahasiswa_online,
                        mapping = aes(x = jarak, # variabel di sumbu X
-                                     y = `Jumlah Perjalanan Weekdays`)) + # variabel di sumbu Y
+                                     y = `jumlah_perjalanan_weekdays`)) + # variabel di sumbu Y
   geom_point() + # perintah untuk menampilkan diagram pencar
-  labs(title = "Jumlah Perjalanan Weekdays vs Jarak Tempat Tinggal dari Kampus",
+  labs(title = "jumlah_perjalanan_weekdays vs Jarak Tempat Tinggal dari Kampus",
        subtitle = "Pengguna layanan daring",
-       y = "Jumlah Perjalanan Weekdays",
+       y = "jumlah_perjalanan_weekdays",
        x = "Jarak dari kampus (km)")
 
 # Menampilkan scatter plot
