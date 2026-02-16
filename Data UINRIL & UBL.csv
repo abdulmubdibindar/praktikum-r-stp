@@ -1,4 +1,4 @@
-"";"Nomor.urut";"Jenis.Kelamin";"Umur";"Fakultas";"Prodi";"Tingkat.Semester";"Uang.Saku";"kepemilikan.mobil";"kepemilikan.motor";"kepemilikan.sepeda";"kendaraan.utama";"jenis.tempat.tinggal";"jarak";"Jumlah.perjalanan.Selasa";"Jumlah.perjalanan.Rabu";"Jumlah.perjalanan.Kamis";"Jumlah.perjalanan.Jumat";"Jumlah.perjalanan.Sabtu";"Jumlah.perjalanan.Ahad"
+"";"nomor_urut";"jenis_kelamin";"umur";"fakultas";"prodi";"tingkat_semester";"uang_saku";"kepemilikan_mobil";"kepemilikan_motor";"kepemilikan_sepeda";"kendaraan_utama";"jenis_tempat_tinggal";"jarak";"jumlah_perjalanan_selasa";"jumlah_perjalanan_rabu";"jumlah_perjalanan_kamis";"jumlah_perjalanan_jumat";"jumlah_perjalanan_sabtu";"jumlah_perjalanan_ahad"
 "1";1;"Laki-laki";22;"Syariah";"Hukum Keluarga";"4 (Semester 7 - Semester 8)";"1Jt - 2 Jt";0;1;0;"Sepeda Motor Pribadi";"Rumah Bersama Saudara";19,27;3;0;0;0;0;0
 "2";2;"Laki-laki";25;"Syariah";"Hukum Keluarga";"4 (Semester 7 - Semester 8)";"< 1 Jt";1;4;0;"Sepeda Motor Pribadi";"Kos Sendiri";0,58;3;0;3;0;0;0
 "3";3;"Perempuan";24;"Tarbiyah dan Keguruan";"Pendidikan Agama Islam";"4 (Semester 7 - Semester 8)";"< 1 Jt";0;0;0;"Berjalan Kaki";"Kos Sendiri";0,56;0;3;0;0;0;0

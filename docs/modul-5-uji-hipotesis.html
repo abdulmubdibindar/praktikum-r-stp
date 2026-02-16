@@ -446,8 +446,8 @@ H_0 : \mu_0 = 4\newline H_1 : \mu_0 \ne 4
 <span id="cb187-7"><a href="modul-5-uji-hipotesis.html#cb187-7" tabindex="-1"></a><span class="co">#   - n    : ukuran sampel</span></span>
 <span id="cb187-8"><a href="modul-5-uji-hipotesis.html#cb187-8" tabindex="-1"></a>ht_mean_1pop <span class="ot">&lt;-</span> <span class="cf">function</span>(xbar, mu, sd, n) {</span>
 <span id="cb187-9"><a href="modul-5-uji-hipotesis.html#cb187-9" tabindex="-1"></a>  se <span class="ot">&lt;-</span> sd<span class="sc">/</span><span class="fu">sqrt</span>(n) <span class="co"># menghitung standard error untuk rata-rata</span></span>
-<span id="cb187-10"><a href="modul-5-uji-hipotesis.html#cb187-10" tabindex="-1"></a>  Z_hitung <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu)<span class="sc">/</span>se <span class="co"># menghitung nilai Z dari statistik</span></span>
-<span id="cb187-11"><a href="modul-5-uji-hipotesis.html#cb187-11" tabindex="-1"></a>  <span class="fu">return</span>(Z_hitung)</span>
+<span id="cb187-10"><a href="modul-5-uji-hipotesis.html#cb187-10" tabindex="-1"></a>  z_hitung <span class="ot">&lt;-</span> (xbar <span class="sc">-</span> mu)<span class="sc">/</span>se <span class="co"># menghitung nilai Z dari statistik</span></span>
+<span id="cb187-11"><a href="modul-5-uji-hipotesis.html#cb187-11" tabindex="-1"></a>  <span class="fu">return</span>(z_hitung)</span>
 <span id="cb187-12"><a href="modul-5-uji-hipotesis.html#cb187-12" tabindex="-1"></a>}</span></code></pre></div>
 <p><strong>Mendeklarasikan variabel uji</strong></p>
 <p>Setelah fungsi dibuat, kita deklarasikan variabel-variabel yang akan digunakan. Variabel-variabel ini akan dipakai langsung sebagai input fungsi uji hipotesis. Dengan mendeklarasikannya lebih dulu, kita memastikan semua nilai yang diperlukan untuk perhitungan sudah tersedia dengan jelas dan proses penghitungan menjadi lebih rapi.</p>
@@ -540,24 +540,24 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <p>Setelah hipotesis dirumuskan, kita perlu menentukan distribusi sampling dan titik kritis. Distribusi sampling adalah distribusi dari nilai rata-rata sampel jika kita mengambil banyak sampel dari populasi. Titik kritis adalah nilai ambang yang menentukan wilayah penolakan hipotesis nol. Dalam uji dua arah, daerah kritis terletak di kedua ujung distribusi normal dengan luas masing-masing sebesar α/2. Misalnya, dengan α = 0,05, maka masing-masing sisi memiliki 0,025. Artinya, hanya jika nilai uji berada jauh di salah satu sisi, kita akan menolak H0.</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="modul-5-uji-hipotesis.html#cb192-1" tabindex="-1"></a><span class="co"># Hipotesis yang dipakai tidak berarah, maka wilayah kritis adalah alpha/2</span></span>
 <span id="cb192-2"><a href="modul-5-uji-hipotesis.html#cb192-2" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb192-3"><a href="modul-5-uji-hipotesis.html#cb192-3" tabindex="-1"></a>Z.crit_2tail <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)) <span class="co"># Nilai yang digunakan adalah nilai absolut, karena dibagi 2, tanda tidak berpengaruh</span></span>
+<span id="cb192-3"><a href="modul-5-uji-hipotesis.html#cb192-3" tabindex="-1"></a>z_crit_2tail <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)) <span class="co"># Nilai yang digunakan adalah nilai absolut, karena dibagi 2, tanda tidak berpengaruh</span></span>
 <span id="cb192-4"><a href="modul-5-uji-hipotesis.html#cb192-4" tabindex="-1"></a></span>
-<span id="cb192-5"><a href="modul-5-uji-hipotesis.html#cb192-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji two-tailed:&quot;</span>,Z.crit_2tail)</span></code></pre></div>
+<span id="cb192-5"><a href="modul-5-uji-hipotesis.html#cb192-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji two-tailed:&quot;</span>,z_crit_2tail)</span></code></pre></div>
 <pre><code>## Titik kritis uji two-tailed: 1.959964</code></pre>
 </div>
 <div id="menghitung-statistik-uji" class="section level5 hasAnchor" number="5.5.2.5.3">
 <h5><span class="header-section-number">5.5.2.5.3</span> Menghitung statistik uji<a href="modul-5-uji-hipotesis.html#menghitung-statistik-uji" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Setelah menentukan titik kritis, kita menghitung nilai statistik uji menggunakan data yang kita miliki. Nilai ini menunjukkan seberapa jauh rata-rata sampel menyimpang dari nilai hipotesis populasi, dalam satuan standar error. Jika nilai ini berada di luar batas kritis, maka penyimpangan tersebut dianggap terlalu besar untuk hanya terjadi karena kebetulan.</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="modul-5-uji-hipotesis.html#cb194-1" tabindex="-1"></a><span class="co"># hasil perhitungan statistik uji diabsolutkan untuk mengambil nilainya saja tanpa tandanya</span></span>
-<span id="cb194-2"><a href="modul-5-uji-hipotesis.html#cb194-2" tabindex="-1"></a>Z_meanJarak <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">ht_mean_1pop</span>(sample_mean, pop_mean, sample_sd, ukuran_sampel))</span>
+<span id="cb194-2"><a href="modul-5-uji-hipotesis.html#cb194-2" tabindex="-1"></a>z_mean_jarak <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">ht_mean_1pop</span>(sample_mean, pop_mean, sample_sd, ukuran_sampel))</span>
 <span id="cb194-3"><a href="modul-5-uji-hipotesis.html#cb194-3" tabindex="-1"></a></span>
-<span id="cb194-4"><a href="modul-5-uji-hipotesis.html#cb194-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Hasil statistik uji rata-rata:&quot;</span>, Z_meanJarak)</span></code></pre></div>
+<span id="cb194-4"><a href="modul-5-uji-hipotesis.html#cb194-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Hasil statistik uji rata-rata:&quot;</span>, z_mean_jarak)</span></code></pre></div>
 <pre><code>## Hasil statistik uji rata-rata: 0.9650591</code></pre>
 </div>
 <div id="menarik-kesimpulan" class="section level5 hasAnchor" number="5.5.2.5.4">
 <h5><span class="header-section-number">5.5.2.5.4</span> Menarik kesimpulan<a href="modul-5-uji-hipotesis.html#menarik-kesimpulan" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Langkah terakhir adalah menarik kesimpulan berdasarkan perbandingan antara nilai statistik uji dan titik kritis. Jika nilai statistik uji (absolut) lebih kecil dari titik kritis, maka kita gagal menolak H₀, artinya perbedaan yang terlihat kemungkinan hanya kebetulan sampel. Jika lebih besar atau sama, kita menolak H₀, artinya ada bukti yang cukup bahwa rata-rata jarak tidak sama dengan 4.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="modul-5-uji-hipotesis.html#cb196-1" tabindex="-1"></a><span class="cf">if</span> (Z_meanJarak <span class="sc">&lt;</span> Z.crit_2tail) {</span>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="modul-5-uji-hipotesis.html#cb196-1" tabindex="-1"></a><span class="cf">if</span> (z_mean_jarak <span class="sc">&lt;</span> z_crit_2tail) {</span>
 <span id="cb196-2"><a href="modul-5-uji-hipotesis.html#cb196-2" tabindex="-1"></a>  tolak_h0 <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
 <span id="cb196-3"><a href="modul-5-uji-hipotesis.html#cb196-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hipotesis kosong gagal ditolak. Perbedaan rata-rata sampel&quot;</span>, <span class="fu">round</span>(sample_mean, <span class="dv">2</span>), <span class="st">&quot;dengan&quot;</span>, pop_mean, <span class="st">&quot;hanyalah kebetulan&quot;</span>)</span>
 <span id="cb196-4"><a href="modul-5-uji-hipotesis.html#cb196-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
@@ -586,27 +586,27 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="modul-5-uji-hipotesis.html#cb200-1" tabindex="-1"></a>tail <span class="ot">&lt;-</span> <span class="st">&quot;kiri&quot;</span> <span class="co"># H1 menyatakan lebih kecil dari (left-tailed)</span></span>
 <span id="cb200-2"><a href="modul-5-uji-hipotesis.html#cb200-2" tabindex="-1"></a></span>
 <span id="cb200-3"><a href="modul-5-uji-hipotesis.html#cb200-3" tabindex="-1"></a><span class="cf">if</span> (tail <span class="sc">==</span> <span class="st">&quot;kiri&quot;</span>) {</span>
-<span id="cb200-4"><a href="modul-5-uji-hipotesis.html#cb200-4" tabindex="-1"></a>  Z.crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
+<span id="cb200-4"><a href="modul-5-uji-hipotesis.html#cb200-4" tabindex="-1"></a>  z_crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
 <span id="cb200-5"><a href="modul-5-uji-hipotesis.html#cb200-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb200-6"><a href="modul-5-uji-hipotesis.html#cb200-6" tabindex="-1"></a>  Z.crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha)</span>
+<span id="cb200-6"><a href="modul-5-uji-hipotesis.html#cb200-6" tabindex="-1"></a>  z_crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha)</span>
 <span id="cb200-7"><a href="modul-5-uji-hipotesis.html#cb200-7" tabindex="-1"></a>}</span>
 <span id="cb200-8"><a href="modul-5-uji-hipotesis.html#cb200-8" tabindex="-1"></a></span>
-<span id="cb200-9"><a href="modul-5-uji-hipotesis.html#cb200-9" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji one-tailed:&quot;</span>, Z.crit_1tail)</span></code></pre></div>
+<span id="cb200-9"><a href="modul-5-uji-hipotesis.html#cb200-9" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji one-tailed:&quot;</span>, z_crit_1tail)</span></code></pre></div>
 <pre><code>## Titik kritis uji one-tailed: -1.644854</code></pre>
 </div>
 <div id="menghitung-statistik-uji-1" class="section level5 hasAnchor" number="5.5.2.6.3">
 <h5><span class="header-section-number">5.5.2.6.3</span> Menghitung statistik uji<a href="modul-5-uji-hipotesis.html#menghitung-statistik-uji-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Setelah titik kritis ditentukan, kita menghitung nilai statistik uji. Pada uji satu arah, tanda dari nilai Z menjadi sangat penting. Hal ini karena nilai negatif atau positif menunjukkan arah penyimpangan rata-rata sampel dari nilai populasi.</p>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="modul-5-uji-hipotesis.html#cb202-1" tabindex="-1"></a><span class="co"># Hasil perhitungan statistik uji TIDAK diabsolutkan</span></span>
-<span id="cb202-2"><a href="modul-5-uji-hipotesis.html#cb202-2" tabindex="-1"></a>Z_meanJarak <span class="ot">&lt;-</span> <span class="fu">ht_mean_1pop</span>(sample_mean, pop_mean, sample_sd, ukuran_sampel)</span>
+<span id="cb202-2"><a href="modul-5-uji-hipotesis.html#cb202-2" tabindex="-1"></a>z_mean_jarak <span class="ot">&lt;-</span> <span class="fu">ht_mean_1pop</span>(sample_mean, pop_mean, sample_sd, ukuran_sampel)</span>
 <span id="cb202-3"><a href="modul-5-uji-hipotesis.html#cb202-3" tabindex="-1"></a></span>
-<span id="cb202-4"><a href="modul-5-uji-hipotesis.html#cb202-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Hasil statistik uji rata-rata:&quot;</span>, Z_meanJarak)</span></code></pre></div>
+<span id="cb202-4"><a href="modul-5-uji-hipotesis.html#cb202-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Hasil statistik uji rata-rata:&quot;</span>, z_mean_jarak)</span></code></pre></div>
 <pre><code>## Hasil statistik uji rata-rata: -0.9650591</code></pre>
 </div>
 <div id="menarik-kesimpulan-1" class="section level5 hasAnchor" number="5.5.2.6.4">
 <h5><span class="header-section-number">5.5.2.6.4</span> Menarik kesimpulan<a href="modul-5-uji-hipotesis.html#menarik-kesimpulan-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Langkah terakhir adalah membandingkan nilai statistik uji dengan titik kritis. Jika nilai uji lebih kecil dari titik kritis atau jatuh ke dalam daerah kritis, maka H0 ditolak, artinya perbedaan rata-rata kemungkinan hanyalah kebetulan. Sebaliknya, jika nilai uji lebih besar, maka H0 gagal ditolak yang berarti tidak ada bukti cukup untuk menyatakan adanya perbedaan.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="modul-5-uji-hipotesis.html#cb204-1" tabindex="-1"></a><span class="cf">if</span> (Z_meanJarak <span class="sc">&lt;</span> Z.crit_1tail) {</span>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="modul-5-uji-hipotesis.html#cb204-1" tabindex="-1"></a><span class="cf">if</span> (z_mean_jarak <span class="sc">&lt;</span> z_crit_1tail) {</span>
 <span id="cb204-2"><a href="modul-5-uji-hipotesis.html#cb204-2" tabindex="-1"></a>  tolak_h0 <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb204-3"><a href="modul-5-uji-hipotesis.html#cb204-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hipotesis kosong ditolak. Rata-rata jarak pada sampel mahasiswa sebesar&quot;</span>, <span class="fu">round</span>(sample_mean, <span class="dv">2</span>), <span class="st">&quot;km menunjukkan perbedaan yang signifikan (lebih kecil)&quot;</span>)</span>
 <span id="cb204-4"><a href="modul-5-uji-hipotesis.html#cb204-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
@@ -626,19 +626,19 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <p>Untuk memudahkan proses, kita membuat sebuah fungsi di R yang dapat menghitung statistik uji Z untuk proporsi satu populasi. Fungsi ini akan menerima input berupa:</p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="modul-5-uji-hipotesis.html#cb206-1" tabindex="-1"></a>ht_prop_1pop <span class="ot">&lt;-</span> <span class="cf">function</span>(p_hat, P, n) {</span>
 <span id="cb206-2"><a href="modul-5-uji-hipotesis.html#cb206-2" tabindex="-1"></a>  se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((p_hat <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p_hat))<span class="sc">/</span>n) <span class="co"># menghitung standard error untuk rata-rata</span></span>
-<span id="cb206-3"><a href="modul-5-uji-hipotesis.html#cb206-3" tabindex="-1"></a>  Z_hitung <span class="ot">&lt;-</span> (p_hat <span class="sc">-</span> P)<span class="sc">/</span>se <span class="co"># menghitung nilai Z dari statistik</span></span>
-<span id="cb206-4"><a href="modul-5-uji-hipotesis.html#cb206-4" tabindex="-1"></a>  <span class="fu">return</span>(Z_hitung)</span>
+<span id="cb206-3"><a href="modul-5-uji-hipotesis.html#cb206-3" tabindex="-1"></a>  z_hitung <span class="ot">&lt;-</span> (p_hat <span class="sc">-</span> P)<span class="sc">/</span>se <span class="co"># menghitung nilai Z dari statistik</span></span>
+<span id="cb206-4"><a href="modul-5-uji-hipotesis.html#cb206-4" tabindex="-1"></a>  <span class="fu">return</span>(z_hitung)</span>
 <span id="cb206-5"><a href="modul-5-uji-hipotesis.html#cb206-5" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="meringkas-data" class="section level5 hasAnchor" number="5.5.3.0.2">
 <h5><span class="header-section-number">5.5.3.0.2</span> Meringkas Data<a href="modul-5-uji-hipotesis.html#meringkas-data" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Sebelum melakukan uji hipotesis, kita perlu mengetahui berapa proporsi mahasiswa yang tinggal di masing-masing tipe tempat tinggal. Kita bisa gunakan fungsi group_by() dan summarize() untuk menghitung jumlah mahasiswa berdasarkan tipe tempat tinggal, lalu menambahkan kolom proporsi. Dengan cara ini, kita mendapatkan ringkasan data yang memperlihatkan distribusi tempat tinggal mahasiswa.</p>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="modul-5-uji-hipotesis.html#cb207-1" tabindex="-1"></a>summarize_tempatTinggal <span class="ot">&lt;-</span> data_mahasiswa <span class="sc">|&gt;</span> </span>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="modul-5-uji-hipotesis.html#cb207-1" tabindex="-1"></a>summarize_tempat_tinggal <span class="ot">&lt;-</span> data_mahasiswa <span class="sc">|&gt;</span> </span>
 <span id="cb207-2"><a href="modul-5-uji-hipotesis.html#cb207-2" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="st">&quot;Tipe tinggal&quot;</span> <span class="ot">=</span> tipe_tinggal_baku) <span class="sc">|&gt;</span> </span>
 <span id="cb207-3"><a href="modul-5-uji-hipotesis.html#cb207-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">&quot;Jumlah&quot;</span> <span class="ot">=</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
 <span id="cb207-4"><a href="modul-5-uji-hipotesis.html#cb207-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="st">&quot;proporsi&quot;</span> <span class="ot">=</span> Jumlah<span class="sc">/</span><span class="fu">sum</span>(Jumlah))</span>
 <span id="cb207-5"><a href="modul-5-uji-hipotesis.html#cb207-5" tabindex="-1"></a></span>
-<span id="cb207-6"><a href="modul-5-uji-hipotesis.html#cb207-6" tabindex="-1"></a>summarize_tempatTinggal</span></code></pre></div>
+<span id="cb207-6"><a href="modul-5-uji-hipotesis.html#cb207-6" tabindex="-1"></a>summarize_tempat_tinggal</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 3
 ##   `Tipe tinggal`         Jumlah proporsi
 ##   &lt;chr&gt;                   &lt;int&gt;    &lt;dbl&gt;
@@ -648,15 +648,15 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <div id="menyimpan-nilai-proporsi" class="section level5 hasAnchor" number="5.5.3.0.3">
 <h5><span class="header-section-number">5.5.3.0.3</span> Menyimpan Nilai Proporsi<a href="modul-5-uji-hipotesis.html#menyimpan-nilai-proporsi" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Setelah kita memperoleh ringkasan data, kita simpan nilai proporsi mahasiswa yang tinggal di kos atau asrama ke dalam sebuah variabel. Dengan cara ini, nilai tersebut dapat digunakan dengan mudah dalam perhitungan selanjutnya tanpa harus menghitung ulang.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="modul-5-uji-hipotesis.html#cb209-1" tabindex="-1"></a>proporsi_kosAsrama <span class="ot">&lt;-</span> summarize_tempatTinggal<span class="sc">$</span>proporsi[<span class="dv">1</span>]</span>
-<span id="cb209-2"><a href="modul-5-uji-hipotesis.html#cb209-2" tabindex="-1"></a>proporsi_kosAsrama</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="modul-5-uji-hipotesis.html#cb209-1" tabindex="-1"></a>proporsi_kos_asrama <span class="ot">&lt;-</span> summarize_tempat_tinggal<span class="sc">$</span>proporsi[<span class="dv">1</span>]</span>
+<span id="cb209-2"><a href="modul-5-uji-hipotesis.html#cb209-2" tabindex="-1"></a>proporsi_kos_asrama</span></code></pre></div>
 <pre><code>## [1] 0.4179104</code></pre>
 </div>
 <div id="mendeklarasikan-variabel-pengujian" class="section level5 hasAnchor" number="5.5.3.0.4">
 <h5><span class="header-section-number">5.5.3.0.4</span> Mendeklarasikan variabel pengujian<a href="modul-5-uji-hipotesis.html#mendeklarasikan-variabel-pengujian" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Pada tahap ini, kita menentukan variabel-variabel utama yang akan digunakan dalam uji hipotesis. Semua variabel inilah yang nantinya akan dimasukkan ke dalam fungsi uji hipotesis yang telah dibuat.</p>
 <div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="modul-5-uji-hipotesis.html#cb211-1" tabindex="-1"></a><span class="co"># Mendeklarasikan variabel-variabel yang akan diuji</span></span>
-<span id="cb211-2"><a href="modul-5-uji-hipotesis.html#cb211-2" tabindex="-1"></a>sample_prop <span class="ot">&lt;-</span> proporsi_kosAsrama</span>
+<span id="cb211-2"><a href="modul-5-uji-hipotesis.html#cb211-2" tabindex="-1"></a>sample_prop <span class="ot">&lt;-</span> proporsi_kos_asrama</span>
 <span id="cb211-3"><a href="modul-5-uji-hipotesis.html#cb211-3" tabindex="-1"></a>pop_prop <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
 <span id="cb211-4"><a href="modul-5-uji-hipotesis.html#cb211-4" tabindex="-1"></a></span>
 <span id="cb211-5"><a href="modul-5-uji-hipotesis.html#cb211-5" tabindex="-1"></a><span class="co"># Menghasilkan data frame ringkasan dataset dengan menghitung jumlah mahasiswa sebagai ukuran sampel</span></span>
@@ -690,24 +690,24 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <p>Sama seperti sebelumnya, setelah hipotesis ditetapkan, kita perlu menentukan distribusi yang digunakan. Untuk kasus proporsi dengan ukuran sampel besar, digunakan distribusi normal. Kemudian, karena kita menggunakan uji dua arah, wilayah kritis akan terbagi dua, masing-masing di ekor kiri dan kanan distribusi. Kali ini, kita menggunakan taraf signifikansi α=0.10.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="modul-5-uji-hipotesis.html#cb215-1" tabindex="-1"></a><span class="co"># Hipotesis yang dipakai tidak berarah, maka wilayah kritis adalah alpha/2</span></span>
 <span id="cb215-2"><a href="modul-5-uji-hipotesis.html#cb215-2" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.10</span> <span class="co"># (tingkat signifikansi 10%)</span></span>
-<span id="cb215-3"><a href="modul-5-uji-hipotesis.html#cb215-3" tabindex="-1"></a>Z.crit_2tail <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)) <span class="co"># Nilai yang digunakan adalah nilai absolut</span></span>
+<span id="cb215-3"><a href="modul-5-uji-hipotesis.html#cb215-3" tabindex="-1"></a>z_crit_2tail <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)) <span class="co"># Nilai yang digunakan adalah nilai absolut</span></span>
 <span id="cb215-4"><a href="modul-5-uji-hipotesis.html#cb215-4" tabindex="-1"></a></span>
-<span id="cb215-5"><a href="modul-5-uji-hipotesis.html#cb215-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji two-tailed:&quot;</span>, Z.crit_2tail)</span></code></pre></div>
+<span id="cb215-5"><a href="modul-5-uji-hipotesis.html#cb215-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji two-tailed:&quot;</span>, z_crit_2tail)</span></code></pre></div>
 <pre><code>## Titik kritis uji two-tailed: 1.644854</code></pre>
 </div>
 <div id="menghitung-statistik-uji-2" class="section level5 hasAnchor" number="5.5.3.1.3">
 <h5><span class="header-section-number">5.5.3.1.3</span> Menghitung Statistik Uji<a href="modul-5-uji-hipotesis.html#menghitung-statistik-uji-2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Setelah titik kritis ditentukan, kita menghitung nilai statistik uji Z berdasarkan proporsi sampel dan proporsi populasi yang diuji.</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="modul-5-uji-hipotesis.html#cb217-1" tabindex="-1"></a><span class="co"># Hasil perhitungan statistik uji diabsolutkan</span></span>
-<span id="cb217-2"><a href="modul-5-uji-hipotesis.html#cb217-2" tabindex="-1"></a>Z_propKos <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">ht_prop_1pop</span>(sample_prop, pop_prop, ukuran_sampel))</span>
+<span id="cb217-2"><a href="modul-5-uji-hipotesis.html#cb217-2" tabindex="-1"></a>z_prop_kos <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">ht_prop_1pop</span>(sample_prop, pop_prop, ukuran_sampel))</span>
 <span id="cb217-3"><a href="modul-5-uji-hipotesis.html#cb217-3" tabindex="-1"></a></span>
-<span id="cb217-4"><a href="modul-5-uji-hipotesis.html#cb217-4" tabindex="-1"></a>Z_propKos</span></code></pre></div>
+<span id="cb217-4"><a href="modul-5-uji-hipotesis.html#cb217-4" tabindex="-1"></a>z_prop_kos</span></code></pre></div>
 <pre><code>## [1] 5.779963</code></pre>
 </div>
 <div id="menarik-kesimpulan-2" class="section level5 hasAnchor" number="5.5.3.1.4">
 <h5><span class="header-section-number">5.5.3.1.4</span> Menarik kesimpulan<a href="modul-5-uji-hipotesis.html#menarik-kesimpulan-2" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Langkah terakhir adalah membandingkan nilai statistik uji dengan titik kritis. Dari sini kita bisa menarik kesimpulan apakah hipotesis nol ditolak atau gagal ditolak. Jika nilai statistik uji (absolut) lebih kecil dari titik kritis, maka H₀ gagal ditolak, artinya perbedaan yang terlihat kemungkinan hanya kebetulan sampel. Jika lebih besar atau sama, maka H₀ ditolak, artinya ada bukti yang cukup bahwa proporsi tidak sama dengan 0,5.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="modul-5-uji-hipotesis.html#cb219-1" tabindex="-1"></a><span class="cf">if</span> (Z_propKos <span class="sc">&lt;</span> Z.crit_2tail) {</span>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="modul-5-uji-hipotesis.html#cb219-1" tabindex="-1"></a><span class="cf">if</span> (z_prop_kos <span class="sc">&lt;</span> z_crit_2tail) {</span>
 <span id="cb219-2"><a href="modul-5-uji-hipotesis.html#cb219-2" tabindex="-1"></a>  tolak_h0 <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
 <span id="cb219-3"><a href="modul-5-uji-hipotesis.html#cb219-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hipotesis kosong gagal ditolak. Perbedaan proporsi penghuni Kos/Asrama sebanyak&quot;</span>, <span class="fu">round</span>(sample_prop, <span class="dv">3</span>), <span class="st">&quot;dari&quot;</span>, pop_prop, <span class="st">&quot;hanyalah kebetulan&quot;</span>)</span>
 <span id="cb219-4"><a href="modul-5-uji-hipotesis.html#cb219-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
@@ -735,27 +735,27 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="modul-5-uji-hipotesis.html#cb223-1" tabindex="-1"></a>tail <span class="ot">&lt;-</span> <span class="st">&quot;kiri&quot;</span></span>
 <span id="cb223-2"><a href="modul-5-uji-hipotesis.html#cb223-2" tabindex="-1"></a></span>
 <span id="cb223-3"><a href="modul-5-uji-hipotesis.html#cb223-3" tabindex="-1"></a><span class="cf">if</span> (tail <span class="sc">==</span> <span class="st">&quot;kiri&quot;</span>) {</span>
-<span id="cb223-4"><a href="modul-5-uji-hipotesis.html#cb223-4" tabindex="-1"></a>  Z.crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
+<span id="cb223-4"><a href="modul-5-uji-hipotesis.html#cb223-4" tabindex="-1"></a>  z_crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
 <span id="cb223-5"><a href="modul-5-uji-hipotesis.html#cb223-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb223-6"><a href="modul-5-uji-hipotesis.html#cb223-6" tabindex="-1"></a>  Z.crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha)</span>
+<span id="cb223-6"><a href="modul-5-uji-hipotesis.html#cb223-6" tabindex="-1"></a>  z_crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha)</span>
 <span id="cb223-7"><a href="modul-5-uji-hipotesis.html#cb223-7" tabindex="-1"></a>}</span>
 <span id="cb223-8"><a href="modul-5-uji-hipotesis.html#cb223-8" tabindex="-1"></a></span>
-<span id="cb223-9"><a href="modul-5-uji-hipotesis.html#cb223-9" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji one-tailed:&quot;</span>, Z.crit_1tail)</span></code></pre></div>
+<span id="cb223-9"><a href="modul-5-uji-hipotesis.html#cb223-9" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji one-tailed:&quot;</span>, z_crit_1tail)</span></code></pre></div>
 <pre><code>## Titik kritis uji one-tailed: -1.281552</code></pre>
 </div>
 <div id="menghitung-statistik-uji-3" class="section level5 hasAnchor" number="5.5.3.2.3">
 <h5><span class="header-section-number">5.5.3.2.3</span> Menghitung statistik uji<a href="modul-5-uji-hipotesis.html#menghitung-statistik-uji-3" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Sama seperti pada uji dua arah, kita menghitung nilai statistik uji Z dengan fungsi yang sudah dibuat sebelumnya tetapi kali ini kita tidak mengambil nilai absolut karena tanda statistik memberi informasi arah.</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="modul-5-uji-hipotesis.html#cb225-1" tabindex="-1"></a><span class="co"># Hasil perhitungan statistik uji TIDAK diabsolutkan</span></span>
-<span id="cb225-2"><a href="modul-5-uji-hipotesis.html#cb225-2" tabindex="-1"></a>Z_propKos <span class="ot">&lt;-</span> <span class="fu">ht_prop_1pop</span>(sample_prop, pop_prop, ukuran_sampel)</span>
+<span id="cb225-2"><a href="modul-5-uji-hipotesis.html#cb225-2" tabindex="-1"></a>z_prop_kos <span class="ot">&lt;-</span> <span class="fu">ht_prop_1pop</span>(sample_prop, pop_prop, ukuran_sampel)</span>
 <span id="cb225-3"><a href="modul-5-uji-hipotesis.html#cb225-3" tabindex="-1"></a></span>
-<span id="cb225-4"><a href="modul-5-uji-hipotesis.html#cb225-4" tabindex="-1"></a>Z_propKos</span></code></pre></div>
+<span id="cb225-4"><a href="modul-5-uji-hipotesis.html#cb225-4" tabindex="-1"></a>z_prop_kos</span></code></pre></div>
 <pre><code>## [1] -5.779963</code></pre>
 </div>
 <div id="menarik-kesimpulan-3" class="section level5 hasAnchor" number="5.5.3.2.4">
 <h5><span class="header-section-number">5.5.3.2.4</span> Menarik kesimpulan<a href="modul-5-uji-hipotesis.html#menarik-kesimpulan-3" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Kesimpulan diambil dengan membandingkan nilai statistik uji (Z_propKos) dengan titik kritis (Z.crit_1tail). Untuk uji satu arah (kiri), kita menolak H₀ jika nilai statistik uji lebih kecil dari titik kritis. Jika tidak, kita gagal menolak H₀. Kesimpulan ini menjelaskan apakah ada cukup bukti untuk menyatakan proporsi memang lebih kecil dari nilai acuan.</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="modul-5-uji-hipotesis.html#cb227-1" tabindex="-1"></a><span class="cf">if</span> (Z_propKos <span class="sc">&lt;</span> Z.crit_1tail) {</span>
+<p>Kesimpulan diambil dengan membandingkan nilai statistik uji (z_prop_kos) dengan titik kritis (z_crit_1tail). Untuk uji satu arah (kiri), kita menolak H₀ jika nilai statistik uji lebih kecil dari titik kritis. Jika tidak, kita gagal menolak H₀. Kesimpulan ini menjelaskan apakah ada cukup bukti untuk menyatakan proporsi memang lebih kecil dari nilai acuan.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="modul-5-uji-hipotesis.html#cb227-1" tabindex="-1"></a><span class="cf">if</span> (z_prop_kos <span class="sc">&lt;</span> z_crit_1tail) {</span>
 <span id="cb227-2"><a href="modul-5-uji-hipotesis.html#cb227-2" tabindex="-1"></a>  tolak_h0 <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb227-3"><a href="modul-5-uji-hipotesis.html#cb227-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hipotesis kosong ditolak. Perbedaan proporsi penghuni Kos/Asrama sebanyak&quot;</span>, <span class="fu">round</span>(sample_prop, <span class="dv">3</span>), <span class="st">&quot;dari&quot;</span>, pop_prop, <span class="st">&quot;adalah signifikan (lebih kecil)&quot;</span>)</span>
 <span id="cb227-4"><a href="modul-5-uji-hipotesis.html#cb227-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
@@ -775,7 +775,7 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <div id="merumuskan-fungsi" class="section level5 hasAnchor" number="5.6.1.0.1">
 <h5><span class="header-section-number">5.6.1.0.1</span> Merumuskan fungsi<a href="modul-5-uji-hipotesis.html#merumuskan-fungsi" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Pada langkah ini, kita akan membuat fungsi uji hipotesis rata-rata untuk dua populasi independen. Fungsi ini diperlukan karena kita ingin menghitung nilai statistik uji (Z) berdasarkan data ringkasan dari dua sampel Dengan fungsi ini, kita bisa langsung memasukkan nilai-nilai statistik dari kedua populasi dan mendapatkan nilai Z yang akan dibandingkan dengan titik kritis.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="modul-5-uji-hipotesis.html#cb229-1" tabindex="-1"></a>ht_mean_2popIn <span class="ot">&lt;-</span> <span class="cf">function</span>(xbar1, xbar2, sd1, sd2, n1, n2) {</span>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="modul-5-uji-hipotesis.html#cb229-1" tabindex="-1"></a>ht_mean_2pop_ind <span class="ot">&lt;-</span> <span class="cf">function</span>(xbar1, xbar2, sd1, sd2, n1, n2) {</span>
 <span id="cb229-2"><a href="modul-5-uji-hipotesis.html#cb229-2" tabindex="-1"></a>  se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(             <span class="co"># Indentasi diberikan untuk memudahkan</span></span>
 <span id="cb229-3"><a href="modul-5-uji-hipotesis.html#cb229-3" tabindex="-1"></a>    (                     <span class="co"># pembacaan karena banyaknya tanda kurung</span></span>
 <span id="cb229-4"><a href="modul-5-uji-hipotesis.html#cb229-4" tabindex="-1"></a>      (sd1<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n1 <span class="sc">-</span> <span class="dv">1</span>)</span>
@@ -783,20 +783,20 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <span id="cb229-6"><a href="modul-5-uji-hipotesis.html#cb229-6" tabindex="-1"></a>      (sd2<span class="sc">^</span><span class="dv">2</span>)<span class="sc">/</span>(n2 <span class="sc">-</span> <span class="dv">1</span>)</span>
 <span id="cb229-7"><a href="modul-5-uji-hipotesis.html#cb229-7" tabindex="-1"></a>    )</span>
 <span id="cb229-8"><a href="modul-5-uji-hipotesis.html#cb229-8" tabindex="-1"></a>  )</span>
-<span id="cb229-9"><a href="modul-5-uji-hipotesis.html#cb229-9" tabindex="-1"></a>  Z_hitung <span class="ot">&lt;-</span> (xbar1 <span class="sc">-</span> xbar2)<span class="sc">/</span>se <span class="co"># menghitung nilai Z dari statistik</span></span>
-<span id="cb229-10"><a href="modul-5-uji-hipotesis.html#cb229-10" tabindex="-1"></a>  <span class="fu">return</span>(Z_hitung)</span>
+<span id="cb229-9"><a href="modul-5-uji-hipotesis.html#cb229-9" tabindex="-1"></a>  z_hitung <span class="ot">&lt;-</span> (xbar1 <span class="sc">-</span> xbar2)<span class="sc">/</span>se <span class="co"># menghitung nilai Z dari statistik</span></span>
+<span id="cb229-10"><a href="modul-5-uji-hipotesis.html#cb229-10" tabindex="-1"></a>  <span class="fu">return</span>(z_hitung)</span>
 <span id="cb229-11"><a href="modul-5-uji-hipotesis.html#cb229-11" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="menghitung-mean-2-populasi" class="section level5 hasAnchor" number="5.6.1.0.2">
 <h5><span class="header-section-number">5.6.1.0.2</span> Menghitung mean 2 populasi<a href="modul-5-uji-hipotesis.html#menghitung-mean-2-populasi" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Sebelum menjalankan uji hipotesis, kita perlu mendapatkan data ringkasan berupa rata-rata, simpangan baku, dan jumlah sampel dari masing-masing populasi. Pada tahap ini, kita akan membuat tabel ringkasan jarak mahasiswa dari rumah ke kampus berdasarkan kelompok kampus. Data ini nantinya akan menjadi input untuk fungsi yang sudah kita buat di langkah sebelumnya. Dengan cara ini, kita bisa lebih mudah membandingkan dua populasi secara langsung.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="modul-5-uji-hipotesis.html#cb230-1" tabindex="-1"></a>summarize_Jarak2Pop <span class="ot">&lt;-</span> data_mahasiswa <span class="sc">|&gt;</span></span>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="modul-5-uji-hipotesis.html#cb230-1" tabindex="-1"></a>summarize_jarak_2pop <span class="ot">&lt;-</span> data_mahasiswa <span class="sc">|&gt;</span></span>
 <span id="cb230-2"><a href="modul-5-uji-hipotesis.html#cb230-2" tabindex="-1"></a>  <span class="fu">group_by</span>(<span class="at">Kampus =</span> kampus) <span class="sc">|&gt;</span></span>
 <span id="cb230-3"><a href="modul-5-uji-hipotesis.html#cb230-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="st">`</span><span class="at">Rata-rata</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(jarak_km),</span>
 <span id="cb230-4"><a href="modul-5-uji-hipotesis.html#cb230-4" tabindex="-1"></a>            <span class="st">`</span><span class="at">Simpangan baku</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">sd</span>(jarak_km),</span>
 <span id="cb230-5"><a href="modul-5-uji-hipotesis.html#cb230-5" tabindex="-1"></a>            <span class="at">Jumlah =</span> <span class="fu">n</span>())</span>
 <span id="cb230-6"><a href="modul-5-uji-hipotesis.html#cb230-6" tabindex="-1"></a></span>
-<span id="cb230-7"><a href="modul-5-uji-hipotesis.html#cb230-7" tabindex="-1"></a>summarize_Jarak2Pop</span></code></pre></div>
+<span id="cb230-7"><a href="modul-5-uji-hipotesis.html#cb230-7" tabindex="-1"></a>summarize_jarak_2pop</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 4
 ##   Kampus `Rata-rata` `Simpangan baku` Jumlah
 ##   &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;  &lt;int&gt;
@@ -807,14 +807,14 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <div id="mendeklarasikan-variabel-uji" class="section level5 hasAnchor" number="5.6.1.0.3">
 <h5><span class="header-section-number">5.6.1.0.3</span> Mendeklarasikan variabel uji<a href="modul-5-uji-hipotesis.html#mendeklarasikan-variabel-uji" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Setelah mendapatkan ringkasan data, kita harus menyimpan nilai rata-rata, simpangan baku, dan ukuran sampel ke dalam variabel khusus. Variabel-variabel ini akan dipakai langsung sebagai input fungsi uji hipotesis. Dengan mendeklarasikannya lebih dulu, proses penghitungan menjadi lebih rapi dan mudah diikuti.</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="modul-5-uji-hipotesis.html#cb232-1" tabindex="-1"></a>mean_jarakUINRIL <span class="ot">&lt;-</span> summarize_Jarak2Pop<span class="sc">$</span><span class="st">`</span><span class="at">Rata-rata</span><span class="st">`</span>[<span class="dv">3</span>]</span>
-<span id="cb232-2"><a href="modul-5-uji-hipotesis.html#cb232-2" tabindex="-1"></a>mean_jarakITERA <span class="ot">&lt;-</span> summarize_Jarak2Pop<span class="sc">$</span><span class="st">`</span><span class="at">Rata-rata</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="modul-5-uji-hipotesis.html#cb232-1" tabindex="-1"></a>mean_jarak_uinril <span class="ot">&lt;-</span> summarize_jarak_2pop<span class="sc">$</span><span class="st">`</span><span class="at">Rata-rata</span><span class="st">`</span>[<span class="dv">3</span>]</span>
+<span id="cb232-2"><a href="modul-5-uji-hipotesis.html#cb232-2" tabindex="-1"></a>mean_jarak_itera <span class="ot">&lt;-</span> summarize_jarak_2pop<span class="sc">$</span><span class="st">`</span><span class="at">Rata-rata</span><span class="st">`</span>[<span class="dv">1</span>]</span>
 <span id="cb232-3"><a href="modul-5-uji-hipotesis.html#cb232-3" tabindex="-1"></a></span>
-<span id="cb232-4"><a href="modul-5-uji-hipotesis.html#cb232-4" tabindex="-1"></a>sd_jarakUINRIL <span class="ot">&lt;-</span> summarize_Jarak2Pop<span class="sc">$</span><span class="st">`</span><span class="at">Simpangan baku</span><span class="st">`</span>[<span class="dv">3</span>]</span>
-<span id="cb232-5"><a href="modul-5-uji-hipotesis.html#cb232-5" tabindex="-1"></a>sd_jarakITERA <span class="ot">&lt;-</span> summarize_Jarak2Pop<span class="sc">$</span><span class="st">`</span><span class="at">Simpangan baku</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb232-4"><a href="modul-5-uji-hipotesis.html#cb232-4" tabindex="-1"></a>sd_jarak_uinril <span class="ot">&lt;-</span> summarize_jarak_2pop<span class="sc">$</span><span class="st">`</span><span class="at">Simpangan baku</span><span class="st">`</span>[<span class="dv">3</span>]</span>
+<span id="cb232-5"><a href="modul-5-uji-hipotesis.html#cb232-5" tabindex="-1"></a>sd_jarak_itera <span class="ot">&lt;-</span> summarize_jarak_2pop<span class="sc">$</span><span class="st">`</span><span class="at">Simpangan baku</span><span class="st">`</span>[<span class="dv">1</span>]</span>
 <span id="cb232-6"><a href="modul-5-uji-hipotesis.html#cb232-6" tabindex="-1"></a></span>
-<span id="cb232-7"><a href="modul-5-uji-hipotesis.html#cb232-7" tabindex="-1"></a>n_jarakUINRIL <span class="ot">&lt;-</span> summarize_Jarak2Pop<span class="sc">$</span>Jumlah[<span class="dv">3</span>]</span>
-<span id="cb232-8"><a href="modul-5-uji-hipotesis.html#cb232-8" tabindex="-1"></a>n_jarakITERA <span class="ot">&lt;-</span> summarize_Jarak2Pop<span class="sc">$</span>Jumlah[<span class="dv">1</span>]</span></code></pre></div>
+<span id="cb232-7"><a href="modul-5-uji-hipotesis.html#cb232-7" tabindex="-1"></a>n_jarak_uinril <span class="ot">&lt;-</span> summarize_jarak_2pop<span class="sc">$</span>Jumlah[<span class="dv">3</span>]</span>
+<span id="cb232-8"><a href="modul-5-uji-hipotesis.html#cb232-8" tabindex="-1"></a>n_jarak_itera <span class="ot">&lt;-</span> summarize_jarak_2pop<span class="sc">$</span>Jumlah[<span class="dv">1</span>]</span></code></pre></div>
 </div>
 <div id="two-tailed-test-1" class="section level4 hasAnchor" number="5.6.1.1">
 <h4><span class="header-section-number">5.6.1.1</span> <em>Two-tailed Test</em><a href="modul-5-uji-hipotesis.html#two-tailed-test-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -833,26 +833,26 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="modul-5-uji-hipotesis.html#cb235-1" tabindex="-1"></a><span class="co"># Hipotesis yang dipakai tidak berarah, maka wilayah kritis adalah alpha/2</span></span>
 <span id="cb235-2"><a href="modul-5-uji-hipotesis.html#cb235-2" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.001</span></span>
 <span id="cb235-3"><a href="modul-5-uji-hipotesis.html#cb235-3" tabindex="-1"></a></span>
-<span id="cb235-4"><a href="modul-5-uji-hipotesis.html#cb235-4" tabindex="-1"></a>Z.crit_2tail <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)) <span class="co"># Nilai yang digunakan adalah nilai absolut</span></span>
+<span id="cb235-4"><a href="modul-5-uji-hipotesis.html#cb235-4" tabindex="-1"></a>z_crit_2tail <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>)) <span class="co"># Nilai yang digunakan adalah nilai absolut</span></span>
 <span id="cb235-5"><a href="modul-5-uji-hipotesis.html#cb235-5" tabindex="-1"></a></span>
-<span id="cb235-6"><a href="modul-5-uji-hipotesis.html#cb235-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji two-tailed:&quot;</span>, Z.crit_2tail)</span></code></pre></div>
+<span id="cb235-6"><a href="modul-5-uji-hipotesis.html#cb235-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji two-tailed:&quot;</span>, z_crit_2tail)</span></code></pre></div>
 <pre><code>## Titik kritis uji two-tailed: 3.290527</code></pre>
 </div>
 <div id="menghitung-statistik-uji-4" class="section level5 hasAnchor" number="5.6.1.1.3">
 <h5><span class="header-section-number">5.6.1.1.3</span> Menghitung statistik uji<a href="modul-5-uji-hipotesis.html#menghitung-statistik-uji-4" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Setelah mengetahui titik kritis, kita hitung nilai statistik uji (Z) dari data yang dimiliki. Nilai ini diperoleh dengan memasukkan rata-rata, simpangan baku, dan ukuran sampel ke fungsi ht_mean_2popIn. Karena pengujian dilakukan dua sisi, nilai Z hasil perhitungan diabsolutkan agar bisa dibandingkan langsung dengan titik kritis.</p>
+<p>Setelah mengetahui titik kritis, kita hitung nilai statistik uji (Z) dari data yang dimiliki. Nilai ini diperoleh dengan memasukkan rata-rata, simpangan baku, dan ukuran sampel ke fungsi ht_mean_2pop_ind. Karena pengujian dilakukan dua sisi, nilai Z hasil perhitungan diabsolutkan agar bisa dibandingkan langsung dengan titik kritis.</p>
 <div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="modul-5-uji-hipotesis.html#cb237-1" tabindex="-1"></a><span class="co"># Hasil perhitungan statistik uji diabsolutkan</span></span>
-<span id="cb237-2"><a href="modul-5-uji-hipotesis.html#cb237-2" tabindex="-1"></a>Z_meanJarak2Pop <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">ht_mean_2popIn</span>(mean_jarakUINRIL, mean_jarakITERA,</span>
-<span id="cb237-3"><a href="modul-5-uji-hipotesis.html#cb237-3" tabindex="-1"></a>                                      sd_jarakUINRIL, sd_jarakITERA,</span>
-<span id="cb237-4"><a href="modul-5-uji-hipotesis.html#cb237-4" tabindex="-1"></a>                                      n_jarakUINRIL, n_jarakITERA))</span>
+<span id="cb237-2"><a href="modul-5-uji-hipotesis.html#cb237-2" tabindex="-1"></a>z_mean_jarak_2pop <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">ht_mean_2pop_ind</span>(mean_jarak_uinril, mean_jarak_itera,</span>
+<span id="cb237-3"><a href="modul-5-uji-hipotesis.html#cb237-3" tabindex="-1"></a>                                      sd_jarak_uinril, sd_jarak_itera,</span>
+<span id="cb237-4"><a href="modul-5-uji-hipotesis.html#cb237-4" tabindex="-1"></a>                                      n_jarak_uinril, n_jarak_itera))</span>
 <span id="cb237-5"><a href="modul-5-uji-hipotesis.html#cb237-5" tabindex="-1"></a></span>
-<span id="cb237-6"><a href="modul-5-uji-hipotesis.html#cb237-6" tabindex="-1"></a>Z_meanJarak2Pop</span></code></pre></div>
+<span id="cb237-6"><a href="modul-5-uji-hipotesis.html#cb237-6" tabindex="-1"></a>z_mean_jarak_2pop</span></code></pre></div>
 <pre><code>## [1] 7.743731</code></pre>
 </div>
 <div id="menarik-kesimpulan-4" class="section level5 hasAnchor" number="5.6.1.1.4">
 <h5><span class="header-section-number">5.6.1.1.4</span> Menarik kesimpulan<a href="modul-5-uji-hipotesis.html#menarik-kesimpulan-4" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Langkah terakhir adalah membandingkan nilai statistik uji dengan titik kritis. Jika Z hitung lebih kecil dari Z kritis, maka H0 gagal ditolak, artinya perbedaan rata-rata jarak antara dua populasi kemungkinan hanyalah kebetulan. Jika Z hitung lebih besar, maka H0 ditolak, yang berarti terdapat cukup bukti untuk menyatakan adanya perbedaan.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="modul-5-uji-hipotesis.html#cb239-1" tabindex="-1"></a><span class="cf">if</span> (Z_meanJarak2Pop <span class="sc">&lt;</span> Z.crit_2tail) {</span>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="modul-5-uji-hipotesis.html#cb239-1" tabindex="-1"></a><span class="cf">if</span> (z_mean_jarak_2pop <span class="sc">&lt;</span> z_crit_2tail) {</span>
 <span id="cb239-2"><a href="modul-5-uji-hipotesis.html#cb239-2" tabindex="-1"></a>  tolak_h0 <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
 <span id="cb239-3"><a href="modul-5-uji-hipotesis.html#cb239-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hipotesis kosong gagal ditolak. Perbedaan rata-rata jarak mahasiswa UINRIL dengan ITERA dari sampel hanyalah kebetulan.&quot;</span>)</span>
 <span id="cb239-4"><a href="modul-5-uji-hipotesis.html#cb239-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
@@ -879,29 +879,29 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="modul-5-uji-hipotesis.html#cb243-1" tabindex="-1"></a>tail <span class="ot">&lt;-</span> <span class="st">&quot;kiri&quot;</span></span>
 <span id="cb243-2"><a href="modul-5-uji-hipotesis.html#cb243-2" tabindex="-1"></a></span>
 <span id="cb243-3"><a href="modul-5-uji-hipotesis.html#cb243-3" tabindex="-1"></a><span class="cf">if</span> (tail <span class="sc">==</span> <span class="st">&quot;kiri&quot;</span>) {</span>
-<span id="cb243-4"><a href="modul-5-uji-hipotesis.html#cb243-4" tabindex="-1"></a>  Z.crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
+<span id="cb243-4"><a href="modul-5-uji-hipotesis.html#cb243-4" tabindex="-1"></a>  z_crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
 <span id="cb243-5"><a href="modul-5-uji-hipotesis.html#cb243-5" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb243-6"><a href="modul-5-uji-hipotesis.html#cb243-6" tabindex="-1"></a>  Z.crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha)</span>
+<span id="cb243-6"><a href="modul-5-uji-hipotesis.html#cb243-6" tabindex="-1"></a>  z_crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha)</span>
 <span id="cb243-7"><a href="modul-5-uji-hipotesis.html#cb243-7" tabindex="-1"></a>}</span>
 <span id="cb243-8"><a href="modul-5-uji-hipotesis.html#cb243-8" tabindex="-1"></a></span>
-<span id="cb243-9"><a href="modul-5-uji-hipotesis.html#cb243-9" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji one-tailed:&quot;</span>, Z.crit_1tail)</span></code></pre></div>
+<span id="cb243-9"><a href="modul-5-uji-hipotesis.html#cb243-9" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik kritis uji one-tailed:&quot;</span>, z_crit_1tail)</span></code></pre></div>
 <pre><code>## Titik kritis uji one-tailed: -3.090232</code></pre>
 </div>
 <div id="menghitung-statistik-uji-5" class="section level5 hasAnchor" number="5.6.1.2.3">
 <h5><span class="header-section-number">5.6.1.2.3</span> Menghitung Statistik uji<a href="modul-5-uji-hipotesis.html#menghitung-statistik-uji-5" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>Selanjutnya, kita menghitung nilai statistik uji menggunakan fungsi ht_mean_2popIn. Berbeda dengan two-tailed test, pada one-tailed test nilai Z tidak diabsolutkan karena arah perbedaan menjadi penting.</p>
+<p>Selanjutnya, kita menghitung nilai statistik uji menggunakan fungsi ht_mean_2pop_ind. Berbeda dengan two-tailed test, pada one-tailed test nilai Z tidak diabsolutkan karena arah perbedaan menjadi penting.</p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="modul-5-uji-hipotesis.html#cb245-1" tabindex="-1"></a><span class="co"># Hasil perhitungan statistik uji TIDAK diabsolutkan</span></span>
-<span id="cb245-2"><a href="modul-5-uji-hipotesis.html#cb245-2" tabindex="-1"></a>Z_meanJarak2Pop <span class="ot">&lt;-</span> <span class="fu">ht_mean_2popIn</span>(mean_jarakUINRIL, mean_jarakITERA,</span>
-<span id="cb245-3"><a href="modul-5-uji-hipotesis.html#cb245-3" tabindex="-1"></a>                                  sd_jarakUINRIL, sd_jarakITERA,</span>
-<span id="cb245-4"><a href="modul-5-uji-hipotesis.html#cb245-4" tabindex="-1"></a>                                  n_jarakUINRIL, n_jarakITERA)</span>
+<span id="cb245-2"><a href="modul-5-uji-hipotesis.html#cb245-2" tabindex="-1"></a>z_mean_jarak_2pop <span class="ot">&lt;-</span> <span class="fu">ht_mean_2pop_ind</span>(mean_jarak_uinril, mean_jarak_itera,</span>
+<span id="cb245-3"><a href="modul-5-uji-hipotesis.html#cb245-3" tabindex="-1"></a>                                  sd_jarak_uinril, sd_jarak_itera,</span>
+<span id="cb245-4"><a href="modul-5-uji-hipotesis.html#cb245-4" tabindex="-1"></a>                                  n_jarak_uinril, n_jarak_itera)</span>
 <span id="cb245-5"><a href="modul-5-uji-hipotesis.html#cb245-5" tabindex="-1"></a></span>
-<span id="cb245-6"><a href="modul-5-uji-hipotesis.html#cb245-6" tabindex="-1"></a>Z_meanJarak2Pop</span></code></pre></div>
+<span id="cb245-6"><a href="modul-5-uji-hipotesis.html#cb245-6" tabindex="-1"></a>z_mean_jarak_2pop</span></code></pre></div>
 <pre><code>## [1] -7.743731</code></pre>
 </div>
 <div id="menarik-kesimpulan-5" class="section level5 hasAnchor" number="5.6.1.2.4">
 <h5><span class="header-section-number">5.6.1.2.4</span> Menarik kesimpulan<a href="modul-5-uji-hipotesis.html#menarik-kesimpulan-5" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Tahap terakhir adalah menarik kesimpulan dengan cara membandingkan nilai statistik uji terhadap titik kritis. Jika nilai Z hitung jatuh pada wilayah kritis (misalnya lebih kecil dari Z kritis kiri), maka hipotesis nol ditolak. Artinya, ada bukti cukup untuk menyatakan rata-rata jarak mahasiswa ITERA memang lebih kecil dari mahasiswa UINRIL sesuai hipotesis arah. Jika tidak, maka hipotesis nol gagal ditolak, dan kita simpulkan bahwa arah perbedaan yang diduga tidak terbukti secara signifikan.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="modul-5-uji-hipotesis.html#cb247-1" tabindex="-1"></a><span class="cf">if</span> (Z_meanJarak2Pop <span class="sc">&lt;</span> Z.crit_1tail) {</span>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="modul-5-uji-hipotesis.html#cb247-1" tabindex="-1"></a><span class="cf">if</span> (z_mean_jarak_2pop <span class="sc">&lt;</span> z_crit_1tail) {</span>
 <span id="cb247-2"><a href="modul-5-uji-hipotesis.html#cb247-2" tabindex="-1"></a>  tolak_h0 <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb247-3"><a href="modul-5-uji-hipotesis.html#cb247-3" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hipotesis kosong ditolak. Mahasiswa ITERA secara rata-rata tinggal lebih jauh dari kampus dibandingkan mahasiswa UINRIL significanly.&quot;</span>)</span>
 <span id="cb247-4"><a href="modul-5-uji-hipotesis.html#cb247-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
@@ -927,7 +927,7 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <span id="cb249-7"><a href="modul-5-uji-hipotesis.html#cb249-7" tabindex="-1"></a><span class="co">#   - sd2   : statistik simpangan baku populasi #2</span></span>
 <span id="cb249-8"><a href="modul-5-uji-hipotesis.html#cb249-8" tabindex="-1"></a><span class="co">#   - n1    : ukuran sampel dari populasi #1</span></span>
 <span id="cb249-9"><a href="modul-5-uji-hipotesis.html#cb249-9" tabindex="-1"></a><span class="co">#   - n2    : ukuran sampel dari populasi #2</span></span>
-<span id="cb249-10"><a href="modul-5-uji-hipotesis.html#cb249-10" tabindex="-1"></a>ht_prop_2popIn <span class="ot">&lt;-</span> <span class="cf">function</span>(p_hat1, p_hat2, n1, n2) {</span>
+<span id="cb249-10"><a href="modul-5-uji-hipotesis.html#cb249-10" tabindex="-1"></a>ht_prop_2pop_ind <span class="ot">&lt;-</span> <span class="cf">function</span>(p_hat1, p_hat2, n1, n2) {</span>
 <span id="cb249-11"><a href="modul-5-uji-hipotesis.html#cb249-11" tabindex="-1"></a>  p_gab <span class="ot">&lt;-</span> ((n1<span class="sc">*</span>p_hat1 <span class="sc">+</span> n2<span class="sc">*</span>p_hat2))<span class="sc">/</span>(n1 <span class="sc">+</span> n2) <span class="co"># Total proporsi yang diuji</span></span>
 <span id="cb249-12"><a href="modul-5-uji-hipotesis.html#cb249-12" tabindex="-1"></a>                                               <span class="co"># untuk kedua populasi</span></span>
 <span id="cb249-13"><a href="modul-5-uji-hipotesis.html#cb249-13" tabindex="-1"></a>  se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(</span>
@@ -935,52 +935,54 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <span id="cb249-15"><a href="modul-5-uji-hipotesis.html#cb249-15" tabindex="-1"></a>      (<span class="dv">1</span><span class="sc">/</span>n1) <span class="sc">+</span> (<span class="dv">1</span><span class="sc">/</span>n2)     <span class="co"># karena banyaknya kurung</span></span>
 <span id="cb249-16"><a href="modul-5-uji-hipotesis.html#cb249-16" tabindex="-1"></a>    )</span>
 <span id="cb249-17"><a href="modul-5-uji-hipotesis.html#cb249-17" tabindex="-1"></a>  )</span>
-<span id="cb249-18"><a href="modul-5-uji-hipotesis.html#cb249-18" tabindex="-1"></a>  Z_hitung <span class="ot">&lt;-</span> (p_hat1 <span class="sc">-</span> p_hat2)<span class="sc">/</span>se <span class="co"># menghitung nilai Z dari statistik</span></span>
-<span id="cb249-19"><a href="modul-5-uji-hipotesis.html#cb249-19" tabindex="-1"></a>  <span class="fu">return</span>(Z_hitung)</span>
+<span id="cb249-18"><a href="modul-5-uji-hipotesis.html#cb249-18" tabindex="-1"></a>  z_hitung <span class="ot">&lt;-</span> (p_hat1 <span class="sc">-</span> p_hat2)<span class="sc">/</span>se <span class="co"># menghitung nilai Z dari statistik</span></span>
+<span id="cb249-19"><a href="modul-5-uji-hipotesis.html#cb249-19" tabindex="-1"></a>  <span class="fu">return</span>(z_hitung)</span>
 <span id="cb249-20"><a href="modul-5-uji-hipotesis.html#cb249-20" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div id="mendeklarasikan-variabel-uji-1" class="section level5 hasAnchor" number="5.6.2.0.2">
 <h5><span class="header-section-number">5.6.2.0.2</span> Mendeklarasikan variabel uji<a href="modul-5-uji-hipotesis.html#mendeklarasikan-variabel-uji-1" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Setelah fungsi dibuat, kita perlu menyiapkan data yang akan diuji. Pertama, data mahasiswa dikelompokkan berdasarkan kampus dan tipe_tinggal_baku. Selanjutnya dihitung proporsi tiap kategori (misalnya proporsi mahasiswa yang tinggal di kos/asrama). Data kemudian diubah dari format long ke wide sehingga tiap kategori menjadi variabel. Dari hasil ini kita bisa mengambil proporsi masing-masing populasi, serta ukuran sampel total pada tiap kampus.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="modul-5-uji-hipotesis.html#cb250-1" tabindex="-1"></a>summarize_tempatTinggal2Pop <span class="ot">&lt;-</span> data_mahasiswa <span class="sc">|&gt;</span> </span>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="modul-5-uji-hipotesis.html#cb250-1" tabindex="-1"></a>summarize_tempat_tinggal_2pop <span class="ot">&lt;-</span> data_mahasiswa <span class="sc">|&gt;</span> </span>
 <span id="cb250-2"><a href="modul-5-uji-hipotesis.html#cb250-2" tabindex="-1"></a>  <span class="fu">group_by</span>(kampus, tipe_tinggal_baku) <span class="sc">|&gt;</span> </span>
 <span id="cb250-3"><a href="modul-5-uji-hipotesis.html#cb250-3" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Jumlah =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
 <span id="cb250-4"><a href="modul-5-uji-hipotesis.html#cb250-4" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proporsi =</span> Jumlah<span class="sc">/</span><span class="fu">sum</span>(Jumlah)) <span class="sc">|&gt;</span> <span class="co"># menghitung proporsi tiap kategori.</span></span>
 <span id="cb250-5"><a href="modul-5-uji-hipotesis.html#cb250-5" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Jumlah) <span class="sc">|&gt;</span> </span>
 <span id="cb250-6"><a href="modul-5-uji-hipotesis.html#cb250-6" tabindex="-1"></a>  <span class="fu">spread</span>(tipe_tinggal_baku, proporsi) <span class="co"># mengubah data long menjadi wide (kolom                                          # kategori jadi variabel).</span></span>
 <span id="cb250-7"><a href="modul-5-uji-hipotesis.html#cb250-7" tabindex="-1"></a></span>
-<span id="cb250-8"><a href="modul-5-uji-hipotesis.html#cb250-8" tabindex="-1"></a>summarize_tempatTinggal2Pop</span></code></pre></div>
+<span id="cb250-8"><a href="modul-5-uji-hipotesis.html#cb250-8" tabindex="-1"></a>summarize_tempat_tinggal_2pop</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ## # Groups:   kampus [3]
-##   kampus `Kos/Asrama` `Rumah Keluarga/Pribadi`
-##   &lt;chr&gt;         &lt;dbl&gt;                    &lt;dbl&gt;
-## 1 ITERA         0.550                    0.450
-## 2 UBL           0.224                    0.776
-## 3 UINRIL        0.46                     0.54</code></pre>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="modul-5-uji-hipotesis.html#cb252-1" tabindex="-1"></a>proporsi_kosAsrama_ITERA <span class="ot">&lt;-</span> summarize_tempatTinggal2Pop<span class="sc">$</span><span class="st">`</span><span class="at">Kos/Asrama</span><span class="st">`</span>[<span class="dv">1</span>]</span>
-<span id="cb252-2"><a href="modul-5-uji-hipotesis.html#cb252-2" tabindex="-1"></a>proporsi_kosAsrama_UINRIL <span class="ot">&lt;-</span> summarize_tempatTinggal2Pop<span class="sc">$</span><span class="st">`</span><span class="at">Kos/Asrama</span><span class="st">`</span>[<span class="dv">3</span>]</span>
+##   kampus `Kos/Asrama` Rumah Keluarga/Priba…¹
+##   &lt;chr&gt;         &lt;dbl&gt;                  &lt;dbl&gt;
+## 1 ITERA         0.550                  0.450
+## 2 UBL           0.224                  0.776
+## 3 UINRIL        0.46                   0.54 
+## # ℹ abbreviated name:
+## #   ¹​`Rumah Keluarga/Pribadi`</code></pre>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="modul-5-uji-hipotesis.html#cb252-1" tabindex="-1"></a>proporsi_kos_asrama_itera <span class="ot">&lt;-</span> summarize_tempat_tinggal_2pop<span class="sc">$</span><span class="st">`</span><span class="at">Kos/Asrama</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb252-2"><a href="modul-5-uji-hipotesis.html#cb252-2" tabindex="-1"></a>proporsi_kos_asrama_uinril <span class="ot">&lt;-</span> summarize_tempat_tinggal_2pop<span class="sc">$</span><span class="st">`</span><span class="at">Kos/Asrama</span><span class="st">`</span>[<span class="dv">3</span>]</span>
 <span id="cb252-3"><a href="modul-5-uji-hipotesis.html#cb252-3" tabindex="-1"></a></span>
-<span id="cb252-4"><a href="modul-5-uji-hipotesis.html#cb252-4" tabindex="-1"></a>n_kosAsrama_2Pop <span class="ot">&lt;-</span> data_mahasiswa <span class="sc">|&gt;</span> </span>
+<span id="cb252-4"><a href="modul-5-uji-hipotesis.html#cb252-4" tabindex="-1"></a>n_kos_asrama_2pop <span class="ot">&lt;-</span> data_mahasiswa <span class="sc">|&gt;</span> </span>
 <span id="cb252-5"><a href="modul-5-uji-hipotesis.html#cb252-5" tabindex="-1"></a>  <span class="fu">count</span>(kampus)</span>
 <span id="cb252-6"><a href="modul-5-uji-hipotesis.html#cb252-6" tabindex="-1"></a></span>
-<span id="cb252-7"><a href="modul-5-uji-hipotesis.html#cb252-7" tabindex="-1"></a>n_kosAsrama_ITERA <span class="ot">&lt;-</span> n_kosAsrama_2Pop<span class="sc">$</span>n[<span class="dv">1</span>]</span>
-<span id="cb252-8"><a href="modul-5-uji-hipotesis.html#cb252-8" tabindex="-1"></a>n_kosAsrama_UINRIL <span class="ot">&lt;-</span> n_kosAsrama_2Pop<span class="sc">$</span>n[<span class="dv">3</span>]</span></code></pre></div>
+<span id="cb252-7"><a href="modul-5-uji-hipotesis.html#cb252-7" tabindex="-1"></a>n_kos_asrama_itera <span class="ot">&lt;-</span> n_kos_asrama_2pop<span class="sc">$</span>n[<span class="dv">1</span>]</span>
+<span id="cb252-8"><a href="modul-5-uji-hipotesis.html#cb252-8" tabindex="-1"></a>n_kos_asrama_uinril <span class="ot">&lt;-</span> n_kos_asrama_2pop<span class="sc">$</span>n[<span class="dv">3</span>]</span></code></pre></div>
 <p>####<em>Two-tailed Test</em></p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="modul-5-uji-hipotesis.html#cb253-1" tabindex="-1"></a><span class="co"># Gunakan CI = 93%, artinya alpha = 7% = 0.07</span></span>
 <span id="cb253-2"><a href="modul-5-uji-hipotesis.html#cb253-2" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.07</span></span>
 <span id="cb253-3"><a href="modul-5-uji-hipotesis.html#cb253-3" tabindex="-1"></a></span>
 <span id="cb253-4"><a href="modul-5-uji-hipotesis.html#cb253-4" tabindex="-1"></a><span class="co"># Hitung Z kritis 2-tailed</span></span>
-<span id="cb253-5"><a href="modul-5-uji-hipotesis.html#cb253-5" tabindex="-1"></a>Z.crit_2tail <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb253-5"><a href="modul-5-uji-hipotesis.html#cb253-5" tabindex="-1"></a>z_crit_2tail <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">qnorm</span>(alpha<span class="sc">/</span><span class="dv">2</span>))</span>
 <span id="cb253-6"><a href="modul-5-uji-hipotesis.html#cb253-6" tabindex="-1"></a></span>
 <span id="cb253-7"><a href="modul-5-uji-hipotesis.html#cb253-7" tabindex="-1"></a><span class="co"># Hitung statistik uji proporsi 2 populasi</span></span>
 <span id="cb253-8"><a href="modul-5-uji-hipotesis.html#cb253-8" tabindex="-1"></a><span class="co"># Asumsi: Menggunakan data proporsi kos/asrama ITERA vs UINRIL yang sudah disiapkan sebelumnya</span></span>
-<span id="cb253-9"><a href="modul-5-uji-hipotesis.html#cb253-9" tabindex="-1"></a>Z_prop2Pop <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">ht_prop_2popIn</span>(proporsi_kosAsrama_UINRIL, proporsi_kosAsrama_ITERA,</span>
-<span id="cb253-10"><a href="modul-5-uji-hipotesis.html#cb253-10" tabindex="-1"></a>                             n_kosAsrama_UINRIL, n_kosAsrama_ITERA))</span>
+<span id="cb253-9"><a href="modul-5-uji-hipotesis.html#cb253-9" tabindex="-1"></a>z_prop_2pop <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">ht_prop_2pop_ind</span>(proporsi_kos_asrama_uinril, proporsi_kos_asrama_itera,</span>
+<span id="cb253-10"><a href="modul-5-uji-hipotesis.html#cb253-10" tabindex="-1"></a>                             n_kos_asrama_uinril, n_kos_asrama_itera))</span>
 <span id="cb253-11"><a href="modul-5-uji-hipotesis.html#cb253-11" tabindex="-1"></a></span>
-<span id="cb253-12"><a href="modul-5-uji-hipotesis.html#cb253-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik Kritis:&quot;</span>, Z.crit_2tail, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">Z Hitung:&quot;</span>, Z_prop2Pop, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<span id="cb253-12"><a href="modul-5-uji-hipotesis.html#cb253-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik Kritis:&quot;</span>, z_crit_2tail, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">Z Hitung:&quot;</span>, z_prop_2pop, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Titik Kritis: 1.811911 
 ## Z Hitung: 2.597132</code></pre>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="modul-5-uji-hipotesis.html#cb255-1" tabindex="-1"></a><span class="cf">if</span> (Z_prop2Pop <span class="sc">&lt;</span> Z.crit_2tail) {</span>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="modul-5-uji-hipotesis.html#cb255-1" tabindex="-1"></a><span class="cf">if</span> (z_prop_2pop <span class="sc">&lt;</span> z_crit_2tail) {</span>
 <span id="cb255-2"><a href="modul-5-uji-hipotesis.html#cb255-2" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hipotesis nol gagal ditolak.&quot;</span>)</span>
 <span id="cb255-3"><a href="modul-5-uji-hipotesis.html#cb255-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
 <span id="cb255-4"><a href="modul-5-uji-hipotesis.html#cb255-4" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hipotesis nol ditolak.&quot;</span>)</span>
@@ -995,19 +997,19 @@ Gambar 5.3: Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)
 <span id="cb257-4"><a href="modul-5-uji-hipotesis.html#cb257-4" tabindex="-1"></a></span>
 <span id="cb257-5"><a href="modul-5-uji-hipotesis.html#cb257-5" tabindex="-1"></a><span class="co"># Hitung Z kritis 1-tailed</span></span>
 <span id="cb257-6"><a href="modul-5-uji-hipotesis.html#cb257-6" tabindex="-1"></a><span class="cf">if</span> (tail <span class="sc">==</span> <span class="st">&quot;kiri&quot;</span>) {</span>
-<span id="cb257-7"><a href="modul-5-uji-hipotesis.html#cb257-7" tabindex="-1"></a>  Z.crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
+<span id="cb257-7"><a href="modul-5-uji-hipotesis.html#cb257-7" tabindex="-1"></a>  z_crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha)</span>
 <span id="cb257-8"><a href="modul-5-uji-hipotesis.html#cb257-8" tabindex="-1"></a>} <span class="cf">else</span> {</span>
-<span id="cb257-9"><a href="modul-5-uji-hipotesis.html#cb257-9" tabindex="-1"></a>  Z.crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha)</span>
+<span id="cb257-9"><a href="modul-5-uji-hipotesis.html#cb257-9" tabindex="-1"></a>  z_crit_1tail <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span><span class="sc">-</span>alpha)</span>
 <span id="cb257-10"><a href="modul-5-uji-hipotesis.html#cb257-10" tabindex="-1"></a>}</span>
 <span id="cb257-11"><a href="modul-5-uji-hipotesis.html#cb257-11" tabindex="-1"></a></span>
 <span id="cb257-12"><a href="modul-5-uji-hipotesis.html#cb257-12" tabindex="-1"></a><span class="co"># Hitung statistik uji (tidak absolut)</span></span>
-<span id="cb257-13"><a href="modul-5-uji-hipotesis.html#cb257-13" tabindex="-1"></a>Z_prop2Pop <span class="ot">&lt;-</span> <span class="fu">ht_prop_2popIn</span>(proporsi_kosAsrama_UINRIL, proporsi_kosAsrama_ITERA,</span>
-<span id="cb257-14"><a href="modul-5-uji-hipotesis.html#cb257-14" tabindex="-1"></a>                             n_kosAsrama_UINRIL, n_kosAsrama_ITERA)</span>
+<span id="cb257-13"><a href="modul-5-uji-hipotesis.html#cb257-13" tabindex="-1"></a>z_prop_2pop <span class="ot">&lt;-</span> <span class="fu">ht_prop_2pop_ind</span>(proporsi_kos_asrama_uinril, proporsi_kos_asrama_itera,</span>
+<span id="cb257-14"><a href="modul-5-uji-hipotesis.html#cb257-14" tabindex="-1"></a>                             n_kos_asrama_uinril, n_kos_asrama_itera)</span>
 <span id="cb257-15"><a href="modul-5-uji-hipotesis.html#cb257-15" tabindex="-1"></a></span>
-<span id="cb257-16"><a href="modul-5-uji-hipotesis.html#cb257-16" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik Kritis:&quot;</span>, Z.crit_1tail, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">Z Hitung:&quot;</span>, Z_prop2Pop, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<span id="cb257-16"><a href="modul-5-uji-hipotesis.html#cb257-16" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Titik Kritis:&quot;</span>, z_crit_1tail, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">Z Hitung:&quot;</span>, z_prop_2pop, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Titik Kritis: -1.750686 
 ## Z Hitung: -2.597132</code></pre>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="modul-5-uji-hipotesis.html#cb259-1" tabindex="-1"></a><span class="cf">if</span> (Z_prop2Pop <span class="sc">&lt;</span> Z.crit_1tail) {</span>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="modul-5-uji-hipotesis.html#cb259-1" tabindex="-1"></a><span class="cf">if</span> (z_prop_2pop <span class="sc">&lt;</span> z_crit_1tail) {</span>
 <span id="cb259-2"><a href="modul-5-uji-hipotesis.html#cb259-2" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hipotesis nol ditolak (Signifikan).&quot;</span>)</span>
 <span id="cb259-3"><a href="modul-5-uji-hipotesis.html#cb259-3" tabindex="-1"></a>} <span class="cf">else</span> {</span>
 <span id="cb259-4"><a href="modul-5-uji-hipotesis.html#cb259-4" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;Hipotesis nol gagal ditolak.&quot;</span>)</span>

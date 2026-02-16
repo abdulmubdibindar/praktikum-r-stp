@@ -118,7 +118,24 @@ git status
 
 Sekarang `header.html` sudah di staging area (siap di-commit), sementara `footer.html` masih di working directory.
 
-### 🔑 Poin Penting
+### � Tips Pro: Variasi `git add`
+
+Bagaimana jika Anda ingin lebih spesifik?
+
+1.  **Hanya file yang sudah dilacak (Modified & Deleted):**
+    Gunakan opsi `-u` (update). Ini akan men-stage file yang diedit dan dihapus, tapi **mengabaikan file baru** (untracked).
+
+    ```bash
+    git add -u
+    ```
+
+2.  **Memilih bagian tertentu dalam file (Patch):**
+    Gunakan opsi `-p` (patch). Git akan menampilkan setiap blok perubahan (hunk) dan bertanya apakah Anda ingin men-stage perubahan tersebut atau tidak (`y/n`). Sangat berguna untuk review codingan sendiri dalam file yang sama!
+    ```bash
+    git add -p
+    ```
+
+### �🔑 Poin Penting
 
 - ✅ Working Directory = tempat kerja Anda
 - ✅ Staging Area = seleksi perubahan yang akan disimpan

@@ -447,28 +447,39 @@ div.csl-indent {
 <span id="cb138-46"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb138-46" tabindex="-1"></a><span class="co"># Menampilkan beberapa baris pertama dari data gabungan</span></span>
 <span id="cb138-47"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb138-47" tabindex="-1"></a><span class="fu">head</span>(data_mahasiswa)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
-##   kampus jarak_km jenis_tinggal                 tipe_tinggal_baku     
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt;                 
-## 1 UINRIL    19.3  Rumah bersama saudara         Rumah Keluarga/Pribadi
-## 2 UINRIL     0.58 Kos sendiri                   Kos/Asrama            
-## 3 UINRIL     0.56 Kos sendiri                   Kos/Asrama            
-## 4 UINRIL     1.05 Kos sendiri                   Kos/Asrama            
-## 5 UINRIL     1.69 Rumah mengontrak bersama-sama Rumah Keluarga/Pribadi
-## 6 UINRIL     7.91 Rumah pribadi/rumah keluarga  Rumah Keluarga/Pribadi</code></pre>
+##   kampus jarak_km jenis_tinggal             
+##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;                     
+## 1 UINRIL    19.3  Rumah bersama saudara     
+## 2 UINRIL     0.58 Kos sendiri               
+## 3 UINRIL     0.56 Kos sendiri               
+## 4 UINRIL     1.05 Kos sendiri               
+## 5 UINRIL     1.69 Rumah mengontrak bersama-…
+## 6 UINRIL     7.91 Rumah pribadi/rumah kelua…
+## # ℹ 1 more variable:
+## #   tipe_tinggal_baku &lt;chr&gt;</code></pre>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb140-1" tabindex="-1"></a><span class="co"># Menampilkan ringkasan data</span></span>
 <span id="cb140-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb140-2" tabindex="-1"></a><span class="fu">summary</span>(data_mahasiswa)</span></code></pre></div>
-<pre><code>##     kampus             jarak_km        jenis_tinggal      tipe_tinggal_baku 
-##  Length:1600        Min.   : 0.06352   Length:1600        Length:1600       
-##  Class :character   1st Qu.: 1.31127   Class :character   Class :character  
-##  Mode  :character   Median : 2.90884   Mode  :character   Mode  :character  
-##                     Mean   : 3.62552                                        
-##                     3rd Qu.: 5.14000                                        
-##                     Max.   :43.54519</code></pre>
+<pre><code>##     kampus             jarak_km       
+##  Length:1600        Min.   : 0.06352  
+##  Class :character   1st Qu.: 1.31127  
+##  Mode  :character   Median : 2.90884  
+##                     Mean   : 3.62552  
+##                     3rd Qu.: 5.14000  
+##                     Max.   :43.54519  
+##  jenis_tinggal      tipe_tinggal_baku 
+##  Length:1600        Length:1600       
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##                                       
+##                                       
+## </code></pre>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-1" tabindex="-1"></a><span class="co"># Menampilkan frekuensi jenis tempat tinggal yang sudah dibakukan</span></span>
 <span id="cb142-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-2" tabindex="-1"></a><span class="fu">table</span>(data_mahasiswa<span class="sc">$</span>tipe_tinggal_baku)</span></code></pre></div>
 <pre><code>## 
-##             Kos/Asrama Rumah Keluarga/Pribadi 
-##                    639                    961</code></pre>
+##             Kos/Asrama 
+##                    639 
+## Rumah Keluarga/Pribadi 
+##                    961</code></pre>
 <blockquote>
 <p><strong>Penjelasan <code>case_when()</code></strong>:</p>
 <p>Fungsi <code>case_when()</code> (bagian dari <code>dplyr</code>) sangat berguna untuk membuat variabel baru berdasarkan serangkaian aturan kondisional, mirip seperti pernyataan <code>IF-ELSE IF-ELSE</code>. Di dalam <code>mutate()</code>, kita membuat kolom baru bernama <code>tipe_tinggal_baku</code>.</p>
@@ -659,8 +670,10 @@ div.csl-indent {
 <pre><code>## Tabel Frekuensi Jenis Tinggal di Populasi:</code></pre>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb169-1" tabindex="-1"></a><span class="fu">print</span>(tabel_populasi)</span></code></pre></div>
 <pre><code>## 
-##             Kos/Asrama Rumah Keluarga/Pribadi 
-##                    639                    961</code></pre>
+##             Kos/Asrama 
+##                    639 
+## Rumah Keluarga/Pribadi 
+##                    961</code></pre>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb171-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Proporsi Mahasiswa di Kos/Asrama (p):&quot;</span>, <span class="fu">round</span>(pop_prop, <span class="dv">4</span>)))</span></code></pre></div>
 <pre><code>## 
 ## Proporsi Mahasiswa di Kos/Asrama (p): 0.3994</code></pre>
@@ -684,8 +697,10 @@ div.csl-indent {
 <pre><code>## Tabel Frekuensi Jenis Tinggal di Sampel:</code></pre>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb175-1" tabindex="-1"></a><span class="fu">print</span>(tabel_sampel)</span></code></pre></div>
 <pre><code>## sampel_prop
-##             Kos/Asrama Rumah Keluarga/Pribadi 
-##                     36                     64</code></pre>
+##             Kos/Asrama 
+##                     36 
+## Rumah Keluarga/Pribadi 
+##                     64</code></pre>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb177-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Proporsi Sampel Mahasiswa di Kos/Asrama (p-hat):&quot;</span>, <span class="fu">round</span>(prop_sampel, <span class="dv">4</span>)))</span></code></pre></div>
 <pre><code>## 
 ## Proporsi Sampel Mahasiswa di Kos/Asrama (p-hat): 0.36</code></pre>

@@ -394,78 +394,158 @@ div.csl-indent {
 <h2><span class="header-section-number">2.2</span> Mengimpor Dataset<a href="modul-2-analisis-statistika-deskriptif.html#mengimpor-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Kita menggunakan data mahasiswa UBL yang sudah lengkap karena sudah diolah kembali.</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb80-1" tabindex="-1"></a><span class="co"># Mengeset variabel tersendiri untuk nama file nama sheet</span></span>
-<span id="cb80-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb80-2" tabindex="-1"></a>file.dibaca <span class="ot">&lt;-</span> <span class="st">&quot;datasets/Data Praktikum 02.xlsx&quot;</span></span>
-<span id="cb80-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb80-3" tabindex="-1"></a>sheet.ubl <span class="ot">&lt;-</span> <span class="st">&quot;DataUtama_mhsUBL&quot;</span></span>
+<span id="cb80-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb80-2" tabindex="-1"></a>file_dibaca <span class="ot">&lt;-</span> <span class="st">&quot;datasets/Data Praktikum 02.xlsx&quot;</span></span>
+<span id="cb80-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb80-3" tabindex="-1"></a>sheet_ubl <span class="ot">&lt;-</span> <span class="st">&quot;DataUtama_mhsUBL&quot;</span></span>
 <span id="cb80-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb80-4" tabindex="-1"></a></span>
 <span id="cb80-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb80-5" tabindex="-1"></a><span class="co"># Mengimpor file menjadi dataset memanfaatkan variabel nama file dan nama sheet yang kita buat tadi</span></span>
-<span id="cb80-6"><a href="modul-2-analisis-statistika-deskriptif.html#cb80-6" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file.dibaca, <span class="at">sheet =</span> sheet.ubl)</span></code></pre></div>
+<span id="cb80-6"><a href="modul-2-analisis-statistika-deskriptif.html#cb80-6" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_dibaca, <span class="at">sheet =</span> sheet_ubl)</span></code></pre></div>
 <p>Sebelumnya kita sudah mengenal <code>glimpse()</code> yang berasal dari <em>library</em> <code>dplyr</code>, sekarang kita akan mengenal perintah untuk menampilkan ringkasan dataset bawaan R (disebut juga <em>‘base R’</em>) bernama <code>summary()</code>.</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb81-1" tabindex="-1"></a><span class="co"># Melihat ringkasan dataset (cara lain)</span></span>
-<span id="cb81-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb81-2" tabindex="-1"></a><span class="fu">summary</span>(data.ubl)</span></code></pre></div>
-<pre><code>##    Timestamp      Kampus_PT           Nomor.urut    Jenis.Kelamin     
-##  Min.   :45414   Length:379         Min.   :  1.0   Length:379        
-##  1st Qu.:45416   Class :character   1st Qu.: 95.5   Class :character  
-##  Median :45423   Mode  :character   Median :190.0   Mode  :character  
-##  Mean   :45420                      Mean   :190.0                     
-##  3rd Qu.:45423                      3rd Qu.:284.5                     
-##  Max.   :45424                      Max.   :379.0                     
-##                                                                       
-##       Umur         Fakultas            Prodi           Tingkat.Semester  
-##  Min.   :18.00   Length:379         Length:379         Length:379        
-##  1st Qu.:20.00   Class :character   Class :character   Class :character  
-##  Median :21.00   Mode  :character   Mode  :character   Mode  :character  
-##  Mean   :20.78                                                           
-##  3rd Qu.:22.00                                                           
-##  Max.   :23.00                                                           
-##                                                                          
-##   Uang.Saku         kepemilikan.mobil kepemilikan.motor kepemilikan.sepeda
-##  Length:379         Min.   :0.0000    Min.   :0.000     Min.   :0.0000    
-##  Class :character   1st Qu.:0.0000    1st Qu.:1.000     1st Qu.:0.0000    
-##  Mode  :character   Median :1.0000    Median :1.000     Median :0.0000    
-##                     Mean   :0.9654    Mean   :1.517     Mean   :0.2857    
-##                     3rd Qu.:2.0000    3rd Qu.:2.000     3rd Qu.:0.0000    
-##                     Max.   :4.0000    Max.   :5.000     Max.   :3.0000    
-##                     NA&#39;s   :3                           NA&#39;s   :1         
-##  kendaraan.utama     kelurahan         jenis.tempat.tinggal
-##  Length:379         Length:379         Length:379          
-##  Class :character   Class :character   Class :character    
-##  Mode  :character   Mode  :character   Mode  :character    
-##                                                            
-##                                                            
-##                                                            
-##                                                            
-##  nama.jalan.tempat.tinggal   jarak.(km)      
-##  Length:379                Min.   : 0.06352  
-##  Class :character          1st Qu.: 1.31127  
-##  Mode  :character          Median : 2.69037  
-##                            Mean   : 3.37914  
-##                            3rd Qu.: 4.69466  
-##                            Max.   :43.54519  
-##                                              
-##  alasan.pemilihan.lokasi.tempat.tinggal biaya.dalam.seminggu
-##  Length:379                             Min.   :  0.00      
-##  Class :character                       1st Qu.: 50.00      
-##  Mode  :character                       Median : 70.00      
-##                                         Mean   : 93.57      
-##                                         3rd Qu.:110.00      
-##                                         Max.   :600.00      
-##                                         NA&#39;s   :2           
-##  Jumlah.perjalanan.Senin Jumlah.Perjalanan.Selasa Jumlah.Perjalanan.Rabu
-##  Min.   :1.000           Min.   :1.000            Min.   :1.000         
-##  1st Qu.:2.000           1st Qu.:1.000            1st Qu.:1.000         
-##  Median :2.000           Median :2.000            Median :2.000         
-##  Mean   :2.679           Mean   :2.264            Mean   :2.092         
-##  3rd Qu.:4.000           3rd Qu.:3.000            3rd Qu.:3.000         
-##  Max.   :8.000           Max.   :6.000            Max.   :6.000         
-##  NA&#39;s   :43                                                             
-##  Jumlah.Perjalanan.Kamis Jumlah.Perjalanan.Jumat Jumlah.Perjalanan.Sabtu
-##  Min.   :1.000           Min.   :1.000           Min.   :1.000          
-##  1st Qu.:1.000           1st Qu.:1.000           1st Qu.:1.000          
-##  Median :2.000           Median :2.000           Median :2.000          
-##  Mean   :2.092           Mean   :2.032           Mean   :1.749          
-##  3rd Qu.:3.000           3rd Qu.:3.000           3rd Qu.:2.000          
-##  Max.   :7.000           Max.   :9.000           Max.   :5.000          
-##                                                                         
+<span id="cb81-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb81-2" tabindex="-1"></a><span class="fu">summary</span>(data_ubl)</span></code></pre></div>
+<pre><code>##    Timestamp      Kampus_PT        
+##  Min.   :45414   Length:379        
+##  1st Qu.:45416   Class :character  
+##  Median :45423   Mode  :character  
+##  Mean   :45420                     
+##  3rd Qu.:45423                     
+##  Max.   :45424                     
+##                                    
+##    Nomor.urut    Jenis.Kelamin     
+##  Min.   :  1.0   Length:379        
+##  1st Qu.: 95.5   Class :character  
+##  Median :190.0   Mode  :character  
+##  Mean   :190.0                     
+##  3rd Qu.:284.5                     
+##  Max.   :379.0                     
+##                                    
+##       Umur         Fakultas        
+##  Min.   :18.00   Length:379        
+##  1st Qu.:20.00   Class :character  
+##  Median :21.00   Mode  :character  
+##  Mean   :20.78                     
+##  3rd Qu.:22.00                     
+##  Max.   :23.00                     
+##                                    
+##     Prodi           Tingkat.Semester  
+##  Length:379         Length:379        
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##                                       
+##                                       
+##                                       
+##                                       
+##   Uang.Saku         kepemilikan.mobil
+##  Length:379         Min.   :0.0000   
+##  Class :character   1st Qu.:0.0000   
+##  Mode  :character   Median :1.0000   
+##                     Mean   :0.9654   
+##                     3rd Qu.:2.0000   
+##                     Max.   :4.0000   
+##                     NA&#39;s   :3        
+##  kepemilikan.motor kepemilikan.sepeda
+##  Min.   :0.000     Min.   :0.0000    
+##  1st Qu.:1.000     1st Qu.:0.0000    
+##  Median :1.000     Median :0.0000    
+##  Mean   :1.517     Mean   :0.2857    
+##  3rd Qu.:2.000     3rd Qu.:0.0000    
+##  Max.   :5.000     Max.   :3.0000    
+##                    NA&#39;s   :1         
+##  kendaraan.utama     kelurahan        
+##  Length:379         Length:379        
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##                                       
+##                                       
+##                                       
+##                                       
+##  jenis.tempat.tinggal
+##  Length:379          
+##  Class :character    
+##  Mode  :character    
+##                      
+##                      
+##                      
+##                      
+##  nama.jalan.tempat.tinggal
+##  Length:379               
+##  Class :character         
+##  Mode  :character         
+##                           
+##                           
+##                           
+##                           
+##    jarak.(km)      
+##  Min.   : 0.06352  
+##  1st Qu.: 1.31127  
+##  Median : 2.69037  
+##  Mean   : 3.37914  
+##  3rd Qu.: 4.69466  
+##  Max.   :43.54519  
+##                    
+##  alasan.pemilihan.lokasi.tempat.tinggal
+##  Length:379                            
+##  Class :character                      
+##  Mode  :character                      
+##                                        
+##                                        
+##                                        
+##                                        
+##  biaya.dalam.seminggu
+##  Min.   :  0.00      
+##  1st Qu.: 50.00      
+##  Median : 70.00      
+##  Mean   : 93.57      
+##  3rd Qu.:110.00      
+##  Max.   :600.00      
+##  NA&#39;s   :2           
+##  Jumlah.perjalanan.Senin
+##  Min.   :1.000          
+##  1st Qu.:2.000          
+##  Median :2.000          
+##  Mean   :2.679          
+##  3rd Qu.:4.000          
+##  Max.   :8.000          
+##  NA&#39;s   :43             
+##  Jumlah.Perjalanan.Selasa
+##  Min.   :1.000           
+##  1st Qu.:1.000           
+##  Median :2.000           
+##  Mean   :2.264           
+##  3rd Qu.:3.000           
+##  Max.   :6.000           
+##                          
+##  Jumlah.Perjalanan.Rabu
+##  Min.   :1.000         
+##  1st Qu.:1.000         
+##  Median :2.000         
+##  Mean   :2.092         
+##  3rd Qu.:3.000         
+##  Max.   :6.000         
+##                        
+##  Jumlah.Perjalanan.Kamis
+##  Min.   :1.000          
+##  1st Qu.:1.000          
+##  Median :2.000          
+##  Mean   :2.092          
+##  3rd Qu.:3.000          
+##  Max.   :7.000          
+##                         
+##  Jumlah.Perjalanan.Jumat
+##  Min.   :1.000          
+##  1st Qu.:1.000          
+##  Median :2.000          
+##  Mean   :2.032          
+##  3rd Qu.:3.000          
+##  Max.   :9.000          
+##                         
+##  Jumlah.Perjalanan.Sabtu
+##  Min.   :1.000          
+##  1st Qu.:1.000          
+##  Median :2.000          
+##  Mean   :1.749          
+##  3rd Qu.:2.000          
+##  Max.   :5.000          
+##                         
 ##  Jumlah.Perjalanan.Ahad
 ##  Min.   :1.00          
 ##  1st Qu.:1.00          
@@ -485,8 +565,8 @@ div.csl-indent {
 <p>Perintah <code>rename()</code> memiliki sintaks seperti berikut</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb83-1" tabindex="-1"></a><span class="fu">rename</span>(dataset_kita, <span class="at">nama_kolom_baru =</span> nama_kolom_lama) </span></code></pre></div>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb84-1" tabindex="-1"></a><span class="co"># Membaca ulang dataset supaya menjadi kondisi semula</span></span>
-<span id="cb84-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb84-2" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file.dibaca, <span class="at">sheet =</span> sheet.ubl)</span>
-<span id="cb84-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb84-3" tabindex="-1"></a><span class="fu">colnames</span>(data.ubl)</span></code></pre></div>
+<span id="cb84-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb84-2" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_dibaca, <span class="at">sheet =</span> sheet_ubl)</span>
+<span id="cb84-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb84-3" tabindex="-1"></a><span class="fu">colnames</span>(data_ubl)</span></code></pre></div>
 <pre><code>##  [1] &quot;Timestamp&quot;                             
 ##  [2] &quot;Kampus_PT&quot;                             
 ##  [3] &quot;Nomor.urut&quot;                            
@@ -514,9 +594,9 @@ div.csl-indent {
 ## [25] &quot;Jumlah.Perjalanan.Sabtu&quot;               
 ## [26] &quot;Jumlah.Perjalanan.Ahad&quot;</code></pre>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb86-1" tabindex="-1"></a><span class="co"># Mengganti nama variabel-variabel</span></span>
-<span id="cb86-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb86-2" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data.ubl, <span class="at">biaya.dalam.sepekan =</span> biaya.dalam.seminggu)</span>
-<span id="cb86-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb86-3" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data.ubl, <span class="at">Jumlah.Perjalanan.Senin =</span> Jumlah.perjalanan.Senin)</span>
-<span id="cb86-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb86-4" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data.ubl, <span class="at">jarak =</span> <span class="st">`</span><span class="at">jarak.(km)</span><span class="st">`</span>)  <span class="co"># tanda backtick (`) digunakan di antara &quot;jarak.(km)&quot; </span></span>
+<span id="cb86-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb86-2" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data_ubl, <span class="at">biaya_dalam_sepekan =</span> biaya.dalam.seminggu)</span>
+<span id="cb86-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb86-3" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data_ubl, <span class="at">jumlah_perjalanan_senin =</span> Jumlah.perjalanan.Senin)</span>
+<span id="cb86-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb86-4" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data_ubl, <span class="at">jarak =</span> <span class="st">`</span><span class="at">jarak.(km)</span><span class="st">`</span>)  <span class="co"># tanda backtick (`) digunakan di antara &quot;jarak.(km)&quot; </span></span>
 <span id="cb86-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb86-5" tabindex="-1"></a>                                                    <span class="co"># karena ada tanda kurung yang dianggap oleh R mempunyai fungsi khusus</span></span></code></pre></div>
 <div class="rmdnote">
 <p><strong>Pengenalan Teknik Pengolahan dalam R: <em>Pipe Operator</em> (<code>|&gt;</code>)</strong></p>
@@ -524,8 +604,8 @@ div.csl-indent {
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb87-1" tabindex="-1"></a><span class="co"># CARA-1: CARA KONVENSIONAL</span></span>
 <span id="cb87-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb87-2" tabindex="-1"></a></span>
 <span id="cb87-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb87-3" tabindex="-1"></a><span class="co"># Membaca ulang dataset supaya menjadi kondisi semula</span></span>
-<span id="cb87-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb87-4" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file.dibaca, <span class="at">sheet =</span> sheet.ubl)</span>
-<span id="cb87-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb87-5" tabindex="-1"></a><span class="fu">colnames</span>(data.ubl)</span></code></pre></div>
+<span id="cb87-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb87-4" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_dibaca, <span class="at">sheet =</span> sheet_ubl)</span>
+<span id="cb87-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb87-5" tabindex="-1"></a><span class="fu">colnames</span>(data_ubl)</span></code></pre></div>
 <pre><code>##  [1] &quot;Timestamp&quot;                             
 ##  [2] &quot;Kampus_PT&quot;                             
 ##  [3] &quot;Nomor.urut&quot;                            
@@ -553,25 +633,25 @@ div.csl-indent {
 ## [25] &quot;Jumlah.Perjalanan.Sabtu&quot;               
 ## [26] &quot;Jumlah.Perjalanan.Ahad&quot;</code></pre>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb89-1" tabindex="-1"></a><span class="co"># Mengganti nama variabel-variabel</span></span>
-<span id="cb89-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb89-2" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data.ubl, <span class="at">biaya.dalam.sepekan =</span> biaya.dalam.seminggu)</span>
-<span id="cb89-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb89-3" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data.ubl, <span class="at">Jumlah.Perjalanan.Senin =</span> Jumlah.perjalanan.Senin)</span>
-<span id="cb89-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb89-4" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data.ubl, <span class="at">jarak =</span> <span class="st">`</span><span class="at">jarak.(km)</span><span class="st">`</span>)</span></code></pre></div>
+<span id="cb89-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb89-2" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data_ubl, <span class="at">biaya_dalam_sepekan =</span> biaya.dalam.seminggu)</span>
+<span id="cb89-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb89-3" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data_ubl, <span class="at">jumlah_perjalanan_senin =</span> Jumlah.perjalanan.Senin)</span>
+<span id="cb89-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb89-4" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">rename</span>(data_ubl, <span class="at">jarak =</span> <span class="st">`</span><span class="at">jarak.(km)</span><span class="st">`</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-1" tabindex="-1"></a><span class="co"># CARA-2: MENGGUNAKAN PIPE OPERATOR</span></span>
 <span id="cb90-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-2" tabindex="-1"></a></span>
 <span id="cb90-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-3" tabindex="-1"></a><span class="co"># Membaca ulang dataset supaya menjadi kondisi semula</span></span>
-<span id="cb90-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-4" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file.dibaca, <span class="at">sheet =</span> sheet.ubl)</span>
+<span id="cb90-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-4" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_dibaca, <span class="at">sheet =</span> sheet_ubl)</span>
 <span id="cb90-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-5" tabindex="-1"></a></span>
 <span id="cb90-6"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-6" tabindex="-1"></a><span class="co"># Mengganti nama variabel-variabel</span></span>
-<span id="cb90-7"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-7" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> data.ubl <span class="sc">|&gt;</span> </span>
-<span id="cb90-8"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-8" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">biaya.dalam.sepekan =</span> biaya.dalam.seminggu) <span class="sc">|&gt;</span></span>
+<span id="cb90-7"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-7" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> data_ubl <span class="sc">|&gt;</span> </span>
+<span id="cb90-8"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-8" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">biaya_dalam_sepekan =</span> biaya.dalam.seminggu) <span class="sc">|&gt;</span></span>
 <span id="cb90-9"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-9" tabindex="-1"></a>  <span class="co"># setiap baris yang masih ada proses selanjutnya harus diisi dengan pipe operator</span></span>
-<span id="cb90-10"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-10" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Jumlah.Perjalanan.Senin =</span> Jumlah.perjalanan.Senin) <span class="sc">|&gt;</span> </span>
+<span id="cb90-10"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-10" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">jumlah_perjalanan_senin =</span> Jumlah.perjalanan.Senin) <span class="sc">|&gt;</span> </span>
 <span id="cb90-11"><a href="modul-2-analisis-statistika-deskriptif.html#cb90-11" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">jarak =</span> <span class="st">`</span><span class="at">jarak.(km)</span><span class="st">`</span>)</span></code></pre></div>
-<p>Dalam cara 1, kita harus menulis <code>data.ubl</code> berkali-kali untuk setiap perintah. Ini mungkin tidak akan terasa jika jumlah kolom yang kita miliki sedikit. Tetapi, akan lain ceritanya jika jumlahnya banyak. Selain itu, data kita tidak bisa secara intuitif seperti biasanya kita membaca suatu teks dari kiri ke kanan.</p>
+<p>Dalam cara 1, kita harus menulis <code>data_ubl</code> berkali-kali untuk setiap perintah. Ini mungkin tidak akan terasa jika jumlah kolom yang kita miliki sedikit. Tetapi, akan lain ceritanya jika jumlahnya banyak. Selain itu, data kita tidak bisa secara intuitif seperti biasanya kita membaca suatu teks dari kiri ke kanan.</p>
 <p>Operator pipa (<code>|&gt;</code>) memungkinkan hal tersebut. Selain kita tidak perlu menuliskan dataset kita berkali-kali, kita dengan lebih mudah memahami baris-baris kode kita tersebut sebagai proses dari atas ke bawah, dari kiri ke kanan, seperti pipa.</p>
 <p>Berikut adalah penjelasan cara-2:</p>
 <ul>
-<li><p><code>data.ubl |&gt;</code>: perintah “Ambil dataset <code>data.ubl</code>.”</p></li>
+<li><p><code>data_ubl |&gt;</code>: perintah “Ambil dataset <code>data_ubl</code>.”</p></li>
 <li><p>Kirimkan dataset itu ke fungsi berikutnya (<code>rename</code>).</p></li>
 <li><p>Hasil dari fungsi <code>rename</code> pertama dikirimkan lagi ke fungsi <code>rename</code> kedua, dan seterusnya.</p></li>
 </ul>
@@ -584,8 +664,8 @@ div.csl-indent {
 <p><strong>Aktivitas Mandiri 1: Menguasai Pipe Operator [STP-2.4]</strong></p>
 <p>Dengan satu blok kode menggunakan pipe operator <code>|&gt;</code>:
 1. Baca dataset UBL dari file dan sheet yang sudah ditentukan
-2. Ubah nama variabel <code>biaya.dalam.seminggu</code> menjadi <code>biaya.dalam.sepekan</code>
-3. Ubah nama variabel <code>Jumlah.perjalanan.Senin</code> menjadi <code>Jumlah.Perjalanan.Senin</code>
+2. Ubah nama variabel <code>biaya.dalam.seminggu</code> menjadi <code>biaya_dalam_sepekan</code>
+3. Ubah nama variabel <code>Jumlah.perjalanan.Senin</code> menjadi <code>jumlah_perjalanan_senin</code>
 4. Buang baris yang mengandung missing values dengan fungsi <code>drop_na()</code>
 5. Simpan hasilnya ke variabel <code>data_ubl_bersih</code>
 6. Verifikasi dengan <code>glimpse(data_ubl_bersih)</code> - pastikan tidak ada NA</p>
@@ -595,200 +675,315 @@ div.csl-indent {
 <h4><span class="header-section-number">2.3.0.2</span> Mengecek <em>Missing Values</em><a href="modul-2-analisis-statistika-deskriptif.html#mengecek-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Pengecekan <em>missing values</em> dilakukan dengan perintah <code>is.na()</code> yang menghasilkan tabel berisi nilai <em>boolean</em> <code>FALSE</code> dan <code>TRUE</code> yang berarti ‘tidak kosong’ dan ‘kosong’ secara berturut-turut.</p>
 <p><code>colSums()</code> menjumlahkan nilai-nilai <code>TRUE</code> pada setiap kolom, menandakan berapa jumlah objek yang kosong nilainya.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb91-1" tabindex="-1"></a>checkMV_ubl <span class="ot">&lt;-</span> <span class="fu">is.na</span>(data.ubl)</span>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb91-1" tabindex="-1"></a>check_mv_ubl <span class="ot">&lt;-</span> <span class="fu">is.na</span>(data_ubl)</span>
 <span id="cb91-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb91-2" tabindex="-1"></a></span>
-<span id="cb91-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb91-3" tabindex="-1"></a><span class="fu">head</span>(checkMV_ubl)</span></code></pre></div>
-<pre><code>##   Timestamp Kampus_PT Nomor.urut Jenis.Kelamin  Umur Fakultas Prodi
-## 1     FALSE     FALSE      FALSE         FALSE FALSE    FALSE FALSE
-## 2     FALSE     FALSE      FALSE         FALSE FALSE    FALSE FALSE
-## 3     FALSE     FALSE      FALSE         FALSE FALSE    FALSE FALSE
-## 4     FALSE     FALSE      FALSE         FALSE FALSE    FALSE FALSE
-## 5     FALSE     FALSE      FALSE         FALSE FALSE    FALSE FALSE
-## 6     FALSE     FALSE      FALSE         FALSE FALSE    FALSE FALSE
-##   Tingkat.Semester Uang.Saku kepemilikan.mobil kepemilikan.motor
-## 1            FALSE     FALSE             FALSE             FALSE
-## 2            FALSE     FALSE             FALSE             FALSE
-## 3            FALSE     FALSE             FALSE             FALSE
-## 4            FALSE     FALSE             FALSE             FALSE
-## 5            FALSE     FALSE             FALSE             FALSE
-## 6            FALSE     FALSE             FALSE             FALSE
-##   kepemilikan.sepeda kendaraan.utama kelurahan jenis.tempat.tinggal
-## 1              FALSE           FALSE     FALSE                FALSE
-## 2              FALSE           FALSE     FALSE                FALSE
-## 3              FALSE           FALSE     FALSE                FALSE
-## 4              FALSE           FALSE     FALSE                FALSE
-## 5              FALSE           FALSE     FALSE                FALSE
-## 6              FALSE           FALSE     FALSE                FALSE
-##   nama.jalan.tempat.tinggal jarak alasan.pemilihan.lokasi.tempat.tinggal
-## 1                     FALSE FALSE                                  FALSE
-## 2                     FALSE FALSE                                  FALSE
-## 3                     FALSE FALSE                                  FALSE
-## 4                     FALSE FALSE                                  FALSE
-## 5                     FALSE FALSE                                  FALSE
-## 6                     FALSE FALSE                                  FALSE
-##   biaya.dalam.sepekan Jumlah.Perjalanan.Senin Jumlah.Perjalanan.Selasa
-## 1               FALSE                   FALSE                    FALSE
-## 2               FALSE                   FALSE                    FALSE
-## 3               FALSE                   FALSE                    FALSE
-## 4               FALSE                   FALSE                    FALSE
-## 5                TRUE                   FALSE                    FALSE
-## 6               FALSE                   FALSE                    FALSE
-##   Jumlah.Perjalanan.Rabu Jumlah.Perjalanan.Kamis Jumlah.Perjalanan.Jumat
-## 1                  FALSE                   FALSE                   FALSE
-## 2                  FALSE                   FALSE                   FALSE
-## 3                  FALSE                   FALSE                   FALSE
-## 4                  FALSE                   FALSE                   FALSE
-## 5                  FALSE                   FALSE                   FALSE
-## 6                  FALSE                   FALSE                   FALSE
-##   Jumlah.Perjalanan.Sabtu Jumlah.Perjalanan.Ahad
-## 1                   FALSE                  FALSE
-## 2                   FALSE                  FALSE
-## 3                   FALSE                  FALSE
-## 4                   FALSE                  FALSE
-## 5                   FALSE                  FALSE
-## 6                   FALSE                  FALSE</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb93-1" tabindex="-1"></a><span class="fu">colSums</span>(checkMV_ubl)</span></code></pre></div>
-<pre><code>##                              Timestamp                              Kampus_PT 
-##                                      0                                      0 
-##                             Nomor.urut                          Jenis.Kelamin 
-##                                      0                                      0 
-##                                   Umur                               Fakultas 
-##                                      0                                      0 
-##                                  Prodi                       Tingkat.Semester 
-##                                      0                                      0 
-##                              Uang.Saku                      kepemilikan.mobil 
-##                                      0                                      3 
-##                      kepemilikan.motor                     kepemilikan.sepeda 
-##                                      0                                      1 
-##                        kendaraan.utama                              kelurahan 
-##                                      0                                      0 
-##                   jenis.tempat.tinggal              nama.jalan.tempat.tinggal 
-##                                      0                                      4 
-##                                  jarak alasan.pemilihan.lokasi.tempat.tinggal 
-##                                      0                                      0 
-##                    biaya.dalam.sepekan                Jumlah.Perjalanan.Senin 
-##                                      2                                     43 
-##               Jumlah.Perjalanan.Selasa                 Jumlah.Perjalanan.Rabu 
-##                                      0                                      0 
-##                Jumlah.Perjalanan.Kamis                Jumlah.Perjalanan.Jumat 
-##                                      0                                      0 
-##                Jumlah.Perjalanan.Sabtu                 Jumlah.Perjalanan.Ahad 
-##                                      0                                      0</code></pre>
+<span id="cb91-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb91-3" tabindex="-1"></a><span class="fu">head</span>(check_mv_ubl)</span></code></pre></div>
+<pre><code>##   Timestamp Kampus_PT Nomor.urut
+## 1     FALSE     FALSE      FALSE
+## 2     FALSE     FALSE      FALSE
+## 3     FALSE     FALSE      FALSE
+## 4     FALSE     FALSE      FALSE
+## 5     FALSE     FALSE      FALSE
+## 6     FALSE     FALSE      FALSE
+##   Jenis.Kelamin  Umur Fakultas Prodi
+## 1         FALSE FALSE    FALSE FALSE
+## 2         FALSE FALSE    FALSE FALSE
+## 3         FALSE FALSE    FALSE FALSE
+## 4         FALSE FALSE    FALSE FALSE
+## 5         FALSE FALSE    FALSE FALSE
+## 6         FALSE FALSE    FALSE FALSE
+##   Tingkat.Semester Uang.Saku
+## 1            FALSE     FALSE
+## 2            FALSE     FALSE
+## 3            FALSE     FALSE
+## 4            FALSE     FALSE
+## 5            FALSE     FALSE
+## 6            FALSE     FALSE
+##   kepemilikan.mobil kepemilikan.motor
+## 1             FALSE             FALSE
+## 2             FALSE             FALSE
+## 3             FALSE             FALSE
+## 4             FALSE             FALSE
+## 5             FALSE             FALSE
+## 6             FALSE             FALSE
+##   kepemilikan.sepeda kendaraan.utama
+## 1              FALSE           FALSE
+## 2              FALSE           FALSE
+## 3              FALSE           FALSE
+## 4              FALSE           FALSE
+## 5              FALSE           FALSE
+## 6              FALSE           FALSE
+##   kelurahan jenis.tempat.tinggal
+## 1     FALSE                FALSE
+## 2     FALSE                FALSE
+## 3     FALSE                FALSE
+## 4     FALSE                FALSE
+## 5     FALSE                FALSE
+## 6     FALSE                FALSE
+##   nama.jalan.tempat.tinggal jarak
+## 1                     FALSE FALSE
+## 2                     FALSE FALSE
+## 3                     FALSE FALSE
+## 4                     FALSE FALSE
+## 5                     FALSE FALSE
+## 6                     FALSE FALSE
+##   alasan.pemilihan.lokasi.tempat.tinggal
+## 1                                  FALSE
+## 2                                  FALSE
+## 3                                  FALSE
+## 4                                  FALSE
+## 5                                  FALSE
+## 6                                  FALSE
+##   biaya_dalam_sepekan
+## 1               FALSE
+## 2               FALSE
+## 3               FALSE
+## 4               FALSE
+## 5                TRUE
+## 6               FALSE
+##   jumlah_perjalanan_senin
+## 1                   FALSE
+## 2                   FALSE
+## 3                   FALSE
+## 4                   FALSE
+## 5                   FALSE
+## 6                   FALSE
+##   Jumlah.Perjalanan.Selasa
+## 1                    FALSE
+## 2                    FALSE
+## 3                    FALSE
+## 4                    FALSE
+## 5                    FALSE
+## 6                    FALSE
+##   Jumlah.Perjalanan.Rabu
+## 1                  FALSE
+## 2                  FALSE
+## 3                  FALSE
+## 4                  FALSE
+## 5                  FALSE
+## 6                  FALSE
+##   Jumlah.Perjalanan.Kamis
+## 1                   FALSE
+## 2                   FALSE
+## 3                   FALSE
+## 4                   FALSE
+## 5                   FALSE
+## 6                   FALSE
+##   Jumlah.Perjalanan.Jumat
+## 1                   FALSE
+## 2                   FALSE
+## 3                   FALSE
+## 4                   FALSE
+## 5                   FALSE
+## 6                   FALSE
+##   Jumlah.Perjalanan.Sabtu
+## 1                   FALSE
+## 2                   FALSE
+## 3                   FALSE
+## 4                   FALSE
+## 5                   FALSE
+## 6                   FALSE
+##   Jumlah.Perjalanan.Ahad
+## 1                  FALSE
+## 2                  FALSE
+## 3                  FALSE
+## 4                  FALSE
+## 5                  FALSE
+## 6                  FALSE</code></pre>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb93-1" tabindex="-1"></a><span class="fu">colSums</span>(check_mv_ubl)</span></code></pre></div>
+<pre><code>##                              Timestamp 
+##                                      0 
+##                              Kampus_PT 
+##                                      0 
+##                             Nomor.urut 
+##                                      0 
+##                          Jenis.Kelamin 
+##                                      0 
+##                                   Umur 
+##                                      0 
+##                               Fakultas 
+##                                      0 
+##                                  Prodi 
+##                                      0 
+##                       Tingkat.Semester 
+##                                      0 
+##                              Uang.Saku 
+##                                      0 
+##                      kepemilikan.mobil 
+##                                      3 
+##                      kepemilikan.motor 
+##                                      0 
+##                     kepemilikan.sepeda 
+##                                      1 
+##                        kendaraan.utama 
+##                                      0 
+##                              kelurahan 
+##                                      0 
+##                   jenis.tempat.tinggal 
+##                                      0 
+##              nama.jalan.tempat.tinggal 
+##                                      4 
+##                                  jarak 
+##                                      0 
+## alasan.pemilihan.lokasi.tempat.tinggal 
+##                                      0 
+##                    biaya_dalam_sepekan 
+##                                      2 
+##                jumlah_perjalanan_senin 
+##                                     43 
+##               Jumlah.Perjalanan.Selasa 
+##                                      0 
+##                 Jumlah.Perjalanan.Rabu 
+##                                      0 
+##                Jumlah.Perjalanan.Kamis 
+##                                      0 
+##                Jumlah.Perjalanan.Jumat 
+##                                      0 
+##                Jumlah.Perjalanan.Sabtu 
+##                                      0 
+##                 Jumlah.Perjalanan.Ahad 
+##                                      0</code></pre>
 </div>
 <div id="menghapus-missing-values" class="section level4 hasAnchor" number="2.3.0.3">
 <h4><span class="header-section-number">2.3.0.3</span> Menghapus <em>Missing Values</em><a href="modul-2-analisis-statistika-deskriptif.html#menghapus-missing-values" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Penghapusan <em>missing values</em> juga dapat digunakan dengan <em>pipe operator.</em> Adapun perintah yang dapat kita gunakan adalah <code>drop_na()</code> dari paket <code>tidyr</code>.</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb95-1" tabindex="-1"></a><span class="co"># Menghapus observasi yang memiliki Missing Values</span></span>
-<span id="cb95-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb95-2" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> data.ubl <span class="sc">|&gt;</span></span>
+<span id="cb95-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb95-2" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> data_ubl <span class="sc">|&gt;</span></span>
 <span id="cb95-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb95-3" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
 <span id="cb95-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb95-4" tabindex="-1"></a></span>
 <span id="cb95-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb95-5" tabindex="-1"></a><span class="co"># Mengecek kembali Missing Values</span></span>
-<span id="cb95-6"><a href="modul-2-analisis-statistika-deskriptif.html#cb95-6" tabindex="-1"></a>checkMV_ubl <span class="ot">&lt;-</span> <span class="fu">is.na</span>(data.ubl)</span>
-<span id="cb95-7"><a href="modul-2-analisis-statistika-deskriptif.html#cb95-7" tabindex="-1"></a><span class="fu">colSums</span>(checkMV_ubl)</span></code></pre></div>
-<pre><code>##                              Timestamp                              Kampus_PT 
-##                                      0                                      0 
-##                             Nomor.urut                          Jenis.Kelamin 
-##                                      0                                      0 
-##                                   Umur                               Fakultas 
-##                                      0                                      0 
-##                                  Prodi                       Tingkat.Semester 
-##                                      0                                      0 
-##                              Uang.Saku                      kepemilikan.mobil 
-##                                      0                                      0 
-##                      kepemilikan.motor                     kepemilikan.sepeda 
-##                                      0                                      0 
-##                        kendaraan.utama                              kelurahan 
-##                                      0                                      0 
-##                   jenis.tempat.tinggal              nama.jalan.tempat.tinggal 
-##                                      0                                      0 
-##                                  jarak alasan.pemilihan.lokasi.tempat.tinggal 
-##                                      0                                      0 
-##                    biaya.dalam.sepekan                Jumlah.Perjalanan.Senin 
-##                                      0                                      0 
-##               Jumlah.Perjalanan.Selasa                 Jumlah.Perjalanan.Rabu 
-##                                      0                                      0 
-##                Jumlah.Perjalanan.Kamis                Jumlah.Perjalanan.Jumat 
-##                                      0                                      0 
-##                Jumlah.Perjalanan.Sabtu                 Jumlah.Perjalanan.Ahad 
-##                                      0                                      0</code></pre>
+<span id="cb95-6"><a href="modul-2-analisis-statistika-deskriptif.html#cb95-6" tabindex="-1"></a>check_mv_ubl <span class="ot">&lt;-</span> <span class="fu">is.na</span>(data_ubl)</span>
+<span id="cb95-7"><a href="modul-2-analisis-statistika-deskriptif.html#cb95-7" tabindex="-1"></a><span class="fu">colSums</span>(check_mv_ubl)</span></code></pre></div>
+<pre><code>##                              Timestamp 
+##                                      0 
+##                              Kampus_PT 
+##                                      0 
+##                             Nomor.urut 
+##                                      0 
+##                          Jenis.Kelamin 
+##                                      0 
+##                                   Umur 
+##                                      0 
+##                               Fakultas 
+##                                      0 
+##                                  Prodi 
+##                                      0 
+##                       Tingkat.Semester 
+##                                      0 
+##                              Uang.Saku 
+##                                      0 
+##                      kepemilikan.mobil 
+##                                      0 
+##                      kepemilikan.motor 
+##                                      0 
+##                     kepemilikan.sepeda 
+##                                      0 
+##                        kendaraan.utama 
+##                                      0 
+##                              kelurahan 
+##                                      0 
+##                   jenis.tempat.tinggal 
+##                                      0 
+##              nama.jalan.tempat.tinggal 
+##                                      0 
+##                                  jarak 
+##                                      0 
+## alasan.pemilihan.lokasi.tempat.tinggal 
+##                                      0 
+##                    biaya_dalam_sepekan 
+##                                      0 
+##                jumlah_perjalanan_senin 
+##                                      0 
+##               Jumlah.Perjalanan.Selasa 
+##                                      0 
+##                 Jumlah.Perjalanan.Rabu 
+##                                      0 
+##                Jumlah.Perjalanan.Kamis 
+##                                      0 
+##                Jumlah.Perjalanan.Jumat 
+##                                      0 
+##                Jumlah.Perjalanan.Sabtu 
+##                                      0 
+##                 Jumlah.Perjalanan.Ahad 
+##                                      0</code></pre>
 </div>
 <div id="menyesuaikan-variabel-nominal-dan-ordinal-dengan-factor" class="section level4 hasAnchor" number="2.3.0.4">
 <h4><span class="header-section-number">2.3.0.4</span> Menyesuaikan Variabel Nominal dan Ordinal dengan <code>factor()</code><a href="modul-2-analisis-statistika-deskriptif.html#menyesuaikan-variabel-nominal-dan-ordinal-dengan-factor" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Apabila kita mengimpor dataset dengan variabel nonangka, bentuknya akan terbaca sebagai <em>character</em> (<code>chr</code>). Perintah <code>factor()</code> dari paket <code>forcats</code> berfungsi untuk mendefinisikan nilai-nilai yang ada dalam variabel kategoris tersebut sehingga kita mendefinisikan urutannya dan menetapkannya sebagai variabel ordinal.</p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb97-1" tabindex="-1"></a><span class="co"># Mengidentifikasi variabel-variabel yang bisa diubah menjadi factor</span></span>
-<span id="cb97-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb97-2" tabindex="-1"></a><span class="fu">glimpse</span>(data.ubl)</span></code></pre></div>
+<span id="cb97-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb97-2" tabindex="-1"></a><span class="fu">glimpse</span>(data_ubl)</span></code></pre></div>
 <pre><code>## Rows: 330
 ## Columns: 26
-## $ Timestamp                              &lt;dbl&gt; 45413.83, 45413.83, 45413.85, 4…
-## $ Kampus_PT                              &lt;chr&gt; &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UB…
-## $ Nomor.urut                             &lt;dbl&gt; 1, 2, 3, 4, 6, 7, 8, 9, 10, 12,…
-## $ Jenis.Kelamin                          &lt;chr&gt; &quot;Perempuan&quot;, &quot;Laki-Laki&quot;, &quot;Laki…
-## $ Umur                                   &lt;dbl&gt; 21, 20, 21, 22, 21, 22, 22, 22,…
-## $ Fakultas                               &lt;chr&gt; &quot;Fakultas Ilmu Sosial dan Polit…
-## $ Prodi                                  &lt;chr&gt; &quot;Ilmu Komunikasi&quot;, &quot;Ilmu Hukum&quot;…
-## $ Tingkat.Semester                       &lt;chr&gt; &quot;4 (Semester 7 - Semester 8)&quot;, …
-## $ Uang.Saku                              &lt;chr&gt; &quot;&lt; 1 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt …
-## $ kepemilikan.mobil                      &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1…
-## $ kepemilikan.motor                      &lt;dbl&gt; 2, 1, 2, 4, 2, 1, 1, 1, 1, 2, 1…
-## $ kepemilikan.sepeda                     &lt;dbl&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 0, 0…
-## $ kendaraan.utama                        &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Mobil …
-## $ kelurahan                              &lt;chr&gt; &quot;Kalibalau Kencana&quot;, &quot;Gunung su…
-## $ jenis.tempat.tinggal                   &lt;chr&gt; &quot;Rumah pribadi/rumah keluarga&quot;,…
-## $ nama.jalan.tempat.tinggal              &lt;chr&gt; &quot;eLBe Loundry&quot;, &quot;Jl.Urip Sumoha…
-## $ jarak                                  &lt;dbl&gt; 4.2237967, 2.7033310, 3.2370722…
-## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; &quot;Bersama keluarga/saudara/teman…
-## $ biaya.dalam.sepekan                    &lt;dbl&gt; 25, 200, 50, 20, 40, 70, 35, 50…
-## $ Jumlah.Perjalanan.Senin                &lt;dbl&gt; 2, 3, 1, 2, 3, 2, 4, 4, 3, 2, 4…
-## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; 3, 3, 1, 2, 3, 2, 4, 4, 3, 1, 4…
-## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 4, 3, 2, 4…
-## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; 3, 3, 1, 2, 1, 2, 4, 4, 3, 1, 4…
-## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 3, 3, 2, 4…
-## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 2, 1, 1…
-## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 1, 1, 1…</code></pre>
+## $ Timestamp                              &lt;dbl&gt; …
+## $ Kampus_PT                              &lt;chr&gt; …
+## $ Nomor.urut                             &lt;dbl&gt; …
+## $ Jenis.Kelamin                          &lt;chr&gt; …
+## $ Umur                                   &lt;dbl&gt; …
+## $ Fakultas                               &lt;chr&gt; …
+## $ Prodi                                  &lt;chr&gt; …
+## $ Tingkat.Semester                       &lt;chr&gt; …
+## $ Uang.Saku                              &lt;chr&gt; …
+## $ kepemilikan.mobil                      &lt;dbl&gt; …
+## $ kepemilikan.motor                      &lt;dbl&gt; …
+## $ kepemilikan.sepeda                     &lt;dbl&gt; …
+## $ kendaraan.utama                        &lt;chr&gt; …
+## $ kelurahan                              &lt;chr&gt; …
+## $ jenis.tempat.tinggal                   &lt;chr&gt; …
+## $ nama.jalan.tempat.tinggal              &lt;chr&gt; …
+## $ jarak                                  &lt;dbl&gt; …
+## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; …
+## $ biaya_dalam_sepekan                    &lt;dbl&gt; …
+## $ jumlah_perjalanan_senin                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; …</code></pre>
 <p>Contoh pertama kita adalah variabel yang paling mudah: <code>Jenis.Kelamin</code>.</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-1" tabindex="-1"></a><span class="co"># Mengubah variabel Jenis.Kelamin dari chr menjadi factor (fct)</span></span>
 <span id="cb99-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-2" tabindex="-1"></a>jk <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Laki-laki&quot;</span>, <span class="st">&quot;Perempuan&quot;</span>) <span class="co"># Membuat vektor rincian nilai nominal</span></span>
 <span id="cb99-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-3" tabindex="-1"></a></span>
 <span id="cb99-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-4" tabindex="-1"></a><span class="co"># Mengubah jenis variabel &quot;Jenis.Kelamin&quot; dari chr ke fct dengan &#39;mutate()&#39;</span></span>
-<span id="cb99-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-5" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> data.ubl <span class="sc">|&gt;</span> </span>
+<span id="cb99-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-5" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> data_ubl <span class="sc">|&gt;</span> </span>
 <span id="cb99-6"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Jenis.Kelamin =</span> <span class="fu">factor</span>(Jenis.Kelamin,jk))</span>
 <span id="cb99-7"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-7" tabindex="-1"></a></span>
 <span id="cb99-8"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-8" tabindex="-1"></a><span class="co"># Mengecek hasil</span></span>
-<span id="cb99-9"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-9" tabindex="-1"></a><span class="fu">glimpse</span>(data.ubl)</span></code></pre></div>
+<span id="cb99-9"><a href="modul-2-analisis-statistika-deskriptif.html#cb99-9" tabindex="-1"></a><span class="fu">glimpse</span>(data_ubl)</span></code></pre></div>
 <pre><code>## Rows: 330
 ## Columns: 26
-## $ Timestamp                              &lt;dbl&gt; 45413.83, 45413.83, 45413.85, 4…
-## $ Kampus_PT                              &lt;chr&gt; &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UB…
-## $ Nomor.urut                             &lt;dbl&gt; 1, 2, 3, 4, 6, 7, 8, 9, 10, 12,…
-## $ Jenis.Kelamin                          &lt;fct&gt; Perempuan, NA, NA, NA, Perempua…
-## $ Umur                                   &lt;dbl&gt; 21, 20, 21, 22, 21, 22, 22, 22,…
-## $ Fakultas                               &lt;chr&gt; &quot;Fakultas Ilmu Sosial dan Polit…
-## $ Prodi                                  &lt;chr&gt; &quot;Ilmu Komunikasi&quot;, &quot;Ilmu Hukum&quot;…
-## $ Tingkat.Semester                       &lt;chr&gt; &quot;4 (Semester 7 - Semester 8)&quot;, …
-## $ Uang.Saku                              &lt;chr&gt; &quot;&lt; 1 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt …
-## $ kepemilikan.mobil                      &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1…
-## $ kepemilikan.motor                      &lt;dbl&gt; 2, 1, 2, 4, 2, 1, 1, 1, 1, 2, 1…
-## $ kepemilikan.sepeda                     &lt;dbl&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 0, 0…
-## $ kendaraan.utama                        &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Mobil …
-## $ kelurahan                              &lt;chr&gt; &quot;Kalibalau Kencana&quot;, &quot;Gunung su…
-## $ jenis.tempat.tinggal                   &lt;chr&gt; &quot;Rumah pribadi/rumah keluarga&quot;,…
-## $ nama.jalan.tempat.tinggal              &lt;chr&gt; &quot;eLBe Loundry&quot;, &quot;Jl.Urip Sumoha…
-## $ jarak                                  &lt;dbl&gt; 4.2237967, 2.7033310, 3.2370722…
-## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; &quot;Bersama keluarga/saudara/teman…
-## $ biaya.dalam.sepekan                    &lt;dbl&gt; 25, 200, 50, 20, 40, 70, 35, 50…
-## $ Jumlah.Perjalanan.Senin                &lt;dbl&gt; 2, 3, 1, 2, 3, 2, 4, 4, 3, 2, 4…
-## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; 3, 3, 1, 2, 3, 2, 4, 4, 3, 1, 4…
-## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 4, 3, 2, 4…
-## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; 3, 3, 1, 2, 1, 2, 4, 4, 3, 1, 4…
-## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 3, 3, 2, 4…
-## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 2, 1, 1…
-## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 1, 1, 1…</code></pre>
+## $ Timestamp                              &lt;dbl&gt; …
+## $ Kampus_PT                              &lt;chr&gt; …
+## $ Nomor.urut                             &lt;dbl&gt; …
+## $ Jenis.Kelamin                          &lt;fct&gt; …
+## $ Umur                                   &lt;dbl&gt; …
+## $ Fakultas                               &lt;chr&gt; …
+## $ Prodi                                  &lt;chr&gt; …
+## $ Tingkat.Semester                       &lt;chr&gt; …
+## $ Uang.Saku                              &lt;chr&gt; …
+## $ kepemilikan.mobil                      &lt;dbl&gt; …
+## $ kepemilikan.motor                      &lt;dbl&gt; …
+## $ kepemilikan.sepeda                     &lt;dbl&gt; …
+## $ kendaraan.utama                        &lt;chr&gt; …
+## $ kelurahan                              &lt;chr&gt; …
+## $ jenis.tempat.tinggal                   &lt;chr&gt; …
+## $ nama.jalan.tempat.tinggal              &lt;chr&gt; …
+## $ jarak                                  &lt;dbl&gt; …
+## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; …
+## $ biaya_dalam_sepekan                    &lt;dbl&gt; …
+## $ jumlah_perjalanan_senin                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; …</code></pre>
 <p>Ternyata, hasil pendefinisian <code>factor</code> ke dalam data kita mengandung <code>NA</code> yang berarti data kosong atau <em>missing value</em>. Hal tersebut terjadi karena kita mendefinisikan vektor <code>jk</code> berisi <code>c("Laki-laki", "Perempuan")</code>.</p>
 <p>Sementara itu, jika kita cermat, sebelumnya nilai jenis kelamin ditulis dengan <code>"Laki-Laki"</code> . Maka, kita harus memperbaiki vektor kita yang berisi nilai-nilai yang sesuai dengan dataset terlebih dahulu.</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-1" tabindex="-1"></a><span class="co"># Mengulangi pembacaan file sekaligus merapikan nama variabel-variabelnya serta menghilangkan Missing Values menggunakan Pipe operator</span></span>
-<span id="cb101-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-2" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file.dibaca, <span class="at">sheet =</span> sheet.ubl) <span class="sc">|&gt;</span> </span>
-<span id="cb101-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-3" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">biaya.dalam.sepekan =</span> biaya.dalam.seminggu) <span class="sc">|&gt;</span></span>
-<span id="cb101-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">Jumlah.Perjalanan.Senin =</span> Jumlah.perjalanan.Senin) <span class="sc">|&gt;</span> </span>
+<span id="cb101-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-2" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_dibaca, <span class="at">sheet =</span> sheet_ubl) <span class="sc">|&gt;</span> </span>
+<span id="cb101-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-3" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">biaya_dalam_sepekan =</span> biaya.dalam.seminggu) <span class="sc">|&gt;</span></span>
+<span id="cb101-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-4" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">jumlah_perjalanan_senin =</span> Jumlah.perjalanan.Senin) <span class="sc">|&gt;</span> </span>
 <span id="cb101-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-5" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">jarak =</span> <span class="st">`</span><span class="at">jarak.(km)</span><span class="st">`</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb101-6"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-6" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span>
 <span id="cb101-7"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-7" tabindex="-1"></a></span>
@@ -796,51 +991,57 @@ div.csl-indent {
 <span id="cb101-9"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-9" tabindex="-1"></a>jk <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Laki-Laki&quot;</span>, <span class="st">&quot;Perempuan&quot;</span>)</span>
 <span id="cb101-10"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-10" tabindex="-1"></a></span>
 <span id="cb101-11"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-11" tabindex="-1"></a><span class="co"># Mengubah lagi jenis variabel &quot;Jenis.Kelamin&quot; dari chr ke fct dengan &#39;mutate()</span></span>
-<span id="cb101-12"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-12" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> data.ubl <span class="sc">|&gt;</span> </span>
+<span id="cb101-12"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-12" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> data_ubl <span class="sc">|&gt;</span> </span>
 <span id="cb101-13"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-13" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Jenis.Kelamin =</span> <span class="fu">factor</span>(Jenis.Kelamin,jk))</span>
 <span id="cb101-14"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-14" tabindex="-1"></a></span>
 <span id="cb101-15"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-15" tabindex="-1"></a><span class="co"># Mengecek hasil</span></span>
-<span id="cb101-16"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-16" tabindex="-1"></a><span class="fu">glimpse</span>(data.ubl)</span></code></pre></div>
+<span id="cb101-16"><a href="modul-2-analisis-statistika-deskriptif.html#cb101-16" tabindex="-1"></a><span class="fu">glimpse</span>(data_ubl)</span></code></pre></div>
 <pre><code>## Rows: 330
 ## Columns: 26
-## $ Timestamp                              &lt;dbl&gt; 45413.83, 45413.83, 45413.85, 4…
-## $ Kampus_PT                              &lt;chr&gt; &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UB…
-## $ Nomor.urut                             &lt;dbl&gt; 1, 2, 3, 4, 6, 7, 8, 9, 10, 12,…
-## $ Jenis.Kelamin                          &lt;fct&gt; Perempuan, Laki-Laki, Laki-Laki…
-## $ Umur                                   &lt;dbl&gt; 21, 20, 21, 22, 21, 22, 22, 22,…
-## $ Fakultas                               &lt;chr&gt; &quot;Fakultas Ilmu Sosial dan Polit…
-## $ Prodi                                  &lt;chr&gt; &quot;Ilmu Komunikasi&quot;, &quot;Ilmu Hukum&quot;…
-## $ Tingkat.Semester                       &lt;chr&gt; &quot;4 (Semester 7 - Semester 8)&quot;, …
-## $ Uang.Saku                              &lt;chr&gt; &quot;&lt; 1 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt …
-## $ kepemilikan.mobil                      &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1…
-## $ kepemilikan.motor                      &lt;dbl&gt; 2, 1, 2, 4, 2, 1, 1, 1, 1, 2, 1…
-## $ kepemilikan.sepeda                     &lt;dbl&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 0, 0…
-## $ kendaraan.utama                        &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Mobil …
-## $ kelurahan                              &lt;chr&gt; &quot;Kalibalau Kencana&quot;, &quot;Gunung su…
-## $ jenis.tempat.tinggal                   &lt;chr&gt; &quot;Rumah pribadi/rumah keluarga&quot;,…
-## $ nama.jalan.tempat.tinggal              &lt;chr&gt; &quot;eLBe Loundry&quot;, &quot;Jl.Urip Sumoha…
-## $ jarak                                  &lt;dbl&gt; 4.2237967, 2.7033310, 3.2370722…
-## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; &quot;Bersama keluarga/saudara/teman…
-## $ biaya.dalam.sepekan                    &lt;dbl&gt; 25, 200, 50, 20, 40, 70, 35, 50…
-## $ Jumlah.Perjalanan.Senin                &lt;dbl&gt; 2, 3, 1, 2, 3, 2, 4, 4, 3, 2, 4…
-## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; 3, 3, 1, 2, 3, 2, 4, 4, 3, 1, 4…
-## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 4, 3, 2, 4…
-## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; 3, 3, 1, 2, 1, 2, 4, 4, 3, 1, 4…
-## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 3, 3, 2, 4…
-## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 2, 1, 1…
-## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 1, 1, 1…</code></pre>
+## $ Timestamp                              &lt;dbl&gt; …
+## $ Kampus_PT                              &lt;chr&gt; …
+## $ Nomor.urut                             &lt;dbl&gt; …
+## $ Jenis.Kelamin                          &lt;fct&gt; …
+## $ Umur                                   &lt;dbl&gt; …
+## $ Fakultas                               &lt;chr&gt; …
+## $ Prodi                                  &lt;chr&gt; …
+## $ Tingkat.Semester                       &lt;chr&gt; …
+## $ Uang.Saku                              &lt;chr&gt; …
+## $ kepemilikan.mobil                      &lt;dbl&gt; …
+## $ kepemilikan.motor                      &lt;dbl&gt; …
+## $ kepemilikan.sepeda                     &lt;dbl&gt; …
+## $ kendaraan.utama                        &lt;chr&gt; …
+## $ kelurahan                              &lt;chr&gt; …
+## $ jenis.tempat.tinggal                   &lt;chr&gt; …
+## $ nama.jalan.tempat.tinggal              &lt;chr&gt; …
+## $ jarak                                  &lt;dbl&gt; …
+## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; …
+## $ biaya_dalam_sepekan                    &lt;dbl&gt; …
+## $ jumlah_perjalanan_senin                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; …</code></pre>
 <p>Kita sudah berhasil menjadikan variabel <code>Jenis.Kelamin</code> sebagai factor. Selanjutnya, kita akan mengubah variabel-variabel kategoris lain menjadi factor juga. Variabel-variabel tersebut di antaranya adalah <code>Prodi</code>, <code>Tingkat.Semester</code>, <code>Uang.Saku</code>, dan <code>jenis.tempat.tinggal</code>.</p>
 <p>Sekarang kita akan mengecek nilai variabel-variabel kategoris tersebut dengan dua cara berikut:</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb103-1" tabindex="-1"></a><span class="co"># Mengecek rincian nilai-nilai variabel lain secara bersamaan </span></span>
-<span id="cb103-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb103-2" tabindex="-1"></a><span class="fu">table</span>(data.ubl<span class="sc">$</span>Fakultas) <span class="co"># cara 1</span></span></code></pre></div>
+<span id="cb103-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb103-2" tabindex="-1"></a><span class="fu">table</span>(data_ubl<span class="sc">$</span>Fakultas) <span class="co"># cara 1</span></span></code></pre></div>
 <pre><code>## 
-##           Fakultas Ekonomi dan Bisnis                        Fakultas Hukum 
-##                                   104                                    98 
-##                Fakultas Ilmu Komputer      Fakultas Ilmu Sosial dan Politik 
-##                                    29                                    52 
-## Fakultas Keguruan dan Ilmu Pendidikan                       Fakultas Teknik 
-##                                     6                                    41</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb105-1" tabindex="-1"></a>data.ubl <span class="sc">|&gt;</span>  <span class="co"># cara 2</span></span>
+##           Fakultas Ekonomi dan Bisnis 
+##                                   104 
+##                        Fakultas Hukum 
+##                                    98 
+##                Fakultas Ilmu Komputer 
+##                                    29 
+##      Fakultas Ilmu Sosial dan Politik 
+##                                    52 
+## Fakultas Keguruan dan Ilmu Pendidikan 
+##                                     6 
+##                       Fakultas Teknik 
+##                                    41</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb105-1" tabindex="-1"></a>data_ubl <span class="sc">|&gt;</span>  <span class="co"># cara 2</span></span>
 <span id="cb105-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb105-2" tabindex="-1"></a>  <span class="fu">count</span>(Prodi)</span></code></pre></div>
 <pre><code>##                        Prodi  n
 ## 1        Administrasi Bisnis 15
@@ -855,14 +1056,14 @@ div.csl-indent {
 ## 10          Sistem Informasi 13
 ## 11              Teknik Mesin  7
 ## 12              Teknik Sipil 24</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb107-1" tabindex="-1"></a>data.ubl <span class="sc">|&gt;</span> </span>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb107-1" tabindex="-1"></a>data_ubl <span class="sc">|&gt;</span> </span>
 <span id="cb107-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb107-2" tabindex="-1"></a>  <span class="fu">count</span>(Tingkat.Semester)</span></code></pre></div>
 <pre><code>##              Tingkat.Semester   n
 ## 1 1 (Semester 1 – Semester 2)  34
 ## 2 2 (Semester 3 – Semester 4)  50
 ## 3 3 (Semester 5 - Semester 6)  63
 ## 4 4 (Semester 7 - Semester 8) 183</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb109-1" tabindex="-1"></a>data.ubl <span class="sc">|&gt;</span> </span>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb109-1" tabindex="-1"></a>data_ubl <span class="sc">|&gt;</span> </span>
 <span id="cb109-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb109-2" tabindex="-1"></a>  <span class="fu">count</span>(Uang.Saku)</span></code></pre></div>
 <pre><code>##       Uang.Saku   n
 ## 1   1 jt – 2 jt 167
@@ -870,14 +1071,20 @@ div.csl-indent {
 ## 3 3,1 jt – 4 jt  18
 ## 4        &lt; 1 jt  28
 ## 5        &gt; 4 jt   1</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb111-1" tabindex="-1"></a><span class="fu">table</span>(data.ubl<span class="sc">$</span>jenis.tempat.tinggal)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb111-1" tabindex="-1"></a><span class="fu">table</span>(data_ubl<span class="sc">$</span>jenis.tempat.tinggal)</span></code></pre></div>
 <pre><code>## 
-##              Kos bersama-sama                   Kos Sendiri 
-##                            14                            52 
-##         Rumah bersama saudara Rumah mengontrak bersama-sama 
-##                            23                             5 
-##      Rumah mengontrak pribadi  Rumah pribadi/rumah keluarga 
-##                             3                           233</code></pre>
+##              Kos bersama-sama 
+##                            14 
+##                   Kos Sendiri 
+##                            52 
+##         Rumah bersama saudara 
+##                            23 
+## Rumah mengontrak bersama-sama 
+##                             5 
+##      Rumah mengontrak pribadi 
+##                             3 
+##  Rumah pribadi/rumah keluarga 
+##                           233</code></pre>
 <p>Kemudian kita buat vektor-vektor yang menyimpan nilai-nilai yang mungkinnya.</p>
 <p>Perhatikan bahwa untuk <strong>variabel ordinal</strong> kita harus menuliskan vektor nilainya dengan urutan yang sesuai dengan tingkatannya.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb113-1" tabindex="-1"></a><span class="co"># Membuat vektor nilai-nilai kategoris (untuk factor) berdasarkan nilai-nilai dari tampilan rincian</span></span>
@@ -901,7 +1108,7 @@ div.csl-indent {
 <span id="cb113-19"><a href="modul-2-analisis-statistika-deskriptif.html#cb113-19" tabindex="-1"></a>               <span class="st">&quot;3,1 jt – 4 jt&quot;</span>, <span class="st">&quot;&gt; 4 jt&quot;</span>)</span></code></pre></div>
 <p>Sekarang kita sudah bisa mengubah nilai-nilai di variabel kategoris tersebut dari <em>character</em> menjadi <em>factor</em>. Variabel ordinal menggunakan atribut <code>ordered</code> yang bernilai <code>TRUE</code>, artinya urutan dipentingkan dalam <code>levels</code>.</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-1" tabindex="-1"></a><span class="co"># Mengubah variabel-variabel tersebut menjadi factor</span></span>
-<span id="cb114-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-2" tabindex="-1"></a>data.ubl <span class="ot">&lt;-</span> data.ubl <span class="sc">|&gt;</span> </span>
+<span id="cb114-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-2" tabindex="-1"></a>data_ubl <span class="ot">&lt;-</span> data_ubl <span class="sc">|&gt;</span> </span>
 <span id="cb114-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-3" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Jenis.Kelamin =</span> <span class="fu">factor</span>(Jenis.Kelamin, <span class="at">levels =</span> jk),</span>
 <span id="cb114-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-4" tabindex="-1"></a>         <span class="at">Fakultas =</span> <span class="fu">factor</span>(Fakultas, <span class="at">levels =</span> fakultas),</span>
 <span id="cb114-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-5" tabindex="-1"></a>         <span class="at">Prodi =</span> <span class="fu">factor</span>(Prodi, <span class="at">levels =</span> prodi),</span>
@@ -912,52 +1119,55 @@ div.csl-indent {
 <span id="cb114-10"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-10" tabindex="-1"></a>         <span class="at">Uang.Saku =</span> <span class="fu">factor</span>(Uang.Saku, <span class="at">levels =</span> uang_saku, <span class="at">ordered =</span> <span class="cn">TRUE</span>))</span>
 <span id="cb114-11"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-11" tabindex="-1"></a></span>
 <span id="cb114-12"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-12" tabindex="-1"></a><span class="co"># Mengecek hasil</span></span>
-<span id="cb114-13"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-13" tabindex="-1"></a><span class="fu">glimpse</span>(data.ubl)</span></code></pre></div>
+<span id="cb114-13"><a href="modul-2-analisis-statistika-deskriptif.html#cb114-13" tabindex="-1"></a><span class="fu">glimpse</span>(data_ubl)</span></code></pre></div>
 <pre><code>## Rows: 330
 ## Columns: 26
-## $ Timestamp                              &lt;dbl&gt; 45413.83, 45413.83, 45413.85, 4…
-## $ Kampus_PT                              &lt;chr&gt; &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UB…
-## $ Nomor.urut                             &lt;dbl&gt; 1, 2, 3, 4, 6, 7, 8, 9, 10, 12,…
-## $ Jenis.Kelamin                          &lt;fct&gt; Perempuan, Laki-Laki, Laki-Laki…
-## $ Umur                                   &lt;dbl&gt; 21, 20, 21, 22, 21, 22, 22, 22,…
-## $ Fakultas                               &lt;fct&gt; Fakultas Ilmu Sosial dan Politi…
-## $ Prodi                                  &lt;fct&gt; Ilmu Komunikasi, Ilmu Hukum, Ma…
-## $ Tingkat.Semester                       &lt;ord&gt; 4 (Semester 7 - Semester 8), 3 …
-## $ Uang.Saku                              &lt;ord&gt; &quot;&lt; 1 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt …
-## $ kepemilikan.mobil                      &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1…
-## $ kepemilikan.motor                      &lt;dbl&gt; 2, 1, 2, 4, 2, 1, 1, 1, 1, 2, 1…
-## $ kepemilikan.sepeda                     &lt;dbl&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 0, 0…
-## $ kendaraan.utama                        &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Mobil …
-## $ kelurahan                              &lt;chr&gt; &quot;Kalibalau Kencana&quot;, &quot;Gunung su…
-## $ jenis.tempat.tinggal                   &lt;chr&gt; &quot;Rumah pribadi/rumah keluarga&quot;,…
-## $ nama.jalan.tempat.tinggal              &lt;chr&gt; &quot;eLBe Loundry&quot;, &quot;Jl.Urip Sumoha…
-## $ jarak                                  &lt;dbl&gt; 4.2237967, 2.7033310, 3.2370722…
-## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; &quot;Bersama keluarga/saudara/teman…
-## $ biaya.dalam.sepekan                    &lt;dbl&gt; 25, 200, 50, 20, 40, 70, 35, 50…
-## $ Jumlah.Perjalanan.Senin                &lt;dbl&gt; 2, 3, 1, 2, 3, 2, 4, 4, 3, 2, 4…
-## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; 3, 3, 1, 2, 3, 2, 4, 4, 3, 1, 4…
-## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 4, 3, 2, 4…
-## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; 3, 3, 1, 2, 1, 2, 4, 4, 3, 1, 4…
-## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 3, 3, 2, 4…
-## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 2, 1, 1…
-## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 1, 1, 1…</code></pre>
+## $ Timestamp                              &lt;dbl&gt; …
+## $ Kampus_PT                              &lt;chr&gt; …
+## $ Nomor.urut                             &lt;dbl&gt; …
+## $ Jenis.Kelamin                          &lt;fct&gt; …
+## $ Umur                                   &lt;dbl&gt; …
+## $ Fakultas                               &lt;fct&gt; …
+## $ Prodi                                  &lt;fct&gt; …
+## $ Tingkat.Semester                       &lt;ord&gt; …
+## $ Uang.Saku                              &lt;ord&gt; …
+## $ kepemilikan.mobil                      &lt;dbl&gt; …
+## $ kepemilikan.motor                      &lt;dbl&gt; …
+## $ kepemilikan.sepeda                     &lt;dbl&gt; …
+## $ kendaraan.utama                        &lt;chr&gt; …
+## $ kelurahan                              &lt;chr&gt; …
+## $ jenis.tempat.tinggal                   &lt;chr&gt; …
+## $ nama.jalan.tempat.tinggal              &lt;chr&gt; …
+## $ jarak                                  &lt;dbl&gt; …
+## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; …
+## $ biaya_dalam_sepekan                    &lt;dbl&gt; …
+## $ jumlah_perjalanan_senin                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; …</code></pre>
 <p>Sekarang, tipe data untuk variabel-variabel kategoris kita tadi sudah menampilkan <code>&lt;fct&gt;</code> yang berarti “factor”. Variabel ordinal diidentifikasi dengan tipe <code>&lt;ord&gt;</code>.</p>
 <p>Kita dapat mengecek urutan factor kita dengan perintah <code>levels()</code> berikut.</p>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb116-1" tabindex="-1"></a><span class="co"># Mengecek hasil dengan mengidentifikasi level factor untuk data kategoris-ordinal</span></span>
-<span id="cb116-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb116-2" tabindex="-1"></a><span class="fu">levels</span>(data.ubl<span class="sc">$</span>Tingkat.Semester)</span></code></pre></div>
-<pre><code>## [1] &quot;1 (Semester 1 – Semester 2)&quot; &quot;2 (Semester 3 – Semester 4)&quot;
-## [3] &quot;3 (Semester 5 - Semester 6)&quot; &quot;4 (Semester 7 - Semester 8)&quot;</code></pre>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb118-1" tabindex="-1"></a><span class="fu">levels</span>(data.ubl<span class="sc">$</span>Uang.Saku)</span></code></pre></div>
-<pre><code>## [1] &quot;&lt; 1 jt&quot;        &quot;1 jt – 2 jt&quot;   &quot;2,1 jt – 3 jt&quot; &quot;3,1 jt – 4 jt&quot;
+<span id="cb116-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb116-2" tabindex="-1"></a><span class="fu">levels</span>(data_ubl<span class="sc">$</span>Tingkat.Semester)</span></code></pre></div>
+<pre><code>## [1] &quot;1 (Semester 1 – Semester 2)&quot;
+## [2] &quot;2 (Semester 3 – Semester 4)&quot;
+## [3] &quot;3 (Semester 5 - Semester 6)&quot;
+## [4] &quot;4 (Semester 7 - Semester 8)&quot;</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb118-1" tabindex="-1"></a><span class="fu">levels</span>(data_ubl<span class="sc">$</span>Uang.Saku)</span></code></pre></div>
+<pre><code>## [1] &quot;&lt; 1 jt&quot;        &quot;1 jt – 2 jt&quot;  
+## [3] &quot;2,1 jt – 3 jt&quot; &quot;3,1 jt – 4 jt&quot;
 ## [5] &quot;&gt; 4 jt&quot;</code></pre>
 <div class="rmdexercise">
 <p><strong>Aktivitas Mandiri 2: Membuat Factor untuk Variabel Kategoris [STP-2.4]</strong></p>
 <p>Untuk dataset UBL yang sudah dibersihkan:
 1. Buat vektor <code>tempat_tinggal</code> dengan nilai-nilai jenis tempat tinggal yang ada di data
-(Gunakan <code>table(data.ubl$jenis.tempat.tinggal)</code> untuk melihat nilai-nilainya)
+(Gunakan <code>table(data_ubl$jenis.tempat.tinggal)</code> untuk melihat nilai-nilainya)
 2. Gunakan <code>mutate()</code> untuk mengubah <code>jenis.tempat.tinggal</code> menjadi factor
 3. Verifikasi dengan <code>glimpse()</code> - tipe harus <code>&lt;fct&gt;</code>
-4. Cek level dengan <code>levels(data.ubl$jenis.tempat.tinggal)</code></p>
+4. Cek level dengan <code>levels(data_ubl$jenis.tempat.tinggal)</code></p>
 </div>
 </div>
 </div>
@@ -972,14 +1182,14 @@ div.csl-indent {
 <h3><span class="header-section-number">2.4.1</span> Variabel Kategoris<a href="modul-2-analisis-statistika-deskriptif.html#variabel-kategoris" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Kita masih akan menggunakan <em>pipe operator</em> dalam mengoperasikan analisis ini. Perintah yang kita gunakan adalah <code>tbl_summary()</code> yang kita teruskan ke <code>as_flex_table()</code> sebagai keluarannya.</p>
 <p>Untuk menampilkan persentase/proporsi, kita cukup memasukkan variabel-variabel kategoris ke dalam tabel dengan atribut <code>include</code>. Atribut tersebut menerima masukan berupa vektor nama-nama variabel kategoris dalam dataset kita. Fungsi <code>tbl_summary</code> ini akan menampilkan secara otomatis tabel distribusi frekuensinya disertai dengan nilai persentasenya di samping nilai frekuensi tersebut.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb121-1" tabindex="-1"></a>data.ubl <span class="sc">|&gt;</span> </span>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb121-1" tabindex="-1"></a>data_ubl <span class="sc">|&gt;</span> </span>
 <span id="cb121-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb121-2" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">c</span>(Jenis.Kelamin,</span>
 <span id="cb121-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb121-3" tabindex="-1"></a>                          Fakultas,</span>
 <span id="cb121-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb121-4" tabindex="-1"></a>                          Tingkat.Semester,</span>
 <span id="cb121-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb121-5" tabindex="-1"></a>                          Uang.Saku,</span>
 <span id="cb121-6"><a href="modul-2-analisis-statistika-deskriptif.html#cb121-6" tabindex="-1"></a>                          jenis.tempat.tinggal)) <span class="sc">|&gt;</span> </span>
 <span id="cb121-7"><a href="modul-2-analisis-statistika-deskriptif.html#cb121-7" tabindex="-1"></a>  <span class="fu">as_flex_table</span>()</span></code></pre></div>
-<div class="tabwid"><style>.cl-f236f5bc{}.cl-f22c63b8{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f22c63cc{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-f22c63cd{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f2315aee{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f2315af8{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f2315b02{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f2315b03{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f2315b04{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f2315b0c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f2318104{width:3.18in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f231810e{width:0.99in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f2318118{width:3.18in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f2318122{width:0.99in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f2318123{width:3.18in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f231812c{width:0.99in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f231812d{width:3.18in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f2318136{width:0.99in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f2318137{width:3.18in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f2318140{width:0.99in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f231814a{width:3.18in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f231814b{width:0.99in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f2318154{width:3.18in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f2318155{width:0.99in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-f236f5bc'><thead><tr style="overflow-wrap:break-word;"><th class="cl-f2318104"><p class="cl-f2315aee"><span class="cl-f22c63b8">Characteristic</span></p></th><th class="cl-f231810e"><p class="cl-f2315af8"><span class="cl-f22c63b8">N = 330</span><span class="cl-f22c63cc">1</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-f2318118"><p class="cl-f2315b02"><span class="cl-f22c63cd">Jenis.Kelamin</span></p></td><td class="cl-f2318122"><p class="cl-f2315b03"><span class="cl-f22c63cd"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Laki-Laki</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">165 (50%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Perempuan</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">165 (50%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f231812d"><p class="cl-f2315b02"><span class="cl-f22c63cd">Fakultas</span></p></td><td class="cl-f2318136"><p class="cl-f2315b03"><span class="cl-f22c63cd"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Fakultas Ekonomi dan Bisnis</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">104 (32%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Fakultas Hukum</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">98 (30%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Fakultas Ilmu Komputer</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">29 (8.8%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Fakultas Ilmu Sosial dan Politik</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">52 (16%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Fakultas Keguruan dan Ilmu Pendidikan</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">6 (1.8%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Fakultas Teknik</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">41 (12%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b02"><span class="cl-f22c63cd">Tingkat.Semester</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">1 (Semester 1 – Semester 2)</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">34 (10%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">2 (Semester 3 – Semester 4)</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">50 (15%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">3 (Semester 5 - Semester 6)</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">63 (19%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">4 (Semester 7 - Semester 8)</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">183 (55%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b02"><span class="cl-f22c63cd">Uang.Saku</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">&lt; 1 jt</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">28 (8.5%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">1 jt – 2 jt</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">167 (51%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">2,1 jt – 3 jt</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">116 (35%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">3,1 jt – 4 jt</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">18 (5.5%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">&gt; 4 jt</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">1 (0.3%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318137"><p class="cl-f2315b02"><span class="cl-f22c63cd">jenis.tempat.tinggal</span></p></td><td class="cl-f2318140"><p class="cl-f2315b03"><span class="cl-f22c63cd"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Kos bersama-sama</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">14 (4.2%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Kos Sendiri</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">52 (16%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Rumah bersama saudara</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">23 (7.0%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Rumah mengontrak bersama-sama</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">5 (1.5%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f2318123"><p class="cl-f2315b04"><span class="cl-f22c63cd">Rumah mengontrak pribadi</span></p></td><td class="cl-f231812c"><p class="cl-f2315b03"><span class="cl-f22c63cd">3 (0.9%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f231814a"><p class="cl-f2315b04"><span class="cl-f22c63cd">Rumah pribadi/rumah keluarga</span></p></td><td class="cl-f231814b"><p class="cl-f2315b03"><span class="cl-f22c63cd">233 (71%)</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td  colspan="2"class="cl-f2318154"><p class="cl-f2315b0c"><span class="cl-f22c63cc">1</span><span class="cl-f22c63cd">n (%)</span></p></td></tr></tfoot></table></div>
+<div class="tabwid"><style>.cl-ae8dc6aa{}.cl-ae860488{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ae86049c{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-ae8604a6{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ae88d064{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ae88d06e{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ae88d078{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ae88d082{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ae88d08c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ae88d08d{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ae88ecb6{width:3.18in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ecca{width:0.99in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ecd4{width:3.18in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ecd5{width:0.99in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ecd6{width:3.18in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ecde{width:0.99in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ecdf{width:3.18in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ece8{width:0.99in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ece9{width:3.18in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ecf2{width:0.99in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ecfc{width:3.18in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ed06{width:0.99in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ed07{width:3.18in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ae88ed10{width:0.99in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-ae8dc6aa'><thead><tr style="overflow-wrap:break-word;"><th class="cl-ae88ecb6"><p class="cl-ae88d064"><span class="cl-ae860488">Characteristic</span></p></th><th class="cl-ae88ecca"><p class="cl-ae88d06e"><span class="cl-ae860488">N = 330</span><span class="cl-ae86049c">1</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd4"><p class="cl-ae88d078"><span class="cl-ae8604a6">Jenis.Kelamin</span></p></td><td class="cl-ae88ecd5"><p class="cl-ae88d082"><span class="cl-ae8604a6"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Laki-Laki</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">165 (50%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Perempuan</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">165 (50%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecdf"><p class="cl-ae88d078"><span class="cl-ae8604a6">Fakultas</span></p></td><td class="cl-ae88ece8"><p class="cl-ae88d082"><span class="cl-ae8604a6"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Fakultas Ekonomi dan Bisnis</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">104 (32%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Fakultas Hukum</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">98 (30%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Fakultas Ilmu Komputer</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">29 (8.8%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Fakultas Ilmu Sosial dan Politik</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">52 (16%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Fakultas Keguruan dan Ilmu Pendidikan</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">6 (1.8%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Fakultas Teknik</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">41 (12%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d078"><span class="cl-ae8604a6">Tingkat.Semester</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">1 (Semester 1 – Semester 2)</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">34 (10%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">2 (Semester 3 – Semester 4)</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">50 (15%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">3 (Semester 5 - Semester 6)</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">63 (19%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">4 (Semester 7 - Semester 8)</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">183 (55%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d078"><span class="cl-ae8604a6">Uang.Saku</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">&lt; 1 jt</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">28 (8.5%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">1 jt – 2 jt</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">167 (51%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">2,1 jt – 3 jt</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">116 (35%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">3,1 jt – 4 jt</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">18 (5.5%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">&gt; 4 jt</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">1 (0.3%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ece9"><p class="cl-ae88d078"><span class="cl-ae8604a6">jenis.tempat.tinggal</span></p></td><td class="cl-ae88ecf2"><p class="cl-ae88d082"><span class="cl-ae8604a6"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Kos bersama-sama</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">14 (4.2%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Kos Sendiri</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">52 (16%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Rumah bersama saudara</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">23 (7.0%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Rumah mengontrak bersama-sama</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">5 (1.5%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecd6"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Rumah mengontrak pribadi</span></p></td><td class="cl-ae88ecde"><p class="cl-ae88d082"><span class="cl-ae8604a6">3 (0.9%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ae88ecfc"><p class="cl-ae88d08c"><span class="cl-ae8604a6">Rumah pribadi/rumah keluarga</span></p></td><td class="cl-ae88ed06"><p class="cl-ae88d082"><span class="cl-ae8604a6">233 (71%)</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td  colspan="2"class="cl-ae88ed07"><p class="cl-ae88d08d"><span class="cl-ae86049c">1</span><span class="cl-ae8604a6">n (%)</span></p></td></tr></tfoot></table></div>
 <p>Untuk menghitung IQV, kita bisa memanfaatkan perintah <code>function</code> yang mengambil masukan nilai-nilai yang ada di tanda kurungnya dan memprosesnya di dalam kurung kurawal <code>{}</code>. Perintah function selalu diakhiri dengan <code>return()</code> di dalamnya untuk menunjukkan hasil yang akan menjadi keluaran fungsi tersebut.</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb122-1" tabindex="-1"></a>iqv <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb122-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb122-2" tabindex="-1"></a>  </span>
@@ -1014,24 +1224,24 @@ div.csl-indent {
 <p>Untuk menghasilkan nilai IQV suatu variabel, kita perlu memasukkan vektor yang berisi nilai-nilai dalam variabel dataset kita. Ini dapat dilakukan dengan sintaks <code>dataset$nama_variabel</code>. Tanda $ berfungsi memberi tahu R untuk memilih variabel yang ada dalam dataset yang digunakan.</p>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb123-1" tabindex="-1"></a><span class="co"># Menampilkan vektor jenis.tempat.tinggal (opsional. Hapus komentar pada baris </span></span>
 <span id="cb123-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb123-2" tabindex="-1"></a><span class="co"># berikut jika ingin mencobanya)</span></span>
-<span id="cb123-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb123-3" tabindex="-1"></a><span class="co"># data.ubl$jenis.tempat.tinggal</span></span>
+<span id="cb123-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb123-3" tabindex="-1"></a><span class="co"># data_ubl$jenis.tempat.tinggal</span></span>
 <span id="cb123-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb123-4" tabindex="-1"></a></span>
 <span id="cb123-5"><a href="modul-2-analisis-statistika-deskriptif.html#cb123-5" tabindex="-1"></a><span class="co"># Menghitung IQV variabel jenis.tempat.tinggal</span></span>
-<span id="cb123-6"><a href="modul-2-analisis-statistika-deskriptif.html#cb123-6" tabindex="-1"></a><span class="fu">iqv</span>(data.ubl<span class="sc">$</span>jenis.tempat.tinggal)</span></code></pre></div>
+<span id="cb123-6"><a href="modul-2-analisis-statistika-deskriptif.html#cb123-6" tabindex="-1"></a><span class="fu">iqv</span>(data_ubl<span class="sc">$</span>jenis.tempat.tinggal)</span></code></pre></div>
 <pre><code>## [1] 0.5636143</code></pre>
 </div>
 <div id="variabel-numerik" class="section level3 hasAnchor" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Variabel Numerik<a href="modul-2-analisis-statistika-deskriptif.html#variabel-numerik" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Perintah <code>tbl_summary</code> akan menentukan jenis statistik deskriptif yang ditampilkan secara intuitif berdasarkan dataset yang dibacanya. Perhatikan hasil dari <code>tbl_summary</code> berikut untuk variabel <code>kepemilikan.mobil</code> dan <code>jarak</code>.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb125-1" tabindex="-1"></a>data.ubl <span class="sc">|&gt;</span> </span>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb125-1" tabindex="-1"></a>data_ubl <span class="sc">|&gt;</span> </span>
 <span id="cb125-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb125-2" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">c</span>(kepemilikan.mobil,</span>
 <span id="cb125-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb125-3" tabindex="-1"></a>                          jarak)) <span class="sc">|&gt;</span> </span>
 <span id="cb125-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb125-4" tabindex="-1"></a>  <span class="fu">as_flex_table</span>()</span></code></pre></div>
-<div class="tabwid"><style>.cl-f3243228{}.cl-f316e8a2{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f316e8b6{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-f316e8b7{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f31c3596{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f31c35b4{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f31c35be{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f31c35bf{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f31c35c8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f31c35d2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f31c727c{width:1.499in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f31c72b8{width:1.406in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f31c72cc{width:1.499in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f31c72cd{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f31c72d6{width:1.499in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f31c72e0{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f31c72ea{width:1.499in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f31c72eb{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f31c72f4{width:1.499in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f31c72fe{width:1.406in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-f3243228'><thead><tr style="overflow-wrap:break-word;"><th class="cl-f31c727c"><p class="cl-f31c3596"><span class="cl-f316e8a2">Characteristic</span></p></th><th class="cl-f31c72b8"><p class="cl-f31c35b4"><span class="cl-f316e8a2">N = 330</span><span class="cl-f316e8b6">1</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-f31c72cc"><p class="cl-f31c35be"><span class="cl-f316e8b7">kepemilikan.mobil</span></p></td><td class="cl-f31c72cd"><p class="cl-f31c35bf"><span class="cl-f316e8b7"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f31c72d6"><p class="cl-f31c35c8"><span class="cl-f316e8b7">0</span></p></td><td class="cl-f31c72e0"><p class="cl-f31c35bf"><span class="cl-f316e8b7">107 (32%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f31c72d6"><p class="cl-f31c35c8"><span class="cl-f316e8b7">1</span></p></td><td class="cl-f31c72e0"><p class="cl-f31c35bf"><span class="cl-f316e8b7">126 (38%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f31c72d6"><p class="cl-f31c35c8"><span class="cl-f316e8b7">2</span></p></td><td class="cl-f31c72e0"><p class="cl-f31c35bf"><span class="cl-f316e8b7">80 (24%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f31c72d6"><p class="cl-f31c35c8"><span class="cl-f316e8b7">3</span></p></td><td class="cl-f31c72e0"><p class="cl-f31c35bf"><span class="cl-f316e8b7">15 (4.5%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f31c72d6"><p class="cl-f31c35c8"><span class="cl-f316e8b7">4</span></p></td><td class="cl-f31c72e0"><p class="cl-f31c35bf"><span class="cl-f316e8b7">2 (0.6%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f31c72ea"><p class="cl-f31c35be"><span class="cl-f316e8b7">jarak</span></p></td><td class="cl-f31c72eb"><p class="cl-f31c35bf"><span class="cl-f316e8b7">2.71 (1.31, 4.74)</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td  colspan="2"class="cl-f31c72f4"><p class="cl-f31c35d2"><span class="cl-f316e8b6">1</span><span class="cl-f316e8b7">n (%); Median (Q1, Q3)</span></p></td></tr></tfoot></table></div>
+<div class="tabwid"><style>.cl-af082e4a{}.cl-af019f12{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-af019f1c{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-af019f26{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-af043a92{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af043a9c{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af043a9d{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af043aa6{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af043aa7{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af043ab0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af045464{width:1.499in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af045478{width:1.406in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af045479{width:1.499in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af04547a{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af045482{width:1.499in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af045483{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af0454f0{width:1.499in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af0454fa{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af045504{width:1.499in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af04550e{width:1.406in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-af082e4a'><thead><tr style="overflow-wrap:break-word;"><th class="cl-af045464"><p class="cl-af043a92"><span class="cl-af019f12">Characteristic</span></p></th><th class="cl-af045478"><p class="cl-af043a9c"><span class="cl-af019f12">N = 330</span><span class="cl-af019f1c">1</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-af045479"><p class="cl-af043a9d"><span class="cl-af019f26">kepemilikan.mobil</span></p></td><td class="cl-af04547a"><p class="cl-af043aa6"><span class="cl-af019f26"></span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-af045482"><p class="cl-af043aa7"><span class="cl-af019f26">0</span></p></td><td class="cl-af045483"><p class="cl-af043aa6"><span class="cl-af019f26">107 (32%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-af045482"><p class="cl-af043aa7"><span class="cl-af019f26">1</span></p></td><td class="cl-af045483"><p class="cl-af043aa6"><span class="cl-af019f26">126 (38%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-af045482"><p class="cl-af043aa7"><span class="cl-af019f26">2</span></p></td><td class="cl-af045483"><p class="cl-af043aa6"><span class="cl-af019f26">80 (24%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-af045482"><p class="cl-af043aa7"><span class="cl-af019f26">3</span></p></td><td class="cl-af045483"><p class="cl-af043aa6"><span class="cl-af019f26">15 (4.5%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-af045482"><p class="cl-af043aa7"><span class="cl-af019f26">4</span></p></td><td class="cl-af045483"><p class="cl-af043aa6"><span class="cl-af019f26">2 (0.6%)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-af0454f0"><p class="cl-af043a9d"><span class="cl-af019f26">jarak</span></p></td><td class="cl-af0454fa"><p class="cl-af043aa6"><span class="cl-af019f26">2.71 (1.31, 4.74)</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td  colspan="2"class="cl-af045504"><p class="cl-af043ab0"><span class="cl-af019f1c">1</span><span class="cl-af019f26">n (%); Median (Q1, Q3)</span></p></td></tr></tfoot></table></div>
 <p>Seperti yang kalian lihat, <code>tbl_summary</code> langsung menampilkan persentase tiap nilai yang ada di kepemilikan.mobil seolah-olah <code>kepemilikan.mobil</code> adalah variabel diskret. Hal ini terjadi karena nilai variabel <code>kepemilikan.mobil</code> adalah nilai numerik diskret, sehingga masing-masing nilai dikenali sebagai kategori.</p>
 <p>Hal ini berbeda lagi dengan variabel <code>jarak</code> yang menampilkan statistik deskriptif untuk variabel numerik, yakni median, kuartil bawah dan kuartil atas (Q1 &amp; Q3).</p>
 <p>Untuk meminta <code>tbl_summary</code> menampilkan analisis statistik deskriptif untuk variabel numerik seperti mean, median, kuartil, dan standar deviasi (simpangan baku), kita dapat menyatakannya dalam atribut-atribut berikut.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb126-1" tabindex="-1"></a>data.ubl <span class="sc">|&gt;</span> </span>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb126-1" tabindex="-1"></a>data_ubl <span class="sc">|&gt;</span> </span>
 <span id="cb126-2"><a href="modul-2-analisis-statistika-deskriptif.html#cb126-2" tabindex="-1"></a>  <span class="fu">tbl_summary</span>(<span class="at">include =</span> <span class="fu">c</span>(kepemilikan.mobil,</span>
 <span id="cb126-3"><a href="modul-2-analisis-statistika-deskriptif.html#cb126-3" tabindex="-1"></a>                          kepemilikan.motor,</span>
 <span id="cb126-4"><a href="modul-2-analisis-statistika-deskriptif.html#cb126-4" tabindex="-1"></a>                          jarak),</span>
@@ -1043,7 +1253,7 @@ div.csl-indent {
 <span id="cb126-10"><a href="modul-2-analisis-statistika-deskriptif.html#cb126-10" tabindex="-1"></a>                               kepemilikan.motor <span class="sc">~</span> <span class="st">&quot;{median}&quot;</span>,</span>
 <span id="cb126-11"><a href="modul-2-analisis-statistika-deskriptif.html#cb126-11" tabindex="-1"></a>                               jarak <span class="sc">~</span> <span class="st">&quot;{mean} ({sd})&quot;</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb126-12"><a href="modul-2-analisis-statistika-deskriptif.html#cb126-12" tabindex="-1"></a>  <span class="fu">as_flex_table</span>()</span></code></pre></div>
-<div class="tabwid"><style>.cl-f3d7ac40{}.cl-f3cccd84{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f3cccd98{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-f3cccda2{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-f3d1101a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f3d11024{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f3d1102e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f3d1102f{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f3d11038{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-f3d14008{width:1.525in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f3d1401c{width:1.024in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f3d14026{width:1.525in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f3d14030{width:1.024in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f3d14031{width:1.525in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f3d1403a{width:1.024in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f3d1403b{width:1.525in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f3d14044{width:1.024in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f3d14045{width:1.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-f3d1404e{width:1.024in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-f3d7ac40'><thead><tr style="overflow-wrap:break-word;"><th class="cl-f3d14008"><p class="cl-f3d1101a"><span class="cl-f3cccd84">Characteristic</span></p></th><th class="cl-f3d1401c"><p class="cl-f3d11024"><span class="cl-f3cccd84">N = 330</span><span class="cl-f3cccd98">1</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-f3d14026"><p class="cl-f3d1102e"><span class="cl-f3cccda2">kepemilikan.mobil</span></p></td><td class="cl-f3d14030"><p class="cl-f3d1102f"><span class="cl-f3cccda2">1 (0, 2)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f3d14031"><p class="cl-f3d1102e"><span class="cl-f3cccda2">kepemilikan.motor</span></p></td><td class="cl-f3d1403a"><p class="cl-f3d1102f"><span class="cl-f3cccda2">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-f3d1403b"><p class="cl-f3d1102e"><span class="cl-f3cccda2">jarak</span></p></td><td class="cl-f3d14044"><p class="cl-f3d1102f"><span class="cl-f3cccda2">3.35 (3.54)</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td  colspan="2"class="cl-f3d14045"><p class="cl-f3d11038"><span class="cl-f3cccd98">1</span><span class="cl-f3cccda2">Median (Q1, Q3); Median; Mean (SD)</span></p></td></tr></tfoot></table></div>
+<div class="tabwid"><style>.cl-af7a6a78{}.cl-af73d21c{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-af73d226{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-af73d230{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-af769f10{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af769f1a{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af769f24{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af769f25{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af769f2e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-af76b72a{width:1.525in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af76b734{width:1.024in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af76b735{width:1.525in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af76b736{width:1.024in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af76b73e{width:1.525in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af76b748{width:1.024in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af76b749{width:1.525in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af76b752{width:1.024in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af76b753{width:1.525in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-af76b75c{width:1.024in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table data-quarto-disable-processing='true' class='cl-af7a6a78'><thead><tr style="overflow-wrap:break-word;"><th class="cl-af76b72a"><p class="cl-af769f10"><span class="cl-af73d21c">Characteristic</span></p></th><th class="cl-af76b734"><p class="cl-af769f1a"><span class="cl-af73d21c">N = 330</span><span class="cl-af73d226">1</span></p></th></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-af76b735"><p class="cl-af769f24"><span class="cl-af73d230">kepemilikan.mobil</span></p></td><td class="cl-af76b736"><p class="cl-af769f25"><span class="cl-af73d230">1 (0, 2)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-af76b73e"><p class="cl-af769f24"><span class="cl-af73d230">kepemilikan.motor</span></p></td><td class="cl-af76b748"><p class="cl-af769f25"><span class="cl-af73d230">1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-af76b749"><p class="cl-af769f24"><span class="cl-af73d230">jarak</span></p></td><td class="cl-af76b752"><p class="cl-af769f25"><span class="cl-af73d230">3.35 (3.54)</span></p></td></tr></tbody><tfoot><tr style="overflow-wrap:break-word;"><td  colspan="2"class="cl-af76b753"><p class="cl-af769f2e"><span class="cl-af73d226">1</span><span class="cl-af73d230">Median (Q1, Q3); Median; Mean (SD)</span></p></td></tr></tfoot></table></div>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="modul-2-analisis-statistika-deskriptif.html#cb127-1" tabindex="-1"></a><span class="co"># Ketika meng-enter script, jangan salah memperhatikan urutan dan kelengkapan tanda koma pada fungsi</span></span></code></pre></div>
 <p>Untuk mengatur jenis statistik deskriptif yang ditampilkan, ubah bagian kanan tanda <code>~</code> pada atribut <code>statistic</code> sehingga apa yang ditulis di antara tanda petik menjadi template untuk ditampilkan di tabel. Adapun teknik statistik yang kita pakai harus kita tuliskan dalam kurung kurawalnya. Teknik-teknik statistik yang bisa kita gunakan di antaranya:</p>
 <ul>
@@ -1084,7 +1294,7 @@ Impor dataset UIN RIL dari sheet <code>DataUtama_mhsUINRIL</code> dan bersihkan 
 </ul></li>
 <li><strong>Ukuran Pemusatan (Median dan Kuartil):</strong>
 <ul>
-<li>Untuk variabel <code>Jumlah.Perjalanan.Senin</code> (atau hari lain jika variabel ini tidak ada)</li>
+<li>Untuk variabel <code>jumlah_perjalanan_senin</code> (atau hari lain jika variabel ini tidak ada)</li>
 <li>Tampilkan Median, Q1 (p25), dan Q3 (p75)</li>
 <li>Gunakan <code>statistic = "{median} ({p25}, {p75})"</code></li>
 </ul></li>

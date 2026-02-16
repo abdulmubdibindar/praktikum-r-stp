@@ -474,18 +474,18 @@ div.csl-indent {
 <span id="cb332-7"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb332-7" tabindex="-1"></a><span class="fu">glimpse</span>(data_analisis)</span></code></pre></div>
 <pre><code>## Rows: 319
 ## Columns: 12
-## $ ongkos    &lt;dbl&gt; 464.40, 464.40, 464.40, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, …
-## $ bparkir   &lt;dbl&gt; 2000, 2000, 3000, 0, 0, 0, 0, 0, 0, 0, 2000, 5000, 0, 0, 0, …
-## $ durasi    &lt;dbl&gt; 20, 10, 15, 30, 5, 30, 5, 30, 5, 9, 30, 30, 10, 30, 2, 30, 6…
-## $ bareng    &lt;dbl&gt; 2, 0, 2, 5, 2, 0, 0, 0, 0, 0, 2, 3, 1, 0, 10, 3, 2, 3, 3, 2,…
-## $ toplajur  &lt;dbl&gt; 4, 4, 4, 8, 2, 4, 4, 4, 0, 2, 8, 6, 4, 4, 2, 4, 6, 4, 4, 4, …
-## $ usia      &lt;dbl&gt; 45, 46, 50, 25, 22, 63, 22, 60, 20, 19, 16, 46, 22, 28, 50, …
-## $ jmlmotor  &lt;dbl&gt; 2, 2, 3, 0, 2, 1, 1, 2, 1, 0, 2, 1, 1, 4, 5, 1, 3, 1, 1, 1, …
-## $ jmlmobil  &lt;dbl&gt; 0, 1, 0, 0, 3, 1, 1, 1, 0, 0, 2, 1, 0, 0, 1, 0, 0, 0, 0, 0, …
-## $ jmlsepeda &lt;dbl&gt; 2, 4, 0, 2, 3, 2, 1, 1, 0, 0, 0, 2, 0, 2, 6, 1, 4, 1, 1, 0, …
-## $ jmldewasa &lt;dbl&gt; 4, 4, 4, 3, 5, 2, 2, 4, 1, 1, 3, 1, 5, 2, 2, 3, 5, 12, 5, 2,…
-## $ jmlanak   &lt;dbl&gt; 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 2, 2, 0, 0, 0, 0, 3, 3, 0, 1, …
-## $ jarak     &lt;dbl&gt; 3000, 3000, 3000, 7000, 280, 7000, 600, 7200, 0, 500, 5000, …</code></pre>
+## $ ongkos    &lt;dbl&gt; 464.4, 464.4, 464.4, 0.0…
+## $ bparkir   &lt;dbl&gt; 2000, 2000, 3000, 0, 0, …
+## $ durasi    &lt;dbl&gt; 20, 10, 15, 30, 5, 30, 5…
+## $ bareng    &lt;dbl&gt; 2, 0, 2, 5, 2, 0, 0, 0, …
+## $ toplajur  &lt;dbl&gt; 4, 4, 4, 8, 2, 4, 4, 4, …
+## $ usia      &lt;dbl&gt; 45, 46, 50, 25, 22, 63, …
+## $ jmlmotor  &lt;dbl&gt; 2, 2, 3, 0, 2, 1, 1, 2, …
+## $ jmlmobil  &lt;dbl&gt; 0, 1, 0, 0, 3, 1, 1, 1, …
+## $ jmlsepeda &lt;dbl&gt; 2, 4, 0, 2, 3, 2, 1, 1, …
+## $ jmldewasa &lt;dbl&gt; 4, 4, 4, 3, 5, 2, 2, 4, …
+## $ jmlanak   &lt;dbl&gt; 1, 1, 0, 0, 0, 0, 1, 0, …
+## $ jarak     &lt;dbl&gt; 3000, 3000, 3000, 7000, …</code></pre>
 <p><strong>Latihan 1:</strong></p>
 <p>Berdasarkan output <code>glimpse</code> di atas, jawablah pertanyaan berikut:</p>
 <ol style="list-style-type: decimal">
@@ -521,8 +521,10 @@ div.csl-indent {
 ## Call: KMO(r = data_analisis)
 ## Overall MSA =  0.63
 ## MSA for each item = 
-##    ongkos   bparkir    durasi    bareng  toplajur      usia  jmlmotor  jmlmobil 
-##      0.66      0.65      0.60      0.63      0.81      0.62      0.61      0.61 
+##    ongkos   bparkir    durasi    bareng 
+##      0.66      0.65      0.60      0.63 
+##  toplajur      usia  jmlmotor  jmlmobil 
+##      0.81      0.62      0.61      0.61 
 ## jmlsepeda jmldewasa   jmlanak     jarak 
 ##      0.57      0.48      0.44      0.64</code></pre>
 <p>Berdasarkan hasil di atas: - Nilai KMO Keseluruhan (<em>Overall MSA</em>) = 0,63 (Layak, &gt; 0,5). - Namun, jika dilihat per variabel (<em>MSA for each item</em>), terdapat variabel dengan nilai &lt; 0,5 yaitu <code>jmldewasa</code> (0,48) dan <code>jmlanak</code> (0,44).</p>
@@ -537,8 +539,10 @@ div.csl-indent {
 ## Call: KMO(r = data_analisis_final)
 ## Overall MSA =  0.65
 ## MSA for each item = 
-##    ongkos   bparkir    durasi    bareng  toplajur      usia  jmlmotor  jmlmobil 
-##      0.66      0.65      0.60      0.63      0.82      0.62      0.64      0.62 
+##    ongkos   bparkir    durasi    bareng 
+##      0.66      0.65      0.60      0.63 
+##  toplajur      usia  jmlmotor  jmlmobil 
+##      0.82      0.62      0.64      0.62 
 ## jmlsepeda     jarak 
 ##      0.58      0.64</code></pre>
 <p>Sekarang seluruh variabel memiliki MSA &gt; 0,5 dan KMO keseluruhan naik menjadi 0,68. Data siap diekstraksi.</p>
@@ -555,8 +559,9 @@ div.csl-indent {
 <span id="cb340-3"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb340-3" tabindex="-1"></a></span>
 <span id="cb340-4"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb340-4" tabindex="-1"></a><span class="co"># Menampilkan nilai eigen</span></span>
 <span id="cb340-5"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb340-5" tabindex="-1"></a>analisis_awal<span class="sc">$</span>values</span></code></pre></div>
-<pre><code>##  [1] 2.4878770 1.6496907 1.2355641 1.0172985 0.8514614 0.8261586 0.6137405
-##  [8] 0.5061041 0.4703792 0.3417258</code></pre>
+<pre><code>##  [1] 2.4878770 1.6496907 1.2355641 1.0172985
+##  [5] 0.8514614 0.8261586 0.6137405 0.5061041
+##  [9] 0.4703792 0.3417258</code></pre>
 <p>Kriteria umum penentuan jumlah dimensi: 1. <strong>Kaiser’s Criterion</strong>: Ambil komponen dengan nilai eigen &gt; 1. 2. <strong>Cumulative Variance</strong>: Ambil jumlah komponen yang menjelaskan total variansi &gt; 60%.</p>
 <p>Dari nilai eigen di atas, terdapat 4 komponen dengan nilai &gt; 1 (2.488, 1.650, 1.236, 1.017).</p>
 </div>
@@ -662,13 +667,20 @@ div.csl-indent {
 <p>Untuk mendapatkan nilai skor komponen setiap observasi secara otomatis, kita dapat mengakses objek <code>$scores</code> dari hasil PCA.</p>
 <div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb349-1" tabindex="-1"></a><span class="co"># Menampilkan 6 baris pertama dari skor komponen</span></span>
 <span id="cb349-2"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb349-2" tabindex="-1"></a><span class="fu">head</span>(pca_result<span class="sc">$</span>scores)</span></code></pre></div>
-<pre><code>##             RC1        RC3         RC2         RC4
-## [1,] -0.1944617 -0.4804209  0.36717340 -0.54187967
-## [2,] -0.7752196 -0.1911165  1.50812139 -1.14287093
-## [3,] -0.2069996 -0.2693966 -0.04572532 -0.49628033
-## [4,]  0.7677605 -0.2647856 -0.21284551  0.01899626
-## [5,] -1.6702167 -0.2667413  1.87084197  0.22728535
-## [6,]  0.1797747 -0.6385342  0.52415727 -2.00189106</code></pre>
+<pre><code>##             RC1        RC3         RC2
+## [1,] -0.1944617 -0.4804209  0.36717340
+## [2,] -0.7752196 -0.1911165  1.50812139
+## [3,] -0.2069996 -0.2693966 -0.04572532
+## [4,]  0.7677605 -0.2647856 -0.21284551
+## [5,] -1.6702167 -0.2667413  1.87084197
+## [6,]  0.1797747 -0.6385342  0.52415727
+##              RC4
+## [1,] -0.54187967
+## [2,] -1.14287093
+## [3,] -0.49628033
+## [4,]  0.01899626
+## [5,]  0.22728535
+## [6,] -2.00189106</code></pre>
 <p><strong>Latihan 6:</strong></p>
 <p>Berdasarkan output weights PCA di atas, tuliskan persamaan matematis terbentuknya komponen <strong>RC2</strong>! (Sebutkan variabel mana saja yang memiliki kontribusi besar beserta koefisien weights-nya).</p>
 </div>

@@ -413,34 +413,62 @@ div.csl-indent {
 <span id="cb32-3"><a href="modul-1.html#cb32-3" tabindex="-1"></a></span>
 <span id="cb32-4"><a href="modul-1.html#cb32-4" tabindex="-1"></a><span class="co"># Menampilkan 6 baris pertama dataset</span></span>
 <span id="cb32-5"><a href="modul-1.html#cb32-5" tabindex="-1"></a><span class="fu">head</span>(data)</span></code></pre></div>
-<pre><code>##   Kampus_PT Nomor.urut Jenis.Kelamin Umur                   Fakultas
-## 1    UINRIL          1     Laki-laki   22                    Syariah
-## 2    UINRIL          2     Laki-laki   25                    Syariah
-## 3    UINRIL          3     Perempuan   24      Tarbiyah dan Keguruan
-## 4    UINRIL          4     Laki-laki   19 Dakwah dan Ilmu Komunikasi
-## 5    UINRIL          5     Laki-laki   23      Tarbiyah dan Keguruan
-## 6    UINRIL          6     Laki-laki   21                       Adab
-##                                   Prodi            Tingkat.Semester  Uang.Saku
-## 1                        Hukum Keluarga 4 (Semester 7 - Semester 8) 1Jt - 2 Jt
-## 2                        Hukum Keluarga 4 (Semester 7 - Semester 8)     &lt; 1 Jt
-## 3                Pendidikan Agama Islam 4 (Semester 7 - Semester 8)     &lt; 1 Jt
-## 4        Komunikasi dan Penyiaran Islam 1 (Semester 1 - Semester 2)     &lt; 1 Jt
-## 5            Manajemen Pendidikan Islam 4 (Semester 7 - Semester 8)     &lt; 1 Jt
-## 6 Ilmu Perpustakaan dan Informasi Islam 4 (Semester 7 - Semester 8)     &lt; 1 Jt
-##   kepemilikan.mobil kepemilikan.motor kepemilikan.sepedan      kendaraan.utama
-## 1                 0                 1                   0 Sepeda Motor Pribadi
-## 2                 1                 4                   0 Sepeda Motor Pribadi
-## 3                 0                 0                   0        Berjalan Kaki
-## 4                 0                 1                   0 Sepeda Motor Pribadi
-## 5                 0                 1                   0 Sepeda Motor Pribadi
-## 6                 0                 1                   0 Sepeda Motor Pribadi
-##      kelurahan          jenis.tempat.tinggal
-## 1       Wiyono         Rumah Bersama Saudara
-## 2     Sukarame                   Kos Sendiri
-## 3     Sukarame                   Kos Sendiri
-## 4 Harapan Jaya                   Kos Sendiri
-## 5  Korpri Raya Rumah Mengontrak Bersama-sama
-## 6    Rajabasa   Rumah Pribadi/Rumah Keluarga
+<pre><code>##   Kampus_PT Nomor.urut Jenis.Kelamin Umur
+## 1    UINRIL          1     Laki-laki   22
+## 2    UINRIL          2     Laki-laki   25
+## 3    UINRIL          3     Perempuan   24
+## 4    UINRIL          4     Laki-laki   19
+## 5    UINRIL          5     Laki-laki   23
+## 6    UINRIL          6     Laki-laki   21
+##                     Fakultas
+## 1                    Syariah
+## 2                    Syariah
+## 3      Tarbiyah dan Keguruan
+## 4 Dakwah dan Ilmu Komunikasi
+## 5      Tarbiyah dan Keguruan
+## 6                       Adab
+##                                   Prodi
+## 1                        Hukum Keluarga
+## 2                        Hukum Keluarga
+## 3                Pendidikan Agama Islam
+## 4        Komunikasi dan Penyiaran Islam
+## 5            Manajemen Pendidikan Islam
+## 6 Ilmu Perpustakaan dan Informasi Islam
+##              Tingkat.Semester  Uang.Saku
+## 1 4 (Semester 7 - Semester 8) 1Jt - 2 Jt
+## 2 4 (Semester 7 - Semester 8)     &lt; 1 Jt
+## 3 4 (Semester 7 - Semester 8)     &lt; 1 Jt
+## 4 1 (Semester 1 - Semester 2)     &lt; 1 Jt
+## 5 4 (Semester 7 - Semester 8)     &lt; 1 Jt
+## 6 4 (Semester 7 - Semester 8)     &lt; 1 Jt
+##   kepemilikan.mobil kepemilikan.motor
+## 1                 0                 1
+## 2                 1                 4
+## 3                 0                 0
+## 4                 0                 1
+## 5                 0                 1
+## 6                 0                 1
+##   kepemilikan.sepedan      kendaraan.utama
+## 1                   0 Sepeda Motor Pribadi
+## 2                   0 Sepeda Motor Pribadi
+## 3                   0        Berjalan Kaki
+## 4                   0 Sepeda Motor Pribadi
+## 5                   0 Sepeda Motor Pribadi
+## 6                   0 Sepeda Motor Pribadi
+##      kelurahan
+## 1       Wiyono
+## 2     Sukarame
+## 3     Sukarame
+## 4 Harapan Jaya
+## 5  Korpri Raya
+## 6    Rajabasa 
+##            jenis.tempat.tinggal
+## 1         Rumah Bersama Saudara
+## 2                   Kos Sendiri
+## 3                   Kos Sendiri
+## 4                   Kos Sendiri
+## 5 Rumah Mengontrak Bersama-sama
+## 6  Rumah Pribadi/Rumah Keluarga
 ##                 nama.jalan.tempat.tinggal
 ## 1                            Pasar Wiyono
 ## 2                     jln endro suratmin 
@@ -448,27 +476,62 @@ div.csl-indent {
 ## 4           Jl.pulau pisang, gg way pesai
 ## 5                              Jl. Durian
 ## 6 Jln Nunyai Gg. Hi. Ismail Blok B NO 22E
-##   alasan.pemilihan.lokasi.tempat.tinggal jarak.(km) biaya.dalam.ribu2
-## 1                              Lain-lain      19.27               100
-## 2                    Dekat dengan kampus       0.58                80
-## 3                    Dekat dengan kampus       0.56                 0
-## 4                    Dekat dengan kampus       1.05                50
-## 5                    Dekat dengan kampus       1.69                50
-## 6                    Dekat dengan kampus       7.91                50
-##   Jumlah.Perjalanan.Senin Jumlah.Perjalanan.Selasa Jumlah.Perjalanan.Rabu
-## 1                       3                        3                      0
-## 2                       3                        3                      0
-## 3                       3                        0                      3
-## 4                       0                        2                      0
-## 5                       4                        4                      0
-## 6                       0                        2                      2
-##   Jumlah.Perjalanan.Kamis Jumlah.Perjalanan.Jumat Jumlah.Perjalanan.Sabtu
-## 1                       0                       0                       0
-## 2                       3                       0                       0
-## 3                       0                       0                       0
-## 4                       2                       2                       0
-## 5                       0                       3                       2
-## 6                       0                       2                       2
+##   alasan.pemilihan.lokasi.tempat.tinggal
+## 1                              Lain-lain
+## 2                    Dekat dengan kampus
+## 3                    Dekat dengan kampus
+## 4                    Dekat dengan kampus
+## 5                    Dekat dengan kampus
+## 6                    Dekat dengan kampus
+##   jarak.(km) biaya.dalam.ribu2
+## 1      19.27               100
+## 2       0.58                80
+## 3       0.56                 0
+## 4       1.05                50
+## 5       1.69                50
+## 6       7.91                50
+##   Jumlah.Perjalanan.Senin
+## 1                       3
+## 2                       3
+## 3                       3
+## 4                       0
+## 5                       4
+## 6                       0
+##   Jumlah.Perjalanan.Selasa
+## 1                        3
+## 2                        3
+## 3                        0
+## 4                        2
+## 5                        4
+## 6                        2
+##   Jumlah.Perjalanan.Rabu
+## 1                      0
+## 2                      0
+## 3                      3
+## 4                      0
+## 5                      0
+## 6                      2
+##   Jumlah.Perjalanan.Kamis
+## 1                       0
+## 2                       3
+## 3                       0
+## 4                       2
+## 5                       0
+## 6                       0
+##   Jumlah.Perjalanan.Jumat
+## 1                       0
+## 2                       0
+## 3                       0
+## 4                       2
+## 5                       3
+## 6                       2
+##   Jumlah.Perjalanan.Sabtu
+## 1                       0
+## 2                       0
+## 3                       0
+## 4                       0
+## 5                       2
+## 6                       2
 ##   Jumlah.Perjalanan.Ahad
 ## 1                      0
 ## 2                      0
@@ -487,69 +550,153 @@ div.csl-indent {
 <span id="cb34-6"><a href="modul-1.html#cb34-6" tabindex="-1"></a></span>
 <span id="cb34-7"><a href="modul-1.html#cb34-7" tabindex="-1"></a><span class="co"># Melihat data tersebut</span></span>
 <span id="cb34-8"><a href="modul-1.html#cb34-8" tabindex="-1"></a><span class="fu">head</span>(data_ubl)</span></code></pre></div>
-<pre><code>##   Timestamp Kampus_PT Nomor.urut Jenis.Kelamin Umur
-## 1  45413.83       UBL          1     Perempuan   21
-## 2  45413.83       UBL          2     Laki-Laki   20
-## 3  45413.85       UBL          3     Laki-Laki   21
-## 4  45413.85       UBL          4     Laki-Laki   22
-## 5  45413.88       UBL          5     Laki-Laki   21
-## 6  45413.92       UBL          6     Perempuan   21
-##                           Fakultas           Prodi            Tingkat.Semester
-## 1 Fakultas Ilmu Sosial dan Politik Ilmu Komunikasi 4 (Semester 7 - Semester 8)
-## 2                   Fakultas Hukum      Ilmu Hukum 3 (Semester 5 - Semester 6)
-## 3      Fakultas Ekonomi dan Bisnis       Manajemen 4 (Semester 7 - Semester 8)
-## 4      Fakultas Ekonomi dan Bisnis       Akuntansi 4 (Semester 7 - Semester 8)
-## 5      Fakultas Ekonomi dan Bisnis       Manajemen 4 (Semester 7 - Semester 8)
-## 6      Fakultas Ekonomi dan Bisnis       Akuntansi 4 (Semester 7 - Semester 8)
-##       Uang.Saku kepemilikan.mobil kepemilikan.motor kepemilikan.sepeda
-## 1        &lt; 1 jt                 1                 2                  1
-## 2   1 jt – 2 jt                 2                 1                  1
-## 3   1 jt – 2 jt                 1                 2                  2
-## 4   1 jt – 2 jt                 1                 4                  1
-## 5 2,1 jt – 3 jt                 4                 4                  1
-## 6   1 jt – 2 jt                 1                 2                  1
-##                                        kendaraan.utama               kelurahan
-## 1                                 Sepeda Motor Pribadi       Kalibalau Kencana
-## 2                                        Mobil Pribadi            Gunung sulah
-## 3                                 Sepeda Motor Pribadi              langkapura
-## 4 Kendaraan Bermotor (menumpang dengan keluarga/teman) Bilabong JAYA JAYA JAYA
-## 5                                        Mobil Pribadi                sukarame
-## 6                                  Transportasi Online               Way halim
-##           jenis.tempat.tinggal                       nama.jalan.tempat.tinggal
-## 1 Rumah pribadi/rumah keluarga                                    eLBe Loundry
-## 2 Rumah pribadi/rumah keluarga                         Jl.Urip Sumoharjo no 88
-## 3 Rumah pribadi/rumah keluarga                  JL DARUSSALAM GG LANGGAR LK II
-## 4 Rumah pribadi/rumah keluarga Jl Darussalam bilabong bila bolong di jait dong
-## 5 Rumah pribadi/rumah keluarga          jl.cendrawasih sukarame bandar lampung
-## 6 Rumah pribadi/rumah keluarga                            Jl P tabuan nomor 26
-##   jarak.(km)         alasan.pemilihan.lokasi.tempat.tinggal
-## 1   4.223797                 Bersama keluarga/saudara/teman
-## 2   2.703331 Mudahnya akses berpergian dari tempat tinggal 
-## 3   3.237072                 Bersama keluarga/saudara/teman
-## 4   3.002336    Lingkungan nyaman karna aman dari kejahatan
-## 5   5.961925                    Dekat dengan fasilitas umum
-## 6   2.925331                 Bersama keluarga/saudara/teman
-##                 biaya.dalam.seminggu Jumlah.perjalanan.Senin
-## 1                            25 ribu                       2
-## 2                                200                       3
-## 3 50rb menggunakan kendaraan pribadi                       1
-## 4                      Sminggu 20 rb                       2
-## 5                     20 JUTA RUPIAH                       1
-## 6                              40 rb                       3
-##   Jumlah.Perjalanan.Selasa Jumlah.Perjalanan.Rabu Jumlah.Perjalanan.Kamis
-## 1                        3                      2                       3
-## 2                        3                      3                       3
-## 3                        1                      1                       1
-## 4                        2                      2                       2
-## 5                        1                      1                       1
-## 6                        3                      1                       1
-##   Jumlah.Perjalanan.Jumat Jumlah.Perjalanan.Sabtu Jumlah.Perjalanan.Ahad
-## 1                       2                       2                      2
-## 2                       3                       3                      3
-## 3                       1                       1                      1
-## 4                       2                       2                      2
-## 5                       1                       1                      1
-## 6                       1                       1                      1</code></pre>
+<pre><code>##   Timestamp Kampus_PT Nomor.urut
+## 1  45413.83       UBL          1
+## 2  45413.83       UBL          2
+## 3  45413.85       UBL          3
+## 4  45413.85       UBL          4
+## 5  45413.88       UBL          5
+## 6  45413.92       UBL          6
+##   Jenis.Kelamin Umur
+## 1     Perempuan   21
+## 2     Laki-Laki   20
+## 3     Laki-Laki   21
+## 4     Laki-Laki   22
+## 5     Laki-Laki   21
+## 6     Perempuan   21
+##                           Fakultas
+## 1 Fakultas Ilmu Sosial dan Politik
+## 2                   Fakultas Hukum
+## 3      Fakultas Ekonomi dan Bisnis
+## 4      Fakultas Ekonomi dan Bisnis
+## 5      Fakultas Ekonomi dan Bisnis
+## 6      Fakultas Ekonomi dan Bisnis
+##             Prodi
+## 1 Ilmu Komunikasi
+## 2      Ilmu Hukum
+## 3       Manajemen
+## 4       Akuntansi
+## 5       Manajemen
+## 6       Akuntansi
+##              Tingkat.Semester     Uang.Saku
+## 1 4 (Semester 7 - Semester 8)        &lt; 1 jt
+## 2 3 (Semester 5 - Semester 6)   1 jt – 2 jt
+## 3 4 (Semester 7 - Semester 8)   1 jt – 2 jt
+## 4 4 (Semester 7 - Semester 8)   1 jt – 2 jt
+## 5 4 (Semester 7 - Semester 8) 2,1 jt – 3 jt
+## 6 4 (Semester 7 - Semester 8)   1 jt – 2 jt
+##   kepemilikan.mobil kepemilikan.motor
+## 1                 1                 2
+## 2                 2                 1
+## 3                 1                 2
+## 4                 1                 4
+## 5                 4                 4
+## 6                 1                 2
+##   kepemilikan.sepeda
+## 1                  1
+## 2                  1
+## 3                  2
+## 4                  1
+## 5                  1
+## 6                  1
+##                                        kendaraan.utama
+## 1                                 Sepeda Motor Pribadi
+## 2                                        Mobil Pribadi
+## 3                                 Sepeda Motor Pribadi
+## 4 Kendaraan Bermotor (menumpang dengan keluarga/teman)
+## 5                                        Mobil Pribadi
+## 6                                  Transportasi Online
+##                 kelurahan
+## 1       Kalibalau Kencana
+## 2            Gunung sulah
+## 3              langkapura
+## 4 Bilabong JAYA JAYA JAYA
+## 5                sukarame
+## 6               Way halim
+##           jenis.tempat.tinggal
+## 1 Rumah pribadi/rumah keluarga
+## 2 Rumah pribadi/rumah keluarga
+## 3 Rumah pribadi/rumah keluarga
+## 4 Rumah pribadi/rumah keluarga
+## 5 Rumah pribadi/rumah keluarga
+## 6 Rumah pribadi/rumah keluarga
+##                         nama.jalan.tempat.tinggal
+## 1                                    eLBe Loundry
+## 2                         Jl.Urip Sumoharjo no 88
+## 3                  JL DARUSSALAM GG LANGGAR LK II
+## 4 Jl Darussalam bilabong bila bolong di jait dong
+## 5          jl.cendrawasih sukarame bandar lampung
+## 6                            Jl P tabuan nomor 26
+##   jarak.(km)
+## 1   4.223797
+## 2   2.703331
+## 3   3.237072
+## 4   3.002336
+## 5   5.961925
+## 6   2.925331
+##           alasan.pemilihan.lokasi.tempat.tinggal
+## 1                 Bersama keluarga/saudara/teman
+## 2 Mudahnya akses berpergian dari tempat tinggal 
+## 3                 Bersama keluarga/saudara/teman
+## 4    Lingkungan nyaman karna aman dari kejahatan
+## 5                    Dekat dengan fasilitas umum
+## 6                 Bersama keluarga/saudara/teman
+##                 biaya.dalam.seminggu
+## 1                            25 ribu
+## 2                                200
+## 3 50rb menggunakan kendaraan pribadi
+## 4                      Sminggu 20 rb
+## 5                     20 JUTA RUPIAH
+## 6                              40 rb
+##   Jumlah.perjalanan.Senin
+## 1                       2
+## 2                       3
+## 3                       1
+## 4                       2
+## 5                       1
+## 6                       3
+##   Jumlah.Perjalanan.Selasa
+## 1                        3
+## 2                        3
+## 3                        1
+## 4                        2
+## 5                        1
+## 6                        3
+##   Jumlah.Perjalanan.Rabu
+## 1                      2
+## 2                      3
+## 3                      1
+## 4                      2
+## 5                      1
+## 6                      1
+##   Jumlah.Perjalanan.Kamis
+## 1                       3
+## 2                       3
+## 3                       1
+## 4                       2
+## 5                       1
+## 6                       1
+##   Jumlah.Perjalanan.Jumat
+## 1                       2
+## 2                       3
+## 3                       1
+## 4                       2
+## 5                       1
+## 6                       1
+##   Jumlah.Perjalanan.Sabtu
+## 1                       2
+## 2                       3
+## 3                       1
+## 4                       2
+## 5                       1
+## 6                       1
+##   Jumlah.Perjalanan.Ahad
+## 1                      2
+## 2                      3
+## 3                      1
+## 4                      2
+## 5                      1
+## 6                      1</code></pre>
 <p>Kita juga dapat melihat <em>dataset</em> kita secara lengkap dengan perintah <code>View()</code></p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="modul-1.html#cb36-1" tabindex="-1"></a><span class="co"># Melihat set data UINRIL</span></span>
 <span id="cb36-2"><a href="modul-1.html#cb36-2" tabindex="-1"></a><span class="fu">View</span>(data)</span>
@@ -570,31 +717,31 @@ div.csl-indent {
 <span id="cb37-2"><a href="modul-1.html#cb37-2" tabindex="-1"></a><span class="fu">glimpse</span>(data)</span></code></pre></div>
 <pre><code>## Rows: 400
 ## Columns: 25
-## $ Kampus_PT                              &lt;chr&gt; &quot;UINRIL&quot;, &quot;UINRIL&quot;, &quot;UINRIL&quot;, &quot;…
-## $ Nomor.urut                             &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, …
-## $ Jenis.Kelamin                          &lt;chr&gt; &quot;Laki-laki&quot;, &quot;Laki-laki&quot;, &quot;Pere…
-## $ Umur                                   &lt;dbl&gt; 22, 25, 24, 19, 23, 21, 22, 21,…
-## $ Fakultas                               &lt;chr&gt; &quot;Syariah&quot;, &quot;Syariah&quot;, &quot;Tarbiyah…
-## $ Prodi                                  &lt;chr&gt; &quot;Hukum Keluarga&quot;, &quot;Hukum Keluar…
-## $ Tingkat.Semester                       &lt;chr&gt; &quot;4 (Semester 7 - Semester 8)&quot;, …
-## $ Uang.Saku                              &lt;chr&gt; &quot;1Jt - 2 Jt&quot;, &quot;&lt; 1 Jt&quot;, &quot;&lt; 1 Jt…
-## $ kepemilikan.mobil                      &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0…
-## $ kepemilikan.motor                      &lt;dbl&gt; 1, 4, 0, 1, 1, 1, 1, 4, 4, 1, 0…
-## $ kepemilikan.sepedan                    &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0…
-## $ kendaraan.utama                        &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Sepeda…
-## $ kelurahan                              &lt;chr&gt; &quot;Wiyono&quot;, &quot;Sukarame&quot;, &quot;Sukarame…
-## $ jenis.tempat.tinggal                   &lt;chr&gt; &quot;Rumah Bersama Saudara&quot;, &quot;Kos S…
-## $ nama.jalan.tempat.tinggal              &lt;chr&gt; &quot;Pasar Wiyono&quot;, &quot;jln endro sura…
-## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; &quot;Lain-lain&quot;, &quot;Dekat dengan kamp…
-## $ `jarak.(km)`                           &lt;dbl&gt; 19.27, 0.58, 0.56, 1.05, 1.69, …
-## $ biaya.dalam.ribu2                      &lt;dbl&gt; 100, 80, 0, 50, 50, 50, 35, 50,…
-## $ Jumlah.Perjalanan.Senin                &lt;dbl&gt; 3, 3, 3, 0, 4, 0, 3, 4, 2, 3, 4…
-## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; 3, 3, 0, 2, 4, 2, 0, 4, 0, 2, 4…
-## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; 0, 0, 3, 0, 0, 2, 3, 4, 3, 2, 4…
-## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; 0, 3, 0, 2, 0, 0, 0, 4, 0, 2, 2…
-## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; 0, 0, 0, 2, 3, 2, 2, 4, 0, 0, 2…
-## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 2…
-## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; 0, 0, 0, 2, 0, 2, 2, 2, 2, 0, 2…</code></pre>
+## $ Kampus_PT                              &lt;chr&gt; …
+## $ Nomor.urut                             &lt;dbl&gt; …
+## $ Jenis.Kelamin                          &lt;chr&gt; …
+## $ Umur                                   &lt;dbl&gt; …
+## $ Fakultas                               &lt;chr&gt; …
+## $ Prodi                                  &lt;chr&gt; …
+## $ Tingkat.Semester                       &lt;chr&gt; …
+## $ Uang.Saku                              &lt;chr&gt; …
+## $ kepemilikan.mobil                      &lt;dbl&gt; …
+## $ kepemilikan.motor                      &lt;dbl&gt; …
+## $ kepemilikan.sepedan                    &lt;dbl&gt; …
+## $ kendaraan.utama                        &lt;chr&gt; …
+## $ kelurahan                              &lt;chr&gt; …
+## $ jenis.tempat.tinggal                   &lt;chr&gt; …
+## $ nama.jalan.tempat.tinggal              &lt;chr&gt; …
+## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; …
+## $ `jarak.(km)`                           &lt;dbl&gt; …
+## $ biaya.dalam.ribu2                      &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Senin                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; …
+## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; …</code></pre>
 <p>Hasil dari fungsi <code>glimpse()</code> tersebut menunjukkan jumlah baris, jumlah kolom, dan kolom-kolom yang ada dalam set data kita beserta rinciannya. Set data kita memiliki 400 baris yang ditunjukkan oleh <strong><code>Rows</code></strong> dan 25 kolom yang ditunjukkan oleh <strong><code>Columns</code></strong> . Ini artinya, set data kita memiliki 400 objek dan 25 variabel.</p>
 <p>Rincian nama-nama variabel ditunjukkan pada baris keluaran yang diawali oleh simbol <strong><code>\$</code></strong>. Singkatan-singkatan di dalam kurung sudut <code>&lt;&gt;</code> bermakna jenis nilai dari variabel tersebut. <a href="https://cran.r-project.org/web/packages/tibble/vignettes/types.html">Laman ini</a> memberikan penjelasan makna setiap singkatan tersebut.</p>
 <p>Terlihat dalam data kita bahwa hanya ada dua tipe nilai variabel: <code>dbl</code> dan <code>chr</code> yang berarti <em>double</em> (bilangan desimal) dan <em>character</em> (huruf/<em>string</em>).</p>
@@ -718,15 +865,15 @@ div.csl-indent {
 <p>Kita akan menyimpan nama-nama kolom yang sudah kita tentukan tersebut menjadi sebuah vektor.</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="modul-1.html#cb49-1" tabindex="-1"></a><span class="co"># Membuat vektor berisi nama-nama kolom final yang kita inginkan</span></span>
 <span id="cb49-2"><a href="modul-1.html#cb49-2" tabindex="-1"></a>kolom_final <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb49-3"><a href="modul-1.html#cb49-3" tabindex="-1"></a>  <span class="st">&quot;Nomor.urut&quot;</span>, <span class="st">&quot;Jenis.Kelamin&quot;</span>, <span class="st">&quot;Umur&quot;</span>, <span class="st">&quot;Fakultas&quot;</span>, <span class="st">&quot;Prodi&quot;</span>, </span>
-<span id="cb49-4"><a href="modul-1.html#cb49-4" tabindex="-1"></a>  <span class="st">&quot;Tingkat.Semester&quot;</span>, <span class="st">&quot;Uang.Saku&quot;</span>,</span>
-<span id="cb49-5"><a href="modul-1.html#cb49-5" tabindex="-1"></a>  <span class="st">&quot;kepemilikan.mobil&quot;</span>, </span>
-<span id="cb49-6"><a href="modul-1.html#cb49-6" tabindex="-1"></a>  <span class="st">&quot;kepemilikan.motor&quot;</span>, <span class="st">&quot;kepemilikan.sepeda&quot;</span>, <span class="st">&quot;kendaraan.utama&quot;</span>, </span>
-<span id="cb49-7"><a href="modul-1.html#cb49-7" tabindex="-1"></a>  <span class="st">&quot;jenis.tempat.tinggal&quot;</span>, <span class="st">&quot;jarak&quot;</span>, <span class="st">&quot;biaya.dalam.sepekan&quot;</span>, </span>
-<span id="cb49-8"><a href="modul-1.html#cb49-8" tabindex="-1"></a>  <span class="st">&quot;Jumlah.perjalanan.Senin&quot;</span>, <span class="st">&quot;Jumlah.perjalanan.Selasa&quot;</span>, </span>
-<span id="cb49-9"><a href="modul-1.html#cb49-9" tabindex="-1"></a>  <span class="st">&quot;Jumlah.perjalanan.Rabu&quot;</span>, <span class="st">&quot;Jumlah.perjalanan.Kamis&quot;</span>, </span>
-<span id="cb49-10"><a href="modul-1.html#cb49-10" tabindex="-1"></a>  <span class="st">&quot;Jumlah.perjalanan.Jumat&quot;</span>, <span class="st">&quot;Jumlah.perjalanan.Sabtu&quot;</span>, </span>
-<span id="cb49-11"><a href="modul-1.html#cb49-11" tabindex="-1"></a>  <span class="st">&quot;Jumlah.perjalanan.Ahad&quot;</span></span>
+<span id="cb49-3"><a href="modul-1.html#cb49-3" tabindex="-1"></a>  <span class="st">&quot;nomor_urut&quot;</span>, <span class="st">&quot;jenis_kelamin&quot;</span>, <span class="st">&quot;umur&quot;</span>, <span class="st">&quot;fakultas&quot;</span>, <span class="st">&quot;prodi&quot;</span>, </span>
+<span id="cb49-4"><a href="modul-1.html#cb49-4" tabindex="-1"></a>  <span class="st">&quot;tingkat_semester&quot;</span>, <span class="st">&quot;uang_saku&quot;</span>,</span>
+<span id="cb49-5"><a href="modul-1.html#cb49-5" tabindex="-1"></a>  <span class="st">&quot;kepemilikan_mobil&quot;</span>, </span>
+<span id="cb49-6"><a href="modul-1.html#cb49-6" tabindex="-1"></a>  <span class="st">&quot;kepemilikan_motor&quot;</span>, <span class="st">&quot;kepemilikan_sepeda&quot;</span>, <span class="st">&quot;kendaraan_utama&quot;</span>, </span>
+<span id="cb49-7"><a href="modul-1.html#cb49-7" tabindex="-1"></a>  <span class="st">&quot;jenis_tempat_tinggal&quot;</span>, <span class="st">&quot;jarak&quot;</span>, <span class="st">&quot;biaya_dalam_sepekan&quot;</span>, </span>
+<span id="cb49-8"><a href="modul-1.html#cb49-8" tabindex="-1"></a>  <span class="st">&quot;jumlah_perjalanan_senin&quot;</span>, <span class="st">&quot;jumlah_perjalanan_selasa&quot;</span>, </span>
+<span id="cb49-9"><a href="modul-1.html#cb49-9" tabindex="-1"></a>  <span class="st">&quot;jumlah_perjalanan_rabu&quot;</span>, <span class="st">&quot;jumlah_perjalanan_kamis&quot;</span>, </span>
+<span id="cb49-10"><a href="modul-1.html#cb49-10" tabindex="-1"></a>  <span class="st">&quot;jumlah_perjalanan_jumat&quot;</span>, <span class="st">&quot;jumlah_perjalanan_sabtu&quot;</span>, </span>
+<span id="cb49-11"><a href="modul-1.html#cb49-11" tabindex="-1"></a>  <span class="st">&quot;jumlah_perjalanan_ahad&quot;</span></span>
 <span id="cb49-12"><a href="modul-1.html#cb49-12" tabindex="-1"></a>)</span></code></pre></div>
 </div>
 <div id="menyeleksi-kolom-kolom-yang-akan-dipakai" class="section level3 hasAnchor" number="1.3.4">
@@ -770,31 +917,51 @@ div.csl-indent {
 <p>Untuk membuktikan bahwa namanya sudah berubah, kita bisa cek lagi.</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="modul-1.html#cb53-1" tabindex="-1"></a><span class="co"># Cek nama kolom setelah diubah</span></span>
 <span id="cb53-2"><a href="modul-1.html#cb53-2" tabindex="-1"></a><span class="fu">colnames</span>(data_uin_selected)</span></code></pre></div>
-<pre><code>##  [1] &quot;Nomor.urut&quot;               &quot;Jenis.Kelamin&quot;           
-##  [3] &quot;Umur&quot;                     &quot;Fakultas&quot;                
-##  [5] &quot;Prodi&quot;                    &quot;Tingkat.Semester&quot;        
-##  [7] &quot;Uang.Saku&quot;                &quot;kepemilikan.mobil&quot;       
-##  [9] &quot;kepemilikan.motor&quot;        &quot;kepemilikan.sepeda&quot;      
-## [11] &quot;kendaraan.utama&quot;          &quot;jenis.tempat.tinggal&quot;    
-## [13] &quot;jarak&quot;                    &quot;biaya.dalam.sepekan&quot;     
-## [15] &quot;Jumlah.perjalanan.Senin&quot;  &quot;Jumlah.perjalanan.Selasa&quot;
-## [17] &quot;Jumlah.perjalanan.Rabu&quot;   &quot;Jumlah.perjalanan.Kamis&quot; 
-## [19] &quot;Jumlah.perjalanan.Jumat&quot;  &quot;Jumlah.perjalanan.Sabtu&quot; 
-## [21] &quot;Jumlah.perjalanan.Ahad&quot;</code></pre>
+<pre><code>##  [1] &quot;nomor_urut&quot;              
+##  [2] &quot;jenis_kelamin&quot;           
+##  [3] &quot;umur&quot;                    
+##  [4] &quot;fakultas&quot;                
+##  [5] &quot;prodi&quot;                   
+##  [6] &quot;tingkat_semester&quot;        
+##  [7] &quot;uang_saku&quot;               
+##  [8] &quot;kepemilikan_mobil&quot;       
+##  [9] &quot;kepemilikan_motor&quot;       
+## [10] &quot;kepemilikan_sepeda&quot;      
+## [11] &quot;kendaraan_utama&quot;         
+## [12] &quot;jenis_tempat_tinggal&quot;    
+## [13] &quot;jarak&quot;                   
+## [14] &quot;biaya_dalam_sepekan&quot;     
+## [15] &quot;jumlah_perjalanan_senin&quot; 
+## [16] &quot;jumlah_perjalanan_selasa&quot;
+## [17] &quot;jumlah_perjalanan_rabu&quot;  
+## [18] &quot;jumlah_perjalanan_kamis&quot; 
+## [19] &quot;jumlah_perjalanan_jumat&quot; 
+## [20] &quot;jumlah_perjalanan_sabtu&quot; 
+## [21] &quot;jumlah_perjalanan_ahad&quot;</code></pre>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="modul-1.html#cb55-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;============================================================&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;============================================================&quot;</code></pre>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="modul-1.html#cb57-1" tabindex="-1"></a><span class="fu">colnames</span>(data_ubl_selected)</span></code></pre></div>
-<pre><code>##  [1] &quot;Nomor.urut&quot;               &quot;Jenis.Kelamin&quot;           
-##  [3] &quot;Umur&quot;                     &quot;Fakultas&quot;                
-##  [5] &quot;Prodi&quot;                    &quot;Tingkat.Semester&quot;        
-##  [7] &quot;Uang.Saku&quot;                &quot;kepemilikan.mobil&quot;       
-##  [9] &quot;kepemilikan.motor&quot;        &quot;kepemilikan.sepeda&quot;      
-## [11] &quot;kendaraan.utama&quot;          &quot;jenis.tempat.tinggal&quot;    
-## [13] &quot;jarak&quot;                    &quot;biaya.dalam.sepekan&quot;     
-## [15] &quot;Jumlah.perjalanan.Senin&quot;  &quot;Jumlah.perjalanan.Selasa&quot;
-## [17] &quot;Jumlah.perjalanan.Rabu&quot;   &quot;Jumlah.perjalanan.Kamis&quot; 
-## [19] &quot;Jumlah.perjalanan.Jumat&quot;  &quot;Jumlah.perjalanan.Sabtu&quot; 
-## [21] &quot;Jumlah.perjalanan.Ahad&quot;</code></pre>
+<pre><code>##  [1] &quot;nomor_urut&quot;              
+##  [2] &quot;jenis_kelamin&quot;           
+##  [3] &quot;umur&quot;                    
+##  [4] &quot;fakultas&quot;                
+##  [5] &quot;prodi&quot;                   
+##  [6] &quot;tingkat_semester&quot;        
+##  [7] &quot;uang_saku&quot;               
+##  [8] &quot;kepemilikan_mobil&quot;       
+##  [9] &quot;kepemilikan_motor&quot;       
+## [10] &quot;kepemilikan_sepeda&quot;      
+## [11] &quot;kendaraan_utama&quot;         
+## [12] &quot;jenis_tempat_tinggal&quot;    
+## [13] &quot;jarak&quot;                   
+## [14] &quot;biaya_dalam_sepekan&quot;     
+## [15] &quot;jumlah_perjalanan_senin&quot; 
+## [16] &quot;jumlah_perjalanan_selasa&quot;
+## [17] &quot;jumlah_perjalanan_rabu&quot;  
+## [18] &quot;jumlah_perjalanan_kamis&quot; 
+## [19] &quot;jumlah_perjalanan_jumat&quot; 
+## [20] &quot;jumlah_perjalanan_sabtu&quot; 
+## [21] &quot;jumlah_perjalanan_ahad&quot;</code></pre>
 <p>Hasil dari kedua perintah di atas seharusnya adalah daftar nama yang identik.</p>
 <div class="rmdexercise">
 <p><strong>Aktivitas Mandiri 2: Seleksi dan Rename Kolom [STP-1.4]</strong></p>
@@ -817,54 +984,54 @@ div.csl-indent {
 <span id="cb60-2"><a href="modul-1.html#cb60-2" tabindex="-1"></a><span class="fu">glimpse</span>(data_uin_selected)</span></code></pre></div>
 <pre><code>## Rows: 400
 ## Columns: 21
-## $ Nomor.urut               &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14…
-## $ Jenis.Kelamin            &lt;chr&gt; &quot;Laki-laki&quot;, &quot;Laki-laki&quot;, &quot;Perempuan&quot;, &quot;Laki-…
-## $ Umur                     &lt;dbl&gt; 22, 25, 24, 19, 23, 21, 22, 21, 21, 21, 19, 1…
-## $ Fakultas                 &lt;chr&gt; &quot;Syariah&quot;, &quot;Syariah&quot;, &quot;Tarbiyah dan Keguruan&quot;…
-## $ Prodi                    &lt;chr&gt; &quot;Hukum Keluarga&quot;, &quot;Hukum Keluarga&quot;, &quot;Pendidik…
-## $ Tingkat.Semester         &lt;chr&gt; &quot;4 (Semester 7 - Semester 8)&quot;, &quot;4 (Semester 7…
-## $ Uang.Saku                &lt;chr&gt; &quot;1Jt - 2 Jt&quot;, &quot;&lt; 1 Jt&quot;, &quot;&lt; 1 Jt&quot;, &quot;&lt; 1 Jt&quot;, &quot;…
-## $ kepemilikan.mobil        &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, …
-## $ kepemilikan.motor        &lt;dbl&gt; 1, 4, 0, 1, 1, 1, 1, 4, 4, 1, 0, 1, 3, 1, 0, …
-## $ kepemilikan.sepeda       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, …
-## $ kendaraan.utama          &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Sepeda Motor Pribadi…
-## $ jenis.tempat.tinggal     &lt;chr&gt; &quot;Rumah Bersama Saudara&quot;, &quot;Kos Sendiri&quot;, &quot;Kos …
-## $ jarak                    &lt;dbl&gt; 19.27, 0.58, 0.56, 1.05, 1.69, 7.91, 2.58, 2.…
-## $ biaya.dalam.sepekan      &lt;dbl&gt; 100, 80, 0, 50, 50, 50, 35, 50, 40, 50, 0, 50…
-## $ Jumlah.perjalanan.Senin  &lt;dbl&gt; 3, 3, 3, 0, 4, 0, 3, 4, 2, 3, 4, 2, 3, 2, 3, …
-## $ Jumlah.perjalanan.Selasa &lt;dbl&gt; 3, 3, 0, 2, 4, 2, 0, 4, 0, 2, 4, 2, 2, 2, 3, …
-## $ Jumlah.perjalanan.Rabu   &lt;dbl&gt; 0, 0, 3, 0, 0, 2, 3, 4, 3, 2, 4, 2, 2, 2, 2, …
-## $ Jumlah.perjalanan.Kamis  &lt;dbl&gt; 0, 3, 0, 2, 0, 0, 0, 4, 0, 2, 2, 2, 2, 2, 0, …
-## $ Jumlah.perjalanan.Jumat  &lt;dbl&gt; 0, 0, 0, 2, 3, 2, 2, 4, 0, 0, 2, 2, 2, 2, 2, …
-## $ Jumlah.perjalanan.Sabtu  &lt;dbl&gt; 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 0, 0, …
-## $ Jumlah.perjalanan.Ahad   &lt;dbl&gt; 0, 0, 0, 2, 0, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, …</code></pre>
+## $ nomor_urut               &lt;dbl&gt; 1, 2, 3, …
+## $ jenis_kelamin            &lt;chr&gt; &quot;Laki-lak…
+## $ umur                     &lt;dbl&gt; 22, 25, 2…
+## $ fakultas                 &lt;chr&gt; &quot;Syariah&quot;…
+## $ prodi                    &lt;chr&gt; &quot;Hukum Ke…
+## $ tingkat_semester         &lt;chr&gt; &quot;4 (Semes…
+## $ uang_saku                &lt;chr&gt; &quot;1Jt - 2 …
+## $ kepemilikan_mobil        &lt;dbl&gt; 0, 1, 0, …
+## $ kepemilikan_motor        &lt;dbl&gt; 1, 4, 0, …
+## $ kepemilikan_sepeda       &lt;dbl&gt; 0, 0, 0, …
+## $ kendaraan_utama          &lt;chr&gt; &quot;Sepeda M…
+## $ jenis_tempat_tinggal     &lt;chr&gt; &quot;Rumah Be…
+## $ jarak                    &lt;dbl&gt; 19.27, 0.…
+## $ biaya_dalam_sepekan      &lt;dbl&gt; 100, 80, …
+## $ jumlah_perjalanan_senin  &lt;dbl&gt; 3, 3, 3, …
+## $ jumlah_perjalanan_selasa &lt;dbl&gt; 3, 3, 0, …
+## $ jumlah_perjalanan_rabu   &lt;dbl&gt; 0, 0, 3, …
+## $ jumlah_perjalanan_kamis  &lt;dbl&gt; 0, 3, 0, …
+## $ jumlah_perjalanan_jumat  &lt;dbl&gt; 0, 0, 0, …
+## $ jumlah_perjalanan_sabtu  &lt;dbl&gt; 0, 0, 0, …
+## $ jumlah_perjalanan_ahad   &lt;dbl&gt; 0, 0, 0, …</code></pre>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="modul-1.html#cb62-1" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;=================================================================================&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;=================================================================================&quot;</code></pre>
 <div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="modul-1.html#cb64-1" tabindex="-1"></a><span class="co"># Mengecek tipe data dalam set data UBL</span></span>
 <span id="cb64-2"><a href="modul-1.html#cb64-2" tabindex="-1"></a><span class="fu">glimpse</span>(data_ubl_selected)</span></code></pre></div>
 <pre><code>## Rows: 379
 ## Columns: 21
-## $ Nomor.urut               &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14…
-## $ Jenis.Kelamin            &lt;chr&gt; &quot;Perempuan&quot;, &quot;Laki-Laki&quot;, &quot;Laki-Laki&quot;, &quot;Laki-…
-## $ Umur                     &lt;dbl&gt; 21, 20, 21, 22, 21, 21, 22, 22, 22, 22, 21, 2…
-## $ Fakultas                 &lt;chr&gt; &quot;Fakultas Ilmu Sosial dan Politik&quot;, &quot;Fakultas…
-## $ Prodi                    &lt;chr&gt; &quot;Ilmu Komunikasi&quot;, &quot;Ilmu Hukum&quot;, &quot;Manajemen&quot;,…
-## $ Tingkat.Semester         &lt;chr&gt; &quot;4 (Semester 7 - Semester 8)&quot;, &quot;3 (Semester 5…
-## $ Uang.Saku                &lt;chr&gt; &quot;&lt; 1 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt…
-## $ kepemilikan.mobil        &lt;dbl&gt; 1, 2, 1, 1, 4, 1, 1, 1, 1, 1, NA, 0, 0, 1, 0,…
-## $ kepemilikan.motor        &lt;dbl&gt; 2, 1, 2, 4, 4, 2, 1, 1, 1, 1, 1, 2, 0, 1, 1, …
-## $ kepemilikan.sepeda       &lt;dbl&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, NA, 0, 0, 0, 0,…
-## $ kendaraan.utama          &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Mobil Pribadi&quot;, &quot;Sep…
-## $ jenis.tempat.tinggal     &lt;chr&gt; &quot;Rumah pribadi/rumah keluarga&quot;, &quot;Rumah pribad…
-## $ jarak                    &lt;dbl&gt; 4.2237967, 2.7033310, 3.2370722, 3.0023362, 5…
-## $ biaya.dalam.sepekan      &lt;chr&gt; &quot;25 ribu&quot;, &quot;200&quot;, &quot;50rb menggunakan kendaraan…
-## $ Jumlah.perjalanan.Senin  &lt;chr&gt; &quot;2&quot;, &quot;3&quot;, &quot;1&quot;, &quot;2&quot;, &quot;1&quot;, &quot;3&quot;, &quot;2&quot;, &quot;4&quot;, &quot;4&quot;, …
-## $ Jumlah.perjalanan.Selasa &lt;dbl&gt; 3, 3, 1, 2, 1, 3, 2, 4, 4, 3, 3, 1, 1, 4, 1, …
-## $ Jumlah.perjalanan.Rabu   &lt;dbl&gt; 2, 3, 1, 2, 1, 1, 2, 4, 4, 3, 1, 2, 1, 4, 3, …
-## $ Jumlah.perjalanan.Kamis  &lt;dbl&gt; 3, 3, 1, 2, 1, 1, 2, 4, 4, 3, 1, 1, 1, 4, 3, …
-## $ Jumlah.perjalanan.Jumat  &lt;dbl&gt; 2, 3, 1, 2, 1, 1, 2, 4, 3, 3, 1, 2, 1, 4, 3, …
-## $ Jumlah.perjalanan.Sabtu  &lt;dbl&gt; 2, 3, 1, 2, 1, 1, 2, 3, 4, 2, 1, 1, 1, 1, 1, …
-## $ Jumlah.perjalanan.Ahad   &lt;dbl&gt; 2, 3, 1, 2, 1, 1, 2, 3, 4, 1, 1, 1, 1, 1, 1, …</code></pre>
+## $ nomor_urut               &lt;dbl&gt; 1, 2, 3, …
+## $ jenis_kelamin            &lt;chr&gt; &quot;Perempua…
+## $ umur                     &lt;dbl&gt; 21, 20, 2…
+## $ fakultas                 &lt;chr&gt; &quot;Fakultas…
+## $ prodi                    &lt;chr&gt; &quot;Ilmu Kom…
+## $ tingkat_semester         &lt;chr&gt; &quot;4 (Semes…
+## $ uang_saku                &lt;chr&gt; &quot;&lt; 1 jt&quot;,…
+## $ kepemilikan_mobil        &lt;dbl&gt; 1, 2, 1, …
+## $ kepemilikan_motor        &lt;dbl&gt; 2, 1, 2, …
+## $ kepemilikan_sepeda       &lt;dbl&gt; 1, 1, 2, …
+## $ kendaraan_utama          &lt;chr&gt; &quot;Sepeda M…
+## $ jenis_tempat_tinggal     &lt;chr&gt; &quot;Rumah pr…
+## $ jarak                    &lt;dbl&gt; 4.223797,…
+## $ biaya_dalam_sepekan      &lt;chr&gt; &quot;25 ribu&quot;…
+## $ jumlah_perjalanan_senin  &lt;chr&gt; &quot;2&quot;, &quot;3&quot;,…
+## $ jumlah_perjalanan_selasa &lt;dbl&gt; 3, 3, 1, …
+## $ jumlah_perjalanan_rabu   &lt;dbl&gt; 2, 3, 1, …
+## $ jumlah_perjalanan_kamis  &lt;dbl&gt; 3, 3, 1, …
+## $ jumlah_perjalanan_jumat  &lt;dbl&gt; 2, 3, 1, …
+## $ jumlah_perjalanan_sabtu  &lt;dbl&gt; 2, 3, 1, …
+## $ jumlah_perjalanan_ahad   &lt;dbl&gt; 2, 3, 1, …</code></pre>
 <p>Ini adalah kasus yang tepat untuk menggambarkan bahwa dalam data terstruktur, jenis nilai harus sama persis. Untuk kesederhanaan praktikum, kita akan melewati dulu variabel <code>biaya.dalam.sepekan</code> dan <code>Jumlah.perjalanan.Senin</code> tersebut.</p>
 </div>
 <div id="memperbaiki-set-data-yang-akan-digabungkan" class="section level3 hasAnchor" number="1.3.7">
@@ -872,69 +1039,78 @@ div.csl-indent {
 <p>Kita akan menghapus <code>biaya.dalam.sepekan</code> dari kedua set data kita. Untuk menghapus suatu kolom, kita dapat menggunakan fungsi <code>select()</code> juga, akan tetapi kita tambahkan tanda negatif (<code>-</code>) di depan nama variabelnya.</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="modul-1.html#cb66-1" tabindex="-1"></a><span class="co"># &#39;Menimpa&#39; data_uin_selected dengan data_uin_selected yang variabel biaya.dalam.sepekan sudah dihapus</span></span>
 <span id="cb66-2"><a href="modul-1.html#cb66-2" tabindex="-1"></a>data_uin_selected <span class="ot">&lt;-</span> <span class="fu">select</span>(data_uin_selected, </span>
-<span id="cb66-3"><a href="modul-1.html#cb66-3" tabindex="-1"></a>                            <span class="sc">-</span><span class="st">`</span><span class="at">biaya.dalam.sepekan</span><span class="st">`</span>, <span class="sc">-</span><span class="st">`</span><span class="at">Jumlah.perjalanan.Senin</span><span class="st">`</span>)</span>
+<span id="cb66-3"><a href="modul-1.html#cb66-3" tabindex="-1"></a>                            <span class="sc">-</span><span class="st">`</span><span class="at">biaya_dalam_sepekan</span><span class="st">`</span>, <span class="sc">-</span><span class="st">`</span><span class="at">jumlah_perjalanan_senin</span><span class="st">`</span>)</span>
 <span id="cb66-4"><a href="modul-1.html#cb66-4" tabindex="-1"></a></span>
 <span id="cb66-5"><a href="modul-1.html#cb66-5" tabindex="-1"></a><span class="co"># Melihat hasilnya</span></span>
 <span id="cb66-6"><a href="modul-1.html#cb66-6" tabindex="-1"></a><span class="fu">glimpse</span>(data_uin_selected)</span></code></pre></div>
 <pre><code>## Rows: 400
 ## Columns: 19
-## $ Nomor.urut               &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14…
-## $ Jenis.Kelamin            &lt;chr&gt; &quot;Laki-laki&quot;, &quot;Laki-laki&quot;, &quot;Perempuan&quot;, &quot;Laki-…
-## $ Umur                     &lt;dbl&gt; 22, 25, 24, 19, 23, 21, 22, 21, 21, 21, 19, 1…
-## $ Fakultas                 &lt;chr&gt; &quot;Syariah&quot;, &quot;Syariah&quot;, &quot;Tarbiyah dan Keguruan&quot;…
-## $ Prodi                    &lt;chr&gt; &quot;Hukum Keluarga&quot;, &quot;Hukum Keluarga&quot;, &quot;Pendidik…
-## $ Tingkat.Semester         &lt;chr&gt; &quot;4 (Semester 7 - Semester 8)&quot;, &quot;4 (Semester 7…
-## $ Uang.Saku                &lt;chr&gt; &quot;1Jt - 2 Jt&quot;, &quot;&lt; 1 Jt&quot;, &quot;&lt; 1 Jt&quot;, &quot;&lt; 1 Jt&quot;, &quot;…
-## $ kepemilikan.mobil        &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, …
-## $ kepemilikan.motor        &lt;dbl&gt; 1, 4, 0, 1, 1, 1, 1, 4, 4, 1, 0, 1, 3, 1, 0, …
-## $ kepemilikan.sepeda       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, …
-## $ kendaraan.utama          &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Sepeda Motor Pribadi…
-## $ jenis.tempat.tinggal     &lt;chr&gt; &quot;Rumah Bersama Saudara&quot;, &quot;Kos Sendiri&quot;, &quot;Kos …
-## $ jarak                    &lt;dbl&gt; 19.27, 0.58, 0.56, 1.05, 1.69, 7.91, 2.58, 2.…
-## $ Jumlah.perjalanan.Selasa &lt;dbl&gt; 3, 3, 0, 2, 4, 2, 0, 4, 0, 2, 4, 2, 2, 2, 3, …
-## $ Jumlah.perjalanan.Rabu   &lt;dbl&gt; 0, 0, 3, 0, 0, 2, 3, 4, 3, 2, 4, 2, 2, 2, 2, …
-## $ Jumlah.perjalanan.Kamis  &lt;dbl&gt; 0, 3, 0, 2, 0, 0, 0, 4, 0, 2, 2, 2, 2, 2, 0, …
-## $ Jumlah.perjalanan.Jumat  &lt;dbl&gt; 0, 0, 0, 2, 3, 2, 2, 4, 0, 0, 2, 2, 2, 2, 2, …
-## $ Jumlah.perjalanan.Sabtu  &lt;dbl&gt; 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 0, 0, …
-## $ Jumlah.perjalanan.Ahad   &lt;dbl&gt; 0, 0, 0, 2, 0, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, …</code></pre>
+## $ nomor_urut               &lt;dbl&gt; 1, 2, 3, …
+## $ jenis_kelamin            &lt;chr&gt; &quot;Laki-lak…
+## $ umur                     &lt;dbl&gt; 22, 25, 2…
+## $ fakultas                 &lt;chr&gt; &quot;Syariah&quot;…
+## $ prodi                    &lt;chr&gt; &quot;Hukum Ke…
+## $ tingkat_semester         &lt;chr&gt; &quot;4 (Semes…
+## $ uang_saku                &lt;chr&gt; &quot;1Jt - 2 …
+## $ kepemilikan_mobil        &lt;dbl&gt; 0, 1, 0, …
+## $ kepemilikan_motor        &lt;dbl&gt; 1, 4, 0, …
+## $ kepemilikan_sepeda       &lt;dbl&gt; 0, 0, 0, …
+## $ kendaraan_utama          &lt;chr&gt; &quot;Sepeda M…
+## $ jenis_tempat_tinggal     &lt;chr&gt; &quot;Rumah Be…
+## $ jarak                    &lt;dbl&gt; 19.27, 0.…
+## $ jumlah_perjalanan_selasa &lt;dbl&gt; 3, 3, 0, …
+## $ jumlah_perjalanan_rabu   &lt;dbl&gt; 0, 0, 3, …
+## $ jumlah_perjalanan_kamis  &lt;dbl&gt; 0, 3, 0, …
+## $ jumlah_perjalanan_jumat  &lt;dbl&gt; 0, 0, 0, …
+## $ jumlah_perjalanan_sabtu  &lt;dbl&gt; 0, 0, 0, …
+## $ jumlah_perjalanan_ahad   &lt;dbl&gt; 0, 0, 0, …</code></pre>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="modul-1.html#cb68-1" tabindex="-1"></a><span class="fu">colnames</span>(data_uin_selected)</span></code></pre></div>
-<pre><code>##  [1] &quot;Nomor.urut&quot;               &quot;Jenis.Kelamin&quot;           
-##  [3] &quot;Umur&quot;                     &quot;Fakultas&quot;                
-##  [5] &quot;Prodi&quot;                    &quot;Tingkat.Semester&quot;        
-##  [7] &quot;Uang.Saku&quot;                &quot;kepemilikan.mobil&quot;       
-##  [9] &quot;kepemilikan.motor&quot;        &quot;kepemilikan.sepeda&quot;      
-## [11] &quot;kendaraan.utama&quot;          &quot;jenis.tempat.tinggal&quot;    
-## [13] &quot;jarak&quot;                    &quot;Jumlah.perjalanan.Selasa&quot;
-## [15] &quot;Jumlah.perjalanan.Rabu&quot;   &quot;Jumlah.perjalanan.Kamis&quot; 
-## [17] &quot;Jumlah.perjalanan.Jumat&quot;  &quot;Jumlah.perjalanan.Sabtu&quot; 
-## [19] &quot;Jumlah.perjalanan.Ahad&quot;</code></pre>
+<pre><code>##  [1] &quot;nomor_urut&quot;              
+##  [2] &quot;jenis_kelamin&quot;           
+##  [3] &quot;umur&quot;                    
+##  [4] &quot;fakultas&quot;                
+##  [5] &quot;prodi&quot;                   
+##  [6] &quot;tingkat_semester&quot;        
+##  [7] &quot;uang_saku&quot;               
+##  [8] &quot;kepemilikan_mobil&quot;       
+##  [9] &quot;kepemilikan_motor&quot;       
+## [10] &quot;kepemilikan_sepeda&quot;      
+## [11] &quot;kendaraan_utama&quot;         
+## [12] &quot;jenis_tempat_tinggal&quot;    
+## [13] &quot;jarak&quot;                   
+## [14] &quot;jumlah_perjalanan_selasa&quot;
+## [15] &quot;jumlah_perjalanan_rabu&quot;  
+## [16] &quot;jumlah_perjalanan_kamis&quot; 
+## [17] &quot;jumlah_perjalanan_jumat&quot; 
+## [18] &quot;jumlah_perjalanan_sabtu&quot; 
+## [19] &quot;jumlah_perjalanan_ahad&quot;</code></pre>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="modul-1.html#cb70-1" tabindex="-1"></a><span class="co"># &#39;Menimpa&#39; data_ubl_selected dengan data_ubl_selected yang variabel biaya.dalam.sepekan sudah dihapus</span></span>
 <span id="cb70-2"><a href="modul-1.html#cb70-2" tabindex="-1"></a>data_ubl_selected <span class="ot">&lt;-</span> <span class="fu">select</span>(data_ubl_selected, </span>
-<span id="cb70-3"><a href="modul-1.html#cb70-3" tabindex="-1"></a>                            <span class="sc">-</span><span class="st">`</span><span class="at">biaya.dalam.sepekan</span><span class="st">`</span>, <span class="sc">-</span><span class="st">`</span><span class="at">Jumlah.perjalanan.Senin</span><span class="st">`</span>)</span>
+<span id="cb70-3"><a href="modul-1.html#cb70-3" tabindex="-1"></a>                            <span class="sc">-</span><span class="st">`</span><span class="at">biaya_dalam_sepekan</span><span class="st">`</span>, <span class="sc">-</span><span class="st">`</span><span class="at">jumlah_perjalanan_senin</span><span class="st">`</span>)</span>
 <span id="cb70-4"><a href="modul-1.html#cb70-4" tabindex="-1"></a></span>
 <span id="cb70-5"><a href="modul-1.html#cb70-5" tabindex="-1"></a><span class="co"># Melihat hasilnya</span></span>
 <span id="cb70-6"><a href="modul-1.html#cb70-6" tabindex="-1"></a><span class="fu">glimpse</span>(data_ubl_selected)</span></code></pre></div>
 <pre><code>## Rows: 379
 ## Columns: 19
-## $ Nomor.urut               &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14…
-## $ Jenis.Kelamin            &lt;chr&gt; &quot;Perempuan&quot;, &quot;Laki-Laki&quot;, &quot;Laki-Laki&quot;, &quot;Laki-…
-## $ Umur                     &lt;dbl&gt; 21, 20, 21, 22, 21, 21, 22, 22, 22, 22, 21, 2…
-## $ Fakultas                 &lt;chr&gt; &quot;Fakultas Ilmu Sosial dan Politik&quot;, &quot;Fakultas…
-## $ Prodi                    &lt;chr&gt; &quot;Ilmu Komunikasi&quot;, &quot;Ilmu Hukum&quot;, &quot;Manajemen&quot;,…
-## $ Tingkat.Semester         &lt;chr&gt; &quot;4 (Semester 7 - Semester 8)&quot;, &quot;3 (Semester 5…
-## $ Uang.Saku                &lt;chr&gt; &quot;&lt; 1 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt…
-## $ kepemilikan.mobil        &lt;dbl&gt; 1, 2, 1, 1, 4, 1, 1, 1, 1, 1, NA, 0, 0, 1, 0,…
-## $ kepemilikan.motor        &lt;dbl&gt; 2, 1, 2, 4, 4, 2, 1, 1, 1, 1, 1, 2, 0, 1, 1, …
-## $ kepemilikan.sepeda       &lt;dbl&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, NA, 0, 0, 0, 0,…
-## $ kendaraan.utama          &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Mobil Pribadi&quot;, &quot;Sep…
-## $ jenis.tempat.tinggal     &lt;chr&gt; &quot;Rumah pribadi/rumah keluarga&quot;, &quot;Rumah pribad…
-## $ jarak                    &lt;dbl&gt; 4.2237967, 2.7033310, 3.2370722, 3.0023362, 5…
-## $ Jumlah.perjalanan.Selasa &lt;dbl&gt; 3, 3, 1, 2, 1, 3, 2, 4, 4, 3, 3, 1, 1, 4, 1, …
-## $ Jumlah.perjalanan.Rabu   &lt;dbl&gt; 2, 3, 1, 2, 1, 1, 2, 4, 4, 3, 1, 2, 1, 4, 3, …
-## $ Jumlah.perjalanan.Kamis  &lt;dbl&gt; 3, 3, 1, 2, 1, 1, 2, 4, 4, 3, 1, 1, 1, 4, 3, …
-## $ Jumlah.perjalanan.Jumat  &lt;dbl&gt; 2, 3, 1, 2, 1, 1, 2, 4, 3, 3, 1, 2, 1, 4, 3, …
-## $ Jumlah.perjalanan.Sabtu  &lt;dbl&gt; 2, 3, 1, 2, 1, 1, 2, 3, 4, 2, 1, 1, 1, 1, 1, …
-## $ Jumlah.perjalanan.Ahad   &lt;dbl&gt; 2, 3, 1, 2, 1, 1, 2, 3, 4, 1, 1, 1, 1, 1, 1, …</code></pre>
+## $ nomor_urut               &lt;dbl&gt; 1, 2, 3, …
+## $ jenis_kelamin            &lt;chr&gt; &quot;Perempua…
+## $ umur                     &lt;dbl&gt; 21, 20, 2…
+## $ fakultas                 &lt;chr&gt; &quot;Fakultas…
+## $ prodi                    &lt;chr&gt; &quot;Ilmu Kom…
+## $ tingkat_semester         &lt;chr&gt; &quot;4 (Semes…
+## $ uang_saku                &lt;chr&gt; &quot;&lt; 1 jt&quot;,…
+## $ kepemilikan_mobil        &lt;dbl&gt; 1, 2, 1, …
+## $ kepemilikan_motor        &lt;dbl&gt; 2, 1, 2, …
+## $ kepemilikan_sepeda       &lt;dbl&gt; 1, 1, 2, …
+## $ kendaraan_utama          &lt;chr&gt; &quot;Sepeda M…
+## $ jenis_tempat_tinggal     &lt;chr&gt; &quot;Rumah pr…
+## $ jarak                    &lt;dbl&gt; 4.223797,…
+## $ jumlah_perjalanan_selasa &lt;dbl&gt; 3, 3, 1, …
+## $ jumlah_perjalanan_rabu   &lt;dbl&gt; 2, 3, 1, …
+## $ jumlah_perjalanan_kamis  &lt;dbl&gt; 3, 3, 1, …
+## $ jumlah_perjalanan_jumat  &lt;dbl&gt; 2, 3, 1, …
+## $ jumlah_perjalanan_sabtu  &lt;dbl&gt; 2, 3, 1, …
+## $ jumlah_perjalanan_ahad   &lt;dbl&gt; 2, 3, 1, …</code></pre>
 </div>
 <div id="menyatukan-kedua-set-data-setelah-diperbaiki" class="section level3 hasAnchor" number="1.3.8">
 <h3><span class="header-section-number">1.3.8</span> Menyatukan Kedua Set Data Setelah Diperbaiki<a href="modul-1.html#menyatukan-kedua-set-data-setelah-diperbaiki" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -948,25 +1124,25 @@ div.csl-indent {
 <span id="cb73-2"><a href="modul-1.html#cb73-2" tabindex="-1"></a><span class="fu">glimpse</span>(data_gabungan)</span></code></pre></div>
 <pre><code>## Rows: 779
 ## Columns: 19
-## $ Nomor.urut               &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14…
-## $ Jenis.Kelamin            &lt;chr&gt; &quot;Laki-laki&quot;, &quot;Laki-laki&quot;, &quot;Perempuan&quot;, &quot;Laki-…
-## $ Umur                     &lt;dbl&gt; 22, 25, 24, 19, 23, 21, 22, 21, 21, 21, 19, 1…
-## $ Fakultas                 &lt;chr&gt; &quot;Syariah&quot;, &quot;Syariah&quot;, &quot;Tarbiyah dan Keguruan&quot;…
-## $ Prodi                    &lt;chr&gt; &quot;Hukum Keluarga&quot;, &quot;Hukum Keluarga&quot;, &quot;Pendidik…
-## $ Tingkat.Semester         &lt;chr&gt; &quot;4 (Semester 7 - Semester 8)&quot;, &quot;4 (Semester 7…
-## $ Uang.Saku                &lt;chr&gt; &quot;1Jt - 2 Jt&quot;, &quot;&lt; 1 Jt&quot;, &quot;&lt; 1 Jt&quot;, &quot;&lt; 1 Jt&quot;, &quot;…
-## $ kepemilikan.mobil        &lt;dbl&gt; 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, …
-## $ kepemilikan.motor        &lt;dbl&gt; 1, 4, 0, 1, 1, 1, 1, 4, 4, 1, 0, 1, 3, 1, 0, …
-## $ kepemilikan.sepeda       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, …
-## $ kendaraan.utama          &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Sepeda Motor Pribadi…
-## $ jenis.tempat.tinggal     &lt;chr&gt; &quot;Rumah Bersama Saudara&quot;, &quot;Kos Sendiri&quot;, &quot;Kos …
-## $ jarak                    &lt;dbl&gt; 19.27, 0.58, 0.56, 1.05, 1.69, 7.91, 2.58, 2.…
-## $ Jumlah.perjalanan.Selasa &lt;dbl&gt; 3, 3, 0, 2, 4, 2, 0, 4, 0, 2, 4, 2, 2, 2, 3, …
-## $ Jumlah.perjalanan.Rabu   &lt;dbl&gt; 0, 0, 3, 0, 0, 2, 3, 4, 3, 2, 4, 2, 2, 2, 2, …
-## $ Jumlah.perjalanan.Kamis  &lt;dbl&gt; 0, 3, 0, 2, 0, 0, 0, 4, 0, 2, 2, 2, 2, 2, 0, …
-## $ Jumlah.perjalanan.Jumat  &lt;dbl&gt; 0, 0, 0, 2, 3, 2, 2, 4, 0, 0, 2, 2, 2, 2, 2, …
-## $ Jumlah.perjalanan.Sabtu  &lt;dbl&gt; 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 2, 2, 0, 0, 0, …
-## $ Jumlah.perjalanan.Ahad   &lt;dbl&gt; 0, 0, 0, 2, 0, 2, 2, 2, 2, 0, 2, 2, 0, 2, 2, …</code></pre>
+## $ nomor_urut               &lt;dbl&gt; 1, 2, 3, …
+## $ jenis_kelamin            &lt;chr&gt; &quot;Laki-lak…
+## $ umur                     &lt;dbl&gt; 22, 25, 2…
+## $ fakultas                 &lt;chr&gt; &quot;Syariah&quot;…
+## $ prodi                    &lt;chr&gt; &quot;Hukum Ke…
+## $ tingkat_semester         &lt;chr&gt; &quot;4 (Semes…
+## $ uang_saku                &lt;chr&gt; &quot;1Jt - 2 …
+## $ kepemilikan_mobil        &lt;dbl&gt; 0, 1, 0, …
+## $ kepemilikan_motor        &lt;dbl&gt; 1, 4, 0, …
+## $ kepemilikan_sepeda       &lt;dbl&gt; 0, 0, 0, …
+## $ kendaraan_utama          &lt;chr&gt; &quot;Sepeda M…
+## $ jenis_tempat_tinggal     &lt;chr&gt; &quot;Rumah Be…
+## $ jarak                    &lt;dbl&gt; 19.27, 0.…
+## $ jumlah_perjalanan_selasa &lt;dbl&gt; 3, 3, 0, …
+## $ jumlah_perjalanan_rabu   &lt;dbl&gt; 0, 0, 3, …
+## $ jumlah_perjalanan_kamis  &lt;dbl&gt; 0, 3, 0, …
+## $ jumlah_perjalanan_jumat  &lt;dbl&gt; 0, 0, 0, …
+## $ jumlah_perjalanan_sabtu  &lt;dbl&gt; 0, 0, 0, …
+## $ jumlah_perjalanan_ahad   &lt;dbl&gt; 0, 0, 0, …</code></pre>
 <p>🎉 <strong>Selamat!</strong> Kita telah berhasil menggabungkan dataset dari dua kampus berbeda. Dataset gabungan kita sekarang memiliki:</p>
 <ul>
 <li><strong>779 baris</strong> (400 dari UIN RIL + 379 dari UBL)</li>
