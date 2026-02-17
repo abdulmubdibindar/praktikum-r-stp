@@ -476,7 +476,9 @@ write.xlsx(data_gabungan, "Data UINRIL & UBL.xlsx")
 **Simpan ke file**
    - Ekspor hasil gabungan dengan `write.xlsx()`
    - Nama file: `Prak1_[NIM1]_[NIM2].xlsx`
-   - Pastikan direktori file hasil ekspor ada di 
+   - Pastikan direktori file hasil ekspor ada di
+
+:::
 
 ------------------------------------------------------------------------
 
