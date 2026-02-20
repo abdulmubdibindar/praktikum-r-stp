@@ -184,6 +184,75 @@ git commit -m "Memperbaiki bug login: validasi email tidak case-sensitive"
 
 **Commit berhasil!** Perubahan Anda sekarang tersimpan dengan ID `a3f2b1c`.
 
+### 🔧 Menyusulkan File ke Commit Terakhir
+
+Pernahkah Anda baru commit, lalu sadar ada satu file yang **terlupa di-stage**? Atau Anda ingin memperbaiki pesan commit yang typo? Gunakan `git commit --amend` untuk "merevisi" commit terakhir Anda.
+
+> ⚠️ **Peringatan Penting:** Hanya gunakan `--amend` untuk commit yang **belum di-push ke remote**. Jika commit sudah di-push dan dibagikan ke tim, amend akan membuat riwayat divergen dan menyulitkan kolaborasi.
+
+#### 💻 Perintah
+
+```bash
+# Menyusulkan file ke commit terakhir (sekaligus bisa ganti pesan)
+git add file-yang-terlupa.txt
+git commit --amend -m "Pesan commit yang diperbarui"
+
+# Menyusulkan file ke commit terakhir TANPA mengubah pesan commit
+git add file-yang-terlupa.txt
+git commit --amend --no-edit
+```
+
+#### ✅ Contoh Skenario: Lupa Sertakan File Konfigurasi
+
+**Situasi:** Anda baru saja commit perbaikan bug, tetapi lupa menyertakan file `config.js` yang ikut berubah.
+
+```bash
+# Kondisi: commit terakhir sudah dibuat tapi config.js tertinggal
+git log --oneline
+# a3f2b1c Memperbaiki bug login: validasi email tidak case-sensitive
+
+# Cek status - ada file yang belum di-stage
+git status
+# Output:
+# Changes not staged for commit:
+#   modified:   config.js    ← Terlupa!
+
+# Langkah 1: Stage file yang tertinggal
+git add config.js
+
+# Langkah 2: Susulkan ke commit sebelumnya
+git commit --amend --no-edit
+
+# Output:
+# [main a8d3c2e] Memperbaiki bug login: validasi email tidak case-sensitive
+#  2 files changed, 5 insertions(+), 1 deletion(-) ← sekarang 2 file!
+```
+
+Perhatikan: **commit ID berubah** dari `a3f2b1c` menjadi `a8d3c2e`. Git membuat snapshot baru yang menggantikan commit lama. Inilah mengapa amend tidak boleh dilakukan pada commit yang sudah di-push.
+
+#### ✅ Contoh Skenario: Memperbaiki Typo pada Pesan Commit
+
+```bash
+# Pesan commit lama mengandung typo
+git log --oneline
+# a3f2b1c Memerbaiki bug login  ← "Memerbaiki" → seharusnya "Memperbaiki"
+
+# Perbaiki hanya pesan commit, tanpa mengubah isi file
+git commit --amend -m "Memperbaiki bug login: validasi email tidak case-sensitive"
+
+# Commit ID baru akan terbentuk dengan pesan yang sudah dikoreksi
+```
+
+#### 📊 Visualisasi Amend
+
+```
+Sebelum amend:
+... ── [B] ── [a3f2b1c] login.js saja
+
+Setelah amend:
+... ── [B] ── [a8d3c2e] login.js + config.js  ← commit lama digantikan
+```
+
 ### 🔑 Poin Penting - Best Practices Pesan Commit
 
 ✅ **BAIK** - Jelas dan deskriptif:
