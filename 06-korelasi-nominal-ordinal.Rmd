@@ -378,7 +378,7 @@ print(gamma_uang_saku_tingkat_semester$D)
 ```
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 3: Analisis Korelasi Komprehensif [STP-9.2, STP-10.2] {-}
+### Aktivitas Mandiri 3: Analisis Korelasi Komprehensif [STP-9.2, STP-10.2].{capaian} {-}
 
 **A. Korelasi Nominal [STP-9.2]:**
 

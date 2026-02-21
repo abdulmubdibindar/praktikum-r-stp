@@ -496,7 +496,7 @@ predict(mdl, mhs)
 > c.  Apa saja yang meningkatkan dan menurunkan biaya perjalanan sepekan mahasiswa?
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3] {-}
+### Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3].{capaian} {-}
 
 **A. Regresi Linear Sederhana [STP-13.3]:**
 

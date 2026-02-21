@@ -261,7 +261,7 @@ diagram_batang_tumpuk_100
 -   **SCALE**: `scale_y_continuous(labels = scales::percent)` adalah lapisan tambahan yang mengontrol **SKALA** pada sumbu y. Fungsi `scales::percent` digunakan untuk memformat label sumbu dari angka desimal (misal: 0.5) menjadi format persentase (misal: 50%) agar lebih mudah dibaca.
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 1: Membuat dan Menginterpretasikan Diagram Batang [STP-3.2, STP-3.3] {-}
+### Aktivitas Mandiri 1: Membuat dan Menginterpretasikan Diagram Batang [STP-3.2, STP-3.3].{capaian} {-}
 
 Buatlah diagram batang untuk variabel `Fakultas`:
 
@@ -524,7 +524,7 @@ scatter_plot
 Penting untuk menjaga konteks dalam interpretasi. Scatter plot kita menunjukkan bahwa mahasiswa yang lebih tua cenderung tinggal lebih jauh dari kampus. Namun, untuk benar-benar memahami kekuatan hubungan ini, kita perlu menggunakan statistik korelasi (akan dipelajari di modul selanjutnya).
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 2: Histogram dan Boxplot untuk Variabel Numerik [STP-3.2, STP-3.3] {-}
+### Aktivitas Mandiri 2: Histogram dan Boxplot untuk Variabel Numerik [STP-3.2, STP-3.3].{capaian} {-}
 
 Gunakan variabel `jarak` (jarak tempat tinggal dari kampus):
 
@@ -540,7 +540,7 @@ Gunakan variabel `jarak` (jarak tempat tinggal dari kampus):
 :::
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 3: Visualisasi Komprehensif untuk `biaya_dalam_sepekan` [STP-3.1, STP-3.2, STP-3.3, STP-3.4] {-}
+### Aktivitas Mandiri 3: Visualisasi Komprehensif untuk `biaya_dalam_sepekan` [STP-3.1, STP-3.2, STP-3.3, STP-3.4].{capaian} {-}
 
 **A. Menghasilkan Grafik [STP-3.3]:**
 

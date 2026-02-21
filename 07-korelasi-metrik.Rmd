@@ -177,7 +177,7 @@ scatter_plot
 Perhatikan bentuk sebaran titik-titik dalam diagram pencarnya. Secara sekilas, sebaran titik-titik tersebut membentuk formasi kemiringan ke bawah, akan tetapi kerapatannya kecil.
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 3: Analisis Korelasi Metrik Komprehensif [STP-11.2] {-}
+### Aktivitas Mandiri 3: Analisis Korelasi Metrik Komprehensif [STP-11.2].{capaian} {-}
 
 1. **Pilih 3 Pasang Variabel Metrik:**
    - Buat scatter plot untuk setiap pasangan

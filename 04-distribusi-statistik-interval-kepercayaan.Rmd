@@ -150,7 +150,7 @@ head(df_sampling)
 ```
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 1: Simulasi dengan Parameter Berbeda [STP-4.3] {-}
+### Aktivitas Mandiri 1: Simulasi dengan Parameter Berbeda [STP-4.3].{capaian} {-}
 
 Modifikasi kode simulasi di atas:
 1. Ubah `ukuran_sampel` menjadi 30 (dari 50)
@@ -339,7 +339,7 @@ Berapakah rentang kepercayaan untuk proporsi mahasiswa yang tinggal di kos/asram
 ```
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 2: Interval Kepercayaan 99% [STP-5.2] {-}
+### Aktivitas Mandiri 2: Interval Kepercayaan 99% [STP-5.2].{capaian} {-}
 
 Untuk proporsi mahasiswa di Kos/Asrama:
 1. Hitung interval kepercayaan 99% (`conf.level = 0.99`)
@@ -353,7 +353,7 @@ Untuk rata-rata jarak:
 :::
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 3: Interval Kepercayaan 97% [STP-4.3, STP-5.2] {-}
+### Aktivitas Mandiri 3: Interval Kepercayaan 97% [STP-4.3, STP-5.2].{capaian} {-}
 
 **Petunjuk:** Gunakan `conf.level = 0.97`
 

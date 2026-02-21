@@ -265,7 +265,7 @@ Langkah terakhir adalah memberi nama pada dimensi yang terbentuk berdasarkan var
 **Latihan 7:** Tuliskan seluruh kelompok dari analisis faktor dan juga seluruh persamaan komponen yang dihasilkan dari PCA!
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri Komprehensif: Analisis PCA Mandiri [STP-14.3] {-}
+### Aktivitas Mandiri Komprehensif: Analisis PCA Mandiri [STP-14.3].{capaian} {-}
 
 Gunakan dataset dengan variabel metrik yang berbeda:
 

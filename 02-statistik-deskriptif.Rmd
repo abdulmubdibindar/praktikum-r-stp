@@ -117,7 +117,7 @@ Berikut adalah penjelasan cara-2:
 :::
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 1: Menguasai Pipe Operator [STP-2.4] {-}
+### Aktivitas Mandiri 1: Menguasai Pipe Operator [STP-2.4].{capaian} {-}
 
 Dengan satu blok kode menggunakan pipe operator `|>`:
 1. Baca dataset UBL dari file dan sheet yang sudah ditentukan
@@ -285,7 +285,7 @@ levels(data_ubl$Uang.Saku)
 ```
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 2: Membuat Factor untuk Variabel Kategoris [STP-2.4] {-}
+### Aktivitas Mandiri 2: Membuat Factor untuk Variabel Kategoris [STP-2.4].{capaian} {-}
 
 Untuk dataset UBL yang sudah dibersihkan:
 1. Buat vektor `tempat_tinggal` dengan nilai-nilai jenis tempat tinggal yang ada di data
@@ -453,7 +453,7 @@ digits = list(kepemilikan.motor ~ 0, kepemilikan.mobil ~ 0)
 :::
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 3: Analisis Statistik Deskriptif Komprehensif [STP-2.4] {-}
+### Aktivitas Mandiri 3: Analisis Statistik Deskriptif Komprehensif [STP-2.4].{capaian} {-}
 
 **Persiapan:**
 Impor dataset UIN RIL dari sheet `DataUtama_mhsUINRIL` dan bersihkan seperti yang sudah dipraktikkan:
