@@ -53,19 +53,22 @@ data_cfd <- read_csv2("datasets/Data Praktikum 09.csv")
 
 # Memilih 12 variabel metrik yang akan dianalisis sesuai studi kasus
 # Variabel ini sama dengan yang akan digunakan pada tahap persiapan data selanjutnya
-data_selected <- data_cfd |> 
-  select(ongkos, bparkir, durasi, bareng, toplajur, usia, 
-         jmlmotor, jmlmobil, jmlsepeda, jmldewasa, jmlanak, jarak)
+data_selected <- data_cfd |>
+  select(
+    ongkos, bparkir, durasi, bareng, toplajur, usia,
+    jmlmotor, jmlmobil, jmlsepeda, jmldewasa, jmlanak, jarak
+  )
 
 # Membuat Scatter Plot Matrix menggunakan psych::pairs.panels
 pairs.panels(data_selected,
-             method = "pearson", # Menggunakan korelasi Pearson
-             hist.col = "#00AFBB", # Warna histogram
-             density = FALSE,    # Tidak menampilkan garis density agar lebih bersih
-             lm.col = "red",   # Mengubah warna data points menjadi abu-abu gelap
-             ellipses = TRUE,   # Menampilkan elips korelasi untuk melihat pola linearitas
-             lm = TRUE,         # Menampilkan garis regresi linear lurus
-             main = "Scatter Plot Matrix Asumsi Awal")
+  method = "pearson", # Menggunakan korelasi Pearson
+  hist.col = "#00AFBB", # Warna histogram
+  density = FALSE, # Tidak menampilkan garis density agar lebih bersih
+  lm.col = "red", # Mengubah warna data points menjadi abu-abu gelap
+  ellipses = TRUE, # Menampilkan elips korelasi untuk melihat pola linearitas
+  lm = TRUE, # Menampilkan garis regresi linear lurus
+  main = "Scatter Plot Matrix Asumsi Awal"
+)
 ```
 
 **Penjelasan Kode dan Output:**
@@ -94,9 +97,11 @@ Kita memastikan kembali variabel yang akan digunakan dalam analisis ini.
 
 ```{r mod09-prepare-data, echo=TRUE}
 # Memilih variabel yang akan dianalisis
-data_analisis <- data_cfd |> 
-  select(ongkos, bparkir, durasi, bareng, toplajur, usia, 
-         jmlmotor, jmlmobil, jmlsepeda, jmldewasa, jmlanak, jarak)
+data_analisis <- data_cfd |>
+  select(
+    ongkos, bparkir, durasi, bareng, toplajur, usia,
+    jmlmotor, jmlmobil, jmlsepeda, jmldewasa, jmlanak, jarak
+  )
 
 # Melihat sekilas data
 glimpse(data_analisis)
@@ -141,7 +146,7 @@ Sesuai prosedur, kita harus mengeluarkan variabel yang tidak memenuhi syarat MSA
 
 ```{r mod09-revise-data, echo=TRUE}
 # Mengeluarkan variabel jmldewasa dan jmlanak
-data_analisis_final <- data_analisis |> 
+data_analisis_final <- data_analisis |>
   select(-jmldewasa, -jmlanak)
 
 # Cek ulang KMO
@@ -176,7 +181,7 @@ Grafik ini menunjukkan penurunan nilai eigen. Titik di mana grafik mulai melanda
 
 ```{r mod09-scree-plot, echo=TRUE}
 # Membuat Scree Plot
-scree(data_analisis_final, pc=TRUE)
+scree(data_analisis_final, pc = TRUE)
 ```
 
 **Latihan 4:**
@@ -260,7 +265,7 @@ Langkah terakhir adalah memberi nama pada dimensi yang terbentuk berdasarkan var
 **Latihan 7:** Tuliskan seluruh kelompok dari analisis faktor dan juga seluruh persamaan komponen yang dihasilkan dari PCA!
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri Komprehensif: Analisis PCA Mandiri [STP-14.3]**
+### Aktivitas Mandiri Komprehensif: Analisis PCA Mandiri [STP-14.3] {-}
 
 Gunakan dataset dengan variabel metrik yang berbeda:
 

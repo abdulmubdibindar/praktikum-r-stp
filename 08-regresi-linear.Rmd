@@ -63,8 +63,8 @@ Kita akan menggunakan dataset keempat kampus di Kota Bandar Lampung dan sekitarn
 data_mahasiswa <- read_csv2("datasets/Data Praktikum 08.csv")
 
 # Memisahkan data mahasiswa yang menggunakan kendaraan online sebagai moda utama
-data_mahasiswa_online <- data_mahasiswa |> 
-  filter(`kendaraan utama` == 'Layanan online')
+data_mahasiswa_online <- data_mahasiswa |>
+  filter(`kendaraan utama` == "Layanan online")
 ```
 
 ## Pola Hubungan Data
@@ -78,7 +78,7 @@ Pola hubungan akan kita analisis dengan membuat diagram pencar *(scatter plot)* 
 Menghitung koefisien korelasi Pearson's $r$ dapat kita lakukan dengan perintah `cor()` dengan atribut `method = "pearson"` setelah terlebih dahulu menyimpan nilai masing-masing variabel ke dalam suatu vektor.
 
 ```{r mod08-calculate-correlation, echo=TRUE}
-# Menyimpan vektor jarak dan biaya (perjalanan) sepekan ke dalam variabel 
+# Menyimpan vektor jarak dan biaya (perjalanan) sepekan ke dalam variabel
 # 'x' dan 'y'
 x <- data_mahasiswa_online$jarak
 y <- data_mahasiswa_online$`biaya sepekan`
@@ -97,17 +97,24 @@ Membuat diagram pencar dapat dilakukan dengan menerapkan perintah `geom_point()`
 ```{r mod08-create-initial-scatterplot, echo=TRUE}
 # Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
 # untuk mahasiswa yang pakai layanan online
-scp <- ggplot(data = data_mahasiswa_online,
-              mapping = aes(x = jarak, # variabel di sumbu X
-                            y = `biaya sepekan`)
-              ) + # variabel di sumbu Y
-  geom_point(color = 'navy',  # perintah untuk menampilkan diagram pencar dengan warna biru
-             size = 1.5,      # mengatur ukuran titik
-             shape = 15) +    # mengatur bentuk titik menjadi persegi
-  labs(title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
-       subtitle = "Mahasiswa dengan Moda Transportasi Layanan Online",
-       y = "Biaya transportasi sepekan (ribu rupiah)",
-       x = "Jarak dari tempat tinggal ke kampus (km)")
+scp <- ggplot(
+  data = data_mahasiswa_online,
+  mapping = aes(
+    x = jarak, # variabel di sumbu X
+    y = `biaya sepekan`
+  )
+) + # variabel di sumbu Y
+  geom_point(
+    color = "navy", # perintah untuk menampilkan diagram pencar dengan warna biru
+    size = 1.5, # mengatur ukuran titik
+    shape = 15
+  ) + # mengatur bentuk titik menjadi persegi
+  labs(
+    title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
+    subtitle = "Mahasiswa dengan Moda Transportasi Layanan Online",
+    y = "Biaya transportasi sepekan (ribu rupiah)",
+    x = "Jarak dari tempat tinggal ke kampus (km)"
+  )
 
 # Menampilkan diagram
 scp
@@ -120,7 +127,7 @@ Keberadaan pencilan ini akan mengganggu hasil analisis kita. Mari kita buktikan 
 ```{r mod08-remove-outliers, echo=TRUE}
 # Menghilangkan observasi pencilan dengan menyaring observasi dengan
 # jarak < 15 km
-data_mahasiswa_online <- data_mahasiswa_online |> 
+data_mahasiswa_online <- data_mahasiswa_online |>
   filter(jarak < 15)
 ```
 
@@ -142,16 +149,24 @@ Kita pun dapat memeriksa hasil perbaikan dataset kita dari diagram pencar yang b
 ```{r mod08-create-clean-scatterplot, echo=TRUE}
 # Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
 # untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan
-scp <- ggplot(data = data_mahasiswa_online,
-              mapping = aes(x = jarak, # variabel di sumbu X
-                            y = `biaya sepekan`)) + # variabel di sumbu Y
-  geom_point(color = 'navy',  # perintah untuk menampilkan diagram pencar
-             size = 1.5,      # mengatur ukuran titik
-             shape = 15) +    # mengatur bentuk titik menjadi persegi
-  labs(title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
-       subtitle = "Mahasiswa dengan Moda Transportasi Layanan Online",
-       y = "Biaya transportasi sepekan (ribu rupiah)",
-       x = "Jarak dari tempat tinggal ke kampus (km)")
+scp <- ggplot(
+  data = data_mahasiswa_online,
+  mapping = aes(
+    x = jarak, # variabel di sumbu X
+    y = `biaya sepekan`
+  )
+) + # variabel di sumbu Y
+  geom_point(
+    color = "navy", # perintah untuk menampilkan diagram pencar
+    size = 1.5, # mengatur ukuran titik
+    shape = 15
+  ) + # mengatur bentuk titik menjadi persegi
+  labs(
+    title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
+    subtitle = "Mahasiswa dengan Moda Transportasi Layanan Online",
+    y = "Biaya transportasi sepekan (ribu rupiah)",
+    x = "Jarak dari tempat tinggal ke kampus (km)"
+  )
 
 # Menampilkan diagram yang baru
 scp
@@ -249,19 +264,29 @@ Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik d
 # Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
 # untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,
 # ditambah garis dari persamaan regresi
-scp <- ggplot(data = data_mahasiswa_online,
-              mapping = aes(x = jarak, # variabel di sumbu X
-                            y = `biaya sepekan`)) + # variabel di sumbu Y
-  geom_point(color = 'navy',  
-             size = 1.5,      
-             shape = 15) +    
-  geom_abline(aes(intercept = coef(model)[1],
-                  slope = coef(model)[2],
-                  color = "red")) +
-  labs(title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
-       subtitle = "Mahasiswa dengan Moda Transportasi Layanan Online",
-       y = "Biaya transportasi sepekan (ribu rupiah)",
-       x = "Jarak dari tempat tinggal ke kampus (km)")
+scp <- ggplot(
+  data = data_mahasiswa_online,
+  mapping = aes(
+    x = jarak, # variabel di sumbu X
+    y = `biaya sepekan`
+  )
+) + # variabel di sumbu Y
+  geom_point(
+    color = "navy",
+    size = 1.5,
+    shape = 15
+  ) +
+  geom_abline(aes(
+    intercept = coef(model)[1],
+    slope = coef(model)[2],
+    color = "red"
+  )) +
+  labs(
+    title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
+    subtitle = "Mahasiswa dengan Moda Transportasi Layanan Online",
+    y = "Biaya transportasi sepekan (ribu rupiah)",
+    x = "Jarak dari tempat tinggal ke kampus (km)"
+  )
 
 # Menampilkan diagram pencar
 scp
@@ -293,19 +318,29 @@ Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik d
 # Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
 # untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,
 # ditambah garis dari persamaan regresi
-scp <- ggplot(data = data_mahasiswa_online,
-              mapping = aes(x = jarak, # variabel di sumbu X
-                            y = `biaya sepekan`)) + # variabel di sumbu Y
-  geom_point(color = 'navy',  
-             size = 1.5,      
-             shape = 15) +    
-  geom_abline(aes(intercept = coef(model)[1],
-                  slope = coef(model)[2],
-                  color = "red")) +
-  labs(title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
-       subtitle = "Mahasiswa dengan Moda Transportasi Layanan Online",
-       y = "Biaya transportasi sepekan (ribu rupiah)",
-       x = "Jarak dari tempat tinggal ke kampus (km)")
+scp <- ggplot(
+  data = data_mahasiswa_online,
+  mapping = aes(
+    x = jarak, # variabel di sumbu X
+    y = `biaya sepekan`
+  )
+) + # variabel di sumbu Y
+  geom_point(
+    color = "navy",
+    size = 1.5,
+    shape = 15
+  ) +
+  geom_abline(aes(
+    intercept = coef(model)[1],
+    slope = coef(model)[2],
+    color = "red"
+  )) +
+  labs(
+    title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
+    subtitle = "Mahasiswa dengan Moda Transportasi Layanan Online",
+    y = "Biaya transportasi sepekan (ribu rupiah)",
+    x = "Jarak dari tempat tinggal ke kampus (km)"
+  )
 
 # Menampilkan diagram pencar
 scp
@@ -391,7 +426,7 @@ Kedua, kita akan membuat model seperti halnya yang kita lakukan dalam analisis r
 jarak <- x # variabel 'x' saja diubah menjadi 'jarak'
 biaya <- y # variabel 'y' saja diubah menjadi 'biaya'
 ling <- data_mahasiswa_online$`jenis tempat tinggal` # tempat tinggal diberi
-                                                     # nama 'ling'
+# nama 'ling'
 
 # Menyatakan model
 mdl <- lm(biaya ~ jarak + ling, data = data_mahasiswa_online)
@@ -445,9 +480,10 @@ Dari persamaan model regresi linear kita, kita juga dapat memprediksi nilai biay
 
 ```{r mod08-predict-multiple-model, echo=TRUE}
 # Menyusun dataset untuk diprediksi
-mhs <- tibble(jarak = c(7.9, 10),
-              ling = c("Rumah saudara", "Rumah mengontrak bersama")
-              )
+mhs <- tibble(
+  jarak = c(7.9, 10),
+  ling = c("Rumah saudara", "Rumah mengontrak bersama")
+)
 
 # melihat hasil prediksi
 predict(mdl, mhs)
@@ -460,7 +496,7 @@ predict(mdl, mhs)
 > c.  Apa saja yang meningkatkan dan menurunkan biaya perjalanan sepekan mahasiswa?
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3]**
+### Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3] {-}
 
 **A. Regresi Linear Sederhana [STP-13.3]:**
 

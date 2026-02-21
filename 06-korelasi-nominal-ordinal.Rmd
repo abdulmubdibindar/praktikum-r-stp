@@ -97,7 +97,7 @@ faktor_prodi <- faktor_prodi$prodi
 # MEMBUAT FAKTOR UNTUK JENIS KELAMIN
 # Meringkas data berdasarkan kolom Jenis Kelamin
 faktor_jk <- data_mahasiswa |>
-  group_by(jk = `Jenis Kelamin`) |> 
+  group_by(jk = `Jenis Kelamin`) |>
   summarize(jumlah = n())
 # Membuat vektor untuk faktor Jenis Kelamin dari kolom nama Jenis Kelamin
 faktor_jk <- faktor_jk$jk
@@ -116,14 +116,14 @@ faktor_uang_saku <- data_mahasiswa |>
   group_by(uang = `Uang Saku`) |>
   summarize(jumlah = n())
 # Memperbaiki urutan uang saku
-faktor_uang_saku$uang[c(1,4)] <- faktor_uang_saku$uang[c(4,1)]
-faktor_uang_saku$jumlah[c(1,4)] <- faktor_uang_saku$jumlah[c(4,1)]
+faktor_uang_saku$uang[c(1, 4)] <- faktor_uang_saku$uang[c(4, 1)]
+faktor_uang_saku$jumlah[c(1, 4)] <- faktor_uang_saku$jumlah[c(4, 1)]
 
-faktor_uang_saku$uang[c(2,4)] <- faktor_uang_saku$uang[c(4,2)]
-faktor_uang_saku$jumlah[c(2,4)] <- faktor_uang_saku$jumlah[c(4,2)]
+faktor_uang_saku$uang[c(2, 4)] <- faktor_uang_saku$uang[c(4, 2)]
+faktor_uang_saku$jumlah[c(2, 4)] <- faktor_uang_saku$jumlah[c(4, 2)]
 
-faktor_uang_saku$uang[c(3,4)] <- faktor_uang_saku$uang[c(4,3)]
-faktor_uang_saku$jumlah[c(3,4)] <- faktor_uang_saku$jumlah[c(4,3)]
+faktor_uang_saku$uang[c(3, 4)] <- faktor_uang_saku$uang[c(4, 3)]
+faktor_uang_saku$jumlah[c(3, 4)] <- faktor_uang_saku$jumlah[c(4, 3)]
 
 # Membuat vektor faktor Tingkat Uang Saku dari kolom Uang Saku
 faktor_uang_saku <- faktor_uang_saku$uang
@@ -150,17 +150,22 @@ Barulah selanjutnya kita bisa mengatur *factor* untuk setiap variabel kategoris
 
 ```{r mod06-set-factors, echo=TRUE}
 data_mahasiswa <- data_mahasiswa |>
-  mutate (Kampus_PT = factor(Kampus_PT, levels = faktor_kampus),
-         `Jenis Kelamin` = factor(`Jenis Kelamin`, levels = faktor_jk),
-         Fakultas = factor(Fakultas, levels = faktor_fakultas),
-         Prodi = factor(Prodi, levels = faktor_prodi),
-         `Tingkat Semester` = factor(`Tingkat Semester`, levels = faktor_semester,
-                                     ordered = TRUE), # Variabel ordinal
-         `Uang Saku` = factor(`Uang Saku`, levels = faktor_uang_saku,
-                              ordered = TRUE), # Variabel ordinal
-         `kendaraan utama` = factor(`kendaraan utama`, levels = faktor_kendaraan_utama),
-         `jenis tempat tinggal` = factor(`jenis tempat tinggal`, levels = faktor_jenis_tempat_tinggal)
-         )
+  mutate(
+    Kampus_PT = factor(Kampus_PT, levels = faktor_kampus),
+    `Jenis Kelamin` = factor(`Jenis Kelamin`, levels = faktor_jk),
+    Fakultas = factor(Fakultas, levels = faktor_fakultas),
+    Prodi = factor(Prodi, levels = faktor_prodi),
+    `Tingkat Semester` = factor(`Tingkat Semester`,
+      levels = faktor_semester,
+      ordered = TRUE
+    ), # Variabel ordinal
+    `Uang Saku` = factor(`Uang Saku`,
+      levels = faktor_uang_saku,
+      ordered = TRUE
+    ), # Variabel ordinal
+    `kendaraan utama` = factor(`kendaraan utama`, levels = faktor_kendaraan_utama),
+    `jenis tempat tinggal` = factor(`jenis tempat tinggal`, levels = faktor_jenis_tempat_tinggal)
+  )
 ```
 
 Kita dapat memeriksa hasil pekerjaan kita dengan perintah `glimpse`
@@ -203,8 +208,10 @@ Perhatikan cara menginterpretasi informasi dari tabel tersebut:
 Selain dengan `tbl_summary()` yang gunanya cenderung untuk presentasi, kita dapat menggunakan perintah `table()` untuk menghasilkan tabel silang yang siap dioperasikan ke dalam perhitungan koefisien korelasi di tahap selanjutnya. Perintah `table()` mengambil dua masukan, yakni vektor variabel-variabel yang kita akan analisis, dipisahkan dengan tanda koma (`,`).
 
 ```{r mod06-create-crosstab-calculation, echo=TRUE}
-table(data_mahasiswa$`jenis tempat tinggal`,  # vektor variabel-variabel ini kita akses dari 
-      data_mahasiswa$`kendaraan utama`)       # dataset menggunakan operator '$'
+table(
+  data_mahasiswa$`jenis tempat tinggal`, # vektor variabel-variabel ini kita akses dari
+  data_mahasiswa$`kendaraan utama`
+) # dataset menggunakan operator '$'
 ```
 
 **Latihan: buatlah tabel silang antara variabel `Tingkat Semester` dan `Uang Saku` baik dengan `gt_summary` maupun dengan `table()`!**
@@ -225,13 +232,14 @@ Untuk menghitung $\chi^2$ kita menggunakan dua perintah utama dalam R, yakni `ta
 
 ```{r mod06-calculate-chi-square, echo=TRUE}
 # Menyimpan tabel
-tempat_tinggal_kend <- table(data_mahasiswa$`kendaraan utama`,
-                        data_mahasiswa$`jenis tempat tinggal`)
+tempat_tinggal_kend <- table(
+  data_mahasiswa$`kendaraan utama`,
+  data_mahasiswa$`jenis tempat tinggal`
+)
 # Menyimpan hasil chi-square test
-chisq_tempat_tinggal_kend <- 
+chisq_tempat_tinggal_kend <-
   tempat_tinggal_kend |>
   chisq.test()
-
 ```
 
 Seperti yang bisa kita lihat, hasil perhitungan berupa variabel R `chisq_tempat_tinggal_kend` berada di bagian data, dan jika kita perluas, maka di dalamnya terdapat banyak variabel-variabel lain. Variabel-variabel lain tersebut menyimpan berbagai nilai yang menjadi bagian dari hasil perhitungan. Nilai-nilai yang penting untuk
@@ -284,7 +292,7 @@ baris <- data_mahasiswa |>
 baris <- length(baris$kend)
 
 # Menghitung koefisien V
-v_tempat_tinggal_kend <- sqrt(chisq_tempat_tinggal_kend/(n * min(kolom-1, baris-1)))
+v_tempat_tinggal_kend <- sqrt(chisq_tempat_tinggal_kend / (n * min(kolom - 1, baris - 1)))
 v_tempat_tinggal_kend
 ```
 
@@ -343,8 +351,10 @@ install.packages("vcdExtra")
 library(vcdExtra)
 
 # Membuat variabel table() sebagai masukan
-uang_saku_tingkat_semester <- table(data_mahasiswa$`Uang Saku`,
-                                  data_mahasiswa$`Tingkat Semester`)
+uang_saku_tingkat_semester <- table(
+  data_mahasiswa$`Uang Saku`,
+  data_mahasiswa$`Tingkat Semester`
+)
 
 # Menghitung nilai Gamma dari variabel table() yang sudah dibuat
 gamma_uang_saku_tingkat_semester <- GKgamma(uang_saku_tingkat_semester)
@@ -368,7 +378,7 @@ print(gamma_uang_saku_tingkat_semester$D)
 ```
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 3: Analisis Korelasi Komprehensif [STP-9.2, STP-10.2]**
+### Aktivitas Mandiri 3: Analisis Korelasi Komprehensif [STP-9.2, STP-10.2] {-}
 
 **A. Korelasi Nominal [STP-9.2]:**
 

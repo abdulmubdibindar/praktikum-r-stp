@@ -1,9 +1,11 @@
 # Modul-1: Pengolahan Data Terstruktur {#modul-1}
 
+::: {.rmdcapaian}
 Setelah mempelajari modul ini Anda diharapkan dapat:
 
 1.  menganalisis variabel dan objek dalam sebuah format data terstruktur [STP-1.3]{.capaian}
 2.  mengelola data terstruktur dengan tepat menggunakan perangkat komputer [STP-1.4]{.capaian}
+:::
 
 ---
 
@@ -45,7 +47,7 @@ Pastikan file Excel yang akan diimpor sudah tertutup, karena mengimpor file yang
 :::
 
 
-```{r mod01-import-first-sheet, echo=TRUE}
+```{r mod01-import-first-sheet, echo=TRUE, R.options=list(max.print=50)}
 # Memuat dataset dari file Excel "Data Praktikum 01.xlsx" yang terletak di folder datasets/
 data <- read.xlsx("datasets/Data Praktikum 01.xlsx")
 
@@ -58,7 +60,7 @@ Fungsi tersebut akan mengimpor seluruh isi dari file Excel `Data Praktikum 01.xl
 Apabila kita ingin mengimpor set data dari *sheet* lainnya, kita harus menyertakan detil nama sheet yang kita ingin impor pada atribut `sheet`. Misalnya kita ingin mengimpor *sheet* UBL yang bernama "DataUtama_mhsUBL", maka perintahnya adalah: 
 
 
-```{r mod01-import-ubl-sheet, echo=TRUE}
+```{r mod01-import-ubl-sheet, echo=TRUE, R.options=list(max.print=50)}
 # Menyimpan file sebagai variabel tersendiri sehingga lebih fleksibel
 file_dibaca <- "datasets/Data Praktikum 01.xlsx" # nama variabel bukan 'file' saja karena sudah ada fungsi R tersendiri dengan nama tersebut
 
@@ -93,7 +95,7 @@ Dalam modul ini kita akan menggunakan istilah yang sama untuk kedua makna, jadi 
 
 Untuk mengetahui ringkasan struktur data, kita dapat menggunakan fungsi `glimpse()` yang membutuhkan set data yang kita simpan sebagai argumen.
 
-```{r mod01-glimpse-uinril, echo=TRUE}
+```{r mod01-glimpse-uinril, echo=TRUE, R.options=list(max.print=50)}
 # ringkasan struktur data UIN RIL
 glimpse(data)
 ```
@@ -105,7 +107,7 @@ Rincian nama-nama variabel ditunjukkan pada baris keluaran yang diawali oleh sim
 Terlihat dalam data kita bahwa hanya ada dua tipe nilai variabel: `dbl` dan `chr` yang berarti *double* (bilangan desimal) dan *character* (huruf/*string*).
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 1: Menganalisis Struktur Data [STP-1.3]**
+### Aktivitas Mandiri 1: Menganalisis Struktur Data [STP-1.3] {-}
 
 Impor dan jalankan `glimpse(data)` untuk dataset **UIN RIL** dan jawab:
 
@@ -198,15 +200,15 @@ Kita akan menyimpan nama-nama kolom yang sudah kita tentukan tersebut menjadi se
 ```{r mod01-define-final-columns, echo=TRUE}
 # Membuat vektor berisi nama-nama kolom final yang kita inginkan
 kolom_final <- c(
-  "nomor_urut", "jenis_kelamin", "umur", "fakultas", "prodi", 
-  "tingkat_semester", "uang_saku",
-  "kepemilikan_mobil", 
-  "kepemilikan_motor", "kepemilikan_sepeda", "kendaraan_utama", 
-  "jenis_tempat_tinggal", "jarak", "biaya_dalam_sepekan", 
-  "jumlah_perjalanan_senin", "jumlah_perjalanan_selasa", 
-  "jumlah_perjalanan_rabu", "jumlah_perjalanan_kamis", 
-  "jumlah_perjalanan_jumat", "jumlah_perjalanan_sabtu", 
-  "jumlah_perjalanan_ahad"
+   "nomor_urut", "jenis_kelamin", "umur", "fakultas", "prodi",
+   "tingkat_semester", "uang_saku",
+   "kepemilikan_mobil",
+   "kepemilikan_motor", "kepemilikan_sepeda", "kendaraan_utama",
+   "jenis_tempat_tinggal", "jarak", "biaya_dalam_sepekan",
+   "jumlah_perjalanan_senin", "jumlah_perjalanan_selasa",
+   "jumlah_perjalanan_rabu", "jumlah_perjalanan_kamis",
+   "jumlah_perjalanan_jumat", "jumlah_perjalanan_sabtu",
+   "jumlah_perjalanan_ahad"
 )
 ```
 
@@ -217,33 +219,35 @@ Kita akan menggunakan fungsi `select()` dari `dplyr` (bagian dari `tidyverse`) u
 ```{r mod01-select-uinril, echo=TRUE}
 # 4. Menyeleksi kolom dari data UIN RIL
 # Fungsi select() memilih kolom yang kita butuhkan dari 25 kolom yang ada
-data_uin_selected <- select(data,
-  Nomor.urut, Jenis.Kelamin, Umur, Fakultas, Prodi, Tingkat.Semester,
-  Uang.Saku, 
-  kepemilikan.mobil, kepemilikan.motor, 
-  kepemilikan.sepedan, # Perhatian: Nama asli pakai 'n'
-  kendaraan.utama, jenis.tempat.tinggal, 
-  `jarak.(km)`, # Backtick (`) WAJIB untuk nama kolom dengan karakter spesial
-  `biaya.dalam.ribu2`,  # Backtick melindungi tanda kurung dan angka
-  Jumlah.Perjalanan.Senin, Jumlah.Perjalanan.Selasa, Jumlah.Perjalanan.Rabu,
-  Jumlah.Perjalanan.Kamis, Jumlah.Perjalanan.Jumat, Jumlah.Perjalanan.Sabtu,
-  Jumlah.Perjalanan.Ahad
+data_uin_selected <- select(
+   data,
+   Nomor.urut, Jenis.Kelamin, Umur, Fakultas, Prodi, Tingkat.Semester,
+   Uang.Saku,
+   kepemilikan.mobil, kepemilikan.motor,
+   kepemilikan.sepedan, # Perhatian: Nama asli pakai 'n'
+   kendaraan.utama, jenis.tempat.tinggal,
+   `jarak.(km)`, # Backtick (`) WAJIB untuk nama kolom dengan karakter spesial
+   `biaya.dalam.ribu2`, # Backtick melindungi tanda kurung dan angka
+   Jumlah.Perjalanan.Senin, Jumlah.Perjalanan.Selasa, Jumlah.Perjalanan.Rabu,
+   Jumlah.Perjalanan.Kamis, Jumlah.Perjalanan.Jumat, Jumlah.Perjalanan.Sabtu,
+   Jumlah.Perjalanan.Ahad
 )
 ```
 
 ```{r mod01-select-ubl, echo=TRUE}
 # 5. Menyeleksi kolom dari data UBL
-data_ubl_selected <- select(data_ubl,
-  Nomor.urut, Jenis.Kelamin, Umur, Fakultas, Prodi, Tingkat.Semester,
-  Uang.Saku,
-  kepemilikan.mobil, kepemilikan.motor, 
-  kepemilikan.sepeda, # Di sini namanya sudah benar
-  kendaraan.utama, jenis.tempat.tinggal,
-  `jarak.(km)`,
-  biaya.dalam.seminggu,
-  Jumlah.perjalanan.Senin, Jumlah.Perjalanan.Selasa, Jumlah.Perjalanan.Rabu,
-  Jumlah.Perjalanan.Kamis, Jumlah.Perjalanan.Jumat, Jumlah.Perjalanan.Sabtu,
-  Jumlah.Perjalanan.Ahad
+data_ubl_selected <- select(
+   data_ubl,
+   Nomor.urut, Jenis.Kelamin, Umur, Fakultas, Prodi, Tingkat.Semester,
+   Uang.Saku,
+   kepemilikan.mobil, kepemilikan.motor,
+   kepemilikan.sepeda, # Di sini namanya sudah benar
+   kendaraan.utama, jenis.tempat.tinggal,
+   `jarak.(km)`,
+   biaya.dalam.seminggu,
+   Jumlah.perjalanan.Senin, Jumlah.Perjalanan.Selasa, Jumlah.Perjalanan.Rabu,
+   Jumlah.Perjalanan.Kamis, Jumlah.Perjalanan.Jumat, Jumlah.Perjalanan.Sabtu,
+   Jumlah.Perjalanan.Ahad
 )
 ```
 
@@ -264,14 +268,13 @@ Untuk membuktikan bahwa namanya sudah berubah, kita bisa cek lagi.
 ```{r mod01-verify-rename, echo=TRUE}
 # Cek nama kolom setelah diubah
 colnames(data_uin_selected)
-print("-----------------------------------")
 colnames(data_ubl_selected)
 ```
 
 Hasil dari kedua perintah di atas seharusnya adalah daftar nama yang identik.
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 2: Seleksi dan Rename Kolom [STP-1.4]**
+### Aktivitas Mandiri 2: Seleksi dan Rename Kolom [STP-1.4] {-}
 
 Gunakan dataset dari sheet UINRIL yang sudah diimpor di aktivitas sebelumnya:
 
@@ -292,7 +295,7 @@ data_gabungan <- bind_rows(data_uin_selected, data_ubl_selected)
 
 Hasil dari penggabungan tersebut menyebabkan *error* pada kolom `biaya.dalam.sepekan` . Ini disebabkan oleh `biaya.dalam.sepekan` dalam set data UINRIL (`data`) berbeda jenisnya dengan set data UBL (`data_ubl`). Begitu pula `Jumlah.perjalanan.Senin`
 
-```{r mod01-check-data-types, echo=TRUE}
+```{r mod01-check-data-types, echo=TRUE, R.options=list(max.print=80)}
 # Mengecek tipe data dalam set data UINRIL
 glimpse(data_uin_selected)
 
@@ -306,20 +309,24 @@ Ini adalah kasus yang tepat untuk menggambarkan bahwa dalam data terstruktur, je
 
 Kita akan menghapus `biaya.dalam.sepekan` dari kedua set data kita. Untuk menghapus suatu kolom, kita dapat menggunakan fungsi `select()` juga, akan tetapi kita tambahkan tanda negatif (`-`) di depan nama variabelnya.
 
-```{r mod01-remove-columns-uinril, echo=TRUE}
+```{r mod01-remove-columns-uinril, echo=TRUE, R.options=list(max.print=80)}
 # 'Menimpa' data_uin_selected dengan data_uin_selected yang variabel biaya.dalam.sepekan sudah dihapus
-data_uin_selected <- select(data_uin_selected, 
-                            -`biaya_dalam_sepekan`, -`jumlah_perjalanan_senin`)
+data_uin_selected <- select(
+   data_uin_selected,
+   -`biaya_dalam_sepekan`, -`jumlah_perjalanan_senin`
+)
 
 # Melihat hasilnya
 glimpse(data_uin_selected)
 colnames(data_uin_selected)
 ```
 
-```{r mod01-remove-columns-ubl, echo=TRUE}
+```{r mod01-remove-columns-ubl, echo=TRUE, R.options=list(max.print=80)}
 # 'Menimpa' data_ubl_selected dengan data_ubl_selected yang variabel biaya.dalam.sepekan sudah dihapus
-data_ubl_selected <- select(data_ubl_selected, 
-                            -`biaya_dalam_sepekan`, -`jumlah_perjalanan_senin`)
+data_ubl_selected <- select(
+   data_ubl_selected,
+   -`biaya_dalam_sepekan`, -`jumlah_perjalanan_senin`
+)
 
 # Melihat hasilnya
 glimpse(data_ubl_selected)
@@ -329,7 +336,7 @@ glimpse(data_ubl_selected)
 
 Kita akan coba menggabungkan kedua set data tadi.
 
-```{r mod01-bind-rows-success, echo=TRUE}
+```{r mod01-bind-rows-success, echo=TRUE, R.options=list(max.print=80)}
 # Menggabungkan kedua data frame menjadi satu
 # bind_rows() menumpuk baris-baris dari kedua dataset (seperti menumpuk kartu)
 # PENTING: Nama kolom harus sama PERSIS agar penggabungan berhasil
@@ -338,7 +345,7 @@ data_gabungan <- bind_rows(data_uin_selected, data_ubl_selected)
 
 Selesai! 🥳 Mari kita lihat hasil akhir dari kerja keras kita dengan `glimpse()`. Hasil akan menunjukkan bahwa kita mempunyai 779 objek yang merupakan gabungan responden mahasiswa UIN RIL dan UBL.
 
-```{r mod01-glimpse-final, echo=TRUE}
+```{r mod01-glimpse-final, echo=TRUE, R.options=list(max.print=80)}
 # Tampilkan struktur data gabungan yang sudah rapi
 glimpse(data_gabungan)
 ```
@@ -352,7 +359,7 @@ glimpse(data_gabungan)
 - Sudah siap untuk analisis lebih lanjut!
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 3: Menggabungkan Data UINRIL dan ITERA [STP-1.3, STP-1.4]**
+### Aktivitas Mandiri 3: Menggabungkan Data UINRIL dan ITERA [STP-1.3, STP-1.4] {-}
 
 Dari file `Data Praktikum 01.xlsx`, gabungkan data responden dari UINRIL yang sudah kita impor sebelumnya dengan data ITERA.
 
@@ -362,19 +369,27 @@ Dari file `Data Praktikum 01.xlsx`, gabungkan data responden dari UINRIL yang su
    - Simpan sheet ITERA ke variabel `data_itera_lat`
 
 2. **Identifikasi kolom yang bisa digabungkan**
-   - Gunakan `colnames()` untuk melihat nama kolom di kedua dataset
-   - Gunakan `glimpse()` untuk melihat tipe data setiap kolom
-   - Tentukan 5 kolom yang tipenya sama dan bisa digabungkan
+   - Gunakan `glimpse()` untuk melihat nama dan tipe data setiap kolom
+   - Keenam kolom berikut akan kita gunakan: kampus, jenis kelamin, kepemilikan mobil, motor, sepeda, dan jarak
 
-3. **Seleksi kolom yang sesuai** menggunakan `select()`
-   - Pilih hanya 5 kolom yang ada di kedua dataset dan tipenya sama
+3. **Seragamkan nama kolom**
+   - Buat vektor `kolom_final` berisi nama standar untuk semua kolom. Anda dapat menyalin susunan berikut untuk membuat vektor tersebut:
+   ```r
+   kolom_final <- c("kampus", "jenis.kelamin", "kepemilikan.mobil", "kepemilikan.motor",
+                    "kepemilikan.sepeda", "jarak")
+   ```
+   - Gunakan vektor tersebut untuk mengganti nama kolom di kedua dataset `colnames(data_itera_selected) <- kolom_final`
+
+   Catatan: urutan 3 dan 4 dalam latihan ini sebenarnya bisa ditukar, sehingga tidak ada masalah kalau pun berbeda dengan urutan yang kalian pelajari sebelumnya
+
+4. **Seleksi kolom yang sesuai** menggunakan `select()`
+   - Pilih kolom-kolom yang sebelumnya kita sudah seleksi. Penting: urutan kolom yang diseleksi harus sesuai dengan urutan nama di `kolom_final`
    - Ingat menggunakan backtick (`) untuk kolom dengan karakter khusus
 
-4. **Seragamkan nama kolom**
-   - Buat vektor `kolom_final` berisi nama standar untuk semua kolom
-   - Gunakan `colnames(data_itera_selected) <- kolom_final`
+5. **Ganti nama kolom untuk kedua dataset** menggunakan `colnames()`
+   - Ganti nama kolom untuk kedua dataset dengan `colnames(dataset_tiap_kampus) <- kolom_final`
 
-5. **Gabungkan dengan `bind_rows()`**
+6. **Gabungkan dengan `bind_rows()`**
    - Jika ada error tipe data, periksa dengan `glimpse()` dan perbaiki
    - Simpan hasil gabungan ke variabel `data_gabungan_iteraunila`
 
@@ -471,7 +486,7 @@ write.xlsx(data_gabungan, "Data UINRIL & UBL.xlsx")
 ```
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 4: Mengekspor Set Data Gabungan [STP-1.3, STP-1.4]**
+### Aktivitas Mandiri 4: Mengekspor Set Data Gabungan [STP-1.3, STP-1.4] {-}
 
 **Simpan ke file**
    - Ekspor hasil gabungan dengan `write.xlsx()`

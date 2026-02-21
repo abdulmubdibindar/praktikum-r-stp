@@ -62,8 +62,8 @@ colnames(data_ubl)
 # Mengganti nama variabel-variabel
 data_ubl <- rename(data_ubl, biaya_dalam_sepekan = biaya.dalam.seminggu)
 data_ubl <- rename(data_ubl, jumlah_perjalanan_senin = Jumlah.perjalanan.Senin)
-data_ubl <- rename(data_ubl, jarak = `jarak.(km)`)  # tanda backtick (`) digunakan di antara "jarak.(km)" 
-                                                    # karena ada tanda kurung yang dianggap oleh R mempunyai fungsi khusus
+data_ubl <- rename(data_ubl, jarak = `jarak.(km)`) # tanda backtick (`) digunakan di antara "jarak.(km)"
+# karena ada tanda kurung yang dianggap oleh R mempunyai fungsi khusus
 ```
 
 ::: {.rmdnote}
@@ -91,10 +91,10 @@ data_ubl <- rename(data_ubl, jarak = `jarak.(km)`)
 data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
 
 # Mengganti nama variabel-variabel
-data_ubl <- data_ubl |> 
+data_ubl <- data_ubl |>
   rename(biaya_dalam_sepekan = biaya.dalam.seminggu) |>
   # setiap baris yang masih ada proses selanjutnya harus diisi dengan pipe operator
-  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |> 
+  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |>
   rename(jarak = `jarak.(km)`)
 ```
 
@@ -117,7 +117,7 @@ Berikut adalah penjelasan cara-2:
 :::
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 1: Menguasai Pipe Operator [STP-2.4]**
+### Aktivitas Mandiri 1: Menguasai Pipe Operator [STP-2.4] {-}
 
 Dengan satu blok kode menggunakan pipe operator `|>`:
 1. Baca dataset UBL dari file dan sheet yang sudah ditentukan
@@ -172,8 +172,8 @@ Contoh pertama kita adalah variabel yang paling mudah: `Jenis.Kelamin`.
 jk <- c("Laki-laki", "Perempuan") # Membuat vektor rincian nilai nominal
 
 # Mengubah jenis variabel "Jenis.Kelamin" dari chr ke fct dengan 'mutate()'
-data_ubl <- data_ubl |> 
-  mutate(Jenis.Kelamin = factor(Jenis.Kelamin,jk))
+data_ubl <- data_ubl |>
+  mutate(Jenis.Kelamin = factor(Jenis.Kelamin, jk))
 
 # Mengecek hasil
 glimpse(data_ubl)
@@ -185,18 +185,18 @@ Sementara itu, jika kita cermat, sebelumnya nilai jenis kelamin ditulis dengan `
 
 ```{r mod02-create-factor-gender-correct, echo=TRUE}
 # Mengulangi pembacaan file sekaligus merapikan nama variabel-variabelnya serta menghilangkan Missing Values menggunakan Pipe operator
-data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl) |> 
+data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl) |>
   rename(biaya_dalam_sepekan = biaya.dalam.seminggu) |>
-  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |> 
-  rename(jarak = `jarak.(km)`) |> 
+  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |>
+  rename(jarak = `jarak.(km)`) |>
   drop_na()
 
 # Memperbaiki vektor nilai nominal sesuai dengan yang ada di data dengan mengganti penulisan "Laki-laki" menjadi "Laki-Laki"
 jk <- c("Laki-Laki", "Perempuan")
 
 # Mengubah lagi jenis variabel "Jenis.Kelamin" dari chr ke fct dengan 'mutate()
-data_ubl <- data_ubl |> 
-  mutate(Jenis.Kelamin = factor(Jenis.Kelamin,jk))
+data_ubl <- data_ubl |>
+  mutate(Jenis.Kelamin = factor(Jenis.Kelamin, jk))
 
 # Mengecek hasil
 glimpse(data_ubl)
@@ -207,14 +207,14 @@ Kita sudah berhasil menjadikan variabel `Jenis.Kelamin` sebagai factor. Selanjut
 Sekarang kita akan mengecek nilai variabel-variabel kategoris tersebut dengan dua cara berikut:
 
 ```{r mod02-check-categorical-values, echo=TRUE}
-# Mengecek rincian nilai-nilai variabel lain secara bersamaan 
+# Mengecek rincian nilai-nilai variabel lain secara bersamaan
 table(data_ubl$Fakultas) # cara 1
 
-data_ubl |>  # cara 2
+data_ubl |> # cara 2
   count(Prodi)
-data_ubl |> 
+data_ubl |>
   count(Tingkat.Semester)
-data_ubl |> 
+data_ubl |>
   count(Uang.Saku)
 table(data_ubl$jenis.tempat.tinggal)
 ```
@@ -225,39 +225,50 @@ Perhatikan bahwa untuk **variabel ordinal** kita harus menuliskan vektor nilainy
 
 ```{r mod02-define-factor-levels, echo=TRUE}
 # Membuat vektor nilai-nilai kategoris (untuk factor) berdasarkan nilai-nilai dari tampilan rincian
-fakultas <- c("Fakultas Ekonomi dan Bisnis", "Fakultas Hukum",
-              "Fakultas Ilmu Komputer", "Fakultas Ilmu Sosial dan Politik",
-              "Fakultas Keguruan dan Ilmu Pendidikan", "Fakultas Teknik")
+fakultas <- c(
+  "Fakultas Ekonomi dan Bisnis", "Fakultas Hukum",
+  "Fakultas Ilmu Komputer", "Fakultas Ilmu Sosial dan Politik",
+  "Fakultas Keguruan dan Ilmu Pendidikan", "Fakultas Teknik"
+)
 # nilai-nilai dalam vektor dapat di-Enter setelah tanda koma agar script lebih rapi dan enak dibaca
 
-prodi <- c("Administrasi Bisnis", "Administrasi Publik",
-           "Akuntansi","Arsitektur","Ilmu Hukum","Ilmu Komunikasi",
-           "Informatika","Manajemen",
-           "Pendidikan Bahasa Inggris", "Sistem Informasi")
+prodi <- c(
+  "Administrasi Bisnis", "Administrasi Publik",
+  "Akuntansi", "Arsitektur", "Ilmu Hukum", "Ilmu Komunikasi",
+  "Informatika", "Manajemen",
+  "Pendidikan Bahasa Inggris", "Sistem Informasi"
+)
 
 # Variabel ordinal harus ditulis sesuai dengan urutan yang benar
-tingkat <- c("1 (Semester 1 – Semester 2)",
-             "2 (Semester 3 – Semester 4)",
-             "3 (Semester 5 - Semester 6)",
-             "4 (Semester 7 - Semester 8)")
+tingkat <- c(
+  "1 (Semester 1 – Semester 2)",
+  "2 (Semester 3 – Semester 4)",
+  "3 (Semester 5 - Semester 6)",
+  "4 (Semester 7 - Semester 8)"
+)
 
-uang_saku <- c("< 1 jt", "1 jt – 2 jt", "2,1 jt – 3 jt",
-               "3,1 jt – 4 jt", "> 4 jt")
+uang_saku <- c(
+  "< 1 jt", "1 jt – 2 jt", "2,1 jt – 3 jt",
+  "3,1 jt – 4 jt", "> 4 jt"
+)
 ```
 
 Sekarang kita sudah bisa mengubah nilai-nilai di variabel kategoris tersebut dari *character* menjadi *factor*. Variabel ordinal menggunakan atribut `ordered` yang bernilai `TRUE`, artinya urutan dipentingkan dalam `levels`.
 
 ```{r mod02-apply-factors, echo=TRUE}
 # Mengubah variabel-variabel tersebut menjadi factor
-data_ubl <- data_ubl |> 
-  mutate(Jenis.Kelamin = factor(Jenis.Kelamin, levels = jk),
-         Fakultas = factor(Fakultas, levels = fakultas),
-         Prodi = factor(Prodi, levels = prodi),
-         # jangan lupa atribut 'ordered = TRUE' untuk var. ordinal
-         Tingkat.Semester = factor(Tingkat.Semester, 
-                                   levels = tingkat,
-                                   ordered = TRUE), 
-         Uang.Saku = factor(Uang.Saku, levels = uang_saku, ordered = TRUE))
+data_ubl <- data_ubl |>
+  mutate(
+    Jenis.Kelamin = factor(Jenis.Kelamin, levels = jk),
+    Fakultas = factor(Fakultas, levels = fakultas),
+    Prodi = factor(Prodi, levels = prodi),
+    # jangan lupa atribut 'ordered = TRUE' untuk var. ordinal
+    Tingkat.Semester = factor(Tingkat.Semester,
+      levels = tingkat,
+      ordered = TRUE
+    ),
+    Uang.Saku = factor(Uang.Saku, levels = uang_saku, ordered = TRUE)
+  )
 
 # Mengecek hasil
 glimpse(data_ubl)
@@ -274,7 +285,7 @@ levels(data_ubl$Uang.Saku)
 ```
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 2: Membuat Factor untuk Variabel Kategoris [STP-2.4]**
+### Aktivitas Mandiri 2: Membuat Factor untuk Variabel Kategoris [STP-2.4] {-}
 
 Untuk dataset UBL yang sudah dibersihkan:
 1. Buat vektor `tempat_tinggal` dengan nilai-nilai jenis tempat tinggal yang ada di data
@@ -303,12 +314,14 @@ Kita masih akan menggunakan *pipe operator* dalam mengoperasikan analisis ini. P
 Untuk menampilkan persentase/proporsi, kita cukup memasukkan variabel-variabel kategoris ke dalam tabel dengan atribut `include`. Atribut tersebut menerima masukan berupa vektor nama-nama variabel kategoris dalam dataset kita. Fungsi `tbl_summary` ini akan menampilkan secara otomatis tabel distribusi frekuensinya disertai dengan nilai persentasenya di samping nilai frekuensi tersebut.
 
 ```{r mod02-tbl-summary-categorical, echo=TRUE}
-data_ubl |> 
-  tbl_summary(include = c(Jenis.Kelamin,
-                          Fakultas,
-                          Tingkat.Semester,
-                          Uang.Saku,
-                          jenis.tempat.tinggal)) |> 
+data_ubl |>
+  tbl_summary(include = c(
+    Jenis.Kelamin,
+    Fakultas,
+    Tingkat.Semester,
+    Uang.Saku,
+    jenis.tempat.tinggal
+  )) |>
   as_flex_table()
 ```
 
@@ -316,32 +329,31 @@ Untuk menghitung IQV, kita bisa memanfaatkan perintah `function` yang mengambil 
 
 ```{r mod02-define-iqv-function, echo=TRUE}
 iqv <- function(x) {
-  
   # 1. Membersihkan data dari nilai yang hilang (NA)
   x_clean <- x[!is.na(x)]
-  
+
   # 2. Membuat tabel frekuensi dari data yang bersih
   counts <- table(x_clean)
-  
+
   # 3. Menghitung jumlah kategori (K)
   K <- length(counts)
-  
+
   # 4. Kasus khusus: Jika hanya ada 1 kategori atau tidak ada data,
   #    maka tidak ada variasi, sehingga IQV = 0.
   if (K <= 1) {
     return(0)
   }
-  
+
   # 5. Menghitung jumlah total observasi (n)
   n <- sum(counts)
-  
+
   # 6. Menghitung jumlah kuadrat dari proporsi setiap kategori (Σpᵢ²)
   sum_p_sq <- sum((counts / n)^2)
-  
+
   # 7. Menerapkan formula IQV
   #    IQV = [K / (K - 1)] * [1 - Σpᵢ²]
   iqv_value <- (K / (K - 1)) * (1 - sum_p_sq)
-  
+
   # 8. Mengembalikan hasil perhitungan IQV
   return(iqv_value)
 }
@@ -350,7 +362,7 @@ iqv <- function(x) {
 Untuk menghasilkan nilai IQV suatu variabel, kita perlu memasukkan vektor yang berisi nilai-nilai dalam variabel dataset kita. Ini dapat dilakukan dengan sintaks `dataset$nama_variabel`. Tanda \$ berfungsi memberi tahu R untuk memilih variabel yang ada dalam dataset yang digunakan.
 
 ```{r mod02-calculate-iqv, echo=TRUE}
-# Menampilkan vektor jenis.tempat.tinggal (opsional. Hapus komentar pada baris 
+# Menampilkan vektor jenis.tempat.tinggal (opsional. Hapus komentar pada baris
 # berikut jika ingin mencobanya)
 # data_ubl$jenis.tempat.tinggal
 
@@ -363,9 +375,11 @@ iqv(data_ubl$jenis.tempat.tinggal)
 Perintah `tbl_summary` akan menentukan jenis statistik deskriptif yang ditampilkan secara intuitif berdasarkan dataset yang dibacanya. Perhatikan hasil dari `tbl_summary` berikut untuk variabel `kepemilikan.mobil` dan `jarak`.
 
 ```{r mod02-tbl-summary-numeric, echo=TRUE}
-data_ubl |> 
-  tbl_summary(include = c(kepemilikan.mobil,
-                          jarak)) |> 
+data_ubl |>
+  tbl_summary(include = c(
+    kepemilikan.mobil,
+    jarak
+  )) |>
   as_flex_table()
 ```
 
@@ -376,17 +390,27 @@ Hal ini berbeda lagi dengan variabel `jarak` yang menampilkan statistik deskript
 Untuk meminta `tbl_summary` menampilkan analisis statistik deskriptif untuk variabel numerik seperti mean, median, kuartil, dan standar deviasi (simpangan baku), kita dapat menyatakannya dalam atribut-atribut berikut.
 
 ```{r mod02-tbl-summary-numeric-advanced, echo=TRUE}
-data_ubl |> 
-  tbl_summary(include = c(kepemilikan.mobil,
-                          kepemilikan.motor,
-                          jarak),
-              type = list(kepemilikan.mobil ~ "continuous", # untuk mengarahkan tbl_summary membaca tipe data sesuai yang kita butuhkan
-                          kepemilikan.motor ~ "continuous"),
-              digits = list(kepemilikan.mobil ~ 0, # untuk menentukan jumlah desimal nilai yang ditampilkan
-                            kepemilikan.motor ~ 0),
-              statistic = list(kepemilikan.mobil ~ "{median} ({p25}, {p75})", # untuk menentukan jenis statistik deskriptif yang ditampilkan
-                               kepemilikan.motor ~ "{median}",
-                               jarak ~ "{mean} ({sd})")) |> 
+data_ubl |>
+  tbl_summary(
+    include = c(
+      kepemilikan.mobil,
+      kepemilikan.motor,
+      jarak
+    ),
+    type = list(
+      kepemilikan.mobil ~ "continuous", # untuk mengarahkan tbl_summary membaca tipe data sesuai yang kita butuhkan
+      kepemilikan.motor ~ "continuous"
+    ),
+    digits = list(
+      kepemilikan.mobil ~ 0, # untuk menentukan jumlah desimal nilai yang ditampilkan
+      kepemilikan.motor ~ 0
+    ),
+    statistic = list(
+      kepemilikan.mobil ~ "{median} ({p25}, {p75})", # untuk menentukan jenis statistik deskriptif yang ditampilkan
+      kepemilikan.motor ~ "{median}",
+      jarak ~ "{mean} ({sd})"
+    )
+  ) |>
   as_flex_table()
 
 # Ketika meng-enter script, jangan salah memperhatikan urutan dan kelengkapan tanda koma pada fungsi
@@ -429,7 +453,7 @@ digits = list(kepemilikan.motor ~ 0, kepemilikan.mobil ~ 0)
 :::
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 3: Analisis Statistik Deskriptif Komprehensif [STP-2.4]**
+### Aktivitas Mandiri 3: Analisis Statistik Deskriptif Komprehensif [STP-2.4] {-}
 
 **Persiapan:**
 Impor dataset UIN RIL dari sheet `DataUtama_mhsUINRIL` dan bersihkan seperti yang sudah dipraktikkan:

@@ -49,39 +49,47 @@ Kemudian kita perlu menetapkan `factor` untuk variabel-variabel kategoris kita a
 # Menetapkan vektor untuk factor variabel kategoris
 jk <- c("Laki-Laki", "Perempuan")
 
-fakultas <- c("Fakultas Ekonomi dan Bisnis", "Fakultas Hukum",
-              "Fakultas Ilmu Komputer", "Fakultas Ilmu Sosial dan Politik",
-              "Fakultas Keguruan dan Ilmu Pendidikan", "Fakultas Teknik")
+fakultas <- c(
+  "Fakultas Ekonomi dan Bisnis", "Fakultas Hukum",
+  "Fakultas Ilmu Komputer", "Fakultas Ilmu Sosial dan Politik",
+  "Fakultas Keguruan dan Ilmu Pendidikan", "Fakultas Teknik"
+)
 
-prodi <- c("Administrasi Bisnis", "Administrasi Publik","Akuntansi","Arsitektur",
-           "Ilmu Hukum","Ilmu Komunikasi", "Informatika","Manajemen",
-           "Pendidikan Bahasa Inggris", "Sistem Informasi")
+prodi <- c(
+  "Administrasi Bisnis", "Administrasi Publik", "Akuntansi", "Arsitektur",
+  "Ilmu Hukum", "Ilmu Komunikasi", "Informatika", "Manajemen",
+  "Pendidikan Bahasa Inggris", "Sistem Informasi"
+)
 
-tingkat <- c("1 (Semester 1 – Semester 2)",
-             "2 (Semester 3 – Semester 4)",
-             "3 (Semester 5 - Semester 6)",
-             "4 (Semester 7 - Semester 8)")
+tingkat <- c(
+  "1 (Semester 1 – Semester 2)",
+  "2 (Semester 3 – Semester 4)",
+  "3 (Semester 5 - Semester 6)",
+  "4 (Semester 7 - Semester 8)"
+)
 
 uang_saku <- c("< 1 jt", "1 jt – 2 jt", "2,1 jt – 3 jt", "3,1 jt – 4 jt", "> 4 jt")
 
 
 # Merapikan dataset
-data_ubl <- data_ubl |> 
+data_ubl <- data_ubl |>
   # mengubah nama variabel
   rename(biaya_dalam_sepekan = biaya.dalam.seminggu) |>
-  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |> 
-  rename(jarak = `jarak.(km)`) |> 
+  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |>
+  rename(jarak = `jarak.(km)`) |>
   # menghapus data dengan missing values
-  drop_na() |> 
+  drop_na() |>
   # menambahkan factor ke variabel kategoris
-  mutate(Jenis.Kelamin = factor(Jenis.Kelamin, levels = jk),
-         Fakultas = factor(Fakultas, levels = fakultas),
-         Prodi = factor(Prodi, levels = prodi),
-         Tingkat.Semester = factor(Tingkat.Semester, 
-                                   levels = tingkat,
-                                   ordered = TRUE), 
-         Uang.Saku = factor(Uang.Saku, levels = uang_saku, ordered = TRUE))
-  
+  mutate(
+    Jenis.Kelamin = factor(Jenis.Kelamin, levels = jk),
+    Fakultas = factor(Fakultas, levels = fakultas),
+    Prodi = factor(Prodi, levels = prodi),
+    Tingkat.Semester = factor(Tingkat.Semester,
+      levels = tingkat,
+      ordered = TRUE
+    ),
+    Uang.Saku = factor(Uang.Saku, levels = uang_saku, ordered = TRUE)
+  )
 ```
 
 Kita akan mengubah kategori `factor` pada variabel `Tingkat.Semester` dan `Uang.Saku` agar lebih mudah dibaca saat divisualisasikan. Kita akan menggunakan fungsi dari `dplyr` (bagian dari `tidyverse`) untuk membersihkan dan mengubah data.
@@ -97,7 +105,8 @@ data_ubl_cleaned <- data_ubl %>%
       "Semester 7 & 8" = "4 (Semester 7 - Semester 8)",
       "Di Atas Semester 8" = "5 (Di atas semester 8)"
     ),
-    Uang.Saku = fct_relevel(Uang.Saku, 
+    Uang.Saku = fct_relevel(
+      Uang.Saku,
       "< 1 jt", "1 jt – 2 jt", "> 2 jt"
     )
   )
@@ -144,10 +153,11 @@ Diagram batang sangat baik untuk menampilkan distribusi atau perbandingan data *
 Mari kita lihat distribusi mahasiswa berdasarkan tingkat semester. `geom_bar()` secara otomatis menghitung jumlah observasi untuk setiap kategori di sumbu x.
 
 ```{r bar-chart-single}
-
 diagram_batang <- ggplot(data_ubl_cleaned) +
-  geom_bar(mapping = aes(x = Tingkat.Semester), fill = "skyblue",
-           color = "black") +
+  geom_bar(
+    mapping = aes(x = Tingkat.Semester), fill = "skyblue",
+    color = "black"
+  ) +
   labs(
     title = "Distribusi Mahasiswa Berdasarkan Tingkat Semester",
     x = "Tingkat Semester",
@@ -201,8 +211,10 @@ Untuk membandingkan jumlah absolut antar kategori uang saku, diagram batang berk
 
 ```{r bar-chart-grouped}
 diagram_batang_sebar <- ggplot(data_ubl_cleaned) +
-  geom_bar(mapping = aes(x = Tingkat.Semester, fill = Uang.Saku),
-           position = "dodge") +
+  geom_bar(
+    mapping = aes(x = Tingkat.Semester, fill = Uang.Saku),
+    position = "dodge"
+  ) +
   labs(
     title = "Perbandingan Uang Saku per Tingkat Semester",
     x = "Tingkat Semester",
@@ -223,8 +235,10 @@ Terkadang kita lebih tertarik pada perbandingan proporsi antar grup daripada jum
 
 ```{r bar-chart-fill}
 diagram_batang_tumpuk_100 <- ggplot(data_ubl_cleaned) +
-  geom_bar(mapping = aes(x = Tingkat.Semester, fill = Uang.Saku),
-           position = "fill") +
+  geom_bar(
+    mapping = aes(x = Tingkat.Semester, fill = Uang.Saku),
+    position = "fill"
+  ) +
   scale_y_continuous(labels = scales::percent) + # untuk mengubah satuan sumbu Y menjadi '%'
   labs(
     title = "Proporsi Uang Saku per Tingkat Semester",
@@ -247,7 +261,7 @@ diagram_batang_tumpuk_100
 -   **SCALE**: `scale_y_continuous(labels = scales::percent)` adalah lapisan tambahan yang mengontrol **SKALA** pada sumbu y. Fungsi `scales::percent` digunakan untuk memformat label sumbu dari angka desimal (misal: 0.5) menjadi format persentase (misal: 50%) agar lebih mudah dibaca.
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 1: Membuat dan Menginterpretasikan Diagram Batang [STP-3.2, STP-3.3]**
+### Aktivitas Mandiri 1: Membuat dan Menginterpretasikan Diagram Batang [STP-3.2, STP-3.3] {-}
 
 Buatlah diagram batang untuk variabel `Fakultas`:
 
@@ -265,9 +279,9 @@ Diagram lolipop adalah alternatif dari diagram batang yang dapat mengurangi tint
 
 ```{r buat-data-bahan}
 # Pertama, kita perlu membuat tabel baru yang menampilkan jumlah mahasiswa per program studi
-prodi_count <- data_ubl_cleaned |> 
-  count(Prodi, name = "jumlah") |> 
-  arrange(jumlah) |> 
+prodi_count <- data_ubl_cleaned |>
+  count(Prodi, name = "jumlah") |>
+  arrange(jumlah) |>
   mutate(Prodi = fct_inorder(Prodi)) # mengubah jadi faktor terurut
 ```
 
@@ -277,14 +291,17 @@ diagram_lollipop <- ggplot(prodi_count) +
   # diagram lollipop terdiri atas 2 geometri: geom_segment yang bertindak sebagai
   # batang dan geom_point yang bertindak sebagai permennya
   geom_segment(
-    mapping = aes(x = Prodi,
-                  y = 0, yend = jumlah),
+    mapping = aes(
+      x = Prodi,
+      y = 0, yend = jumlah
+    ),
     color = "grey",
-    size = 1.5) +
+    size = 1.5
+  ) +
   geom_point(
     mapping = aes(x = Prodi, y = jumlah),
     color = "#0072B2", size = 4
-  ) + 
+  ) +
   coord_flip() + # Membalik sumbu agar mudah dibaca
   labs(
     title = "Jumlah Responden Mahasiswa UBL Per Program Studi",
@@ -318,7 +335,7 @@ Diagram pai (dan variasinya, diagram donat) digunakan untuk menunjukkan proporsi
 Di `ggplot2`, diagram pai dibuat dengan memulai dari diagram batang bertumpuk, lalu mengubah sistem **KOORDINAT**-nya menjadi koordinat polar. Akan tetapi, dalam `ggplot2` kita tidak bisa membuat diagram pai langsung dari datasetnya, tetapi kita harus membentuk **tabel distribusi frekuensinya** terlebih dahulu.
 
 ```{r bahan-pie-and-donut}
-fakultas_count <- data_ubl_cleaned |> 
+fakultas_count <- data_ubl_cleaned |>
   count(Fakultas, name = "jumlah") |> # Membuat kolom jumlah responden per fakultas
   mutate(
     persen = jumlah / sum(jumlah) # Membuat kolom persentase dari 'jumlah
@@ -380,7 +397,7 @@ Kita akan membuat *treemap* dari alasan mahasiswa memilih tempat tinggal mereka
 
 ```{r membuat-alasan-count}
 # Pertama, kita siapkan data dengan menghitung jumlah dan mengurutkannya
-alasan_counts <- data_ubl_cleaned |> 
+alasan_counts <- data_ubl_cleaned |>
   # Mengganti nama yang terlalu panjang agar muat di plot
   mutate(alasan_singkat = fct_recode(`alasan.pemilihan.lokasi.tempat.tinggal`,
     "Bersama Keluarga" = "Bersama keluarga/saudara/teman",
@@ -400,7 +417,7 @@ alasan_counts
 ggplot(alasan_counts, aes(area = jumlah, fill = alasan_singkat, label = alasan_singkat)) +
   geom_treemap() +
   geom_treemap_text(
-    colour = "white", 
+    colour = "white",
     place = "centre",
     size = 13
   ) +
@@ -491,9 +508,8 @@ scatter_plot <- ggplot(data_ubl_cleaned) +
     y = "Jarak dari Kampus (km)"
   ) +
   theme_minimal()
-  
-scatter_plot
 
+scatter_plot
 ```
 
 **Interpretasi:** Grafik ini tidak menunjukkan adanya pola atau hubungan yang jelas antara umur mahasiswa dan jarak tempat tinggal mereka dari kampus. Titik-titik tersebar secara acak.
@@ -508,7 +524,7 @@ scatter_plot
 Penting untuk menjaga konteks dalam interpretasi. Scatter plot kita menunjukkan bahwa mahasiswa yang lebih tua cenderung tinggal lebih jauh dari kampus. Namun, untuk benar-benar memahami kekuatan hubungan ini, kita perlu menggunakan statistik korelasi (akan dipelajari di modul selanjutnya).
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 2: Histogram dan Boxplot untuk Variabel Numerik [STP-3.2, STP-3.3]**
+### Aktivitas Mandiri 2: Histogram dan Boxplot untuk Variabel Numerik [STP-3.2, STP-3.3] {-}
 
 Gunakan variabel `jarak` (jarak tempat tinggal dari kampus):
 
@@ -524,7 +540,7 @@ Gunakan variabel `jarak` (jarak tempat tinggal dari kampus):
 :::
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 3: Visualisasi Komprehensif untuk `biaya_dalam_sepekan` [STP-3.1, STP-3.2, STP-3.3, STP-3.4]**
+### Aktivitas Mandiri 3: Visualisasi Komprehensif untuk `biaya_dalam_sepekan` [STP-3.1, STP-3.2, STP-3.3, STP-3.4] {-}
 
 **A. Menghasilkan Grafik [STP-3.3]:**
 

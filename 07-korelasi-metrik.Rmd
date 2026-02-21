@@ -56,13 +56,19 @@ Kita akan melihat pola sebaran data kita dilihat dari variabel jarak dari kampus
 
 ```{r mod07-create-scatterplot, echo=TRUE}
 # Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
-scatter_plot <- ggplot(data = data_mahasiswa,
-                       mapping = aes(x = jarak, # variabel di sumbu X
-                                     y = `biaya sepekan`)) + # variabel di sumbu Y
+scatter_plot <- ggplot(
+  data = data_mahasiswa,
+  mapping = aes(
+    x = jarak, # variabel di sumbu X
+    y = `biaya sepekan`
+  )
+) + # variabel di sumbu Y
   geom_point(aes(color = `jenis tempat tinggal`)) + # perintah untuk menampilkan diagram pencar
-  labs(title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
-       y = "Biaya transportasi sepekan (ribu rupiah)",
-       x = "Jarak dari tempat tinggal ke kampus (km)")
+  labs(
+    title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
+    y = "Biaya transportasi sepekan (ribu rupiah)",
+    x = "Jarak dari tempat tinggal ke kampus (km)"
+  )
 
 # Menampilkan diagram
 scatter_plot
@@ -107,7 +113,7 @@ Terlebih dahulu, kita perlu membuat variabel khusus `jumlah_perjalanan_weekdays`
 
 ```{r mod07-create-weekdays-column, echo=TRUE}
 # Membuat kolom jumlah perjalanan weekdays
-data_mahasiswa <- data_mahasiswa |> 
+data_mahasiswa <- data_mahasiswa |>
   mutate(`jumlah_perjalanan_weekdays` = rowSums(
     across(`Jumlah Perjalanan Senin`:`Jumlah Perjalanan Jumat`)
   ))
@@ -118,7 +124,7 @@ Setelah itu, barulah kita membuat dataset khusus pengguna layanan online saja. K
 ```{r mod07-filter-online-users, echo=TRUE}
 # Memilih responden mahasiswa pengguna angkutan daring saja
 # dan membuatnya menjadi dataset baru
-data_mahasiswa_online <- data_mahasiswa |> 
+data_mahasiswa_online <- data_mahasiswa |>
   filter(`kendaraan utama` == "Layanan online")
 ```
 
@@ -126,8 +132,8 @@ Kita dapat mengecek hasilnya dengan melakukan perintah `group_by()` dan `summari
 
 ```{r mod07-check-filter-result, echo=TRUE}
 # Menampilkan hasil filter
-data_mahasiswa_online |> 
-  group_by(`kendaraan utama`) |> 
+data_mahasiswa_online |>
+  group_by(`kendaraan utama`) |>
   summarize("jumlah" = n())
 ```
 
@@ -149,14 +155,20 @@ Kita akan menelaah hubungan antara dua variabel tersebut berdasarkan tampilan vi
 
 ```{r mod07-scatterplot-online, echo=TRUE}
 # Membuat diagram pencar antara variabel jumlah perjalanan weekdays dan jarak tempat tinggal pengguna online
-scatter_plot <- ggplot(data = data_mahasiswa_online,
-                       mapping = aes(x = jarak, # variabel di sumbu X
-                                     y = `jumlah_perjalanan_weekdays`)) + # variabel di sumbu Y
+scatter_plot <- ggplot(
+  data = data_mahasiswa_online,
+  mapping = aes(
+    x = jarak, # variabel di sumbu X
+    y = `jumlah_perjalanan_weekdays`
+  )
+) + # variabel di sumbu Y
   geom_point() + # perintah untuk menampilkan diagram pencar
-  labs(title = "jumlah_perjalanan_weekdays vs Jarak Tempat Tinggal dari Kampus",
-       subtitle = "Pengguna layanan daring",
-       y = "jumlah_perjalanan_weekdays",
-       x = "Jarak dari kampus (km)")
+  labs(
+    title = "jumlah_perjalanan_weekdays vs Jarak Tempat Tinggal dari Kampus",
+    subtitle = "Pengguna layanan daring",
+    y = "jumlah_perjalanan_weekdays",
+    x = "Jarak dari kampus (km)"
+  )
 
 # Menampilkan scatter plot
 scatter_plot
@@ -165,7 +177,7 @@ scatter_plot
 Perhatikan bentuk sebaran titik-titik dalam diagram pencarnya. Secara sekilas, sebaran titik-titik tersebut membentuk formasi kemiringan ke bawah, akan tetapi kerapatannya kecil.
 
 ::: {.rmdexercise}
-**Aktivitas Mandiri 3: Analisis Korelasi Metrik Komprehensif [STP-11.2]**
+### Aktivitas Mandiri 3: Analisis Korelasi Metrik Komprehensif [STP-11.2] {-}
 
 1. **Pilih 3 Pasang Variabel Metrik:**
    - Buat scatter plot untuk setiap pasangan

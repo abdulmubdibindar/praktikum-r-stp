@@ -24,12 +24,11 @@ options(cli.hyperlink = FALSE)
 
 # Konfigurasi knitr untuk output gambar
 knitr::opts_chunk$set(
-    echo = FALSE,
-    fig.path = "figures/", # Gunakan folder tanpa underscore untuk GitHub Pages
-    message = FALSE,
-    warning = FALSE
+  echo = FALSE,
+  fig.path = "figures/", # Gunakan folder tanpa underscore untuk GitHub Pages
+  message = FALSE,
+  warning = FALSE
 )
-
 ```
 
 # Pengantar {.unnumbered}
@@ -136,7 +135,7 @@ knitr::include_graphics("images/jendela-r.png")
 ```
 
 ::: rmdexercise
-**Aktivitas Mandiri: Kode R Pertama**
+### Aktivitas Mandiri: Kode R Pertama {-}
 
 Cobalah ketik perintah berikut di jendela yang terdapat kursor di dalamnya, lalu tekan Enter setelah mengetikkan kode berikut:
 
@@ -152,7 +151,7 @@ Anda akan menyadari bahwa antarmuka RGui tidak bersahabat dengan pengguna *(user
 Oleh karena itu, kita membutuhkan cara kedua, yakni menggunakan **RStudio** melalui panel **Console** (jendela nomor 3 pada Gambar \@ref(fig:jendela-rstudio)).
 
 ::: rmdexercise
-**Aktivitas Mandiri: Kode R pertama di RStudio**
+### Aktivitas Mandiri: Kode R pertama di RStudio {-}
 
 Cobalah ketik perintah berikut di Console, lalu tekan Enter:
 
@@ -173,7 +172,7 @@ File kode sumber R (berekstensi `.R`) adalah dokumen teks yang berisi rangkaian 
 
 ::: rmdexercise
 
-**Aktivitas Mandiri: Membuat *file* Kode Sumber R Pertama**
+### Aktivitas Mandiri: Membuat *file* Kode Sumber R Pertama {-}
 
 1. Di RStudio, pilih menu **File → New File → R Script** (atau tekan **Ctrl + Shift + N** di Windows/Linux, **Cmd + Shift + N** di Mac)
 2. Sebuah tab baru akan muncul di panel *Script* (jendela kiri atas)
@@ -210,7 +209,7 @@ Untuk menjalankan kode dari file `.R` ke Console tanpa mengetik ulang:
 
 ::: rmdexercise
 
-**Aktivitas Mandiri: Menjalankan Kode R dari File Kode Sumber**
+### Aktivitas Mandiri: Menjalankan Kode R dari File Kode Sumber {-}
 
 1. Masih dari *script* `kode_R_pertama_saya.R` tadi, tempatkan kursor pada baris berikut
 
@@ -517,7 +516,7 @@ Variabel juga bisa dideklarasikan menggunakan operasi matematika dan variabel se
 ```{r mod0-assignment-math, echo=TRUE}
 hasil <- a + b
 
-paste("Hasil:",hasil)
+paste("Hasil:", hasil)
 ```
 
 Untuk menampilkan nilai variabel tuliskan kembali nama variabelnya lalu jalankan.
@@ -556,7 +555,7 @@ R mendukung beberapa gaya penamaan variabel:
 - Konsisten: Pilih satu gaya dan gunakan terus sepanjang kode Anda
 
 ::: rmdexercise
-**Aktivitas Mandiri: Membuat Variabel Disertai Komentar**
+### Aktivitas Mandiri: Membuat Variabel Disertai Komentar {-}
 
 1. Buatlah variabel dengan nama `nama` yang nilainya adalah nama kalian.
 2. Buatlah variabel dengan nama `nim` yang nilainya adalah NIM kalian.
@@ -580,7 +579,7 @@ R memiliki ribuan paket tambahan yang menyediakan fungsi-fungsi khusus.
 
 
 ::: rmdexercise
-**Aktivitas Mandiri: Instalasi Paket**
+### Aktivitas Mandiri: Instalasi Paket {-}
 
 Berikut adalah paket-paket yang akan kita gunakan selama praktikum ini. Instalasilah paket-paket berikut di komputer kalian:
 
@@ -632,7 +631,7 @@ Penjelasan:
 - `return(hasil)`: Mengembalikan nilai `hasil` sebagai *output* dari fungsi.
 
 ::: rmdexercise
-**Aktivitas Mandiri: Membuat Fungsi Sendiri**
+### Aktivitas Mandiri: Membuat Fungsi Sendiri {-}
 
 1. Buatlah dua variabel dengan nama `c` dan `d` dengan nilai 10 dan 20
 2. Buatlah fungsi dengan nama `kali_dua` yang menerima satu argumen `x` sebagai berikut:
@@ -669,7 +668,7 @@ campuran <- c(1, "a", TRUE) # R akan mengubah tipe data elemen tersebut menjadi 
 ```
 
 ::: rmdexercise
-**Aktivitas Mandiri: Membuat Vektor**
+### Aktivitas Mandiri: Membuat Vektor {-}
 
 1. Buatlah vektor dengan nama `nilai_ujian` yang berisi nilai ujian 5 mahasiswa berikut: 85, 90, 78, 92, 88
 2. Buatlah vektor dengan nama `fakultas` yang berisi nama-nama fakultas di ITERA
@@ -702,7 +701,7 @@ list_saya <- list(nama = "Budi", nilai_ujian = c(85, 90, 78), fakultas = "FTI")
 ```
 
 ::: rmdexercise
-**Aktivitas Mandiri: Membuat List**
+### Aktivitas Mandiri: Membuat List {-}
 
 1. Buatlah list dengan nama `list_saya` yang berisi nama, nilai ujian, dan fakultas
 2. Tampilkan nilai variabel `list_saya`
