@@ -92,3 +92,16 @@
   border: 1px solid #90caf9;
   font-weight: 500;
 }
+
+h3 .capaian {
+  font-size: 0.85em;
+  background-color: #e3f2fd;
+  /* Biru sangat muda */
+  color: #1565c0;
+  /* Biru tua */
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: "Consolas", "Monaco", monospace;
+  border: 1px solid #90caf9;
+  font-weight: 500;
+}
