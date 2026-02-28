@@ -7,8 +7,6 @@ Setelah mempelajari modul ini Anda diharapkan dapat:
 2.  mengelola data terstruktur dengan tepat menggunakan perangkat komputer [STP-1.4]{.capaian}
 :::
 
----
-
 Kita akan mempelajari cara pengolahan data terstruktur atau *dataset*/set data dari hasil kuesioner kepada mahasiswa-mahasiswa Universitas Islam Negeri Raden Intan Lampung (UINRIL) dan Universitas Bandar Lampung (UBL) tentang pola perjalanan mereka.
 
 Dalam R, pengolahan data terstruktur dipermudah dengan adanya paket `tidyverse`. Paket ini menyertakan paket-paket lain yang mempunyai kegunaan unik dalam pengolahan data terstruktur.
@@ -109,7 +107,7 @@ Terlihat dalam data kita bahwa hanya ada dua tipe nilai variabel: `dbl` dan `chr
 ::: {.rmdexercise}
 ### Aktivitas Mandiri 1: Menganalisis Struktur Data [STP-1.3]{.capaian} {-}
 
-Impor dan jalankan `glimpse(data)` untuk dataset **UIN RIL** dan jawab:
+Jalankan `glimpse(data)` untuk dataset **UBL** dan jawab:
 
 1. Berapa jumlah objek (baris) dalam dataset ini?
 2. Berapa jumlah variabel (kolom)?
