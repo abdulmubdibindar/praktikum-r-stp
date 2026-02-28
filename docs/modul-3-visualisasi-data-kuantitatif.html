@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3 Modul-3: Visualisasi Data Kuantitatif | Test</title>
-  <meta name="description" content="3 Modul-3: Visualisasi Data Kuantitatif | Test" />
-  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+  <title>3 Modul-3: Visualisasi Data Kuantitatif | Modul Praktik Statistika Untuk Perencanaan</title>
+  <meta name="description" content="3 Modul-3: Visualisasi Data Kuantitatif | Modul Praktik Statistika Untuk Perencanaan" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3 Modul-3: Visualisasi Data Kuantitatif | Test" />
+  <meta property="og:title" content="3 Modul-3: Visualisasi Data Kuantitatif | Modul Praktik Statistika Untuk Perencanaan" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3 Modul-3: Visualisasi Data Kuantitatif | Test" />
+  <meta name="twitter:title" content="3 Modul-3: Visualisasi Data Kuantitatif | Modul Praktik Statistika Untuk Perencanaan" />
   
   
   
@@ -129,7 +129,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -408,7 +407,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Test</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modul Praktik Statistika Untuk Perencanaan</a>
           </h1>
         </div>
 
@@ -450,34 +449,62 @@ div.csl-indent {
 <span id="cb129-7"><a href="modul-3-visualisasi-data-kuantitatif.html#cb129-7" tabindex="-1"></a></span>
 <span id="cb129-8"><a href="modul-3-visualisasi-data-kuantitatif.html#cb129-8" tabindex="-1"></a><span class="co"># Pengenalan fungsi baru: &#39;mengintip&#39; sejumlah baris pertama dari dataset kita</span></span>
 <span id="cb129-9"><a href="modul-3-visualisasi-data-kuantitatif.html#cb129-9" tabindex="-1"></a><span class="fu">head</span>(data_ubl)</span></code></pre></div>
-<pre><code>##   Timestamp Kampus_PT Nomor.urut Jenis.Kelamin Umur                         Fakultas           Prodi            Tingkat.Semester     Uang.Saku
-## 1  45413.83       UBL          1     Perempuan   21 Fakultas Ilmu Sosial dan Politik Ilmu Komunikasi 4 (Semester 7 - Semester 8)        &lt; 1 jt
-## 2  45413.83       UBL          2     Laki-Laki   20                   Fakultas Hukum      Ilmu Hukum 3 (Semester 5 - Semester 6)   1 jt – 2 jt
-## 3  45413.85       UBL          3     Laki-Laki   21      Fakultas Ekonomi dan Bisnis       Manajemen 4 (Semester 7 - Semester 8)   1 jt – 2 jt
-## 4  45413.85       UBL          4     Laki-Laki   22      Fakultas Ekonomi dan Bisnis       Akuntansi 4 (Semester 7 - Semester 8)   1 jt – 2 jt
-## 5  45413.88       UBL          5     Laki-Laki   21      Fakultas Ekonomi dan Bisnis       Manajemen 4 (Semester 7 - Semester 8) 2,1 jt – 3 jt
-## 6  45413.92       UBL          6     Perempuan   21      Fakultas Ekonomi dan Bisnis       Akuntansi 4 (Semester 7 - Semester 8)   1 jt – 2 jt
-##   kepemilikan.mobil kepemilikan.motor kepemilikan.sepeda                                      kendaraan.utama               kelurahan
-## 1                 1                 2                  1                                 Sepeda Motor Pribadi       Kalibalau Kencana
-## 2                 2                 1                  1                                        Mobil Pribadi            Gunung sulah
-## 3                 1                 2                  2                                 Sepeda Motor Pribadi              langkapura
-## 4                 1                 4                  1 Kendaraan Bermotor (menumpang dengan keluarga/teman) Bilabong JAYA JAYA JAYA
-## 5                 4                 4                  1                                        Mobil Pribadi                sukarame
-## 6                 1                 2                  1                                  Transportasi Online               Way halim
-##           jenis.tempat.tinggal                       nama.jalan.tempat.tinggal jarak.(km)         alasan.pemilihan.lokasi.tempat.tinggal
-## 1 Rumah pribadi/rumah keluarga                                    eLBe Loundry   4.223797                 Bersama keluarga/saudara/teman
-## 2 Rumah pribadi/rumah keluarga                         Jl.Urip Sumoharjo no 88   2.703331 Mudahnya akses berpergian dari tempat tinggal 
-## 3 Rumah pribadi/rumah keluarga                  JL DARUSSALAM GG LANGGAR LK II   3.237072                 Bersama keluarga/saudara/teman
-## 4 Rumah pribadi/rumah keluarga Jl Darussalam bilabong bila bolong di jait dong   3.002336    Lingkungan nyaman karna aman dari kejahatan
-## 5 Rumah pribadi/rumah keluarga          jl.cendrawasih sukarame bandar lampung   5.961925                    Dekat dengan fasilitas umum
-## 6 Rumah pribadi/rumah keluarga                            Jl P tabuan nomor 26   2.925331                 Bersama keluarga/saudara/teman
-##   biaya.dalam.seminggu Jumlah.perjalanan.Senin Jumlah.Perjalanan.Selasa Jumlah.Perjalanan.Rabu Jumlah.Perjalanan.Kamis Jumlah.Perjalanan.Jumat
-## 1                   25                       2                        3                      2                       3                       2
-## 2                  200                       3                        3                      3                       3                       3
-## 3                   50                       1                        1                      1                       1                       1
-## 4                   20                       2                        2                      2                       2                       2
-## 5                   NA                       1                        1                      1                       1                       1
-## 6                   40                       3                        3                      1                       1                       1
+<pre><code>##   Timestamp Kampus_PT Nomor.urut Jenis.Kelamin Umur
+## 1  45413.83       UBL          1     Perempuan   21
+## 2  45413.83       UBL          2     Laki-Laki   20
+## 3  45413.85       UBL          3     Laki-Laki   21
+## 4  45413.85       UBL          4     Laki-Laki   22
+## 5  45413.88       UBL          5     Laki-Laki   21
+## 6  45413.92       UBL          6     Perempuan   21
+##                           Fakultas           Prodi            Tingkat.Semester
+## 1 Fakultas Ilmu Sosial dan Politik Ilmu Komunikasi 4 (Semester 7 - Semester 8)
+## 2                   Fakultas Hukum      Ilmu Hukum 3 (Semester 5 - Semester 6)
+## 3      Fakultas Ekonomi dan Bisnis       Manajemen 4 (Semester 7 - Semester 8)
+## 4      Fakultas Ekonomi dan Bisnis       Akuntansi 4 (Semester 7 - Semester 8)
+## 5      Fakultas Ekonomi dan Bisnis       Manajemen 4 (Semester 7 - Semester 8)
+## 6      Fakultas Ekonomi dan Bisnis       Akuntansi 4 (Semester 7 - Semester 8)
+##       Uang.Saku kepemilikan.mobil kepemilikan.motor kepemilikan.sepeda
+## 1        &lt; 1 jt                 1                 2                  1
+## 2   1 jt – 2 jt                 2                 1                  1
+## 3   1 jt – 2 jt                 1                 2                  2
+## 4   1 jt – 2 jt                 1                 4                  1
+## 5 2,1 jt – 3 jt                 4                 4                  1
+## 6   1 jt – 2 jt                 1                 2                  1
+##                                        kendaraan.utama               kelurahan
+## 1                                 Sepeda Motor Pribadi       Kalibalau Kencana
+## 2                                        Mobil Pribadi            Gunung sulah
+## 3                                 Sepeda Motor Pribadi              langkapura
+## 4 Kendaraan Bermotor (menumpang dengan keluarga/teman) Bilabong JAYA JAYA JAYA
+## 5                                        Mobil Pribadi                sukarame
+## 6                                  Transportasi Online               Way halim
+##           jenis.tempat.tinggal                       nama.jalan.tempat.tinggal
+## 1 Rumah pribadi/rumah keluarga                                    eLBe Loundry
+## 2 Rumah pribadi/rumah keluarga                         Jl.Urip Sumoharjo no 88
+## 3 Rumah pribadi/rumah keluarga                  JL DARUSSALAM GG LANGGAR LK II
+## 4 Rumah pribadi/rumah keluarga Jl Darussalam bilabong bila bolong di jait dong
+## 5 Rumah pribadi/rumah keluarga          jl.cendrawasih sukarame bandar lampung
+## 6 Rumah pribadi/rumah keluarga                            Jl P tabuan nomor 26
+##   jarak.(km)         alasan.pemilihan.lokasi.tempat.tinggal
+## 1   4.223797                 Bersama keluarga/saudara/teman
+## 2   2.703331 Mudahnya akses berpergian dari tempat tinggal 
+## 3   3.237072                 Bersama keluarga/saudara/teman
+## 4   3.002336    Lingkungan nyaman karna aman dari kejahatan
+## 5   5.961925                    Dekat dengan fasilitas umum
+## 6   2.925331                 Bersama keluarga/saudara/teman
+##   biaya.dalam.seminggu Jumlah.perjalanan.Senin Jumlah.Perjalanan.Selasa
+## 1                   25                       2                        3
+## 2                  200                       3                        3
+## 3                   50                       1                        1
+## 4                   20                       2                        2
+## 5                   NA                       1                        1
+## 6                   40                       3                        3
+##   Jumlah.Perjalanan.Rabu Jumlah.Perjalanan.Kamis Jumlah.Perjalanan.Jumat
+## 1                      2                       3                       2
+## 2                      3                       3                       3
+## 3                      1                       1                       1
+## 4                      2                       2                       2
+## 5                      1                       1                       1
+## 6                      1                       1                       1
 ##   Jumlah.Perjalanan.Sabtu Jumlah.Perjalanan.Ahad
 ## 1                       2                      2
 ## 2                       3                      3
@@ -533,32 +560,32 @@ div.csl-indent {
 <p>Kita akan mengubah kategori <code>factor</code> pada variabel <code>Tingkat.Semester</code> dan <code>Uang.Saku</code> agar lebih mudah dibaca saat divisualisasikan. Kita akan menggunakan fungsi dari <code>dplyr</code> (bagian dari <code>tidyverse</code>) untuk membersihkan dan mengubah data.</p>
 <pre><code>## Rows: 330
 ## Columns: 26
-## $ Timestamp                              &lt;dbl&gt; 45413.83, 45413.83, 45413.85, 45413.85, 45413.92, 45413.93, 45413.93, 45413.93, 45413.94, 45414.0…
-## $ Kampus_PT                              &lt;chr&gt; &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;,…
-## $ Nomor.urut                             &lt;dbl&gt; 1, 2, 3, 4, 6, 7, 8, 9, 10, 12, 14, 15, 16, 17, 18, 19, 20, 21, 24, 25, 27, 30, 31, 32, 33, 34, 3…
-## $ Jenis.Kelamin                          &lt;fct&gt; Perempuan, Laki-Laki, Laki-Laki, Laki-Laki, Perempuan, Perempuan, Perempuan, Laki-Laki, Perempuan…
-## $ Umur                                   &lt;dbl&gt; 21, 20, 21, 22, 21, 22, 22, 22, 22, 22, 22, 19, 22, 23, 22, 23, 22, 20, 22, 18, 22, 20, 22, 21, 2…
-## $ Fakultas                               &lt;fct&gt; Fakultas Ilmu Sosial dan Politik, Fakultas Hukum, Fakultas Ekonomi dan Bisnis, Fakultas Ekonomi d…
-## $ Prodi                                  &lt;fct&gt; Ilmu Komunikasi, Ilmu Hukum, Manajemen, Akuntansi, Akuntansi, Administrasi Publik, Administrasi P…
-## $ Tingkat.Semester                       &lt;ord&gt; Semester 7 &amp; 8, Semester 5 &amp; 6, Semester 7 &amp; 8, Semester 7 &amp; 8, Semester 7 &amp; 8, Semester 7 &amp; 8, S…
-## $ Uang.Saku                              &lt;ord&gt; &quot;&lt; 1 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;&lt; 1 jt&quot;, &quot;1…
-## $ kepemilikan.mobil                      &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 2, 1, 2, 1, 3, 2, 2, 1, 0, 2, 0…
-## $ kepemilikan.motor                      &lt;dbl&gt; 2, 1, 2, 4, 2, 1, 1, 1, 1, 2, 1, 1, 1, 0, 1, 0, 2, 2, 0, 1, 1, 3, 2, 2, 2, 2, 2, 2, 3, 2, 1, 1, 1…
-## $ kepemilikan.sepeda                     &lt;dbl&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 0, 0, 0…
-## $ kendaraan.utama                        &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Mobil Pribadi&quot;, &quot;Sepeda Motor Pribadi&quot;, &quot;Kendaraan Bermotor (menumpang d…
-## $ kelurahan                              &lt;chr&gt; &quot;Kalibalau Kencana&quot;, &quot;Gunung sulah&quot;, &quot;langkapura&quot;, &quot;Bilabong JAYA JAYA JAYA&quot;, &quot;Way halim&quot;, &quot;Segal…
-## $ jenis.tempat.tinggal                   &lt;chr&gt; &quot;Rumah pribadi/rumah keluarga&quot;, &quot;Rumah pribadi/rumah keluarga&quot;, &quot;Rumah pribadi/rumah keluarga&quot;, &quot;…
-## $ nama.jalan.tempat.tinggal              &lt;chr&gt; &quot;eLBe Loundry&quot;, &quot;Jl.Urip Sumoharjo no 88&quot;, &quot;JL DARUSSALAM GG LANGGAR LK II&quot;, &quot;Jl Darussalam bilab…
-## $ jarak                                  &lt;dbl&gt; 4.2237967, 2.7033310, 3.2370722, 3.0023362, 2.9253306, 2.0588294, 12.0078709, 4.7355783, 6.741307…
-## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; &quot;Bersama keluarga/saudara/teman&quot;, &quot;Mudahnya akses berpergian dari tempat tinggal &quot;, &quot;Bersama kelu…
-## $ biaya_dalam_sepekan                    &lt;dbl&gt; 25, 200, 50, 20, 40, 70, 35, 50, 350, 50, 30, 35, 50, 200, 40, 100, 600, 50, 5, 50, 30, 500, 50, …
-## $ jumlah_perjalanan_senin                &lt;dbl&gt; 2, 3, 1, 2, 3, 2, 4, 4, 3, 2, 4, 2, 2, 2, 1, 1, 4, 4, 4, 2, 5, 4, 2, 3, 3, 3, 4, 2, 4, 1, 5, 3, 3…
-## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; 3, 3, 1, 2, 3, 2, 4, 4, 3, 1, 4, 1, 3, 3, 1, 1, 3, 1, 3, 4, 5, 3, 3, 3, 3, 4, 3, 4, 1, 1, 3, 1, 3…
-## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 4, 3, 2, 4, 3, 2, 4, 1, 1, 3, 1, 3, 3, 5, 3, 2, 3, 1, 3, 2, 3, 1, 1, 4, 3, 4…
-## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; 3, 3, 1, 2, 1, 2, 4, 4, 3, 1, 4, 3, 2, 2, 1, 1, 3, 1, 3, 3, 5, 3, 1, 2, 4, 2, 3, 1, 1, 1, 4, 1, 4…
-## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 3, 3, 2, 4, 3, 2, 3, 1, 1, 3, 1, 3, 3, 5, 3, 1, 1, 1, 3, 2, 5, 1, 1, 3, 4, 4…
-## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 2, 1, 1, 1, 2, 1, 1, 1, 3, 1, 3, 3, 3, 3, 1, 4, 3, 3, 2, 3, 2, 1, 3, 3, 2…
-## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 1, 1, 1, 1, 1, 2, 1, 1, 3, 1, 3, 3, 3, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 3, 2…</code></pre>
+## $ Timestamp                              &lt;dbl&gt; 45413.83, 45413.83, 45413.85, 4…
+## $ Kampus_PT                              &lt;chr&gt; &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UBL&quot;, &quot;UB…
+## $ Nomor.urut                             &lt;dbl&gt; 1, 2, 3, 4, 6, 7, 8, 9, 10, 12,…
+## $ Jenis.Kelamin                          &lt;fct&gt; Perempuan, Laki-Laki, Laki-Laki…
+## $ Umur                                   &lt;dbl&gt; 21, 20, 21, 22, 21, 22, 22, 22,…
+## $ Fakultas                               &lt;fct&gt; Fakultas Ilmu Sosial dan Politi…
+## $ Prodi                                  &lt;fct&gt; Ilmu Komunikasi, Ilmu Hukum, Ma…
+## $ Tingkat.Semester                       &lt;ord&gt; Semester 7 &amp; 8, Semester 5 &amp; 6,…
+## $ Uang.Saku                              &lt;ord&gt; &quot;&lt; 1 jt&quot;, &quot;1 jt – 2 jt&quot;, &quot;1 jt …
+## $ kepemilikan.mobil                      &lt;dbl&gt; 1, 2, 1, 1, 1, 1, 1, 1, 1, 0, 1…
+## $ kepemilikan.motor                      &lt;dbl&gt; 2, 1, 2, 4, 2, 1, 1, 1, 1, 2, 1…
+## $ kepemilikan.sepeda                     &lt;dbl&gt; 1, 1, 2, 1, 1, 1, 1, 1, 1, 0, 0…
+## $ kendaraan.utama                        &lt;chr&gt; &quot;Sepeda Motor Pribadi&quot;, &quot;Mobil …
+## $ kelurahan                              &lt;chr&gt; &quot;Kalibalau Kencana&quot;, &quot;Gunung su…
+## $ jenis.tempat.tinggal                   &lt;chr&gt; &quot;Rumah pribadi/rumah keluarga&quot;,…
+## $ nama.jalan.tempat.tinggal              &lt;chr&gt; &quot;eLBe Loundry&quot;, &quot;Jl.Urip Sumoha…
+## $ jarak                                  &lt;dbl&gt; 4.2237967, 2.7033310, 3.2370722…
+## $ alasan.pemilihan.lokasi.tempat.tinggal &lt;chr&gt; &quot;Bersama keluarga/saudara/teman…
+## $ biaya_dalam_sepekan                    &lt;dbl&gt; 25, 200, 50, 20, 40, 70, 35, 50…
+## $ jumlah_perjalanan_senin                &lt;dbl&gt; 2, 3, 1, 2, 3, 2, 4, 4, 3, 2, 4…
+## $ Jumlah.Perjalanan.Selasa               &lt;dbl&gt; 3, 3, 1, 2, 3, 2, 4, 4, 3, 1, 4…
+## $ Jumlah.Perjalanan.Rabu                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 4, 3, 2, 4…
+## $ Jumlah.Perjalanan.Kamis                &lt;dbl&gt; 3, 3, 1, 2, 1, 2, 4, 4, 3, 1, 4…
+## $ Jumlah.Perjalanan.Jumat                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 4, 3, 3, 2, 4…
+## $ Jumlah.Perjalanan.Sabtu                &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 2, 1, 1…
+## $ Jumlah.Perjalanan.Ahad                 &lt;dbl&gt; 2, 3, 1, 2, 1, 2, 3, 4, 1, 1, 1…</code></pre>
 <p>Sekarang kita siap memvisualkan data kita.</p>
 </div>
 <div id="tata-tulis-grafik-grammar-of-graphics" class="section level3 hasAnchor" number="3.1.2">
