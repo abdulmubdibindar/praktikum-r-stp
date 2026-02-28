@@ -720,7 +720,7 @@ Saat mengolah data, kalian akan sering menemukan singkatan tipe data berikut:
 
 Data dalam R biasanya disimpan dalam bentuk tabel yang disebut *Data Frame*. Di era modern (tidyverse), kita sering menggunakan versi yang lebih canggih disebut **Tibble**. Strukturnya mirip spreadsheet: baris mewakili observasi, kolom mewakili variabel.
 
-## Operator Pipa (`|>`)
+## Operator Pipa (`|>`) {#sec-operator-pipa}
 
 Dalam `tidyverse`, kita sering menggunakan operator pipa (`|>`) untuk merangkai beberapa perintah sekaligus. Bayangkan ini sebagai penyambung proses:
 
