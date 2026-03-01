@@ -248,8 +248,8 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#aktivitas-mandiri-1-mengimpor-data-unila"><i class="fa fa-check"></i>Aktivitas Mandiri 1: Mengimpor Data UNILA</a></li>
 <li class="chapter" data-level="2.3" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#praktik-operator-pipa-pipe-operator"><i class="fa fa-check"></i><b>2.3</b> Praktik Operator Pipa <em>(Pipe Operator)</em></a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#mengganti-nama-variabel"><i class="fa fa-check"></i><b>2.3.1</b> Mengganti Nama Variabel</a></li>
-<li class="chapter" data-level="2.3.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#menghapus-missing-values"><i class="fa fa-check"></i><b>2.3.2</b> Menghapus <em>Missing Values</em></a></li>
+<li class="chapter" data-level="2.3.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#memahami-konsep-pipe-operator"><i class="fa fa-check"></i><b>2.3.1</b> Memahami Konsep <em>Pipe Operator</em></a></li>
+<li class="chapter" data-level="2.3.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#mengganti-nama-variabel-dan-menghilangkan-missing-values-sekaligus-dengan-pipe-operator"><i class="fa fa-check"></i><b>2.3.2</b> Mengganti Nama Variabel dan Menghilangkan <em>Missing Values</em> Sekaligus dengan Pipe Operator</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#aktivitas-mandiri-2-merapikan-dataset-unila-dengan-pipe-operator"><i class="fa fa-check"></i>Aktivitas Mandiri 2: Merapikan Dataset UNILA dengan Pipe Operator</a></li>
 <li class="chapter" data-level="2.4" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#membuat-factor"><i class="fa fa-check"></i><b>2.4</b> Membuat <em>Factor</em></a>
@@ -438,79 +438,86 @@ div.csl-indent {
 <div id="perangkat-lunak-dan-pustaka-libraries" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Perangkat Lunak dan Pustaka (Libraries)<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#perangkat-lunak-dan-pustaka-libraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Pastikan Anda telah menginstal pustaka <code>tidyverse</code> yang akan sangat membantu dalam proses manipulasi dan visualisasi data.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb132-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb131-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb131-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb131-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
 </div>
 <div id="memuat-dan-mempersiapkan-data" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Memuat dan Mempersiapkan Data<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#memuat-dan-mempersiapkan-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Langkah pertama adalah memuat data survei mahasiswa dari empat universitas. Kita akan menggabungkan dan membersihkan data tersebut untuk analisis. Variabel yang akan menjadi fokus kita adalah <strong>jarak tempuh (km)</strong> dan <strong>jenis tempat tinggal</strong>.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-1" tabindex="-1"></a><span class="co"># Membaca 4 file CSV</span></span>
-<span id="cb133-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-2" tabindex="-1"></a>df_uinril <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUINRIL.csv&quot;</span>)</span>
-<span id="cb133-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-3" tabindex="-1"></a>df_ubl <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUBL.csv&quot;</span>)</span>
-<span id="cb133-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-4" tabindex="-1"></a>df_unila <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUNILA.csv&quot;</span>)</span>
-<span id="cb133-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-5" tabindex="-1"></a>df_itera <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsITERA.csv&quot;</span>)</span>
-<span id="cb133-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-6" tabindex="-1"></a></span>
-<span id="cb133-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-7" tabindex="-1"></a><span class="co"># Membersihkan dan menggabungkan data</span></span>
-<span id="cb133-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-8" tabindex="-1"></a><span class="co"># Perhatikan: UNILA memiliki nama kolom dengan huruf besar &quot;Jenis Tempat Tinggal&quot;</span></span>
-<span id="cb133-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-9" tabindex="-1"></a>data_mahasiswa <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb133-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-10" tabindex="-1"></a>  df_uinril <span class="sc">|&gt;</span></span>
-<span id="cb133-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-11" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb133-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-12" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
-<span id="cb133-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-13" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
-<span id="cb133-14"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-14" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> jenis.tempat.tinggal</span>
-<span id="cb133-15"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-15" tabindex="-1"></a>    ),</span>
-<span id="cb133-16"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-16" tabindex="-1"></a>  df_ubl <span class="sc">|&gt;</span></span>
-<span id="cb133-17"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-17" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb133-18"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-18" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
-<span id="cb133-19"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-19" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
-<span id="cb133-20"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-20" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> jenis.tempat.tinggal</span>
-<span id="cb133-21"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-21" tabindex="-1"></a>    ),</span>
-<span id="cb133-22"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-22" tabindex="-1"></a>  df_unila <span class="sc">|&gt;</span></span>
-<span id="cb133-23"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-23" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb133-24"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-24" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
-<span id="cb133-25"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-25" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
-<span id="cb133-26"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-26" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> <span class="st">`</span><span class="at">Jenis Tempat Tinggal</span><span class="st">`</span> <span class="co"># Perhatikan: huruf kapital</span></span>
-<span id="cb133-27"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-27" tabindex="-1"></a>    ),</span>
-<span id="cb133-28"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-28" tabindex="-1"></a>  df_itera <span class="sc">|&gt;</span></span>
-<span id="cb133-29"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-29" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb133-30"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-30" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
-<span id="cb133-31"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-31" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
-<span id="cb133-32"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-32" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> jenis.tempat.tinggal</span>
-<span id="cb133-33"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-33" tabindex="-1"></a>    )</span>
-<span id="cb133-34"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-34" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb133-35"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-35" tabindex="-1"></a>  <span class="fu">drop_na</span>(jarak_km, jenis_tinggal) <span class="sc">|&gt;</span> <span class="co"># menghilangkan missing values</span></span>
-<span id="cb133-36"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-36" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb133-37"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-37" tabindex="-1"></a>    <span class="at">jarak_km =</span> <span class="fu">as.numeric</span>(jarak_km),</span>
-<span id="cb133-38"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-38" tabindex="-1"></a>    <span class="at">tipe_tinggal_baku =</span> <span class="fu">case_when</span>(</span>
-<span id="cb133-39"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-39" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">&quot;Kos&quot;</span>, jenis_tinggal, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Kos/Asrama&quot;</span>,</span>
-<span id="cb133-40"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-40" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">&quot;Asrama&quot;</span>, jenis_tinggal, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Kos/Asrama&quot;</span>,</span>
-<span id="cb133-41"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-41" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Rumah Keluarga/Pribadi&quot;</span></span>
-<span id="cb133-42"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-42" tabindex="-1"></a>    )</span>
-<span id="cb133-43"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-43" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb133-44"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-44" tabindex="-1"></a>  <span class="fu">filter</span>(jarak_km <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> jarak_km <span class="sc">&lt;</span> <span class="dv">100</span>) <span class="co"># membatasi jarak yang realistis</span></span>
-<span id="cb133-45"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-45" tabindex="-1"></a></span>
-<span id="cb133-46"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-46" tabindex="-1"></a><span class="co"># Menampilkan beberapa baris pertama dari data gabungan</span></span>
-<span id="cb133-47"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb133-47" tabindex="-1"></a><span class="fu">head</span>(data_mahasiswa)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-1" tabindex="-1"></a><span class="co"># Membaca 4 file CSV</span></span>
+<span id="cb132-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-2" tabindex="-1"></a>df_uinril <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUINRIL.csv&quot;</span>)</span>
+<span id="cb132-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-3" tabindex="-1"></a>df_ubl <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUBL.csv&quot;</span>)</span>
+<span id="cb132-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-4" tabindex="-1"></a>df_unila <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUNILA.csv&quot;</span>)</span>
+<span id="cb132-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-5" tabindex="-1"></a>df_itera <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsITERA.csv&quot;</span>)</span>
+<span id="cb132-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-6" tabindex="-1"></a></span>
+<span id="cb132-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-7" tabindex="-1"></a><span class="co"># Membersihkan dan menggabungkan data</span></span>
+<span id="cb132-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-8" tabindex="-1"></a><span class="co"># Perhatikan: UNILA memiliki nama kolom dengan huruf besar &quot;Jenis Tempat Tinggal&quot;</span></span>
+<span id="cb132-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-9" tabindex="-1"></a>data_mahasiswa <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb132-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-10" tabindex="-1"></a>  df_uinril <span class="sc">|&gt;</span></span>
+<span id="cb132-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-11" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb132-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-12" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
+<span id="cb132-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-13" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
+<span id="cb132-14"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-14" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> jenis.tempat.tinggal</span>
+<span id="cb132-15"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-15" tabindex="-1"></a>    ),</span>
+<span id="cb132-16"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-16" tabindex="-1"></a>  df_ubl <span class="sc">|&gt;</span></span>
+<span id="cb132-17"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-17" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb132-18"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-18" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
+<span id="cb132-19"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-19" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
+<span id="cb132-20"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-20" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> jenis.tempat.tinggal</span>
+<span id="cb132-21"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-21" tabindex="-1"></a>    ),</span>
+<span id="cb132-22"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-22" tabindex="-1"></a>  df_unila <span class="sc">|&gt;</span></span>
+<span id="cb132-23"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-23" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb132-24"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-24" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
+<span id="cb132-25"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-25" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
+<span id="cb132-26"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-26" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> <span class="st">`</span><span class="at">Jenis Tempat Tinggal</span><span class="st">`</span> <span class="co"># Perhatikan: huruf kapital</span></span>
+<span id="cb132-27"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-27" tabindex="-1"></a>    ),</span>
+<span id="cb132-28"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-28" tabindex="-1"></a>  df_itera <span class="sc">|&gt;</span></span>
+<span id="cb132-29"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-29" tabindex="-1"></a>    <span class="fu">select</span>(</span>
+<span id="cb132-30"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-30" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
+<span id="cb132-31"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-31" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
+<span id="cb132-32"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-32" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> jenis.tempat.tinggal</span>
+<span id="cb132-33"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-33" tabindex="-1"></a>    )</span>
+<span id="cb132-34"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-34" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb132-35"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-35" tabindex="-1"></a>  <span class="fu">drop_na</span>(jarak_km, jenis_tinggal) <span class="sc">|&gt;</span> <span class="co"># menghilangkan missing values</span></span>
+<span id="cb132-36"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-36" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb132-37"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-37" tabindex="-1"></a>    <span class="at">jarak_km =</span> <span class="fu">as.numeric</span>(jarak_km),</span>
+<span id="cb132-38"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-38" tabindex="-1"></a>    <span class="at">tipe_tinggal_baku =</span> <span class="fu">case_when</span>(</span>
+<span id="cb132-39"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-39" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">&quot;Kos&quot;</span>, jenis_tinggal, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Kos/Asrama&quot;</span>,</span>
+<span id="cb132-40"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-40" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">&quot;Asrama&quot;</span>, jenis_tinggal, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Kos/Asrama&quot;</span>,</span>
+<span id="cb132-41"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-41" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Rumah Keluarga/Pribadi&quot;</span></span>
+<span id="cb132-42"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-42" tabindex="-1"></a>    )</span>
+<span id="cb132-43"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-43" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb132-44"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-44" tabindex="-1"></a>  <span class="fu">filter</span>(jarak_km <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> jarak_km <span class="sc">&lt;</span> <span class="dv">100</span>) <span class="co"># membatasi jarak yang realistis</span></span>
+<span id="cb132-45"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-45" tabindex="-1"></a></span>
+<span id="cb132-46"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-46" tabindex="-1"></a><span class="co"># Menampilkan beberapa baris pertama dari data gabungan</span></span>
+<span id="cb132-47"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb132-47" tabindex="-1"></a><span class="fu">head</span>(data_mahasiswa)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
-##   kampus jarak_km jenis_tinggal                 tipe_tinggal_baku     
-##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt;                 
-## 1 UINRIL    19.3  Rumah bersama saudara         Rumah Keluarga/Pribadi
-## 2 UINRIL     0.58 Kos sendiri                   Kos/Asrama            
-## 3 UINRIL     0.56 Kos sendiri                   Kos/Asrama            
-## 4 UINRIL     1.05 Kos sendiri                   Kos/Asrama            
-## 5 UINRIL     1.69 Rumah mengontrak bersama-sama Rumah Keluarga/Pribadi
-## 6 UINRIL     7.91 Rumah pribadi/rumah keluarga  Rumah Keluarga/Pribadi</code></pre>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb135-1" tabindex="-1"></a><span class="co"># Menampilkan ringkasan data</span></span>
-<span id="cb135-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb135-2" tabindex="-1"></a><span class="fu">summary</span>(data_mahasiswa)</span></code></pre></div>
-<pre><code>##     kampus             jarak_km        jenis_tinggal      tipe_tinggal_baku 
-##  Length:1600        Min.   : 0.06352   Length:1600        Length:1600       
-##  Class :character   1st Qu.: 1.31127   Class :character   Class :character  
-##  Mode  :character   Median : 2.90884   Mode  :character   Mode  :character  
-##                     Mean   : 3.62552                                        
-##                     3rd Qu.: 5.14000                                        
-##                     Max.   :43.54519</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb137-1" tabindex="-1"></a><span class="co"># Menampilkan frekuensi jenis tempat tinggal yang sudah dibakukan</span></span>
-<span id="cb137-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb137-2" tabindex="-1"></a><span class="fu">table</span>(data_mahasiswa<span class="sc">$</span>tipe_tinggal_baku)</span></code></pre></div>
+##   kampus jarak_km jenis_tinggal        tipe_tinggal_baku
+##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;                &lt;chr&gt;            
+## 1 UINRIL    19.3  Rumah bersama sauda… Rumah Keluarga/P…
+## 2 UINRIL     0.58 Kos sendiri          Kos/Asrama       
+## 3 UINRIL     0.56 Kos sendiri          Kos/Asrama       
+## 4 UINRIL     1.05 Kos sendiri          Kos/Asrama       
+## 5 UINRIL     1.69 Rumah mengontrak be… Rumah Keluarga/P…
+## 6 UINRIL     7.91 Rumah pribadi/rumah… Rumah Keluarga/P…</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb134-1" tabindex="-1"></a><span class="co"># Menampilkan ringkasan data</span></span>
+<span id="cb134-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb134-2" tabindex="-1"></a><span class="fu">summary</span>(data_mahasiswa)</span></code></pre></div>
+<pre><code>##     kampus             jarak_km       
+##  Length:1600        Min.   : 0.06352  
+##  Class :character   1st Qu.: 1.31127  
+##  Mode  :character   Median : 2.90884  
+##                     Mean   : 3.62552  
+##                     3rd Qu.: 5.14000  
+##                     Max.   :43.54519  
+##  jenis_tinggal      tipe_tinggal_baku 
+##  Length:1600        Length:1600       
+##  Class :character   Class :character  
+##  Mode  :character   Mode  :character  
+##                                       
+##                                       
+## </code></pre>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb136-1" tabindex="-1"></a><span class="co"># Menampilkan frekuensi jenis tempat tinggal yang sudah dibakukan</span></span>
+<span id="cb136-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb136-2" tabindex="-1"></a><span class="fu">table</span>(data_mahasiswa<span class="sc">$</span>tipe_tinggal_baku)</span></code></pre></div>
 <pre><code>## 
 ##             Kos/Asrama Rumah Keluarga/Pribadi 
 ##                    639                    961</code></pre>
@@ -542,34 +549,34 @@ div.csl-indent {
 <div id="mendefinisikan-parameter-populasi" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Mendefinisikan Parameter Populasi<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mendefinisikan-parameter-populasi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pertama, mari kita hitung rata-rata dan standar deviasi “populasi” kita sebagai acuan.</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb139-1" tabindex="-1"></a><span class="co"># Menghitung rata-rata jarak &quot;populasi&quot;</span></span>
-<span id="cb139-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb139-2" tabindex="-1"></a>pop_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(data_mahasiswa<span class="sc">$</span>jarak_km)</span>
-<span id="cb139-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb139-3" tabindex="-1"></a><span class="co"># Menghitung standar deviasi jarak &quot;populasi&quot;</span></span>
-<span id="cb139-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb139-4" tabindex="-1"></a>pop_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(data_mahasiswa<span class="sc">$</span>jarak_km)</span>
-<span id="cb139-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb139-5" tabindex="-1"></a></span>
-<span id="cb139-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb139-6" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Rata-rata Jarak Populasi (μ):&quot;</span>, <span class="fu">round</span>(pop_mean, <span class="dv">2</span>), <span class="st">&quot;km&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb138-1" tabindex="-1"></a><span class="co"># Menghitung rata-rata jarak &quot;populasi&quot;</span></span>
+<span id="cb138-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb138-2" tabindex="-1"></a>pop_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(data_mahasiswa<span class="sc">$</span>jarak_km)</span>
+<span id="cb138-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb138-3" tabindex="-1"></a><span class="co"># Menghitung standar deviasi jarak &quot;populasi&quot;</span></span>
+<span id="cb138-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb138-4" tabindex="-1"></a>pop_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(data_mahasiswa<span class="sc">$</span>jarak_km)</span>
+<span id="cb138-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb138-5" tabindex="-1"></a></span>
+<span id="cb138-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb138-6" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Rata-rata Jarak Populasi (μ):&quot;</span>, <span class="fu">round</span>(pop_mean, <span class="dv">2</span>), <span class="st">&quot;km&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Rata-rata Jarak Populasi (μ): 3.63 km&quot;</code></pre>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb141-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Standar Deviasi Populasi (σ):&quot;</span>, <span class="fu">round</span>(pop_sd, <span class="dv">2</span>), <span class="st">&quot;km&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb140-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Standar Deviasi Populasi (σ):&quot;</span>, <span class="fu">round</span>(pop_sd, <span class="dv">2</span>), <span class="st">&quot;km&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Standar Deviasi Populasi (σ): 3.35 km&quot;</code></pre>
 </div>
 <div id="simulasi-pengambilan-sampel" class="section level3 hasAnchor" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> Simulasi Pengambilan Sampel<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#simulasi-pengambilan-sampel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sekarang, kita akan mensimulasikan proses pengambilan sampel secara berulang. Kita akan mengambil 1000 sampel acak, masing-masing berukuran 50 mahasiswa (<code>n=50</code>), lalu menghitung rata-rata jarak untuk setiap sampel.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-1" tabindex="-1"></a><span class="co"># Menetapkan parameter simulasi</span></span>
-<span id="cb143-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-2" tabindex="-1"></a>ukuran_sampel <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb143-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-3" tabindex="-1"></a>jumlah_simulasi <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb143-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-4" tabindex="-1"></a></span>
-<span id="cb143-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-5" tabindex="-1"></a><span class="co"># Menjalankan simulasi</span></span>
-<span id="cb143-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Untuk hasil yang dapat direproduksi. Silakan ganti seed sesuai keinginan Anda.</span></span>
-<span id="cb143-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-7" tabindex="-1"></a><span class="co"># &#39;replicate&#39; akan menjalankan ekspresi kedua sebanyak &#39;jumlah_simulasi&#39; kali</span></span>
-<span id="cb143-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-8" tabindex="-1"></a>rataan_sampel <span class="ot">&lt;-</span> <span class="fu">replicate</span>(jumlah_simulasi, {</span>
-<span id="cb143-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-9" tabindex="-1"></a>  sampel_jarak <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_mahasiswa<span class="sc">$</span>jarak_km, ukuran_sampel)</span>
-<span id="cb143-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-10" tabindex="-1"></a>  <span class="fu">mean</span>(sampel_jarak)</span>
-<span id="cb143-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-11" tabindex="-1"></a>})</span>
-<span id="cb143-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-12" tabindex="-1"></a></span>
-<span id="cb143-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-13" tabindex="-1"></a><span class="co"># Membuat dataframe dari hasil simulasi</span></span>
-<span id="cb143-14"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-14" tabindex="-1"></a>df_sampling <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rataan_sampel)</span>
-<span id="cb143-15"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb143-15" tabindex="-1"></a><span class="fu">head</span>(df_sampling)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-1" tabindex="-1"></a><span class="co"># Menetapkan parameter simulasi</span></span>
+<span id="cb142-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-2" tabindex="-1"></a>ukuran_sampel <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb142-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-3" tabindex="-1"></a>jumlah_simulasi <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb142-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-4" tabindex="-1"></a></span>
+<span id="cb142-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-5" tabindex="-1"></a><span class="co"># Menjalankan simulasi</span></span>
+<span id="cb142-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Untuk hasil yang dapat direproduksi. Silakan ganti seed sesuai keinginan Anda.</span></span>
+<span id="cb142-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-7" tabindex="-1"></a><span class="co"># &#39;replicate&#39; akan menjalankan ekspresi kedua sebanyak &#39;jumlah_simulasi&#39; kali</span></span>
+<span id="cb142-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-8" tabindex="-1"></a>rataan_sampel <span class="ot">&lt;-</span> <span class="fu">replicate</span>(jumlah_simulasi, {</span>
+<span id="cb142-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-9" tabindex="-1"></a>  sampel_jarak <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_mahasiswa<span class="sc">$</span>jarak_km, ukuran_sampel)</span>
+<span id="cb142-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-10" tabindex="-1"></a>  <span class="fu">mean</span>(sampel_jarak)</span>
+<span id="cb142-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-11" tabindex="-1"></a>})</span>
+<span id="cb142-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-12" tabindex="-1"></a></span>
+<span id="cb142-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-13" tabindex="-1"></a><span class="co"># Membuat dataframe dari hasil simulasi</span></span>
+<span id="cb142-14"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-14" tabindex="-1"></a>df_sampling <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rataan_sampel)</span>
+<span id="cb142-15"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb142-15" tabindex="-1"></a><span class="fu">head</span>(df_sampling)</span></code></pre></div>
 <pre><code>##   rataan_sampel
 ## 1      3.393546
 ## 2      4.115982
@@ -592,19 +599,19 @@ div.csl-indent {
 <div id="visualisasi-distribusi-sampling" class="section level3 hasAnchor" number="4.4.3">
 <h3><span class="header-section-number">4.4.3</span> Visualisasi Distribusi Sampling<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#visualisasi-distribusi-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Kumpulan dari 1000 rata-rata sampel inilah yang membentuk <strong>distribusi sampling</strong>. Mari kita visualisasikan dalam bentuk histogram.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-1" tabindex="-1"></a><span class="co"># Visualisasi Distribusi Sampling dengan Histogram</span></span>
-<span id="cb145-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-2" tabindex="-1"></a><span class="fu">ggplot</span>(df_sampling, <span class="fu">aes</span>(<span class="at">x =</span> rataan_sampel)) <span class="sc">+</span></span>
-<span id="cb145-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb145-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-4" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb145-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> pop_mean, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb145-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb145-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribusi Sampling dari Rata-rata Jarak Tempuh&quot;</span>,</span>
-<span id="cb145-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-8" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Ukuran Sampel (n) =&quot;</span>, ukuran_sampel, <span class="st">&quot;| Jumlah Simulasi =&quot;</span>, jumlah_simulasi),</span>
-<span id="cb145-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Rata-rata Jarak Sampel (km)&quot;</span>,</span>
-<span id="cb145-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-10" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Densitas&quot;</span></span>
-<span id="cb145-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb145-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-12" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> pop_mean <span class="sc">*</span> <span class="fl">1.1</span>, <span class="at">y =</span> <span class="fl">0.1</span>, <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;μ =&quot;</span>, <span class="fu">round</span>(pop_mean, <span class="dv">2</span>)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb145-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-1" tabindex="-1"></a><span class="co"># Visualisasi Distribusi Sampling dengan Histogram</span></span>
+<span id="cb144-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-2" tabindex="-1"></a><span class="fu">ggplot</span>(df_sampling, <span class="fu">aes</span>(<span class="at">x =</span> rataan_sampel)) <span class="sc">+</span></span>
+<span id="cb144-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb144-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-4" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb144-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> pop_mean, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb144-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb144-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribusi Sampling dari Rata-rata Jarak Tempuh&quot;</span>,</span>
+<span id="cb144-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-8" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Ukuran Sampel (n) =&quot;</span>, ukuran_sampel, <span class="st">&quot;| Jumlah Simulasi =&quot;</span>, jumlah_simulasi),</span>
+<span id="cb144-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Rata-rata Jarak Sampel (km)&quot;</span>,</span>
+<span id="cb144-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-10" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Densitas&quot;</span></span>
+<span id="cb144-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb144-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-12" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> pop_mean <span class="sc">*</span> <span class="fl">1.1</span>, <span class="at">y =</span> <span class="fl">0.1</span>, <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;μ =&quot;</span>, <span class="fu">round</span>(pop_mean, <span class="dv">2</span>)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb144-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb144-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <p><img src="figures/mod04-visualize-sampling-distribution-1.png" width="672" /></p>
 <p>Perhatikan bagaimana distribusi dari rata-rata sampel berbentuk seperti lonceng (mendekati normal) dan berpusat di sekitar rata-rata populasi (garis biru putus-putus).</p>
 </div>
@@ -616,25 +623,25 @@ div.csl-indent {
 <li><p><strong>Teoritis (dari populasi)</strong>: Menggunakan rumus <span class="math inline">\(SE=\frac{\sigma}{\sqrt{n}}\)</span>, di mana <span class="math inline">\(σ\)</span> adalah standar deviasi populasi dan <span class="math inline">\(n\)</span> adalah ukuran sampel.</p></li>
 <li><p><strong>Estimasi (dari sampel)</strong>: Dalam praktik statistika inferensial, kita hampir tidak pernah mengetahui . Oleh karena itu, kita mengestimasinya menggunakan standar deviasi dari sampel kita sendiri (s). Rumusnya menjadi <span class="math inline">\(SE=\frac{s}{\sqrt{n}}\)</span>. <strong>Inilah nilai yang sebenarnya digunakan saat kita membuat interval kepercayaan atau melakukan uji hipotesis dari data sampel nyata.</strong></p></li>
 </ol>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb146-1" tabindex="-1"></a><span class="co"># 1. Standard Error Empiris (dari 1000 sampel)</span></span>
-<span id="cb146-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb146-2" tabindex="-1"></a>se_empiris <span class="ot">&lt;-</span> <span class="fu">sd</span>(df_sampling<span class="sc">$</span>rataan_sampel)</span>
-<span id="cb146-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb146-3" tabindex="-1"></a></span>
-<span id="cb146-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb146-4" tabindex="-1"></a><span class="co"># 2. Standard Error Teoritis (menggunakan info populasi)</span></span>
-<span id="cb146-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb146-5" tabindex="-1"></a>se_teoritis <span class="ot">&lt;-</span> pop_sd <span class="sc">/</span> <span class="fu">sqrt</span>(ukuran_sampel)</span>
-<span id="cb146-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb146-6" tabindex="-1"></a></span>
-<span id="cb146-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb146-7" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Standard Error (Empiris, dari simulasi):&quot;</span>, <span class="fu">round</span>(se_empiris, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-1" tabindex="-1"></a><span class="co"># 1. Standard Error Empiris (dari 1000 sampel)</span></span>
+<span id="cb145-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-2" tabindex="-1"></a>se_empiris <span class="ot">&lt;-</span> <span class="fu">sd</span>(df_sampling<span class="sc">$</span>rataan_sampel)</span>
+<span id="cb145-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-3" tabindex="-1"></a></span>
+<span id="cb145-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-4" tabindex="-1"></a><span class="co"># 2. Standard Error Teoritis (menggunakan info populasi)</span></span>
+<span id="cb145-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-5" tabindex="-1"></a>se_teoritis <span class="ot">&lt;-</span> pop_sd <span class="sc">/</span> <span class="fu">sqrt</span>(ukuran_sampel)</span>
+<span id="cb145-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-6" tabindex="-1"></a></span>
+<span id="cb145-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb145-7" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Standard Error (Empiris, dari simulasi):&quot;</span>, <span class="fu">round</span>(se_empiris, <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;Standard Error (Empiris, dari simulasi): 0.452&quot;</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb148-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Standard Error (Teoritis, dari populasi):&quot;</span>, <span class="fu">round</span>(se_teoritis, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb147-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Standard Error (Teoritis, dari populasi):&quot;</span>, <span class="fu">round</span>(se_teoritis, <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;Standard Error (Teoritis, dari populasi): 0.474&quot;</code></pre>
 <p>Mari kita hitung estimasi standard error dari satu sampel acak yang akan kita gunakan nanti di Bagian 4.5.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb150-1" tabindex="-1"></a><span class="co"># Mengambil satu sampel acak (sama seperti di Bagian 4.1)</span></span>
-<span id="cb150-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb150-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb150-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb150-3" tabindex="-1"></a>sampel_tunggal_untuk_se <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_mahasiswa<span class="sc">$</span>jarak_km, ukuran_sampel)</span>
-<span id="cb150-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb150-4" tabindex="-1"></a>sd_sampel_tunggal <span class="ot">&lt;-</span> <span class="fu">sd</span>(sampel_tunggal_untuk_se)</span>
-<span id="cb150-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb150-5" tabindex="-1"></a></span>
-<span id="cb150-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb150-6" tabindex="-1"></a><span class="co"># 3. Estimasi Standard Error (dari satu sampel, kasus nyata)</span></span>
-<span id="cb150-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb150-7" tabindex="-1"></a>se_estimasi <span class="ot">&lt;-</span> sd_sampel_tunggal <span class="sc">/</span> <span class="fu">sqrt</span>(ukuran_sampel)</span>
-<span id="cb150-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb150-8" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Estimasi Standard Error (dari satu sampel):&quot;</span>, <span class="fu">round</span>(se_estimasi, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb149-1" tabindex="-1"></a><span class="co"># Mengambil satu sampel acak (sama seperti di Bagian 4.1)</span></span>
+<span id="cb149-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb149-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb149-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb149-3" tabindex="-1"></a>sampel_tunggal_untuk_se <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_mahasiswa<span class="sc">$</span>jarak_km, ukuran_sampel)</span>
+<span id="cb149-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb149-4" tabindex="-1"></a>sd_sampel_tunggal <span class="ot">&lt;-</span> <span class="fu">sd</span>(sampel_tunggal_untuk_se)</span>
+<span id="cb149-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb149-5" tabindex="-1"></a></span>
+<span id="cb149-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb149-6" tabindex="-1"></a><span class="co"># 3. Estimasi Standard Error (dari satu sampel, kasus nyata)</span></span>
+<span id="cb149-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb149-7" tabindex="-1"></a>se_estimasi <span class="ot">&lt;-</span> sd_sampel_tunggal <span class="sc">/</span> <span class="fu">sqrt</span>(ukuran_sampel)</span>
+<span id="cb149-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb149-8" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Estimasi Standard Error (dari satu sampel):&quot;</span>, <span class="fu">round</span>(se_estimasi, <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;Estimasi Standard Error (dari satu sampel): 0.307&quot;</code></pre>
 <p>Perhatikan bahwa nilai SE Empiris dan Teoritis sangat dekat karena berasal dari simulasi di mana parameter populasi diketahui. Nilai SE Estimasi akan bervariasi tergantung sampel mana yang kita ambil, namun nilai inilah yang paling realistis untuk digunakan dalam analisis nyata.</p>
 </div>
@@ -643,27 +650,27 @@ div.csl-indent {
 <h2><span class="header-section-number">4.5</span> Estimasi Parameter-1: Interval Kepercayaan Rata-rata<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#estimasi-parameter-1-interval-kepercayaan-rata-rata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Untuk bagian ini kita akan menggunakan <em>library</em> bernama <code>MKinfer</code>yang berguna untuk menghasilkan interval kepercayaan sebagai estimasi rentang.</p>
 <p>Lakukan instalasi <em>library</em> ini dengan perintah berikut.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb152-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;MKinfer&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;MKinfer&quot;</span>)</span></code></pre></div>
 <p>Kemudian muat paket <code>MKinfer</code> tersebut.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb153-1" tabindex="-1"></a><span class="fu">library</span>(MKinfer)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb152-1" tabindex="-1"></a><span class="fu">library</span>(MKinfer)</span></code></pre></div>
 <div id="mengambil-satu-sampel" class="section level3 hasAnchor" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> Mengambil Satu Sampel<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mengambil-satu-sampel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb154-1" tabindex="-1"></a><span class="co"># Kita gunakan sampel yang sudah dibuat sebelumnya</span></span>
-<span id="cb154-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb154-2" tabindex="-1"></a>sampel_tunggal <span class="ot">&lt;-</span> sampel_tunggal_untuk_se</span>
-<span id="cb154-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb154-3" tabindex="-1"></a>mean_sampel_tunggal <span class="ot">&lt;-</span> <span class="fu">mean</span>(sampel_tunggal)</span>
-<span id="cb154-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb154-4" tabindex="-1"></a></span>
-<span id="cb154-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb154-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;Rata-rata Sampel Tunggal:&quot;</span>, <span class="fu">round</span>(mean_sampel_tunggal, <span class="dv">2</span>), <span class="st">&quot;km</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb153-1" tabindex="-1"></a><span class="co"># Kita gunakan sampel yang sudah dibuat sebelumnya</span></span>
+<span id="cb153-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb153-2" tabindex="-1"></a>sampel_tunggal <span class="ot">&lt;-</span> sampel_tunggal_untuk_se</span>
+<span id="cb153-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb153-3" tabindex="-1"></a>mean_sampel_tunggal <span class="ot">&lt;-</span> <span class="fu">mean</span>(sampel_tunggal)</span>
+<span id="cb153-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb153-4" tabindex="-1"></a></span>
+<span id="cb153-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb153-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;Rata-rata Sampel Tunggal:&quot;</span>, <span class="fu">round</span>(mean_sampel_tunggal, <span class="dv">2</span>), <span class="st">&quot;km</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
 <pre><code>## Rata-rata Sampel Tunggal: 3.46 km</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb156-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;Standar Deviasi Sampel Tunggal:&quot;</span>, <span class="fu">round</span>(sd_sampel_tunggal, <span class="dv">2</span>), <span class="st">&quot;km</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb155-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;Standar Deviasi Sampel Tunggal:&quot;</span>, <span class="fu">round</span>(sd_sampel_tunggal, <span class="dv">2</span>), <span class="st">&quot;km</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
 <pre><code>## Standar Deviasi Sampel Tunggal: 2.17 km</code></pre>
 </div>
 <div id="menghasilkan-interval-kepercayaan" class="section level3 hasAnchor" number="4.5.2">
 <h3><span class="header-section-number">4.5.2</span> Menghasilkan Interval Kepercayaan<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghasilkan-interval-kepercayaan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb158-1" tabindex="-1"></a><span class="co"># Menghitung interval kepercayaan 95% menggunakan MKinfer</span></span>
-<span id="cb158-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb158-2" tabindex="-1"></a>hasil_ci_mean <span class="ot">&lt;-</span> <span class="fu">meanCI</span>(sampel_tunggal, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb158-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb158-3" tabindex="-1"></a></span>
-<span id="cb158-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb158-4" tabindex="-1"></a><span class="co"># Menampilkan hasil</span></span>
-<span id="cb158-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb158-5" tabindex="-1"></a>hasil_ci_mean</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-1" tabindex="-1"></a><span class="co"># Menghitung interval kepercayaan 95% menggunakan MKinfer</span></span>
+<span id="cb157-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-2" tabindex="-1"></a>hasil_ci_mean <span class="ot">&lt;-</span> <span class="fu">meanCI</span>(sampel_tunggal, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb157-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-3" tabindex="-1"></a></span>
+<span id="cb157-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-4" tabindex="-1"></a><span class="co"># Menampilkan hasil</span></span>
+<span id="cb157-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-5" tabindex="-1"></a>hasil_ci_mean</span></code></pre></div>
 <pre><code>## 
 ##  Exact confidence interval(s)
 ## 
@@ -681,12 +688,12 @@ div.csl-indent {
 <p>Hasil dari fungsi <code>meanCI</code> tersebut langsung menunjukkan rentang kepercayaan yang limit bawahnya ditunjukkan oleh angka di bawah <code>2.5%</code>dan limit atasnya oleh angka di bawah <code>97.5%</code>. Nilai-nilai ini adalah nilai <span class="math inline">\(\alpha/2\)</span> yang dibagi dua ke kiri dan kanan grafik.</p>
 <p><strong>Pertanyaan</strong></p>
 <p>Berapakah rentang kepercayaan untuk rata-rata jarak tempat tinggal dari kampus dari sampel kita? Tuliskan interpretasinya yang tepat. Bandingkan dengan rata-rata parameter</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb160-1" tabindex="-1"></a><span class="co"># Jawablah pertanyaan di atas dengan menuliskannya sebagai komentar di chunk ini</span></span>
-<span id="cb160-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb160-2" tabindex="-1"></a><span class="co"># Rentang kepercayaannya adalah 2,81 - 3,95 km</span></span>
-<span id="cb160-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb160-3" tabindex="-1"></a></span>
-<span id="cb160-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb160-4" tabindex="-1"></a><span class="co"># Apa interpretasi dari hasil ini?</span></span>
-<span id="cb160-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb160-5" tabindex="-1"></a><span class="co"># Rata-rata jarak dari kampus untuk tempat tinggal seluruh mahasiswa berada di rentang 2,81 - 3,95 km. Jika dibandingkan dengan rata-rata populasi, rata-rata populasi ternyata masuk di rentang ini.</span></span>
-<span id="cb160-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb160-6" tabindex="-1"></a>pop_mean</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb159-1" tabindex="-1"></a><span class="co"># Jawablah pertanyaan di atas dengan menuliskannya sebagai komentar di chunk ini</span></span>
+<span id="cb159-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb159-2" tabindex="-1"></a><span class="co"># Rentang kepercayaannya adalah 2,81 - 3,95 km</span></span>
+<span id="cb159-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb159-3" tabindex="-1"></a></span>
+<span id="cb159-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb159-4" tabindex="-1"></a><span class="co"># Apa interpretasi dari hasil ini?</span></span>
+<span id="cb159-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb159-5" tabindex="-1"></a><span class="co"># Rata-rata jarak dari kampus untuk tempat tinggal seluruh mahasiswa berada di rentang 2,81 - 3,95 km. Jika dibandingkan dengan rata-rata populasi, rata-rata populasi ternyata masuk di rentang ini.</span></span>
+<span id="cb159-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb159-6" tabindex="-1"></a>pop_mean</span></code></pre></div>
 <pre><code>## [1] 3.625515</code></pre>
 </div>
 </div>
@@ -696,56 +703,56 @@ div.csl-indent {
 <div id="parameter-proporsi" class="section level3 hasAnchor" number="4.6.1">
 <h3><span class="header-section-number">4.6.1</span> Parameter Proporsi<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#parameter-proporsi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Pertama, mari kita hitung proporsi “populasi” yang sebenarnya dari data kita. Kita akan mencari proporsi mahasiswa yang tinggal di “Kos/Asrama”.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb162-1" tabindex="-1"></a><span class="co"># Menghitung proporsi populasi</span></span>
-<span id="cb162-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb162-2" tabindex="-1"></a>tabel_populasi <span class="ot">&lt;-</span> <span class="fu">table</span>(data_mahasiswa<span class="sc">$</span>tipe_tinggal_baku)</span>
-<span id="cb162-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb162-3" tabindex="-1"></a>pop_prop <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tabel_populasi)[<span class="st">&quot;Kos/Asrama&quot;</span>]</span>
-<span id="cb162-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb162-4" tabindex="-1"></a></span>
-<span id="cb162-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb162-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Tabel Frekuensi Jenis Tinggal di Populasi:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-1" tabindex="-1"></a><span class="co"># Menghitung proporsi populasi</span></span>
+<span id="cb161-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-2" tabindex="-1"></a>tabel_populasi <span class="ot">&lt;-</span> <span class="fu">table</span>(data_mahasiswa<span class="sc">$</span>tipe_tinggal_baku)</span>
+<span id="cb161-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-3" tabindex="-1"></a>pop_prop <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tabel_populasi)[<span class="st">&quot;Kos/Asrama&quot;</span>]</span>
+<span id="cb161-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-4" tabindex="-1"></a></span>
+<span id="cb161-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Tabel Frekuensi Jenis Tinggal di Populasi:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Tabel Frekuensi Jenis Tinggal di Populasi:</code></pre>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb164-1" tabindex="-1"></a><span class="fu">print</span>(tabel_populasi)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-1" tabindex="-1"></a><span class="fu">print</span>(tabel_populasi)</span></code></pre></div>
 <pre><code>## 
 ##             Kos/Asrama Rumah Keluarga/Pribadi 
 ##                    639                    961</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb166-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Proporsi Mahasiswa di Kos/Asrama (p):&quot;</span>, <span class="fu">round</span>(pop_prop, <span class="dv">4</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb165-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Proporsi Mahasiswa di Kos/Asrama (p):&quot;</span>, <span class="fu">round</span>(pop_prop, <span class="dv">4</span>)))</span></code></pre></div>
 <pre><code>## 
 ## Proporsi Mahasiswa di Kos/Asrama (p): 0.3994</code></pre>
 </div>
 <div id="mengambil-satu-sampel-dan-menghitung-proporsinya" class="section level3 hasAnchor" number="4.6.2">
 <h3><span class="header-section-number">4.6.2</span> Mengambil Satu Sampel dan Menghitung Proporsinya<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mengambil-satu-sampel-dan-menghitung-proporsinya" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sekarang, kita ambil satu sampel acak (misalnya, <code>n=100</code>) dan hitung proporsi sampel <span class="math inline">\(\hat{p}\)</span> mahasiswa yang tinggal di kos/asrama.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-1" tabindex="-1"></a><span class="co"># Menetapkan ukuran sampel</span></span>
-<span id="cb168-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-2" tabindex="-1"></a>ukuran_sampel_prop <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb168-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-3" tabindex="-1"></a></span>
-<span id="cb168-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-4" tabindex="-1"></a><span class="co"># Mengambil sampel acak dari kolom tipe tinggal</span></span>
-<span id="cb168-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>) <span class="co"># Menggunakan seed baru</span></span>
-<span id="cb168-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-6" tabindex="-1"></a>sampel_prop <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_mahasiswa<span class="sc">$</span>tipe_tinggal_baku, ukuran_sampel_prop)</span>
-<span id="cb168-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-7" tabindex="-1"></a></span>
-<span id="cb168-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-8" tabindex="-1"></a><span class="co"># Menghitung frekuensi di dalam sampel</span></span>
-<span id="cb168-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-9" tabindex="-1"></a>tabel_sampel <span class="ot">&lt;-</span> <span class="fu">table</span>(sampel_prop)</span>
-<span id="cb168-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-10" tabindex="-1"></a><span class="co"># Menghitung proporsi sampel</span></span>
-<span id="cb168-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-11" tabindex="-1"></a>prop_sampel <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tabel_sampel)[<span class="st">&quot;Kos/Asrama&quot;</span>]</span>
-<span id="cb168-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-12" tabindex="-1"></a></span>
-<span id="cb168-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-13" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Tabel Frekuensi Jenis Tinggal di Sampel:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-1" tabindex="-1"></a><span class="co"># Menetapkan ukuran sampel</span></span>
+<span id="cb167-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-2" tabindex="-1"></a>ukuran_sampel_prop <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb167-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-3" tabindex="-1"></a></span>
+<span id="cb167-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-4" tabindex="-1"></a><span class="co"># Mengambil sampel acak dari kolom tipe tinggal</span></span>
+<span id="cb167-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>) <span class="co"># Menggunakan seed baru</span></span>
+<span id="cb167-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-6" tabindex="-1"></a>sampel_prop <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_mahasiswa<span class="sc">$</span>tipe_tinggal_baku, ukuran_sampel_prop)</span>
+<span id="cb167-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-7" tabindex="-1"></a></span>
+<span id="cb167-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-8" tabindex="-1"></a><span class="co"># Menghitung frekuensi di dalam sampel</span></span>
+<span id="cb167-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-9" tabindex="-1"></a>tabel_sampel <span class="ot">&lt;-</span> <span class="fu">table</span>(sampel_prop)</span>
+<span id="cb167-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-10" tabindex="-1"></a><span class="co"># Menghitung proporsi sampel</span></span>
+<span id="cb167-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-11" tabindex="-1"></a>prop_sampel <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tabel_sampel)[<span class="st">&quot;Kos/Asrama&quot;</span>]</span>
+<span id="cb167-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-12" tabindex="-1"></a></span>
+<span id="cb167-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb167-13" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Tabel Frekuensi Jenis Tinggal di Sampel:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Tabel Frekuensi Jenis Tinggal di Sampel:</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb170-1" tabindex="-1"></a><span class="fu">print</span>(tabel_sampel)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb169-1" tabindex="-1"></a><span class="fu">print</span>(tabel_sampel)</span></code></pre></div>
 <pre><code>## sampel_prop
 ##             Kos/Asrama Rumah Keluarga/Pribadi 
 ##                     36                     64</code></pre>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb172-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Proporsi Sampel Mahasiswa di Kos/Asrama (p-hat):&quot;</span>, <span class="fu">round</span>(prop_sampel, <span class="dv">4</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb171-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Proporsi Sampel Mahasiswa di Kos/Asrama (p-hat):&quot;</span>, <span class="fu">round</span>(prop_sampel, <span class="dv">4</span>)))</span></code></pre></div>
 <pre><code>## 
 ## Proporsi Sampel Mahasiswa di Kos/Asrama (p-hat): 0.36</code></pre>
 </div>
 <div id="menghasilkan-interval-kepercayaan-untuk-proporsi" class="section level3 hasAnchor" number="4.6.3">
 <h3><span class="header-section-number">4.6.3</span> Menghasilkan Interval Kepercayaan untuk Proporsi<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghasilkan-interval-kepercayaan-untuk-proporsi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Kita akan menggunakan fungsi <code>binomCI()</code> di R. Fungsi ini memerlukan jumlah “sukses”, yakni jumlah mahasiswa di kos/asrama, dan total ukuran sampel.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb174-1" tabindex="-1"></a><span class="co"># Mendapatkan jumlah &quot;sukses&quot; dari tabel sampel</span></span>
-<span id="cb174-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb174-2" tabindex="-1"></a>jumlah_sukses <span class="ot">&lt;-</span> tabel_sampel[<span class="st">&quot;Kos/Asrama&quot;</span>]</span>
-<span id="cb174-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb174-3" tabindex="-1"></a>total_sampel <span class="ot">&lt;-</span> ukuran_sampel_prop</span>
-<span id="cb174-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb174-4" tabindex="-1"></a></span>
-<span id="cb174-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb174-5" tabindex="-1"></a><span class="co"># Menghitung interval kepercayaan 95% untuk proporsi</span></span>
-<span id="cb174-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb174-6" tabindex="-1"></a>hasil_prop_test <span class="ot">&lt;-</span> <span class="fu">binomCI</span>(jumlah_sukses, total_sampel, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb174-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb174-7" tabindex="-1"></a><span class="co"># Menampilkan hasil</span></span>
-<span id="cb174-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb174-8" tabindex="-1"></a><span class="fu">print</span>(hasil_prop_test)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb173-1" tabindex="-1"></a><span class="co"># Mendapatkan jumlah &quot;sukses&quot; dari tabel sampel</span></span>
+<span id="cb173-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb173-2" tabindex="-1"></a>jumlah_sukses <span class="ot">&lt;-</span> tabel_sampel[<span class="st">&quot;Kos/Asrama&quot;</span>]</span>
+<span id="cb173-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb173-3" tabindex="-1"></a>total_sampel <span class="ot">&lt;-</span> ukuran_sampel_prop</span>
+<span id="cb173-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb173-4" tabindex="-1"></a></span>
+<span id="cb173-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb173-5" tabindex="-1"></a><span class="co"># Menghitung interval kepercayaan 95% untuk proporsi</span></span>
+<span id="cb173-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb173-6" tabindex="-1"></a>hasil_prop_test <span class="ot">&lt;-</span> <span class="fu">binomCI</span>(jumlah_sukses, total_sampel, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb173-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb173-7" tabindex="-1"></a><span class="co"># Menampilkan hasil</span></span>
+<span id="cb173-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb173-8" tabindex="-1"></a><span class="fu">print</span>(hasil_prop_test)</span></code></pre></div>
 <pre><code>## 
 ##  wilson confidence interval
 ## 
@@ -762,10 +769,10 @@ div.csl-indent {
 ##             0.04717785</code></pre>
 <p><strong>Pertanyaan</strong></p>
 <p>Berapakah rentang kepercayaan untuk proporsi mahasiswa yang tinggal di kos/asrama? Tuliskan interpretasinya yang tepat. Bandingkan dengan proporsi parameter.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb176-1" tabindex="-1"></a><span class="co"># Jawablah pertanyaan di atas dengan menuliskannya sebagai komentar di chunk ini  # Rentang kepercayaannya adalah 0,37 hingga 0,56</span></span>
-<span id="cb176-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb176-2" tabindex="-1"></a></span>
-<span id="cb176-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb176-3" tabindex="-1"></a><span class="co"># Tuliskan interpretasi dari rentang tersebut</span></span>
-<span id="cb176-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb176-4" tabindex="-1"></a><span class="co"># Tidak banyak mahasiswa yang tinggal di kos/asrama, karena rentang kepercayaan parameter proporsi mahasiswa yang tinggal di kos/asrama adalah 37% hingga 56% saja.</span></span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb175-1" tabindex="-1"></a><span class="co"># Jawablah pertanyaan di atas dengan menuliskannya sebagai komentar di chunk ini  # Rentang kepercayaannya adalah 0,37 hingga 0,56</span></span>
+<span id="cb175-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb175-2" tabindex="-1"></a></span>
+<span id="cb175-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb175-3" tabindex="-1"></a><span class="co"># Tuliskan interpretasi dari rentang tersebut</span></span>
+<span id="cb175-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb175-4" tabindex="-1"></a><span class="co"># Tidak banyak mahasiswa yang tinggal di kos/asrama, karena rentang kepercayaan parameter proporsi mahasiswa yang tinggal di kos/asrama adalah 37% hingga 56% saja.</span></span></code></pre></div>
 </div>
 <div id="aktivitas-mandiri-2-interval-kepercayaan-99-stp-5.2.capaian" class="section level3 unnumbered hasAnchor rmdexercise">
 <h3>Aktivitas Mandiri 2: Interval Kepercayaan 99% [STP-5.2].{capaian}<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#aktivitas-mandiri-2-interval-kepercayaan-99-stp-5.2.capaian" class="anchor-section" aria-label="Anchor link to header"></a></h3>
