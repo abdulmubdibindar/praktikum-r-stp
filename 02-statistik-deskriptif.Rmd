@@ -56,56 +56,45 @@ Impor dataset mahasiswa UNILA dari file dan sheet yang sama:
 
 Sebelum kita bisa menganalisis data, kita perlu merapikannya terlebih dahulu. Dua hal yang lazim dilakukan adalah mengganti nama variabel dan membuang baris yang datanya tidak lengkap. Mari kita praktikkan sambil mengenal salah satu fitur terpenting di `tidyverse`: **pipe operator** (`|>`). Kita sudah dikenalkan dengan operator ini pada subbab \@ref(sec-operator-pipa), dan di sini kita akan langsung mempraktikkannya bersama.
 
-### Mengganti Nama Variabel
+### Memahami Konsep *Pipe Operator*
 
-Pada praktikum sebelumnya kita mengubah nama kolom/variabel dalam *dataset* secara **keseluruhan**, yakni dengan menimpakan vektor nama-nama baru variabel kita dengan fungsi `colnames()`.
+Untuk memahami konsep pipe operator, mari kita praktikkan kasus berikut dengan dua cara, yakni yang tanpa dan dengan *pipe operator*. 
 
-Kita pastinya tidak akan selalu mengubah semua kolom secara sekaligus, karena itu kita harus belajar bagaimana cara mengganti nama beberapa kolom saja, yakni dengan perintah `rename()`.
+Kita akan mencoba menelusuri struktur dataset kita — khususnya kolom-kolom yang berhubungan dengan kepemilikan kendaraan saja. Untuk itu, kita perlu: (1) menyeleksi kolom-kolom yang kita butuhkan saja dengan `select()`, lalu (2) melihat hasilnya dengan `glimpse()`.
 
-Perintah `rename()` memiliki sintaks seperti berikut:
-
-```r
-rename(dataset_kita, nama_kolom_baru = nama_kolom_lama)
-```
-
-Perhatikan dua cara berikut untuk mengganti nama variabel-variabel kita.
+Perhatikan dua cara untuk melakukan dua langkah tersebut.
 
 **CARA 1: KONVENSIONAL**
 
-```{r mod02-rename-demo1-conventional, echo=TRUE}
-# Membaca ulang dataset supaya menjadi kondisi semula
-data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
-colnames(data_ubl)
+```{r mod02-pipe-demo1-conventional, echo=TRUE}
+# Langkah 1: Seleksi kolom kepemilikan kendaraan, simpan ke variabel sementara
+data_kendaraan <- select(
+  data_ubl,
+  kepemilikan.mobil, kepemilikan.motor
+)
 
-# Mengganti nama variabel-variabel
-data_ubl <- rename(data_ubl, biaya_dalam_sepekan = biaya.dalam.seminggu)
-data_ubl <- rename(data_ubl, jumlah_perjalanan_senin = Jumlah.perjalanan.Senin)
-data_ubl <- rename(data_ubl, jarak = `jarak.(km)`)
+# Langkah 2: Baru bisa melihat hasilnya dari variabel sementara
+glimpse(data_kendaraan)
 ```
 
 **CARA 2: MENGGUNAKAN PIPE OPERATOR**
 
-```{r mod02-rename-demo2-pipe, echo=TRUE}
-# Membaca ulang dataset supaya menjadi kondisi semula
-data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
-
-# Mengganti nama variabel-variabel menggunakan pipe operator
-data_ubl <- data_ubl |>
-  rename(biaya_dalam_sepekan = biaya.dalam.seminggu) |>
-  # setiap baris yang masih ada proses selanjutnya harus diisi dengan pipe operator
-  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |>
-  rename(jarak = `jarak.(km)`)
+```{r mod02-pipe-demo2-pipe, echo=TRUE}
+# Seleksi kolom dan langsung lihat hasilnya — tanpa variabel sementara
+data_ubl |>
+  select(kepemilikan.mobil, kepemilikan.motor) |>
+  glimpse()
 ```
 
-Dalam cara 1, kita harus menulis `data_ubl` berkali-kali untuk setiap perintah dan setiap langkah ditulis terpisah-pisah. Operator pipa (`|>`) memungkinkan kita merangkai semua proses itu dalam satu blok kode yang mengalir dari atas ke bawah, seperti pipa, tanpa perlu menuliskan nama dataset berkali-kali.
+Dalam cara 1, kita **terpaksa** membuat variabel perantara `data_kendaraan` hanya untuk meneruskan hasil `select()` ke `glimpse()`. Variabel ini tidak kita butuhkan untuk keperluan lain — hanya agar kedua langkah bisa terhubung. Operator pipa (`|>`) memungkinkan kita merangkai kedua proses itu secara langsung, tanpa variabel perantara, dengan alur yang mengalir dari atas ke bawah.
 
 Berikut adalah penjelasan cara-2:
 
 -   `data_ubl |>`: perintah "Ambil dataset `data_ubl`."
 
--   Kirimkan dataset itu ke fungsi berikutnya (`rename`).
+-   Kirimkan dataset itu ke fungsi `select()` untuk menyeleksi kolom yang diinginkan.
 
--   Hasil dari fungsi `rename` pertama dikirimkan lagi ke fungsi `rename` kedua, dan seterusnya.
+-   Hasil seleksi langsung dikirimkan ke `glimpse()` untuk ditampilkan — tidak perlu disimpan ke variabel baru.
 
 ::: rmdtip
 💡 **Tip**
@@ -113,27 +102,30 @@ Berikut adalah penjelasan cara-2:
 Pipe operator dapat dimasukkan dengan kombinasi tombol `Ctrl` + `Shift` + `M` di *keyboard*.
 :::
 
-### Menghapus *Missing Values*
+### Mengganti Nama Variabel dan Menghilangkan *Missing Values* Sekaligus dengan Pipe Operator
 
-Setelah mengganti nama variabel, langkah berikutnya adalah memastikan data kita tidak mengandung nilai yang kosong atau hilang (*missing values*). Penghapusan *missing values* dilakukan dengan perintah `drop_na()` dari paket `tidyr`.
+Keunggulan ini semakin terasa ketika kita mulai merangkai **lebih banyak langkah** sekaligus. Misalnya, kita perlu merapikan dataset UBL kita dengan dua pekerjaan berbeda: (1) mengganti nama beberapa variabel dengan `rename()`, dan (2) membuang baris yang mengandung nilai kosong atau hilang (*missing values*) dengan `drop_na()` dari paket `tidyr`.
 
-Keunggulan pipe operator terlihat di sini: kita bisa langsung menyambungkan `drop_na()` ke proses sebelumnya tanpa membuat langkah terpisah.
+Dengan pipe operator, kedua pekerjaan itu bisa dirangkai dalam satu alur yang mengalir dari atas ke bawah:
 
-```{r mod02-drop-na-pipe, echo=TRUE}
+```{r mod02-rename-dropna-pipe, echo=TRUE}
 # Membaca ulang dataset supaya menjadi kondisi semula
 data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
 
 # Mengganti nama variabel, lalu langsung membuang missing values dalam satu alur
 data_ubl <- data_ubl |>
-  rename(biaya_dalam_sepekan = biaya.dalam.seminggu) |>
-  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |>
-  rename(jarak = `jarak.(km)`) |>
+  rename(biaya_dalam_sepekan = biaya.dalam.seminggu,
+         jumlah_perjalanan_senin = Jumlah.perjalanan.Senin,
+         jarak = `jarak.(km)`) |>
   drop_na()
 ```
 
--   Hasil terakhir (setelah `drop_na()`) dikirimkan ke `data_ubl` untuk disimpan.
+-   `data_ubl |>`: ambil dataset `data_ubl`.
+-   Kirimkan ke `rename()` nama kolom `biaya.dalam.seminggu` hingga `jarak.(km)`.
+-   Setelah semua nama kolom diganti, hasilnya diteruskan ke `drop_na()` untuk membuang baris yang datanya tidak lengkap.
+-   Hasil akhir disimpan kembali ke `data_ubl`.
 
-
+Bayangkan jika ini dilakukan secara konvensional: setiap langkah membutuhkan penulisan nama dataset atau variabel perantara baru — semakin banyak langkahnya, semakin panjang dan rawan salah kodenya.
 
 ::: {.rmdexercise}
 ## Aktivitas Mandiri 2: Merapikan Dataset UNILA dengan Pipe Operator {-}
