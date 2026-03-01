@@ -1,12 +1,13 @@
 # Modul-2: Analisis Statistika Deskriptif
 
-Setelah mempelajari modul ini, Anda diharapkan dapat mengoperasikan perhitungan persentase/proporsi, rasio, laju, ukuran pemusatan, dan ukuran penyebaran untuk suatu data kuantitatif dengan menggunakan perangkat lunak [STP-2.4]{.capaian}
 
----
+::: rmdcapaian
+Setelah mempelajari modul ini, Anda diharapkan **dapat mengoperasikan perhitungan persentase/proporsi, rasio, laju, ukuran pemusatan, dan ukuran penyebaran untuk suatu data kuantitatif dengan menggunakan perangkat lunak** [STP-2.4]{.capaian}
+:::
 
 Dalam praktikum ini kita akan melanjutkan analisis data terstruktur kita dengan analisis statistika deskriptif untuk variabel-variabel **kategoris** dan **numerik**. Kedua jenis variabel ini berkaitan juga dengan tingkat pengukurannya yang terdiri atas **nominal**, **ordinal**, dan **interval/rasio (metrik).**
 
-Analisis statistik deskriptif yang akan kita lakukan mencakup **persentase/proporsi**, **rata-rata *(mean)***, **median**, dan **standar deviasi**. Ada beberapa ukuran statistik yang tidak kita pelajari di kelas tetapi dikenalkan pada praktikum ini, seperti **persentil** dan **kuartil**. Perhitungan IQV akan dilakukan dengan sekaligus mengenalkan mekanisme `function` di R.
+Analisis statistik deskriptif yang akan kita lakukan mencakup ukuran frekuensi yang diwakili oleh **persentase/proporsi**, ukuran pemusatan yang diwakili oleh **rata-rata *(mean)***, **median**, dan ukuran penyebaran yang diwakili oleh **standar deviasi**, **persentil**, **kuartil**, dan **IQV**. Perhitungan IQV akan dilakukan dengan sekaligus mengenalkan mekanisme `function` di R.
 
 ## Persiapan
 
@@ -18,9 +19,18 @@ library(tidyverse)
 library(openxlsx)
 ```
 
+Selain itu, kita memerlukan paket `gtsummary` dan `flextable` untuk melakukan analisis statistika deskriptif dengan ringkas. Paket ini memiliki perintah `tbl_summary()` yang dapat mengeluarkan analisis statistika deskriptif secara intuitif berdasarkan jenis data yang kita masukkan.
+
+Untuk meng-install kedua paket tersebut, hapus tanda pagar di depan baris pertama dalam *chunk* di bawah dan muat paket `gtsummary` saja.
+
+```{r mod02-load-gtsummary, echo=TRUE}
+# install.packages(c("gtsummary", "flextable"))
+library(gtsummary)
+```
+
 ## Mengimpor Dataset
 
-Kita menggunakan data mahasiswa UBL yang sudah lengkap karena sudah diolah kembali.
+Kita menggunakan data mahasiswa UBL pada langkah demonstratif praktikum ini. Di Aktivitas Mandiri, kalian akan menggunakan dataset lain.
 
 ```{r mod02-import-data, echo=TRUE}
 # Mengeset variabel tersendiri untuk nama file nama sheet
@@ -31,49 +41,38 @@ sheet_ubl <- "DataUtama_mhsUBL"
 data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
 ```
 
-Sebelumnya kita sudah mengenal `glimpse()` yang berasal dari *library* `dplyr`, sekarang kita akan mengenal perintah untuk menampilkan ringkasan dataset bawaan R (disebut juga *'base R'*) bernama `summary()`.
+::: {.rmdexercise}
+## Aktivitas Mandiri 1: Mengimpor Data UNILA {-}
 
-```{r mod02-summary-data, echo=TRUE}
-# Melihat ringkasan dataset (cara lain)
-summary(data_ubl)
-```
+Impor dataset mahasiswa UNILA dari file dan sheet yang sama:
 
-## Merapikan Dataset *(Data Wrangling)*
+1. Gunakan variabel `file_dibaca` yang sudah ada (file Excel-nya sama)
+2. Buat variabel `sheet_unila` dengan isi `"DataUtama_mhsUNILA"`
+3. Impor dataset ke variabel `data_unila`
+4. Verifikasi dengan `glimpse(data_unila)` — perhatikan nama-nama variabelnya
+:::
 
-Sering dikatakan bahwa 50% pekerjaan ilmuwan data adalah **merapikan dataset**. Ini diistilahkan dengan *wrangling*. *Data wrangling* mencakup penggantian nama variabel, pengecekan nilai yang hilang *(missing values)*, mengubah/memanipulasi variabel, dan masih banyak lagi.
+## Praktik Operator Pipa *(Pipe Operator)*
 
-#### Mengganti Nama Variabel
+Sebelum kita bisa menganalisis data, kita perlu merapikannya terlebih dahulu. Dua hal yang lazim dilakukan adalah mengganti nama variabel dan membuang baris yang datanya tidak lengkap. Mari kita praktikkan sambil mengenal salah satu fitur terpenting di `tidyverse`: **pipe operator** (`|>`). Kita sudah dikenalkan dengan operator ini pada subbab \@ref(sec-operator-pipa), dan di sini kita akan langsung mempraktikkannya bersama.
 
-Pada praktikum sebelumnya kita mengubah nama kolom/variabel dalam *dataset* secara **keseluruhan**, yakni dengan menimpakan vektor nama-nama baru variabel kita dengan fungsi `colnames()` .
+### Mengganti Nama Variabel
+
+Pada praktikum sebelumnya kita mengubah nama kolom/variabel dalam *dataset* secara **keseluruhan**, yakni dengan menimpakan vektor nama-nama baru variabel kita dengan fungsi `colnames()`.
 
 Kita pastinya tidak akan selalu mengubah semua kolom secara sekaligus, karena itu kita harus belajar bagaimana cara mengganti nama beberapa kolom saja, yakni dengan perintah `rename()`.
 
-Perintah `rename()` memiliki sintaks seperti berikut
+Perintah `rename()` memiliki sintaks seperti berikut:
 
 ```r
-rename(dataset_kita, nama_kolom_baru = nama_kolom_lama) 
+rename(dataset_kita, nama_kolom_baru = nama_kolom_lama)
 ```
 
-```{r mod02-rename-conventional, echo=TRUE}
-# Membaca ulang dataset supaya menjadi kondisi semula
-data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
-colnames(data_ubl)
+Perhatikan dua cara berikut untuk mengganti nama variabel-variabel kita.
 
-# Mengganti nama variabel-variabel
-data_ubl <- rename(data_ubl, biaya_dalam_sepekan = biaya.dalam.seminggu)
-data_ubl <- rename(data_ubl, jumlah_perjalanan_senin = Jumlah.perjalanan.Senin)
-data_ubl <- rename(data_ubl, jarak = `jarak.(km)`) # tanda backtick (`) digunakan di antara "jarak.(km)"
-# karena ada tanda kurung yang dianggap oleh R mempunyai fungsi khusus
-```
-
-::: {.rmdnote}
-**Pengenalan Teknik Pengolahan dalam R: *Pipe Operator* (`|>`)**
-
-Dalam pengolahan data dengan `tidyverse` penting untuk kita kuasai penggunaan operator yang satu ini. Perhatikan dua cara berikut untuk mengganti nama variabel-variabel kita.
+**CARA 1: KONVENSIONAL**
 
 ```{r mod02-rename-demo1-conventional, echo=TRUE}
-# CARA-1: CARA KONVENSIONAL
-
 # Membaca ulang dataset supaya menjadi kondisi semula
 data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
 colnames(data_ubl)
@@ -84,13 +83,13 @@ data_ubl <- rename(data_ubl, jumlah_perjalanan_senin = Jumlah.perjalanan.Senin)
 data_ubl <- rename(data_ubl, jarak = `jarak.(km)`)
 ```
 
-```{r mod02-rename-demo2-pipe, echo=TRUE}
-# CARA-2: MENGGUNAKAN PIPE OPERATOR
+**CARA 2: MENGGUNAKAN PIPE OPERATOR**
 
+```{r mod02-rename-demo2-pipe, echo=TRUE}
 # Membaca ulang dataset supaya menjadi kondisi semula
 data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
 
-# Mengganti nama variabel-variabel
+# Mengganti nama variabel-variabel menggunakan pipe operator
 data_ubl <- data_ubl |>
   rename(biaya_dalam_sepekan = biaya.dalam.seminggu) |>
   # setiap baris yang masih ada proses selanjutnya harus diisi dengan pipe operator
@@ -98,9 +97,7 @@ data_ubl <- data_ubl |>
   rename(jarak = `jarak.(km)`)
 ```
 
-Dalam cara 1, kita harus menulis `data_ubl` berkali-kali untuk setiap perintah. Ini mungkin tidak akan terasa jika jumlah kolom yang kita miliki sedikit. Tetapi, akan lain ceritanya jika jumlahnya banyak. Selain itu, data kita tidak bisa secara intuitif seperti biasanya kita membaca suatu teks dari kiri ke kanan.
-
-Operator pipa (`|>`) memungkinkan hal tersebut. Selain kita tidak perlu menuliskan dataset kita berkali-kali, kita dengan lebih mudah memahami baris-baris kode kita tersebut sebagai proses dari atas ke bawah, dari kiri ke kanan, seperti pipa.
+Dalam cara 1, kita harus menulis `data_ubl` berkali-kali untuk setiap perintah dan setiap langkah ditulis terpisah-pisah. Operator pipa (`|>`) memungkinkan kita merangkai semua proses itu dalam satu blok kode yang mengalir dari atas ke bawah, seperti pipa, tanpa perlu menuliskan nama dataset berkali-kali.
 
 Berikut adalah penjelasan cara-2:
 
@@ -110,113 +107,125 @@ Berikut adalah penjelasan cara-2:
 
 -   Hasil dari fungsi `rename` pertama dikirimkan lagi ke fungsi `rename` kedua, dan seterusnya.
 
-> ⚠️ **Penting**
->
-> Pipe operator dapat dimasukkan dengan kombinasi tombol `Ctrl` + `Shift` + `M` di *keyboard*.
+::: rmdtip
+💡 **Tip**
 
+Pipe operator dapat dimasukkan dengan kombinasi tombol `Ctrl` + `Shift` + `M` di *keyboard*.
 :::
+
+### Menghapus *Missing Values*
+
+Setelah mengganti nama variabel, langkah berikutnya adalah memastikan data kita tidak mengandung nilai yang kosong atau hilang (*missing values*). Penghapusan *missing values* dilakukan dengan perintah `drop_na()` dari paket `tidyr`.
+
+Keunggulan pipe operator terlihat di sini: kita bisa langsung menyambungkan `drop_na()` ke proses sebelumnya tanpa membuat langkah terpisah.
+
+```{r mod02-drop-na-pipe, echo=TRUE}
+# Membaca ulang dataset supaya menjadi kondisi semula
+data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl)
+
+# Mengganti nama variabel, lalu langsung membuang missing values dalam satu alur
+data_ubl <- data_ubl |>
+  rename(biaya_dalam_sepekan = biaya.dalam.seminggu) |>
+  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |>
+  rename(jarak = `jarak.(km)`) |>
+  drop_na()
+```
+
+-   Hasil terakhir (setelah `drop_na()`) dikirimkan ke `data_ubl` untuk disimpan.
+
+
 
 ::: {.rmdexercise}
-### Aktivitas Mandiri 1: Menguasai Pipe Operator [STP-2.4].{capaian} {-}
+## Aktivitas Mandiri 2: Merapikan Dataset UNILA dengan Pipe Operator {-}
 
-Dengan satu blok kode menggunakan pipe operator `|>`:
-1. Baca dataset UBL dari file dan sheet yang sudah ditentukan
+Dengan **satu blok kode** menggunakan pipe operator `|>`:
+
+1. Baca dataset UNILA dari `file_dibaca` dan `sheet_unila`
 2. Ubah nama variabel `biaya.dalam.seminggu` menjadi `biaya_dalam_sepekan`
 3. Ubah nama variabel `Jumlah.perjalanan.Senin` menjadi `jumlah_perjalanan_senin`
-4. Buang baris yang mengandung missing values dengan fungsi `drop_na()`
-5. Simpan hasilnya ke variabel `data_ubl_bersih`
-6. Verifikasi dengan `glimpse(data_ubl_bersih)` - pastikan tidak ada NA
+4. Buang baris yang mengandung missing values dengan `drop_na()`
+5. Simpan hasilnya ke variabel `data_unila_bersih`
+6. Verifikasi dengan `glimpse(data_unila_bersih)` — pastikan tidak ada NA
 :::
 
-#### Mengecek *Missing Values*
+## Membuat *Factor*
 
-Pengecekan *missing values* dilakukan dengan perintah `is.na()` yang menghasilkan tabel berisi nilai *boolean* `FALSE` dan `TRUE` yang berarti 'tidak kosong' dan 'kosong' secara berturut-turut.
+Sekarang mari kita kembali ke dataset UBL yang sudah bersih. Sebelumnya kita sudah melihat dataset kita dengan `glimpse()`. Kali ini, mari kita coba perintah lain bernama `summary()` — perintah bawaan R *(base R)* yang dapat meringkas isi dataset.
 
-`colSums()` menjumlahkan nilai-nilai `TRUE` pada setiap kolom, menandakan berapa jumlah objek yang kosong nilainya.
-
-```{r mod02-check-missing-values, echo=TRUE}
-check_mv_ubl <- is.na(data_ubl)
-
-head(check_mv_ubl)
-
-colSums(check_mv_ubl)
+```{r mod02-summary-before-factor, echo=TRUE, R.options=list(max.print=50)}
+# Melihat ringkasan dataset sebelum variabel kategoris diubah menjadi factor
+summary(data_ubl)
 ```
 
-#### Menghapus *Missing Values*
+Dari *output* tersebut, perhatikan dua pola yang berbeda:
 
-Penghapusan *missing values* juga dapat digunakan dengan *pipe operator.* Adapun perintah yang dapat kita gunakan adalah `drop_na()` dari paket `tidyr`.
+-   Variabel angka seperti `jarak` atau `biaya_dalam_sepekan` menampilkan `Min.`, `1st Qu.`, `Median`, `Mean`, `3rd Qu.`, dan `Max.` — ini adalah ukuran-ukuran pemusatan dan penyebaran data numerik.
 
-```{r mod02-drop-missing-values, echo=TRUE}
-# Menghapus observasi yang memiliki Missing Values
-data_ubl <- data_ubl |>
-  drop_na()
+-   Variabel teks (*character*) seperti `Jenis.Kelamin` atau `Prodi` hanya menampilkan `Length`, `Class`, dan `Mode` — R belum tahu apa nilai-nilai yang ada di sana, sehingga hanya bisa memberikan informasi panjang datanya saja.
 
-# Mengecek kembali Missing Values
-check_mv_ubl <- is.na(data_ubl)
-colSums(check_mv_ubl)
-```
+Bagaimana agar R bisa menampilkan frekuensi tiap nilai, seperti berapa banyak `Laki-Laki` dan berapa banyak `Perempuan` di variabel `Jenis.Kelamin`? Caranya adalah dengan mengubah tipe variabel tersebut menjadi ***factor*** agar R mengenalinya sebagai variabel kategoris dengan nilai-nilai yang terdefinisi.
 
-#### Menyesuaikan Variabel Nominal dan Ordinal dengan `factor()`
-
-Apabila kita mengimpor dataset dengan variabel nonangka, bentuknya akan terbaca sebagai *character* (`chr`). Perintah `factor()` dari paket `forcats` berfungsi untuk mendefinisikan nilai-nilai yang ada dalam variabel kategoris tersebut sehingga kita mendefinisikan urutannya dan menetapkannya sebagai variabel ordinal.
-
-```{r mod02-identify-factor-vars, echo=TRUE}
-# Mengidentifikasi variabel-variabel yang bisa diubah menjadi factor
+```{r mod02-identify-factor-vars, echo=TRUE, R.options=list(max.print=50)}
+# Mengidentifikasi variabel-variabel yang bisa diubah tipenya
 glimpse(data_ubl)
 ```
 
 Contoh pertama kita adalah variabel yang paling mudah: `Jenis.Kelamin`.
 
-```{r mod02-create-factor-gender-wrong, echo=TRUE}
-# Mengubah variabel Jenis.Kelamin dari chr menjadi factor (fct)
-jk <- c("Laki-laki", "Perempuan") # Membuat vektor rincian nilai nominal
+Sebelum membuat vektor, kita perlu mengecek terlebih dahulu nilai-nilai apa yang sebenarnya tersimpan di dalam dataset — persis seperti yang tertulis, termasuk huruf besar dan kecilnya. Kita akan menggunakan perintah `table()` untuk mengecek nilai-nilai unik yang ada di variabel `Jenis.Kelamin`.
+
+```{r mod02-check-gender-values, echo=TRUE}
+# Cek nilai-nilai unik yang ada di variabel Jenis.Kelamin
+table(data_ubl$Jenis.Kelamin)
+```
+
+Dari output di atas, kita tahu bahwa nilai yang tersimpan adalah `"Laki-Laki"` dan `"Perempuan"` — bukan `"Laki-laki"`. Vektor yang kita buat harus menuliskan nilai-nilai itu **persis sama**, karakter per karakter.
+
+```{r mod02-create-factor-gender, echo=TRUE, R.options=list(max.print=50)}
+# Membuat vektor dengan nilai yang PERSIS SAMA seperti di data
+jk <- c("Laki-Laki", "Perempuan")
 
 # Mengubah jenis variabel "Jenis.Kelamin" dari chr ke fct dengan 'mutate()'
 data_ubl <- data_ubl |>
-  mutate(Jenis.Kelamin = factor(Jenis.Kelamin, jk))
+  mutate(Jenis.Kelamin = factor(Jenis.Kelamin, levels = jk))
 
 # Mengecek hasil
 glimpse(data_ubl)
 ```
 
-Ternyata, hasil pendefinisian `factor` ke dalam data kita mengandung `NA` yang berarti data kosong atau *missing value*. Hal tersebut terjadi karena kita mendefinisikan vektor `jk` berisi `c("Laki-laki", "Perempuan")`.
+Berikut adalah penjelasan dari perintah pembuatan factor di atas:
 
-Sementara itu, jika kita cermat, sebelumnya nilai jenis kelamin ditulis dengan `"Laki-Laki"` . Maka, kita harus memperbaiki vektor kita yang berisi nilai-nilai yang sesuai dengan dataset terlebih dahulu.
-
-```{r mod02-create-factor-gender-correct, echo=TRUE}
-# Mengulangi pembacaan file sekaligus merapikan nama variabel-variabelnya serta menghilangkan Missing Values menggunakan Pipe operator
-data_ubl <- read.xlsx(file_dibaca, sheet = sheet_ubl) |>
-  rename(biaya_dalam_sepekan = biaya.dalam.seminggu) |>
-  rename(jumlah_perjalanan_senin = Jumlah.perjalanan.Senin) |>
-  rename(jarak = `jarak.(km)`) |>
-  drop_na()
-
-# Memperbaiki vektor nilai nominal sesuai dengan yang ada di data dengan mengganti penulisan "Laki-laki" menjadi "Laki-Laki"
-jk <- c("Laki-Laki", "Perempuan")
-
-# Mengubah lagi jenis variabel "Jenis.Kelamin" dari chr ke fct dengan 'mutate()
-data_ubl <- data_ubl |>
-  mutate(Jenis.Kelamin = factor(Jenis.Kelamin, jk))
-
-# Mengecek hasil
-glimpse(data_ubl)
+```r
+mutate(Jenis.Kelamin = factor(Jenis.Kelamin, jk))
 ```
+
+-   `mutate(...)` — perintah untuk **mengubah atau menambah variabel** dalam dataset. Di sini kita menimpa variabel `Jenis.Kelamin` yang sudah ada dengan versi barunya.
+
+-   `Jenis.Kelamin = ...` — bagian kiri `=` adalah nama variabel yang akan diubah/dibuat. Kita bisa menuliskan nama variabel baru di sini. Misalnya jika kita ingin mengubah nama variabelnya menjadi `jenis_kelamin`, maka perintahnya akan menjadi `mutate(jenis_kelamin = factor(Jenis.Kelamin, jk))`.
+
+-   `factor(Jenis.Kelamin, levels = jk)` — perintah yang mengubah tipe variabel menjadi *factor*, dengan:
+    -   **argumen pertama** (`Jenis.Kelamin`): variabel yang ingin diubah,
+    -   **argumen kedua** (`levels = jk`): vektor yang berisi nilai-nilai yang diizinkan, disebut ***levels***.
+
 
 Kita sudah berhasil menjadikan variabel `Jenis.Kelamin` sebagai factor. Selanjutnya, kita akan mengubah variabel-variabel kategoris lain menjadi factor juga. Variabel-variabel tersebut di antaranya adalah `Prodi`, `Tingkat.Semester`, `Uang.Saku`, dan `jenis.tempat.tinggal`.
 
-Sekarang kita akan mengecek nilai variabel-variabel kategoris tersebut dengan dua cara berikut:
+Sekarang kita akan mengecek nilai variabel-variabel kategoris tersebut dengan dua cara: (1) perintah `table()` dan (2) perintah `count()` yang dipadukan dengan *pipe operator* dari paket `tidyverse()`.
 
 ```{r mod02-check-categorical-values, echo=TRUE}
-# Mengecek rincian nilai-nilai variabel lain secara bersamaan
-table(data_ubl$Fakultas) # cara 1
+# Cara #1
+table(data_ubl$Fakultas)
+table(data_ubl$jenis.tempat.tinggal)
+```
 
-data_ubl |> # cara 2
+```{r mod02-check-categorical-values-2nd, echo=TRUE}
+# Cara #2
+data_ubl |>
   count(Prodi)
 data_ubl |>
   count(Tingkat.Semester)
 data_ubl |>
   count(Uang.Saku)
-table(data_ubl$jenis.tempat.tinggal)
 ```
 
 Kemudian kita buat vektor-vektor yang menyimpan nilai-nilai yang mungkinnya.
@@ -253,9 +262,11 @@ uang_saku <- c(
 )
 ```
 
-Sekarang kita sudah bisa mengubah nilai-nilai di variabel kategoris tersebut dari *character* menjadi *factor*. Variabel ordinal menggunakan atribut `ordered` yang bernilai `TRUE`, artinya urutan dipentingkan dalam `levels`.
+Sekarang kita sudah bisa mengubah nilai-nilai di variabel kategoris tersebut dari *character* menjadi *factor*.
 
-```{r mod02-apply-factors, echo=TRUE}
+Variabel ordinal menggunakan atribut `ordered` yang bernilai `TRUE`, artinya urutan dipentingkan dalam `levels`.
+
+```{r mod02-apply-factors, echo=TRUE, R.options=list(max.print=50)}
 # Mengubah variabel-variabel tersebut menjadi factor
 data_ubl <- data_ubl |>
   mutate(
@@ -284,34 +295,38 @@ levels(data_ubl$Tingkat.Semester)
 levels(data_ubl$Uang.Saku)
 ```
 
-::: {.rmdexercise}
-### Aktivitas Mandiri 2: Membuat Factor untuk Variabel Kategoris [STP-2.4].{capaian} {-}
+Sekarang, mari kita buktikan apa yang terjadi pada `summary()` setelah kita mengubah variabel kategoris menjadi *factor*. Bandingkan dengan hasil sebelumnya!
 
-Untuk dataset UBL yang sudah dibersihkan:
-1. Buat vektor `tempat_tinggal` dengan nilai-nilai jenis tempat tinggal yang ada di data
-   (Gunakan `table(data_ubl$jenis.tempat.tinggal)` untuk melihat nilai-nilainya)
-2. Gunakan `mutate()` untuk mengubah `jenis.tempat.tinggal` menjadi factor
-3. Verifikasi dengan `glimpse()` - tipe harus `<fct>`
-4. Cek level dengan `levels(data_ubl$jenis.tempat.tinggal)`
+```{r mod02-summary-after-factor, echo=TRUE, R.options=list(max.print=50)}
+# Melihat ringkasan dataset SETELAH variabel kategoris diubah menjadi factor
+summary(data_ubl)
+```
+
+Perhatikan perbedaannya: variabel-variabel yang tadi hanya menampilkan `Length`, `Class`, dan `Mode`, sekarang sudah menampilkan **frekuensi tiap nilai** karena R sudah mengenali nilai-nilai yang mungkin ada di variabel tersebut. Inilah kegunaan utama *factor* — selain memperbaiki analisis, ia juga membuat ringkasan data kita menjadi jauh lebih informatif.
+
+::: {.rmdexercise}
+### Aktivitas Mandiri 3: Membuat Factor untuk Variabel Kategoris UNILA  {-}
+
+Untuk dataset UNILA yang sudah dibersihkan (`data_unila_bersih`):
+
+1. Gunakan `table()` atau `count()` untuk mengecek nilai-nilai unik dari variabel-variabel kategoris berikut:
+   - `Jenis.Kelamin`
+   - `Tingkat.Semester`
+   - `Uang.Saku`
+   - `jenis.tempat.tinggal`
+2. Buat vektor untuk masing-masing variabel di atas (perhatikan variabel ordinal!)
+3. Gunakan `mutate()` untuk mengubah variabel-variabel tersebut menjadi factor
+4. Verifikasi dengan `glimpse()` untuk memastikan tipenya `<fct>` atau `<ord>`
+5. Jalankan `summary(data_unila_bersih)` — bandingkan tampilan sebelum dan sesudah factor!
 :::
 
 ## Analisis Statistika Deskriptif
 
-Kita akan menggunakan paket `gtsummary` dan `flextable` untuk melakukan analisis statistik deskriptif dengan ringkas. Paket ini memiliki perintah `tbl_summary()` yang dapat mengeluarkan analisis statistika deskriptif secara intuitif berdasarkan jenis data yang kita masukkan.
+Seperti yang sudah kita pelajari di kelas, analisis statistika deskriptif yang kita praktikkan di sini dibagi menjadi tiga kelompok besar: **ukuran frekuensi**, **ukuran pemusatan**, dan **ukuran penyebaran**. Kita akan menggunakan fungsi `tbl_summary()` dari paket `gtsummary` sebagai alat utama, yang selalu kita teruskan ke `as_flex_table()` untuk menghasilkan tabel yang rapi.
 
-Untuk meng-install kedua paket tersebut, hapus tanda pagar di depan baris pertama dalam *chunk* di bawah dan muat paket `gtsummary` saja.
+### Ukuran Frekuensi (Persentase/Proporsi)
 
-```{r mod02-load-gtsummary, echo=TRUE}
-# install.packages(c("gtsummary", "flextable"))
-library(gtsummary)
-library(flextable)
-```
-
-### Variabel Kategoris
-
-Kita masih akan menggunakan *pipe operator* dalam mengoperasikan analisis ini. Perintah yang kita gunakan adalah `tbl_summary()` yang kita teruskan ke `as_flex_table()` sebagai keluarannya.
-
-Untuk menampilkan persentase/proporsi, kita cukup memasukkan variabel-variabel kategoris ke dalam tabel dengan atribut `include`. Atribut tersebut menerima masukan berupa vektor nama-nama variabel kategoris dalam dataset kita. Fungsi `tbl_summary` ini akan menampilkan secara otomatis tabel distribusi frekuensinya disertai dengan nilai persentasenya di samping nilai frekuensi tersebut.
+Ukuran frekuensi digunakan untuk variabel **kategoris** dan menjawab pertanyaan: *"Seberapa banyak tiap kategori?"* Kita cukup memasukkan variabel-variabel kategoris ke dalam `tbl_summary()` melalui atribut `include`. Fungsi ini akan secara otomatis menampilkan frekuensi setiap nilai beserta persentasenya.
 
 ```{r mod02-tbl-summary-categorical, echo=TRUE}
 data_ubl |>
@@ -325,54 +340,9 @@ data_ubl |>
   as_flex_table()
 ```
 
-Untuk menghitung IQV, kita bisa memanfaatkan perintah `function` yang mengambil masukan nilai-nilai yang ada di tanda kurungnya dan memprosesnya di dalam kurung kurawal `{}`. Perintah function selalu diakhiri dengan `return()` di dalamnya untuk menunjukkan hasil yang akan menjadi keluaran fungsi tersebut.
+### Ukuran Pemusatan (Mean dan Median)
 
-```{r mod02-define-iqv-function, echo=TRUE}
-iqv <- function(x) {
-  # 1. Membersihkan data dari nilai yang hilang (NA)
-  x_clean <- x[!is.na(x)]
-
-  # 2. Membuat tabel frekuensi dari data yang bersih
-  counts <- table(x_clean)
-
-  # 3. Menghitung jumlah kategori (K)
-  K <- length(counts)
-
-  # 4. Kasus khusus: Jika hanya ada 1 kategori atau tidak ada data,
-  #    maka tidak ada variasi, sehingga IQV = 0.
-  if (K <= 1) {
-    return(0)
-  }
-
-  # 5. Menghitung jumlah total observasi (n)
-  n <- sum(counts)
-
-  # 6. Menghitung jumlah kuadrat dari proporsi setiap kategori (Σpᵢ²)
-  sum_p_sq <- sum((counts / n)^2)
-
-  # 7. Menerapkan formula IQV
-  #    IQV = [K / (K - 1)] * [1 - Σpᵢ²]
-  iqv_value <- (K / (K - 1)) * (1 - sum_p_sq)
-
-  # 8. Mengembalikan hasil perhitungan IQV
-  return(iqv_value)
-}
-```
-
-Untuk menghasilkan nilai IQV suatu variabel, kita perlu memasukkan vektor yang berisi nilai-nilai dalam variabel dataset kita. Ini dapat dilakukan dengan sintaks `dataset$nama_variabel`. Tanda \$ berfungsi memberi tahu R untuk memilih variabel yang ada dalam dataset yang digunakan.
-
-```{r mod02-calculate-iqv, echo=TRUE}
-# Menampilkan vektor jenis.tempat.tinggal (opsional. Hapus komentar pada baris
-# berikut jika ingin mencobanya)
-# data_ubl$jenis.tempat.tinggal
-
-# Menghitung IQV variabel jenis.tempat.tinggal
-iqv(data_ubl$jenis.tempat.tinggal)
-```
-
-### Variabel Numerik
-
-Perintah `tbl_summary` akan menentukan jenis statistik deskriptif yang ditampilkan secara intuitif berdasarkan dataset yang dibacanya. Perhatikan hasil dari `tbl_summary` berikut untuk variabel `kepemilikan.mobil` dan `jarak`.
+Ukuran pemusatan digunakan untuk variabel **numerik** dan menjawab pertanyaan: *"Di mana titik tengah data kita?"* Secara default, `tbl_summary()` sudah otomatis menampilkan median beserta kuartil untuk variabel numerik.
 
 ```{r mod02-tbl-summary-numeric, echo=TRUE}
 data_ubl |>
@@ -383,83 +353,104 @@ data_ubl |>
   as_flex_table()
 ```
 
-Seperti yang kalian lihat, `tbl_summary` langsung menampilkan persentase tiap nilai yang ada di kepemilikan.mobil seolah-olah `kepemilikan.mobil` adalah variabel diskret. Hal ini terjadi karena nilai variabel `kepemilikan.mobil` adalah nilai numerik diskret, sehingga masing-masing nilai dikenali sebagai kategori.
+Perlu diperhatikan, `tbl_summary` menampilkan persentase tiap nilai `kepemilikan.mobil` seolah-olah variabel kategoris — hal ini terjadi karena nilainya bertipe numerik dengan sedikit kategori unik. Untuk memaksanya ditampilkan sebagai variabel kontinu, kita gunakan atribut `type`.
 
-Hal ini berbeda lagi dengan variabel `jarak` yang menampilkan statistik deskriptif untuk variabel numerik, yakni median, kuartil bawah dan kuartil atas (Q1 & Q3).
+Kita juga bisa memilih ukuran pemusatan spesifik yang ingin ditampilkan melalui atribut `statistic`:
 
-Untuk meminta `tbl_summary` menampilkan analisis statistik deskriptif untuk variabel numerik seperti mean, median, kuartil, dan standar deviasi (simpangan baku), kita dapat menyatakannya dalam atribut-atribut berikut.
-
-```{r mod02-tbl-summary-numeric-advanced, echo=TRUE}
+```{r mod02-tbl-summary-mean-median, echo=TRUE}
 data_ubl |>
   tbl_summary(
-    include = c(
-      kepemilikan.mobil,
-      kepemilikan.motor,
-      jarak
-    ),
+    include = c(kepemilikan.motor, jarak),
+    type = list(kepemilikan.motor ~ "continuous"),
+    digits = list(kepemilikan.motor ~ 0),
+    statistic = list(
+      kepemilikan.motor ~ "{median}",  # hanya median
+      jarak ~ "{mean} ({sd})"          # mean dan standar deviasi
+    )
+  ) |>
+  as_flex_table()
+```
+
+### Ukuran Penyebaran (Standar Deviasi, Persentil, Kuartil, dan IQV)
+
+Ukuran penyebaran menjawab pertanyaan: *"Seberapa menyebar data kita dari titik tengahnya?"* Untuk variabel numerik, kita gunakan standar deviasi, persentil, dan kuartil. Untuk variabel nominal, kita gunakan **IQV** (*Index of Qualitative Variation*).
+
+**Variabel Numerik: Standar Deviasi, Persentil, dan Kuartil**
+
+Kita bisa menentukan ukuran penyebaran yang ditampilkan melalui atribut `statistic`. Teknik-teknik yang tersedia di antaranya:
+
+-   `{mean}` : rata-rata, `{median}` : median
+-   `{min}`, `{max}` : nilai minimum dan maksimum
+-   `{p##}` : persentil ke-##. Kuartil bawah (Q1) = `{p25}`, kuartil atas (Q3) = `{p75}`
+-   `{sd}` : standar deviasi, `{n}` : frekuensi, `{N}` : total, `{p}` : persentase
+
+```{r mod02-tbl-summary-spread, echo=TRUE}
+data_ubl |>
+  tbl_summary(
+    include = c(kepemilikan.mobil, kepemilikan.motor, jarak),
     type = list(
-      kepemilikan.mobil ~ "continuous", # untuk mengarahkan tbl_summary membaca tipe data sesuai yang kita butuhkan
+      kepemilikan.mobil ~ "continuous",
       kepemilikan.motor ~ "continuous"
     ),
     digits = list(
-      kepemilikan.mobil ~ 0, # untuk menentukan jumlah desimal nilai yang ditampilkan
+      kepemilikan.mobil ~ 0,
       kepemilikan.motor ~ 0
     ),
     statistic = list(
-      kepemilikan.mobil ~ "{median} ({p25}, {p75})", # untuk menentukan jenis statistik deskriptif yang ditampilkan
+      kepemilikan.mobil ~ "{median} ({p25}, {p75})",
       kepemilikan.motor ~ "{median}",
       jarak ~ "{mean} ({sd})"
     )
   ) |>
   as_flex_table()
 
-# Ketika meng-enter script, jangan salah memperhatikan urutan dan kelengkapan tanda koma pada fungsi
+# Perhatikan urutan dan kelengkapan tanda koma pada setiap atribut fungsi
 ```
-
-Untuk mengatur jenis statistik deskriptif yang ditampilkan, ubah bagian kanan tanda `~` pada atribut `statistic` sehingga apa yang ditulis di antara tanda petik menjadi template untuk ditampilkan di tabel. Adapun teknik statistik yang kita pakai harus kita tuliskan dalam kurung kurawalnya. Teknik-teknik statistik yang bisa kita gunakan di antaranya:
-
--   `{mean}` : rata-rata
-
--   `{median}` : median
-
--   `{min}`, `{max}`: nilai minimum, maksimum
-
--   `{p##}` : persentil ##. Persentil adalah nilai yang membagi data menjadi seratus bagian. Karena kuartil membagi data menjadi empat bagian, maka untuk menampilkan kuartil bawah (Q1), yang berarti nilai yang membagi data menjadi 1/4 terbawah (25%), kita menuliskan `{p25}`. Begitu juga dengan Q3 yang membagi data menjadi 3/4 terbawah (75%), kita menuliskan `{p75}`
-
--   `{sd}` : *standard deviation*/simpangan baku
-
--   `{n}` : frekuensi kategori
-
--   `{N}` : jumlah seluruhnya
-
--   `{p}` : persentase
 
 ::: {.rmdnote}
-**Pengenalan Tipe Data Baru R: List (`list)`**
+**Pengenalan Tipe Data Baru R: List (`list`)**
 
-*List* pada dasarnya adalah tipe data nontunggal seperti vektor, hanya saja perbedaannya terletak pada tipe nilai yang dikandung. Vektor mewajibkan setiap elemen bernilai sama: string saja, angka saja, atau *boolean* saja misalnya.
-
-Di sisi lain, *list* bisa memuat lebih dari satu jenis nilai. Ini sangat berguna ketika kita harus mendefinisikan sesuatu yang membutuhkan lebih dari satu nilai, seperti cara menampilkan statistik deskriptif untuk tiap-tiap variabel kita di fungsi `tbl_summary` di atas:
+*List* bisa memuat lebih dari satu jenis nilai sekaligus — berbeda dengan vektor yang mengharuskan semua elemennya bertipe sama. Ini sangat berguna untuk mendefinisikan pengaturan per-variabel di `tbl_summary`:
 
 ``` r
-type = list(kepemilikan.motor ~ "continuous", kepemilikan.mobil ~ "continuous")
-
-digits = list(kepemilikan.motor ~ 0, kepemilikan.mobil ~ 0)
+type    = list(kepemilikan.motor ~ "continuous", kepemilikan.mobil ~ "continuous")
+digits  = list(kepemilikan.motor ~ 0, kepemilikan.mobil ~ 0)
 ```
 
--   *list* dalam pengaturan atribut `type` berarti "anggap tipe variabel `kepemilikan.motor` sebagai *continuous**,*** begitu juga untuk variabel `kepemilikan.mobil`
-
--   *list* dalam pengaturan atribut `digits` berarti "atur agar nilai desimal untuk `kepemilikan.motor` adalah 0, begitu juga untuk variabel `kepemilikan.mobil`
+Setiap elemen list menggunakan format `nama_variabel ~ nilai_pengaturan`.
 :::
 
+**Variabel Nominal: IQV**
+
+Untuk variabel **nominal** (kategoris tanpa urutan), ukuran penyebaran yang tepat adalah **IQV** (*Index of Qualitative Variation*). IQV bernilai 0 jika semua observasi jatuh pada satu kategori (tidak ada variasi), dan mendekati 1 jika observasi tersebar merata ke semua kategori.
+
+Karena R tidak memiliki fungsi IQV bawaan, kita buat sendiri menggunakan mekanisme `function`:
+
+```{r mod02-define-iqv-function, echo=TRUE}
+iqv <- function(x) {
+  x_clean <- x[!is.na(x)]
+  counts <- table(x_clean)
+  K <- length(counts)
+  if (K <= 1) return(0)
+  n <- sum(counts)
+  sum_p_sq <- sum((counts / n)^2)
+  iqv_value <- (K / (K - 1)) * (1 - sum_p_sq)
+  return(iqv_value)
+}
+```
+
+Untuk memanggil fungsi `iqv()`, kita masukkan vektor variabel yang ingin dihitung dengan sintaks `dataset$nama_variabel`:
+
+```{r mod02-calculate-iqv, echo=TRUE}
+# Menghitung IQV variabel jenis.tempat.tinggal
+iqv(data_ubl$jenis.tempat.tinggal)
+```
+
 ::: {.rmdexercise}
-### Aktivitas Mandiri 3: Analisis Statistik Deskriptif Komprehensif [STP-2.4].{capaian} {-}
+### Aktivitas Mandiri 4: Analisis Statistik Deskriptif Komprehensif Data UNILA [STP-2.4]{.capaian} {-}
 
 **Persiapan:**
-Impor dataset UIN RIL dari sheet `DataUtama_mhsUINRIL` dan bersihkan seperti yang sudah dipraktikkan:
-- Rename variabel yang perlu disesuaikan
-- Gunakan `drop_na()` untuk menghapus missing values
-- Buat factor untuk variabel kategoris (minimal: `Jenis.Kelamin`, `Tingkat.Semester`, `Uang.Saku`)
+Gunakan `data_unila_bersih` yang sudah dirapikan dan sudah memiliki variabel *factor*.
 
 **Analisis yang Diminta:**
 
@@ -468,12 +459,12 @@ a. **Persentase/Proporsi:**
    - Gunakan `tbl_summary(include = Uang.Saku)` dan `as_flex_table()`
 
 b. **Ukuran Pemusatan (Median dan Kuartil):**
-   - Untuk variabel `jumlah_perjalanan_senin` (atau hari lain jika variabel ini tidak ada)
+   - Untuk variabel `jumlah_perjalanan_senin`
    - Tampilkan Median, Q1 (p25), dan Q3 (p75)
    - Gunakan `statistic = "{median} ({p25}, {p75})"`
 
 c. **Ukuran Pemusatan dan Penyebaran (Mean dan SD):**
-   - Untuk variabel biaya perjalanan per pekan
+   - Untuk variabel `biaya_dalam_sepekan`
    - Tampilkan Mean dan Standar Deviasi
    - Gunakan `statistic = "{mean} ({sd})"`
 
@@ -488,4 +479,3 @@ d. **Ukuran Variasi Nominal (IQV):**
 :::
 
 ------------------------------------------------------------------------
-
