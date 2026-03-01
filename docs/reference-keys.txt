@@ -62,8 +62,11 @@ mengganti-nama-variabel-dan-menghilangkan-missing-values-sekaligus-dengan-pipe-o
 membuat-factor
 analisis-statistika-deskriptif
 ukuran-frekuensi-persentaseproporsi
+interpretasi-hasil-tabel-persentaseproporsi
 ukuran-pemusatan-mean-dan-median
+interpretasi-hasil-ukuran-pemusatan
 ukuran-penyebaran-standar-deviasi-persentil-kuartil-dan-iqv
+interpretasi-hasil-ukuran-penyebaran
 modul-3-visualisasi-data-kuantitatif
 visualisasi-data-dengan-ggplot2
 mengimpor-library-mengatur-dataset
