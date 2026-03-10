@@ -10,7 +10,7 @@ Setelah mempelajari modul ini, kita diharapkan dapat:
 :::
 
 
-Paket `ggplot2` adalah sebuah paket R yang dibuat oleh Hadley @wickham2009ggplot2 untuk membuat grafik dan visualisasi data. Paket ini didasarkan pada "Grammar of Graphics", sebuah kerangka kerja yang memecah visualisasi menjadi komponen-komponen terpisah seperti data, sistem koordinat, dan elemen-elemen visual (geometries). Dengan pendekatan ini, kita dapat membangun grafik lapis demi lapis *(layer by layer)*.
+Paket `ggplot2` adalah sebuah paket R yang dibuat oleh Hadley  @wickham2009ggplot2 untuk membuat grafik dan visualisasi data. Paket ini didasarkan pada "Grammar of Graphics", sebuah kerangka kerja yang memecah visualisasi menjadi komponen-komponen terpisah seperti data, sistem koordinat, dan elemen-elemen visual (geometries). Dengan pendekatan ini, kita dapat membangun grafik lapis demi lapis *(layer by layer)*.
 
 ```{r mod03-konsep-ggplot2, echo=FALSE, fig.cap="Konsep `ggplot2`", fig.pos='H', fig.align='center'}
 knitr::include_graphics("images/basics_ggplot2.png")
@@ -148,6 +148,7 @@ levels(data_ubl$uang_saku)
 Kita akan memanfaatkan fungsi lain dari paket `forcats` bernama `fct_relevel` untuk memperbaiki urutan *factor*-nya.
 
 ```{r uang-saku-relevel, echo=TRUE}
+# Mengubah urutan level uang_saku langsung ke datasetnya
 data_ubl <- data_ubl |> 
   mutate(
     uang_saku = fct_relevel(
@@ -155,6 +156,9 @@ data_ubl <- data_ubl |>
       "<1"
     )
   )
+
+# Mengecek hasil fct_relevel
+levels(data_ubl$uang_saku)
 ```
 
 Fungsi `fct_relevel()` memungkinkan kita memindahkan kategori mana pun ke posisi yang kita inginkan. Pada perintah di atas, kita memindahkan kategori `<1` ke posisi pertama dengan hanya menyebutkan kategori tersebut. Cara ini jauh lebih praktis ketimbang kita menulis ulang seluruh urutan level *factor*-nya secara manual.
@@ -399,7 +403,20 @@ diagram_lollipop
 -   **KOORDINAT**: `coord_flip()` digunakan untuk membalik sumbu, membuat diagram lolipop horizontal yang seringkali lebih mudah dibaca label kategorinya.
 -   **THEME**: Lapisan tema digunakan untuk membersihkan tampilan, seperti menghilangkan beberapa garis grid dan batas panel untuk menonjolkan data itu sendiri.
 
-**Interpretasi:** Grafik ini menunjukkan bahwa kebanyakan responden berasal dari program studi Ilmu Hukum dan Manajemen, dengan perbandingan yang cukup timpang dengan prodi-prodi lain. Selain itu, ternyata cukup dominan mahasiswa yang tidak memberikan data prodi mereka (NA) di antara prodi-prodi selain dua yang tertinggi tadi.
+**Interpretasi:** Grafik ini menunjukkan bahwa kebanyakan responden berasal dari program studi Ilmu Hukum dan Manajemen, dengan perbandingan yang cukup timpang dengan prodi-prodi lain. Selain itu, terlihat pula adanya sebaran kecil responden dari program studi lain seperti Ilmu Komunikasi dan Teknik Sipil.
+
+::: rmdexercise
+## Aktivitas Mandiri 3: Membuat Diagram Lollipop [STP-3.2, STP-3.3]{.capaian} {-}
+
+Gunakan `data_itera` dan buatlah diagram lollipop untuk variabel `prodi`:
+
+1.  Buat tabel frekuensi `prodi_count_itera` dari `data_itera` menggunakan `count(prodi, name = "jumlah")`.
+2.  Gunakan `mutate(prodi = fct_reorder(prodi, jumlah))` agar batang lollipop terurut berdasarkan jumlahnya.
+3.  Buat diagram lollipop dengan menggabungkan `geom_segment()` dan `geom_point()`.
+4.  Gunakan `coord_flip()` agar nama program studi yang panjang dapat terbaca dengan baik.
+5.  Interpretasikan: Program studi mana di ITERA yang memiliki jumlah responden paling sedikit?
+:::
+
 
 ### Diagram Pai/Donat *(Pie/Donut Chart)*
 
@@ -441,7 +458,8 @@ diagram_pai
 -   **KOORDINAT**: `coord_polar(theta = "y")` adalah komponen kunci. Ini mengambil diagram batang dan mengubah sistem koordinatnya dari Kartesius (x,y) menjadi Polar. Sumbu y "dibengkokkan" menjadi sebuah lingkaran.
 -   `theme_void()`: Menghilangkan semua elemen tema seperti sumbu, label sumbu, dan latar belakang, yang tidak relevan untuk diagram pai/donat.
 
-**Interpretasi:** Diagram donat ini menunjukkan proporsi dari setiap fakultas. Terlihat jelas bahwa irisan "Fakultas Ekonomi dan Bisnis" dan "Fakultas Hukum" mendominasi porsi responden.
+**Interpretasi:** Diagram ini menunjukkan proporsi dari setiap fakultas. Terlihat jelas bahwa irisan "Fakultas Ekonomi dan Bisnis" dan "Fakultas Hukum" mendominasi porsi responden mahasiswa UBL.
+
 
 Kita bisa menambahkan lubang di tengah pai dengan menambahkan `xlim(0.5, 2.5)` yang merupakan batas dalam dan batas luar dari radius si diagram seperti berikut.
 
@@ -456,6 +474,18 @@ diagram_donat
 
 Komunitas perupa data pada dasarnya menganjurkan kita untuk 'menghindari' diagram lingkaran. Hal ini bisa kalian baca di [laman ini](https://www.data-to-viz.com/caveat/pie.html). Alternatifnya, mereka lebih menyarankan kita untuk menggunakan diagram batang atau diagram lollipop saja
 :::
+
+::: rmdexercise
+## Aktivitas Mandiri 4: Membuat Diagram Pai dan Donat [STP-3.2, STP-3.3]{.capaian} {-}
+
+Gunakan `data_itera` untuk memvisualisasikan variabel `moda`:
+
+1.  Buat tabel frekuensi untuk variabel `moda` dan hitung persentase dari masing-masing kategori.
+2.  Buat **diagram pai** menggunakan `coord_polar(theta = "y")`.
+3.  Modifikasi diagram pai tersebut menjadi **diagram donat** dengan menambahkan `xlim()`.
+4.  Diskusi: Menurut Anda, apakah diagram donat lebih efektif dalam menyajikan informasi porsi kategori dibandingkan diagram batang proporsi? Jelaskan alasan Anda.
+:::
+
 
 ### Diagram *Treemap*
 
@@ -511,6 +541,20 @@ ggplot(alasan_counts, aes(area = jumlah, fill = alasan_singkat, label = alasan_s
     1.  `geom_treemap()`: Ini adalah `geom` utama. Alih-alih `x` dan `y`, **MAPPING** utamanya adalah `aes(area = jumlah)`. `ggplot` akan secara otomatis menghitung tata letak persegi panjang berdasarkan nilai `jumlah`. Kita juga memetakan `alasan_singkat` ke `fill` untuk warna dan `label` untuk teks.
     2.  `geom_treemap_text()`: Ini adalah `geom` tambahan khusus untuk menempatkan teks di dalam setiap area treemap.
 -   **THEME**: Kita bisa menyembunyikan legenda karena setiap area sudah diberi label secara langsung, sehingga legenda menjadi berlebihan. Caranya adalah mengatur nilai `bottom =` menjadi `"none"`. Akan tetapi, untuk kasus kita, kita punya area yang terlalu kecil untuk diberi label, sehingga kita tetap tampilkan legenda.
+
+**Interpretasi:** Treemap ini menunjukkan bahwa alasan utama mahasiswa memilih tempat tinggal adalah karena "Bersama Keluarga" dan "Dekat Kampus/lokasi lain". Penggunaan luas area memudahkan kita melihat perbedaan dominansi alasan secara visual tanpa harus membaca angka satu per satu.
+
+::: rmdexercise
+## Aktivitas Mandiri 5: Membuat Diagram Treemap [STP-3.2, STP-3.3]{.capaian} {-}
+
+Gunakan variabel `alasan_hunian` dari `data_itera`:
+
+1.  Lakukan pembersihan atau penyederhanaan nama kategori (rekoding) jika dirasa terlalu panjang agar pas di dalam kotak treemap.
+2.  Buat diagram treemap menggunakan `geom_treemap()`.
+3.  Tambahkan label teks di tengah kotak menggunakan `geom_treemap_text()`.
+4.  Interpretasikan: Identifikasi tiga alasan utama yang mendasari mahasiswa ITERA memilih tempat tinggalnya.
+:::
+
 
 ## Visualisasi Data Variabel Numerik/Interval Rasio
 
@@ -577,7 +621,7 @@ boxplot
 
 -   `theme(legend.position = "none")`: Kustomisasi lapisan tema untuk menyembunyikan legenda.
 
-**Interpretasi:** Box plot ini menunjukkan bahwa mahasiswa yang menggunakan mobil pribadi cenderung memiliki rentang jarak tempat tinggal yang lebih bervariasi dan median yang sedikit lebih tinggi dibandingkan pengguna sepeda motor. Pengguna ojek online memiliki median jarak yang paling rendah di antara kategori lainnya.
+**Interpretasi:** Box plot ini menunjukkan bahwa mahasiswa yang menggunakan mobil pribadi cenderung memiliki rentang jarak tempat tinggal yang sedikit lebih beragam (IQR lebih tinggi) dan median yang sedikit lebih tinggi dibandingkan pengguna sepeda motor. Sejalan dengan intuisi, mahasiswa yang berjalan kaki memiliki median jarak yang paling rendah dibandingkan kategori moda transportasi lainnya.
 
 Seperti yang kita lihat, titik-titik pencilan membuat kita sulit menginterpretasi grafik kita. Kita dapat mengolah data kita kembali untuk menghilangkan pencilan tersebut. Caranya adalah mem-`filter()` objek sehingga yang terpilih hanya objek dengan nilai di antara "pagar" **$Q1 - 1,5 \times \text{IQR}$** dan **$Q3 + 1,5 \times \text{IQR}$**.
 
@@ -633,16 +677,17 @@ scatter_plot
 -   **MAPPING**: `mapping = aes(x = umur, y = jarak_km)` memetakan dua variabel, `umur` ke sumbu x dan `jarak_km` ke sumbu y. Setiap baris data akan menjadi satu titik pada plot.
 -   `alpha = 0.6` dan `color = "darkblue"` adalah pengaturan properti visual untuk semua titik.
 
-**Interpretasi:** Grafik ini tidak menunjukkan adanya pola atau hubungan yang jelas antara umur mahasiswa dan jarak tempat tinggal mereka dari kampus. Titik-titik tersebar secara acak.
+**Interpretasi:** Grafik ini tidak menunjukkan adanya pola atau hubungan yang jelas antara umur mahasiswa dan jarak tempat tinggal mereka dari kampus. Titik-titik tersebar secara acak, yang mengindikasikan bahwa umur bukan merupakan faktor penentu utama bagi mahasiswa dalam memilih lokasi tempat tinggal.
 
-Penting untuk menjaga konteks dalam interpretasi. Scatter plot kita menunjukkan bahwa mahasiswa yang lebih tua cenderung tinggal lebih jauh dari kampus. Namun, untuk benar-benar memahami kekuatan hubungan ini, kita perlu menggunakan statistik korelasi (akan dipelajari di modul selanjutnya).
+Penting untuk menjaga konteks dalam interpretasi. Meskipun secara teoretis mungkin ada anggapan bahwa mahasiswa yang lebih senior memiliki preferensi hunian tertentu, data kita menunjukkan bahwa sebarannya merata di berbagai kelompok umur. Untuk benar-benar memahami kekuatan hubungan ini, kita perlu menggunakan statistik korelasi (akan dipelajari di modul selanjutnya).
 
 ::: rmdexercise
-## Aktivitas Mandiri 3: Visualisasi Komprehensif untuk `biaya_ribu` [STP-3.2, STP-3.3] {.capaian} {-}
+## Aktivitas Mandiri 6: Visualisasi Komprehensif untuk `biaya_ribu` [STP-3.2, STP-3.3]{.capaian} {-}
+
 
 Gunakan `data_itera`:
 
-**A. Menghasilkan Grafik [STP-3.3]:**
+**A. Menghasilkan Grafik [STP-3.3]{.capaian}:**
 
 1.  Buat **histogram** untuk `biaya_ribu`
     -   Coba beberapa nilai `binwidth` (misal: 20, 50, atau 100) dan pilih yang paling informatif
@@ -654,7 +699,7 @@ Gunakan `data_itera`:
     -   Tambahkan `geom_point()` dengan `alpha = 0.5` untuk transparansi
     -   Pertimbangkan menambahkan `geom_smooth(method = "lm")` untuk melihat trend
 
-**B. Interpretasi Mendalam [STP-3.2]:**
+**B. Interpretasi Mendalam [STP-3.2]{.capaian}:**
 
 4.  **Dari histogram no.1:**
     -   Berapa rentang biaya yang paling sering muncul (modus)?
@@ -669,7 +714,7 @@ Gunakan `data_itera`:
     -   Jika ada trend line, apakah slopenya positif atau negatif?
     -   Apa interpretasi kontekstualnya?
 
-**C. Dokumentasi [STP-3.3]:**
+**C. Dokumentasi [STP-3.3]{.capaian}:**
 
 7.  Kumpulkan file modul ini dengan:
     -   Seluruh kode diagram yang sudah kita buat di modul ini
@@ -678,7 +723,8 @@ Gunakan `data_itera`:
 :::
 
 ::: rmdexercise
-## Aktivitas Mandiri 5: Pemilihan Visualisasi dan Tingkat Pengukuran [STP-3.1, STP-3.4] {.capaian} {-}
+## Aktivitas Mandiri 7: Pemilihan Visualisasi dan Tingkat Pengukuran [STP-3.1, STP-3.4]{.capaian} {-}
+
 
 1.  **Mengapa histogram cocok untuk `biaya_ribu`?**
     -   Jelaskan kaitannya dengan tingkat pengukuran variabel (metrik/rasio)
