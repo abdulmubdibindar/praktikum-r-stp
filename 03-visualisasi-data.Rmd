@@ -194,7 +194,7 @@ Setiap grafik `ggplot2` terdiri dari beberapa komponen kunci:
 -   **COORDINATE_FUNCTION**: Sistem koordinat yang digunakan (`coord_cartesian`, `coord_flip`, dll.).
 -   **FACET_FUNCTION**: Membagi plot menjadi beberapa sub-plot berdasarkan variabel kategori (`facet_wrap` atau `facet_grid`).
 
-``` r
+```r
 ggplot(<DATA>) + 
   <GEOM_FUNCTION>(mapping = aes(<MAPPING>),
              stat = <STAT>,
@@ -209,13 +209,11 @@ ggplot(<DATA>) +
 knitr::include_graphics("images/grammar_of_graphics.png")
 ```
 
-## Praktik Visualisasi Data
+## Visualisasi Data Variabel Kategoris/Nominal-Ordinal
 
-### Diagram Batang *(Column/Bar Chart)*
+Pada bagian ini, kita akan memvisualkan data variabel kategoris/nominal-ordinal. Diagram-diagram yang paling tepat digunakan untuk memvisualkan data dengan variabel ini di antaranya adalah **diagram batang** beserta turunannya (diagram batang bertumpuk, diagram batang berjejer, diagram batang proporsi, dan diagram lolipop), **diagram pai/donat**, dan **diagram *treemap***. Mengapa diagram-diagram ini paling tepat? Karena seluruh diagram tersebut **memvisualkan frekuensi kategori yang ada dalam suatu variabel**.
 
-Diagram batang sangat baik untuk menampilkan distribusi atau perbandingan data **kategoris**.
-
-#### Diagram Batang Tunggal
+### Diagram Batang Tunggal
 
 Mari kita lihat distribusi mahasiswa berdasarkan tingkat semester. `geom_bar()` secara otomatis menghitung jumlah observasi untuk setiap kategori di sumbu x.
 
@@ -249,7 +247,7 @@ diagram_batang
 **Interpretasi:** Grafik batang yang dihasilkan menunjukkan bahwa frekuensi relatif mahasiswa tingkat akhir (Semester 7 & 8) sangat tinggi dibandingka kategori lainnya. Artinya, pemilihan responden agak bias ke mahasiswa tingkat akhir
 
 
-#### Diagram Batang Bertumpuk *(Stacked)*
+### Diagram Batang Bertumpuk *(Stacked)*
 
 Pada diagram batang biasa kita menggunakan `tingkat_semester` sebagai `mapping = aes(...)` kita. Variabel lain seperti `uang_saku` bisa kita tambahkan ke dalam `aes()` tersebut dengan properti `fill` untuk membuat diagram **batang bertumpuk**. Ini akan menunjukkan proporsi uang saku di setiap tingkat semester.
 
@@ -275,32 +273,6 @@ diagram_batang_tumpuk
 -   `labs(fill = "Uang Saku per Bulan")`: Argumen `fill` di dalam `labs()` berfungsi untuk mengubah judul dari legenda yang secara otomatis dibuat dari pemetaan `fill`.
 
 **Interpretasi:** Dari grafik ini, kita bisa melihat komposisi uang saku di setiap angkatan. Misalnya, pada tingkat "Semester 5 & 6", sebagian besar mahasiswa memiliki uang saku pada kategori 1-2. Hal ini kita ketahui dari perbandingan relatif tinggi porsi warna-warna dalam masing-masing batang.
-
-Untuk membandingkan jumlah absolut antar kategori uang saku, diagram batang berkelompok lebih efektif. Kita gunakan `position = "dodge"`.
-
-```{r bar-chart-grouped, echo=TRUE, fig.cap="Diagram Batang Berkelompok Uang Saku", fig.pos='H', fig.align='center'}
-diagram_batang_sebar <- ggplot(data_ubl) +
-  geom_bar(
-    mapping = aes(x = tingkat_semester, fill = uang_saku),
-    position = "dodge"
-  ) +
-  labs(
-    title = "Perbandingan Uang Saku per Tingkat Semester",
-    x = "Tingkat Semester",
-    y = "Jumlah Mahasiswa",
-    fill = "Uang Saku per Bulan"
-  ) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
-diagram_batang_sebar
-```
-
-**Penjelasan Sintaks (Grammar of Graphics):**
-
--   **POSITION**: Komponen `position` diubah secara eksplisit menjadi `position = "dodge"`. Ini menginstruksikan `ggplot` untuk menempatkan batang-batang yang memiliki kategori x yang sama (misalnya, "Semester 5 & 6") bersebelahan, bukan menumpuknya. Ini memungkinkan perbandingan langsung antar kategori `uang_saku`.
-
-**Interpretasi:** Grafik ini mempermudah perbandingan langsung. Terlihat jelas bahwa kategori uang saku "1-2" mendominasi di hampir some tingkat semester.
 
 Terkadang kita lebih tertarik pada perbandingan proporsi antar grup daripada jumlah absolutnya. Dengan mengubah `position` menjadi `"fill"`, kita dapat membuat setiap batang memiliki tinggi yang sama (100%) dan menunjukkan persentase relatif dari setiap subgrup.
 
@@ -331,6 +303,36 @@ diagram_batang_tumpuk_100
 
 **Interpretasi:** Grafik ini menunjukkan bahwa secara proporsional, mahasiswa dengan kategori uang saku tertinggi ("\>4") yang paling dominan terdapat pada tingkat 3 ("Semester 5 & 6"). Sementara itu, mahasiswa kategori uang saku terrendah paling banyak porsinya pada tingkat 2 ("Semester 3 & 4"). Ini adalah wawasan yang mungkin tidak terlihat jelas pada grafik jumlah absolut.
 
+
+### Diagram Batang Berjejer
+
+Untuk membandingkan jumlah absolut antar kategori uang saku, diagram batang berjejer lebih efektif. Kita gunakan `position = "dodge"`.
+
+```{r bar-chart-grouped, echo=TRUE, fig.cap="Diagram Batang Berkelompok Uang Saku", fig.pos='H', fig.align='center'}
+diagram_batang_sebar <- ggplot(data_ubl) +
+  geom_bar(
+    mapping = aes(x = tingkat_semester, fill = uang_saku),
+    position = "dodge"
+  ) +
+  labs(
+    title = "Perbandingan Uang Saku per Tingkat Semester",
+    x = "Tingkat Semester",
+    y = "Jumlah Mahasiswa",
+    fill = "Uang Saku per Bulan"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+diagram_batang_sebar
+```
+
+**Penjelasan Sintaks (Grammar of Graphics):**
+
+-   **POSITION**: Komponen `position` diubah secara eksplisit menjadi `position = "dodge"`. Ini menginstruksikan `ggplot` untuk menempatkan batang-batang yang memiliki kategori x yang sama (misalnya, "Semester 5 & 6") bersebelahan, bukan menumpuknya. Ini memungkinkan perbandingan langsung antar kategori `uang_saku`.
+
+**Interpretasi:** Grafik ini mempermudah perbandingan langsung. Terlihat jelas bahwa kategori uang saku "1-2" mendominasi di hampir semua tingkat semester.
+
+
 ::: rmdexercise
 ## Aktivitas Mandiri 2: Membuat dan Menginterpretasikan Diagram Batang [STP-3.2, STP-3.3]{.capaian} {-}
 
@@ -344,7 +346,7 @@ Gunakan `data_itera` dan buatlah diagram batang untuk variabel `fakultas`:
     -   Apakah ada fakultas yang dominan memiliki mahasiswa dengan uang saku tertentu?
 :::
 
-## Diagram Lollipop
+### Diagram Lollipop
 
 Diagram lolipop adalah alternatif dari diagram batang yang dapat mengurangi tinta visual dan memberikan penekanan lebih pada nilai data. Grafik ini menggunakan segmen garis dan titik untuk merepresentasikan nilai. Ini sangat efektif untuk menampilkan data kategoris yang banyak kategorinya.
 
@@ -399,7 +401,7 @@ diagram_lollipop
 
 **Interpretasi:** Grafik ini menunjukkan bahwa kebanyakan responden berasal dari program studi Ilmu Hukum dan Manajemen, dengan perbandingan yang cukup timpang dengan prodi-prodi lain. Selain itu, ternyata cukup dominan mahasiswa yang tidak memberikan data prodi mereka (NA) di antara prodi-prodi selain dua yang tertinggi tadi.
 
-## Diagram Pai/Donat *(Pie/Donut Chart)*
+### Diagram Pai/Donat *(Pie/Donut Chart)*
 
 Diagram pai (dan variasinya, diagram donat) digunakan untuk menunjukkan proporsi dari sebuah keseluruhan. Meskipun populer, diagram pai seringkali sulit untuk dibaca secara akurat, terutama ketika ada banyak irisan atau ukurannya mirip. Diagram donat sedikit lebih baik karena mengurangi penekanan pada sudut dan lebih fokus pada panjang busur.
 
@@ -415,7 +417,7 @@ fakultas_count <- data_ubl |>
 fakultas_count
 ```
 
-Baru kemudian kita bisa menghasilkan perintah `ggplot` untuk
+Baru kemudian kita bisa menghasilkan perintah `ggplot` untuk membuat diagram pai-nya.
 
 ```{r membuat-diagram-pai, echo=TRUE, fig.cap="Diagram Pai Sebaran Fakultas", fig.pos='H', fig.align='center'}
 diagram_pai <- ggplot(fakultas_count, aes(x = 2, y = persen, fill = fakultas)) +
@@ -438,9 +440,10 @@ diagram_pai
 -   **GEOM & MAPPING**: Kita mulai dengan `geom_bar(stat = "identity")` yang membuat diagram batang di mana tinggi batang (`y`) adalah nilai persentase itu sendiri. `x=2` adalah trik untuk membuat satu batang tunggal yang akan kita "lilit".
 -   **KOORDINAT**: `coord_polar(theta = "y")` adalah komponen kunci. Ini mengambil diagram batang dan mengubah sistem koordinatnya dari Kartesius (x,y) menjadi Polar. Sumbu y "dibengkokkan" menjadi sebuah lingkaran.
 -   `theme_void()`: Menghilangkan semua elemen tema seperti sumbu, label sumbu, dan latar belakang, yang tidak relevan untuk diagram pai/donat.
--   kita bisa menambahkan lubang di tengah pai dengan menambahkan `xlim(0.5, 2.5)` yang merupakan batas dalam dan batas luar dari radius si diagram seperti berikut.
 
 **Interpretasi:** Diagram donat ini menunjukkan proporsi dari setiap fakultas. Terlihat jelas bahwa irisan "Fakultas Ekonomi dan Bisnis" dan "Fakultas Hukum" mendominasi porsi responden.
+
+Kita bisa menambahkan lubang di tengah pai dengan menambahkan `xlim(0.5, 2.5)` yang merupakan batas dalam dan batas luar dari radius si diagram seperti berikut.
 
 ```{r membuat-diagram-donat, echo=TRUE, fig.cap="Diagram Donat Sebaran Fakultas", fig.pos='H', fig.align='center'}
 diagram_donat <- diagram_pai + xlim(0.5, 2.5)
@@ -454,7 +457,7 @@ diagram_donat
 Komunitas perupa data pada dasarnya menganjurkan kita untuk 'menghindari' diagram lingkaran. Hal ini bisa kalian baca di [laman ini](https://www.data-to-viz.com/caveat/pie.html). Alternatifnya, mereka lebih menyarankan kita untuk menggunakan diagram batang atau diagram lollipop saja
 :::
 
-## Diagram *Treemap*
+### Diagram *Treemap*
 
 Treemap adalah alternatif lain untuk diagram pai, terutama efektif ketika kita memiliki banyak kategori. Treemap menampilkan data hierarkis atau bagian-ke-keseluruhan sebagai satu set persegi panjang bersarang. Ukuran setiap persegi panjang sebanding dengan nilainya.
 
@@ -509,9 +512,15 @@ ggplot(alasan_counts, aes(area = jumlah, fill = alasan_singkat, label = alasan_s
     2.  `geom_treemap_text()`: Ini adalah `geom` tambahan khusus untuk menempatkan teks di dalam setiap area treemap.
 -   **THEME**: Kita bisa menyembunyikan legenda karena setiap area sudah diberi label secara langsung, sehingga legenda menjadi berlebihan. Caranya adalah mengatur nilai `bottom =` menjadi `"none"`. Akan tetapi, untuk kasus kita, kita punya area yang terlalu kecil untuk diberi label, sehingga kita tetap tampilkan legenda.
 
-## Histogram
+## Visualisasi Data Variabel Numerik/Interval Rasio
 
-Histogram digunakan untuk melihat distribusi dari variabel numerik/kontinu, seperti `umur`.
+Perbedaan utama diagram yang memvisualkan variabel kategoris dan numerik terletak pada **angka yang divisualkan**: diagram untuk variabel kategorik memvisualkan **frekuensi kategori** dalam variabel, sementara diagram untuk variabel numerik memvisualkan **nilai variabel tersebut**. Diagram-diagram yang akan kita pelajari untuk memvisualkan data variabel numerik di antaranya adalah diagram **histogram**, ***boxplot***, dan ***scatterplot***.
+
+### Histogram
+
+Histogram digunakan untuk melihat distribusi dari variabel numerik/kontinu, seperti `umur`. Tidak seperti diagram batang, sumbu X histogram menampilkan **nilai-nilai dari variabel** `umur`, sementara sumbu Y menampilkan frekuensi data yang memiliki nilai-nilai di sumbu X tersebut.
+
+Setiap objek dikelompokkan ke dalam ***bin*** yang dapat diatur lebarnya. Lebar *bin* menunjukkan rentang nilai yang dicakup.
 
 ```{r histogram, echo=TRUE, fig.cap="Histogram Distribusi Umur", fig.pos='H', fig.align='center'}
 histogram <- ggplot(data_ubl) +
@@ -533,7 +542,7 @@ histogram
 -   **MAPPING**: `mapping = aes(x = umur)` memetakan variabel numerik `umur` ke sumbu x.
 -   **STAT**: `geom_histogram` memiliki `stat = "bin"` sebagai defaultnya. Transformasi statistik ini akan membagi data `umur` ke dalam beberapa rentang (bins) yang lebarnya diatur oleh `binwidth = 1`, lalu menghitung frekuensi data di setiap rentang tersebut untuk ditampilkan di sumbu y.
 
-## *Boxplot*
+### *Boxplot*
 
 Box plot berguna untuk membandingkan distribusi variabel numerik di antara beberapa grup/kategori. Mari kita bandingkan distribusi jarak tempat tinggal (`jarak_km`) untuk setiap jenis kendaraan utama.
 
@@ -568,7 +577,7 @@ boxplot
 
 **Interpretasi:** Box plot ini menunjukkan bahwa mahasiswa yang menggunakan mobil pribadi cenderung memiliki rentang jarak tempat tinggal yang lebih bervariasi dan median yang sedikit lebih tinggi dibandingkan pengguna sepeda motor. Pengguna ojek online memiliki median jarak yang paling rendah di antara kategori lainnya.
 
-## Grafik Pencar *(Scatter Plot)*
+### Grafik Pencar *(Scatterplot)*
 
 Scatter plot ideal untuk melihat hubungan antara dua variabel numerik. Mari kita lihat hubungan antara `umur` dan `jarak_km` tempat tinggal.
 
