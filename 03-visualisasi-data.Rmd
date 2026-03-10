@@ -546,6 +546,8 @@ histogram
 
 Box plot berguna untuk membandingkan distribusi variabel numerik di antara beberapa grup/kategori. Mari kita bandingkan distribusi jarak tempat tinggal (`jarak_km`) untuk setiap jenis kendaraan utama.
 
+Anatomi *boxplot* sudah diajarkan di kelas dan dapat dibaca di buku ajar. Silakan acu buku ajar yang sudah disebarkan.
+
 ```{r box-plot, echo=TRUE, fig.cap="Boxplot Jarak per Moda", fig.pos='H', fig.align='center'}
 boxplot <- ggplot(data_ubl) +
   geom_boxplot(mapping = aes(x = moda, y = jarak_km, fill = moda)) +
@@ -576,6 +578,36 @@ boxplot
 -   `theme(legend.position = "none")`: Kustomisasi lapisan tema untuk menyembunyikan legenda.
 
 **Interpretasi:** Box plot ini menunjukkan bahwa mahasiswa yang menggunakan mobil pribadi cenderung memiliki rentang jarak tempat tinggal yang lebih bervariasi dan median yang sedikit lebih tinggi dibandingkan pengguna sepeda motor. Pengguna ojek online memiliki median jarak yang paling rendah di antara kategori lainnya.
+
+Seperti yang kita lihat, titik-titik pencilan membuat kita sulit menginterpretasi grafik kita. Kita dapat mengolah data kita kembali untuk menghilangkan pencilan tersebut. Caranya adalah mem-`filter()` objek sehingga yang terpilih hanya objek dengan nilai di antara "pagar" **$Q1 - 1,5 \times \text{IQR}$** dan **$Q3 + 1,5 \times \text{IQR}$**.
+
+```{r mod03-clean-outlier, echo=TRUE, fig.cap="Boxplot Setelah Pembersihan Outlier", fig.pos='H', fig.align='center'}
+# 1. Menentukan Batas IQR
+Q1 <- quantile(data_ubl$jarak_km, .25)
+Q3 <- quantile(data_ubl$jarak_km, .75)
+IQR_val <- Q3 - Q1 
+
+# 2. Memfilter Outlier
+data_ubl_clean <- data_ubl |>
+  filter(jarak_km >= (Q1 - 1.5 * IQR_val) & jarak_km <= (Q3 + 1.5 * IQR_val))
+
+# 3. Plotting Kembali
+ggplot(data_ubl_clean) +
+  geom_boxplot(mapping = aes(x = moda, y = jarak_km, fill = moda)) +
+  coord_flip() +
+  labs(
+    title = "Distribusi Jarak (Tanpa Outlier)",
+    x = "Kendaraan Utama",
+    y = "Jarak (km)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+**Penjelasan Sintaks:**
+
+-   **Mencari Kuartil**: Fungsi `quantile(data$kolom, .25)` digunakan untuk mencari nilai Q1 (persentil ke-25) dan `.75` untuk Q3.
+-   **Filter Logika**: Kita menggunakan `filter()` dengan operator `&` (dan) untuk memastikan data yang diambil hanya yang berada di dalam rentang normal (tidak lebih kecil dari pagar bawah dan tidak lebih besar dari pagar atas).
 
 ### Grafik Pencar *(Scatterplot)*
 
