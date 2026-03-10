@@ -109,12 +109,12 @@ data_ubl <- data_ubl |>
 
 Kita akan mengubah nilai kategori pada variabel `tingkat_semester` dan `uang_saku` agar lebih singkat dan lebih mudah terbaca saat divisualisasikan. Kita akan menggunakan fungsi `fct_recode()` dari `forcats` (bagian dari `tidyverse`) untuk mengubah nama *factor*-nya.
 
-```{r tingkat-uang-recode, echo=TRUE, eval=FALSE}
+```{r tingkat-uang-recode, echo=TRUE}
 # Mengubah nama kategori factor untuk tingkat_semester
 data_ubl <- data_ubl |>
   mutate(
     tingkat_semester = fct_recode(
-tingkat_semester,
+      tingkat_semester,
       "Semester 1 & 2" = "1 (Semester 1 – Semester 2)",
       "Semester 3 & 4" = "2 (Semester 3 – Semester 4)",
       "Semester 5 & 6" = "3 (Semester 5 - Semester 6)",
@@ -140,14 +140,14 @@ Hampir mirip dengan saat kita menggunakan `rename(Nama Baru = Nama Lama)` sebelu
 
 Jika kita mengecek urutan *factor* untuk `uang_saku`, kita akan mendapati bahwa urutannya salah.
 
-```{r check-levels-uang-saku}
+```{r check-levels-uang-saku, echo=TRUE}
 # Mengecek urutan factor uang_saku
 levels(data_ubl$uang_saku)
 ```
 
 Kita akan memanfaatkan fungsi lain dari paket `forcats` bernama `fct_relevel` untuk memperbaiki urutan *factor*-nya.
 
-```{r uang-saku-relevel}
+```{r uang-saku-relevel, echo=TRUE}
 data_ubl <- data_ubl |> 
   mutate(
     uang_saku = fct_relevel(
@@ -159,7 +159,7 @@ data_ubl <- data_ubl |>
 
 Fungsi `fct_relevel()` memungkinkan kita memindahkan kategori mana pun ke posisi yang kita inginkan. Pada perintah di atas, kita memindahkan kategori `<1` ke posisi pertama dengan hanya menyebutkan kategori tersebut. Cara ini jauh lebih praktis ketimbang kita menulis ulang seluruh urutan level *factor*-nya secara manual.
 
-```{r clean-data}
+```{r clean-data, echo=TRUE}
 # Menampilkan hasil pembersihan data
 glimpse(data_ubl)
 ```
@@ -219,7 +219,7 @@ Diagram batang sangat baik untuk menampilkan distribusi atau perbandingan data *
 
 Mari kita lihat distribusi mahasiswa berdasarkan tingkat semester. `geom_bar()` secara otomatis menghitung jumlah observasi untuk setiap kategori di sumbu x.
 
-```{r bar-chart-single}
+```{r bar-chart-single, echo=TRUE, fig.cap="Diagram Batang Tunggal Distribusi Semester", fig.pos='H', fig.align='center'}
 diagram_batang <- ggplot(data_ubl) +
   geom_bar(
     mapping = aes(x = tingkat_semester),
@@ -253,7 +253,7 @@ diagram_batang
 
 Pada diagram batang biasa kita menggunakan `tingkat_semester` sebagai `mapping = aes(...)` kita. Variabel lain seperti `uang_saku` bisa kita tambahkan ke dalam `aes()` tersebut dengan properti `fill` untuk membuat diagram **batang bertumpuk**. Ini akan menunjukkan proporsi uang saku di setiap tingkat semester.
 
-```{r bar-chart-stacked}
+```{r bar-chart-stacked, echo=TRUE, fig.cap="Diagram Batang Bertumpuk Uang Saku", fig.pos='H', fig.align='center'}
 diagram_batang_tumpuk <- ggplot(data_ubl) +
   geom_bar(mapping = aes(x = tingkat_semester, fill = uang_saku)) +
   labs(
@@ -278,7 +278,7 @@ diagram_batang_tumpuk
 
 Untuk membandingkan jumlah absolut antar kategori uang saku, diagram batang berkelompok lebih efektif. Kita gunakan `position = "dodge"`.
 
-```{r bar-chart-grouped}
+```{r bar-chart-grouped, echo=TRUE, fig.cap="Diagram Batang Berkelompok Uang Saku", fig.pos='H', fig.align='center'}
 diagram_batang_sebar <- ggplot(data_ubl) +
   geom_bar(
     mapping = aes(x = tingkat_semester, fill = uang_saku),
@@ -296,13 +296,15 @@ diagram_batang_sebar <- ggplot(data_ubl) +
 diagram_batang_sebar
 ```
 
-**Interpretasi:** Grafik ini mempermudah perbandingan langsung. Terlihat jelas bahwa kategori uang saku "1-2" mendominasi di hampir semua tingkat semester.
+**Penjelasan Sintaks (Grammar of Graphics):**
 
 -   **POSITION**: Komponen `position` diubah secara eksplisit menjadi `position = "dodge"`. Ini menginstruksikan `ggplot` untuk menempatkan batang-batang yang memiliki kategori x yang sama (misalnya, "Semester 5 & 6") bersebelahan, bukan menumpuknya. Ini memungkinkan perbandingan langsung antar kategori `uang_saku`.
 
+**Interpretasi:** Grafik ini mempermudah perbandingan langsung. Terlihat jelas bahwa kategori uang saku "1-2" mendominasi di hampir some tingkat semester.
+
 Terkadang kita lebih tertarik pada perbandingan proporsi antar grup daripada jumlah absolutnya. Dengan mengubah `position` menjadi `"fill"`, kita dapat membuat setiap batang memiliki tinggi yang sama (100%) dan menunjukkan persentase relatif dari setiap subgrup.
 
-```{r bar-chart-fill}
+```{r bar-chart-fill, echo=TRUE, fig.cap="Diagram Batang Proporsi (100%)", fig.pos='H', fig.align='center'}
 diagram_batang_tumpuk_100 <- ggplot(data_ubl) +
   geom_bar(
     mapping = aes(x = tingkat_semester, fill = uang_saku),
@@ -321,13 +323,13 @@ diagram_batang_tumpuk_100 <- ggplot(data_ubl) +
 diagram_batang_tumpuk_100
 ```
 
-**Interpretasi:** Grafik ini menunjukkan bahwa secara proporsional, mahasiswa dengan kategori uang saku tertinggi ("\>4") yang paling dominan terdapat pada tingkat 3 ("Semester 5 & 6"). Sementara itu, mahasiswa kategori uang saku terrendah paling banyak porsinya pada tingkat 2 ("Semester 3 & 4"). Ini adalah wawasan yang mungkin tidak terlihat jelas pada grafik jumlah absolut.
-
 **Penjelasan Sintaks (Grammar of Graphics):**
 
 -   **POSITION**: Komponen `position` diubah menjadi `position = "fill"`. Pengaturan ini secara otomatis melakukan transformasi **STAT** yang berbeda: ia menghitung proporsi dari setiap subgrup (`uang_saku`) dalam setiap grup (`tingkat_semester`). Hasilnya adalah setiap batang dinormalisasi menjadi setinggi 1 (atau 100%).
 
 -   **SCALE**: `scale_y_continuous(labels = scales::percent)` adalah lapisan tambahan yang mengontrol **SKALA** pada sumbu y. Fungsi `scales::percent` digunakan untuk memformat label sumbu dari angka desimal (misal: 0.5) menjadi format persentase (misal: 50%) agar lebih mudah dibaca.
+
+**Interpretasi:** Grafik ini menunjukkan bahwa secara proporsional, mahasiswa dengan kategori uang saku tertinggi ("\>4") yang paling dominan terdapat pada tingkat 3 ("Semester 5 & 6"). Sementara itu, mahasiswa kategori uang saku terrendah paling banyak porsinya pada tingkat 2 ("Semester 3 & 4"). Ini adalah wawasan yang mungkin tidak terlihat jelas pada grafik jumlah absolut.
 
 ::: rmdexercise
 ## Aktivitas Mandiri 2: Membuat dan Menginterpretasikan Diagram Batang [STP-3.2, STP-3.3]{.capaian} {-}
@@ -346,7 +348,7 @@ Gunakan `data_itera` dan buatlah diagram batang untuk variabel `fakultas`:
 
 Diagram lolipop adalah alternatif dari diagram batang yang dapat mengurangi tinta visual dan memberikan penekanan lebih pada nilai data. Grafik ini menggunakan segmen garis dan titik untuk merepresentasikan nilai. Ini sangat efektif untuk menampilkan data kategoris yang banyak kategorinya.
 
-```{r buat-data-bahan}
+```{r buat-data-bahan, echo=TRUE}
 # Pertama, kita perlu membuat tabel baru yang menampilkan jumlah mahasiswa per program studi
 prodi_count <- data_ubl |>
   count(prodi, name = "jumlah") |>
@@ -354,7 +356,7 @@ prodi_count <- data_ubl |>
   mutate(prodi = fct_inorder(prodi)) # mengubah jadi faktor terurut
 ```
 
-```{r lollipop-chart}
+```{r lollipop-chart, echo=TRUE, fig.cap="Diagram Lollipop Responden per Prodi", fig.pos='H', fig.align='center'}
 # Kedua, kita baru bisa membuat diagram lollipop-nya
 diagram_lollipop <- ggplot(prodi_count) +
   # diagram lollipop terdiri atas 2 geometri: geom_segment yang bertindak sebagai
@@ -386,8 +388,6 @@ diagram_lollipop <- ggplot(prodi_count) +
 diagram_lollipop
 ```
 
-**Interpretasi:** Grafik ini menunjukkan bahwa kebanyakan responden berasal dari program studi Ilmu Hukum dan Manajemen, dengan perbandingan yang cukup timpang dengan prodi-prodi lain. Selain itu, ternyata cukup dominan mahasiswa yang tidak memberikan data prodi mereka (NA) di antara prodi-prodi selain dua yang tertinggi tadi.
-
 **Penjelasan Sintaks (Grammar of Graphics):**
 
 -   **DATA & STAT**: Sama seperti contoh sebelumnya, kita melakukan pra-pemrosesan data menggunakan `dplyr`. Kita mengelompokkan data berdasarkan `prodi`, menghitung (`count`) jumlahnya, mengurutkan (`arrange`), dan yang terpenting, mengubah `prodi` menjadi variabel faktor yang terurut (`fct_inorder`) agar plot ditampilkan sesuai urutan yang kita inginkan.
@@ -397,13 +397,15 @@ diagram_lollipop
 -   **KOORDINAT**: `coord_flip()` digunakan untuk membalik sumbu, membuat diagram lolipop horizontal yang seringkali lebih mudah dibaca label kategorinya.
 -   **THEME**: Lapisan tema digunakan untuk membersihkan tampilan, seperti menghilangkan beberapa garis grid dan batas panel untuk menonjolkan data itu sendiri.
 
+**Interpretasi:** Grafik ini menunjukkan bahwa kebanyakan responden berasal dari program studi Ilmu Hukum dan Manajemen, dengan perbandingan yang cukup timpang dengan prodi-prodi lain. Selain itu, ternyata cukup dominan mahasiswa yang tidak memberikan data prodi mereka (NA) di antara prodi-prodi selain dua yang tertinggi tadi.
+
 ## Diagram Pai/Donat *(Pie/Donut Chart)*
 
 Diagram pai (dan variasinya, diagram donat) digunakan untuk menunjukkan proporsi dari sebuah keseluruhan. Meskipun populer, diagram pai seringkali sulit untuk dibaca secara akurat, terutama ketika ada banyak irisan atau ukurannya mirip. Diagram donat sedikit lebih baik karena mengurangi penekanan pada sudut dan lebih fokus pada panjang busur.
 
 Di `ggplot2`, diagram pai dibuat dengan memulai dari diagram batang bertumpuk, lalu mengubah sistem **KOORDINAT**-nya menjadi koordinat polar. Akan tetapi, dalam `ggplot2` kita tidak bisa membuat diagram pai langsung dari datasetnya, tetapi kita harus membentuk **tabel distribusi frekuensinya** terlebih dahulu.
 
-```{r bahan-pie-and-donut}
+```{r bahan-pie-and-donut, echo=TRUE}
 fakultas_count <- data_ubl |>
   count(fakultas, name = "jumlah") |> # Membuat kolom jumlah responden per fakultas
   mutate(
@@ -415,7 +417,7 @@ fakultas_count
 
 Baru kemudian kita bisa menghasilkan perintah `ggplot` untuk
 
-```{r membuat-diagram-pai}
+```{r membuat-diagram-pai, echo=TRUE, fig.cap="Diagram Pai Sebaran Fakultas", fig.pos='H', fig.align='center'}
 diagram_pai <- ggplot(fakultas_count, aes(x = 2, y = persen, fill = fakultas)) +
   geom_bar(stat = "identity", color = "white") +
   coord_polar(theta = "y", start = 0) +
@@ -430,8 +432,6 @@ diagram_pai <- ggplot(fakultas_count, aes(x = 2, y = persen, fill = fakultas)) +
 diagram_pai
 ```
 
-**Interpretasi:** Diagram donat ini menunjukkan proporsi dari setiap fakultas. Terlihat jelas bahwa irisan "Fakultas Ekonomi dan Bisnis" dan "Fakultas Hukum" mendominasi porsi responden.
-
 **Penjelasan Sintaks (Grammar of Graphics):**
 
 -   **DATA & STAT**: Kita menggunakan data `alasan_counts` yang sudah diagregasi, lalu menambahkan kolom baru untuk persentase (`persen`) dan posisi vertikal untuk label (`posisi_y_label`).
@@ -440,7 +440,9 @@ diagram_pai
 -   `theme_void()`: Menghilangkan semua elemen tema seperti sumbu, label sumbu, dan latar belakang, yang tidak relevan untuk diagram pai/donat.
 -   kita bisa menambahkan lubang di tengah pai dengan menambahkan `xlim(0.5, 2.5)` yang merupakan batas dalam dan batas luar dari radius si diagram seperti berikut.
 
-```{r membuat-diagram-donat}
+**Interpretasi:** Diagram donat ini menunjukkan proporsi dari setiap fakultas. Terlihat jelas bahwa irisan "Fakultas Ekonomi dan Bisnis" dan "Fakultas Hukum" mendominasi porsi responden.
+
+```{r membuat-diagram-donat, echo=TRUE, fig.cap="Diagram Donat Sebaran Fakultas", fig.pos='H', fig.align='center'}
 diagram_donat <- diagram_pai + xlim(0.5, 2.5)
 
 diagram_donat
@@ -458,7 +460,7 @@ Treemap adalah alternatif lain untuk diagram pai, terutama efektif ketika kita m
 
 Untuk membuat treemap, kita perlu paket tambahan yaitu `treemapify`.
 
-```{r load-treemapify}
+```{r load-treemapify, echo=TRUE}
 # Pastikan paket sudah terinstall: install.packages("treemapify")
 # install.packages("treemapify")
 library(treemapify)
@@ -466,7 +468,7 @@ library(treemapify)
 
 Kita akan membuat *treemap* dari alasan mahasiswa memilih tempat tinggal mereka
 
-```{r membuat-alasan-count}
+```{r membuat-alasan-count, echo=TRUE}
 # Pertama, kita siapkan data dengan menghitung jumlah dan mengurutkannya
 alasan_counts <- data_ubl |>
   # Mengganti nama yang terlalu panjang agar muat di plot
@@ -484,7 +486,7 @@ alasan_counts <- data_ubl |>
 alasan_counts
 ```
 
-```{r treemap}
+```{r treemap, echo=TRUE, fig.cap="Treemap Alasan Tempat Tinggal", fig.pos='H', fig.align='center'}
 ggplot(alasan_counts, aes(area = jumlah, fill = alasan_singkat, label = alasan_singkat)) +
   geom_treemap() +
   geom_treemap_text(
@@ -511,7 +513,7 @@ ggplot(alasan_counts, aes(area = jumlah, fill = alasan_singkat, label = alasan_s
 
 Histogram digunakan untuk melihat distribusi dari variabel numerik/kontinu, seperti `umur`.
 
-```{r histogram}
+```{r histogram, echo=TRUE, fig.cap="Histogram Distribusi Umur", fig.pos='H', fig.align='center'}
 histogram <- ggplot(data_ubl) +
   geom_histogram(mapping = aes(x = umur), binwidth = 1, fill = "darkseagreen", color = "white") +
   labs(
@@ -535,7 +537,7 @@ histogram
 
 Box plot berguna untuk membandingkan distribusi variabel numerik di antara beberapa grup/kategori. Mari kita bandingkan distribusi jarak tempat tinggal (`jarak_km`) untuk setiap jenis kendaraan utama.
 
-```{r box-plot}
+```{r box-plot, echo=TRUE, fig.cap="Boxplot Jarak per Moda", fig.pos='H', fig.align='center'}
 boxplot <- ggplot(data_ubl) +
   geom_boxplot(mapping = aes(x = moda, y = jarak_km, fill = moda)) +
   coord_flip() + # Membalik sumbu agar label mudah dibaca
@@ -549,8 +551,6 @@ boxplot <- ggplot(data_ubl) +
 
 boxplot
 ```
-
-**Interpretasi:** Box plot ini menunjukkan bahwa mahasiswa yang menggunakan mobil pribadi cenderung memiliki rentang jarak tempat tinggal yang lebih bervariasi dan median yang sedikit lebih tinggi dibandingkan pengguna sepeda motor. Pengguna ojek online memiliki median jarak yang paling rendah di antara kategori lainnya.
 
 **Penjelasan Sintaks (Grammar of Graphics):**
 
@@ -566,11 +566,13 @@ boxplot
 
 -   `theme(legend.position = "none")`: Kustomisasi lapisan tema untuk menyembunyikan legenda.
 
+**Interpretasi:** Box plot ini menunjukkan bahwa mahasiswa yang menggunakan mobil pribadi cenderung memiliki rentang jarak tempat tinggal yang lebih bervariasi dan median yang sedikit lebih tinggi dibandingkan pengguna sepeda motor. Pengguna ojek online memiliki median jarak yang paling rendah di antara kategori lainnya.
+
 ## Grafik Pencar *(Scatter Plot)*
 
 Scatter plot ideal untuk melihat hubungan antara dua variabel numerik. Mari kita lihat hubungan antara `umur` dan `jarak_km` tempat tinggal.
 
-```{r scatter-plot}
+```{r scatter-plot, echo=TRUE, fig.cap="Scatter Plot Umur vs Jarak", fig.pos='H', fig.align='center'}
 scatter_plot <- ggplot(data_ubl) +
   geom_point(mapping = aes(x = umur, y = jarak_km), alpha = 0.6, color = "darkblue") + # alpha untuk transparansi
   labs(
@@ -583,14 +585,14 @@ scatter_plot <- ggplot(data_ubl) +
 scatter_plot
 ```
 
-**Interpretasi:** Grafik ini tidak menunjukkan adanya pola atau hubungan yang jelas antara umur mahasiswa dan jarak tempat tinggal mereka dari kampus. Titik-titik tersebar secara acak.
-
 **Penjelasan Sintaks (Grammar of Graphics):**
 
 -   **DATA**: `ggplot(data_ubl)` mendefinisikan dataset.
 -   **GEOM**: `geom_point(...)` menentukan bentuk geometris berupa titik.
 -   **MAPPING**: `mapping = aes(x = umur, y = jarak_km)` memetakan dua variabel, `umur` ke sumbu x dan `jarak_km` ke sumbu y. Setiap baris data akan menjadi satu titik pada plot.
 -   `alpha = 0.6` dan `color = "darkblue"` adalah pengaturan properti visual untuk semua titik.
+
+**Interpretasi:** Grafik ini tidak menunjukkan adanya pola atau hubungan yang jelas antara umur mahasiswa dan jarak tempat tinggal mereka dari kampus. Titik-titik tersebar secara acak.
 
 Penting untuk menjaga konteks dalam interpretasi. Scatter plot kita menunjukkan bahwa mahasiswa yang lebih tua cenderung tinggal lebih jauh dari kampus. Namun, untuk benar-benar memahami kekuatan hubungan ini, kita perlu menggunakan statistik korelasi (akan dipelajari di modul selanjutnya).
 
