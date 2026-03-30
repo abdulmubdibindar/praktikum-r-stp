@@ -1,449 +1,108 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8 Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda | Modul Praktik Statistika Untuk Perencanaan</title>
-  <meta name="description" content="8 Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda | Modul Praktik Statistika Untuk Perencanaan" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="8 Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda | Modul Praktik Statistika Untuk Perencanaan" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8 Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda | Modul Praktik Statistika Untuk Perencanaan" />
-  
-  
-  
-
-
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"/>
-<link rel="next" href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
-<script src="libs/tabwid-1.1.3/tabwid.js"></script>
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>8 Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda | Modul Praktik Statistika Untuk Perencanaan</title>
+<meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA">
+<meta name="generator" content="bookdown 0.45 with bs4_book()">
+<meta property="og:title" content="8 Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda | Modul Praktik Statistika Untuk Perencanaan">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="8 Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda | Modul Praktik Statistika Untuk Perencanaan">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
 <style type="text/css">
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Setelah mempelajari modul ini, Anda diharapkan dapat: mampu menghasilkan regresi linear sederhana dengan perangkat lunak komputer STP-13.3 mampu menghasilkan persamaan regresi linear berganda...">
+<meta property="og:description" content="Setelah mempelajari modul ini, Anda diharapkan dapat: mampu menghasilkan regresi linear sederhana dengan perangkat lunak komputer STP-13.3 mampu menghasilkan persamaan regresi linear berganda...">
+<meta name="twitter:description" content="Setelah mempelajari modul ini, Anda diharapkan dapat: mampu menghasilkan regresi linear sederhana dengan perangkat lunak komputer STP-13.3 mampu menghasilkan persamaan regresi linear berganda...">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html"><i class="fa fa-check"></i>Pengenalan R dan RStudio</a>
-<ul>
-<li class="chapter" data-level="0.1" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#apa-itu-r"><i class="fa fa-check"></i><b>0.1</b> Apa itu R?</a></li>
-<li class="chapter" data-level="0.2" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#mengapa-menggunakan-r"><i class="fa fa-check"></i><b>0.2</b> Mengapa Menggunakan R?</a></li>
-<li class="chapter" data-level="0.3" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#apa-itu-rstudio"><i class="fa fa-check"></i><b>0.3</b> Apa itu RStudio?</a></li>
-<li class="chapter" data-level="0.4" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#instalasi-r-dan-rstudio"><i class="fa fa-check"></i><b>0.4</b> Instalasi R dan RStudio</a></li>
-<li class="chapter" data-level="0.5" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#cara-menjalankan-r"><i class="fa fa-check"></i><b>0.5</b> Cara Menjalankan R</a>
-<ul>
-<li class="chapter" data-level="0.5.1" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#langsung-di-console"><i class="fa fa-check"></i><b>0.5.1</b> Langsung di <em>Console</em></a></li>
-<li class="chapter" data-level="" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#aktivitas-mandiri-kode-r-pertama"><i class="fa fa-check"></i>Aktivitas Mandiri: Kode R Pertama</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#aktivitas-mandiri-kode-r-pertama-di-rstudio"><i class="fa fa-check"></i>Aktivitas Mandiri: Kode R pertama di RStudio</a></li>
-<li class="chapter" data-level="0.5.2" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#menggunakan-file-kode-sumber"><i class="fa fa-check"></i><b>0.5.2</b> Menggunakan <em>File</em> Kode Sumber</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#aktivitas-mandiri-membuat-file-kode-sumber-r-pertama"><i class="fa fa-check"></i>Aktivitas Mandiri: Membuat <em>file</em> Kode Sumber R Pertama</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#aktivitas-mandiri-menjalankan-kode-r-dari-file-kode-sumber"><i class="fa fa-check"></i>Aktivitas Mandiri: Menjalankan Kode R dari File Kode Sumber</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html"><i class="fa fa-check"></i>Pengenalan Teknis R</a>
-<ul>
-<li class="chapter" data-level="0.6" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#pengaturan-direktori"><i class="fa fa-check"></i><b>0.6</b> Pengaturan Direktori</a>
-<ul>
-<li class="chapter" data-level="0.6.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#struktur-direktori-yang-ideal"><i class="fa fa-check"></i><b>0.6.1</b> Struktur Direktori yang Ideal</a></li>
-<li class="chapter" data-level="0.6.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#membuat-dan-mengatur-direktori-praktikum"><i class="fa fa-check"></i><b>0.6.2</b> Membuat dan Mengatur Direktori Praktikum</a></li>
-<li class="chapter" data-level="0.6.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#mengunduh-dataset-praktikum-dari-github"><i class="fa fa-check"></i><b>0.6.3</b> Mengunduh Dataset Praktikum dari GitHub</a></li>
-</ul></li>
-<li class="chapter" data-level="0.7" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#sintaks-dasar-bahasa-r"><i class="fa fa-check"></i><b>0.7</b> Sintaks Dasar Bahasa R</a>
-<ul>
-<li class="chapter" data-level="0.7.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#komentar"><i class="fa fa-check"></i><b>0.7.1</b> Komentar</a></li>
-<li class="chapter" data-level="0.7.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#variabel"><i class="fa fa-check"></i><b>0.7.2</b> Variabel</a></li>
-<li class="chapter" data-level="0.7.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#konvensi-penamaan-dalam-r"><i class="fa fa-check"></i><b>0.7.3</b> Konvensi Penamaan dalam R</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#aktivitas-mandiri-membuat-variabel-disertai-komentar"><i class="fa fa-check"></i>Aktivitas Mandiri: Membuat Variabel Disertai Komentar</a></li>
-</ul></li>
-<li class="chapter" data-level="0.8" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#paket-packages"><i class="fa fa-check"></i><b>0.8</b> Paket (<em>Packages</em>)</a>
-<ul>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#aktivitas-mandiri-instalasi-paket"><i class="fa fa-check"></i>Aktivitas Mandiri: Instalasi Paket</a></li>
-</ul></li>
-<li class="chapter" data-level="0.9" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#fungsi-functions"><i class="fa fa-check"></i><b>0.9</b> Fungsi (<em>Functions</em>)</a>
-<ul>
-<li class="chapter" data-level="0.9.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#menggunakan-fungsi"><i class="fa fa-check"></i><b>0.9.1</b> Menggunakan Fungsi</a></li>
-<li class="chapter" data-level="0.9.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#membuat-fungsi-sendiri"><i class="fa fa-check"></i><b>0.9.2</b> Membuat Fungsi Sendiri</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#aktivitas-mandiri-membuat-fungsi-sendiri"><i class="fa fa-check"></i>Aktivitas Mandiri: Membuat Fungsi Sendiri</a></li>
-</ul></li>
-<li class="chapter" data-level="0.10" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#struktur-data-dasar"><i class="fa fa-check"></i><b>0.10</b> Struktur Data Dasar</a>
-<ul>
-<li class="chapter" data-level="0.10.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#vektor"><i class="fa fa-check"></i><b>0.10.1</b> Vektor</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#aktivitas-mandiri-membuat-vektor"><i class="fa fa-check"></i>Aktivitas Mandiri: Membuat Vektor</a></li>
-<li class="chapter" data-level="0.10.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#list"><i class="fa fa-check"></i><b>0.10.2</b> List</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#aktivitas-mandiri-membuat-list"><i class="fa fa-check"></i>Aktivitas Mandiri: Membuat List</a></li>
-<li class="chapter" data-level="0.10.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#tipe-data"><i class="fa fa-check"></i><b>0.10.3</b> Tipe Data</a></li>
-<li class="chapter" data-level="0.10.4" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#data-frame-dan-tibble"><i class="fa fa-check"></i><b>0.10.4</b> Data Frame dan Tibble</a></li>
-</ul></li>
-<li class="chapter" data-level="0.11" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#sec-operator-pipa"><i class="fa fa-check"></i><b>0.11</b> Operator Pipa (<code>|&gt;</code>)</a></li>
-<li class="chapter" data-level="0.12" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#manajemen-data-inputoutput"><i class="fa fa-check"></i><b>0.12</b> Manajemen Data (Input/Output)</a>
-<ul>
-<li class="chapter" data-level="0.12.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#membaca-data"><i class="fa fa-check"></i><b>0.12.1</b> Membaca Data</a></li>
-<li class="chapter" data-level="0.12.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#menyimpan-data"><i class="fa fa-check"></i><b>0.12.2</b> Menyimpan Data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="1" data-path="modul-1.html"><a href="modul-1.html"><i class="fa fa-check"></i><b>1</b> Modul-1: Pengolahan Data Terstruktur</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="modul-1.html"><a href="modul-1.html#mengimpor-set-data-dataset-dari-excel"><i class="fa fa-check"></i><b>1.1</b> Mengimpor set data <em>(dataset)</em> dari Excel</a></li>
-<li class="chapter" data-level="1.2" data-path="modul-1.html"><a href="modul-1.html#analisis-data-terstruktur-pada-set-data"><i class="fa fa-check"></i><b>1.2</b> Analisis data terstruktur pada set data</a>
-<ul>
-<li class="chapter" data-level="" data-path="modul-1.html"><a href="modul-1.html#aktivitas-mandiri-1-menganalisis-struktur-data-stp-1.3"><i class="fa fa-check"></i>Aktivitas Mandiri 1: Menganalisis Struktur Data <span class="capaian">STP-1.3</span></a></li>
-</ul></li>
-<li class="chapter" data-level="1.3" data-path="modul-1.html"><a href="modul-1.html#mengolah-set-data"><i class="fa fa-check"></i><b>1.3</b> Mengolah set data</a>
-<ul>
-<li class="chapter" data-level="1.3.1" data-path="modul-1.html"><a href="modul-1.html#merancang-algoritma-urutan-kerja"><i class="fa fa-check"></i><b>1.3.1</b> Merancang Algoritma (Urutan kerja)</a></li>
-<li class="chapter" data-level="1.3.2" data-path="modul-1.html"><a href="modul-1.html#mengidentifikasi-nama-nama-kolom"><i class="fa fa-check"></i><b>1.3.2</b> Mengidentifikasi Nama-nama Kolom</a></li>
-<li class="chapter" data-level="1.3.3" data-path="modul-1.html"><a href="modul-1.html#menentukan-kolom-kolom-yang-akan-diambil-di-set-data-baru"><i class="fa fa-check"></i><b>1.3.3</b> Menentukan Kolom-kolom yang Akan Diambil di Set Data Baru</a></li>
-<li class="chapter" data-level="1.3.4" data-path="modul-1.html"><a href="modul-1.html#menyeleksi-kolom-kolom-yang-akan-dipakai"><i class="fa fa-check"></i><b>1.3.4</b> Menyeleksi Kolom-kolom Yang Akan Dipakai</a></li>
-<li class="chapter" data-level="1.3.5" data-path="modul-1.html"><a href="modul-1.html#mengubah-nama-kolom-menjadi-nama-standar"><i class="fa fa-check"></i><b>1.3.5</b> Mengubah Nama Kolom Menjadi Nama Standar</a></li>
-<li class="chapter" data-level="" data-path="modul-1.html"><a href="modul-1.html#aktivitas-mandiri-2-seleksi-dan-rename-kolom-stp-1.4"><i class="fa fa-check"></i>Aktivitas Mandiri 2: Seleksi dan Rename Kolom <span class="capaian">STP-1.4</span></a></li>
-<li class="chapter" data-level="1.3.6" data-path="modul-1.html"><a href="modul-1.html#menyatukan-kedua-set-data"><i class="fa fa-check"></i><b>1.3.6</b> Menyatukan Kedua Set Data</a></li>
-<li class="chapter" data-level="1.3.7" data-path="modul-1.html"><a href="modul-1.html#memperbaiki-set-data-yang-akan-digabungkan"><i class="fa fa-check"></i><b>1.3.7</b> Memperbaiki Set Data yang Akan Digabungkan</a></li>
-<li class="chapter" data-level="1.3.8" data-path="modul-1.html"><a href="modul-1.html#menyatukan-kedua-set-data-setelah-diperbaiki"><i class="fa fa-check"></i><b>1.3.8</b> Menyatukan Kedua Set Data Setelah Diperbaiki</a></li>
-<li class="chapter" data-level="" data-path="modul-1.html"><a href="modul-1.html#aktivitas-mandiri-3-menggabungkan-data-uinril-dan-itera-stp-1.3-stp-1.4"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Menggabungkan Data UINRIL dan ITERA <span class="capaian">STP-1.3, STP-1.4</span></a></li>
-<li class="chapter" data-level="1.3.9" data-path="modul-1.html"><a href="modul-1.html#mengekspor-set-data-hasil-pengolahan-ke-fail-file-terpisah"><i class="fa fa-check"></i><b>1.3.9</b> Mengekspor Set Data Hasil Pengolahan ke Fail <em>(File)</em> Terpisah</a></li>
-<li class="chapter" data-level="" data-path="modul-1.html"><a href="modul-1.html#aktivitas-mandiri-4-mengekspor-set-data-gabungan-stp-1.3-stp-1.4"><i class="fa fa-check"></i>Aktivitas Mandiri 4: Mengekspor Set Data Gabungan <span class="capaian">STP-1.3, STP-1.4</span></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html"><i class="fa fa-check"></i><b>2</b> Modul-2: Analisis Statistika Deskriptif</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#persiapan"><i class="fa fa-check"></i><b>2.1</b> Persiapan</a></li>
-<li class="chapter" data-level="2.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#mengimpor-dataset"><i class="fa fa-check"></i><b>2.2</b> Mengimpor Dataset</a></li>
-<li class="chapter" data-level="" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#aktivitas-mandiri-1-mengimpor-data-unila"><i class="fa fa-check"></i>Aktivitas Mandiri 1: Mengimpor Data UNILA</a></li>
-<li class="chapter" data-level="2.3" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#praktik-operator-pipa-pipe-operator"><i class="fa fa-check"></i><b>2.3</b> Praktik Operator Pipa <em>(Pipe Operator)</em></a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#memahami-konsep-pipe-operator"><i class="fa fa-check"></i><b>2.3.1</b> Memahami Konsep <em>Pipe Operator</em></a></li>
-<li class="chapter" data-level="2.3.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#mengganti-nama-variabel-dan-menghilangkan-missing-values-sekaligus-dengan-pipe-operator"><i class="fa fa-check"></i><b>2.3.2</b> Mengganti Nama Variabel dan Menghilangkan <em>Missing Values</em> Sekaligus dengan Pipe Operator</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#aktivitas-mandiri-2-merapikan-dataset-unila-dengan-pipe-operator"><i class="fa fa-check"></i>Aktivitas Mandiri 2: Merapikan Dataset UNILA dengan Pipe Operator</a></li>
-<li class="chapter" data-level="2.4" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#membuat-factor"><i class="fa fa-check"></i><b>2.4</b> Membuat <em>Factor</em></a>
-<ul>
-<li class="chapter" data-level="" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#aktivitas-mandiri-3-membuat-factor-untuk-variabel-kategoris-unila"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Membuat Factor untuk Variabel Kategoris UNILA</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#analisis-statistika-deskriptif"><i class="fa fa-check"></i><b>2.5</b> Analisis Statistika Deskriptif</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#ukuran-frekuensi-persentaseproporsi"><i class="fa fa-check"></i><b>2.5.1</b> Ukuran Frekuensi (Persentase/Proporsi)</a></li>
-<li class="chapter" data-level="2.5.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#interpretasi-hasil-tabel-persentaseproporsi"><i class="fa fa-check"></i><b>2.5.2</b> Interpretasi Hasil Tabel Persentase/Proporsi</a></li>
-<li class="chapter" data-level="2.5.3" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#ukuran-pemusatan-mean-dan-median"><i class="fa fa-check"></i><b>2.5.3</b> Ukuran Pemusatan (Mean dan Median)</a></li>
-<li class="chapter" data-level="2.5.4" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#interpretasi-hasil-ukuran-pemusatan"><i class="fa fa-check"></i><b>2.5.4</b> Interpretasi Hasil Ukuran Pemusatan</a></li>
-<li class="chapter" data-level="2.5.5" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#ukuran-penyebaran-standar-deviasi-persentil-kuartil-dan-iqv"><i class="fa fa-check"></i><b>2.5.5</b> Ukuran Penyebaran (Standar Deviasi, Persentil, Kuartil, dan IQV)</a></li>
-<li class="chapter" data-level="2.5.6" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#interpretasi-hasil-ukuran-penyebaran"><i class="fa fa-check"></i><b>2.5.6</b> Interpretasi Hasil Ukuran Penyebaran</a></li>
-<li class="chapter" data-level="" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#aktivitas-mandiri-4-analisis-statistik-deskriptif-komprehensif-data-unila-stp-2.4"><i class="fa fa-check"></i>Aktivitas Mandiri 4: Analisis Statistik Deskriptif Komprehensif Data UNILA <span class="capaian">STP-2.4</span></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html"><i class="fa fa-check"></i><b>3</b> Modul-3: Visualisasi Data Kuantitatif</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#mengimpor-library-mengimpor-dataset-dan-membersihkannya"><i class="fa fa-check"></i><b>3.1</b> Mengimpor <em>Library</em>, Mengimpor Dataset dan Membersihkannya</a></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-1-persiapan-dataset-itera"><i class="fa fa-check"></i>Aktivitas Mandiri 1: Persiapan Dataset ITERA</a></li>
-<li class="chapter" data-level="3.2" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#tata-tulis-grafik-grammar-of-graphics"><i class="fa fa-check"></i><b>3.2</b> Tata Tulis Grafik <em>(Grammar of Graphics)</em></a></li>
-<li class="chapter" data-level="3.3" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#visualisasi-data-variabel-kategorisnominal-ordinal"><i class="fa fa-check"></i><b>3.3</b> Visualisasi Data Variabel Kategoris/Nominal-Ordinal</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-batang-tunggal"><i class="fa fa-check"></i><b>3.3.1</b> Diagram Batang Tunggal</a></li>
-<li class="chapter" data-level="3.3.2" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-batang-bertumpuk-stacked"><i class="fa fa-check"></i><b>3.3.2</b> Diagram Batang Bertumpuk <em>(Stacked)</em></a></li>
-<li class="chapter" data-level="3.3.3" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-batang-berjejer"><i class="fa fa-check"></i><b>3.3.3</b> Diagram Batang Berjejer</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-2-membuat-dan-menginterpretasikan-diagram-batang-stp-3.2-stp-3.3"><i class="fa fa-check"></i>Aktivitas Mandiri 2: Membuat dan Menginterpretasikan Diagram Batang <span class="capaian">STP-3.2, STP-3.3</span></a></li>
-<li class="chapter" data-level="3.3.4" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-lollipop"><i class="fa fa-check"></i><b>3.3.4</b> Diagram Lollipop</a></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-3-membuat-diagram-lollipop-stp-3.2-stp-3.3"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Membuat Diagram Lollipop <span class="capaian">STP-3.2, STP-3.3</span></a></li>
-<li class="chapter" data-level="3.3.5" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-paidonat-piedonut-chart"><i class="fa fa-check"></i><b>3.3.5</b> Diagram Pai/Donat <em>(Pie/Donut Chart)</em></a></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-4-membuat-diagram-pai-dan-donat-stp-3.2-stp-3.3"><i class="fa fa-check"></i>Aktivitas Mandiri 4: Membuat Diagram Pai dan Donat <span class="capaian">STP-3.2, STP-3.3</span></a></li>
-<li class="chapter" data-level="3.3.6" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-treemap"><i class="fa fa-check"></i><b>3.3.6</b> Diagram <em>Treemap</em></a></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-5-membuat-diagram-treemap-stp-3.2-stp-3.3"><i class="fa fa-check"></i>Aktivitas Mandiri 5: Membuat Diagram Treemap <span class="capaian">STP-3.2, STP-3.3</span></a></li>
-<li class="chapter" data-level="3.4" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#visualisasi-data-variabel-numerikinterval-rasio"><i class="fa fa-check"></i><b>3.4</b> Visualisasi Data Variabel Numerik/Interval Rasio</a>
-<ul>
-<li class="chapter" data-level="3.4.1" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#histogram"><i class="fa fa-check"></i><b>3.4.1</b> Histogram</a></li>
-<li class="chapter" data-level="3.4.2" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#boxplot"><i class="fa fa-check"></i><b>3.4.2</b> <em>Boxplot</em></a></li>
-<li class="chapter" data-level="3.4.3" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#grafik-pencar-scatterplot"><i class="fa fa-check"></i><b>3.4.3</b> Grafik Pencar <em>(Scatterplot)</em></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-6-visualisasi-komprehensif-untuk-biaya_ribu-stp-3.2-stp-3.3"><i class="fa fa-check"></i>Aktivitas Mandiri 6: Visualisasi Komprehensif untuk <code>biaya_ribu</code> <span class="capaian">STP-3.2, STP-3.3</span></a></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-7-pemilihan-visualisasi-dan-tingkat-pengukuran-stp-3.1-stp-3.4"><i class="fa fa-check"></i>Aktivitas Mandiri 7: Pemilihan Visualisasi dan Tingkat Pengukuran <span class="capaian">STP-3.1, STP-3.4</span></a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><i class="fa fa-check"></i><b>4</b> Modul-4: Distribusi Sampling dan Interval Kepercayaan</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#pendahuluan"><i class="fa fa-check"></i><b>4.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="4.2" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#perangkat-lunak-dan-pustaka-libraries"><i class="fa fa-check"></i><b>4.2</b> Perangkat Lunak dan Pustaka (Libraries)</a></li>
-<li class="chapter" data-level="4.3" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#memuat-dan-mempersiapkan-data"><i class="fa fa-check"></i><b>4.3</b> Memuat dan Mempersiapkan Data</a></li>
-<li class="chapter" data-level="4.4" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#distribusi-sampling-dan-standard-error"><i class="fa fa-check"></i><b>4.4</b> Distribusi <em>Sampling</em> dan <em>Standard Error</em></a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mendefinisikan-parameter-populasi"><i class="fa fa-check"></i><b>4.4.1</b> Mendefinisikan Parameter Populasi</a></li>
-<li class="chapter" data-level="4.4.2" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#simulasi-pengambilan-sampel"><i class="fa fa-check"></i><b>4.4.2</b> Simulasi Pengambilan Sampel</a></li>
-<li class="chapter" data-level="" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#aktivitas-mandiri-1-simulasi-dengan-parameter-berbeda-stp-4.3.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 1: Simulasi dengan Parameter Berbeda [STP-4.3].{capaian}</a></li>
-<li class="chapter" data-level="4.4.3" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#visualisasi-distribusi-sampling"><i class="fa fa-check"></i><b>4.4.3</b> Visualisasi Distribusi Sampling</a></li>
-<li class="chapter" data-level="4.4.4" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghitung-standard-error-se"><i class="fa fa-check"></i><b>4.4.4</b> Menghitung <em>Standard Error</em> (SE)</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#estimasi-parameter-1-interval-kepercayaan-rata-rata"><i class="fa fa-check"></i><b>4.5</b> Estimasi Parameter-1: Interval Kepercayaan Rata-rata</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mengambil-satu-sampel"><i class="fa fa-check"></i><b>4.5.1</b> Mengambil Satu Sampel</a></li>
-<li class="chapter" data-level="4.5.2" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghasilkan-interval-kepercayaan"><i class="fa fa-check"></i><b>4.5.2</b> Menghasilkan Interval Kepercayaan</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#estimasi-parameter-2-interval-kepercayaan-proporsi"><i class="fa fa-check"></i><b>4.6</b> Estimasi Parameter-2: Interval Kepercayaan Proporsi</a>
-<ul>
-<li class="chapter" data-level="4.6.1" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#parameter-proporsi"><i class="fa fa-check"></i><b>4.6.1</b> Parameter Proporsi</a></li>
-<li class="chapter" data-level="4.6.2" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mengambil-satu-sampel-dan-menghitung-proporsinya"><i class="fa fa-check"></i><b>4.6.2</b> Mengambil Satu Sampel dan Menghitung Proporsinya</a></li>
-<li class="chapter" data-level="4.6.3" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghasilkan-interval-kepercayaan-untuk-proporsi"><i class="fa fa-check"></i><b>4.6.3</b> Menghasilkan Interval Kepercayaan untuk Proporsi</a></li>
-<li class="chapter" data-level="" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#aktivitas-mandiri-2-interval-kepercayaan-99-stp-5.2.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 2: Interval Kepercayaan 99% [STP-5.2].{capaian}</a></li>
-<li class="chapter" data-level="" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#aktivitas-mandiri-3-interval-kepercayaan-97-stp-4.3-stp-5.2.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Interval Kepercayaan 97% [STP-4.3, STP-5.2].{capaian}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html"><i class="fa fa-check"></i><b>5</b> Modul-5: Uji Hipotesis</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#pendahuluan-1"><i class="fa fa-check"></i><b>5.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="5.2" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#perangkat-lunak-dan-pustaka-libraries-1"><i class="fa fa-check"></i><b>5.2</b> Perangkat Lunak dan Pustaka (Libraries)</a></li>
-<li class="chapter" data-level="5.3" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#memuat-data"><i class="fa fa-check"></i><b>5.3</b> Memuat Data</a></li>
-<li class="chapter" data-level="5.4" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#perkenalan-markdown-latex"><i class="fa fa-check"></i><b>5.4</b> Perkenalan Markdown: LaTeX</a></li>
-<li class="chapter" data-level="5.5" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#uji-hipotesis-satu-populasi"><i class="fa fa-check"></i><b>5.5</b> Uji Hipotesis Satu Populasi</a>
-<ul>
-<li class="chapter" data-level="5.5.1" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#rata-rata"><i class="fa fa-check"></i><b>5.5.1</b> Rata-rata</a></li>
-<li class="chapter" data-level="5.5.2" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#memahami-distribusi-normal-dan-area-kritis"><i class="fa fa-check"></i><b>5.5.2</b> Memahami Distribusi Normal dan Area Kritis</a></li>
-<li class="chapter" data-level="5.5.3" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#proporsi"><i class="fa fa-check"></i><b>5.5.3</b> Proporsi</a></li>
-</ul></li>
-<li class="chapter" data-level="5.6" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#uji-hipotesis-2-populasi-independen"><i class="fa fa-check"></i><b>5.6</b> Uji Hipotesis 2 Populasi Independen</a>
-<ul>
-<li class="chapter" data-level="5.6.1" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#rata-rata-1"><i class="fa fa-check"></i><b>5.6.1</b> Rata-rata</a></li>
-<li class="chapter" data-level="5.6.2" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#proporsi-1"><i class="fa fa-check"></i><b>5.6.2</b> Proporsi</a></li>
-</ul></li>
-<li class="chapter" data-level="5.7" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#uji-hipotesis-2-populasi-dependen"><i class="fa fa-check"></i><b>5.7</b> Uji Hipotesis 2 Populasi Dependen</a></li>
-<li class="chapter" data-level="5.8" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#soal-latihan"><i class="fa fa-check"></i><b>5.8</b> Soal Latihan</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><i class="fa fa-check"></i><b>6</b> Modul-6: Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#pendahuluan-2"><i class="fa fa-check"></i><b>6.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="6.2" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#pustaka-libraries-yang-diperlukan-dan-memuat-data"><i class="fa fa-check"></i><b>6.2</b> Pustaka <em>(Libraries)</em> yang Diperlukan dan Memuat Data</a></li>
-<li class="chapter" data-level="6.3" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#pembuatan-tabel-silang"><i class="fa fa-check"></i><b>6.3</b> Pembuatan Tabel Silang</a></li>
-<li class="chapter" data-level="6.4" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#analisis-korelasi-antarvariabel-nominal"><i class="fa fa-check"></i><b>6.4</b> Analisis Korelasi Antarvariabel Nominal</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#koefisien-korelasi-variabel-nominal-berbasis-chi2"><i class="fa fa-check"></i><b>6.4.1</b> Koefisien Korelasi Variabel Nominal Berbasis <span class="math inline">\(\chi^2\)</span></a></li>
-<li class="chapter" data-level="6.4.2" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#koefisien-korelasi-variabel-nominal-berbasis-error"><i class="fa fa-check"></i><b>6.4.2</b> Koefisien Korelasi Variabel Nominal Berbasis <em>Error</em></a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#analisis-korelasi-antarvariabel-ordinal"><i class="fa fa-check"></i><b>6.5</b> Analisis Korelasi Antarvariabel Ordinal</a>
-<ul>
-<li class="chapter" data-level="" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#aktivitas-mandiri-3-analisis-korelasi-komprehensif-stp-9.2-stp-10.2.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Analisis Korelasi Komprehensif [STP-9.2, STP-10.2].{capaian}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><i class="fa fa-check"></i><b>7</b> Modul-7: Analisis Hubungan Korelatif: Korelasi Variabel Metrik</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#pendahuluan-3"><i class="fa fa-check"></i><b>7.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="7.2" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#pustaka-libraries-yang-diperlukan-dan-memuat-data-1"><i class="fa fa-check"></i><b>7.2</b> Pustaka <em>(Libraries)</em> yang Diperlukan dan Memuat Data</a></li>
-<li class="chapter" data-level="7.3" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#pola-hubungan-data"><i class="fa fa-check"></i><b>7.3</b> Pola Hubungan Data</a></li>
-<li class="chapter" data-level="7.4" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#analisis-korelasi-spearmans-rho"><i class="fa fa-check"></i><b>7.4</b> Analisis Korelasi Spearman’s <span class="math inline">\(\rho\)</span></a></li>
-<li class="chapter" data-level="7.5" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#analisis-korelasi-pearsons-r"><i class="fa fa-check"></i><b>7.5</b> Analisis Korelasi Pearson’s <em>r</em></a>
-<ul>
-<li class="chapter" data-level="" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#aktivitas-mandiri-3-analisis-korelasi-metrik-komprehensif-stp-11.2.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Analisis Korelasi Metrik Komprehensif [STP-11.2].{capaian}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><i class="fa fa-check"></i><b>8</b> Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#pendahuluan-4"><i class="fa fa-check"></i><b>8.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="8.2" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penjelasan-kasus"><i class="fa fa-check"></i><b>8.2</b> Penjelasan Kasus</a></li>
-<li class="chapter" data-level="8.3" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#memuat-pustaka-libraries-yang-diperlukan"><i class="fa fa-check"></i><b>8.3</b> Memuat Pustaka <em>(Libraries)</em> yang Diperlukan</a></li>
-<li class="chapter" data-level="8.4" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#memuat-dataset"><i class="fa fa-check"></i><b>8.4</b> Memuat Dataset</a></li>
-<li class="chapter" data-level="8.5" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#pola-hubungan-data-1"><i class="fa fa-check"></i><b>8.5</b> Pola Hubungan Data</a></li>
-<li class="chapter" data-level="8.6" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#model-regresi-linear-sederhana"><i class="fa fa-check"></i><b>8.6</b> Model Regresi Linear Sederhana</a>
-<ul>
-<li class="chapter" data-level="8.6.1" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penyusunan-model"><i class="fa fa-check"></i><b>8.6.1</b> Penyusunan Model</a></li>
-<li class="chapter" data-level="8.6.2" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penampilan-model"><i class="fa fa-check"></i><b>8.6.2</b> Penampilan Model</a></li>
-<li class="chapter" data-level="8.6.3" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penafsiraninterpretasi-model"><i class="fa fa-check"></i><b>8.6.3</b> Penafsiran/interpretasi Model</a></li>
-<li class="chapter" data-level="8.6.4" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#melakukan-prediksi"><i class="fa fa-check"></i><b>8.6.4</b> Melakukan Prediksi</a></li>
-</ul></li>
-<li class="chapter" data-level="8.7" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#model-regresi-linear-berganda"><i class="fa fa-check"></i><b>8.7</b> Model Regresi Linear Berganda</a>
-<ul>
-<li class="chapter" data-level="8.7.1" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penjelasan-variabel-dummy"><i class="fa fa-check"></i><b>8.7.1</b> Penjelasan Variabel <em>Dummy</em></a></li>
-<li class="chapter" data-level="8.7.2" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#interpretasi-variabel-dummy"><i class="fa fa-check"></i><b>8.7.2</b> Interpretasi Variabel <em>Dummy</em></a></li>
-<li class="chapter" data-level="8.7.3" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#prediksi-model"><i class="fa fa-check"></i><b>8.7.3</b> Prediksi Model</a></li>
-<li class="chapter" data-level="" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#aktivitas-mandiri-4-analisis-regresi-komprehensif-stp-13.3-stp-14.3.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3].{capaian}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><i class="fa fa-check"></i><b>9</b> Modul-9: Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#pendahuluan-5"><i class="fa fa-check"></i><b>9.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="9.2" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#studi-kasus"><i class="fa fa-check"></i><b>9.2</b> Studi Kasus</a></li>
-<li class="chapter" data-level="9.3" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#memuat-pustaka-libraries"><i class="fa fa-check"></i><b>9.3</b> Memuat Pustaka <em>(Libraries)</em></a></li>
-<li class="chapter" data-level="9.4" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#asumsi-awal"><i class="fa fa-check"></i><b>9.4</b> Asumsi Awal</a></li>
-<li class="chapter" data-level="9.5" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#mempersiapkan-data"><i class="fa fa-check"></i><b>9.5</b> Mempersiapkan Data</a></li>
-<li class="chapter" data-level="9.6" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#uji-kelayakan-data-asumsi"><i class="fa fa-check"></i><b>9.6</b> Uji Kelayakan Data (Asumsi)</a>
-<ul>
-<li class="chapter" data-level="9.6.1" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#uji-bartlett-of-sphericity"><i class="fa fa-check"></i><b>9.6.1</b> Uji Bartlett of Sphericity</a></li>
-<li class="chapter" data-level="9.6.2" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#uji-kmo-dan-msa"><i class="fa fa-check"></i><b>9.6.2</b> Uji KMO dan MSA</a></li>
-</ul></li>
-<li class="chapter" data-level="9.7" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#mengekstrak-dimensi-baru"><i class="fa fa-check"></i><b>9.7</b> Mengekstrak Dimensi Baru</a>
-<ul>
-<li class="chapter" data-level="9.7.1" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#nilai-eigen-dan-total-variansi"><i class="fa fa-check"></i><b>9.7.1</b> Nilai Eigen dan Total Variansi</a></li>
-<li class="chapter" data-level="9.7.2" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#scree-plot"><i class="fa fa-check"></i><b>9.7.2</b> <em>Scree Plot</em></a></li>
-</ul></li>
-<li class="chapter" data-level="9.8" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#melakukan-analisis-faktor-dan-rotasi"><i class="fa fa-check"></i><b>9.8</b> Melakukan Analisis Faktor dan Rotasi</a>
-<ul>
-<li class="chapter" data-level="9.8.1" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#analisis-faktor-common-factor-analysis"><i class="fa fa-check"></i><b>9.8.1</b> Analisis Faktor (Common Factor Analysis)</a></li>
-<li class="chapter" data-level="9.8.2" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#analisis-komponen-prinsip-pca"><i class="fa fa-check"></i><b>9.8.2</b> Analisis Komponen Prinsip (PCA)</a></li>
-</ul></li>
-<li class="chapter" data-level="9.9" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#interpretasi-dan-penamaan-dimensi"><i class="fa fa-check"></i><b>9.9</b> Interpretasi dan Penamaan Dimensi</a>
-<ul>
-<li class="chapter" data-level="" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#aktivitas-mandiri-komprehensif-analisis-pca-mandiri-stp-14.3.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri Komprehensif: Analisis PCA Mandiri [STP-14.3].{capaian}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="referensi.html"><a href="referensi.html"><i class="fa fa-check"></i><b>10</b> Referensi</a></li>
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Penggunaan R dalam Pengolahan Data Kuantitatif">Modul Praktik Statistika Untuk Perencanaan</a>:
+        <small class="text-muted">Penggunaan R dalam Pengolahan Data Kuantitatif</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modul Praktik Statistika Untuk Perencanaan</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Pengantar</a></li>
+<li><a class="" href="pengenalan-r-dan-rstudio.html">Pengenalan R dan RStudio</a></li>
+<li><a class="" href="pengenalan-teknis-r.html">Pengenalan Teknis R</a></li>
+<li><a class="" href="modul-1.html"><span class="header-section-number">1</span> Modul-1: Pengolahan Data Terstruktur</a></li>
+<li><a class="" href="modul-2-analisis-statistika-deskriptif.html"><span class="header-section-number">2</span> Modul-2: Analisis Statistika Deskriptif</a></li>
+<li><a class="" href="modul-3-visualisasi-data-kuantitatif.html"><span class="header-section-number">3</span> Modul-3: Visualisasi Data Kuantitatif</a></li>
+<li><a class="" href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><span class="header-section-number">4</span> Modul-4: Distribusi Sampling dan Interval Kepercayaan</a></li>
+<li><a class="" href="modul-5-uji-hipotesis.html"><span class="header-section-number">5</span> Modul-5: Uji Hipotesis</a></li>
+<li><a class="" href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><span class="header-section-number">6</span> Modul-6: Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal</a></li>
+<li><a class="" href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><span class="header-section-number">7</span> Modul-7: Analisis Hubungan Korelatif: Korelasi Variabel Metrik</a></li>
+<li><a class="active" href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><span class="header-section-number">8</span> Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a></li>
+<li><a class="" href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><span class="header-section-number">9</span> Modul-9: Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</a></li>
+<li><a class="" href="referensi.html"><span class="header-section-number">10</span> Referensi</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda" class="section level1 hasAnchor" number="8">
-<h1><span class="header-section-number">8</span> Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda" class="section level1" number="8">
+<h1>
+<span class="header-section-number">8</span> Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda<a class="anchor" aria-label="anchor" href="#modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda"><i class="fas fa-link"></i></a>
+</h1>
 <p>Setelah mempelajari modul ini, Anda diharapkan dapat:</p>
 <ol style="list-style-type: decimal">
-<li>mampu menghasilkan regresi linear sederhana dengan perangkat lunak komputer <span class="capaian">STP-13.3</span></li>
-<li>mampu menghasilkan persamaan regresi linear berganda dengan perangkat lunak komputer <span class="capaian">STP-14.3</span></li>
+<li>mampu menghasilkan regresi linear sederhana dengan perangkat lunak komputer <span class="capaian">STP-13.3</span>
+</li>
+<li>mampu menghasilkan persamaan regresi linear berganda dengan perangkat lunak komputer <span class="capaian">STP-14.3</span>
+</li>
 </ol>
-<hr />
-<div id="pendahuluan-4" class="section level2 hasAnchor" number="8.1">
-<h2><span class="header-section-number">8.1</span> Pendahuluan<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#pendahuluan-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<hr>
+<div id="pendahuluan-4" class="section level2" number="8.1">
+<h2>
+<span class="header-section-number">8.1</span> Pendahuluan<a class="anchor" aria-label="anchor" href="#pendahuluan-4"><i class="fas fa-link"></i></a>
+</h2>
 <p>Analisis regresi linear adalah analisis statistik untuk menyatakan hubungan sebab-akibat (kausalitas) antar minimal dua variabel. Analisis regresi linear yang melibatkan <em>dua variabel saja</em> (<em>satu variabel dependen</em> dan <em>satu variabel independen</em>), kita sebut sebagai <strong>regresi linear sederhana</strong>, sedangkan analisis regresi linar yang melibatkan lebih dari dua variabel (<em>satu variabel dependen</em> dan <em>lebih dari satu variabel independen</em>) kita sebut sebagai <strong>regresi linear berganda <em>(multiple linear regression)</em></strong></p>
 <p>Analisis regresi linear mewajibkan tingkat pengukuran minimal untuk variabel dependennya adalah <strong>metrik</strong>. Sementara itu, variabel independennya dapat berupa metrik atau bukan (ordinal/nominal).</p>
 <p>Analisis regresi linear menghasilkan persamaan yang disebut <strong>persamaan regresi linear</strong>. Bentuk umum persamaan regresi linear tersebut adalah sebagai berikut.</p>
@@ -452,10 +111,15 @@ y = β_0 + β_1x
 \]</span></p>
 <p>dengan</p>
 <ul>
-<li><span class="math inline">\(y\)</span> adalah variabel dependen (disebut juga <em>variabel respons</em> atau <em>predicted variable</em>)</li>
-<li><span class="math inline">\(x\)</span> adalah variabel independen (disebut juga <em>variabel eksplanatory</em> atau <em>predictor variable</em>)</li>
-<li><span class="math inline">\(\beta_0\)</span> adalah konstanta yang menjadi <em>intercept</em>, yaitu nilai <span class="math inline">\(y\)</span> ketika <span class="math inline">\(x=0\)</span></li>
-<li><span class="math inline">\(\beta_1\)</span> adalah koefisien yang menyatakan seberapa besar perubahan <span class="math inline">\(y\)</span> ketika satu unit nilai <span class="math inline">\(x\)</span> berubah.</li>
+<li>
+<span class="math inline">\(y\)</span> adalah variabel dependen (disebut juga <em>variabel respons</em> atau <em>predicted variable</em>)</li>
+<li>
+<span class="math inline">\(x\)</span> adalah variabel independen (disebut juga <em>variabel eksplanatory</em> atau <em>predictor variable</em>)</li>
+<li>
+<span class="math inline">\(\beta_0\)</span> adalah konstanta yang menjadi <em>intercept</em>, yaitu nilai <span class="math inline">\(y\)</span> ketika <span class="math inline">\(x=0\)</span>
+</li>
+<li>
+<span class="math inline">\(\beta_1\)</span> adalah koefisien yang menyatakan seberapa besar perubahan <span class="math inline">\(y\)</span> ketika satu unit nilai <span class="math inline">\(x\)</span> berubah.</li>
 </ul>
 <p>Persamaan regresi linear di atas adalah untuk <strong>analisis regresi linear sederhana</strong>, yakni analisis regresi linear yang melibatkan dua variabel saja. Untuk <strong>regresi linear berganda</strong>, kita hanya perlu menambahkan pasangan <span class="math inline">\(\beta\)</span> dan <span class="math inline">\(x\)</span> lainnya, sehingga bentuk umum untuk persamaan regresi linear berganda adalah seperti berikut.</p>
 <p><span class="math display">\[
@@ -463,134 +127,160 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 \]</span></p>
 <p>dengan</p>
 <ul>
-<li><span class="math inline">\(x_k\)</span> adalah variabel independen ke-<span class="math inline">\(k\)</span></li>
-<li><span class="math inline">\(\beta_k\)</span> adalah koefisien untuk variabel independen ke-<span class="math inline">\(k\)</span> tersebut</li>
+<li>
+<span class="math inline">\(x_k\)</span> adalah variabel independen ke-<span class="math inline">\(k\)</span>
+</li>
+<li>
+<span class="math inline">\(\beta_k\)</span> adalah koefisien untuk variabel independen ke-<span class="math inline">\(k\)</span> tersebut</li>
 </ul>
 </div>
-<div id="penjelasan-kasus" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">8.2</span> Penjelasan Kasus<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penjelasan-kasus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="penjelasan-kasus" class="section level2" number="8.2">
+<h2>
+<span class="header-section-number">8.2</span> Penjelasan Kasus<a class="anchor" aria-label="anchor" href="#penjelasan-kasus"><i class="fas fa-link"></i></a>
+</h2>
 <p>Dalam praktikum kali ini, kita akan memodelkan hubungan kausal antara dua variabel metrik: <strong>jarak tempat tinggal ke kampus</strong> dan <strong>biaya perjalanan sepekan</strong> untuk mahasiswa-mahasiswi yang menggunakan <strong>kendaraan layanan online saja</strong>. Harga perjalanan menggunakan layanan <em>online</em> tentunya dipengaruhi oleh jarak tempuh kendaraan tersebut. Hubungan kausal ini menjadi kasus untuk <strong>regresi linear sederhana</strong>.</p>
 <p>Untuk <strong>regresi linear berganda</strong>, kita akan melibatkan satu variabel tambahan sebagai variabel independen, yakni variabel berjenis kategoris , sehingga kita memiliki total variabel sejumlah 3 buah (1 variabel dependen, 2 variabel independen).</p>
 </div>
-<div id="memuat-pustaka-libraries-yang-diperlukan" class="section level2 hasAnchor" number="8.3">
-<h2><span class="header-section-number">8.3</span> Memuat Pustaka <em>(Libraries)</em> yang Diperlukan<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#memuat-pustaka-libraries-yang-diperlukan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="memuat-pustaka-libraries-yang-diperlukan" class="section level2" number="8.3">
+<h2>
+<span class="header-section-number">8.3</span> Memuat Pustaka <em>(Libraries)</em> yang Diperlukan<a class="anchor" aria-label="anchor" href="#memuat-pustaka-libraries-yang-diperlukan"><i class="fas fa-link"></i></a>
+</h2>
 <p>Seperti biasa, kita perlu memuat pustaka <em>(libraries)</em> yang diperlukan dalam pengolahan data kita. Seperti halnya juga analisis korelasi variabel metrik, kita tidak lagi menggunakan tabel silang, tetapi kita langsung menganalisis kolom-kolom yang ada di dataset kita.</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb320-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># untuk mengolah data terstruktur</span></span>
-<span id="cb320-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb320-2" tabindex="-1"></a><span class="fu">library</span>(readr) <span class="co"># untuk membaca file csv</span></span>
-<span id="cb320-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb320-3" tabindex="-1"></a><span class="fu">library</span>(gtsummary) <span class="co"># untuk memproduksi tabel hasil pembuatan regresi dengan cepat dan rapi</span></span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># untuk mengolah data terstruktur</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span> <span class="co"># untuk membaca file csv</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span> <span class="co"># untuk memproduksi tabel hasil pembuatan regresi dengan cepat dan rapi</span></span></code></pre></div>
 </div>
-<div id="memuat-dataset" class="section level2 hasAnchor" number="8.4">
-<h2><span class="header-section-number">8.4</span> Memuat Dataset<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#memuat-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="memuat-dataset" class="section level2" number="8.4">
+<h2>
+<span class="header-section-number">8.4</span> Memuat Dataset<a class="anchor" aria-label="anchor" href="#memuat-dataset"><i class="fas fa-link"></i></a>
+</h2>
 <p>Kita akan menggunakan dataset keempat kampus di Kota Bandar Lampung dan sekitarnya sebagai bahan. Kemudian kita akan menyaring objek-objek yang memiliki nilai variabel <code>kendaraan utama</code> sama dengan <code>'Layanan online'</code>.</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb321-1" tabindex="-1"></a><span class="co"># Membaca data dari file csv</span></span>
-<span id="cb321-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb321-2" tabindex="-1"></a>data_mahasiswa <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/Data Praktikum 08.csv&quot;</span>)</span>
-<span id="cb321-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb321-3" tabindex="-1"></a></span>
-<span id="cb321-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb321-4" tabindex="-1"></a><span class="co"># Memisahkan data mahasiswa yang menggunakan kendaraan online sebagai moda utama</span></span>
-<span id="cb321-5"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb321-5" tabindex="-1"></a>data_mahasiswa_online <span class="ot">&lt;-</span> data_mahasiswa <span class="sc">|&gt;</span></span>
-<span id="cb321-6"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb321-6" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="st">`</span><span class="at">kendaraan utama</span><span class="st">`</span> <span class="sc">==</span> <span class="st">&quot;Layanan online&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membaca data dari file csv</span></span>
+<span><span class="va">data_mahasiswa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"datasets/Data Praktikum 08.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Memisahkan data mahasiswa yang menggunakan kendaraan online sebagai moda utama</span></span>
+<span><span class="va">data_mahasiswa_online</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">`kendaraan utama`</span> <span class="op">==</span> <span class="st">"Layanan online"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="pola-hubungan-data-1" class="section level2 hasAnchor" number="8.5">
-<h2><span class="header-section-number">8.5</span> Pola Hubungan Data<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#pola-hubungan-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pola-hubungan-data-1" class="section level2" number="8.5">
+<h2>
+<span class="header-section-number">8.5</span> Pola Hubungan Data<a class="anchor" aria-label="anchor" href="#pola-hubungan-data-1"><i class="fas fa-link"></i></a>
+</h2>
 <p>Sebagai pendahuluan, kita akan mengidentifikasi kekuatan, arah, dan pola hubungan antara variabel dependen dan independen kita (biaya perjalanan sepekan dan jarak tempat tinggal-kampus). Untuk itu kita dapat menghitung koefisien korelasi untuk hubungan variabel metrik juga, yakni koefisien korelasi Pearson’s <span class="math inline">\(r\)</span>.</p>
 <p>Pola hubungan akan kita analisis dengan membuat diagram pencar <em>(scatter plot)</em> antara variabel dependen dengan variabel independennya.</p>
 <p><strong>Menghitung Koefisien Pearson’s</strong> <span class="math inline">\(r\)</span></p>
-<p>Menghitung koefisien korelasi Pearson’s <span class="math inline">\(r\)</span> dapat kita lakukan dengan perintah <code>cor()</code> dengan atribut <code>method = "pearson"</code> setelah terlebih dahulu menyimpan nilai masing-masing variabel ke dalam suatu vektor.</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb322-1" tabindex="-1"></a><span class="co"># Menyimpan vektor jarak dan biaya (perjalanan) sepekan ke dalam variabel</span></span>
-<span id="cb322-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb322-2" tabindex="-1"></a><span class="co"># &#39;x&#39; dan &#39;y&#39;</span></span>
-<span id="cb322-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb322-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> data_mahasiswa_online<span class="sc">$</span>jarak</span>
-<span id="cb322-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb322-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> data_mahasiswa_online<span class="sc">$</span><span class="st">`</span><span class="at">biaya sepekan</span><span class="st">`</span></span>
-<span id="cb322-5"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb322-5" tabindex="-1"></a></span>
-<span id="cb322-6"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb322-6" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<p>Menghitung koefisien korelasi Pearson’s <span class="math inline">\(r\)</span> dapat kita lakukan dengan perintah <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> dengan atribut <code>method = "pearson"</code> setelah terlebih dahulu menyimpan nilai masing-masing variabel ke dalam suatu vektor.</p>
+<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menyimpan vektor jarak dan biaya (perjalanan) sepekan ke dalam variabel</span></span>
+<span><span class="co"># 'x' dan 'y'</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">jarak</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`biaya sepekan`</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, use <span class="op">=</span> <span class="st">"complete.obs"</span>, method <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] -0.1813941</code></pre>
 <blockquote>
 <p><strong>Jawablah:</strong> Tuliskan interpretasi kalian terhadap koefisien korelasi antara variabel jarak tempuh dengan biaya perjalanan sepekan.</p>
 <p><em>Petunjuk: ulas kekuatan serta arah hubungannya serta maknai secara kontekstual ulasan tersebut</em></p>
 </blockquote>
 <p><strong>Membuat Diagram Pencar</strong></p>
-<p>Membuat diagram pencar dapat dilakukan dengan menerapkan perintah <code>geom_point()</code> dari pustaka <code>ggplot2</code> yang dimuat bersama pustaka <code>tidyverse</code>.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-1" tabindex="-1"></a><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
-<span id="cb324-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-2" tabindex="-1"></a><span class="co"># untuk mahasiswa yang pakai layanan online</span></span>
-<span id="cb324-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-3" tabindex="-1"></a>scp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb324-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-4" tabindex="-1"></a>  <span class="at">data =</span> data_mahasiswa_online,</span>
-<span id="cb324-5"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-5" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb324-6"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-6" tabindex="-1"></a>    <span class="at">x =</span> jarak, <span class="co"># variabel di sumbu X</span></span>
-<span id="cb324-7"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">`</span><span class="at">biaya sepekan</span><span class="st">`</span></span>
-<span id="cb324-8"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-8" tabindex="-1"></a>  )</span>
-<span id="cb324-9"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-9" tabindex="-1"></a>) <span class="sc">+</span> <span class="co"># variabel di sumbu Y</span></span>
-<span id="cb324-10"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-10" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb324-11"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-11" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;navy&quot;</span>, <span class="co"># perintah untuk menampilkan diagram pencar dengan warna biru</span></span>
-<span id="cb324-12"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-12" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.5</span>, <span class="co"># mengatur ukuran titik</span></span>
-<span id="cb324-13"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-13" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">15</span></span>
-<span id="cb324-14"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-14" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="co"># mengatur bentuk titik menjadi persegi</span></span>
-<span id="cb324-15"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb324-16"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Jarak tempat tinggal vs. Biaya Transportasi Sepekan&quot;</span>,</span>
-<span id="cb324-17"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-17" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Mahasiswa dengan Moda Transportasi Layanan Online&quot;</span>,</span>
-<span id="cb324-18"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Biaya transportasi sepekan (ribu rupiah)&quot;</span>,</span>
-<span id="cb324-19"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-19" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Jarak dari tempat tinggal ke kampus (km)&quot;</span></span>
-<span id="cb324-20"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-20" tabindex="-1"></a>  )</span>
-<span id="cb324-21"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-21" tabindex="-1"></a></span>
-<span id="cb324-22"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-22" tabindex="-1"></a><span class="co"># Menampilkan diagram</span></span>
-<span id="cb324-23"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb324-23" tabindex="-1"></a>scp</span></code></pre></div>
-<p><img src="figures/mod08-create-initial-scatterplot-1.png" width="672" /></p>
+<p>Membuat diagram pencar dapat dilakukan dengan menerapkan perintah <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> dari pustaka <code>ggplot2</code> yang dimuat bersama pustaka <code>tidyverse</code>.</p>
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
+<span><span class="co"># untuk mahasiswa yang pakai layanan online</span></span>
+<span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">data_mahasiswa_online</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">jarak</span>, <span class="co"># variabel di sumbu X</span></span>
+<span>    y <span class="op">=</span> <span class="va">`biaya sepekan`</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span> <span class="co"># variabel di sumbu Y</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    color <span class="op">=</span> <span class="st">"navy"</span>, <span class="co"># perintah untuk menampilkan diagram pencar dengan warna biru</span></span>
+<span>    size <span class="op">=</span> <span class="fl">1.5</span>, <span class="co"># mengatur ukuran titik</span></span>
+<span>    shape <span class="op">=</span> <span class="fl">15</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> <span class="co"># mengatur bentuk titik menjadi persegi</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Jarak tempat tinggal vs. Biaya Transportasi Sepekan"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Mahasiswa dengan Moda Transportasi Layanan Online"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Biaya transportasi sepekan (ribu rupiah)"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Jarak dari tempat tinggal ke kampus (km)"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menampilkan diagram</span></span>
+<span><span class="va">scp</span></span></code></pre></div>
+<div class="inline-figure"><img src="figures/mod08-create-initial-scatterplot-1.png" width="672"></div>
 <p>Setelah Anda melakukan pembuatan diagram pencar tersebut, Anda akan menyadari bahwa kita memiliki <em>outlier</em> (pencilan), yakni objek yang memiliki nilai jarak dari tempat tinggal ke kampus mencapai hampir 25 km.</p>
 <p>Keberadaan pencilan ini akan mengganggu hasil analisis kita. Mari kita buktikan dengan menghilangkan data pencilan tersebut.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb325-1" tabindex="-1"></a><span class="co"># Menghilangkan observasi pencilan dengan menyaring observasi dengan</span></span>
-<span id="cb325-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb325-2" tabindex="-1"></a><span class="co"># jarak &lt; 15 km</span></span>
-<span id="cb325-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb325-3" tabindex="-1"></a>data_mahasiswa_online <span class="ot">&lt;-</span> data_mahasiswa_online <span class="sc">|&gt;</span></span>
-<span id="cb325-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb325-4" tabindex="-1"></a>  <span class="fu">filter</span>(jarak <span class="sc">&lt;</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menghilangkan observasi pencilan dengan menyaring observasi dengan</span></span>
+<span><span class="co"># jarak &lt; 15 km</span></span>
+<span><span class="va">data_mahasiswa_online</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">jarak</span> <span class="op">&lt;</span> <span class="fl">15</span><span class="op">)</span></span></code></pre></div>
 <p>Di sini kita akan menghitung ulang nilai koefisien korelasi kita.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb326-1" tabindex="-1"></a><span class="co"># Menghitung korelasi antara biaya sepekan dengan jarak dari dataset yang</span></span>
-<span id="cb326-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb326-2" tabindex="-1"></a><span class="co"># sudah dihilangkan pencilannya</span></span>
-<span id="cb326-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb326-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> data_mahasiswa_online<span class="sc">$</span>jarak</span>
-<span id="cb326-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb326-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> data_mahasiswa_online<span class="sc">$</span><span class="st">`</span><span class="at">biaya sepekan</span><span class="st">`</span></span>
-<span id="cb326-5"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb326-5" tabindex="-1"></a></span>
-<span id="cb326-6"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb326-6" tabindex="-1"></a><span class="fu">cor</span>(x, y, <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menghitung korelasi antara biaya sepekan dengan jarak dari dataset yang</span></span>
+<span><span class="co"># sudah dihilangkan pencilannya</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">jarak</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`biaya sepekan`</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## [1] -0.3086803</code></pre>
 <blockquote>
 <p><strong>Jawablah:</strong> Bagaimana perbedaan nilai koefisiennya?</p>
 </blockquote>
 <p>Kita pun dapat memeriksa hasil perbaikan dataset kita dari diagram pencar yang baru berikut.</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-1" tabindex="-1"></a><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
-<span id="cb328-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-2" tabindex="-1"></a><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan</span></span>
-<span id="cb328-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-3" tabindex="-1"></a>scp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb328-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-4" tabindex="-1"></a>  <span class="at">data =</span> data_mahasiswa_online,</span>
-<span id="cb328-5"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-5" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb328-6"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-6" tabindex="-1"></a>    <span class="at">x =</span> jarak, <span class="co"># variabel di sumbu X</span></span>
-<span id="cb328-7"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-7" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">`</span><span class="at">biaya sepekan</span><span class="st">`</span></span>
-<span id="cb328-8"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-8" tabindex="-1"></a>  )</span>
-<span id="cb328-9"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-9" tabindex="-1"></a>) <span class="sc">+</span> <span class="co"># variabel di sumbu Y</span></span>
-<span id="cb328-10"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-10" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb328-11"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-11" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;navy&quot;</span>, <span class="co"># perintah untuk menampilkan diagram pencar</span></span>
-<span id="cb328-12"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-12" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.5</span>, <span class="co"># mengatur ukuran titik</span></span>
-<span id="cb328-13"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-13" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">15</span></span>
-<span id="cb328-14"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-14" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="co"># mengatur bentuk titik menjadi persegi</span></span>
-<span id="cb328-15"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-15" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb328-16"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-16" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Jarak tempat tinggal vs. Biaya Transportasi Sepekan&quot;</span>,</span>
-<span id="cb328-17"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-17" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Mahasiswa dengan Moda Transportasi Layanan Online&quot;</span>,</span>
-<span id="cb328-18"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-18" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Biaya transportasi sepekan (ribu rupiah)&quot;</span>,</span>
-<span id="cb328-19"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-19" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Jarak dari tempat tinggal ke kampus (km)&quot;</span></span>
-<span id="cb328-20"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-20" tabindex="-1"></a>  )</span>
-<span id="cb328-21"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-21" tabindex="-1"></a></span>
-<span id="cb328-22"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-22" tabindex="-1"></a><span class="co"># Menampilkan diagram yang baru</span></span>
-<span id="cb328-23"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb328-23" tabindex="-1"></a>scp</span></code></pre></div>
-<p><img src="figures/mod08-create-clean-scatterplot-1.png" width="672" /></p>
+<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
+<span><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan</span></span>
+<span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">data_mahasiswa_online</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">jarak</span>, <span class="co"># variabel di sumbu X</span></span>
+<span>    y <span class="op">=</span> <span class="va">`biaya sepekan`</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span> <span class="co"># variabel di sumbu Y</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    color <span class="op">=</span> <span class="st">"navy"</span>, <span class="co"># perintah untuk menampilkan diagram pencar</span></span>
+<span>    size <span class="op">=</span> <span class="fl">1.5</span>, <span class="co"># mengatur ukuran titik</span></span>
+<span>    shape <span class="op">=</span> <span class="fl">15</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span> <span class="co"># mengatur bentuk titik menjadi persegi</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Jarak tempat tinggal vs. Biaya Transportasi Sepekan"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Mahasiswa dengan Moda Transportasi Layanan Online"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Biaya transportasi sepekan (ribu rupiah)"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Jarak dari tempat tinggal ke kampus (km)"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menampilkan diagram yang baru</span></span>
+<span><span class="va">scp</span></span></code></pre></div>
+<div class="inline-figure"><img src="figures/mod08-create-clean-scatterplot-1.png" width="672"></div>
 </div>
-<div id="model-regresi-linear-sederhana" class="section level2 hasAnchor" number="8.6">
-<h2><span class="header-section-number">8.6</span> Model Regresi Linear Sederhana<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#model-regresi-linear-sederhana" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="model-regresi-linear-sederhana" class="section level2" number="8.6">
+<h2>
+<span class="header-section-number">8.6</span> Model Regresi Linear Sederhana<a class="anchor" aria-label="anchor" href="#model-regresi-linear-sederhana"><i class="fas fa-link"></i></a>
+</h2>
 <p>Dalam bagian ini kita akan mempelajari cara menyusun, menampilkan, menafsirkan/menginterpretasi, dan memprediksi nilai variabel dependen berdasarkan model yang kita susun.</p>
-<div id="penyusunan-model" class="section level3 hasAnchor" number="8.6.1">
-<h3><span class="header-section-number">8.6.1</span> Penyusunan Model<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penyusunan-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="penyusunan-model" class="section level3" number="8.6.1">
+<h3>
+<span class="header-section-number">8.6.1</span> Penyusunan Model<a class="anchor" aria-label="anchor" href="#penyusunan-model"><i class="fas fa-link"></i></a>
+</h3>
 <p>Untuk membuat persamaan model regresi linear, kita akan menggunakan perintah <code>lm</code> yang sudah disediakan secara bawaan oleh R. Hasil dari perintah ini dapat kita simpan sebagai variabel tertentu.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb329-1" tabindex="-1"></a><span class="co"># Membuat model regresi linear</span></span>
-<span id="cb329-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb329-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> data_mahasiswa_online)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membuat model regresi linear</span></span>
+<span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">data_mahasiswa_online</span><span class="op">)</span></span></code></pre></div>
 <p>Argumen yang kita gunakan adalah <code>var_dependen ~ var_independen</code> serta nama dataset yang kita gunakan. Tanda <code>~</code> (disebut <em>tilde</em>) dapat kita masukkan dengan menekan <code>Shift</code> + <code>`</code> yang ada di sebelah kiri tombol angka 1 di <em>keyboard</em> kita.</p>
 <p>Sebelumnya kita sudah mendefinisikan <code>y</code> dan <code>x</code> sebagai variabel untuk vektor biaya transportasi sepekan dan vektor jarak, sehingga kita bisa langsung menggunakannya di atas. Dataset yang kita gunakan adalah dataset mahasiswa yang menggunakan layanan <em>online</em> sebagai moda transportasi utama yang kita simpan dalam <code>data_mahasiswa_online</code>.</p>
 </div>
-<div id="penampilan-model" class="section level3 hasAnchor" number="8.6.2">
-<h3><span class="header-section-number">8.6.2</span> Penampilan Model<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penampilan-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="penampilan-model" class="section level3" number="8.6.2">
+<h3>
+<span class="header-section-number">8.6.2</span> Penampilan Model<a class="anchor" aria-label="anchor" href="#penampilan-model"><i class="fas fa-link"></i></a>
+</h3>
 <p>Untuk menampilkan hasil penyusunan model regresi linear, kita akan menggunakan perintah <code>summary</code> yang juga sudah disediakan secara bawaan oleh R.</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb330-1" tabindex="-1"></a><span class="co"># Menampilkan hasil model regresi linear</span></span>
-<span id="cb330-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb330-2" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menampilkan hasil model regresi linear</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = y ~ x, data = data_mahasiswa_online)
@@ -604,7 +294,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 ## (Intercept)   92.557      4.598  20.129  &lt; 2e-16 ***
 ## x             -5.321      1.205  -4.414 1.72e-05 ***
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 38.11 on 185 degrees of freedom
 ## Multiple R-squared:  0.09528,    Adjusted R-squared:  0.09039 
@@ -617,8 +307,9 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <li><p>Nilai-nilai uji kualitas model seperti <code>Residual standard error</code> <em>(standard error</em> estimasi), <em>Multiple R-squared</em> dan <em>Adjusted R-squared</em> (koefisien determinasi), serta <em>F-statistic</em> (uji signifikansi model).</p></li>
 </ul>
 <p>Selain menggunakan <code>summary</code>, kita juga dapat menggunakan perintah <code>tbl_regression</code>, perintah yang disediakan oleh paket/<em>library</em> <code>gtsummary</code>. Hasil dari perintah ini adalah tabel yang sudah diformat sesuai dengan <em>templat</em> artikel ilmiah.</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb332-1" tabindex="-1"></a><span class="co"># Menampilkan hasil model regresi linear dengan tbl_regression</span></span>
-<span id="cb332-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb332-2" tabindex="-1"></a><span class="fu">tbl_regression</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menampilkan hasil model regresi linear dengan tbl_regression</span></span>
+<span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <div id="gyzehufyvy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#gyzehufyvy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1068,36 +759,33 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Beta</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>95% CI</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">x</td>
+<div class="inline-table"><table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class="gt_from_md"><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class="gt_from_md"><strong>Beta</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class="gt_from_md"><strong>95% CI</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class="gt_from_md"><strong>p-value</strong></span></th>
+    </tr></thead>
+<tbody class="gt_table_body"><tr>
+<td headers="label" class="gt_row gt_left">x</td>
 <td headers="estimate" class="gt_row gt_center">-5.3</td>
 <td headers="conf.low" class="gt_row gt_center">-7.7, -2.9</td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-  </tbody>
-  <tfoot>
-    <tr class="gt_sourcenotes">
-      <td class="gt_sourcenote" colspan="4"><span class='gt_from_md'>Abbreviation: CI = Confidence Interval</span></td>
-    </tr>
-  </tfoot>
-</table>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td>
+</tr></tbody>
+<tfoot><tr class="gt_sourcenotes">
+<td class="gt_sourcenote" colspan="4"><span class="gt_from_md">Abbreviation: CI = Confidence Interval</span></td>
+    </tr></tfoot>
+</table></div>
 </div>
 <p>Jika kalian menemukan pertanyaan untuk menginstal sebuah paket di <em>console</em>, yakni <code>broom.helpers</code>, pilih saja “Yes” untuk mengunduh dan menginstalnya.</p>
 <p>Secara bawaan, tabel tidak menampilkan nilai konstanta <em>(intercept)</em>, menampilkan nilai <em>confidence level</em> 95%, dan menampilkan nilai dari variabel independen sesuai variabel yang kita tetapkan sebelumnya, dalam hal ini adalah <code>x</code>. Untuk menggantinya, kita dapat melakukan penyesuaian perintah sebagai berikut.</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb333-1" tabindex="-1"></a><span class="fu">tbl_regression</span>(</span>
-<span id="cb333-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb333-2" tabindex="-1"></a>  model,</span>
-<span id="cb333-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb333-3" tabindex="-1"></a>  <span class="at">intercept =</span> <span class="cn">TRUE</span>, <span class="co"># mengatur intercept-nya ditampilkan</span></span>
-<span id="cb333-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb333-4" tabindex="-1"></a>  <span class="at">conf.level =</span> <span class="fl">0.99</span>, <span class="co"># mengatur nilai confidence level menjadi 99%</span></span>
-<span id="cb333-5"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb333-5" tabindex="-1"></a>  <span class="at">label =</span> <span class="fu">list</span>(x <span class="sc">~</span> <span class="st">&quot;Jarak tempuh ke kampus, km&quot;</span>) <span class="co"># Mengganti tulisan &quot;x&quot; saja menjadi yang</span></span>
-<span id="cb333-6"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb333-6" tabindex="-1"></a>) <span class="co"># lebih bermakna</span></span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression</a></span><span class="op">(</span></span>
+<span>  <span class="va">model</span>,</span>
+<span>  intercept <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># mengatur intercept-nya ditampilkan</span></span>
+<span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>, <span class="co"># mengatur nilai confidence level menjadi 99%</span></span>
+<span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">x</span> <span class="op">~</span> <span class="st">"Jarak tempuh ke kampus, km"</span><span class="op">)</span> <span class="co"># Mengganti tulisan "x" saja menjadi yang</span></span>
+<span><span class="op">)</span> <span class="co"># lebih bermakna</span></span></code></pre></div>
 <div id="omohigndci" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#omohigndci table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1547,35 +1235,37 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   height: 0px !important;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class='gt_from_md'><strong>Characteristic</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class='gt_from_md'><strong>Beta</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class='gt_from_md'><strong>99% CI</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class='gt_from_md'><strong>p-value</strong></span></th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">(Intercept)</td>
+<div class="inline-table"><table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class="gt_from_md"><strong>Characteristic</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="estimate"><span class="gt_from_md"><strong>Beta</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="conf.low"><span class="gt_from_md"><strong>99% CI</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="p.value"><span class="gt_from_md"><strong>p-value</strong></span></th>
+    </tr></thead>
+<tbody class="gt_table_body">
+<tr>
+<td headers="label" class="gt_row gt_left">(Intercept)</td>
 <td headers="estimate" class="gt_row gt_center">93</td>
 <td headers="conf.low" class="gt_row gt_center">81, 105</td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">Jarak tempuh ke kampus, km</td>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td>
+</tr>
+<tr>
+<td headers="label" class="gt_row gt_left">Jarak tempuh ke kampus, km</td>
 <td headers="estimate" class="gt_row gt_center">-5.3</td>
 <td headers="conf.low" class="gt_row gt_center">-8.5, -2.2</td>
-<td headers="p.value" class="gt_row gt_center"><0.001</td></tr>
-  </tbody>
-  <tfoot>
-    <tr class="gt_sourcenotes">
-      <td class="gt_sourcenote" colspan="4"><span class='gt_from_md'>Abbreviation: CI = Confidence Interval</span></td>
-    </tr>
-  </tfoot>
-</table>
+<td headers="p.value" class="gt_row gt_center">&lt;0.001</td>
+</tr>
+</tbody>
+<tfoot><tr class="gt_sourcenotes">
+<td class="gt_sourcenote" colspan="4"><span class="gt_from_md">Abbreviation: CI = Confidence Interval</span></td>
+    </tr></tfoot>
+</table></div>
 </div>
 </div>
-<div id="penafsiraninterpretasi-model" class="section level3 hasAnchor" number="8.6.3">
-<h3><span class="header-section-number">8.6.3</span> Penafsiran/interpretasi Model<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penafsiraninterpretasi-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="penafsiraninterpretasi-model" class="section level3" number="8.6.3">
+<h3>
+<span class="header-section-number">8.6.3</span> Penafsiran/interpretasi Model<a class="anchor" aria-label="anchor" href="#penafsiraninterpretasi-model"><i class="fas fa-link"></i></a>
+</h3>
 <p>Yang kita akan tafsirkan dari model kita di antaranya adalah:</p>
 <ul>
 <li><p>persamaan model</p></li>
@@ -1583,8 +1273,10 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <li><p>uji kualitas model (ANOVA, <code>F-statistic</code>)</p></li>
 <li><p>uji kualitas variabel (<code>Pr(&gt;|t|)</code>)</p></li>
 </ul>
-<div id="tafsiran-persamaan-model" class="section level4 hasAnchor" number="8.6.3.1">
-<h4><span class="header-section-number">8.6.3.1</span> Tafsiran persamaan model<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#tafsiran-persamaan-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="tafsiran-persamaan-model" class="section level4" number="8.6.3.1">
+<h4>
+<span class="header-section-number">8.6.3.1</span> Tafsiran persamaan model<a class="anchor" aria-label="anchor" href="#tafsiran-persamaan-model"><i class="fas fa-link"></i></a>
+</h4>
 <p>Persamaan model dapat kita tafsirkan berdasarkan keluaran dari <code>summary</code> berupa <code>Coefficients</code> atau hasil dari <code>tbl_regression</code> milik <code>gtsummary</code>.</p>
 <p>Berdasarkan keluaran kedua perintah tersebut, kita dapat mengetahui bagaimana persamaan regresi linearnya dengan mengganti bentuk umum persamaan regresi linear dengan angka-angka yang dihasilkan di <code>model</code>.</p>
 <p>Bentuk umum:</p>
@@ -1596,36 +1288,37 @@ y = β_0 + β_1x
 y = 93 - 5,3x
 \]</span></p>
 <p>Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik data kita. Ini merupakan persamaan garis terbaik dari seluruh kemungkinan persamaan garis yang ada, yang kita tentukan dengan meminimalkan kuadrat terkecil.</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-1" tabindex="-1"></a><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
-<span id="cb334-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-2" tabindex="-1"></a><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,</span></span>
-<span id="cb334-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-3" tabindex="-1"></a><span class="co"># ditambah garis dari persamaan regresi</span></span>
-<span id="cb334-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-4" tabindex="-1"></a>scp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb334-5"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-5" tabindex="-1"></a>  <span class="at">data =</span> data_mahasiswa_online,</span>
-<span id="cb334-6"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-6" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb334-7"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-7" tabindex="-1"></a>    <span class="at">x =</span> jarak, <span class="co"># variabel di sumbu X</span></span>
-<span id="cb334-8"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">`</span><span class="at">biaya sepekan</span><span class="st">`</span></span>
-<span id="cb334-9"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-9" tabindex="-1"></a>  )</span>
-<span id="cb334-10"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-10" tabindex="-1"></a>) <span class="sc">+</span> <span class="co"># variabel di sumbu Y</span></span>
-<span id="cb334-11"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb334-12"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-12" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;navy&quot;</span>,</span>
-<span id="cb334-13"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-13" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.5</span>,</span>
-<span id="cb334-14"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-14" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">15</span></span>
-<span id="cb334-15"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb334-16"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-16" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(</span>
-<span id="cb334-17"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-17" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="fu">coef</span>(model)[<span class="dv">1</span>],</span>
-<span id="cb334-18"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-18" tabindex="-1"></a>    <span class="at">slope =</span> <span class="fu">coef</span>(model)[<span class="dv">2</span>],</span>
-<span id="cb334-19"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-19" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;red&quot;</span></span>
-<span id="cb334-20"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-20" tabindex="-1"></a>  )) <span class="sc">+</span></span>
-<span id="cb334-21"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-21" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb334-22"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-22" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Jarak tempat tinggal vs. Biaya Transportasi Sepekan&quot;</span>,</span>
-<span id="cb334-23"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-23" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Mahasiswa dengan Moda Transportasi Layanan Online&quot;</span>,</span>
-<span id="cb334-24"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-24" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Biaya transportasi sepekan (ribu rupiah)&quot;</span>,</span>
-<span id="cb334-25"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-25" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Jarak dari tempat tinggal ke kampus (km)&quot;</span></span>
-<span id="cb334-26"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-26" tabindex="-1"></a>  )</span>
-<span id="cb334-27"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-27" tabindex="-1"></a></span>
-<span id="cb334-28"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-28" tabindex="-1"></a><span class="co"># Menampilkan diagram pencar</span></span>
-<span id="cb334-29"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb334-29" tabindex="-1"></a>scp</span></code></pre></div>
-<p><img src="figures/mod08-visualize-regression-line-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb333"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
+<span><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,</span></span>
+<span><span class="co"># ditambah garis dari persamaan regresi</span></span>
+<span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">data_mahasiswa_online</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">jarak</span>, <span class="co"># variabel di sumbu X</span></span>
+<span>    y <span class="op">=</span> <span class="va">`biaya sepekan`</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span> <span class="co"># variabel di sumbu Y</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    color <span class="op">=</span> <span class="st">"navy"</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">15</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>    slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"red"</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Jarak tempat tinggal vs. Biaya Transportasi Sepekan"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Mahasiswa dengan Moda Transportasi Layanan Online"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Biaya transportasi sepekan (ribu rupiah)"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Jarak dari tempat tinggal ke kampus (km)"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menampilkan diagram pencar</span></span>
+<span><span class="va">scp</span></span></code></pre></div>
+<div class="inline-figure"><img src="figures/mod08-visualize-regression-line-1-1.png" width="672"></div>
 <ul>
 <li><p><code>coef(model)[1]</code> mengacu pada keluaran fungsi <code>coef</code> dari variabel <code>model</code> kita yang pertama (<code>[1]</code>), yakni angka <em>intercept</em>/konstantanya. Ini menjadi nilai dari atribut <code>intercept</code> yang terletak dalam fungsi <code>geom_abline</code></p></li>
 <li><p><code>coef(model)[2]</code> mengacu pada keluaran fungsi <code>coef</code> dari variabel <code>model</code> kita yang kedua ([<code>2]</code>), yakni angka koefisien variabel independen kita. Ini menjadi nilai dari atribut <code>slope</code> yang terletak dalam fungsi <code>geom_abline</code> karena nilai koefisien variabel independen menunjukkan kemiringan garis persamaan regresi linear kita</p></li>
@@ -1641,86 +1334,102 @@ y = β_0 + β_1x
 y = 93 - 5,3x
 \]</span></p>
 <p>Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik data kita. Ini merupakan persamaan garis terbaik dari seluruh kemungkinan persamaan garis yang ada, yang kita tentukan dengan meminimalkan kuadrat terkecil.</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-1" tabindex="-1"></a><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
-<span id="cb335-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-2" tabindex="-1"></a><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,</span></span>
-<span id="cb335-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-3" tabindex="-1"></a><span class="co"># ditambah garis dari persamaan regresi</span></span>
-<span id="cb335-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-4" tabindex="-1"></a>scp <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
-<span id="cb335-5"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-5" tabindex="-1"></a>  <span class="at">data =</span> data_mahasiswa_online,</span>
-<span id="cb335-6"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-6" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb335-7"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-7" tabindex="-1"></a>    <span class="at">x =</span> jarak, <span class="co"># variabel di sumbu X</span></span>
-<span id="cb335-8"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-8" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">`</span><span class="at">biaya sepekan</span><span class="st">`</span></span>
-<span id="cb335-9"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-9" tabindex="-1"></a>  )</span>
-<span id="cb335-10"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-10" tabindex="-1"></a>) <span class="sc">+</span> <span class="co"># variabel di sumbu Y</span></span>
-<span id="cb335-11"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-11" tabindex="-1"></a>  <span class="fu">geom_point</span>(</span>
-<span id="cb335-12"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-12" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;navy&quot;</span>,</span>
-<span id="cb335-13"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-13" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.5</span>,</span>
-<span id="cb335-14"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-14" tabindex="-1"></a>    <span class="at">shape =</span> <span class="dv">15</span></span>
-<span id="cb335-15"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-15" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb335-16"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-16" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="fu">aes</span>(</span>
-<span id="cb335-17"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-17" tabindex="-1"></a>    <span class="at">intercept =</span> <span class="fu">coef</span>(model)[<span class="dv">1</span>],</span>
-<span id="cb335-18"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-18" tabindex="-1"></a>    <span class="at">slope =</span> <span class="fu">coef</span>(model)[<span class="dv">2</span>],</span>
-<span id="cb335-19"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-19" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;red&quot;</span></span>
-<span id="cb335-20"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-20" tabindex="-1"></a>  )) <span class="sc">+</span></span>
-<span id="cb335-21"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-21" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb335-22"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-22" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Jarak tempat tinggal vs. Biaya Transportasi Sepekan&quot;</span>,</span>
-<span id="cb335-23"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-23" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">&quot;Mahasiswa dengan Moda Transportasi Layanan Online&quot;</span>,</span>
-<span id="cb335-24"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-24" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Biaya transportasi sepekan (ribu rupiah)&quot;</span>,</span>
-<span id="cb335-25"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-25" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Jarak dari tempat tinggal ke kampus (km)&quot;</span></span>
-<span id="cb335-26"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-26" tabindex="-1"></a>  )</span>
-<span id="cb335-27"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-27" tabindex="-1"></a></span>
-<span id="cb335-28"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-28" tabindex="-1"></a><span class="co"># Menampilkan diagram pencar</span></span>
-<span id="cb335-29"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb335-29" tabindex="-1"></a>scp</span></code></pre></div>
-<p><img src="figures/mod08-visualize-regression-line-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb334"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
+<span><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,</span></span>
+<span><span class="co"># ditambah garis dari persamaan regresi</span></span>
+<span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
+<span>  data <span class="op">=</span> <span class="va">data_mahasiswa_online</span>,</span>
+<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    x <span class="op">=</span> <span class="va">jarak</span>, <span class="co"># variabel di sumbu X</span></span>
+<span>    y <span class="op">=</span> <span class="va">`biaya sepekan`</span></span>
+<span>  <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">+</span> <span class="co"># variabel di sumbu Y</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
+<span>    color <span class="op">=</span> <span class="st">"navy"</span>,</span>
+<span>    size <span class="op">=</span> <span class="fl">1.5</span>,</span>
+<span>    shape <span class="op">=</span> <span class="fl">15</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
+<span>    intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
+<span>    slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>    color <span class="op">=</span> <span class="st">"red"</span></span>
+<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Jarak tempat tinggal vs. Biaya Transportasi Sepekan"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="st">"Mahasiswa dengan Moda Transportasi Layanan Online"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Biaya transportasi sepekan (ribu rupiah)"</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Jarak dari tempat tinggal ke kampus (km)"</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menampilkan diagram pencar</span></span>
+<span><span class="va">scp</span></span></code></pre></div>
+<div class="inline-figure"><img src="figures/mod08-visualize-regression-line-2-1.png" width="672"></div>
 <ul>
 <li><p><code>coef(model)[1]</code> mengacu pada keluaran fungsi <code>coef</code> dari variabel <code>model</code> kita yang pertama (<code>[1]</code>), yakni angka <em>intercept</em>/konstantanya. Ini menjadi nilai dari atribut <code>intercept</code> yang terletak dalam fungsi <code>geom_abline</code></p></li>
 <li><p><code>coef(model)[2]</code> mengacu pada keluaran fungsi <code>coef</code> dari variabel <code>model</code> kita yang kedua ([<code>2]</code>), yakni angka koefisien variabel independen kita. Ini menjadi nilai dari atribut <code>slope</code> yang terletak dalam fungsi <code>geom_abline</code> karena nilai koefisien variabel independen menunjukkan kemiringan garis persamaan regresi linear kita</p></li>
 </ul>
 </div>
-<div id="tafsiran-nilai-konstanta-dan-koefisien" class="section level4 hasAnchor" number="8.6.3.2">
-<h4><span class="header-section-number">8.6.3.2</span> Tafsiran nilai konstanta dan koefisien<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#tafsiran-nilai-konstanta-dan-koefisien" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="tafsiran-nilai-konstanta-dan-koefisien" class="section level4" number="8.6.3.2">
+<h4>
+<span class="header-section-number">8.6.3.2</span> Tafsiran nilai konstanta dan koefisien<a class="anchor" aria-label="anchor" href="#tafsiran-nilai-konstanta-dan-koefisien"><i class="fas fa-link"></i></a>
+</h4>
 <p>Persamaan regresi linear ini bermakna nilai konstanta sebesar 93 berarti bahwa dengan tinggal di kampus (<span class="math inline">\(x=0\)</span>), mahasiswa masih akan mengeluarkan biaya sebesar 93.000 rupiah (ingat bahwa variabel <code>biaya sepekan</code> menggunakan satuan ribuan rupiah) untuk mengakses kampus selama sepekan. Kita bisa pahami hal tersebut sebagai perkiraan harga sewa penginapan di kampus.</p>
 <p>Sementara itu, nilai koefisien sebesar <span class="math inline">\(-5,3\)</span> berarti bahwa penambahan jarak sebesar 1 km akan <strong>mengurangi</strong> biaya transportasi sepekan sebesar 5.300 rupiah. Artinya, makin jauh 1 km seorang mahasiswa tinggal dari kampus, makin kecil pula biaya transportasi sepekannya sebesar 5.300 rupiah.</p>
 <blockquote>
 <p><strong>Pertanyaan bonus:</strong> Mengapa mahasiswa yang tinggal lebih jauh dari kampus biaya perjalanan sepekannya lebih kecil? Bukankah biaya transportasi makin jauh malah makin mahal?</p>
 </blockquote>
 </div>
-<div id="tafsiran-uji-kualitas-model" class="section level4 hasAnchor" number="8.6.3.3">
-<h4><span class="header-section-number">8.6.3.3</span> Tafsiran uji kualitas model<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#tafsiran-uji-kualitas-model" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="tafsiran-uji-kualitas-model" class="section level4" number="8.6.3.3">
+<h4>
+<span class="header-section-number">8.6.3.3</span> Tafsiran uji kualitas model<a class="anchor" aria-label="anchor" href="#tafsiran-uji-kualitas-model"><i class="fas fa-link"></i></a>
+</h4>
 <p>Uji kualitas model kita terdiri atas <em>standard error</em> dari residual, koefisien determinasi atau <span class="math inline">\(R^2\)</span>, dan uji signifikansi persamaan menggunakan statistik <span class="math inline">\(F\)</span> (<code>F-statistic</code>) yang merupakan hasil ANOVA <em>(analysis of variance)</em>.</p>
 <ul>
-<li><p><em>Standard error</em> dari residual mencerminkan rata-rata galat (residu), yaitu selisih nilai variabel dependen yang dihitung (biaya perjalanan sepekan hasil prediksi dari model) dengan nilai variabel dependen yang kita peroleh dari data.</p>
+<li>
+<p><em>Standard error</em> dari residual mencerminkan rata-rata galat (residu), yaitu selisih nilai variabel dependen yang dihitung (biaya perjalanan sepekan hasil prediksi dari model) dengan nilai variabel dependen yang kita peroleh dari data.</p>
 <ul>
 <li>Hasil <code>summary</code> menunjukkan angka 38,11 yang artinya rata-rata kesalahan prediksi dari model kita adalah sebesar 38.110 rupiah.</li>
-</ul></li>
-<li><p>Koefisien determinasi atau <span class="math inline">\(R^2\)</span> menyatakan kesesuaian <em>(fit)</em> dari model kita, yakni seberapa banyak proporsi variansi data variabel dependen kita (biaya perjalanan sepekan) dijelaskan oleh variabel independennya (jarak dari kampus ke tempat tinggal).</p>
+</ul>
+</li>
+<li>
+<p>Koefisien determinasi atau <span class="math inline">\(R^2\)</span> menyatakan kesesuaian <em>(fit)</em> dari model kita, yakni seberapa banyak proporsi variansi data variabel dependen kita (biaya perjalanan sepekan) dijelaskan oleh variabel independennya (jarak dari kampus ke tempat tinggal).</p>
 <p>Sisa dari angka <span class="math inline">\(R^2\)</span> ini adalah banyak variansi yang tidak dijelaskan oleh variabel independen, artinya dijelaskan oleh variabel lainnya yang tidak ada dalam model dan juga keacakan (misal dalam pengambilan data atau kejadian acak).</p>
 <ul>
 <li><p>Hasil <code>summary</code> menunjukkan angka 0,095 yang berarti hanya 9,5% variansi biaya perjalanan sepekan dijelaskan oleh variansi jarak perjalanan ke kampus.</p></li>
 <li><p>Makin tinggi nilai <span class="math inline">\(R^2\)</span> dari model kita, makin besar proporsi variansi variabel dependen kita dijelaskan oleh variabel independennya.</p></li>
 <li><p>Hal ini menunjukkan bahwa pengaruh dari variabel independen kita terhadap variabel dependennya kuat</p></li>
-</ul></li>
-<li><p>Koefisien uji signifikansi (<span class="math inline">\(F\)</span>) (<code>F-statistics</code>) adalah uji hipotesis ANOVA <em>(analysis of variance)</em> yang membuktikan hipotesis nol bahwa tidak ada hubungan antara variabel dependen dengan variabel independen yang kita modelkan. Penerimaan hipotesis nol ini ditandai dari nilai signifikansi (<code>p-value</code>) yang lebih kecil dari 5% (<code>0.05</code>).</p>
+</ul>
+</li>
+<li>
+<p>Koefisien uji signifikansi (<span class="math inline">\(F\)</span>) (<code>F-statistics</code>) adalah uji hipotesis ANOVA <em>(analysis of variance)</em> yang membuktikan hipotesis nol bahwa tidak ada hubungan antara variabel dependen dengan variabel independen yang kita modelkan. Penerimaan hipotesis nol ini ditandai dari nilai signifikansi (<code>p-value</code>) yang lebih kecil dari 5% (<code>0.05</code>).</p>
 <ul>
 <li><p>Hasil <code>summary</code> menunjukkan bahwa nilai <code>p-value</code> kita adalah <code>1,721e-05</code>. Angka tersebut menyatakan notasi ilmiah <span class="math inline">\(1,721\times10^{-5}\)</span> yang berarti bahwa nilai <code>p-value</code> kita sangat-sangat lebih kecil dari <code>0.05.</code></p></li>
 <li><p>Ini artinya kita tidak dapat menerima hipotesis nol kita yang menyatakan tidak ada hubungan antara variabel biaya perjalanan sepekan (variabel dependen) dengan variabel jarak tempuh ke kampus (variabel independen).</p></li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p><strong>Simpulan tafsiran kualitas model</strong>: kita sudah melihat bahwa hubungan kausal antara variabel jarak ke kampus terhadap biaya perjalanan sepekan adalah terbalik dengan besar kemiringan 5,3. Hubungan kausal tersebut benar-benar ada berdasarkan hasil dari koefisien uji signifikansi (ANOVA) yang <em>p-value-</em>nya &lt;0,05. Akan tetapi, hubungan tersebut tidak cukup kuat karena nilai koefisien determinasi yang kecil, yakni hanya 9% saja.</p>
 </div>
-<div id="tafsiran-uji-kualitas-variabel" class="section level4 hasAnchor" number="8.6.3.4">
-<h4><span class="header-section-number">8.6.3.4</span> Tafsiran uji kualitas variabel<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#tafsiran-uji-kualitas-variabel" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="tafsiran-uji-kualitas-variabel" class="section level4" number="8.6.3.4">
+<h4>
+<span class="header-section-number">8.6.3.4</span> Tafsiran uji kualitas variabel<a class="anchor" aria-label="anchor" href="#tafsiran-uji-kualitas-variabel"><i class="fas fa-link"></i></a>
+</h4>
 <p>Uji kualitas variabel adalah pengujian terhadap signifikansi atau kepentingan variabel independen kita. Hasil pengujian ini diperlihatkan oleh angka <em>p-value</em> dari uji t (<code>t value</code>)-nya, yakni yang ada di kolom <code>Pr(&gt;|t|)</code>.</p>
 <p>Apabila nilai <code>Pr(&gt;|t|)</code> kita &gt;0,05 maka variabel independen kita dianggap <strong>tidak signifikan</strong>, karena artinya nilai koefisien yang ada di kolom <code>Estimate</code> <strong>sebenarnya adalah nol</strong> sehingga <strong>bisa dikeluarkan dari persamaan regresi linear</strong>.</p>
 <p>Sebaliknya, jika nilai <code>Pr(&gt;|t|)</code> kita &lt;0,05 maka variabel independen kita dianggap <strong>signifikan</strong>, artinya nilai koefisien yang ada di kolom <code>Estimate</code> <strong>sebenarnya adalah nilai koefisien tersebut.</strong></p>
 <p>Nilai <code>Pr(&gt;|t|)</code> variabel <code>x</code> adalah <code>1,721e-05</code> yang berarti koefisien senilai <code>-5.321</code> adalah <strong>signifikan</strong>.</p>
 </div>
 </div>
-<div id="melakukan-prediksi" class="section level3 hasAnchor" number="8.6.4">
-<h3><span class="header-section-number">8.6.4</span> Melakukan Prediksi<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#melakukan-prediksi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="melakukan-prediksi" class="section level3" number="8.6.4">
+<h3>
+<span class="header-section-number">8.6.4</span> Melakukan Prediksi<a class="anchor" aria-label="anchor" href="#melakukan-prediksi"><i class="fas fa-link"></i></a>
+</h3>
 <p>Kita melakukan prediksi dengan menggunakan perintah <code>predict</code>. Misalkan kita ingin melakukan prediksi biaya perjalanan sepekan untuk mahasiswa yang tinggal di jarak 90 dan 120 km dari kampus</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb336-1" tabindex="-1"></a>bahan_pred <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">90</span>, <span class="dv">120</span>))</span>
-<span id="cb336-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb336-2" tabindex="-1"></a></span>
-<span id="cb336-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb336-3" tabindex="-1"></a><span class="fu">predict</span>(model, bahan_pred)</span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">bahan_pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">120</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">bahan_pred</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##         1         2 
 ## -386.3117 -545.9345</code></pre>
 <ul>
@@ -1729,24 +1438,28 @@ y = 93 - 5,3x
 </ul>
 </div>
 </div>
-<div id="model-regresi-linear-berganda" class="section level2 hasAnchor" number="8.7">
-<h2><span class="header-section-number">8.7</span> Model Regresi Linear Berganda<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#model-regresi-linear-berganda" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="model-regresi-linear-berganda" class="section level2" number="8.7">
+<h2>
+<span class="header-section-number">8.7</span> Model Regresi Linear Berganda<a class="anchor" aria-label="anchor" href="#model-regresi-linear-berganda"><i class="fas fa-link"></i></a>
+</h2>
 <p>Dalam bagian ini kita hanya akan mempelajari penggunaan variabel <em>dummy</em> untuk meningkatkan kekuatan prediksi kita. Di akhir, Anda akan menafsirkan hal-hal yang sudah Anda pelajari pada bagian regresi linear.</p>
 <p>Kita akan menggunakan variabel <code>jenis tempat tinggal</code> untuk variabel <em>dummy</em>. Pertama, kita akan mengatur jenis nilai pada kolom <code>jenis tempat tinggal</code> menggunakan perintah <code>factor</code>.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb338-1" tabindex="-1"></a><span class="co"># Membuat nilai kolom menjadi variabel kategoris dengan &#39;factor&#39;</span></span>
-<span id="cb338-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb338-2" tabindex="-1"></a>data_mahasiswa_online<span class="sc">$</span><span class="st">`</span><span class="at">jenis tempat tinggal</span><span class="st">`</span> <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_mahasiswa_online<span class="sc">$</span><span class="st">`</span><span class="at">jenis tempat tinggal</span><span class="st">`</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membuat nilai kolom menjadi variabel kategoris dengan 'factor'</span></span>
+<span><span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`jenis tempat tinggal`</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`jenis tempat tinggal`</span><span class="op">)</span></span></code></pre></div>
 <p>Kedua, kita akan membuat model seperti halnya yang kita lakukan dalam analisis regresi linear sederhana. Kita akan menggunakan nama yang lebih representatif.</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-1" tabindex="-1"></a><span class="co"># Membuat variabel-variabel</span></span>
-<span id="cb339-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-2" tabindex="-1"></a>jarak <span class="ot">&lt;-</span> x <span class="co"># variabel &#39;x&#39; saja diubah menjadi &#39;jarak&#39;</span></span>
-<span id="cb339-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-3" tabindex="-1"></a>biaya <span class="ot">&lt;-</span> y <span class="co"># variabel &#39;y&#39; saja diubah menjadi &#39;biaya&#39;</span></span>
-<span id="cb339-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-4" tabindex="-1"></a>ling <span class="ot">&lt;-</span> data_mahasiswa_online<span class="sc">$</span><span class="st">`</span><span class="at">jenis tempat tinggal</span><span class="st">`</span> <span class="co"># tempat tinggal diberi</span></span>
-<span id="cb339-5"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-5" tabindex="-1"></a><span class="co"># nama &#39;ling&#39;</span></span>
-<span id="cb339-6"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-6" tabindex="-1"></a></span>
-<span id="cb339-7"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-7" tabindex="-1"></a><span class="co"># Menyatakan model</span></span>
-<span id="cb339-8"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-8" tabindex="-1"></a>mdl <span class="ot">&lt;-</span> <span class="fu">lm</span>(biaya <span class="sc">~</span> jarak <span class="sc">+</span> ling, <span class="at">data =</span> data_mahasiswa_online)</span>
-<span id="cb339-9"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-9" tabindex="-1"></a></span>
-<span id="cb339-10"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-10" tabindex="-1"></a><span class="co"># Melihat hasil pemodelan</span></span>
-<span id="cb339-11"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb339-11" tabindex="-1"></a><span class="fu">summary</span>(mdl)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membuat variabel-variabel</span></span>
+<span><span class="va">jarak</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="co"># variabel 'x' saja diubah menjadi 'jarak'</span></span>
+<span><span class="va">biaya</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="co"># variabel 'y' saja diubah menjadi 'biaya'</span></span>
+<span><span class="va">ling</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`jenis tempat tinggal`</span> <span class="co"># tempat tinggal diberi</span></span>
+<span><span class="co"># nama 'ling'</span></span>
+<span></span>
+<span><span class="co"># Menyatakan model</span></span>
+<span><span class="va">mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">biaya</span> <span class="op">~</span> <span class="va">jarak</span> <span class="op">+</span> <span class="va">ling</span>, data <span class="op">=</span> <span class="va">data_mahasiswa_online</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Melihat hasil pemodelan</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mdl</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = biaya ~ jarak + ling, data = data_mahasiswa_online)
@@ -1765,47 +1478,52 @@ y = 93 - 5,3x
 ## lingRumah pribadi              20.348      9.866   2.062   0.0406 *  
 ## lingRumah saudara              10.365     12.689   0.817   0.4151    
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
 ## Residual standard error: 34.23 on 180 degrees of freedom
 ## Multiple R-squared:  0.2899, Adjusted R-squared:  0.2663 
 ## F-statistic: 12.25 on 6 and 180 DF,  p-value: 1.538e-11</code></pre>
 <p>Selanjutnya, kita akan menafsirkan hasil dari summary model ini.</p>
-<div id="penjelasan-variabel-dummy" class="section level3 hasAnchor" number="8.7.1">
-<h3><span class="header-section-number">8.7.1</span> Penjelasan Variabel <em>Dummy</em><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penjelasan-variabel-dummy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="penjelasan-variabel-dummy" class="section level3" number="8.7.1">
+<h3>
+<span class="header-section-number">8.7.1</span> Penjelasan Variabel <em>Dummy</em><a class="anchor" aria-label="anchor" href="#penjelasan-variabel-dummy"><i class="fas fa-link"></i></a>
+</h3>
 <p>Dalam persamaan model kita tersebut, variabel <code>ling</code> atau <code>jenis tempat tinggal</code> diubah menjadi variabel <em>dummy</em> :</p>
 <ol style="list-style-type: decimal">
-<li><code>lingKos sendiri</code>,</li>
-<li><code>lingRumah mengontrak bersama</code>,</li>
-<li><code>lingRumah mengontrak pribadi</code>,</li>
-<li><code>lingRumah pribadi</code>, dan</li>
-<li><code>lingRumah saudara</code>.</li>
+<li>
+<code>lingKos sendiri</code>,</li>
+<li>
+<code>lingRumah mengontrak bersama</code>,</li>
+<li>
+<code>lingRumah mengontrak pribadi</code>,</li>
+<li>
+<code>lingRumah pribadi</code>, dan</li>
+<li>
+<code>lingRumah saudara</code>.</li>
 </ol>
 <p>Nama variabel-variabel tersebut tak lain adalah gabungan kata <code>ling</code> dengan tiap-tiap kategori dalam variabel <code>jenis tempat tinggal</code>.</p>
 <p>Perhatikan bahwa kita jadi memiliki 5 variabel <em>dummy</em> dari satu variabel kategoris <code>jenis tempat tinggal</code> yang terdiri atas 6 kategori nilai: “Kos bersama-sama”, “Kos sendiri”, “Rumah mengontrak bersama”, “Rumah mengontrak pribadi”, “Rumah pribadi”, dan “Rumah saudara.”</p>
 <p>Variabel <em>dummy</em> adalah variabel yang bernilai 0 (nol) atau 1 (satu) saja. Nol artinya variabel <em>dummy</em> tersebut bernilai “salah” atau “tidak”, sedangkan satu artinya variabel <em>dummy</em> tersebut bernilai “benar” atau “ya.”</p>
 <p>Variabel-variabel <em>dummy</em> yang 5 buah ini hanya akan bernilai 1 atau 0 sesuai dengan kategori dari variabel <code>jenis tempat tinggal</code> suatu objek. Perhatikan bahwa kita tidak punya “<code>lingKos sendiri</code>” dalam variabel <em>dummy</em> kita. Ini artinya apabila kategori <code>jenis tempat tinggal</code> suatu objek adalah “Kos sendiri”, <strong>kelima variabel <em>dummy</em> akan bernilai 0.</strong></p>
 <p>Tabel berikut merangkum nilai-nilai variabel <em>dummy</em> untuk setiap kategori nilai variabel <code>jenis tempat tinggal</code>.</p>
-<table>
+<div class="inline-table"><table class="table table-sm">
 <caption>Nilai variabel dummy untuk setiap kategori</caption>
 <colgroup>
-<col width="17%" />
-<col width="12%" />
-<col width="21%" />
-<col width="21%" />
-<col width="13%" />
-<col width="13%" />
+<col width="17%">
+<col width="12%">
+<col width="21%">
+<col width="21%">
+<col width="13%">
+<col width="13%">
 </colgroup>
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Kategori</th>
 <th><code>lingKos sendiri</code></th>
 <th><code>lingRumah mengontrak bersama</code></th>
 <th><code>lingRumah mengontrak pribadi</code></th>
 <th><code>lingRumah pribadi</code></th>
 <th><code>lingRumah saudara</code></th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>Kos sendiri</td>
@@ -1856,24 +1574,29 @@ y = 93 - 5,3x
 <td>0</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
-<div id="interpretasi-variabel-dummy" class="section level3 hasAnchor" number="8.7.2">
-<h3><span class="header-section-number">8.7.2</span> Interpretasi Variabel <em>Dummy</em><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#interpretasi-variabel-dummy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="interpretasi-variabel-dummy" class="section level3" number="8.7.2">
+<h3>
+<span class="header-section-number">8.7.2</span> Interpretasi Variabel <em>Dummy</em><a class="anchor" aria-label="anchor" href="#interpretasi-variabel-dummy"><i class="fas fa-link"></i></a>
+</h3>
 <p>Dalam menginterpretasi variable <em>dummy</em> kita tidak bisa menggunakan <code>Pr(&gt;|t|)</code> semata, karena variabel <em>dummy</em> pada hakikatnya sepaket. Jadi, walaupun nilai <code>Pr(&gt;|t|)</code> sebuah variabel <em>dummy</em> adalah &gt;0,05 ia akan tetap berada dalam persamaan regresi linear.</p>
 <p>Interpretasi koefisien variabel <em>dummy</em> adalah dengan memahami bahwa nilai variabel dependen berubah sesuai nilai koefisien apabila variabel <em>dummy</em> tersebut bernilai <strong>benar</strong> atau <strong>1</strong>. Artinya, jika mahasiswa tinggal di kosan sendirian (<code>lingKos sendiri = 1</code>), maka biaya transportasi sepekan berkurang sebesar <code>20.779</code> yang juga berarti sebesar 20,7 ribu rupiah. Jika mahasiswa tinggal di rumah pribadi (<code>lingRumah pribadi = 1</code>) maka biaya transportasi sepekan bertambah sebesar <code>20.348</code> atau 20,3 ribu rupiah.</p>
 </div>
-<div id="prediksi-model" class="section level3 hasAnchor" number="8.7.3">
-<h3><span class="header-section-number">8.7.3</span> Prediksi Model<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#prediksi-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="prediksi-model" class="section level3" number="8.7.3">
+<h3>
+<span class="header-section-number">8.7.3</span> Prediksi Model<a class="anchor" aria-label="anchor" href="#prediksi-model"><i class="fas fa-link"></i></a>
+</h3>
 <p>Dari persamaan model regresi linear kita, kita juga dapat memprediksi nilai biaya perjalanan sepekan untuk mahasiswa-mahasiswa dengan kondisi lain. Misalnya kita ingin memprediksi biaya sepekan transportasi mahasiswa yang tinggal di Rumah saudara berjarak 7,9 km dari kampus dan di Rumah kontrakan bersama yang berjarak 10 km dari kampus.</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb341-1" tabindex="-1"></a><span class="co"># Menyusun dataset untuk diprediksi</span></span>
-<span id="cb341-2"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb341-2" tabindex="-1"></a>mhs <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb341-3"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb341-3" tabindex="-1"></a>  <span class="at">jarak =</span> <span class="fu">c</span>(<span class="fl">7.9</span>, <span class="dv">10</span>),</span>
-<span id="cb341-4"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb341-4" tabindex="-1"></a>  <span class="at">ling =</span> <span class="fu">c</span>(<span class="st">&quot;Rumah saudara&quot;</span>, <span class="st">&quot;Rumah mengontrak bersama&quot;</span>)</span>
-<span id="cb341-5"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb341-5" tabindex="-1"></a>)</span>
-<span id="cb341-6"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb341-6" tabindex="-1"></a></span>
-<span id="cb341-7"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb341-7" tabindex="-1"></a><span class="co"># melihat hasil prediksi</span></span>
-<span id="cb341-8"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#cb341-8" tabindex="-1"></a><span class="fu">predict</span>(mdl, mhs)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menyusun dataset untuk diprediksi</span></span>
+<span><span class="va">mhs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
+<span>  jarak <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7.9</span>, <span class="fl">10</span><span class="op">)</span>,</span>
+<span>  ling <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Rumah saudara"</span>, <span class="st">"Rumah mengontrak bersama"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># melihat hasil prediksi</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">mdl</span>, <span class="va">mhs</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##        1        2 
 ## 69.33008 31.36362</code></pre>
 <blockquote>
@@ -1885,8 +1608,9 @@ y = 93 - 5,3x
 </ol>
 </blockquote>
 </div>
-<div id="aktivitas-mandiri-4-analisis-regresi-komprehensif-stp-13.3-stp-14.3.capaian" class="section level3 unnumbered hasAnchor rmdexercise">
-<h3>Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3].{capaian}<a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#aktivitas-mandiri-4-analisis-regresi-komprehensif-stp-13.3-stp-14.3.capaian" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="aktivitas-mandiri-4-analisis-regresi-komprehensif-stp-13.3-stp-14.3.capaian" class="section level3 unnumbered rmdexercise">
+<h3>Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3].{capaian}<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-4-analisis-regresi-komprehensif-stp-13.3-stp-14.3.capaian"><i class="fas fa-link"></i></a>
+</h3>
 <p><strong>A. Regresi Linear Sederhana [STP-13.3]:</strong></p>
 <p>Model: <code>jumlah perjalanan weekdays</code> vs <code>jarak</code>
 1. Buat model sederhana
@@ -1903,72 +1627,62 @@ y = 93 - 5,3x
 - Faktor yang meningkatkan/menurunkan jumlah perjalanan?
 - Proporsi variansi yang dijelaskan?</p>
 </div>
-<hr />
-
+<hr>
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><span class="header-section-number">7</span> Modul-7: Analisis Hubungan Korelatif: Korelasi Variabel Metrik</a></div>
+<div class="next"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><span class="header-section-number">9</span> Modul-9: Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda"><span class="header-section-number">8</span> Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a></li>
+<li><a class="nav-link" href="#pendahuluan-4"><span class="header-section-number">8.1</span> Pendahuluan</a></li>
+<li><a class="nav-link" href="#penjelasan-kasus"><span class="header-section-number">8.2</span> Penjelasan Kasus</a></li>
+<li><a class="nav-link" href="#memuat-pustaka-libraries-yang-diperlukan"><span class="header-section-number">8.3</span> Memuat Pustaka (Libraries) yang Diperlukan</a></li>
+<li><a class="nav-link" href="#memuat-dataset"><span class="header-section-number">8.4</span> Memuat Dataset</a></li>
+<li><a class="nav-link" href="#pola-hubungan-data-1"><span class="header-section-number">8.5</span> Pola Hubungan Data</a></li>
+<li>
+<a class="nav-link" href="#model-regresi-linear-sederhana"><span class="header-section-number">8.6</span> Model Regresi Linear Sederhana</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#penyusunan-model"><span class="header-section-number">8.6.1</span> Penyusunan Model</a></li>
+<li><a class="nav-link" href="#penampilan-model"><span class="header-section-number">8.6.2</span> Penampilan Model</a></li>
+<li><a class="nav-link" href="#penafsiraninterpretasi-model"><span class="header-section-number">8.6.3</span> Penafsiran/interpretasi Model</a></li>
+<li><a class="nav-link" href="#melakukan-prediksi"><span class="header-section-number">8.6.4</span> Melakukan Prediksi</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#model-regresi-linear-berganda"><span class="header-section-number">8.7</span> Model Regresi Linear Berganda</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#penjelasan-variabel-dummy"><span class="header-section-number">8.7.1</span> Penjelasan Variabel Dummy</a></li>
+<li><a class="nav-link" href="#interpretasi-variabel-dummy"><span class="header-section-number">8.7.2</span> Interpretasi Variabel Dummy</a></li>
+<li><a class="nav-link" href="#prediksi-model"><span class="header-section-number">8.7.3</span> Prediksi Model</a></li>
+<li><a class="nav-link" href="#aktivitas-mandiri-4-analisis-regresi-komprehensif-stp-13.3-stp-14.3.capaian">Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3].{capaian}</a></li>
+</ul>
+</li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Modul Praktik Statistika Untuk Perencanaan</strong>: Penggunaan R dalam Pengolahan Data Kuantitatif" was written by Team Teaching Statistika Untuk Perencanaan, PWK ITERA. </p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-  "sharing": {
-    "github": false,
-    "facebook": true,
-    "twitter": true,
-    "linkedin": false,
-    "weibo": false,
-    "instapaper": false,
-    "vk": false,
-    "whatsapp": false,
-    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-  },
-  "fontsettings": {
-    "theme": "white",
-    "family": "sans",
-    "size": 2
-  },
-  "edit": {
-    "link": null,
-    "text": null
-  },
-  "history": {
-    "link": null,
-    "text": null
-  },
-  "view": {
-    "link": null,
-    "text": null
-  },
-  "download": null,
-  "search": {
-    "engine": "fuse",
-    "options": null
-  },
-  "toc": {
-    "collapse": "subsection"
-  }
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -1980,7 +1694,22 @@ gitbook.start({
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>

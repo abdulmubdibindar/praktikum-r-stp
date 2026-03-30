@@ -1,508 +1,174 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
+<html lang="en">
 <head>
-
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4 Modul-4: Distribusi Sampling dan Interval Kepercayaan | Modul Praktik Statistika Untuk Perencanaan</title>
-  <meta name="description" content="4 Modul-4: Distribusi Sampling dan Interval Kepercayaan | Modul Praktik Statistika Untuk Perencanaan" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
-
-  <meta property="og:title" content="4 Modul-4: Distribusi Sampling dan Interval Kepercayaan | Modul Praktik Statistika Untuk Perencanaan" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4 Modul-4: Distribusi Sampling dan Interval Kepercayaan | Modul Praktik Statistika Untuk Perencanaan" />
-  
-  
-  
-
-
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="modul-3-visualisasi-data-kuantitatif.html"/>
-<link rel="next" href="modul-5-uji-hipotesis.html"/>
-<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
-<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
-<script src="libs/tabwid-1.1.3/tabwid.js"></script>
-
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>4 Modul-4: Distribusi Sampling dan Interval Kepercayaan | Modul Praktik Statistika Untuk Perencanaan</title>
+<meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA">
+<meta name="generator" content="bookdown 0.45 with bs4_book()">
+<meta property="og:title" content="4 Modul-4: Distribusi Sampling dan Interval Kepercayaan | Modul Praktik Statistika Untuk Perencanaan">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4 Modul-4: Distribusi Sampling dan Interval Kepercayaan | Modul Praktik Statistika Untuk Perencanaan">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
 <style type="text/css">
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
-
-<style type="text/css">
-  
-  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-</style>
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
-
-<link rel="stylesheet" href="style.css" type="text/css" />
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Setelah mempelajari modul ini, Anda diharapkan dapat: menghasilkan distribusi statistik sampel dan menghitung standard error-nya STP-4.3 menghasilkan interval kepercayaan dengan menggunaan...">
+<meta property="og:description" content="Setelah mempelajari modul ini, Anda diharapkan dapat: menghasilkan distribusi statistik sampel dan menghitung standard error-nya STP-4.3 menghasilkan interval kepercayaan dengan menggunaan...">
+<meta name="twitter:description" content="Setelah mempelajari modul ini, Anda diharapkan dapat: menghasilkan distribusi statistik sampel dan menghitung standard error-nya STP-4.3 menghasilkan interval kepercayaan dengan menggunaan...">
 </head>
+<body data-spy="scroll" data-target="#toc">
 
-<body>
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Pengantar</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html"><i class="fa fa-check"></i>Pengenalan R dan RStudio</a>
-<ul>
-<li class="chapter" data-level="0.1" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#apa-itu-r"><i class="fa fa-check"></i><b>0.1</b> Apa itu R?</a></li>
-<li class="chapter" data-level="0.2" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#mengapa-menggunakan-r"><i class="fa fa-check"></i><b>0.2</b> Mengapa Menggunakan R?</a></li>
-<li class="chapter" data-level="0.3" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#apa-itu-rstudio"><i class="fa fa-check"></i><b>0.3</b> Apa itu RStudio?</a></li>
-<li class="chapter" data-level="0.4" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#instalasi-r-dan-rstudio"><i class="fa fa-check"></i><b>0.4</b> Instalasi R dan RStudio</a></li>
-<li class="chapter" data-level="0.5" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#cara-menjalankan-r"><i class="fa fa-check"></i><b>0.5</b> Cara Menjalankan R</a>
-<ul>
-<li class="chapter" data-level="0.5.1" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#langsung-di-console"><i class="fa fa-check"></i><b>0.5.1</b> Langsung di <em>Console</em></a></li>
-<li class="chapter" data-level="" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#aktivitas-mandiri-kode-r-pertama"><i class="fa fa-check"></i>Aktivitas Mandiri: Kode R Pertama</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#aktivitas-mandiri-kode-r-pertama-di-rstudio"><i class="fa fa-check"></i>Aktivitas Mandiri: Kode R pertama di RStudio</a></li>
-<li class="chapter" data-level="0.5.2" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#menggunakan-file-kode-sumber"><i class="fa fa-check"></i><b>0.5.2</b> Menggunakan <em>File</em> Kode Sumber</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#aktivitas-mandiri-membuat-file-kode-sumber-r-pertama"><i class="fa fa-check"></i>Aktivitas Mandiri: Membuat <em>file</em> Kode Sumber R Pertama</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-r-dan-rstudio.html"><a href="pengenalan-r-dan-rstudio.html#aktivitas-mandiri-menjalankan-kode-r-dari-file-kode-sumber"><i class="fa fa-check"></i>Aktivitas Mandiri: Menjalankan Kode R dari File Kode Sumber</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html"><i class="fa fa-check"></i>Pengenalan Teknis R</a>
-<ul>
-<li class="chapter" data-level="0.6" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#pengaturan-direktori"><i class="fa fa-check"></i><b>0.6</b> Pengaturan Direktori</a>
-<ul>
-<li class="chapter" data-level="0.6.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#struktur-direktori-yang-ideal"><i class="fa fa-check"></i><b>0.6.1</b> Struktur Direktori yang Ideal</a></li>
-<li class="chapter" data-level="0.6.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#membuat-dan-mengatur-direktori-praktikum"><i class="fa fa-check"></i><b>0.6.2</b> Membuat dan Mengatur Direktori Praktikum</a></li>
-<li class="chapter" data-level="0.6.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#mengunduh-dataset-praktikum-dari-github"><i class="fa fa-check"></i><b>0.6.3</b> Mengunduh Dataset Praktikum dari GitHub</a></li>
-</ul></li>
-<li class="chapter" data-level="0.7" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#sintaks-dasar-bahasa-r"><i class="fa fa-check"></i><b>0.7</b> Sintaks Dasar Bahasa R</a>
-<ul>
-<li class="chapter" data-level="0.7.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#komentar"><i class="fa fa-check"></i><b>0.7.1</b> Komentar</a></li>
-<li class="chapter" data-level="0.7.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#variabel"><i class="fa fa-check"></i><b>0.7.2</b> Variabel</a></li>
-<li class="chapter" data-level="0.7.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#konvensi-penamaan-dalam-r"><i class="fa fa-check"></i><b>0.7.3</b> Konvensi Penamaan dalam R</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#aktivitas-mandiri-membuat-variabel-disertai-komentar"><i class="fa fa-check"></i>Aktivitas Mandiri: Membuat Variabel Disertai Komentar</a></li>
-</ul></li>
-<li class="chapter" data-level="0.8" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#paket-packages"><i class="fa fa-check"></i><b>0.8</b> Paket (<em>Packages</em>)</a>
-<ul>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#aktivitas-mandiri-instalasi-paket"><i class="fa fa-check"></i>Aktivitas Mandiri: Instalasi Paket</a></li>
-</ul></li>
-<li class="chapter" data-level="0.9" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#fungsi-functions"><i class="fa fa-check"></i><b>0.9</b> Fungsi (<em>Functions</em>)</a>
-<ul>
-<li class="chapter" data-level="0.9.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#menggunakan-fungsi"><i class="fa fa-check"></i><b>0.9.1</b> Menggunakan Fungsi</a></li>
-<li class="chapter" data-level="0.9.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#membuat-fungsi-sendiri"><i class="fa fa-check"></i><b>0.9.2</b> Membuat Fungsi Sendiri</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#aktivitas-mandiri-membuat-fungsi-sendiri"><i class="fa fa-check"></i>Aktivitas Mandiri: Membuat Fungsi Sendiri</a></li>
-</ul></li>
-<li class="chapter" data-level="0.10" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#struktur-data-dasar"><i class="fa fa-check"></i><b>0.10</b> Struktur Data Dasar</a>
-<ul>
-<li class="chapter" data-level="0.10.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#vektor"><i class="fa fa-check"></i><b>0.10.1</b> Vektor</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#aktivitas-mandiri-membuat-vektor"><i class="fa fa-check"></i>Aktivitas Mandiri: Membuat Vektor</a></li>
-<li class="chapter" data-level="0.10.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#list"><i class="fa fa-check"></i><b>0.10.2</b> List</a></li>
-<li class="chapter" data-level="" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#aktivitas-mandiri-membuat-list"><i class="fa fa-check"></i>Aktivitas Mandiri: Membuat List</a></li>
-<li class="chapter" data-level="0.10.3" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#tipe-data"><i class="fa fa-check"></i><b>0.10.3</b> Tipe Data</a></li>
-<li class="chapter" data-level="0.10.4" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#data-frame-dan-tibble"><i class="fa fa-check"></i><b>0.10.4</b> Data Frame dan Tibble</a></li>
-</ul></li>
-<li class="chapter" data-level="0.11" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#sec-operator-pipa"><i class="fa fa-check"></i><b>0.11</b> Operator Pipa (<code>|&gt;</code>)</a></li>
-<li class="chapter" data-level="0.12" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#manajemen-data-inputoutput"><i class="fa fa-check"></i><b>0.12</b> Manajemen Data (Input/Output)</a>
-<ul>
-<li class="chapter" data-level="0.12.1" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#membaca-data"><i class="fa fa-check"></i><b>0.12.1</b> Membaca Data</a></li>
-<li class="chapter" data-level="0.12.2" data-path="pengenalan-teknis-r.html"><a href="pengenalan-teknis-r.html#menyimpan-data"><i class="fa fa-check"></i><b>0.12.2</b> Menyimpan Data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="1" data-path="modul-1.html"><a href="modul-1.html"><i class="fa fa-check"></i><b>1</b> Modul-1: Pengolahan Data Terstruktur</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="modul-1.html"><a href="modul-1.html#mengimpor-set-data-dataset-dari-excel"><i class="fa fa-check"></i><b>1.1</b> Mengimpor set data <em>(dataset)</em> dari Excel</a></li>
-<li class="chapter" data-level="1.2" data-path="modul-1.html"><a href="modul-1.html#analisis-data-terstruktur-pada-set-data"><i class="fa fa-check"></i><b>1.2</b> Analisis data terstruktur pada set data</a>
-<ul>
-<li class="chapter" data-level="" data-path="modul-1.html"><a href="modul-1.html#aktivitas-mandiri-1-menganalisis-struktur-data-stp-1.3"><i class="fa fa-check"></i>Aktivitas Mandiri 1: Menganalisis Struktur Data <span class="capaian">STP-1.3</span></a></li>
-</ul></li>
-<li class="chapter" data-level="1.3" data-path="modul-1.html"><a href="modul-1.html#mengolah-set-data"><i class="fa fa-check"></i><b>1.3</b> Mengolah set data</a>
-<ul>
-<li class="chapter" data-level="1.3.1" data-path="modul-1.html"><a href="modul-1.html#merancang-algoritma-urutan-kerja"><i class="fa fa-check"></i><b>1.3.1</b> Merancang Algoritma (Urutan kerja)</a></li>
-<li class="chapter" data-level="1.3.2" data-path="modul-1.html"><a href="modul-1.html#mengidentifikasi-nama-nama-kolom"><i class="fa fa-check"></i><b>1.3.2</b> Mengidentifikasi Nama-nama Kolom</a></li>
-<li class="chapter" data-level="1.3.3" data-path="modul-1.html"><a href="modul-1.html#menentukan-kolom-kolom-yang-akan-diambil-di-set-data-baru"><i class="fa fa-check"></i><b>1.3.3</b> Menentukan Kolom-kolom yang Akan Diambil di Set Data Baru</a></li>
-<li class="chapter" data-level="1.3.4" data-path="modul-1.html"><a href="modul-1.html#menyeleksi-kolom-kolom-yang-akan-dipakai"><i class="fa fa-check"></i><b>1.3.4</b> Menyeleksi Kolom-kolom Yang Akan Dipakai</a></li>
-<li class="chapter" data-level="1.3.5" data-path="modul-1.html"><a href="modul-1.html#mengubah-nama-kolom-menjadi-nama-standar"><i class="fa fa-check"></i><b>1.3.5</b> Mengubah Nama Kolom Menjadi Nama Standar</a></li>
-<li class="chapter" data-level="" data-path="modul-1.html"><a href="modul-1.html#aktivitas-mandiri-2-seleksi-dan-rename-kolom-stp-1.4"><i class="fa fa-check"></i>Aktivitas Mandiri 2: Seleksi dan Rename Kolom <span class="capaian">STP-1.4</span></a></li>
-<li class="chapter" data-level="1.3.6" data-path="modul-1.html"><a href="modul-1.html#menyatukan-kedua-set-data"><i class="fa fa-check"></i><b>1.3.6</b> Menyatukan Kedua Set Data</a></li>
-<li class="chapter" data-level="1.3.7" data-path="modul-1.html"><a href="modul-1.html#memperbaiki-set-data-yang-akan-digabungkan"><i class="fa fa-check"></i><b>1.3.7</b> Memperbaiki Set Data yang Akan Digabungkan</a></li>
-<li class="chapter" data-level="1.3.8" data-path="modul-1.html"><a href="modul-1.html#menyatukan-kedua-set-data-setelah-diperbaiki"><i class="fa fa-check"></i><b>1.3.8</b> Menyatukan Kedua Set Data Setelah Diperbaiki</a></li>
-<li class="chapter" data-level="" data-path="modul-1.html"><a href="modul-1.html#aktivitas-mandiri-3-menggabungkan-data-uinril-dan-itera-stp-1.3-stp-1.4"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Menggabungkan Data UINRIL dan ITERA <span class="capaian">STP-1.3, STP-1.4</span></a></li>
-<li class="chapter" data-level="1.3.9" data-path="modul-1.html"><a href="modul-1.html#mengekspor-set-data-hasil-pengolahan-ke-fail-file-terpisah"><i class="fa fa-check"></i><b>1.3.9</b> Mengekspor Set Data Hasil Pengolahan ke Fail <em>(File)</em> Terpisah</a></li>
-<li class="chapter" data-level="" data-path="modul-1.html"><a href="modul-1.html#aktivitas-mandiri-4-mengekspor-set-data-gabungan-stp-1.3-stp-1.4"><i class="fa fa-check"></i>Aktivitas Mandiri 4: Mengekspor Set Data Gabungan <span class="capaian">STP-1.3, STP-1.4</span></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html"><i class="fa fa-check"></i><b>2</b> Modul-2: Analisis Statistika Deskriptif</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#persiapan"><i class="fa fa-check"></i><b>2.1</b> Persiapan</a></li>
-<li class="chapter" data-level="2.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#mengimpor-dataset"><i class="fa fa-check"></i><b>2.2</b> Mengimpor Dataset</a></li>
-<li class="chapter" data-level="" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#aktivitas-mandiri-1-mengimpor-data-unila"><i class="fa fa-check"></i>Aktivitas Mandiri 1: Mengimpor Data UNILA</a></li>
-<li class="chapter" data-level="2.3" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#praktik-operator-pipa-pipe-operator"><i class="fa fa-check"></i><b>2.3</b> Praktik Operator Pipa <em>(Pipe Operator)</em></a>
-<ul>
-<li class="chapter" data-level="2.3.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#memahami-konsep-pipe-operator"><i class="fa fa-check"></i><b>2.3.1</b> Memahami Konsep <em>Pipe Operator</em></a></li>
-<li class="chapter" data-level="2.3.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#mengganti-nama-variabel-dan-menghilangkan-missing-values-sekaligus-dengan-pipe-operator"><i class="fa fa-check"></i><b>2.3.2</b> Mengganti Nama Variabel dan Menghilangkan <em>Missing Values</em> Sekaligus dengan Pipe Operator</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#aktivitas-mandiri-2-merapikan-dataset-unila-dengan-pipe-operator"><i class="fa fa-check"></i>Aktivitas Mandiri 2: Merapikan Dataset UNILA dengan Pipe Operator</a></li>
-<li class="chapter" data-level="2.4" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#membuat-factor"><i class="fa fa-check"></i><b>2.4</b> Membuat <em>Factor</em></a>
-<ul>
-<li class="chapter" data-level="" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#aktivitas-mandiri-3-membuat-factor-untuk-variabel-kategoris-unila"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Membuat Factor untuk Variabel Kategoris UNILA</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#analisis-statistika-deskriptif"><i class="fa fa-check"></i><b>2.5</b> Analisis Statistika Deskriptif</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#ukuran-frekuensi-persentaseproporsi"><i class="fa fa-check"></i><b>2.5.1</b> Ukuran Frekuensi (Persentase/Proporsi)</a></li>
-<li class="chapter" data-level="2.5.2" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#interpretasi-hasil-tabel-persentaseproporsi"><i class="fa fa-check"></i><b>2.5.2</b> Interpretasi Hasil Tabel Persentase/Proporsi</a></li>
-<li class="chapter" data-level="2.5.3" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#ukuran-pemusatan-mean-dan-median"><i class="fa fa-check"></i><b>2.5.3</b> Ukuran Pemusatan (Mean dan Median)</a></li>
-<li class="chapter" data-level="2.5.4" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#interpretasi-hasil-ukuran-pemusatan"><i class="fa fa-check"></i><b>2.5.4</b> Interpretasi Hasil Ukuran Pemusatan</a></li>
-<li class="chapter" data-level="2.5.5" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#ukuran-penyebaran-standar-deviasi-persentil-kuartil-dan-iqv"><i class="fa fa-check"></i><b>2.5.5</b> Ukuran Penyebaran (Standar Deviasi, Persentil, Kuartil, dan IQV)</a></li>
-<li class="chapter" data-level="2.5.6" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#interpretasi-hasil-ukuran-penyebaran"><i class="fa fa-check"></i><b>2.5.6</b> Interpretasi Hasil Ukuran Penyebaran</a></li>
-<li class="chapter" data-level="" data-path="modul-2-analisis-statistika-deskriptif.html"><a href="modul-2-analisis-statistika-deskriptif.html#aktivitas-mandiri-4-analisis-statistik-deskriptif-komprehensif-data-unila-stp-2.4"><i class="fa fa-check"></i>Aktivitas Mandiri 4: Analisis Statistik Deskriptif Komprehensif Data UNILA <span class="capaian">STP-2.4</span></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html"><i class="fa fa-check"></i><b>3</b> Modul-3: Visualisasi Data Kuantitatif</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#mengimpor-library-mengimpor-dataset-dan-membersihkannya"><i class="fa fa-check"></i><b>3.1</b> Mengimpor <em>Library</em>, Mengimpor Dataset dan Membersihkannya</a></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-1-persiapan-dataset-itera"><i class="fa fa-check"></i>Aktivitas Mandiri 1: Persiapan Dataset ITERA</a></li>
-<li class="chapter" data-level="3.2" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#tata-tulis-grafik-grammar-of-graphics"><i class="fa fa-check"></i><b>3.2</b> Tata Tulis Grafik <em>(Grammar of Graphics)</em></a></li>
-<li class="chapter" data-level="3.3" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#visualisasi-data-variabel-kategorisnominal-ordinal"><i class="fa fa-check"></i><b>3.3</b> Visualisasi Data Variabel Kategoris/Nominal-Ordinal</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-batang-tunggal"><i class="fa fa-check"></i><b>3.3.1</b> Diagram Batang Tunggal</a></li>
-<li class="chapter" data-level="3.3.2" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-batang-bertumpuk-stacked"><i class="fa fa-check"></i><b>3.3.2</b> Diagram Batang Bertumpuk <em>(Stacked)</em></a></li>
-<li class="chapter" data-level="3.3.3" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-batang-berjejer"><i class="fa fa-check"></i><b>3.3.3</b> Diagram Batang Berjejer</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-2-membuat-dan-menginterpretasikan-diagram-batang-stp-3.2-stp-3.3"><i class="fa fa-check"></i>Aktivitas Mandiri 2: Membuat dan Menginterpretasikan Diagram Batang <span class="capaian">STP-3.2, STP-3.3</span></a></li>
-<li class="chapter" data-level="3.3.4" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-lollipop"><i class="fa fa-check"></i><b>3.3.4</b> Diagram Lollipop</a></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-3-membuat-diagram-lollipop-stp-3.2-stp-3.3"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Membuat Diagram Lollipop <span class="capaian">STP-3.2, STP-3.3</span></a></li>
-<li class="chapter" data-level="3.3.5" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-paidonat-piedonut-chart"><i class="fa fa-check"></i><b>3.3.5</b> Diagram Pai/Donat <em>(Pie/Donut Chart)</em></a></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-4-membuat-diagram-pai-dan-donat-stp-3.2-stp-3.3"><i class="fa fa-check"></i>Aktivitas Mandiri 4: Membuat Diagram Pai dan Donat <span class="capaian">STP-3.2, STP-3.3</span></a></li>
-<li class="chapter" data-level="3.3.6" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#diagram-treemap"><i class="fa fa-check"></i><b>3.3.6</b> Diagram <em>Treemap</em></a></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-5-membuat-diagram-treemap-stp-3.2-stp-3.3"><i class="fa fa-check"></i>Aktivitas Mandiri 5: Membuat Diagram Treemap <span class="capaian">STP-3.2, STP-3.3</span></a></li>
-<li class="chapter" data-level="3.4" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#visualisasi-data-variabel-numerikinterval-rasio"><i class="fa fa-check"></i><b>3.4</b> Visualisasi Data Variabel Numerik/Interval Rasio</a>
-<ul>
-<li class="chapter" data-level="3.4.1" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#histogram"><i class="fa fa-check"></i><b>3.4.1</b> Histogram</a></li>
-<li class="chapter" data-level="3.4.2" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#boxplot"><i class="fa fa-check"></i><b>3.4.2</b> <em>Boxplot</em></a></li>
-<li class="chapter" data-level="3.4.3" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#grafik-pencar-scatterplot"><i class="fa fa-check"></i><b>3.4.3</b> Grafik Pencar <em>(Scatterplot)</em></a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-6-visualisasi-komprehensif-untuk-biaya_ribu-stp-3.2-stp-3.3"><i class="fa fa-check"></i>Aktivitas Mandiri 6: Visualisasi Komprehensif untuk <code>biaya_ribu</code> <span class="capaian">STP-3.2, STP-3.3</span></a></li>
-<li class="chapter" data-level="" data-path="modul-3-visualisasi-data-kuantitatif.html"><a href="modul-3-visualisasi-data-kuantitatif.html#aktivitas-mandiri-7-pemilihan-visualisasi-dan-tingkat-pengukuran-stp-3.1-stp-3.4"><i class="fa fa-check"></i>Aktivitas Mandiri 7: Pemilihan Visualisasi dan Tingkat Pengukuran <span class="capaian">STP-3.1, STP-3.4</span></a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><i class="fa fa-check"></i><b>4</b> Modul-4: Distribusi Sampling dan Interval Kepercayaan</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#pendahuluan"><i class="fa fa-check"></i><b>4.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="4.2" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#perangkat-lunak-dan-pustaka-libraries"><i class="fa fa-check"></i><b>4.2</b> Perangkat Lunak dan Pustaka (Libraries)</a></li>
-<li class="chapter" data-level="4.3" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#memuat-dan-mempersiapkan-data"><i class="fa fa-check"></i><b>4.3</b> Memuat dan Mempersiapkan Data</a></li>
-<li class="chapter" data-level="4.4" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#distribusi-sampling-dan-standard-error"><i class="fa fa-check"></i><b>4.4</b> Distribusi <em>Sampling</em> dan <em>Standard Error</em></a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mendefinisikan-parameter-populasi"><i class="fa fa-check"></i><b>4.4.1</b> Mendefinisikan Parameter Populasi</a></li>
-<li class="chapter" data-level="4.4.2" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#simulasi-pengambilan-sampel"><i class="fa fa-check"></i><b>4.4.2</b> Simulasi Pengambilan Sampel</a></li>
-<li class="chapter" data-level="" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#aktivitas-mandiri-1-simulasi-dengan-parameter-berbeda-stp-4.3.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 1: Simulasi dengan Parameter Berbeda [STP-4.3].{capaian}</a></li>
-<li class="chapter" data-level="4.4.3" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#visualisasi-distribusi-sampling"><i class="fa fa-check"></i><b>4.4.3</b> Visualisasi Distribusi Sampling</a></li>
-<li class="chapter" data-level="4.4.4" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghitung-standard-error-se"><i class="fa fa-check"></i><b>4.4.4</b> Menghitung <em>Standard Error</em> (SE)</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#estimasi-parameter-1-interval-kepercayaan-rata-rata"><i class="fa fa-check"></i><b>4.5</b> Estimasi Parameter-1: Interval Kepercayaan Rata-rata</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mengambil-satu-sampel"><i class="fa fa-check"></i><b>4.5.1</b> Mengambil Satu Sampel</a></li>
-<li class="chapter" data-level="4.5.2" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghasilkan-interval-kepercayaan"><i class="fa fa-check"></i><b>4.5.2</b> Menghasilkan Interval Kepercayaan</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#estimasi-parameter-2-interval-kepercayaan-proporsi"><i class="fa fa-check"></i><b>4.6</b> Estimasi Parameter-2: Interval Kepercayaan Proporsi</a>
-<ul>
-<li class="chapter" data-level="4.6.1" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#parameter-proporsi"><i class="fa fa-check"></i><b>4.6.1</b> Parameter Proporsi</a></li>
-<li class="chapter" data-level="4.6.2" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mengambil-satu-sampel-dan-menghitung-proporsinya"><i class="fa fa-check"></i><b>4.6.2</b> Mengambil Satu Sampel dan Menghitung Proporsinya</a></li>
-<li class="chapter" data-level="4.6.3" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghasilkan-interval-kepercayaan-untuk-proporsi"><i class="fa fa-check"></i><b>4.6.3</b> Menghasilkan Interval Kepercayaan untuk Proporsi</a></li>
-<li class="chapter" data-level="" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#aktivitas-mandiri-2-interval-kepercayaan-99-stp-5.2.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 2: Interval Kepercayaan 99% [STP-5.2].{capaian}</a></li>
-<li class="chapter" data-level="" data-path="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#aktivitas-mandiri-3-interval-kepercayaan-97-stp-4.3-stp-5.2.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Interval Kepercayaan 97% [STP-4.3, STP-5.2].{capaian}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html"><i class="fa fa-check"></i><b>5</b> Modul-5: Uji Hipotesis</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#pendahuluan-1"><i class="fa fa-check"></i><b>5.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="5.2" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#perangkat-lunak-dan-pustaka-libraries-1"><i class="fa fa-check"></i><b>5.2</b> Perangkat Lunak dan Pustaka (Libraries)</a></li>
-<li class="chapter" data-level="5.3" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#memuat-data"><i class="fa fa-check"></i><b>5.3</b> Memuat Data</a></li>
-<li class="chapter" data-level="5.4" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#perkenalan-markdown-latex"><i class="fa fa-check"></i><b>5.4</b> Perkenalan Markdown: LaTeX</a></li>
-<li class="chapter" data-level="5.5" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#uji-hipotesis-satu-populasi"><i class="fa fa-check"></i><b>5.5</b> Uji Hipotesis Satu Populasi</a>
-<ul>
-<li class="chapter" data-level="5.5.1" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#rata-rata"><i class="fa fa-check"></i><b>5.5.1</b> Rata-rata</a></li>
-<li class="chapter" data-level="5.5.2" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#memahami-distribusi-normal-dan-area-kritis"><i class="fa fa-check"></i><b>5.5.2</b> Memahami Distribusi Normal dan Area Kritis</a></li>
-<li class="chapter" data-level="5.5.3" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#proporsi"><i class="fa fa-check"></i><b>5.5.3</b> Proporsi</a></li>
-</ul></li>
-<li class="chapter" data-level="5.6" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#uji-hipotesis-2-populasi-independen"><i class="fa fa-check"></i><b>5.6</b> Uji Hipotesis 2 Populasi Independen</a>
-<ul>
-<li class="chapter" data-level="5.6.1" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#rata-rata-1"><i class="fa fa-check"></i><b>5.6.1</b> Rata-rata</a></li>
-<li class="chapter" data-level="5.6.2" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#proporsi-1"><i class="fa fa-check"></i><b>5.6.2</b> Proporsi</a></li>
-</ul></li>
-<li class="chapter" data-level="5.7" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#uji-hipotesis-2-populasi-dependen"><i class="fa fa-check"></i><b>5.7</b> Uji Hipotesis 2 Populasi Dependen</a></li>
-<li class="chapter" data-level="5.8" data-path="modul-5-uji-hipotesis.html"><a href="modul-5-uji-hipotesis.html#soal-latihan"><i class="fa fa-check"></i><b>5.8</b> Soal Latihan</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><i class="fa fa-check"></i><b>6</b> Modul-6: Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#pendahuluan-2"><i class="fa fa-check"></i><b>6.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="6.2" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#pustaka-libraries-yang-diperlukan-dan-memuat-data"><i class="fa fa-check"></i><b>6.2</b> Pustaka <em>(Libraries)</em> yang Diperlukan dan Memuat Data</a></li>
-<li class="chapter" data-level="6.3" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#pembuatan-tabel-silang"><i class="fa fa-check"></i><b>6.3</b> Pembuatan Tabel Silang</a></li>
-<li class="chapter" data-level="6.4" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#analisis-korelasi-antarvariabel-nominal"><i class="fa fa-check"></i><b>6.4</b> Analisis Korelasi Antarvariabel Nominal</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#koefisien-korelasi-variabel-nominal-berbasis-chi2"><i class="fa fa-check"></i><b>6.4.1</b> Koefisien Korelasi Variabel Nominal Berbasis <span class="math inline">\(\chi^2\)</span></a></li>
-<li class="chapter" data-level="6.4.2" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#koefisien-korelasi-variabel-nominal-berbasis-error"><i class="fa fa-check"></i><b>6.4.2</b> Koefisien Korelasi Variabel Nominal Berbasis <em>Error</em></a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#analisis-korelasi-antarvariabel-ordinal"><i class="fa fa-check"></i><b>6.5</b> Analisis Korelasi Antarvariabel Ordinal</a>
-<ul>
-<li class="chapter" data-level="" data-path="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><a href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html#aktivitas-mandiri-3-analisis-korelasi-komprehensif-stp-9.2-stp-10.2.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Analisis Korelasi Komprehensif [STP-9.2, STP-10.2].{capaian}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><i class="fa fa-check"></i><b>7</b> Modul-7: Analisis Hubungan Korelatif: Korelasi Variabel Metrik</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#pendahuluan-3"><i class="fa fa-check"></i><b>7.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="7.2" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#pustaka-libraries-yang-diperlukan-dan-memuat-data-1"><i class="fa fa-check"></i><b>7.2</b> Pustaka <em>(Libraries)</em> yang Diperlukan dan Memuat Data</a></li>
-<li class="chapter" data-level="7.3" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#pola-hubungan-data"><i class="fa fa-check"></i><b>7.3</b> Pola Hubungan Data</a></li>
-<li class="chapter" data-level="7.4" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#analisis-korelasi-spearmans-rho"><i class="fa fa-check"></i><b>7.4</b> Analisis Korelasi Spearman’s <span class="math inline">\(\rho\)</span></a></li>
-<li class="chapter" data-level="7.5" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#analisis-korelasi-pearsons-r"><i class="fa fa-check"></i><b>7.5</b> Analisis Korelasi Pearson’s <em>r</em></a>
-<ul>
-<li class="chapter" data-level="" data-path="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><a href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html#aktivitas-mandiri-3-analisis-korelasi-metrik-komprehensif-stp-11.2.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 3: Analisis Korelasi Metrik Komprehensif [STP-11.2].{capaian}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><i class="fa fa-check"></i><b>8</b> Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#pendahuluan-4"><i class="fa fa-check"></i><b>8.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="8.2" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penjelasan-kasus"><i class="fa fa-check"></i><b>8.2</b> Penjelasan Kasus</a></li>
-<li class="chapter" data-level="8.3" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#memuat-pustaka-libraries-yang-diperlukan"><i class="fa fa-check"></i><b>8.3</b> Memuat Pustaka <em>(Libraries)</em> yang Diperlukan</a></li>
-<li class="chapter" data-level="8.4" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#memuat-dataset"><i class="fa fa-check"></i><b>8.4</b> Memuat Dataset</a></li>
-<li class="chapter" data-level="8.5" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#pola-hubungan-data-1"><i class="fa fa-check"></i><b>8.5</b> Pola Hubungan Data</a></li>
-<li class="chapter" data-level="8.6" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#model-regresi-linear-sederhana"><i class="fa fa-check"></i><b>8.6</b> Model Regresi Linear Sederhana</a>
-<ul>
-<li class="chapter" data-level="8.6.1" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penyusunan-model"><i class="fa fa-check"></i><b>8.6.1</b> Penyusunan Model</a></li>
-<li class="chapter" data-level="8.6.2" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penampilan-model"><i class="fa fa-check"></i><b>8.6.2</b> Penampilan Model</a></li>
-<li class="chapter" data-level="8.6.3" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penafsiraninterpretasi-model"><i class="fa fa-check"></i><b>8.6.3</b> Penafsiran/interpretasi Model</a></li>
-<li class="chapter" data-level="8.6.4" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#melakukan-prediksi"><i class="fa fa-check"></i><b>8.6.4</b> Melakukan Prediksi</a></li>
-</ul></li>
-<li class="chapter" data-level="8.7" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#model-regresi-linear-berganda"><i class="fa fa-check"></i><b>8.7</b> Model Regresi Linear Berganda</a>
-<ul>
-<li class="chapter" data-level="8.7.1" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#penjelasan-variabel-dummy"><i class="fa fa-check"></i><b>8.7.1</b> Penjelasan Variabel <em>Dummy</em></a></li>
-<li class="chapter" data-level="8.7.2" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#interpretasi-variabel-dummy"><i class="fa fa-check"></i><b>8.7.2</b> Interpretasi Variabel <em>Dummy</em></a></li>
-<li class="chapter" data-level="8.7.3" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#prediksi-model"><i class="fa fa-check"></i><b>8.7.3</b> Prediksi Model</a></li>
-<li class="chapter" data-level="" data-path="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><a href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html#aktivitas-mandiri-4-analisis-regresi-komprehensif-stp-13.3-stp-14.3.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3].{capaian}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><i class="fa fa-check"></i><b>9</b> Modul-9: Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#pendahuluan-5"><i class="fa fa-check"></i><b>9.1</b> Pendahuluan</a></li>
-<li class="chapter" data-level="9.2" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#studi-kasus"><i class="fa fa-check"></i><b>9.2</b> Studi Kasus</a></li>
-<li class="chapter" data-level="9.3" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#memuat-pustaka-libraries"><i class="fa fa-check"></i><b>9.3</b> Memuat Pustaka <em>(Libraries)</em></a></li>
-<li class="chapter" data-level="9.4" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#asumsi-awal"><i class="fa fa-check"></i><b>9.4</b> Asumsi Awal</a></li>
-<li class="chapter" data-level="9.5" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#mempersiapkan-data"><i class="fa fa-check"></i><b>9.5</b> Mempersiapkan Data</a></li>
-<li class="chapter" data-level="9.6" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#uji-kelayakan-data-asumsi"><i class="fa fa-check"></i><b>9.6</b> Uji Kelayakan Data (Asumsi)</a>
-<ul>
-<li class="chapter" data-level="9.6.1" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#uji-bartlett-of-sphericity"><i class="fa fa-check"></i><b>9.6.1</b> Uji Bartlett of Sphericity</a></li>
-<li class="chapter" data-level="9.6.2" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#uji-kmo-dan-msa"><i class="fa fa-check"></i><b>9.6.2</b> Uji KMO dan MSA</a></li>
-</ul></li>
-<li class="chapter" data-level="9.7" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#mengekstrak-dimensi-baru"><i class="fa fa-check"></i><b>9.7</b> Mengekstrak Dimensi Baru</a>
-<ul>
-<li class="chapter" data-level="9.7.1" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#nilai-eigen-dan-total-variansi"><i class="fa fa-check"></i><b>9.7.1</b> Nilai Eigen dan Total Variansi</a></li>
-<li class="chapter" data-level="9.7.2" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#scree-plot"><i class="fa fa-check"></i><b>9.7.2</b> <em>Scree Plot</em></a></li>
-</ul></li>
-<li class="chapter" data-level="9.8" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#melakukan-analisis-faktor-dan-rotasi"><i class="fa fa-check"></i><b>9.8</b> Melakukan Analisis Faktor dan Rotasi</a>
-<ul>
-<li class="chapter" data-level="9.8.1" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#analisis-faktor-common-factor-analysis"><i class="fa fa-check"></i><b>9.8.1</b> Analisis Faktor (Common Factor Analysis)</a></li>
-<li class="chapter" data-level="9.8.2" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#analisis-komponen-prinsip-pca"><i class="fa fa-check"></i><b>9.8.2</b> Analisis Komponen Prinsip (PCA)</a></li>
-</ul></li>
-<li class="chapter" data-level="9.9" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#interpretasi-dan-penamaan-dimensi"><i class="fa fa-check"></i><b>9.9</b> Interpretasi dan Penamaan Dimensi</a>
-<ul>
-<li class="chapter" data-level="" data-path="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><a href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#aktivitas-mandiri-komprehensif-analisis-pca-mandiri-stp-14.3.capaian"><i class="fa fa-check"></i>Aktivitas Mandiri Komprehensif: Analisis PCA Mandiri [STP-14.3].{capaian}</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="referensi.html"><a href="referensi.html"><i class="fa fa-check"></i><b>10</b> Referensi</a></li>
-</ul>
-
-      </nav>
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Penggunaan R dalam Pengolahan Data Kuantitatif">Modul Praktik Statistika Untuk Perencanaan</a>:
+        <small class="text-muted">Penggunaan R dalam Pengolahan Data Kuantitatif</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
     </div>
 
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Modul Praktik Statistika Untuk Perencanaan</a>
-          </h1>
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Pengantar</a></li>
+<li><a class="" href="pengenalan-r-dan-rstudio.html">Pengenalan R dan RStudio</a></li>
+<li><a class="" href="pengenalan-teknis-r.html">Pengenalan Teknis R</a></li>
+<li><a class="" href="modul-1.html"><span class="header-section-number">1</span> Modul-1: Pengolahan Data Terstruktur</a></li>
+<li><a class="" href="modul-2-analisis-statistika-deskriptif.html"><span class="header-section-number">2</span> Modul-2: Analisis Statistika Deskriptif</a></li>
+<li><a class="" href="modul-3-visualisasi-data-kuantitatif.html"><span class="header-section-number">3</span> Modul-3: Visualisasi Data Kuantitatif</a></li>
+<li><a class="active" href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><span class="header-section-number">4</span> Modul-4: Distribusi Sampling dan Interval Kepercayaan</a></li>
+<li><a class="" href="modul-5-uji-hipotesis.html"><span class="header-section-number">5</span> Modul-5: Uji Hipotesis</a></li>
+<li><a class="" href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><span class="header-section-number">6</span> Modul-6: Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal</a></li>
+<li><a class="" href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><span class="header-section-number">7</span> Modul-7: Analisis Hubungan Korelatif: Korelasi Variabel Metrik</a></li>
+<li><a class="" href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><span class="header-section-number">8</span> Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a></li>
+<li><a class="" href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><span class="header-section-number">9</span> Modul-9: Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</a></li>
+<li><a class="" href="referensi.html"><span class="header-section-number">10</span> Referensi</a></li>
+</ul>
+
+        <div class="book-extra">
+          
         </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="modul-4-distribusi-sampling-dan-interval-kepercayaan" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">4</span> Modul-4: Distribusi Sampling dan Interval Kepercayaan<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#modul-4-distribusi-sampling-dan-interval-kepercayaan" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="modul-4-distribusi-sampling-dan-interval-kepercayaan" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> Modul-4: Distribusi Sampling dan Interval Kepercayaan<a class="anchor" aria-label="anchor" href="#modul-4-distribusi-sampling-dan-interval-kepercayaan"><i class="fas fa-link"></i></a>
+</h1>
+<div class="rmdcapaian">
 <p>Setelah mempelajari modul ini, Anda diharapkan dapat:</p>
 <ol style="list-style-type: decimal">
-<li>menghasilkan distribusi statistik sampel dan menghitung standard error-nya <span class="capaian">STP-4.3</span></li>
-<li>menghasilkan interval kepercayaan dengan menggunaan perangkat lunak komputer <span class="capaian">STP-5.2</span></li>
+<li>menghasilkan distribusi statistik sampel dan menghitung standard error-nya <span class="capaian">STP-4.3</span>
+</li>
+<li>menghasilkan interval kepercayaan dengan menggunaan perangkat lunak komputer <span class="capaian">STP-5.2</span>
+</li>
 </ol>
-<hr />
-<div id="pendahuluan" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Pendahuluan<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#pendahuluan" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="pendahuluan" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> Pendahuluan<a class="anchor" aria-label="anchor" href="#pendahuluan"><i class="fas fa-link"></i></a>
+</h2>
 <p>Dalam statistika inferensial, kita seringkali ingin mengetahui karakteristik dari sebuah populasi (misalnya, rata-rata uang saku seluruh mahasiswa di Indonesia). Namun, mengumpulkan data dari seluruh populasi seringkali tidak memungkinkan. Sebagai solusinya, kita mengambil sampel acak dari populasi tersebut dan menggunakan statistik dari sampel (seperti rata-rata sampel) untuk menduga parameter populasi.</p>
 <p>Modul ini akan membahas dua konsep fundamental dalam statistika inferensial: <strong>Distribusi Sampling</strong> dan <strong>Interval Kepercayaan</strong> untuk rata-rata dan proporsi. Kita akan menggunakan studi kasus data jarak tempuh mahasiswa dari empat universitas di Bandar Lampung dan sekitarnya untuk memahami bagaimana konsep ini diterapkan dalam praktik.</p>
 </div>
-<div id="perangkat-lunak-dan-pustaka-libraries" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Perangkat Lunak dan Pustaka (Libraries)<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#perangkat-lunak-dan-pustaka-libraries" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="perangkat-lunak-dan-pustaka-libraries" class="section level2" number="4.2">
+<h2>
+<span class="header-section-number">4.2</span> Perangkat Lunak dan Pustaka (Libraries)<a class="anchor" aria-label="anchor" href="#perangkat-lunak-dan-pustaka-libraries"><i class="fas fa-link"></i></a>
+</h2>
 <p>Pastikan Anda telah menginstal pustaka <code>tidyverse</code> yang akan sangat membantu dalam proses manipulasi dan visualisasi data.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb150-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb150-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb150-2" tabindex="-1"></a><span class="fu">library</span>(readr)</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="memuat-dan-mempersiapkan-data" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Memuat dan Mempersiapkan Data<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#memuat-dan-mempersiapkan-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="memuat-dan-mempersiapkan-data" class="section level2" number="4.3">
+<h2>
+<span class="header-section-number">4.3</span> Memuat dan Mempersiapkan Data<a class="anchor" aria-label="anchor" href="#memuat-dan-mempersiapkan-data"><i class="fas fa-link"></i></a>
+</h2>
 <p>Langkah pertama adalah memuat data survei mahasiswa dari empat universitas. Kita akan menggabungkan dan membersihkan data tersebut untuk analisis. Variabel yang akan menjadi fokus kita adalah <strong>jarak tempuh (km)</strong> dan <strong>jenis tempat tinggal</strong>.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-1" tabindex="-1"></a><span class="co"># Membaca 4 file CSV</span></span>
-<span id="cb151-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-2" tabindex="-1"></a>df_uinril <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUINRIL.csv&quot;</span>)</span>
-<span id="cb151-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-3" tabindex="-1"></a>df_ubl <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUBL.csv&quot;</span>)</span>
-<span id="cb151-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-4" tabindex="-1"></a>df_unila <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsUNILA.csv&quot;</span>)</span>
-<span id="cb151-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-5" tabindex="-1"></a>df_itera <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/DataUtama_mhsITERA.csv&quot;</span>)</span>
-<span id="cb151-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-6" tabindex="-1"></a></span>
-<span id="cb151-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-7" tabindex="-1"></a><span class="co"># Membersihkan dan menggabungkan data</span></span>
-<span id="cb151-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-8" tabindex="-1"></a><span class="co"># Perhatikan: UNILA memiliki nama kolom dengan huruf besar &quot;Jenis Tempat Tinggal&quot;</span></span>
-<span id="cb151-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-9" tabindex="-1"></a>data_mahasiswa <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
-<span id="cb151-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-10" tabindex="-1"></a>  df_uinril <span class="sc">|&gt;</span></span>
-<span id="cb151-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-11" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb151-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-12" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
-<span id="cb151-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-13" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
-<span id="cb151-14"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-14" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> jenis.tempat.tinggal</span>
-<span id="cb151-15"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-15" tabindex="-1"></a>    ),</span>
-<span id="cb151-16"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-16" tabindex="-1"></a>  df_ubl <span class="sc">|&gt;</span></span>
-<span id="cb151-17"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-17" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb151-18"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-18" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
-<span id="cb151-19"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-19" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
-<span id="cb151-20"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-20" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> jenis.tempat.tinggal</span>
-<span id="cb151-21"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-21" tabindex="-1"></a>    ),</span>
-<span id="cb151-22"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-22" tabindex="-1"></a>  df_unila <span class="sc">|&gt;</span></span>
-<span id="cb151-23"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-23" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb151-24"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-24" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
-<span id="cb151-25"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-25" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
-<span id="cb151-26"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-26" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> <span class="st">`</span><span class="at">Jenis Tempat Tinggal</span><span class="st">`</span> <span class="co"># Perhatikan: huruf kapital</span></span>
-<span id="cb151-27"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-27" tabindex="-1"></a>    ),</span>
-<span id="cb151-28"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-28" tabindex="-1"></a>  df_itera <span class="sc">|&gt;</span></span>
-<span id="cb151-29"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-29" tabindex="-1"></a>    <span class="fu">select</span>(</span>
-<span id="cb151-30"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-30" tabindex="-1"></a>      <span class="at">kampus =</span> kampus,</span>
-<span id="cb151-31"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-31" tabindex="-1"></a>      <span class="at">jarak_km =</span> jarak.km,</span>
-<span id="cb151-32"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-32" tabindex="-1"></a>      <span class="at">jenis_tinggal =</span> jenis.tempat.tinggal</span>
-<span id="cb151-33"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-33" tabindex="-1"></a>    )</span>
-<span id="cb151-34"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-34" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
-<span id="cb151-35"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-35" tabindex="-1"></a>  <span class="fu">drop_na</span>(jarak_km, jenis_tinggal) <span class="sc">|&gt;</span> <span class="co"># menghilangkan missing values</span></span>
-<span id="cb151-36"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-36" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb151-37"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-37" tabindex="-1"></a>    <span class="at">jarak_km =</span> <span class="fu">as.numeric</span>(jarak_km),</span>
-<span id="cb151-38"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-38" tabindex="-1"></a>    <span class="at">tipe_tinggal_baku =</span> <span class="fu">case_when</span>(</span>
-<span id="cb151-39"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-39" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">&quot;Kos&quot;</span>, jenis_tinggal, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Kos/Asrama&quot;</span>,</span>
-<span id="cb151-40"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-40" tabindex="-1"></a>      <span class="fu">grepl</span>(<span class="st">&quot;Asrama&quot;</span>, jenis_tinggal, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>) <span class="sc">~</span> <span class="st">&quot;Kos/Asrama&quot;</span>,</span>
-<span id="cb151-41"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-41" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;Rumah Keluarga/Pribadi&quot;</span></span>
-<span id="cb151-42"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-42" tabindex="-1"></a>    )</span>
-<span id="cb151-43"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-43" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb151-44"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-44" tabindex="-1"></a>  <span class="fu">filter</span>(jarak_km <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> jarak_km <span class="sc">&lt;</span> <span class="dv">100</span>) <span class="co"># membatasi jarak yang realistis</span></span>
-<span id="cb151-45"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-45" tabindex="-1"></a></span>
-<span id="cb151-46"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-46" tabindex="-1"></a><span class="co"># Menampilkan beberapa baris pertama dari data gabungan</span></span>
-<span id="cb151-47"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb151-47" tabindex="-1"></a><span class="fu">head</span>(data_mahasiswa)</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membaca 4 file CSV</span></span>
+<span><span class="va">df_uinril</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"datasets/DataUtama_mhsUINRIL.csv"</span><span class="op">)</span></span>
+<span><span class="va">df_ubl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"datasets/DataUtama_mhsUBL.csv"</span><span class="op">)</span></span>
+<span><span class="va">df_unila</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"datasets/DataUtama_mhsUNILA.csv"</span><span class="op">)</span></span>
+<span><span class="va">df_itera</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"datasets/DataUtama_mhsITERA.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Membersihkan dan menggabungkan data</span></span>
+<span><span class="co"># Perhatikan: UNILA memiliki nama kolom dengan huruf besar "Jenis Tempat Tinggal"</span></span>
+<span><span class="va">data_mahasiswa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html">bind_rows</a></span><span class="op">(</span></span>
+<span>  <span class="va">df_uinril</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
+<span>      kampus <span class="op">=</span> <span class="va">kampus</span>,</span>
+<span>      jarak_km <span class="op">=</span> <span class="va">jarak.km</span>,</span>
+<span>      jenis_tinggal <span class="op">=</span> <span class="va">jenis.tempat.tinggal</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>  <span class="va">df_ubl</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
+<span>      kampus <span class="op">=</span> <span class="va">kampus</span>,</span>
+<span>      jarak_km <span class="op">=</span> <span class="va">jarak.km</span>,</span>
+<span>      jenis_tinggal <span class="op">=</span> <span class="va">jenis.tempat.tinggal</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>  <span class="va">df_unila</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
+<span>      kampus <span class="op">=</span> <span class="va">kampus</span>,</span>
+<span>      jarak_km <span class="op">=</span> <span class="va">jarak.km</span>,</span>
+<span>      jenis_tinggal <span class="op">=</span> <span class="va">`Jenis Tempat Tinggal`</span> <span class="co"># Perhatikan: huruf kapital</span></span>
+<span>    <span class="op">)</span>,</span>
+<span>  <span class="va">df_itera</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
+<span>      kampus <span class="op">=</span> <span class="va">kampus</span>,</span>
+<span>      jarak_km <span class="op">=</span> <span class="va">jarak.km</span>,</span>
+<span>      jenis_tinggal <span class="op">=</span> <span class="va">jenis.tempat.tinggal</span></span>
+<span>    <span class="op">)</span></span>
+<span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/drop_na.html">drop_na</a></span><span class="op">(</span><span class="va">jarak_km</span>, <span class="va">jenis_tinggal</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># menghilangkan missing values</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span></span>
+<span>    jarak_km <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">jarak_km</span><span class="op">)</span>,</span>
+<span>    tipe_tinggal_baku <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when</a></span><span class="op">(</span></span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"Kos"</span>, <span class="va">jenis_tinggal</span>, ignore.case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Kos/Asrama"</span>,</span>
+<span>      <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"Asrama"</span>, <span class="va">jenis_tinggal</span>, ignore.case <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">~</span> <span class="st">"Kos/Asrama"</span>,</span>
+<span>      <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"Rumah Keluarga/Pribadi"</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">jarak_km</span> <span class="op">&gt;</span> <span class="fl">0</span> <span class="op">&amp;</span> <span class="va">jarak_km</span> <span class="op">&lt;</span> <span class="fl">100</span><span class="op">)</span> <span class="co"># membatasi jarak yang realistis</span></span>
+<span></span>
+<span><span class="co"># Menampilkan beberapa baris pertama dari data gabungan</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   kampus jarak_km jenis_tinggal                 tipe_tinggal_baku     
 ##   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt;                         &lt;chr&gt;                 
@@ -512,8 +178,9 @@ div.csl-indent {
 ## 4 UINRIL     1.05 Kos sendiri                   Kos/Asrama            
 ## 5 UINRIL     1.69 Rumah mengontrak bersama-sama Rumah Keluarga/Pribadi
 ## 6 UINRIL     7.91 Rumah pribadi/rumah keluarga  Rumah Keluarga/Pribadi</code></pre>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb153-1" tabindex="-1"></a><span class="co"># Menampilkan ringkasan data</span></span>
-<span id="cb153-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb153-2" tabindex="-1"></a><span class="fu">summary</span>(data_mahasiswa)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menampilkan ringkasan data</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##     kampus             jarak_km        jenis_tinggal      tipe_tinggal_baku 
 ##  Length:1600        Min.   : 0.06352   Length:1600        Length:1600       
 ##  Class :character   1st Qu.: 1.31127   Class :character   Class :character  
@@ -521,67 +188,81 @@ div.csl-indent {
 ##                     Mean   : 3.62552                                        
 ##                     3rd Qu.: 5.14000                                        
 ##                     Max.   :43.54519</code></pre>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb155-1" tabindex="-1"></a><span class="co"># Menampilkan frekuensi jenis tempat tinggal yang sudah dibakukan</span></span>
-<span id="cb155-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb155-2" tabindex="-1"></a><span class="fu">table</span>(data_mahasiswa<span class="sc">$</span>tipe_tinggal_baku)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menampilkan frekuensi jenis tempat tinggal yang sudah dibakukan</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">tipe_tinggal_baku</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##             Kos/Asrama Rumah Keluarga/Pribadi 
 ##                    639                    961</code></pre>
 <blockquote>
-<p><strong>Penjelasan <code>case_when()</code></strong>:</p>
-<p>Fungsi <code>case_when()</code> (bagian dari <code>dplyr</code>) sangat berguna untuk membuat variabel baru berdasarkan serangkaian aturan kondisional, mirip seperti pernyataan <code>IF-ELSE IF-ELSE</code>. Di dalam <code>mutate()</code>, kita membuat kolom baru bernama <code>tipe_tinggal_baku</code>.</p>
+<p><strong>Penjelasan <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code></strong>:</p>
+<p>Fungsi <code><a href="https://dplyr.tidyverse.org/reference/case_when.html">case_when()</a></code> (bagian dari <code>dplyr</code>) sangat berguna untuk membuat variabel baru berdasarkan serangkaian aturan kondisional, mirip seperti pernyataan <code>IF-ELSE IF-ELSE</code>. Di dalam <code><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate()</a></code>, kita membuat kolom baru bernama <code>tipe_tinggal_baku</code>.</p>
 <ul>
-<li><p><strong>Aturan pertama</strong>: <code>str_detect(tolower(jenis_tinggal), "kos|asrama|rusunawa") ~ "Kos/Asrama"</code></p>
+<li>
+<p><strong>Aturan pertama</strong>: <code>str_detect(tolower(jenis_tinggal), "kos|asrama|rusunawa") ~ "Kos/Asrama"</code></p>
 <ul>
 <li><p><code>tolower(jenis_tinggal)</code>: Mengubah semua teks di kolom <code>jenis_tinggal</code> menjadi huruf kecil agar pencarian tidak sensitif terhadap huruf besar/kecil.</p></li>
 <li><p><code>str_detect(...)</code>: Fungsi ini memeriksa apakah sebuah teks mengandung pola tertentu.</p></li>
 <li><p><code>"kos|asrama|rusunawa"</code>: Ini adalah polanya. Tanda <code>|</code> berarti “ATAU”. Jadi, fungsi ini mencari kata “kos” ATAU “asrama” ATAU “rusunawa”.</p></li>
 <li><p><code>~ "Kos/Asrama"</code>: Jika salah satu kata kunci ditemukan, maka nilai untuk kolom <code>tipe_tinggal_baku</code> adalah “Kos/Asrama”.</p></li>
-</ul></li>
-<li><p><strong>Aturan kedua</strong>: <code>TRUE ~ "Rumah Keluarga/Pribadi"</code></p>
+</ul>
+</li>
+<li>
+<p><strong>Aturan kedua</strong>: <code>TRUE ~ "Rumah Keluarga/Pribadi"</code></p>
 <ul>
 <li><p><code>TRUE</code>: Ini adalah kondisi “penampung” atau <em>default</em>. Jika tidak ada kondisi sebelumnya yang terpenuhi, aturan ini akan dijalankan.</p></li>
 <li><p><code>~ "Rumah Keluarga/Pribadi"</code>: Memberi nilai “Rumah Keluarga/Pribadi” untuk semua baris yang tidak cocok dengan aturan pertama.</p></li>
-</ul></li>
+</ul>
+</li>
 </ul>
 <p>Singkatnya, kode ini membakukan data <code>jenis_tinggal</code> yang bervariasi menjadi dua kategori yang bersih dan konsisten untuk analisis proporsi.</p>
 </blockquote>
 <p>Pada tahap ini, kita menganggap data gabungan dari 1.206 mahasiswa sebagai <strong>“populasi”</strong> kita untuk tujuan simulasi.</p>
 </div>
-<div id="distribusi-sampling-dan-standard-error" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Distribusi <em>Sampling</em> dan <em>Standard Error</em><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#distribusi-sampling-dan-standard-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="distribusi-sampling-dan-standard-error" class="section level2" number="4.4">
+<h2>
+<span class="header-section-number">4.4</span> Distribusi <em>Sampling</em> dan <em>Standard Error</em><a class="anchor" aria-label="anchor" href="#distribusi-sampling-dan-standard-error"><i class="fas fa-link"></i></a>
+</h2>
 <p>Distribusi <em>sampling</em> adalah distribusi dari suatu statistik (misalnya, rata-rata) yang dihitung dari semua kemungkinan sampel dengan ukuran yang sama yang diambil dari sebuah populasi. Ini adalah istilah lain dari <strong>distribusi statistik sampel</strong>.</p>
 <p>Teorema Limit Pusat (<em>Central Limit Theorem</em>) menyatakan bahwa jika kita mengambil sampel yang cukup besar, distribusi <em>sampling</em> dari rata-rata akan mendekati distribusi normal.</p>
-<div id="mendefinisikan-parameter-populasi" class="section level3 hasAnchor" number="4.4.1">
-<h3><span class="header-section-number">4.4.1</span> Mendefinisikan Parameter Populasi<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mendefinisikan-parameter-populasi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="mendefinisikan-parameter-populasi" class="section level3" number="4.4.1">
+<h3>
+<span class="header-section-number">4.4.1</span> Mendefinisikan Parameter Populasi<a class="anchor" aria-label="anchor" href="#mendefinisikan-parameter-populasi"><i class="fas fa-link"></i></a>
+</h3>
 <p>Pertama, mari kita hitung rata-rata dan standar deviasi “populasi” kita sebagai acuan.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-1" tabindex="-1"></a><span class="co"># Menghitung rata-rata jarak &quot;populasi&quot;</span></span>
-<span id="cb157-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-2" tabindex="-1"></a>pop_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(data_mahasiswa<span class="sc">$</span>jarak_km)</span>
-<span id="cb157-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-3" tabindex="-1"></a><span class="co"># Menghitung standar deviasi jarak &quot;populasi&quot;</span></span>
-<span id="cb157-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-4" tabindex="-1"></a>pop_sd <span class="ot">&lt;-</span> <span class="fu">sd</span>(data_mahasiswa<span class="sc">$</span>jarak_km)</span>
-<span id="cb157-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-5" tabindex="-1"></a></span>
-<span id="cb157-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb157-6" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Rata-rata Jarak Populasi (μ):&quot;</span>, <span class="fu">round</span>(pop_mean, <span class="dv">2</span>), <span class="st">&quot;km&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Rata-rata Jarak Populasi (μ): 3.63 km&quot;</code></pre>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb159-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Standar Deviasi Populasi (σ):&quot;</span>, <span class="fu">round</span>(pop_sd, <span class="dv">2</span>), <span class="st">&quot;km&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;Standar Deviasi Populasi (σ): 3.35 km&quot;</code></pre>
+<div class="sourceCode" id="cb157"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menghitung rata-rata jarak "populasi"</span></span>
+<span><span class="va">pop_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">jarak_km</span><span class="op">)</span></span>
+<span><span class="co"># Menghitung standar deviasi jarak "populasi"</span></span>
+<span><span class="va">pop_sd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">jarak_km</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Rata-rata Jarak Populasi (μ):"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">pop_mean</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"km"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "Rata-rata Jarak Populasi (μ): 3.63 km"</code></pre>
+<div class="sourceCode" id="cb159"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Standar Deviasi Populasi (σ):"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">pop_sd</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"km"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "Standar Deviasi Populasi (σ): 3.35 km"</code></pre>
 </div>
-<div id="simulasi-pengambilan-sampel" class="section level3 hasAnchor" number="4.4.2">
-<h3><span class="header-section-number">4.4.2</span> Simulasi Pengambilan Sampel<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#simulasi-pengambilan-sampel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="simulasi-pengambilan-sampel" class="section level3" number="4.4.2">
+<h3>
+<span class="header-section-number">4.4.2</span> Simulasi Pengambilan Sampel<a class="anchor" aria-label="anchor" href="#simulasi-pengambilan-sampel"><i class="fas fa-link"></i></a>
+</h3>
 <p>Sekarang, kita akan mensimulasikan proses pengambilan sampel secara berulang. Kita akan mengambil 1000 sampel acak, masing-masing berukuran 50 mahasiswa (<code>n=50</code>), lalu menghitung rata-rata jarak untuk setiap sampel.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-1" tabindex="-1"></a><span class="co"># Menetapkan parameter simulasi</span></span>
-<span id="cb161-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-2" tabindex="-1"></a>ukuran_sampel <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb161-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-3" tabindex="-1"></a>jumlah_simulasi <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb161-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-4" tabindex="-1"></a></span>
-<span id="cb161-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-5" tabindex="-1"></a><span class="co"># Menjalankan simulasi</span></span>
-<span id="cb161-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-6" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Untuk hasil yang dapat direproduksi. Silakan ganti seed sesuai keinginan Anda.</span></span>
-<span id="cb161-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-7" tabindex="-1"></a><span class="co"># &#39;replicate&#39; akan menjalankan ekspresi kedua sebanyak &#39;jumlah_simulasi&#39; kali</span></span>
-<span id="cb161-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-8" tabindex="-1"></a>rataan_sampel <span class="ot">&lt;-</span> <span class="fu">replicate</span>(jumlah_simulasi, {</span>
-<span id="cb161-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-9" tabindex="-1"></a>  sampel_jarak <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_mahasiswa<span class="sc">$</span>jarak_km, ukuran_sampel)</span>
-<span id="cb161-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-10" tabindex="-1"></a>  <span class="fu">mean</span>(sampel_jarak)</span>
-<span id="cb161-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-11" tabindex="-1"></a>})</span>
-<span id="cb161-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-12" tabindex="-1"></a></span>
-<span id="cb161-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-13" tabindex="-1"></a><span class="co"># Membuat dataframe dari hasil simulasi</span></span>
-<span id="cb161-14"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-14" tabindex="-1"></a>df_sampling <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(rataan_sampel)</span>
-<span id="cb161-15"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb161-15" tabindex="-1"></a><span class="fu">head</span>(df_sampling)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menetapkan parameter simulasi</span></span>
+<span><span class="va">ukuran_sampel</span> <span class="op">&lt;-</span> <span class="fl">50</span></span>
+<span><span class="va">jumlah_simulasi</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
+<span></span>
+<span><span class="co"># Menjalankan simulasi</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">123</span><span class="op">)</span> <span class="co"># Untuk hasil yang dapat direproduksi. Silakan ganti seed sesuai keinginan Anda.</span></span>
+<span><span class="co"># 'replicate' akan menjalankan ekspresi kedua sebanyak 'jumlah_simulasi' kali</span></span>
+<span><span class="va">rataan_sampel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html">replicate</a></span><span class="op">(</span><span class="va">jumlah_simulasi</span>, <span class="op">{</span></span>
+<span>  <span class="va">sampel_jarak</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">jarak_km</span>, <span class="va">ukuran_sampel</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sampel_jarak</span><span class="op">)</span></span>
+<span><span class="op">}</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Membuat dataframe dari hasil simulasi</span></span>
+<span><span class="va">df_sampling</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">rataan_sampel</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">df_sampling</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##   rataan_sampel
 ## 1      3.393546
 ## 2      4.115982
@@ -590,8 +271,9 @@ div.csl-indent {
 ## 5      3.345113
 ## 6      3.373455</code></pre>
 </div>
-<div id="aktivitas-mandiri-1-simulasi-dengan-parameter-berbeda-stp-4.3.capaian" class="section level3 unnumbered hasAnchor rmdexercise">
-<h3>Aktivitas Mandiri 1: Simulasi dengan Parameter Berbeda [STP-4.3].{capaian}<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#aktivitas-mandiri-1-simulasi-dengan-parameter-berbeda-stp-4.3.capaian" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="aktivitas-mandiri-1-simulasi-dengan-parameter-berbeda-stp-4.3" class="section level3 unnumbered rmdexercise">
+<h3>Aktivitas Mandiri 1: Simulasi dengan Parameter Berbeda <span class="capaian">STP-4.3</span><a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-1-simulasi-dengan-parameter-berbeda-stp-4.3"><i class="fas fa-link"></i></a>
+</h3>
 <p>Modifikasi kode simulasi di atas:
 1. Ubah <code>ukuran_sampel</code> menjadi 30 (dari 50)
 2. Ubah <code>jumlah_simulasi</code> menjadi 500 (dari 1000)
@@ -601,81 +283,100 @@ div.csl-indent {
 - Bagaimana bentuk distribusi berubah dengan n=30 vs n=50?
 - Apakah SE empiris dan teoritis masih dekat?</p>
 </div>
-<div id="visualisasi-distribusi-sampling" class="section level3 hasAnchor" number="4.4.3">
-<h3><span class="header-section-number">4.4.3</span> Visualisasi Distribusi Sampling<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#visualisasi-distribusi-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="visualisasi-distribusi-sampling" class="section level3" number="4.4.3">
+<h3>
+<span class="header-section-number">4.4.3</span> Visualisasi Distribusi Sampling<a class="anchor" aria-label="anchor" href="#visualisasi-distribusi-sampling"><i class="fas fa-link"></i></a>
+</h3>
 <p>Kumpulan dari 1000 rata-rata sampel inilah yang membentuk <strong>distribusi sampling</strong>. Mari kita visualisasikan dalam bentuk histogram.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-1" tabindex="-1"></a><span class="co"># Visualisasi Distribusi Sampling dengan Histogram</span></span>
-<span id="cb163-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-2" tabindex="-1"></a><span class="fu">ggplot</span>(df_sampling, <span class="fu">aes</span>(<span class="at">x =</span> rataan_sampel)) <span class="sc">+</span></span>
-<span id="cb163-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), <span class="at">bins =</span> <span class="dv">30</span>, <span class="at">fill =</span> <span class="st">&quot;skyblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb163-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-4" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb163-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-5" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> pop_mean, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb163-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-6" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb163-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-7" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Distribusi Sampling dari Rata-rata Jarak Tempuh&quot;</span>,</span>
-<span id="cb163-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-8" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">paste</span>(<span class="st">&quot;Ukuran Sampel (n) =&quot;</span>, ukuran_sampel, <span class="st">&quot;| Jumlah Simulasi =&quot;</span>, jumlah_simulasi),</span>
-<span id="cb163-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-9" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Rata-rata Jarak Sampel (km)&quot;</span>,</span>
-<span id="cb163-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-10" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Densitas&quot;</span></span>
-<span id="cb163-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb163-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-12" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> pop_mean <span class="sc">*</span> <span class="fl">1.1</span>, <span class="at">y =</span> <span class="fl">0.1</span>, <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&quot;μ =&quot;</span>, <span class="fu">round</span>(pop_mean, <span class="dv">2</span>)), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb163-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb163-13" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="figures/mod04-visualize-sampling-distribution-1.png" width="672" /></p>
+<div class="sourceCode" id="cb163"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Visualisasi Distribusi Sampling dengan Histogram</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_sampling</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">rataan_sampel</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html">geom_histogram</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">..density..</span><span class="op">)</span>, bins <span class="op">=</span> <span class="fl">30</span>, fill <span class="op">=</span> <span class="st">"skyblue"</span>, color <span class="op">=</span> <span class="st">"black"</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"red"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_vline</a></span><span class="op">(</span>xintercept <span class="op">=</span> <span class="va">pop_mean</span>, color <span class="op">=</span> <span class="st">"blue"</span>, linetype <span class="op">=</span> <span class="st">"dashed"</span>, size <span class="op">=</span> <span class="fl">1.2</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
+<span>    title <span class="op">=</span> <span class="st">"Distribusi Sampling dari Rata-rata Jarak Tempuh"</span>,</span>
+<span>    subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Ukuran Sampel (n) ="</span>, <span class="va">ukuran_sampel</span>, <span class="st">"| Jumlah Simulasi ="</span>, <span class="va">jumlah_simulasi</span><span class="op">)</span>,</span>
+<span>    x <span class="op">=</span> <span class="st">"Rata-rata Jarak Sampel (km)"</span>,</span>
+<span>    y <span class="op">=</span> <span class="st">"Densitas"</span></span>
+<span>  <span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/annotate.html">annotate</a></span><span class="op">(</span><span class="st">"text"</span>, x <span class="op">=</span> <span class="va">pop_mean</span> <span class="op">*</span> <span class="fl">1.1</span>, y <span class="op">=</span> <span class="fl">0.1</span>, label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"μ ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">pop_mean</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span>, color <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="figures/mod04-visualize-sampling-distribution-1.png" width="672"></div>
 <p>Perhatikan bagaimana distribusi dari rata-rata sampel berbentuk seperti lonceng (mendekati normal) dan berpusat di sekitar rata-rata populasi (garis biru putus-putus).</p>
 </div>
-<div id="menghitung-standard-error-se" class="section level3 hasAnchor" number="4.4.4">
-<h3><span class="header-section-number">4.4.4</span> Menghitung <em>Standard Error</em> (SE)<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghitung-standard-error-se" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="menghitung-standard-error-se" class="section level3" number="4.4.4">
+<h3>
+<span class="header-section-number">4.4.4</span> Menghitung <em>Standard Error</em> (SE)<a class="anchor" aria-label="anchor" href="#menghitung-standard-error-se"><i class="fas fa-link"></i></a>
+</h3>
 <p><em>Standard Error</em> (SE) adalah standar deviasi dari distribusi sampling. Ini mengukur seberapa besar variasi rata-rata sampel di sekitar rata-rata populasi. SE dapat dipahami dari dua perspektif: satu dari sisi teori dalam simulasi, dan satu lagi dari sisi praktik ketika kita hanya memiliki satu sampel.</p>
 <ol style="list-style-type: decimal">
 <li><p><strong>Empiris (dari simulasi)</strong>: Menghitung standar deviasi dari 1000 rata-rata sampel yang kita hasilkan.</p></li>
 <li><p><strong>Teoritis (dari populasi)</strong>: Menggunakan rumus <span class="math inline">\(SE=\frac{\sigma}{\sqrt{n}}\)</span>, di mana <span class="math inline">\(σ\)</span> adalah standar deviasi populasi dan <span class="math inline">\(n\)</span> adalah ukuran sampel.</p></li>
 <li><p><strong>Estimasi (dari sampel)</strong>: Dalam praktik statistika inferensial, kita hampir tidak pernah mengetahui . Oleh karena itu, kita mengestimasinya menggunakan standar deviasi dari sampel kita sendiri (s). Rumusnya menjadi <span class="math inline">\(SE=\frac{s}{\sqrt{n}}\)</span>. <strong>Inilah nilai yang sebenarnya digunakan saat kita membuat interval kepercayaan atau melakukan uji hipotesis dari data sampel nyata.</strong></p></li>
 </ol>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb164-1" tabindex="-1"></a><span class="co"># 1. Standard Error Empiris (dari 1000 sampel)</span></span>
-<span id="cb164-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb164-2" tabindex="-1"></a>se_empiris <span class="ot">&lt;-</span> <span class="fu">sd</span>(df_sampling<span class="sc">$</span>rataan_sampel)</span>
-<span id="cb164-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb164-3" tabindex="-1"></a></span>
-<span id="cb164-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb164-4" tabindex="-1"></a><span class="co"># 2. Standard Error Teoritis (menggunakan info populasi)</span></span>
-<span id="cb164-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb164-5" tabindex="-1"></a>se_teoritis <span class="ot">&lt;-</span> pop_sd <span class="sc">/</span> <span class="fu">sqrt</span>(ukuran_sampel)</span>
-<span id="cb164-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb164-6" tabindex="-1"></a></span>
-<span id="cb164-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb164-7" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Standard Error (Empiris, dari simulasi):&quot;</span>, <span class="fu">round</span>(se_empiris, <span class="dv">3</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;Standard Error (Empiris, dari simulasi): 0.452&quot;</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb166-1" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Standard Error (Teoritis, dari populasi):&quot;</span>, <span class="fu">round</span>(se_teoritis, <span class="dv">3</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;Standard Error (Teoritis, dari populasi): 0.474&quot;</code></pre>
+<div class="sourceCode" id="cb164"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># 1. Standard Error Empiris (dari 1000 sampel)</span></span>
+<span><span class="va">se_empiris</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">df_sampling</span><span class="op">$</span><span class="va">rataan_sampel</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 2. Standard Error Teoritis (menggunakan info populasi)</span></span>
+<span><span class="va">se_teoritis</span> <span class="op">&lt;-</span> <span class="va">pop_sd</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">ukuran_sampel</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Standard Error (Empiris, dari simulasi):"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">se_empiris</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "Standard Error (Empiris, dari simulasi): 0.452"</code></pre>
+<div class="sourceCode" id="cb166"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Standard Error (Teoritis, dari populasi):"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">se_teoritis</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "Standard Error (Teoritis, dari populasi): 0.474"</code></pre>
 <p>Mari kita hitung estimasi standard error dari satu sampel acak yang akan kita gunakan nanti di Bagian 4.5.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-1" tabindex="-1"></a><span class="co"># Mengambil satu sampel acak (sama seperti di Bagian 4.1)</span></span>
-<span id="cb168-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-2" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
-<span id="cb168-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-3" tabindex="-1"></a>sampel_tunggal_untuk_se <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_mahasiswa<span class="sc">$</span>jarak_km, ukuran_sampel)</span>
-<span id="cb168-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-4" tabindex="-1"></a>sd_sampel_tunggal <span class="ot">&lt;-</span> <span class="fu">sd</span>(sampel_tunggal_untuk_se)</span>
-<span id="cb168-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-5" tabindex="-1"></a></span>
-<span id="cb168-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-6" tabindex="-1"></a><span class="co"># 3. Estimasi Standard Error (dari satu sampel, kasus nyata)</span></span>
-<span id="cb168-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-7" tabindex="-1"></a>se_estimasi <span class="ot">&lt;-</span> sd_sampel_tunggal <span class="sc">/</span> <span class="fu">sqrt</span>(ukuran_sampel)</span>
-<span id="cb168-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb168-8" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;Estimasi Standard Error (dari satu sampel):&quot;</span>, <span class="fu">round</span>(se_estimasi, <span class="dv">3</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;Estimasi Standard Error (dari satu sampel): 0.307&quot;</code></pre>
+<div class="sourceCode" id="cb168"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Mengambil satu sampel acak (sama seperti di Bagian 4.1)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">42</span><span class="op">)</span></span>
+<span><span class="va">sampel_tunggal_untuk_se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">jarak_km</span>, <span class="va">ukuran_sampel</span><span class="op">)</span></span>
+<span><span class="va">sd_sampel_tunggal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">sampel_tunggal_untuk_se</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 3. Estimasi Standard Error (dari satu sampel, kasus nyata)</span></span>
+<span><span class="va">se_estimasi</span> <span class="op">&lt;-</span> <span class="va">sd_sampel_tunggal</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">ukuran_sampel</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Estimasi Standard Error (dari satu sampel):"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">se_estimasi</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## [1] "Estimasi Standard Error (dari satu sampel): 0.307"</code></pre>
 <p>Perhatikan bahwa nilai SE Empiris dan Teoritis sangat dekat karena berasal dari simulasi di mana parameter populasi diketahui. Nilai SE Estimasi akan bervariasi tergantung sampel mana yang kita ambil, namun nilai inilah yang paling realistis untuk digunakan dalam analisis nyata.</p>
 </div>
 </div>
-<div id="estimasi-parameter-1-interval-kepercayaan-rata-rata" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> Estimasi Parameter-1: Interval Kepercayaan Rata-rata<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#estimasi-parameter-1-interval-kepercayaan-rata-rata" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="estimasi-parameter-1-interval-kepercayaan-rata-rata" class="section level2" number="4.5">
+<h2>
+<span class="header-section-number">4.5</span> Estimasi Parameter-1: Interval Kepercayaan Rata-rata<a class="anchor" aria-label="anchor" href="#estimasi-parameter-1-interval-kepercayaan-rata-rata"><i class="fas fa-link"></i></a>
+</h2>
 <p>Untuk bagian ini kita akan menggunakan <em>library</em> bernama <code>MKinfer</code>yang berguna untuk menghasilkan interval kepercayaan sebagai estimasi rentang.</p>
 <p>Lakukan instalasi <em>library</em> ini dengan perintah berikut.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb170-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;MKinfer&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"MKinfer"</span><span class="op">)</span></span></code></pre></div>
 <p>Kemudian muat paket <code>MKinfer</code> tersebut.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb171-1" tabindex="-1"></a><span class="fu">library</span>(MKinfer)</span></code></pre></div>
-<div id="mengambil-satu-sampel" class="section level3 hasAnchor" number="4.5.1">
-<h3><span class="header-section-number">4.5.1</span> Mengambil Satu Sampel<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mengambil-satu-sampel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb172-1" tabindex="-1"></a><span class="co"># Kita gunakan sampel yang sudah dibuat sebelumnya</span></span>
-<span id="cb172-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb172-2" tabindex="-1"></a>sampel_tunggal <span class="ot">&lt;-</span> sampel_tunggal_untuk_se</span>
-<span id="cb172-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb172-3" tabindex="-1"></a>mean_sampel_tunggal <span class="ot">&lt;-</span> <span class="fu">mean</span>(sampel_tunggal)</span>
-<span id="cb172-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb172-4" tabindex="-1"></a></span>
-<span id="cb172-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb172-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;Rata-rata Sampel Tunggal:&quot;</span>, <span class="fu">round</span>(mean_sampel_tunggal, <span class="dv">2</span>), <span class="st">&quot;km</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/stamats/MKinfer">MKinfer</a></span><span class="op">)</span></span></code></pre></div>
+<div id="mengambil-satu-sampel" class="section level3" number="4.5.1">
+<h3>
+<span class="header-section-number">4.5.1</span> Mengambil Satu Sampel<a class="anchor" aria-label="anchor" href="#mengambil-satu-sampel"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb172"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Kita gunakan sampel yang sudah dibuat sebelumnya</span></span>
+<span><span class="va">sampel_tunggal</span> <span class="op">&lt;-</span> <span class="va">sampel_tunggal_untuk_se</span></span>
+<span><span class="va">mean_sampel_tunggal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">sampel_tunggal</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Rata-rata Sampel Tunggal:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">mean_sampel_tunggal</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"km\n"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rata-rata Sampel Tunggal: 3.46 km</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb174-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;Standar Deviasi Sampel Tunggal:&quot;</span>, <span class="fu">round</span>(sd_sampel_tunggal, <span class="dv">2</span>), <span class="st">&quot;km</span><span class="sc">\n</span><span class="st">&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Standar Deviasi Sampel Tunggal:"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">sd_sampel_tunggal</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"km\n"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Standar Deviasi Sampel Tunggal: 2.17 km</code></pre>
 </div>
-<div id="menghasilkan-interval-kepercayaan" class="section level3 hasAnchor" number="4.5.2">
-<h3><span class="header-section-number">4.5.2</span> Menghasilkan Interval Kepercayaan<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghasilkan-interval-kepercayaan" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb176-1" tabindex="-1"></a><span class="co"># Menghitung interval kepercayaan 95% menggunakan MKinfer</span></span>
-<span id="cb176-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb176-2" tabindex="-1"></a>hasil_ci_mean <span class="ot">&lt;-</span> <span class="fu">meanCI</span>(sampel_tunggal, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb176-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb176-3" tabindex="-1"></a></span>
-<span id="cb176-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb176-4" tabindex="-1"></a><span class="co"># Menampilkan hasil</span></span>
-<span id="cb176-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb176-5" tabindex="-1"></a>hasil_ci_mean</span></code></pre></div>
+<div id="menghasilkan-interval-kepercayaan" class="section level3" number="4.5.2">
+<h3>
+<span class="header-section-number">4.5.2</span> Menghasilkan Interval Kepercayaan<a class="anchor" aria-label="anchor" href="#menghasilkan-interval-kepercayaan"><i class="fas fa-link"></i></a>
+</h3>
+<div class="sourceCode" id="cb176"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menghitung interval kepercayaan 95% menggunakan MKinfer</span></span>
+<span><span class="va">hasil_ci_mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MKinfer/man/normCI.html">meanCI</a></span><span class="op">(</span><span class="va">sampel_tunggal</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menampilkan hasil</span></span>
+<span><span class="va">hasil_ci_mean</span></span></code></pre></div>
 <pre><code>## 
 ##  Exact confidence interval(s)
 ## 
@@ -693,71 +394,87 @@ div.csl-indent {
 <p>Hasil dari fungsi <code>meanCI</code> tersebut langsung menunjukkan rentang kepercayaan yang limit bawahnya ditunjukkan oleh angka di bawah <code>2.5%</code>dan limit atasnya oleh angka di bawah <code>97.5%</code>. Nilai-nilai ini adalah nilai <span class="math inline">\(\alpha/2\)</span> yang dibagi dua ke kiri dan kanan grafik.</p>
 <p><strong>Pertanyaan</strong></p>
 <p>Berapakah rentang kepercayaan untuk rata-rata jarak tempat tinggal dari kampus dari sampel kita? Tuliskan interpretasinya yang tepat. Bandingkan dengan rata-rata parameter</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb178-1" tabindex="-1"></a><span class="co"># Jawablah pertanyaan di atas dengan menuliskannya sebagai komentar di chunk ini</span></span>
-<span id="cb178-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb178-2" tabindex="-1"></a><span class="co"># Rentang kepercayaannya adalah 2,81 - 3,95 km</span></span>
-<span id="cb178-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb178-3" tabindex="-1"></a></span>
-<span id="cb178-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb178-4" tabindex="-1"></a><span class="co"># Apa interpretasi dari hasil ini?</span></span>
-<span id="cb178-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb178-5" tabindex="-1"></a><span class="co"># Rata-rata jarak dari kampus untuk tempat tinggal seluruh mahasiswa berada di rentang 2,81 - 3,95 km. Jika dibandingkan dengan rata-rata populasi, rata-rata populasi ternyata masuk di rentang ini.</span></span>
-<span id="cb178-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb178-6" tabindex="-1"></a>pop_mean</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Jawablah pertanyaan di atas dengan menuliskannya sebagai komentar di chunk ini</span></span>
+<span><span class="co"># Rentang kepercayaannya adalah 2,81 - 3,95 km</span></span>
+<span></span>
+<span><span class="co"># Apa interpretasi dari hasil ini?</span></span>
+<span><span class="co"># Rata-rata jarak dari kampus untuk tempat tinggal seluruh mahasiswa berada di rentang 2,81 - 3,95 km. Jika dibandingkan dengan rata-rata populasi, rata-rata populasi ternyata masuk di rentang ini.</span></span>
+<span><span class="va">pop_mean</span></span></code></pre></div>
 <pre><code>## [1] 3.625515</code></pre>
 </div>
 </div>
-<div id="estimasi-parameter-2-interval-kepercayaan-proporsi" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> Estimasi Parameter-2: Interval Kepercayaan Proporsi<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#estimasi-parameter-2-interval-kepercayaan-proporsi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="estimasi-parameter-2-interval-kepercayaan-proporsi" class="section level2" number="4.6">
+<h2>
+<span class="header-section-number">4.6</span> Estimasi Parameter-2: Interval Kepercayaan Proporsi<a class="anchor" aria-label="anchor" href="#estimasi-parameter-2-interval-kepercayaan-proporsi"><i class="fas fa-link"></i></a>
+</h2>
 <p>Selain rata-rata, kita juga sering tertarik untuk mengestimasi proporsi dari suatu kategori dalam populasi. Contohnya, berapa persentase mahasiswa yang tinggal di kos/asrama? Prosesnya mirip: kita mengambil sampel, menghitung proporsi sampel, lalu membangun interval kepercayaan di sekitar proporsi tersebut.</p>
-<div id="parameter-proporsi" class="section level3 hasAnchor" number="4.6.1">
-<h3><span class="header-section-number">4.6.1</span> Parameter Proporsi<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#parameter-proporsi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="parameter-proporsi" class="section level3" number="4.6.1">
+<h3>
+<span class="header-section-number">4.6.1</span> Parameter Proporsi<a class="anchor" aria-label="anchor" href="#parameter-proporsi"><i class="fas fa-link"></i></a>
+</h3>
 <p>Pertama, mari kita hitung proporsi “populasi” yang sebenarnya dari data kita. Kita akan mencari proporsi mahasiswa yang tinggal di “Kos/Asrama”.</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb180-1" tabindex="-1"></a><span class="co"># Menghitung proporsi populasi</span></span>
-<span id="cb180-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb180-2" tabindex="-1"></a>tabel_populasi <span class="ot">&lt;-</span> <span class="fu">table</span>(data_mahasiswa<span class="sc">$</span>tipe_tinggal_baku)</span>
-<span id="cb180-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb180-3" tabindex="-1"></a>pop_prop <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tabel_populasi)[<span class="st">&quot;Kos/Asrama&quot;</span>]</span>
-<span id="cb180-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb180-4" tabindex="-1"></a></span>
-<span id="cb180-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb180-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Tabel Frekuensi Jenis Tinggal di Populasi:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menghitung proporsi populasi</span></span>
+<span><span class="va">tabel_populasi</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">tipe_tinggal_baku</span><span class="op">)</span></span>
+<span><span class="va">pop_prop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="va">tabel_populasi</span><span class="op">)</span><span class="op">[</span><span class="st">"Kos/Asrama"</span><span class="op">]</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Tabel Frekuensi Jenis Tinggal di Populasi:\n"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Tabel Frekuensi Jenis Tinggal di Populasi:</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb182-1" tabindex="-1"></a><span class="fu">print</span>(tabel_populasi)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">tabel_populasi</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##             Kos/Asrama Rumah Keluarga/Pribadi 
 ##                    639                    961</code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb184-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Proporsi Mahasiswa di Kos/Asrama (p):&quot;</span>, <span class="fu">round</span>(pop_prop, <span class="dv">4</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"\nProporsi Mahasiswa di Kos/Asrama (p):"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">pop_prop</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Proporsi Mahasiswa di Kos/Asrama (p): 0.3994</code></pre>
 </div>
-<div id="mengambil-satu-sampel-dan-menghitung-proporsinya" class="section level3 hasAnchor" number="4.6.2">
-<h3><span class="header-section-number">4.6.2</span> Mengambil Satu Sampel dan Menghitung Proporsinya<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#mengambil-satu-sampel-dan-menghitung-proporsinya" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="mengambil-satu-sampel-dan-menghitung-proporsinya" class="section level3" number="4.6.2">
+<h3>
+<span class="header-section-number">4.6.2</span> Mengambil Satu Sampel dan Menghitung Proporsinya<a class="anchor" aria-label="anchor" href="#mengambil-satu-sampel-dan-menghitung-proporsinya"><i class="fas fa-link"></i></a>
+</h3>
 <p>Sekarang, kita ambil satu sampel acak (misalnya, <code>n=100</code>) dan hitung proporsi sampel <span class="math inline">\(\hat{p}\)</span> mahasiswa yang tinggal di kos/asrama.</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-1" tabindex="-1"></a><span class="co"># Menetapkan ukuran sampel</span></span>
-<span id="cb186-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-2" tabindex="-1"></a>ukuran_sampel_prop <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb186-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-3" tabindex="-1"></a></span>
-<span id="cb186-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-4" tabindex="-1"></a><span class="co"># Mengambil sampel acak dari kolom tipe tinggal</span></span>
-<span id="cb186-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-5" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>) <span class="co"># Menggunakan seed baru</span></span>
-<span id="cb186-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-6" tabindex="-1"></a>sampel_prop <span class="ot">&lt;-</span> <span class="fu">sample</span>(data_mahasiswa<span class="sc">$</span>tipe_tinggal_baku, ukuran_sampel_prop)</span>
-<span id="cb186-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-7" tabindex="-1"></a></span>
-<span id="cb186-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-8" tabindex="-1"></a><span class="co"># Menghitung frekuensi di dalam sampel</span></span>
-<span id="cb186-9"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-9" tabindex="-1"></a>tabel_sampel <span class="ot">&lt;-</span> <span class="fu">table</span>(sampel_prop)</span>
-<span id="cb186-10"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-10" tabindex="-1"></a><span class="co"># Menghitung proporsi sampel</span></span>
-<span id="cb186-11"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-11" tabindex="-1"></a>prop_sampel <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tabel_sampel)[<span class="st">&quot;Kos/Asrama&quot;</span>]</span>
-<span id="cb186-12"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-12" tabindex="-1"></a></span>
-<span id="cb186-13"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb186-13" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Tabel Frekuensi Jenis Tinggal di Sampel:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menetapkan ukuran sampel</span></span>
+<span><span class="va">ukuran_sampel_prop</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
+<span></span>
+<span><span class="co"># Mengambil sampel acak dari kolom tipe tinggal</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">101</span><span class="op">)</span> <span class="co"># Menggunakan seed baru</span></span>
+<span><span class="va">sampel_prop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">tipe_tinggal_baku</span>, <span class="va">ukuran_sampel_prop</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menghitung frekuensi di dalam sampel</span></span>
+<span><span class="va">tabel_sampel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">sampel_prop</span><span class="op">)</span></span>
+<span><span class="co"># Menghitung proporsi sampel</span></span>
+<span><span class="va">prop_sampel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/proportions.html">prop.table</a></span><span class="op">(</span><span class="va">tabel_sampel</span><span class="op">)</span><span class="op">[</span><span class="st">"Kos/Asrama"</span><span class="op">]</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Tabel Frekuensi Jenis Tinggal di Sampel:\n"</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Tabel Frekuensi Jenis Tinggal di Sampel:</code></pre>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb188-1" tabindex="-1"></a><span class="fu">print</span>(tabel_sampel)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">tabel_sampel</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## sampel_prop
 ##             Kos/Asrama Rumah Keluarga/Pribadi 
 ##                     36                     64</code></pre>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb190-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Proporsi Sampel Mahasiswa di Kos/Asrama (p-hat):&quot;</span>, <span class="fu">round</span>(prop_sampel, <span class="dv">4</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"\nProporsi Sampel Mahasiswa di Kos/Asrama (p-hat):"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">prop_sampel</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Proporsi Sampel Mahasiswa di Kos/Asrama (p-hat): 0.36</code></pre>
 </div>
-<div id="menghasilkan-interval-kepercayaan-untuk-proporsi" class="section level3 hasAnchor" number="4.6.3">
-<h3><span class="header-section-number">4.6.3</span> Menghasilkan Interval Kepercayaan untuk Proporsi<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#menghasilkan-interval-kepercayaan-untuk-proporsi" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Kita akan menggunakan fungsi <code>binomCI()</code> di R. Fungsi ini memerlukan jumlah “sukses”, yakni jumlah mahasiswa di kos/asrama, dan total ukuran sampel.</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb192-1" tabindex="-1"></a><span class="co"># Mendapatkan jumlah &quot;sukses&quot; dari tabel sampel</span></span>
-<span id="cb192-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb192-2" tabindex="-1"></a>jumlah_sukses <span class="ot">&lt;-</span> tabel_sampel[<span class="st">&quot;Kos/Asrama&quot;</span>]</span>
-<span id="cb192-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb192-3" tabindex="-1"></a>total_sampel <span class="ot">&lt;-</span> ukuran_sampel_prop</span>
-<span id="cb192-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb192-4" tabindex="-1"></a></span>
-<span id="cb192-5"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb192-5" tabindex="-1"></a><span class="co"># Menghitung interval kepercayaan 95% untuk proporsi</span></span>
-<span id="cb192-6"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb192-6" tabindex="-1"></a>hasil_prop_test <span class="ot">&lt;-</span> <span class="fu">binomCI</span>(jumlah_sukses, total_sampel, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb192-7"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb192-7" tabindex="-1"></a><span class="co"># Menampilkan hasil</span></span>
-<span id="cb192-8"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb192-8" tabindex="-1"></a><span class="fu">print</span>(hasil_prop_test)</span></code></pre></div>
+<div id="menghasilkan-interval-kepercayaan-untuk-proporsi" class="section level3" number="4.6.3">
+<h3>
+<span class="header-section-number">4.6.3</span> Menghasilkan Interval Kepercayaan untuk Proporsi<a class="anchor" aria-label="anchor" href="#menghasilkan-interval-kepercayaan-untuk-proporsi"><i class="fas fa-link"></i></a>
+</h3>
+<p>Kita akan menggunakan fungsi <code><a href="https://rdrr.io/pkg/MKinfer/man/binomCI.html">binomCI()</a></code> di R. Fungsi ini memerlukan jumlah “sukses”, yakni jumlah mahasiswa di kos/asrama, dan total ukuran sampel.</p>
+<div class="sourceCode" id="cb192"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Mendapatkan jumlah "sukses" dari tabel sampel</span></span>
+<span><span class="va">jumlah_sukses</span> <span class="op">&lt;-</span> <span class="va">tabel_sampel</span><span class="op">[</span><span class="st">"Kos/Asrama"</span><span class="op">]</span></span>
+<span><span class="va">total_sampel</span> <span class="op">&lt;-</span> <span class="va">ukuran_sampel_prop</span></span>
+<span></span>
+<span><span class="co"># Menghitung interval kepercayaan 95% untuk proporsi</span></span>
+<span><span class="va">hasil_prop_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/MKinfer/man/binomCI.html">binomCI</a></span><span class="op">(</span><span class="va">jumlah_sukses</span>, <span class="va">total_sampel</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
+<span><span class="co"># Menampilkan hasil</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">hasil_prop_test</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ##  wilson confidence interval
 ## 
@@ -774,13 +491,15 @@ div.csl-indent {
 ##             0.04717785</code></pre>
 <p><strong>Pertanyaan</strong></p>
 <p>Berapakah rentang kepercayaan untuk proporsi mahasiswa yang tinggal di kos/asrama? Tuliskan interpretasinya yang tepat. Bandingkan dengan proporsi parameter.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb194-1" tabindex="-1"></a><span class="co"># Jawablah pertanyaan di atas dengan menuliskannya sebagai komentar di chunk ini  # Rentang kepercayaannya adalah 0,37 hingga 0,56</span></span>
-<span id="cb194-2"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb194-2" tabindex="-1"></a></span>
-<span id="cb194-3"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb194-3" tabindex="-1"></a><span class="co"># Tuliskan interpretasi dari rentang tersebut</span></span>
-<span id="cb194-4"><a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#cb194-4" tabindex="-1"></a><span class="co"># Tidak banyak mahasiswa yang tinggal di kos/asrama, karena rentang kepercayaan parameter proporsi mahasiswa yang tinggal di kos/asrama adalah 37% hingga 56% saja.</span></span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Jawablah pertanyaan di atas dengan menuliskannya sebagai komentar di chunk ini  # Rentang kepercayaannya adalah 0,37 hingga 0,56</span></span>
+<span></span>
+<span><span class="co"># Tuliskan interpretasi dari rentang tersebut</span></span>
+<span><span class="co"># Tidak banyak mahasiswa yang tinggal di kos/asrama, karena rentang kepercayaan parameter proporsi mahasiswa yang tinggal di kos/asrama adalah 37% hingga 56% saja.</span></span></code></pre></div>
 </div>
-<div id="aktivitas-mandiri-2-interval-kepercayaan-99-stp-5.2.capaian" class="section level3 unnumbered hasAnchor rmdexercise">
-<h3>Aktivitas Mandiri 2: Interval Kepercayaan 99% [STP-5.2].{capaian}<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#aktivitas-mandiri-2-interval-kepercayaan-99-stp-5.2.capaian" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="aktivitas-mandiri-2-interval-kepercayaan-99-stp-5.2" class="section level3 unnumbered rmdexercise">
+<h3>Aktivitas Mandiri 2: Interval Kepercayaan 99% <span class="capaian">STP-5.2</span><a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-2-interval-kepercayaan-99-stp-5.2"><i class="fas fa-link"></i></a>
+</h3>
 <p>Untuk proporsi mahasiswa di Kos/Asrama:
 1. Hitung interval kepercayaan 99% (<code>conf.level = 0.99</code>)
 2. Bandingkan dengan hasil 95%
@@ -790,92 +509,95 @@ div.csl-indent {
 2. Hitung CI 90%
 3. Interpretasikan hasilnya</p>
 </div>
-<div id="aktivitas-mandiri-3-interval-kepercayaan-97-stp-4.3-stp-5.2.capaian" class="section level3 unnumbered hasAnchor rmdexercise">
-<h3>Aktivitas Mandiri 3: Interval Kepercayaan 97% [STP-4.3, STP-5.2].{capaian}<a href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html#aktivitas-mandiri-3-interval-kepercayaan-97-stp-4.3-stp-5.2.capaian" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="aktivitas-mandiri-3-interval-kepercayaan-97-stp-4.3-stp-5.2" class="section level3 unnumbered rmdexercise">
+<h3>Aktivitas Mandiri 3: Interval Kepercayaan 97% <span class="capaian">STP-4.3, STP-5.2</span><a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-3-interval-kepercayaan-97-stp-4.3-stp-5.2"><i class="fas fa-link"></i></a>
+</h3>
 <p><strong>Petunjuk:</strong> Gunakan <code>conf.level = 0.97</code></p>
 <ol style="list-style-type: decimal">
-<li><strong>Rata-rata Jarak:</strong>
+<li>
+<strong>Rata-rata Jarak:</strong>
 <ul>
 <li>Hitung CI 97% untuk rata-rata jarak</li>
 <li>Interpretasi: “Kita 97% yakin bahwa rata-rata jarak populasi berada di rentang…”</li>
-</ul></li>
-<li><strong>Proporsi Penghuni Kos/Asrama:</strong>
+</ul>
+</li>
+<li>
+<strong>Proporsi Penghuni Kos/Asrama:</strong>
 <ul>
 <li>Hitung CI 97% untuk proporsi</li>
-</ul></li>
-<li><strong>Analisis Perbandingan:</strong>
+</ul>
+</li>
+<li>
+<strong>Analisis Perbandingan:</strong>
 <ul>
 <li>Bandingkan CI 97%, 95%, dan 90%</li>
 <li>Jelaskan trade-off antara lebar interval dan tingkat kepercayaan</li>
-</ul></li>
+</ul>
+</li>
 </ol>
 </div>
-<hr />
-
+<hr>
 </div>
 </div>
-            </section>
+  <div class="chapter-nav">
+<div class="prev"><a href="modul-3-visualisasi-data-kuantitatif.html"><span class="header-section-number">3</span> Modul-3: Visualisasi Data Kuantitatif</a></div>
+<div class="next"><a href="modul-5-uji-hipotesis.html"><span class="header-section-number">5</span> Modul-5: Uji Hipotesis</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#modul-4-distribusi-sampling-dan-interval-kepercayaan"><span class="header-section-number">4</span> Modul-4: Distribusi Sampling dan Interval Kepercayaan</a></li>
+<li><a class="nav-link" href="#pendahuluan"><span class="header-section-number">4.1</span> Pendahuluan</a></li>
+<li><a class="nav-link" href="#perangkat-lunak-dan-pustaka-libraries"><span class="header-section-number">4.2</span> Perangkat Lunak dan Pustaka (Libraries)</a></li>
+<li><a class="nav-link" href="#memuat-dan-mempersiapkan-data"><span class="header-section-number">4.3</span> Memuat dan Mempersiapkan Data</a></li>
+<li>
+<a class="nav-link" href="#distribusi-sampling-dan-standard-error"><span class="header-section-number">4.4</span> Distribusi Sampling dan Standard Error</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#mendefinisikan-parameter-populasi"><span class="header-section-number">4.4.1</span> Mendefinisikan Parameter Populasi</a></li>
+<li><a class="nav-link" href="#simulasi-pengambilan-sampel"><span class="header-section-number">4.4.2</span> Simulasi Pengambilan Sampel</a></li>
+<li><a class="nav-link" href="#aktivitas-mandiri-1-simulasi-dengan-parameter-berbeda-stp-4.3">Aktivitas Mandiri 1: Simulasi dengan Parameter Berbeda STP-4.3</a></li>
+<li><a class="nav-link" href="#visualisasi-distribusi-sampling"><span class="header-section-number">4.4.3</span> Visualisasi Distribusi Sampling</a></li>
+<li><a class="nav-link" href="#menghitung-standard-error-se"><span class="header-section-number">4.4.4</span> Menghitung Standard Error (SE)</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#estimasi-parameter-1-interval-kepercayaan-rata-rata"><span class="header-section-number">4.5</span> Estimasi Parameter-1: Interval Kepercayaan Rata-rata</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#mengambil-satu-sampel"><span class="header-section-number">4.5.1</span> Mengambil Satu Sampel</a></li>
+<li><a class="nav-link" href="#menghasilkan-interval-kepercayaan"><span class="header-section-number">4.5.2</span> Menghasilkan Interval Kepercayaan</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#estimasi-parameter-2-interval-kepercayaan-proporsi"><span class="header-section-number">4.6</span> Estimasi Parameter-2: Interval Kepercayaan Proporsi</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#parameter-proporsi"><span class="header-section-number">4.6.1</span> Parameter Proporsi</a></li>
+<li><a class="nav-link" href="#mengambil-satu-sampel-dan-menghitung-proporsinya"><span class="header-section-number">4.6.2</span> Mengambil Satu Sampel dan Menghitung Proporsinya</a></li>
+<li><a class="nav-link" href="#menghasilkan-interval-kepercayaan-untuk-proporsi"><span class="header-section-number">4.6.3</span> Menghasilkan Interval Kepercayaan untuk Proporsi</a></li>
+<li><a class="nav-link" href="#aktivitas-mandiri-2-interval-kepercayaan-99-stp-5.2">Aktivitas Mandiri 2: Interval Kepercayaan 99% STP-5.2</a></li>
+<li><a class="nav-link" href="#aktivitas-mandiri-3-interval-kepercayaan-97-stp-4.3-stp-5.2">Aktivitas Mandiri 3: Interval Kepercayaan 97% STP-4.3, STP-5.2</a></li>
+</ul>
+</li>
+</ul>
 
-          </div>
-        </div>
-      </div>
-<a href="modul-3-visualisasi-data-kuantitatif.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="modul-5-uji-hipotesis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Modul Praktik Statistika Untuk Perencanaan</strong>: Penggunaan R dalam Pengolahan Data Kuantitatif" was written by Team Teaching Statistika Untuk Perencanaan, PWK ITERA. </p>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-  "sharing": {
-    "github": false,
-    "facebook": true,
-    "twitter": true,
-    "linkedin": false,
-    "weibo": false,
-    "instapaper": false,
-    "vk": false,
-    "whatsapp": false,
-    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-  },
-  "fontsettings": {
-    "theme": "white",
-    "family": "sans",
-    "size": 2
-  },
-  "edit": {
-    "link": null,
-    "text": null
-  },
-  "history": {
-    "link": null,
-    "text": null
-  },
-  "view": {
-    "link": null,
-    "text": null
-  },
-  "download": null,
-  "search": {
-    "engine": "fuse",
-    "options": null
-  },
-  "toc": {
-    "collapse": "subsection"
-  }
-});
-});
-</script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -887,7 +609,22 @@ gitbook.start({
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
 </script>
 </body>
-
 </html>

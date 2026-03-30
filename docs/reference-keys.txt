@@ -116,7 +116,7 @@ modul-5-uji-hipotesis
 pendahuluan-1
 perangkat-lunak-dan-pustaka-libraries-1
 memuat-data
-perkenalan-markdown-latex
+perkenalan-latex-dalam-r-markdown
 uji-hipotesis-satu-populasi
 rata-rata
 memahami-distribusi-normal-dan-area-kritis

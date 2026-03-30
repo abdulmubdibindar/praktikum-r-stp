@@ -1,12 +1,12 @@
 # Modul-5: Uji Hipotesis
 
+::: {.rmdcapaian}
 Setelah mempelajari modul ini, Anda diharapkan dapat:
 
 1. mampu menghasilkan uji hipotesis satu populasi dengan menggunakan perangkat lunak komputer [STP-6.2]{.capaian}
 2. mampu menghasilkan uji hipotesis dua atau lebih populasi pada suatu kasus menggunakan perangkat lunak komputer [STP-7.2]{.capaian}
 
-
----
+:::
 
 ## Pendahuluan
 
@@ -29,43 +29,82 @@ Biasanya pustaka `stats` sudah termuat secara bawaan *(default)* saat kita menja
 ``` r
 "package:{nama pustaka}" %in% search() # ganti {nama pustaka} dengan nama pustaka yang ingin dicari
 
-"package: stats" %in% search() # untuk mengecek apakah 'stats' sudah dimuat
+# Contoh perintah untuk mengecek apakah 'stats' sudah dimuat
+"package: stats" %in% search()
 ```
+
+Kita juga akan belajar menulis persamaan $H_0$ dan $H_1$ di RMarkdown. Untuk itu, kita harus memiliki paket bernama `rmarkdown`. Pastikan paket `rmarkdown` sudah terpasang dan termuat di RStudio Anda.
+
+::: rmdexercise
+### Aktivitas Mandiri 1 {.unnumbered}
+
+1. Coba Anda cek apakah pustaka `stats` sudah termuat di RStudio Anda dengan menggunakan perintah yang telah diberikan. Bagaimana hasilnya?
+2. Coba Anda cek apakah paket `rmarkdown` sudah terpasang dan termuat di RStudio Anda. Jika belum, silakan pasang dengan perintah berikut.
+
+``` r
+install.packages("rmarkdown")
+```
+
+:::
 
 ## Memuat Data
 
+Kita akan menggunakan data gabungan keempat kampus (UBL, UNILA, UINRIL, dan ITERA) yang berisikan variabel jarak tempuh (km) dan jenis tempat tinggal saja. Pada kesempatan ini, kita akan mempelajari perintah baru untuk membuka file CSV, yakni `read_csv2()`. File CSV memiliki dua jenis pemisah (*delimiter*), yaitu titik koma (;) dan koma (,). Adanya pemisah berupa titik koma ini ini dimaksudkan untuk mengakomodasi penulisan angka desimal yang menggunakan koma (,) yang digunakan di berbagai negara, termasuk Indonesia. Adapun file CSV bawaan yang menggunakan pemisah koma (,) adalah file CSV yang dibuat untuk penulisan angka desimal menggunakan titik (.) yang lazim digunakan pada negara-negara berbahasa Inggris, seperti Amerika Serikat dan Inggris.
+
+Perintah `read_csv2()` digunakan untuk membuka file CSV yang menggunakan titik koma (;) sebagai pemisah (*delimiter*). Dataset yang kita gunakan, `data_mahasiswa.csv`, menggunakan titik koma (;) sebagai pemisah (*delimiter*). Dengan demikian, kita harus menggunakan perintah `read_csv2()` untuk membuka file CSV ini.
+
 ``` r
-data_mahasiswa <- read_csv2("data_mahasiswa.csv")
-# read_csv2() → untuk file CSV dgn pemisah titik koma (;)
-# read_csv() → untuk file CSV dgn pemisah koma (,).
+data_mahasiswa <- read_csv2("datasets/data_mahasiswa.csv")
 ```
 
-```{r mod05-load-data, echo=TRUE}
-data_mahasiswa <- read_csv2("datasets/data_mahasiswa.csv") 
+::: rmdexercise
+### Aktivitas Mandiri 2 {.unnumbered}
+
+Muatlah dataset `data_mahasiswa.csv` ke dalam RStudio Anda menggunakan perintah `read_csv2()` yang telah dijelaskan.
+
+:::
+
+
+```{r mod05-load-data, echo=FALSE}
+data_mahasiswa <- read_csv2("datasets/data_mahasiswa.csv")
 ```
 
-## Perkenalan Markdown: LaTeX
+## Perkenalan: LaTeX dalam R Markdown
 
-Dalam file Markdown terdapat fitur bahasa LaTeX. Bahasa ini digunakan untuk menulis simbol matematis.
+RStudio memiliki bentuk file lain selain `.R`, yakni `.Rmd` atau "R Markdown". File ini adalah gabungan kemampuan eksekusi kode R dengan penulisan teks dari [Markdown](https://daringfireball.net/projects/markdown/). Kemampuan penulisan teks tersebut mencakup kemampuan menampilkan persamaan atau simbol matematis.
 
-Untuk menyisipkan persamaan matematis menggunakan LaTeX, kita dapat menggunakan perintah Insert \> LaTeX Math \> Inline Math/Display Math. Inline Math akan menyisipkan simbol matematis di dalam paragraf, sementara Display Math membuat persamaan di bagian terpisah dari paragraf.
+Untuk menyisipkan persamaan matematis menggunakan [LaTeX](https://latex-project.org/), kita dapat menggunakan perintah **Insert \> LaTeX Math \> Inline Math/Display Math. Inline Math akan menyisipkan simbol matematis di dalam paragraf, sementara Display Math membuat persamaan di bagian terpisah dari paragraf.
 
-Dalam mode Source, Inline Math disisipkan dengan mengetikkan `$$` terlebih dahulu dan menuliskan simbolnya di antara dua `$` tersebut. Sementara itu, untuk Display Math kita perlu mengetikkan empat buah tanda `$` sehingga terlihat seperti berikut.
+Dalam mode *Source*, Inline Math disisipkan pada dua tanda `$` di awal dan akhir, lalu menuliskan simbolnya di antara `$` tersebut. Sementara itu, untuk Display Math kita perlu mengetikkan `$$` di awal dan akhir sehingga terlihat seperti berikut.
 
 ``` markdown
 $$
-H_0 : \mu_0 = 4
-\newline H_1 : \mu_0 \ne 4
+H_0 : \mu_0 = 4 \\
+H_1 : \mu_0 \ne 4
 $$
 ```
 
 Hasilnya adalah seperti berikut:
 
 $$
-H_0 : \mu_0 = 4\newline H_1 : \mu_0 \ne 4
+H_0 : \mu_0 = 4 \\
+H_1 : \mu_0 \ne 4
 $$
 
-Anda dapat mempelajari penulisan LaTeX selengkapnya [di sini](https://www.overleaf.com/learn/latex/Mathematical_expressions#Further_reading "https://www.overleaf.com/learn/latex/Mathematical_expressions#Further_reading").
+Anda dapat mempelajari penulisan LaTeX selengkapnya [di situs web Overleaf](https://www.overleaf.com/learn/latex/Mathematical_expressions) ini.
+
+::: rmdexercise
+### Aktivitas Mandiri 3 {.unnumbered}
+
+1. Pastikan paket `rmarkdown` sudah terpasang dan termuat di RStudio Anda.
+2. Buat file R Markdown baru dengan mengeklik **File \> New File \> R Markdown...**
+3. Pada jendela yang muncul, klik **Create Empty Document**.
+4. Klik **OK**.
+5. Pada dokumen yang baru terbuka, Anda akan melihat tombol **Source** dan **Visual**. Pastikan Anda berada pada mode **Source**.
+6. Tuliskan sintaks seperti yang sudah ditampilkan sebelumnya
+7. Klik tombol **Visual** untuk melihat hasil persamaan matematis yang sudah Anda tuliskan.
+8. Simpan dokumen tersebut dengan nama `Prak_05_NIM_Nama.Rmd`
+:::
 
 ## Uji Hipotesis Satu Populasi
 
@@ -73,11 +112,11 @@ Pengujian hipotesis satu populasi bermakna pengujian hipotesis untuk suatu param
 
 Dalam uji hipotesis satu populasi, kita hanya berfokus pada satu kelompok data, dan ingin mengetahui apakah parameter populasi sama dengan nilai tertentu atau tidak. Nilai acuan ini biasanya berasal dari teori, standar, atau dugaan awal. Ada dua jenis parameter yang bisa diuji:
 
-**Rata-rata** (µ) → misalnya, apakah rata-rata jarak mahasiswa ke kampus = 4 km?
+**Rata-rata** ($\mu$) → misalnya, apakah rata-rata jarak mahasiswa ke kampus = 4 km?
 
-**Proporsi** (p) → misalnya, apakah proporsi mahasiswa yang tinggal di kos/asrama = 50%?
+**Proporsi** ($p$) → misalnya, apakah proporsi mahasiswa yang tinggal di kos/asrama = 50%?
 
-Prinsipnya sama: kita rumuskan hipotesis nol (H0), tentukan hipotesis alternatif (H1), hitung statistik uji (Z atau t), tentukan daerah kritis, lalu disimpulkan.
+Prinsipnya sama: kita rumuskan hipotesis nol ($H_0$), tentukan hipotesis alternatif ($H_1$), hitung statistik uji (Z atau t), tentukan daerah kritis, lalu disimpulkan.
 
 Penjelasan lebih lanjut akan dibahas dalam subbab-subbab berikut.
 
@@ -102,8 +141,8 @@ Pertama, mari kita buat sebuah fungsi di R untuk menghitung nilai statistik uji.
 #   - sd   : statistik simpangan baku
 #   - n    : ukuran sampel
 ht_mean_1pop <- function(xbar, mu, sd, n) {
-  se <- sd/sqrt(n) # menghitung standard error untuk rata-rata
-  z_hitung <- (xbar - mu)/se # menghitung nilai Z dari statistik
+  se <- sd / sqrt(n) # menghitung standard error untuk rata-rata
+  z_hitung <- (xbar - mu) / se # menghitung nilai Z dari statistik
   return(z_hitung)
 }
 ```
@@ -114,23 +153,40 @@ Setelah fungsi dibuat, kita deklarasikan variabel-variabel yang akan digunakan. 
 
 
 
-```{r mod05-declare-variables-mean-1pop, echo=TRUE}
+```{r mod05-declare-variables-mean-1pop, echo=TRUE, results='hide'}
 # Mendeklarasikan variabel-variabel yang akan diuji
-sample_mean <- mean(data_mahasiswa$jarak_km) # artinya menghitung rata-rata dari kolom jarak_km pada data data_mahasiswa.
-pop_mean <- 4.0 # ini nilai hipotesis μ₀ yang ingin diuji.
+# Menghitung rata-rata dari kolom jarak_km pada data data_mahasiswa.
+sample_mean <- mean(data_mahasiswa$jarak_km)
+
+# Nilai hipotesis μ₀ yang ingin diuji.
+pop_mean <- 4.0
+
+# Menghitung simpangan baku dari kolom jarak_km pada data data_mahasiswa.
 sample_sd <- sd(data_mahasiswa$jarak_km)
+
 # Menghasilkan data frame ringkasan dataset dengan menghitung jumlah mahasiswa sebagai ukuran sampel
-ukuran_sampel <- data_mahasiswa |>  # "|>" disebut pipe operator, fungsinya untuk meneruskan hasil dari suatu ekspresi ke fungsi berikutnya (bisa pakai shortcut : Ctrl + Shift + M).
+ukuran_sampel <- data_mahasiswa |>
   summarize(ukuran_sampel = n())
+
 # Menyimpan angka jumlah mahasiswa sebagai variabel n
-ukuran_sampel <- ukuran_sampel$ukuran_sampel # mengekstrak angka dari tabel menjadi nilai tunggal (scalar) agar bisa dipakai dalam perhitungan berikutnya.
+# mengekstrak angka dari tabel menjadi nilai tunggal (scalar) agar bisa
+# dipakai dalam perhitungan berikutnya.
+ukuran_sampel <- ukuran_sampel$ukuran_sampel
 
 # Menampilkan variabel-variabel yang akan diuji
-cat("Rata-rata jarak sampel adalah", sample_mean, "km.", 
-    "\nParameter rata-rata jarak yang diuji adalah", pop_mean, "km.",
-    "\nSimpangan baku jarak sampel adalah", sample_sd, "km.",
-    "\nUkuran sampel adalah", ukuran_sampel, "orang.")
+cat(
+  "Rata-rata jarak sampel adalah", sample_mean, "km.",
+  "\nParameter rata-rata jarak yang diuji adalah", pop_mean, "km.",
+  "\nSimpangan baku jarak sampel adalah", sample_sd, "km.",
+  "\nUkuran sampel adalah", ukuran_sampel, "orang."
+)
 ```
+
+::: rmdexercise
+### Aktivitas Mandiri 4 {.unnumbered}
+
+Jalankan perintah-perintah untuk menghasilkan variabel masukan pengujian hipotesis rata-rata satu populasi seperti yang sudah ditampilkan sebelumnya.
+:::
 
 ### Memahami Distribusi Normal dan Area Kritis
 Dalam uji hipotesis, kita menggunakan distribusi normal standar (kurva Z) untuk menentukan apakah statistik uji kita jatuh pada area "tidak biasa" (area kritis/penolakan) atau area "biasa" (area penerimaan H₀).
@@ -146,43 +202,63 @@ x <- seq(-4, 4, length.out = 1000)
 y <- dnorm(x)
 df_normal <- data.frame(x = x, y = y)
 # Z kritis untuk alpha = 0.05 two-tailed
-z_kritis <- qnorm(0.975)  # 1.96
+z_kritis <- qnorm(0.975) # 1.96
 ggplot(df_normal, aes(x = x, y = y)) +
   # Kurva normal
   geom_line(size = 1, color = "darkblue") +
-  
+
   # Area penerimaan H0 (tengah)
-  geom_area(data = subset(df_normal, x >= -z_kritis & x <= z_kritis),
-            aes(x = x, y = y), fill = "lightblue", alpha = 0.5) +
-  
+  geom_area(
+    data = subset(df_normal, x >= -z_kritis & x <= z_kritis),
+    aes(x = x, y = y), fill = "lightblue", alpha = 0.5
+  ) +
+
   # Area kritis kiri
-  geom_area(data = subset(df_normal, x <= -z_kritis),
-            aes(x = x, y = y), fill = "red", alpha = 0.3) +
-  
+  geom_area(
+    data = subset(df_normal, x <= -z_kritis),
+    aes(x = x, y = y), fill = "red", alpha = 0.3
+  ) +
+
   # Area kritis kanan
-  geom_area(data = subset(df_normal, x >= z_kritis),
-            aes(x = x, y = y), fill = "red", alpha = 0.3) +
-  
+  geom_area(
+    data = subset(df_normal, x >= z_kritis),
+    aes(x = x, y = y), fill = "red", alpha = 0.3
+  ) +
+
   # Garis vertikal untuk Z kritis
-  geom_vline(xintercept = c(-z_kritis, z_kritis), 
-             linetype = "dashed", color = "red", size = 0.8) +
-  
+  geom_vline(
+    xintercept = c(-z_kritis, z_kritis),
+    linetype = "dashed", color = "red", size = 0.8
+  ) +
+
   # Anotasi
-  annotate("text", x = -z_kritis, y = -0.02, 
-           label = paste("-", round(z_kritis, 2)), size = 4, color = "red") +
-  annotate("text", x = z_kritis, y = -0.02, 
-           label = paste("+", round(z_kritis, 2)), size = 4, color = "red") +
-  annotate("text", x = -2.7, y = 0.05, 
-           label = "Area Kritis\n(2.5%)", size = 3.5, color = "darkred") +
-  annotate("text", x = 2.7, y = 0.05, 
-           label = "Area Kritis\n(2.5%)", size = 3.5, color = "darkred") +
-  annotate("text", x = 0, y = 0.2, 
-           label = "Area Penerimaan H₀\n(95%)", size = 4, color = "darkblue") +
-  
+  annotate("text",
+    x = -z_kritis, y = -0.02,
+    label = paste("-", round(z_kritis, 2)), size = 4, color = "red"
+  ) +
+  annotate("text",
+    x = z_kritis, y = -0.02,
+    label = paste("+", round(z_kritis, 2)), size = 4, color = "red"
+  ) +
+  annotate("text",
+    x = -2.7, y = 0.05,
+    label = "Area Kritis\n(2.5%)", size = 3.5, color = "darkred"
+  ) +
+  annotate("text",
+    x = 2.7, y = 0.05,
+    label = "Area Kritis\n(2.5%)", size = 3.5, color = "darkred"
+  ) +
+  annotate("text",
+    x = 0, y = 0.2,
+    label = "Area Penerimaan H₀\n(95%)", size = 4, color = "darkblue"
+  ) +
+
   # Tema
-  labs(title = "Distribusi Normal Standar: Two-Tailed Test (α = 0.05)",
-       x = "Nilai Z",
-       y = "Densitas") +
+  labs(
+    title = "Distribusi Normal Standar: Two-Tailed Test (α = 0.05)",
+    x = "Nilai Z",
+    y = "Densitas"
+  ) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5, face = "bold"))
 ```
@@ -198,33 +274,46 @@ ggplot(df_normal, aes(x = x, y = y)) +
 
 ```{r mod05-visualize-left-tailed, echo=FALSE, fig.cap='Distribusi Normal dengan Area Kritis Left-Tailed (α = 0.05)', fig.align='center', fig.width=8, fig.height=5}
 # Z kritis untuk left-tailed
-z_kritis_left <- qnorm(0.05)  # -1.64
+z_kritis_left <- qnorm(0.05) # -1.64
 ggplot(df_normal, aes(x = x, y = y)) +
   geom_line(size = 1, color = "darkblue") +
-  
+
   # Area penerimaan H0 (kanan)
-  geom_area(data = subset(df_normal, x >= z_kritis_left),
-            aes(x = x, y = y), fill = "lightblue", alpha = 0.5) +
-  
+  geom_area(
+    data = subset(df_normal, x >= z_kritis_left),
+    aes(x = x, y = y), fill = "lightblue", alpha = 0.5
+  ) +
+
   # Area kritis kiri
-  geom_area(data = subset(df_normal, x <= z_kritis_left),
-            aes(x = x, y = y), fill = "red", alpha = 0.3) +
-  
+  geom_area(
+    data = subset(df_normal, x <= z_kritis_left),
+    aes(x = x, y = y), fill = "red", alpha = 0.3
+  ) +
+
   # Garis vertikal
-  geom_vline(xintercept = z_kritis_left, 
-             linetype = "dashed", color = "red", size = 0.8) +
-  
+  geom_vline(
+    xintercept = z_kritis_left,
+    linetype = "dashed", color = "red", size = 0.8
+  ) +
+
   # Anotasi
-  annotate("text", x = z_kritis_left, y = -0.02, 
-           label = round(z_kritis_left, 2), size = 4, color = "red") +
-  annotate("text", x = -2.5, y = 0.05, 
-           label = "Area Kritis\n(5%)", size = 3.5, color = "darkred") +
-  annotate("text", x = 1, y = 0.2, 
-           label = "Area Penerimaan H₀\n(95%)", size = 4, color = "darkblue") +
-  
-  labs(title = "Distribusi Normal Standar: Left-Tailed Test (α = 0.05)",
-       x = "Nilai Z",
-       y = "Densitas") +
+  annotate("text",
+    x = z_kritis_left, y = -0.02,
+    label = round(z_kritis_left, 2), size = 4, color = "red"
+  ) +
+  annotate("text",
+    x = -2.5, y = 0.05,
+    label = "Area Kritis\n(5%)", size = 3.5, color = "darkred"
+  ) +
+  annotate("text",
+    x = 1, y = 0.2,
+    label = "Area Penerimaan H₀\n(95%)", size = 4, color = "darkblue"
+  ) +
+  labs(
+    title = "Distribusi Normal Standar: Left-Tailed Test (α = 0.05)",
+    x = "Nilai Z",
+    y = "Densitas"
+  ) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5, face = "bold"))
 ```
@@ -234,33 +323,46 @@ ggplot(df_normal, aes(x = x, y = y)) +
 
 ```{r mod05-visualize-right-tailed, echo=FALSE, fig.cap='Distribusi Normal dengan Area Kritis Right-Tailed (α = 0.05)', fig.align='center', fig.width=8, fig.height=5}
 # Z kritis untuk right-tailed
-z_kritis_right <- qnorm(0.95)  # 1.64
+z_kritis_right <- qnorm(0.95) # 1.64
 ggplot(df_normal, aes(x = x, y = y)) +
   geom_line(size = 1, color = "darkblue") +
-  
+
   # Area penerimaan H0 (kiri)
-  geom_area(data = subset(df_normal, x <= z_kritis_right),
-            aes(x = x, y = y), fill = "lightblue", alpha = 0.5) +
-  
+  geom_area(
+    data = subset(df_normal, x <= z_kritis_right),
+    aes(x = x, y = y), fill = "lightblue", alpha = 0.5
+  ) +
+
   # Area kritis kanan
-  geom_area(data = subset(df_normal, x >= z_kritis_right),
-            aes(x = x, y = y), fill = "red", alpha = 0.3) +
-  
+  geom_area(
+    data = subset(df_normal, x >= z_kritis_right),
+    aes(x = x, y = y), fill = "red", alpha = 0.3
+  ) +
+
   # Garis vertikal
-  geom_vline(xintercept = z_kritis_right, 
-             linetype = "dashed", color = "red", size = 0.8) +
-  
+  geom_vline(
+    xintercept = z_kritis_right,
+    linetype = "dashed", color = "red", size = 0.8
+  ) +
+
   # Anotasi
-  annotate("text", x = z_kritis_right, y = -0.02, 
-           label = paste("+", round(z_kritis_right, 2)), size = 4, color = "red") +
-  annotate("text", x = 2.5, y = 0.05, 
-           label = "Area Kritis\n(5%)", size = 3.5, color = "darkred") +
-  annotate("text", x = -1, y = 0.2, 
-           label = "Area Penerimaan H₀\n(95%)", size = 4, color = "darkblue") +
-  
-  labs(title = "Distribusi Normal Standar: Right-Tailed Test (α = 0.05)",
-       x = "Nilai Z",
-       y = "Densitas") +
+  annotate("text",
+    x = z_kritis_right, y = -0.02,
+    label = paste("+", round(z_kritis_right, 2)), size = 4, color = "red"
+  ) +
+  annotate("text",
+    x = 2.5, y = 0.05,
+    label = "Area Kritis\n(5%)", size = 3.5, color = "darkred"
+  ) +
+  annotate("text",
+    x = -1, y = 0.2,
+    label = "Area Penerimaan H₀\n(95%)", size = 4, color = "darkblue"
+  ) +
+  labs(
+    title = "Distribusi Normal Standar: Right-Tailed Test (α = 0.05)",
+    x = "Nilai Z",
+    y = "Densitas"
+  ) +
   theme_minimal() +
   theme(plot.title = element_text(hjust = 0.5, face = "bold"))
 ```
@@ -289,8 +391,10 @@ Langkah pertama adalah merumuskan hipotesis. Di sini kita mendefinisikan dua kem
 
 
 ```{r mod05-hypothesis-mean-1pop-twotail, echo=TRUE}
-cat("H0 : rata-rata jarak = 4 km", # fungsi "cat()" digunakan untuk mecetak teks ke console dengan format yang bisa kita atur sendiri.
-    "\n\nH1 : rata-rata jarak != 4 km") # "!=" berarti "tidak sama dengan" (menandakan uji dua sisi).
+cat(
+  "H0 : rata-rata jarak = 4 km", # fungsi "cat()" digunakan untuk mecetak teks ke console dengan format yang bisa kita atur sendiri.
+  "\n\nH1 : rata-rata jarak != 4 km"
+) # "!=" berarti "tidak sama dengan" (menandakan uji dua sisi).
 ```
 
 ##### Memilih distribusi *sampling*, wilayah dan titik kritis
@@ -302,9 +406,9 @@ Setelah hipotesis dirumuskan, kita perlu menentukan distribusi sampling dan titi
 ```{r mod05-critical-value-mean-1pop-twotail, echo=TRUE}
 # Hipotesis yang dipakai tidak berarah, maka wilayah kritis adalah alpha/2
 alpha <- 0.05
-z_crit_2tail <- abs(qnorm(alpha/2)) # Nilai yang digunakan adalah nilai absolut, karena dibagi 2, tanda tidak berpengaruh
+z_crit_2tail <- abs(qnorm(alpha / 2)) # Nilai yang digunakan adalah nilai absolut, karena dibagi 2, tanda tidak berpengaruh
 
-cat("Titik kritis uji two-tailed:",z_crit_2tail)
+cat("Titik kritis uji two-tailed:", z_crit_2tail)
 ```
 
 ##### Menghitung statistik uji
@@ -331,7 +435,7 @@ if (z_mean_jarak < z_crit_2tail) {
   tolak_h0 <- FALSE
   cat("Hipotesis kosong gagal ditolak. Perbedaan rata-rata sampel", round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan")
 } else {
-  tolak_h0 <- TRUE  
+  tolak_h0 <- TRUE
   cat("Hipotesis kosong ditolak. Rata-rata jarak pada sampel mahasiswa sebesar", round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan")
 }
 ```
@@ -349,8 +453,10 @@ Untuk uji satu arah, hipotesis alternatif ditentukan dengan arah tertentu. Misal
 Dengan cara ini, kita hanya akan menolak H0 jika bukti menunjukkan bahwa rata-rata memang lebih kecil. Jika ternyata rata-rata lebih besar, maka hal itu tidak mendukung H1.
 
 ```{r mod05-hypothesis-mean-1pop-onetail, echo=TRUE}
-cat("H0 : rata-rata jarak = 4 km",
-    "\n\nH1 : rata-rata jarak < 4 km")
+cat(
+  "H0 : rata-rata jarak = 4 km",
+  "\n\nH1 : rata-rata jarak < 4 km"
+)
 ```
 
 ##### Memilih distribusi sampling, wilayah, serta titik kritis
@@ -365,7 +471,7 @@ tail <- "kiri" # H1 menyatakan lebih kecil dari (left-tailed)
 if (tail == "kiri") {
   z_crit_1tail <- qnorm(alpha)
 } else {
-  z_crit_1tail <- qnorm(1-alpha)
+  z_crit_1tail <- qnorm(1 - alpha)
 }
 
 cat("Titik kritis uji one-tailed:", z_crit_1tail)
@@ -395,7 +501,7 @@ if (z_mean_jarak < z_crit_1tail) {
   tolak_h0 <- TRUE
   cat("Hipotesis kosong ditolak. Rata-rata jarak pada sampel mahasiswa sebesar", round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan (lebih kecil)")
 } else {
-  tolak_h0 <- FALSE  
+  tolak_h0 <- FALSE
   cat("Hipotesis kosong gagal ditolak. Perbedaan rata-rata sampel dengan populasi hanyalah kebetulan")
 }
 ```
@@ -414,8 +520,8 @@ Untuk memudahkan proses, kita membuat sebuah fungsi di R yang dapat menghitung s
 
 ```{r mod05-create-function-prop-1pop, echo=TRUE}
 ht_prop_1pop <- function(p_hat, P, n) {
-  se <- sqrt((p_hat * (1-p_hat))/n) # menghitung standard error untuk rata-rata
-  z_hitung <- (p_hat - P)/se # menghitung nilai Z dari statistik
+  se <- sqrt((p_hat * (1 - p_hat)) / n) # menghitung standard error untuk rata-rata
+  z_hitung <- (p_hat - P) / se # menghitung nilai Z dari statistik
   return(z_hitung)
 }
 ```
@@ -427,10 +533,10 @@ Sebelum melakukan uji hipotesis, kita perlu mengetahui berapa proporsi mahasiswa
 
 
 ```{r mod05-summarize-housing-data, echo=TRUE}
-summarize_tempat_tinggal <- data_mahasiswa |> 
-  group_by("Tipe tinggal" = tipe_tinggal_baku) |> 
-  summarize("Jumlah" = n()) |> 
-  mutate("proporsi" = Jumlah/sum(Jumlah))
+summarize_tempat_tinggal <- data_mahasiswa |>
+  group_by("Tipe tinggal" = tipe_tinggal_baku) |>
+  summarize("Jumlah" = n()) |>
+  mutate("proporsi" = Jumlah / sum(Jumlah))
 
 summarize_tempat_tinggal
 ```
@@ -464,9 +570,11 @@ ukuran_sampel <- data_mahasiswa |>
 ukuran_sampel <- ukuran_sampel$ukuran_sampel
 
 # Menampilkan variabel-variabel yang akan diuji
-cat("Proporsi penghuni Kos/Asrama sampel adalah", sample_prop,
-    "\nParameter proporsi penghuni Kos/Asrama yang diuji adalah", pop_prop,
-    "\nUkuran sampel adalah", ukuran_sampel, "orang.")
+cat(
+  "Proporsi penghuni Kos/Asrama sampel adalah", sample_prop,
+  "\nParameter proporsi penghuni Kos/Asrama yang diuji adalah", pop_prop,
+  "\nUkuran sampel adalah", ukuran_sampel, "orang."
+)
 ```
 
 #### *Two-tailed Test*
@@ -480,8 +588,10 @@ Sama seperti uji dua arah pada rata-rata, uji dua arah pada proporsi diawali den
 
 
 ```{r mod05-hypothesis-prop-1pop-twotail, echo=TRUE}
-cat("H0 : prop. Kos/Asrama = 0,5",
-    "\n\nH1 : prop. Kos/Asrama != 0,5")
+cat(
+  "H0 : prop. Kos/Asrama = 0,5",
+  "\n\nH1 : prop. Kos/Asrama != 0,5"
+)
 ```
 
 ##### Memilih distribusi sampling, wilayah dan titik kritis
@@ -493,7 +603,7 @@ Sama seperti sebelumnya, setelah hipotesis ditetapkan, kita perlu menentukan dis
 ```{r mod05-critical-value-prop-1pop-twotail, echo=TRUE}
 # Hipotesis yang dipakai tidak berarah, maka wilayah kritis adalah alpha/2
 alpha <- 0.10 # (tingkat signifikansi 10%)
-z_crit_2tail <- abs(qnorm(alpha/2)) # Nilai yang digunakan adalah nilai absolut
+z_crit_2tail <- abs(qnorm(alpha / 2)) # Nilai yang digunakan adalah nilai absolut
 
 cat("Titik kritis uji two-tailed:", z_crit_2tail)
 ```
@@ -522,7 +632,7 @@ if (z_prop_kos < z_crit_2tail) {
   tolak_h0 <- FALSE
   cat("Hipotesis kosong gagal ditolak. Perbedaan proporsi penghuni Kos/Asrama sebanyak", round(sample_prop, 3), "dari", pop_prop, "hanyalah kebetulan")
 } else {
-  tolak_h0 <- TRUE  
+  tolak_h0 <- TRUE
   cat("Hipotesis kosong ditolak. Perbedaan proporsi penghuni Kos/Asrama sebanyak", round(sample_prop, 3), "dari", pop_prop, "adalah signifikan")
 }
 ```
@@ -538,8 +648,10 @@ Hipotesis dirumuskan sebagai berikut:
 
 
 ```{r mod05-hypothesis-prop-1pop-onetail, echo=TRUE}
-cat("H0 : prop. Kos/Asrama = 0,5",
-    "\n\nH1 : prop. Kos/Asrama < 0,5")
+cat(
+  "H0 : prop. Kos/Asrama = 0,5",
+  "\n\nH1 : prop. Kos/Asrama < 0,5"
+)
 ```
 
 ##### Memilih distribusi Sampling, wilayah dan titik kritis
@@ -554,7 +666,7 @@ tail <- "kiri"
 if (tail == "kiri") {
   z_crit_1tail <- qnorm(alpha)
 } else {
-  z_crit_1tail <- qnorm(1-alpha)
+  z_crit_1tail <- qnorm(1 - alpha)
 }
 
 cat("Titik kritis uji one-tailed:", z_crit_1tail)
@@ -584,7 +696,7 @@ if (z_prop_kos < z_crit_1tail) {
   tolak_h0 <- TRUE
   cat("Hipotesis kosong ditolak. Perbedaan proporsi penghuni Kos/Asrama sebanyak", round(sample_prop, 3), "dari", pop_prop, "adalah signifikan (lebih kecil)")
 } else {
-  tolak_h0 <- FALSE  
+  tolak_h0 <- FALSE
   cat("Hipotesis kosong gagal ditolak. Perbedaan proporsi penghuni Kos/Asrama sebanyak", round(sample_prop, 3), "dari", pop_prop, "hanyalah kebetulan")
 }
 ```
@@ -603,14 +715,14 @@ Pada langkah ini, kita akan membuat fungsi uji hipotesis rata-rata untuk dua pop
 
 ```{r mod05-create-function-mean-2pop, echo=TRUE}
 ht_mean_2pop_ind <- function(xbar1, xbar2, sd1, sd2, n1, n2) {
-  se <- sqrt(             # Indentasi diberikan untuk memudahkan
-    (                     # pembacaan karena banyaknya tanda kurung
-      (sd1^2)/(n1 - 1)
+  se <- sqrt( # Indentasi diberikan untuk memudahkan
+    ( # pembacaan karena banyaknya tanda kurung
+      (sd1^2) / (n1 - 1)
     ) + (
-      (sd2^2)/(n2 - 1)
+      (sd2^2) / (n2 - 1)
     )
   )
-  z_hitung <- (xbar1 - xbar2)/se # menghitung nilai Z dari statistik
+  z_hitung <- (xbar1 - xbar2) / se # menghitung nilai Z dari statistik
   return(z_hitung)
 }
 ```
@@ -624,9 +736,11 @@ Sebelum menjalankan uji hipotesis, kita perlu mendapatkan data ringkasan berupa 
 ```{r mod05-calculate-mean-2pop, echo=TRUE}
 summarize_jarak_2pop <- data_mahasiswa |>
   group_by(Kampus = kampus) |>
-  summarize(`Rata-rata` = mean(jarak_km),
-            `Simpangan baku` = sd(jarak_km),
-            Jumlah = n())
+  summarize(
+    `Rata-rata` = mean(jarak_km),
+    `Simpangan baku` = sd(jarak_km),
+    Jumlah = n()
+  )
 
 summarize_jarak_2pop
 ```
@@ -657,8 +771,10 @@ Sama seerti sebelumnya, langkah pertama dalam uji hipotesis adalah menyusun hipo
 
 
 ```{r mod05-hypothesis-mean-2pop-twotail, echo=TRUE}
-cat("H0: mu_jarakUINRIL - mu_jarakITERA = 0",
-    "\n\nH1: mu_jarakUINRIL - mu_jarakITERA != 0")
+cat(
+  "H0: mu_jarakUINRIL - mu_jarakITERA = 0",
+  "\n\nH1: mu_jarakUINRIL - mu_jarakITERA != 0"
+)
 ```
 
 ##### Memilih distribusi sampling, wilayah, dan titik kritis
@@ -671,7 +787,7 @@ Setelah hipotesis dirumuskan, kita harus menentukan distribusi sampling yang dip
 # Hipotesis yang dipakai tidak berarah, maka wilayah kritis adalah alpha/2
 alpha <- 0.001
 
-z_crit_2tail <- abs(qnorm(alpha/2)) # Nilai yang digunakan adalah nilai absolut
+z_crit_2tail <- abs(qnorm(alpha / 2)) # Nilai yang digunakan adalah nilai absolut
 
 cat("Titik kritis uji two-tailed:", z_crit_2tail)
 ```
@@ -684,9 +800,11 @@ Setelah mengetahui titik kritis, kita hitung nilai statistik uji (Z) dari data y
 
 ```{r mod05-test-statistic-mean-2pop-twotail, echo=TRUE}
 # Hasil perhitungan statistik uji diabsolutkan
-z_mean_jarak_2pop <- abs(ht_mean_2pop_ind(mean_jarak_uinril, mean_jarak_itera,
-                                      sd_jarak_uinril, sd_jarak_itera,
-                                      n_jarak_uinril, n_jarak_itera))
+z_mean_jarak_2pop <- abs(ht_mean_2pop_ind(
+  mean_jarak_uinril, mean_jarak_itera,
+  sd_jarak_uinril, sd_jarak_itera,
+  n_jarak_uinril, n_jarak_itera
+))
 
 z_mean_jarak_2pop
 ```
@@ -702,7 +820,7 @@ if (z_mean_jarak_2pop < z_crit_2tail) {
   tolak_h0 <- FALSE
   cat("Hipotesis kosong gagal ditolak. Perbedaan rata-rata jarak mahasiswa UINRIL dengan ITERA dari sampel hanyalah kebetulan.")
 } else {
-  tolak_h0 <- TRUE  
+  tolak_h0 <- TRUE
   cat("Hipotesis kosong ditolak. Perbedaan rata-rata jarak mahasiswa UINRIL dengan ITERA dari sampel signifikan.")
 }
 ```
@@ -716,8 +834,10 @@ Untuk one-tailed test, hipotesis alternatif (H1) menyebutkan arah perbedaan yang
 
 
 ```{r mod05-hypothesis-mean-2pop-onetail, echo=TRUE}
-cat("H0: mu_jarakUINRIL - mu_jarakITERA = 0",
-    "\n\nH1: mu_jarakUINRIL - mu_jarakITERA < 0")
+cat(
+  "H0: mu_jarakUINRIL - mu_jarakITERA = 0",
+  "\n\nH1: mu_jarakUINRIL - mu_jarakITERA < 0"
+)
 ```
 
 ##### Memilih distribusi sampling, wilayah, dan titik kritis
@@ -732,7 +852,7 @@ tail <- "kiri"
 if (tail == "kiri") {
   z_crit_1tail <- qnorm(alpha)
 } else {
-  z_crit_1tail <- qnorm(1-alpha)
+  z_crit_1tail <- qnorm(1 - alpha)
 }
 
 cat("Titik kritis uji one-tailed:", z_crit_1tail)
@@ -746,9 +866,11 @@ Selanjutnya, kita menghitung nilai statistik uji menggunakan fungsi ht_mean_2pop
 
 ```{r mod05-test-statistic-mean-2pop-onetail, echo=TRUE}
 # Hasil perhitungan statistik uji TIDAK diabsolutkan
-z_mean_jarak_2pop <- ht_mean_2pop_ind(mean_jarak_uinril, mean_jarak_itera,
-                                  sd_jarak_uinril, sd_jarak_itera,
-                                  n_jarak_uinril, n_jarak_itera)
+z_mean_jarak_2pop <- ht_mean_2pop_ind(
+  mean_jarak_uinril, mean_jarak_itera,
+  sd_jarak_uinril, sd_jarak_itera,
+  n_jarak_uinril, n_jarak_itera
+)
 
 z_mean_jarak_2pop
 ```
@@ -764,7 +886,7 @@ if (z_mean_jarak_2pop < z_crit_1tail) {
   tolak_h0 <- TRUE
   cat("Hipotesis kosong ditolak. Mahasiswa ITERA secara rata-rata tinggal lebih jauh dari kampus dibandingkan mahasiswa UINRIL significanly.")
 } else {
-  tolak_h0 <- FALSE  
+  tolak_h0 <- FALSE
   cat("Hipotesis kosong gagal ditolak. Tidak cukup bukti menyatakan mahasiswa ITERA tinggal lebih jauh.")
 }
 ```
@@ -788,14 +910,14 @@ Sama seperti sebelumnya, langkah pertama adalah membuat fungsi khusus untuk meng
 #   - n1    : ukuran sampel dari populasi #1
 #   - n2    : ukuran sampel dari populasi #2
 ht_prop_2pop_ind <- function(p_hat1, p_hat2, n1, n2) {
-  p_gab <- ((n1*p_hat1 + n2*p_hat2))/(n1 + n2) # Total proporsi yang diuji
-                                               # untuk kedua populasi
+  p_gab <- ((n1 * p_hat1 + n2 * p_hat2)) / (n1 + n2) # Total proporsi yang diuji
+  # untuk kedua populasi
   se <- sqrt(
-    (p_gab*(1-p_gab)) * ( # Indentasi diberikan untuk memudahkan pembacaan
-      (1/n1) + (1/n2)     # karena banyaknya kurung
+    (p_gab * (1 - p_gab)) * ( # Indentasi diberikan untuk memudahkan pembacaan
+      (1 / n1) + (1 / n2) # karena banyaknya kurung
     )
   )
-  z_hitung <- (p_hat1 - p_hat2)/se # menghitung nilai Z dari statistik
+  z_hitung <- (p_hat1 - p_hat2) / se # menghitung nilai Z dari statistik
   return(z_hitung)
 }
 ```
@@ -805,11 +927,11 @@ ht_prop_2pop_ind <- function(p_hat1, p_hat2, n1, n2) {
 Setelah fungsi dibuat, kita perlu menyiapkan data yang akan diuji. Pertama, data mahasiswa dikelompokkan berdasarkan kampus dan tipe_tinggal_baku. Selanjutnya dihitung proporsi tiap kategori (misalnya proporsi mahasiswa yang tinggal di kos/asrama). Data kemudian diubah dari format long ke wide sehingga tiap kategori menjadi variabel. Dari hasil ini kita bisa mengambil proporsi masing-masing populasi, serta ukuran sampel total pada tiap kampus.
 
 ```{r mod05-declare-variables-prop-2pop, echo=TRUE}
-summarize_tempat_tinggal_2pop <- data_mahasiswa |> 
-  group_by(kampus, tipe_tinggal_baku) |> 
+summarize_tempat_tinggal_2pop <- data_mahasiswa |>
+  group_by(kampus, tipe_tinggal_baku) |>
   summarize(Jumlah = n()) |>
-  mutate(proporsi = Jumlah/sum(Jumlah)) |> # menghitung proporsi tiap kategori.
-  select(-Jumlah) |> 
+  mutate(proporsi = Jumlah / sum(Jumlah)) |> # menghitung proporsi tiap kategori.
+  select(-Jumlah) |>
   spread(tipe_tinggal_baku, proporsi) # mengubah data long menjadi wide (kolom                                          # kategori jadi variabel).
 
 summarize_tempat_tinggal_2pop
@@ -817,7 +939,7 @@ summarize_tempat_tinggal_2pop
 proporsi_kos_asrama_itera <- summarize_tempat_tinggal_2pop$`Kos/Asrama`[1]
 proporsi_kos_asrama_uinril <- summarize_tempat_tinggal_2pop$`Kos/Asrama`[3]
 
-n_kos_asrama_2pop <- data_mahasiswa |> 
+n_kos_asrama_2pop <- data_mahasiswa |>
   count(kampus)
 
 n_kos_asrama_itera <- n_kos_asrama_2pop$n[1]
@@ -831,12 +953,14 @@ n_kos_asrama_uinril <- n_kos_asrama_2pop$n[3]
 alpha <- 0.07
 
 # Hitung Z kritis 2-tailed
-z_crit_2tail <- abs(qnorm(alpha/2))
+z_crit_2tail <- abs(qnorm(alpha / 2))
 
 # Hitung statistik uji proporsi 2 populasi
 # Asumsi: Menggunakan data proporsi kos/asrama ITERA vs UINRIL yang sudah disiapkan sebelumnya
-z_prop_2pop <- abs(ht_prop_2pop_ind(proporsi_kos_asrama_uinril, proporsi_kos_asrama_itera,
-                             n_kos_asrama_uinril, n_kos_asrama_itera))
+z_prop_2pop <- abs(ht_prop_2pop_ind(
+  proporsi_kos_asrama_uinril, proporsi_kos_asrama_itera,
+  n_kos_asrama_uinril, n_kos_asrama_itera
+))
 
 cat("Titik Kritis:", z_crit_2tail, "\nZ Hitung:", z_prop_2pop, "\n")
 
@@ -858,12 +982,14 @@ tail <- "kiri" # Asumsi uji lebih kecil (UINRIL < ITERA misalnya)
 if (tail == "kiri") {
   z_crit_1tail <- qnorm(alpha)
 } else {
-  z_crit_1tail <- qnorm(1-alpha)
+  z_crit_1tail <- qnorm(1 - alpha)
 }
 
 # Hitung statistik uji (tidak absolut)
-z_prop_2pop <- ht_prop_2pop_ind(proporsi_kos_asrama_uinril, proporsi_kos_asrama_itera,
-                             n_kos_asrama_uinril, n_kos_asrama_itera)
+z_prop_2pop <- ht_prop_2pop_ind(
+  proporsi_kos_asrama_uinril, proporsi_kos_asrama_itera,
+  n_kos_asrama_uinril, n_kos_asrama_itera
+)
 
 cat("Titik Kritis:", z_crit_1tail, "\nZ Hitung:", z_prop_2pop, "\n")
 
