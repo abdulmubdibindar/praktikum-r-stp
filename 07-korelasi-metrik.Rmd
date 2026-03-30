@@ -1,4 +1,4 @@
-# Modul-7: Analisis Hubungan Korelatif: Korelasi Variabel Metrik
+# Analisis Hubungan Korelatif: Korelasi Variabel Metrik
 
 Setelah mempelajari modul ini, Anda diharapkan mampu menghasilkan koefisien korelasi variabel di tingkat metrik dengan perangkat lunak komputer. [STP-11.2]{.capaian}
 

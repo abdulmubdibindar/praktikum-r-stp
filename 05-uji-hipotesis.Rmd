@@ -1,4 +1,4 @@
-# Modul-5: Uji Hipotesis
+# Uji Hipotesis
 
 ::: {.rmdcapaian}
 Setelah mempelajari modul ini, Anda diharapkan dapat:
@@ -191,7 +191,7 @@ Jalankan perintah-perintah untuk menghasilkan variabel masukan pengujian hipotes
 ### Memahami Distribusi Normal dan Area Kritis
 Dalam uji hipotesis, kita menggunakan distribusi normal standar (kurva Z) untuk menentukan apakah statistik uji kita jatuh pada area "tidak biasa" (area kritis/penolakan) atau area "biasa" (area penerimaan H₀).
 
-#### Visualisasi Two-Tailed Test (α = 0.05)
+#### Visualisasi Two-Tailed Test ($\alpha$ = 0,05)
 
 Untuk memahami konsep area kritis, perhatikan Gambar \@ref(fig:dist-normal-two-tailed). Gambar tersebut menunjukkan bahwa untuk uji two-tailed dengan α = 0.05, area kritis terbagi menjadi dua bagian (masing-masing 2.5%) di kedua ekor distribusi.
 
@@ -433,10 +433,10 @@ Langkah terakhir adalah menarik kesimpulan berdasarkan perbandingan antara nilai
 ```{r mod05-conclusion-mean-1pop-twotail, echo=TRUE}
 if (z_mean_jarak < z_crit_2tail) {
   tolak_h0 <- FALSE
-  cat("Hipotesis kosong gagal ditolak. Perbedaan rata-rata sampel", round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan")
+  cat("gagal menolak hipotesis kosong. Perbedaan rata-rata sampel", round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan")
 } else {
   tolak_h0 <- TRUE
-  cat("Hipotesis kosong ditolak. Rata-rata jarak pada sampel mahasiswa sebesar", round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan")
+  cat("menolak hipotesis kosong. Rata-rata jarak pada sampel mahasiswa sebesar", round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan")
 }
 ```
 
@@ -1007,5 +1007,3 @@ Menguji hipotesis 2 populasi yang dependen pada dasarnya sama persis dengan uji 
 Perbedaan nilai sampel jumlah nilainya hanya 1, sehingga bisa diperlakukan seperti halnya perhitungan uji hipotesis 1 populasi. Simpangan baku yang diketahui pun adalah simpangan baku **perbedaan nilainya, sehingga jumlah nilainya hanya 1 juga**.
 
 ## Soal Latihan
-
-

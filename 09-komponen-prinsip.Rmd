@@ -1,4 +1,4 @@
-# Modul-9: Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA
+# Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA
 
 Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan komponen prinsip menggunakan perangkat lunak komputer [STP-14.3]{.capaian}
 

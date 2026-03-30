@@ -1,4 +1,4 @@
-# Modul-4: Distribusi Sampling dan Interval Kepercayaan
+# Distribusi Sampling dan Interval Kepercayaan
 
 ::: {.rmdcapaian}
 Setelah mempelajari modul ini, Anda diharapkan dapat:

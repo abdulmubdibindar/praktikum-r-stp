@@ -1,4 +1,4 @@
-# Modul-3: Visualisasi Data Kuantitatif
+# Visualisasi Data Kuantitatif
 
 ::: rmdcapaian
 Setelah mempelajari modul ini, kita diharapkan dapat:

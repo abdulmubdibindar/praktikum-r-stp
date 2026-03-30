@@ -1,4 +1,4 @@
-# Modul-6: Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal
+# Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal
 
 Setelah mempelajari modul ini, Anda diharapkan dapat:
 
