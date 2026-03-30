@@ -7,7 +7,7 @@ output:
     bookdown::bs4_book:
       css: style.css
       theme: 
-        primary: "#007bff"
+        primary: "#5fbcd3"
       split_bib: false
     bookdown::pdf_book:
       latex_engine: xelatex
