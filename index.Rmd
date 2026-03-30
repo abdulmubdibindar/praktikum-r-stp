@@ -3,16 +3,17 @@ title: "Modul Praktik Statistika Untuk Perencanaan"
 subtitle: "Penggunaan R dalam Pengolahan Data Kuantitatif"
 site: bookdown::bookdown_site
 output:
-    bookdown::gitbook:
-        css: style.css
-        split_bib: false
+    bookdown::bs4_book:
+      theme: cerulean
+      css: style.css
+      split_bib: false
     bookdown::pdf_book:
-        latex_engine: xelatex
-        citation_package: natbib
-        keep_tex: true
-        pandoc_args: ["--lua-filter=capaian.lua"]
-        includes:
-            in_header: preamble.tex
+      latex_engine: xelatex
+      citation_package: natbib
+      keep_tex: true
+      pandoc_args: ["--lua-filter=capaian.lua"]
+      includes:
+        in_header: preamble.tex
 bibliography: referensi.bib
 biblio-title: "Referensi"
 link-citations: true
