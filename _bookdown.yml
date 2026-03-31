@@ -12,7 +12,7 @@ rmd_files:
   - 03-visualisasi-data.Rmd
   - 04-distribusi-statistik-interval-kepercayaan.Rmd
   - 05-uji-hipotesis.Rmd
-  - 05-1-uji-hipotesis-2-pop.Rmd
+  - 05a-uji-hipotesis-2-pop.Rmd
   - 06-korelasi-nominal-ordinal.Rmd
   - 07-korelasi-metrik.Rmd
   - 08-regresi-linear.Rmd
