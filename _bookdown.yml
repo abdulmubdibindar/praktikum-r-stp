@@ -5,3 +5,16 @@ language:
 chapter_name: "Modul "
 output_dir: "docs"
 delete_merged_file: true
+rmd_files:
+  - index.Rmd
+  - 01-data-terstruktur.Rmd
+  - 02-statistik-deskriptif.Rmd
+  - 03-visualisasi-data.Rmd
+  - 04-distribusi-statistik-interval-kepercayaan.Rmd
+  - 05-uji-hipotesis.Rmd
+  - 05-1-uji-hipotesis-2-pop.Rmd
+  - 06-korelasi-nominal-ordinal.Rmd
+  - 07-korelasi-metrik.Rmd
+  - 08-regresi-linear.Rmd
+  - 09-komponen-prinsip.Rmd
+  - 99-referensi.Rmd
