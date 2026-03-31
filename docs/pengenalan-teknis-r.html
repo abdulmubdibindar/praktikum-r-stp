@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Pengenalan Teknis R | Modul Praktik Statistika Untuk Perencanaan</title>
 <meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA">
-<meta name="generator" content="bookdown 0.45 with bs4_book()">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
 <meta property="og:title" content="Pengenalan Teknis R | Modul Praktik Statistika Untuk Perencanaan">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
@@ -24,6 +24,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -70,16 +71,17 @@
 <li><a class="" href="index.html">Pengantar</a></li>
 <li><a class="" href="pengenalan-r-dan-rstudio.html">Pengenalan R dan RStudio</a></li>
 <li><a class="active" href="pengenalan-teknis-r.html">Pengenalan Teknis R</a></li>
-<li><a class="" href="modul-1.html"><span class="header-section-number">1</span> Modul-1: Pengolahan Data Terstruktur</a></li>
-<li><a class="" href="modul-2-analisis-statistika-deskriptif.html"><span class="header-section-number">2</span> Modul-2: Analisis Statistika Deskriptif</a></li>
-<li><a class="" href="modul-3-visualisasi-data-kuantitatif.html"><span class="header-section-number">3</span> Modul-3: Visualisasi Data Kuantitatif</a></li>
-<li><a class="" href="modul-4-distribusi-sampling-dan-interval-kepercayaan.html"><span class="header-section-number">4</span> Modul-4: Distribusi Sampling dan Interval Kepercayaan</a></li>
-<li><a class="" href="modul-5-uji-hipotesis.html"><span class="header-section-number">5</span> Modul-5: Uji Hipotesis</a></li>
-<li><a class="" href="modul-6-analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><span class="header-section-number">6</span> Modul-6: Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal</a></li>
-<li><a class="" href="modul-7-analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><span class="header-section-number">7</span> Modul-7: Analisis Hubungan Korelatif: Korelasi Variabel Metrik</a></li>
-<li><a class="" href="modul-8-analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><span class="header-section-number">8</span> Modul-8: Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a></li>
-<li><a class="" href="modul-9-analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><span class="header-section-number">9</span> Modul-9: Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</a></li>
-<li><a class="" href="referensi.html"><span class="header-section-number">10</span> Referensi</a></li>
+<li><a class="" href="modul-1.html"><span class="header-section-number">1</span> Pengolahan Data Terstruktur</a></li>
+<li><a class="" href="analisis-statistika-deskriptif.html"><span class="header-section-number">2</span> Analisis Statistika Deskriptif</a></li>
+<li><a class="" href="visualisasi-data-kuantitatif.html"><span class="header-section-number">3</span> Visualisasi Data Kuantitatif</a></li>
+<li><a class="" href="distribusi-sampling-dan-interval-kepercayaan.html"><span class="header-section-number">4</span> Distribusi Sampling dan Interval Kepercayaan</a></li>
+<li><a class="" href="uji-hipotesis-satu-populasi.html"><span class="header-section-number">5</span> Uji Hipotesis Satu Populasi</a></li>
+<li><a class="" href="uji-hipotesis-dua-populasi.html"><span class="header-section-number">6</span> Uji Hipotesis Dua Populasi</a></li>
+<li><a class="" href="analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><span class="header-section-number">7</span> Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal</a></li>
+<li><a class="" href="analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><span class="header-section-number">8</span> Analisis Hubungan Korelatif: Korelasi Variabel Metrik</a></li>
+<li><a class="" href="analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><span class="header-section-number">9</span> Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a></li>
+<li><a class="" href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><span class="header-section-number">10</span> Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</a></li>
+<li><a class="" href="referensi.html"><span class="header-section-number">11</span> Referensi</a></li>
 </ul>
 
         <div class="book-extra">
@@ -124,7 +126,7 @@
 </ul>
 <p>Dengan struktur seperti ini, kode R kalian akan lebih <strong>ringkas</strong> dan <strong>portabel</strong>. Sebagai contoh, untuk membaca data, kalian cukup menulis:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">read.xlsx</span><span class="op">(</span><span class="st">"datasets/data_penduduk.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/read.xlsx.html">read.xlsx</a></span><span class="op">(</span><span class="st">"datasets/data_penduduk.xlsx"</span><span class="op">)</span></span></code></pre></div>
 <p>Tanpa perlu menulis <em>path</em> lengkap seperti <code>C:\Users\NamaAnda\Documents\praktikum\data_penduduk.xlsx</code> yang panjang, rumit, dan berbeda-beda di setiap komputer.</p>
 </div>
 <div id="membuat-dan-mengatur-direktori-praktikum" class="section level3" number="0.6.2">
@@ -307,8 +309,8 @@
 <span><span class="co"># yang terdiri dari beberapa baris</span></span>
 <span><span class="co"># untuk menjelaskan konsep yang kompleks</span></span>
 <span><span class="va">hasil</span> <span class="op">&lt;-</span> <span class="va">data.ubl</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span><span class="op">(</span><span class="va">Jenis.Kelamin</span> <span class="op">==</span> <span class="st">"Laki-Laki"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">summarize</span><span class="op">(</span>rata_rata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">jarak</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Jenis.Kelamin</span> <span class="op">==</span> <span class="st">"Laki-Laki"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>rata_rata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">jarak</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Cara 2: Menggunakan if(FALSE)</strong></p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="pengenalan-teknis-r.html#cb10-1" tabindex="-1"></a><span class="cf">if</span>(<span class="cn">FALSE</span>) {</span>
 <span id="cb10-2"><a href="pengenalan-teknis-r.html#cb10-2" tabindex="-1"></a>  Ini adalah komentar blok alternatif.</span>
@@ -605,9 +607,9 @@
 <h3>
 <span class="header-section-number">0.12.1</span> Membaca Data<a class="anchor" aria-label="anchor" href="#membaca-data"><i class="fas fa-link"></i></a>
 </h3>
-<p>Kita sering menggunakan <code>read.xlsx()</code> dari paket <code>openxlsx</code> untuk membaca file Excel.</p>
+<p>Kita sering menggunakan <code><a href="https://rdrr.io/pkg/openxlsx/man/read.xlsx.html">read.xlsx()</a></code> dari paket <code>openxlsx</code> untuk membaca file Excel.</p>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">read.xlsx</span><span class="op">(</span><span class="st">"folder/nama_file.xlsx"</span>, sheet <span class="op">=</span> <span class="st">"nama_sheet"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/read.xlsx.html">read.xlsx</a></span><span class="op">(</span><span class="st">"folder/nama_file.xlsx"</span>, sheet <span class="op">=</span> <span class="st">"nama_sheet"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="menyimpan-data" class="section level3" number="0.12.2">
 <h3>
@@ -615,7 +617,7 @@
 </h3>
 <p>Setelah diolah, data bisa disimpan kembali ke Excel atau CSV.</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">write.xlsx</span><span class="op">(</span><span class="va">data</span>, <span class="st">"folder/nama_file_baru.xlsx"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/openxlsx/man/write.xlsx.html">write.xlsx</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"folder/nama_file_baru.xlsx"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html">write.csv2</a></span><span class="op">(</span><span class="va">data</span>, <span class="st">"folder/nama_file_baru.csv"</span><span class="op">)</span> <span class="co"># Format CSV Excel Indonesia (pemisah titik koma)</span></span></code></pre></div>
 
 </div>
@@ -623,7 +625,7 @@
 </div>
   <div class="chapter-nav">
 <div class="prev"><a href="pengenalan-r-dan-rstudio.html">Pengenalan R dan RStudio</a></div>
-<div class="next"><a href="modul-1.html"><span class="header-section-number">1</span> Modul-1: Pengolahan Data Terstruktur</a></div>
+<div class="next"><a href="modul-1.html"><span class="header-section-number">1</span> Pengolahan Data Terstruktur</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
       <ul class="nav navbar-nav">

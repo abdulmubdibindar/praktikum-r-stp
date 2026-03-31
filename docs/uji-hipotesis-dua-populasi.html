@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Modul 6 Uji Hipotesis Dua Populasi | Modul Praktik Statistika Untuk Perencanaan</title>
+<meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Modul 6 Uji Hipotesis Dua Populasi | Modul Praktik Statistika Untuk Perencanaan">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Modul 6 Uji Hipotesis Dua Populasi | Modul Praktik Statistika Untuk Perencanaan">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<style type="text/css">
+    /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+          margin-bottom: 0em;
+        }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+  </style>
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan uji hipotesis dua populasi dengan menggunakan perangkat lunak komputer STP-7.2  6.1 Uji Hipotesis 2 Populasi Independen Dua...">
+<meta property="og:description" content="Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan uji hipotesis dua populasi dengan menggunakan perangkat lunak komputer STP-7.2  6.1 Uji Hipotesis 2 Populasi Independen Dua...">
+<meta name="twitter:description" content="Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan uji hipotesis dua populasi dengan menggunakan perangkat lunak komputer STP-7.2  6.1 Uji Hipotesis 2 Populasi Independen Dua...">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="Penggunaan R dalam Pengolahan Data Kuantitatif">Modul Praktik Statistika Untuk Perencanaan</a>:
+        <small class="text-muted">Penggunaan R dalam Pengolahan Data Kuantitatif</small>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Pengantar</a></li>
+<li><a class="" href="pengenalan-r-dan-rstudio.html">Pengenalan R dan RStudio</a></li>
+<li><a class="" href="pengenalan-teknis-r.html">Pengenalan Teknis R</a></li>
+<li><a class="" href="modul-1.html"><span class="header-section-number">1</span> Pengolahan Data Terstruktur</a></li>
+<li><a class="" href="analisis-statistika-deskriptif.html"><span class="header-section-number">2</span> Analisis Statistika Deskriptif</a></li>
+<li><a class="" href="visualisasi-data-kuantitatif.html"><span class="header-section-number">3</span> Visualisasi Data Kuantitatif</a></li>
+<li><a class="" href="distribusi-sampling-dan-interval-kepercayaan.html"><span class="header-section-number">4</span> Distribusi Sampling dan Interval Kepercayaan</a></li>
+<li><a class="" href="uji-hipotesis-satu-populasi.html"><span class="header-section-number">5</span> Uji Hipotesis Satu Populasi</a></li>
+<li><a class="active" href="uji-hipotesis-dua-populasi.html"><span class="header-section-number">6</span> Uji Hipotesis Dua Populasi</a></li>
+<li><a class="" href="analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><span class="header-section-number">7</span> Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal</a></li>
+<li><a class="" href="analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><span class="header-section-number">8</span> Analisis Hubungan Korelatif: Korelasi Variabel Metrik</a></li>
+<li><a class="" href="analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><span class="header-section-number">9</span> Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a></li>
+<li><a class="" href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><span class="header-section-number">10</span> Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</a></li>
+<li><a class="" href="referensi.html"><span class="header-section-number">11</span> Referensi</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="uji-hipotesis-dua-populasi" class="section level1" number="6">
+<h1>
+<span class="header-section-number">Modul 6</span> Uji Hipotesis Dua Populasi<a class="anchor" aria-label="anchor" href="#uji-hipotesis-dua-populasi"><i class="fas fa-link"></i></a>
+</h1>
+<div class="rmdcapaian">
+<p>Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan uji hipotesis dua populasi dengan menggunakan perangkat lunak komputer <span class="capaian">STP-7.2</span></p>
+</div>
+<div id="uji-hipotesis-2-populasi-independen" class="section level2" number="6.1">
+<h2>
+<span class="header-section-number">6.1</span> Uji Hipotesis 2 Populasi Independen<a class="anchor" aria-label="anchor" href="#uji-hipotesis-2-populasi-independen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Dua populasi dikatakan independen apabila tidak ada pengaruh antara populasi 1 dengan populasi lain. Artinya, data dari populasi pertama dan kedua berdiri sendiri, tidak saling berkaitan. Contohnya adalah membandingkan rata-rata jarak tempat tinggal mahasiswa ITERA dengan mahasiswa UINRIL, di mana setiap kelompok mahasiswa berasal dari populasi yang berbeda.</p>
+<div id="rata-rata" class="section level3" number="6.1.1">
+<h3>
+<span class="header-section-number">6.1.1</span> Rata-rata<a class="anchor" aria-label="anchor" href="#rata-rata"><i class="fas fa-link"></i></a>
+</h3>
+<div id="merumuskan-fungsi" class="section level5" number="6.1.1.0.1">
+<h5>
+<span class="header-section-number">6.1.1.0.1</span> Merumuskan fungsi<a class="anchor" aria-label="anchor" href="#merumuskan-fungsi"><i class="fas fa-link"></i></a>
+</h5>
+<p>Pada langkah ini, kita akan membuat fungsi uji hipotesis rata-rata untuk dua populasi independen. Fungsi ini diperlukan karena kita ingin menghitung nilai statistik uji (Z) berdasarkan data ringkasan dari dua sampel Dengan fungsi ini, kita bisa langsung memasukkan nilai-nilai statistik dari kedua populasi dan mendapatkan nilai Z yang akan dibandingkan dengan titik kritis.</p>
+<div class="sourceCode" id="cb211"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ht_mean_2pop_ind</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">xbar1</span>, <span class="va">xbar2</span>, <span class="va">sd1</span>, <span class="va">sd2</span>, <span class="va">n1</span>, <span class="va">n2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span> <span class="co"># Indentasi diberikan untuk memudahkan</span></span>
+<span>    <span class="op">(</span> <span class="co"># pembacaan karena banyaknya tanda kurung</span></span>
+<span>      <span class="op">(</span><span class="va">sd1</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">n1</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>    <span class="op">)</span> <span class="op">+</span> <span class="op">(</span></span>
+<span>      <span class="op">(</span><span class="va">sd2</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">n2</span> <span class="op">-</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="va">z_hitung</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">xbar1</span> <span class="op">-</span> <span class="va">xbar2</span><span class="op">)</span> <span class="op">/</span> <span class="va">se</span> <span class="co"># menghitung nilai Z dari statistik</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">z_hitung</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="menghitung-mean-2-populasi" class="section level5" number="6.1.1.0.2">
+<h5>
+<span class="header-section-number">6.1.1.0.2</span> Menghitung mean 2 populasi<a class="anchor" aria-label="anchor" href="#menghitung-mean-2-populasi"><i class="fas fa-link"></i></a>
+</h5>
+<p>Sebelum menjalankan uji hipotesis, kita perlu mendapatkan data ringkasan berupa rata-rata, simpangan baku, dan jumlah sampel dari masing-masing populasi. Pada tahap ini, kita akan membuat tabel ringkasan jarak mahasiswa dari rumah ke kampus berdasarkan kelompok kampus. Data ini nantinya akan menjadi input untuk fungsi yang sudah kita buat di langkah sebelumnya. Dengan cara ini, kita bisa lebih mudah membandingkan dua populasi secara langsung.</p>
+<div class="sourceCode" id="cb212"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">summarize_jarak_2pop</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>Kampus <span class="op">=</span> <span class="va">kampus</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span></span>
+<span>    `Rata-rata` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">jarak_km</span><span class="op">)</span>,</span>
+<span>    `Simpangan baku` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">jarak_km</span><span class="op">)</span>,</span>
+<span>    Jumlah <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="va">summarize_jarak_2pop</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 4
+##   Kampus `Rata-rata` `Simpangan baku` Jumlah
+##   &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;  &lt;int&gt;
+## 1 ITERA         5.01             2.82    427
+## 2 UBL           3.38             3.74    379
+## 3 UINRIL        3.21             3.74    400</code></pre>
+</div>
+<div id="mendeklarasikan-variabel-uji" class="section level5" number="6.1.1.0.3">
+<h5>
+<span class="header-section-number">6.1.1.0.3</span> Mendeklarasikan variabel uji<a class="anchor" aria-label="anchor" href="#mendeklarasikan-variabel-uji"><i class="fas fa-link"></i></a>
+</h5>
+<p>Setelah mendapatkan ringkasan data, kita harus menyimpan nilai rata-rata, simpangan baku, dan ukuran sampel ke dalam variabel khusus. Variabel-variabel ini akan dipakai langsung sebagai input fungsi uji hipotesis. Dengan mendeklarasikannya lebih dulu, proses penghitungan menjadi lebih rapi dan mudah diikuti.</p>
+<div class="sourceCode" id="cb214"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mean_jarak_uinril</span> <span class="op">&lt;-</span> <span class="va">summarize_jarak_2pop</span><span class="op">$</span><span class="va">`Rata-rata`</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
+<span><span class="va">mean_jarak_itera</span> <span class="op">&lt;-</span> <span class="va">summarize_jarak_2pop</span><span class="op">$</span><span class="va">`Rata-rata`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">sd_jarak_uinril</span> <span class="op">&lt;-</span> <span class="va">summarize_jarak_2pop</span><span class="op">$</span><span class="va">`Simpangan baku`</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
+<span><span class="va">sd_jarak_itera</span> <span class="op">&lt;-</span> <span class="va">summarize_jarak_2pop</span><span class="op">$</span><span class="va">`Simpangan baku`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">n_jarak_uinril</span> <span class="op">&lt;-</span> <span class="va">summarize_jarak_2pop</span><span class="op">$</span><span class="va">Jumlah</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
+<span><span class="va">n_jarak_itera</span> <span class="op">&lt;-</span> <span class="va">summarize_jarak_2pop</span><span class="op">$</span><span class="va">Jumlah</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code></pre></div>
+</div>
+<div id="two-tailed-test" class="section level4" number="6.1.1.1">
+<h4>
+<span class="header-section-number">6.1.1.1</span> <em>Two-tailed Test</em><a class="anchor" aria-label="anchor" href="#two-tailed-test"><i class="fas fa-link"></i></a>
+</h4>
+<div id="merumuskan-hipotesis" class="section level5" number="6.1.1.1.1">
+<h5>
+<span class="header-section-number">6.1.1.1.1</span> Merumuskan hipotesis<a class="anchor" aria-label="anchor" href="#merumuskan-hipotesis"><i class="fas fa-link"></i></a>
+</h5>
+<p>Sama seerti sebelumnya, langkah pertama dalam uji hipotesis adalah menyusun hipotesis nol (H0) dan hipotesis alternatif (H1). Untuk kasus two-tailed test, hipotesis alternatif menyatakan adanya perbedaan rata-rata tanpa menyebutkan arah (lebih besar atau lebih kecil). Artinya, kita hanya ingin tahu apakah terdapat perbedaan signifikan atau tidak, tanpa peduli siapa yang lebih besar. Hipotesis nol menyatakan tidak ada perbedaan, atau selisih rata-rata sama dengan nol.</p>
+<div class="sourceCode" id="cb215"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
+<span>  <span class="st">"H0: mu_jarakUINRIL - mu_jarakITERA = 0"</span>,</span>
+<span>  <span class="st">"\n\nH1: mu_jarakUINRIL - mu_jarakITERA != 0"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>## H0: mu_jarakUINRIL - mu_jarakITERA = 0 
+## 
+## H1: mu_jarakUINRIL - mu_jarakITERA != 0</code></pre>
+</div>
+<div id="memilih-distribusi-sampling-wilayah-dan-titik-kritis" class="section level5" number="6.1.1.1.2">
+<h5>
+<span class="header-section-number">6.1.1.1.2</span> Memilih distribusi sampling, wilayah, dan titik kritis<a class="anchor" aria-label="anchor" href="#memilih-distribusi-sampling-wilayah-dan-titik-kritis"><i class="fas fa-link"></i></a>
+</h5>
+<p>Setelah hipotesis dirumuskan, kita harus menentukan distribusi sampling yang dipakai serta wilayah kritisnya. Karena ukuran sampel cukup besar, distribusi normal standar (Z) digunakan sebagai acuan. Untuk two-tailed test, wilayah kritis terbagi dua sama besar di kedua sisi kurva distribusi. Nilai kritis diperoleh dari tabel distribusi normal pada α/2, lalu dibuat dalam bentuk absolut karena titik kritis simetris di kedua sisi.</p>
+<div class="sourceCode" id="cb217"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Hipotesis yang dipakai tidak berarah, maka wilayah kritis adalah alpha/2</span></span>
+<span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.001</span></span>
+<span></span>
+<span><span class="va">z_crit_2tail</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="va">alpha</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="co"># Nilai yang digunakan adalah nilai absolut</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Titik kritis uji two-tailed:"</span>, <span class="va">z_crit_2tail</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Titik kritis uji two-tailed: 3.290527</code></pre>
+</div>
+<div id="menghitung-statistik-uji-2" class="section level5" number="6.1.1.1.3">
+<h5>
+<span class="header-section-number">6.1.1.1.3</span> Menghitung statistik uji<a class="anchor" aria-label="anchor" href="#menghitung-statistik-uji-2"><i class="fas fa-link"></i></a>
+</h5>
+<p>Setelah mengetahui titik kritis, kita hitung nilai statistik uji (Z) dari data yang dimiliki. Nilai ini diperoleh dengan memasukkan rata-rata, simpangan baku, dan ukuran sampel ke fungsi ht_mean_2pop_ind. Karena pengujian dilakukan dua sisi, nilai Z hasil perhitungan diabsolutkan agar bisa dibandingkan langsung dengan titik kritis.</p>
+<div class="sourceCode" id="cb219"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Hasil perhitungan statistik uji diabsolutkan</span></span>
+<span><span class="va">z_mean_jarak_2pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu">ht_mean_2pop_ind</span><span class="op">(</span></span>
+<span>  <span class="va">mean_jarak_uinril</span>, <span class="va">mean_jarak_itera</span>,</span>
+<span>  <span class="va">sd_jarak_uinril</span>, <span class="va">sd_jarak_itera</span>,</span>
+<span>  <span class="va">n_jarak_uinril</span>, <span class="va">n_jarak_itera</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">z_mean_jarak_2pop</span></span></code></pre></div>
+<pre><code>## [1] 7.743731</code></pre>
+</div>
+<div id="menarik-kesimpulan-2" class="section level5" number="6.1.1.1.4">
+<h5>
+<span class="header-section-number">6.1.1.1.4</span> Menarik kesimpulan<a class="anchor" aria-label="anchor" href="#menarik-kesimpulan-2"><i class="fas fa-link"></i></a>
+</h5>
+<p>Langkah terakhir adalah membandingkan nilai statistik uji dengan titik kritis. Jika Z hitung lebih kecil dari Z kritis, maka H0 gagal ditolak, artinya perbedaan rata-rata jarak antara dua populasi kemungkinan hanyalah kebetulan. Jika Z hitung lebih besar, maka H0 ditolak, yang berarti terdapat cukup bukti untuk menyatakan adanya perbedaan.</p>
+<div class="sourceCode" id="cb221"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="va">z_mean_jarak_2pop</span> <span class="op">&lt;</span> <span class="va">z_crit_2tail</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">tolak_h0</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Hipotesis kosong gagal ditolak. Perbedaan rata-rata jarak mahasiswa UINRIL dengan ITERA dari sampel hanyalah kebetulan."</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">tolak_h0</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Hipotesis kosong ditolak. Perbedaan rata-rata jarak mahasiswa UINRIL dengan ITERA dari sampel signifikan."</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## Hipotesis kosong ditolak. Perbedaan rata-rata jarak mahasiswa UINRIL dengan ITERA dari sampel signifikan.</code></pre>
+</div>
+</div>
+<div id="one-tailed-test" class="section level4" number="6.1.1.2">
+<h4>
+<span class="header-section-number">6.1.1.2</span> <em>One-tailed Test</em><a class="anchor" aria-label="anchor" href="#one-tailed-test"><i class="fas fa-link"></i></a>
+</h4>
+<div id="merumuskan-hipotesis-1" class="section level5" number="6.1.1.2.1">
+<h5>
+<span class="header-section-number">6.1.1.2.1</span> Merumuskan hipotesis<a class="anchor" aria-label="anchor" href="#merumuskan-hipotesis-1"><i class="fas fa-link"></i></a>
+</h5>
+<p>Untuk one-tailed test, hipotesis alternatif (H1) menyebutkan arah perbedaan yang spesifik, misalnya rata-rata populasi 1 lebih kecil dari populasi 2. Berbeda dengan two-tailed test yang hanya memeriksa “ada perbedaan”, one-tailed test lebih fokus untuk mengetahui apakah perbedaan itu terjadi sesuai arah yang dihipotesiskan. Hipotesis nol (H0) tetap menyatakan tidak ada perbedaan, tetapi pengujian difokuskan hanya pada satu sisi distribusi.</p>
+<div class="sourceCode" id="cb223"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
+<span>  <span class="st">"H0: mu_jarakUINRIL - mu_jarakITERA = 0"</span>,</span>
+<span>  <span class="st">"\n\nH1: mu_jarakUINRIL - mu_jarakITERA &lt; 0"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<pre><code>## H0: mu_jarakUINRIL - mu_jarakITERA = 0 
+## 
+## H1: mu_jarakUINRIL - mu_jarakITERA &lt; 0</code></pre>
+</div>
+<div id="memilih-distribusi-sampling-wilayah-dan-titik-kritis-1" class="section level5" number="6.1.1.2.2">
+<h5>
+<span class="header-section-number">6.1.1.2.2</span> Memilih distribusi sampling, wilayah, dan titik kritis<a class="anchor" aria-label="anchor" href="#memilih-distribusi-sampling-wilayah-dan-titik-kritis-1"><i class="fas fa-link"></i></a>
+</h5>
+<p>Dalam pengujian one-tailed, kita perlu menentukan sisi mana yang akan digunakan sebagai wilayah kritis. Jika hipotesis alternatif menyebutkan “lebih kecil”, maka wilayah kritis berada di sisi kiri distribusi. Sebaliknya, jika hipotesis menyebutkan “lebih besar”, wilayah kritis diletakkan di sisi kanan.</p>
+<div class="sourceCode" id="cb225"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tail</span> <span class="op">&lt;-</span> <span class="st">"kiri"</span></span>
+<span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">tail</span> <span class="op">==</span> <span class="st">"kiri"</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">z_crit_1tail</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">z_crit_1tail</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">alpha</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Titik kritis uji one-tailed:"</span>, <span class="va">z_crit_1tail</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Titik kritis uji one-tailed: -3.090232</code></pre>
+</div>
+<div id="menghitung-statistik-uji-3" class="section level5" number="6.1.1.2.3">
+<h5>
+<span class="header-section-number">6.1.1.2.3</span> Menghitung Statistik uji<a class="anchor" aria-label="anchor" href="#menghitung-statistik-uji-3"><i class="fas fa-link"></i></a>
+</h5>
+<p>Selanjutnya, kita menghitung nilai statistik uji menggunakan fungsi ht_mean_2pop_ind. Berbeda dengan two-tailed test, pada one-tailed test nilai Z tidak diabsolutkan karena arah perbedaan menjadi penting.</p>
+<div class="sourceCode" id="cb227"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Hasil perhitungan statistik uji TIDAK diabsolutkan</span></span>
+<span><span class="va">z_mean_jarak_2pop</span> <span class="op">&lt;-</span> <span class="fu">ht_mean_2pop_ind</span><span class="op">(</span></span>
+<span>  <span class="va">mean_jarak_uinril</span>, <span class="va">mean_jarak_itera</span>,</span>
+<span>  <span class="va">sd_jarak_uinril</span>, <span class="va">sd_jarak_itera</span>,</span>
+<span>  <span class="va">n_jarak_uinril</span>, <span class="va">n_jarak_itera</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">z_mean_jarak_2pop</span></span></code></pre></div>
+<pre><code>## [1] -7.743731</code></pre>
+</div>
+<div id="menarik-kesimpulan-3" class="section level5" number="6.1.1.2.4">
+<h5>
+<span class="header-section-number">6.1.1.2.4</span> Menarik kesimpulan<a class="anchor" aria-label="anchor" href="#menarik-kesimpulan-3"><i class="fas fa-link"></i></a>
+</h5>
+<p>Tahap terakhir adalah menarik kesimpulan dengan cara membandingkan nilai statistik uji terhadap titik kritis. Jika nilai Z hitung jatuh pada wilayah kritis (misalnya lebih kecil dari Z kritis kiri), maka hipotesis nol ditolak. Artinya, ada bukti cukup untuk menyatakan rata-rata jarak mahasiswa ITERA memang lebih kecil dari mahasiswa UINRIL sesuai hipotesis arah. Jika tidak, maka hipotesis nol gagal ditolak, dan kita simpulkan bahwa arah perbedaan yang diduga tidak terbukti secara signifikan.</p>
+<div class="sourceCode" id="cb229"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="va">z_mean_jarak_2pop</span> <span class="op">&lt;</span> <span class="va">z_crit_1tail</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">tolak_h0</span> <span class="op">&lt;-</span> <span class="cn">TRUE</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Hipotesis kosong ditolak. Mahasiswa ITERA secara rata-rata tinggal lebih jauh dari kampus dibandingkan mahasiswa UINRIL significanly."</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">tolak_h0</span> <span class="op">&lt;-</span> <span class="cn">FALSE</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Hipotesis kosong gagal ditolak. Tidak cukup bukti menyatakan mahasiswa ITERA tinggal lebih jauh."</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## Hipotesis kosong ditolak. Mahasiswa ITERA secara rata-rata tinggal lebih jauh dari kampus dibandingkan mahasiswa UINRIL significanly.</code></pre>
+</div>
+</div>
+</div>
+<div id="proporsi" class="section level3" number="6.1.2">
+<h3>
+<span class="header-section-number">6.1.2</span> Proporsi<a class="anchor" aria-label="anchor" href="#proporsi"><i class="fas fa-link"></i></a>
+</h3>
+<p>Pada bagian ini kita akan melakukan uji hipotesis terhadap proporsi dua populasi yang independen. Berbeda dengan rata-rata, proporsi digunakan ketika data berbentuk kategori (misalnya pilihan tinggal di kos/asrama atau tinggal bersama keluarga). Prinsip pengujian tetap sama, yaitu membandingkan apakah perbedaan proporsi antar populasi signifikan atau hanya karena kebetulan sampel.</p>
+<div id="membuat-fungsi" class="section level5" number="6.1.2.0.1">
+<h5>
+<span class="header-section-number">6.1.2.0.1</span> Membuat fungsi<a class="anchor" aria-label="anchor" href="#membuat-fungsi"><i class="fas fa-link"></i></a>
+</h5>
+<p>Sama seperti sebelumnya, langkah pertama adalah membuat fungsi khusus untuk menghitung nilai statistik uji pada uji hipotesis proporsi dua populasi independen. Fungsi ini menerima input berupa proporsi sampel masing-masing populasi (p_hat1 dan p_hat2) serta ukuran sampelnya (n1 dan n2). Di dalam fungsi, dihitung terlebih dahulu proporsi gabungan (p_gab) yang mewakili keseluruhan sampel. Kemudian dihitung standard error (SE), dan akhirnya didapatkan nilai Z hitung.</p>
+<div class="sourceCode" id="cb231"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membuat fungsi uji hipotesis (hypothesis testing, ht) untuk rata-rata (mean)</span></span>
+<span><span class="co"># dengan 1 populasi (2pop) Independen (In)</span></span>
+<span><span class="co"># Keterangan input:</span></span>
+<span><span class="co">#   - xbar1 : statistik rata-rata populasi #1</span></span>
+<span><span class="co">#   - xbar2 : statistik rata-rata populasi #2</span></span>
+<span><span class="co">#   - sd1   : statistik simpangan baku populasi #1</span></span>
+<span><span class="co">#   - sd2   : statistik simpangan baku populasi #2</span></span>
+<span><span class="co">#   - n1    : ukuran sampel dari populasi #1</span></span>
+<span><span class="co">#   - n2    : ukuran sampel dari populasi #2</span></span>
+<span><span class="va">ht_prop_2pop_ind</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">p_hat1</span>, <span class="va">p_hat2</span>, <span class="va">n1</span>, <span class="va">n2</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">p_gab</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">(</span><span class="va">n1</span> <span class="op">*</span> <span class="va">p_hat1</span> <span class="op">+</span> <span class="va">n2</span> <span class="op">*</span> <span class="va">p_hat2</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="va">n1</span> <span class="op">+</span> <span class="va">n2</span><span class="op">)</span> <span class="co"># Total proporsi yang diuji</span></span>
+<span>  <span class="co"># untuk kedua populasi</span></span>
+<span>  <span class="va">se</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span></span>
+<span>    <span class="op">(</span><span class="va">p_gab</span> <span class="op">*</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">p_gab</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="op">(</span> <span class="co"># Indentasi diberikan untuk memudahkan pembacaan</span></span>
+<span>      <span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="va">n1</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="va">n2</span><span class="op">)</span> <span class="co"># karena banyaknya kurung</span></span>
+<span>    <span class="op">)</span></span>
+<span>  <span class="op">)</span></span>
+<span>  <span class="va">z_hitung</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">p_hat1</span> <span class="op">-</span> <span class="va">p_hat2</span><span class="op">)</span> <span class="op">/</span> <span class="va">se</span> <span class="co"># menghitung nilai Z dari statistik</span></span>
+<span>  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">z_hitung</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="mendeklarasikan-variabel-uji-1" class="section level5" number="6.1.2.0.2">
+<h5>
+<span class="header-section-number">6.1.2.0.2</span> Mendeklarasikan variabel uji<a class="anchor" aria-label="anchor" href="#mendeklarasikan-variabel-uji-1"><i class="fas fa-link"></i></a>
+</h5>
+<p>Setelah fungsi dibuat, kita perlu menyiapkan data yang akan diuji. Pertama, data mahasiswa dikelompokkan berdasarkan kampus dan tipe_tinggal_baku. Selanjutnya dihitung proporsi tiap kategori (misalnya proporsi mahasiswa yang tinggal di kos/asrama). Data kemudian diubah dari format long ke wide sehingga tiap kategori menjadi variabel. Dari hasil ini kita bisa mengambil proporsi masing-masing populasi, serta ukuran sampel total pada tiap kampus.</p>
+<div class="sourceCode" id="cb232"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">summarize_tempat_tinggal_2pop</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">kampus</span>, <span class="va">tipe_tinggal_baku</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize</a></span><span class="op">(</span>Jumlah <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>proporsi <span class="op">=</span> <span class="va">Jumlah</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Jumlah</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># menghitung proporsi tiap kategori.</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">Jumlah</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span><span class="op">(</span><span class="va">tipe_tinggal_baku</span>, <span class="va">proporsi</span><span class="op">)</span> <span class="co"># mengubah data long menjadi wide (kolom                                          # kategori jadi variabel).</span></span>
+<span></span>
+<span><span class="va">summarize_tempat_tinggal_2pop</span></span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+## # Groups:   kampus [3]
+##   kampus `Kos/Asrama` `Rumah Keluarga/Pribadi`
+##   &lt;chr&gt;         &lt;dbl&gt;                    &lt;dbl&gt;
+## 1 ITERA         0.550                    0.450
+## 2 UBL           0.224                    0.776
+## 3 UINRIL        0.46                     0.54</code></pre>
+<div class="sourceCode" id="cb234"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">proporsi_kos_asrama_itera</span> <span class="op">&lt;-</span> <span class="va">summarize_tempat_tinggal_2pop</span><span class="op">$</span><span class="va">`Kos/Asrama`</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">proporsi_kos_asrama_uinril</span> <span class="op">&lt;-</span> <span class="va">summarize_tempat_tinggal_2pop</span><span class="op">$</span><span class="va">`Kos/Asrama`</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span>
+<span></span>
+<span><span class="va">n_kos_asrama_2pop</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">kampus</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">n_kos_asrama_itera</span> <span class="op">&lt;-</span> <span class="va">n_kos_asrama_2pop</span><span class="op">$</span><span class="va">n</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
+<span><span class="va">n_kos_asrama_uinril</span> <span class="op">&lt;-</span> <span class="va">n_kos_asrama_2pop</span><span class="op">$</span><span class="va">n</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span></span></code></pre></div>
+<p>####<em>Two-tailed Test</em></p>
+<div class="sourceCode" id="cb235"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Gunakan CI = 93%, artinya alpha = 7% = 0.07</span></span>
+<span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.07</span></span>
+<span></span>
+<span><span class="co"># Hitung Z kritis 2-tailed</span></span>
+<span><span class="va">z_crit_2tail</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="va">alpha</span> <span class="op">/</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Hitung statistik uji proporsi 2 populasi</span></span>
+<span><span class="co"># Asumsi: Menggunakan data proporsi kos/asrama ITERA vs UINRIL yang sudah disiapkan sebelumnya</span></span>
+<span><span class="va">z_prop_2pop</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">abs</a></span><span class="op">(</span><span class="fu">ht_prop_2pop_ind</span><span class="op">(</span></span>
+<span>  <span class="va">proporsi_kos_asrama_uinril</span>, <span class="va">proporsi_kos_asrama_itera</span>,</span>
+<span>  <span class="va">n_kos_asrama_uinril</span>, <span class="va">n_kos_asrama_itera</span></span>
+<span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Titik Kritis:"</span>, <span class="va">z_crit_2tail</span>, <span class="st">"\nZ Hitung:"</span>, <span class="va">z_prop_2pop</span>, <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Titik Kritis: 1.811911 
+## Z Hitung: 2.597132</code></pre>
+<div class="sourceCode" id="cb237"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="va">z_prop_2pop</span> <span class="op">&lt;</span> <span class="va">z_crit_2tail</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Hipotesis nol gagal ditolak."</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Hipotesis nol ditolak."</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## Hipotesis nol ditolak.</code></pre>
+</div>
+<div id="one-tailed-test-1" class="section level4" number="6.1.2.1">
+<h4>
+<span class="header-section-number">6.1.2.1</span> <em>One-tailed Test</em><a class="anchor" aria-label="anchor" href="#one-tailed-test-1"><i class="fas fa-link"></i></a>
+</h4>
+<div class="sourceCode" id="cb239"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Gunakan CI = 96%, artinya alpha = 4% = 0.04</span></span>
+<span><span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fl">0.04</span></span>
+<span><span class="va">tail</span> <span class="op">&lt;-</span> <span class="st">"kiri"</span> <span class="co"># Asumsi uji lebih kecil (UINRIL &lt; ITERA misalnya)</span></span>
+<span></span>
+<span><span class="co"># Hitung Z kritis 1-tailed</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="va">tail</span> <span class="op">==</span> <span class="st">"kiri"</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">z_crit_1tail</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="va">z_crit_1tail</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">alpha</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span></span>
+<span><span class="co"># Hitung statistik uji (tidak absolut)</span></span>
+<span><span class="va">z_prop_2pop</span> <span class="op">&lt;-</span> <span class="fu">ht_prop_2pop_ind</span><span class="op">(</span></span>
+<span>  <span class="va">proporsi_kos_asrama_uinril</span>, <span class="va">proporsi_kos_asrama_itera</span>,</span>
+<span>  <span class="va">n_kos_asrama_uinril</span>, <span class="va">n_kos_asrama_itera</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Titik Kritis:"</span>, <span class="va">z_crit_1tail</span>, <span class="st">"\nZ Hitung:"</span>, <span class="va">z_prop_2pop</span>, <span class="st">"\n"</span><span class="op">)</span></span></code></pre></div>
+<pre><code>## Titik Kritis: -1.750686 
+## Z Hitung: -2.597132</code></pre>
+<div class="sourceCode" id="cb241"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="va">z_prop_2pop</span> <span class="op">&lt;</span> <span class="va">z_crit_1tail</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Hipotesis nol ditolak (Signifikan)."</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="st">"Hipotesis nol gagal ditolak."</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<pre><code>## Hipotesis nol ditolak (Signifikan).</code></pre>
+</div>
+</div>
+</div>
+<div id="uji-hipotesis-2-populasi-dependen" class="section level2" number="6.2">
+<h2>
+<span class="header-section-number">6.2</span> Uji Hipotesis 2 Populasi Dependen<a class="anchor" aria-label="anchor" href="#uji-hipotesis-2-populasi-dependen"><i class="fas fa-link"></i></a>
+</h2>
+<p>Menguji hipotesis 2 populasi yang dependen pada dasarnya sama persis dengan uji hipotesis 1 populasi, karena statistik yang diuji adalah <strong>perbedaan nilai sampel</strong>. Biasanya berbentuk “sebelum-sesudah”. Contoh: mengukur nilai mahasiswa sebelum dan sesudah diberi pelatihan. Bedanya dengan independen : kita tidak bandingkan dua kelompok berbeda, tapi pasangan data dari kelompok yang sama dalam dua kondisi.</p>
+<p>Perbedaan nilai sampel jumlah nilainya hanya 1, sehingga bisa diperlakukan seperti halnya perhitungan uji hipotesis 1 populasi. Simpangan baku yang diketahui pun adalah simpangan baku <strong>perbedaan nilainya, sehingga jumlah nilainya hanya 1 juga</strong>.</p>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="uji-hipotesis-satu-populasi.html"><span class="header-section-number">5</span> Uji Hipotesis Satu Populasi</a></div>
+<div class="next"><a href="analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><span class="header-section-number">7</span> Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#uji-hipotesis-dua-populasi"><span class="header-section-number">6</span> Uji Hipotesis Dua Populasi</a></li>
+<li>
+<a class="nav-link" href="#uji-hipotesis-2-populasi-independen"><span class="header-section-number">6.1</span> Uji Hipotesis 2 Populasi Independen</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#rata-rata"><span class="header-section-number">6.1.1</span> Rata-rata</a></li>
+<li><a class="nav-link" href="#proporsi"><span class="header-section-number">6.1.2</span> Proporsi</a></li>
+</ul>
+</li>
+<li><a class="nav-link" href="#uji-hipotesis-2-populasi-dependen"><span class="header-section-number">6.2</span> Uji Hipotesis 2 Populasi Dependen</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Modul Praktik Statistika Untuk Perencanaan</strong>: Penggunaan R dalam Pengolahan Data Kuantitatif" was written by Team Teaching Statistika Untuk Perencanaan, PWK ITERA. </p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+for (let popover of popovers) {
+  const div = document.createElement('div');
+  div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
+  div.innerHTML = popover.getAttribute('data-content');
+
+  var has_math = div.querySelector("span.math");
+  if (has_math) {
+    document.body.appendChild(div);
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub, div]);
+    MathJax.Hub.Queue(function() {
+      popover.setAttribute('data-content', div.innerHTML);
+      document.body.removeChild(div);
+    })
+  }
+}
+</script>
+</body>
+</html>
