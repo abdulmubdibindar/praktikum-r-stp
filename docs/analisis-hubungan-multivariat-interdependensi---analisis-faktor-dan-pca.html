@@ -1,50 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  <title>Modul 10 Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA | Modul Praktik Statistika Untuk Perencanaan</title>
-
-    <meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA" />
-  
-   
-   <meta name="generator" content="placeholder" />
-  <meta property="og:title" content="Modul 10 Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA | Modul Praktik Statistika Untuk Perencanaan" />
-  <meta property="og:type" content="book" />
-  
-  
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Modul 10 Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA | Modul Praktik Statistika Untuk Perencanaan" />
-  
-  
-  
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script>
-  <script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script>
-    <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
-    <script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
-    <script src="libs/bs3compat-0.9.0/transition.js"></script>
-    <script src="libs/bs3compat-0.9.0/tabs.js"></script>
-    <script src="libs/bs3compat-0.9.0/bs3compat.js"></script>
-    <link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet" />
-    <script src="libs/bs4_book-1.0.0/bs4_book.js"></script>
-    <link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet" />
-    <script src="libs/tabwid-1.1.3/tabwid.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
-
-  <!-- CSS -->
-  <style type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Modul 10 Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA | Modul Praktik Statistika Untuk Perencanaan</title>
+<meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta property="og:title" content="Modul 10 Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA | Modul Praktik Statistika Untuk Perencanaan">
+<meta property="og:type" content="book">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Modul 10 Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA | Modul Praktik Statistika Untuk Perencanaan">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.9.0/transition.js"></script><script src="libs/bs3compat-0.9.0/tabs.js"></script><script src="libs/bs3compat-0.9.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><link href="libs/tabwid-1.1.3/tabwid.css" rel="stylesheet">
+<script src="libs/tabwid-1.1.3/tabwid.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
     
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   </style>
-    <style type="text/css">
+<style type="text/css">
     /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
     div.csl-bib-body { }
     div.csl-entry {
@@ -67,16 +42,16 @@
       margin-left: 2em;
     }
   </style>
-      <link rel="stylesheet" href="style.css" />
-  
+<link rel="stylesheet" href="style.css">
+<meta name="description" content="Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan komponen prinsip menggunakan perangkat lunak komputer STP-14.3  10.1 Pendahuluan Analisis Komponen Prinsip (Principal Component...">
+<meta property="og:description" content="Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan komponen prinsip menggunakan perangkat lunak komputer STP-14.3  10.1 Pendahuluan Analisis Komponen Prinsip (Principal Component...">
+<meta name="twitter:description" content="Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan komponen prinsip menggunakan perangkat lunak komputer STP-14.3  10.1 Pendahuluan Analisis Komponen Prinsip (Principal Component...">
 </head>
-
 <body data-spy="scroll" data-target="#toc">
 
 <div class="container-fluid">
 <div class="row">
-  <header class="col-sm-12 col-lg-3 sidebar sidebar-book">
-    <a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
 
     <div class="d-flex align-items-start justify-content-between">
       <h1>
@@ -89,100 +64,148 @@
     <div id="main-nav" class="collapse-lg">
       <form role="search">
         <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
-      </form>
+</form>
 
-      <nav aria-label="Table of contents">
-        <h2>Table of contents</h2>
-        <div id="book-toc"></div>
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Pengantar</a></li>
+<li><a class="" href="pengenalan-r-dan-rstudio.html">Pengenalan R dan RStudio</a></li>
+<li><a class="" href="pengenalan-teknis-r.html">Pengenalan Teknis R</a></li>
+<li><a class="" href="modul-1.html"><span class="header-section-number">1</span> Pengolahan Data Terstruktur</a></li>
+<li><a class="" href="analisis-statistika-deskriptif.html"><span class="header-section-number">2</span> Analisis Statistika Deskriptif</a></li>
+<li><a class="" href="visualisasi-data-kuantitatif.html"><span class="header-section-number">3</span> Visualisasi Data Kuantitatif</a></li>
+<li><a class="" href="distribusi-sampling-dan-interval-kepercayaan.html"><span class="header-section-number">4</span> Distribusi Sampling dan Interval Kepercayaan</a></li>
+<li><a class="" href="uji-hipotesis-satu-populasi.html"><span class="header-section-number">5</span> Uji Hipotesis Satu Populasi</a></li>
+<li><a class="" href="uji-hipotesis-dua-populasi.html"><span class="header-section-number">6</span> Uji Hipotesis Dua Populasi</a></li>
+<li><a class="" href="analisis-hubungan-korelatif-korelasi-variabel-nominal-dan-ordinal.html"><span class="header-section-number">7</span> Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal</a></li>
+<li><a class="" href="analisis-hubungan-korelatif-korelasi-variabel-metrik.html"><span class="header-section-number">8</span> Analisis Hubungan Korelatif: Korelasi Variabel Metrik</a></li>
+<li><a class="" href="analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><span class="header-section-number">9</span> Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a></li>
+<li><a class="active" href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html"><span class="header-section-number">10</span> Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</a></li>
+<li><a class="" href="referensi.html"><span class="header-section-number">11</span> Referensi</a></li>
+</ul>
 
         <div class="book-extra">
-          <p><a id="book-repo" href="#">View book source <i class="fab fa-github"></i></a></li></p>
+          
         </div>
       </nav>
-    </div>
-  </header>
-
-  <main class="col-sm-12 col-md-9 col-lg-7" id="content">
-<div id="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca" class="section level1" number="10">
-<h1><span class="header-section-number">Modul 10</span> Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</h1>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca" class="section level1" number="10">
+<h1>
+<span class="header-section-number">Modul 10</span> Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA<a class="anchor" aria-label="anchor" href="#analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca"><i class="fas fa-link"></i></a>
+</h1>
 <p>Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan komponen prinsip menggunakan perangkat lunak komputer <span class="capaian">STP-14.3</span></p>
-<hr />
+<hr>
 <div id="pendahuluan-5" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> Pendahuluan</h2>
+<h2>
+<span class="header-section-number">10.1</span> Pendahuluan<a class="anchor" aria-label="anchor" href="#pendahuluan-5"><i class="fas fa-link"></i></a>
+</h2>
 <p>Analisis Komponen Prinsip (<em>Principal Component Analysis</em>, PCA) dan Analisis Faktor (<em>Common Factor Analysis</em>) adalah metode analisis multivariat yang digunakan untuk meringkas atau mereduksi jumlah variabel yang banyak menjadi beberapa dimensi baru (disebut komponen atau faktor) yang lebih sedikit, namun tetap merepresentasikan informasi dari variabel asli.</p>
 <p>Kedua metode ini termasuk dalam analisis interdependensi, di mana seluruh variabel dianggap setara dan saling berhubungan satu sama lain, tanpa ada pembagian variabel independen dan dependen.</p>
 </div>
 <div id="studi-kasus" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> Studi Kasus</h2>
+<h2>
+<span class="header-section-number">10.2</span> Studi Kasus<a class="anchor" aria-label="anchor" href="#studi-kasus"><i class="fas fa-link"></i></a>
+</h2>
 <p>Kita akan menggunakan data <span class="citation">Bindar (<a href="referensi.html#ref-bindar2022faktor">2022</a>)</span>, yaitu penelitian mengenai preferensi masyarakat Kota Bandung dalam mengakses lokasi <em>Car-Free Day</em> (CFD). Terdapat 12 variabel yang akan dianalisis:</p>
 <ol style="list-style-type: decimal">
-<li><code>ongkos</code>: Total biaya perjalanan</li>
-<li><code>bparkir</code>: Biaya parkir</li>
-<li><code>durasi</code>: Durasi perjalanan</li>
-<li><code>bareng</code>: Jumlah rombongan dalam perjalanan</li>
-<li><code>toplajur</code>: Jumlah lajur jalan terbanyak yang dilalui</li>
-<li><code>usia</code>: Usia pelaku perjalanan</li>
-<li><code>jmlmotor</code>: Jumlah sepeda motor di rumah tangga</li>
-<li><code>jmlmobil</code>: Jumlah mobil di rumah tangga</li>
-<li><code>jmlsepeda</code>: Jumlah sepeda di rumah tangga</li>
-<li><code>jmldewasa</code>: Jumlah orang dewasa dalam rumah tangga</li>
-<li><code>jmlanak</code>: Jumlah anak-anak dalam rumah tangga</li>
-<li><code>jarak</code>: Jarak tempuh dari rumah ke lokasi CFD</li>
+<li>
+<code>ongkos</code>: Total biaya perjalanan</li>
+<li>
+<code>bparkir</code>: Biaya parkir</li>
+<li>
+<code>durasi</code>: Durasi perjalanan</li>
+<li>
+<code>bareng</code>: Jumlah rombongan dalam perjalanan</li>
+<li>
+<code>toplajur</code>: Jumlah lajur jalan terbanyak yang dilalui</li>
+<li>
+<code>usia</code>: Usia pelaku perjalanan</li>
+<li>
+<code>jmlmotor</code>: Jumlah sepeda motor di rumah tangga</li>
+<li>
+<code>jmlmobil</code>: Jumlah mobil di rumah tangga</li>
+<li>
+<code>jmlsepeda</code>: Jumlah sepeda di rumah tangga</li>
+<li>
+<code>jmldewasa</code>: Jumlah orang dewasa dalam rumah tangga</li>
+<li>
+<code>jmlanak</code>: Jumlah anak-anak dalam rumah tangga</li>
+<li>
+<code>jarak</code>: Jarak tempuh dari rumah ke lokasi CFD</li>
 </ol>
 </div>
 <div id="memuat-pustaka-libraries" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> Memuat Pustaka <em>(Libraries)</em></h2>
+<h2>
+<span class="header-section-number">10.3</span> Memuat Pustaka <em>(Libraries)</em><a class="anchor" aria-label="anchor" href="#memuat-pustaka-libraries"><i class="fas fa-link"></i></a>
+</h2>
 <p>Kita membutuhkan paket <code>tidyverse</code> untuk manipulasi data dan <code>psych</code> untuk melakukan uji KMO, Bartlett, serta fungsi analisis faktor dan PCA.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb312-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb312-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb312-2" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/">psych</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="asumsi-awal" class="section level2" number="10.4">
-<h2><span class="header-section-number">10.4</span> Asumsi Awal</h2>
+<h2>
+<span class="header-section-number">10.4</span> Asumsi Awal<a class="anchor" aria-label="anchor" href="#asumsi-awal"><i class="fas fa-link"></i></a>
+</h2>
 <p>Sebelum melakukan analisis komponen prinsip atau analisis faktor, idealnya kita perlu memeriksa asumsi dasar, yaitu:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Linearitas</strong>: Adanya hubungan linear antarvariabel.</li>
-<li><strong>Normalitas</strong>: Variabel berdistribusi normal multivariat.</li>
+<li>
+<strong>Linearitas</strong>: Adanya hubungan linear antarvariabel.</li>
+<li>
+<strong>Normalitas</strong>: Variabel berdistribusi normal multivariat.</li>
 </ol>
 <p>Kita dapat melakukan inspeksi visual menggunakan matriks diagram pencar (<em>scatter plot matrix</em>). Di sini kita menggunakan fungsi <code>pairs.panels</code> dari paket <code>psych</code> yang memberikan informasi lengkap berupa scatter plot, histogram, dan nilai korelasi.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-1" tabindex="-1"></a><span class="co"># Membaca data (Kita muat di sini untuk keperluan inspeksi awal)</span></span>
-<span id="cb313-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-2" tabindex="-1"></a><span class="co"># Jika data belum dimuat, baris ini akan memuatnya.</span></span>
-<span id="cb313-3"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-3" tabindex="-1"></a>data_cfd <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(<span class="st">&quot;datasets/Data Praktikum 09.csv&quot;</span>)</span>
-<span id="cb313-4"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-4" tabindex="-1"></a></span>
-<span id="cb313-5"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-5" tabindex="-1"></a><span class="co"># Memilih 12 variabel metrik yang akan dianalisis sesuai studi kasus</span></span>
-<span id="cb313-6"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-6" tabindex="-1"></a><span class="co"># Variabel ini sama dengan yang akan digunakan pada tahap persiapan data selanjutnya</span></span>
-<span id="cb313-7"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-7" tabindex="-1"></a>data_selected <span class="ot">&lt;-</span> data_cfd <span class="sc">|&gt;</span></span>
-<span id="cb313-8"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-8" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb313-9"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-9" tabindex="-1"></a>    ongkos, bparkir, durasi, bareng, toplajur, usia,</span>
-<span id="cb313-10"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-10" tabindex="-1"></a>    jmlmotor, jmlmobil, jmlsepeda, jmldewasa, jmlanak, jarak</span>
-<span id="cb313-11"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-11" tabindex="-1"></a>  )</span>
-<span id="cb313-12"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-12" tabindex="-1"></a></span>
-<span id="cb313-13"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-13" tabindex="-1"></a><span class="co"># Membuat Scatter Plot Matrix menggunakan psych::pairs.panels</span></span>
-<span id="cb313-14"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-14" tabindex="-1"></a><span class="fu">pairs.panels</span>(data_selected,</span>
-<span id="cb313-15"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-15" tabindex="-1"></a>  <span class="at">method =</span> <span class="st">&quot;pearson&quot;</span>, <span class="co"># Menggunakan korelasi Pearson</span></span>
-<span id="cb313-16"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-16" tabindex="-1"></a>  <span class="at">hist.col =</span> <span class="st">&quot;#00AFBB&quot;</span>, <span class="co"># Warna histogram</span></span>
-<span id="cb313-17"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-17" tabindex="-1"></a>  <span class="at">density =</span> <span class="cn">FALSE</span>, <span class="co"># Tidak menampilkan garis density agar lebih bersih</span></span>
-<span id="cb313-18"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-18" tabindex="-1"></a>  <span class="at">lm.col =</span> <span class="st">&quot;red&quot;</span>, <span class="co"># Mengubah warna data points menjadi abu-abu gelap</span></span>
-<span id="cb313-19"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-19" tabindex="-1"></a>  <span class="at">ellipses =</span> <span class="cn">TRUE</span>, <span class="co"># Menampilkan elips korelasi untuk melihat pola linearitas</span></span>
-<span id="cb313-20"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-20" tabindex="-1"></a>  <span class="at">lm =</span> <span class="cn">TRUE</span>, <span class="co"># Menampilkan garis regresi linear lurus</span></span>
-<span id="cb313-21"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-21" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">&quot;Scatter Plot Matrix Asumsi Awal&quot;</span></span>
-<span id="cb313-22"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb313-22" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="figures/mod09-check-assumptions-1.png" width="960" /></p>
+<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membaca data (Kita muat di sini untuk keperluan inspeksi awal)</span></span>
+<span><span class="co"># Jika data belum dimuat, baris ini akan memuatnya.</span></span>
+<span><span class="va">data_cfd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"datasets/Data Praktikum 09.csv"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Memilih 12 variabel metrik yang akan dianalisis sesuai studi kasus</span></span>
+<span><span class="co"># Variabel ini sama dengan yang akan digunakan pada tahap persiapan data selanjutnya</span></span>
+<span><span class="va">data_selected</span> <span class="op">&lt;-</span> <span class="va">data_cfd</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
+<span>    <span class="va">ongkos</span>, <span class="va">bparkir</span>, <span class="va">durasi</span>, <span class="va">bareng</span>, <span class="va">toplajur</span>, <span class="va">usia</span>,</span>
+<span>    <span class="va">jmlmotor</span>, <span class="va">jmlmobil</span>, <span class="va">jmlsepeda</span>, <span class="va">jmldewasa</span>, <span class="va">jmlanak</span>, <span class="va">jarak</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Membuat Scatter Plot Matrix menggunakan psych::pairs.panels</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/pairs.panels.html">pairs.panels</a></span><span class="op">(</span><span class="va">data_selected</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"pearson"</span>, <span class="co"># Menggunakan korelasi Pearson</span></span>
+<span>  hist.col <span class="op">=</span> <span class="st">"#00AFBB"</span>, <span class="co"># Warna histogram</span></span>
+<span>  density <span class="op">=</span> <span class="cn">FALSE</span>, <span class="co"># Tidak menampilkan garis density agar lebih bersih</span></span>
+<span>  lm.col <span class="op">=</span> <span class="st">"red"</span>, <span class="co"># Mengubah warna data points menjadi abu-abu gelap</span></span>
+<span>  ellipses <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># Menampilkan elips korelasi untuk melihat pola linearitas</span></span>
+<span>  lm <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># Menampilkan garis regresi linear lurus</span></span>
+<span>  main <span class="op">=</span> <span class="st">"Scatter Plot Matrix Asumsi Awal"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="figures/mod09-check-assumptions-1.png" width="960"></div>
 <p><strong>Penjelasan Kode dan Output:</strong></p>
 <ul>
-<li><strong>Kode</strong>: Kita menggunakan fungsi <code>pairs.panels</code> dari paket <code>psych</code>. Argumen <code>method = "pearson"</code> digunakan untuk menghitung koefisien korelasi Pearson. <code>hist.col</code> mengatur warna histogram di diagonal utama. <code>ellipses = TRUE</code> menambahkan elips yang menggambarkan kovarians dan arah hubungan.</li>
-<li><strong>Output</strong>:
+<li>
+<strong>Kode</strong>: Kita menggunakan fungsi <code>pairs.panels</code> dari paket <code>psych</code>. Argumen <code>method = "pearson"</code> digunakan untuk menghitung koefisien korelasi Pearson. <code>hist.col</code> mengatur warna histogram di diagonal utama. <code>ellipses = TRUE</code> menambahkan elips yang menggambarkan kovarians dan arah hubungan.</li>
+<li>
+<strong>Output</strong>:
 <ul>
-<li><strong>Diagonal Utama</strong>: Menampilkan histogram distribusi frekuensi untuk setiap variabel. Kita dapat melihat apakah distribusi variabel mendekati normal (bentuk lonceng) atau menceng (<em>skewed</em>).</li>
-<li><strong>Bawah Diagonal</strong>: Menampilkan <em>scatter plot</em> (diagram pencar) untuk setiap pasangan variabel. Ini berguna untuk mendeteksi pola hubungan (apakah linear) dan adanya pencilan (<em>outliers</em>).</li>
-<li><strong>Atas Diagonal</strong>: Menampilkan nilai koefisien korelasi Pearson (<span class="math inline">\(r\)</span>). Ukuran font angka korelasi menyesuaikan dengan besarnya nilai korelasi (semakin besar nilai, semakin besar font). <strong>Interpretasi Singkat</strong>:</li>
-<li><strong>Normalitas</strong>: Pada diagonal utama, histogram yang berbentuk lonceng menunjukkan distribusi mendekati normal. Distribusi yang menceng (<em>skewed</em>) atau tidak simetris menandakan ketidaknormalan.</li>
-<li><strong>Linearitas</strong>: Perhatikan bagian bawah diagonal (Scatter Plot).
+<li>
+<strong>Diagonal Utama</strong>: Menampilkan histogram distribusi frekuensi untuk setiap variabel. Kita dapat melihat apakah distribusi variabel mendekati normal (bentuk lonceng) atau menceng (<em>skewed</em>).</li>
+<li>
+<strong>Bawah Diagonal</strong>: Menampilkan <em>scatter plot</em> (diagram pencar) untuk setiap pasangan variabel. Ini berguna untuk mendeteksi pola hubungan (apakah linear) dan adanya pencilan (<em>outliers</em>).</li>
+<li>
+<strong>Atas Diagonal</strong>: Menampilkan nilai koefisien korelasi Pearson (<span class="math inline">\(r\)</span>). Ukuran font angka korelasi menyesuaikan dengan besarnya nilai korelasi (semakin besar nilai, semakin besar font). <strong>Interpretasi Singkat</strong>:</li>
+<li>
+<strong>Normalitas</strong>: Pada diagonal utama, histogram yang berbentuk lonceng menunjukkan distribusi mendekati normal. Distribusi yang menceng (<em>skewed</em>) atau tidak simetris menandakan ketidaknormalan.</li>
+<li>
+<strong>Linearitas</strong>: Perhatikan bagian bawah diagonal (Scatter Plot).
 <ul>
-<li><strong>Garis Tren</strong>: Indikasi linearitas dapat dilihat dari garis tren (biasanya berwarna merah) yang terbentuk di antara titik-titik data. Jika garis tersebut cenderung lurus, maka hubungan antar variabel bersifat linear.</li>
-<li><strong>Elips</strong>: Bentuk elips menunjukkan kekuatan korelasi. <strong>Elips yang pipih (sempit)</strong> menandakan korelasi kuat dan hubungan yang jelas. Sebaliknya, <strong>elips yang cenderung bulat</strong> menandakan korelasi yang lemah.</li>
+<li>
+<strong>Garis Tren</strong>: Indikasi linearitas dapat dilihat dari garis tren (biasanya berwarna merah) yang terbentuk di antara titik-titik data. Jika garis tersebut cenderung lurus, maka hubungan antar variabel bersifat linear.</li>
+<li>
+<strong>Elips</strong>: Bentuk elips menunjukkan kekuatan korelasi. <strong>Elips yang pipih (sempit)</strong> menandakan korelasi kuat dan hubungan yang jelas. Sebaliknya, <strong>elips yang cenderung bulat</strong> menandakan korelasi yang lemah.</li>
 <li>Perbesar grafik dengan membuka hasil di jendela baru atau klik ‘Zoom’ jika ia muncul di panel ‘Plots’.</li>
-</ul></li>
-</ul></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p><strong>Latihan 2:</strong></p>
 <p>Berdasarkan <em>Scatter Plot Matrix</em> di atas:</p>
@@ -192,17 +215,20 @@
 </ol>
 </div>
 <div id="mempersiapkan-data" class="section level2" number="10.5">
-<h2><span class="header-section-number">10.5</span> Mempersiapkan Data</h2>
+<h2>
+<span class="header-section-number">10.5</span> Mempersiapkan Data<a class="anchor" aria-label="anchor" href="#mempersiapkan-data"><i class="fas fa-link"></i></a>
+</h2>
 <p>Kita memastikan kembali variabel yang akan digunakan dalam analisis ini.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb314-1" tabindex="-1"></a><span class="co"># Memilih variabel yang akan dianalisis</span></span>
-<span id="cb314-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb314-2" tabindex="-1"></a>data_analisis <span class="ot">&lt;-</span> data_cfd <span class="sc">|&gt;</span></span>
-<span id="cb314-3"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb314-3" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb314-4"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb314-4" tabindex="-1"></a>    ongkos, bparkir, durasi, bareng, toplajur, usia,</span>
-<span id="cb314-5"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb314-5" tabindex="-1"></a>    jmlmotor, jmlmobil, jmlsepeda, jmldewasa, jmlanak, jarak</span>
-<span id="cb314-6"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb314-6" tabindex="-1"></a>  )</span>
-<span id="cb314-7"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb314-7" tabindex="-1"></a></span>
-<span id="cb314-8"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb314-8" tabindex="-1"></a><span class="co"># Melihat sekilas data</span></span>
-<span id="cb314-9"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb314-9" tabindex="-1"></a><span class="fu">glimpse</span>(data_analisis)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Memilih variabel yang akan dianalisis</span></span>
+<span><span class="va">data_analisis</span> <span class="op">&lt;-</span> <span class="va">data_cfd</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
+<span>    <span class="va">ongkos</span>, <span class="va">bparkir</span>, <span class="va">durasi</span>, <span class="va">bareng</span>, <span class="va">toplajur</span>, <span class="va">usia</span>,</span>
+<span>    <span class="va">jmlmotor</span>, <span class="va">jmlmobil</span>, <span class="va">jmlsepeda</span>, <span class="va">jmldewasa</span>, <span class="va">jmlanak</span>, <span class="va">jarak</span></span>
+<span>  <span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Melihat sekilas data</span></span>
+<span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data_analisis</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 319
 ## Columns: 12
 ## $ ongkos    &lt;dbl&gt; 464.40, 464.40, 464.40, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 10000.00, 30000.00, 0.00, 0.00, 154.80, 0.00, 0.…
@@ -225,13 +251,18 @@
 </ol>
 </div>
 <div id="uji-kelayakan-data-asumsi" class="section level2" number="10.6">
-<h2><span class="header-section-number">10.6</span> Uji Kelayakan Data (Asumsi)</h2>
+<h2>
+<span class="header-section-number">10.6</span> Uji Kelayakan Data (Asumsi)<a class="anchor" aria-label="anchor" href="#uji-kelayakan-data-asumsi"><i class="fas fa-link"></i></a>
+</h2>
 <p>Sebelum melakukan ekstraksi dimensi, kita perlu memastikan data layak untuk dianalisis faktor/PCA. Dua indikator utama adalah <strong>Uji Bartlett of Sphericity</strong> dan <strong>Measure of Sampling Adequacy (MSA)</strong> atau <strong>Kaiser-Meyer-Olkin (KMO)</strong>.</p>
 <div id="uji-bartlett-of-sphericity" class="section level3" number="10.6.1">
-<h3><span class="header-section-number">10.6.1</span> Uji Bartlett of Sphericity</h3>
+<h3>
+<span class="header-section-number">10.6.1</span> Uji Bartlett of Sphericity<a class="anchor" aria-label="anchor" href="#uji-bartlett-of-sphericity"><i class="fas fa-link"></i></a>
+</h3>
 <p>Uji ini melihat apakah terdapat korelasi antarvariabel dalam data. Syarat: Nilai <span class="math inline">\(p &lt; 0,05\)</span>.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb316-1" tabindex="-1"></a><span class="co"># Uji Bartlett</span></span>
-<span id="cb316-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb316-2" tabindex="-1"></a><span class="fu">cortest.bartlett</span>(data_analisis)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Uji Bartlett</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/cortest.bartlett.html">cortest.bartlett</a></span><span class="op">(</span><span class="va">data_analisis</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## $chisq
 ## [1] 573.4283
 ## 
@@ -244,10 +275,13 @@
 <p>Lihat nilai <span class="math inline">\(p.value\)</span> pada output di atas. Apakah nilai tersebut <span class="math inline">\(&lt; 0.05\)</span>? Apa kesimpulan Anda mengenai korelasi antar variabel dalam data ini? (Apakah matriks korelasi berbeda secara signifikan dengan matriks identitas?)</p>
 </div>
 <div id="uji-kmo-dan-msa" class="section level3" number="10.6.2">
-<h3><span class="header-section-number">10.6.2</span> Uji KMO dan MSA</h3>
+<h3>
+<span class="header-section-number">10.6.2</span> Uji KMO dan MSA<a class="anchor" aria-label="anchor" href="#uji-kmo-dan-msa"><i class="fas fa-link"></i></a>
+</h3>
 <p>Nilai KMO keseluruhan harus <span class="math inline">\(&gt; 0,5\)</span>. Selain itu, nilai MSA per variabel (diagonal pada matriks anti-image correlation) juga harus <span class="math inline">\(&gt; 0,5\)</span>.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb318-1" tabindex="-1"></a><span class="co"># Uji KMO</span></span>
-<span id="cb318-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb318-2" tabindex="-1"></a><span class="fu">KMO</span>(data_analisis)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Uji KMO</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/KMO.html">KMO</a></span><span class="op">(</span><span class="va">data_analisis</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Kaiser-Meyer-Olkin factor adequacy
 ## Call: KMO(r = data_analisis)
 ## Overall MSA =  0.63
@@ -256,12 +290,13 @@
 ##      0.66      0.65      0.60      0.63      0.81      0.62      0.61      0.61      0.57      0.48      0.44      0.64</code></pre>
 <p>Berdasarkan hasil di atas: - Nilai KMO Keseluruhan (<em>Overall MSA</em>) = 0,63 (Layak, &gt; 0,5). - Namun, jika dilihat per variabel (<em>MSA for each item</em>), terdapat variabel dengan nilai &lt; 0,5 yaitu <code>jmldewasa</code> (0,48) dan <code>jmlanak</code> (0,44).</p>
 <p>Sesuai prosedur, kita harus mengeluarkan variabel yang tidak memenuhi syarat MSA.</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb320-1" tabindex="-1"></a><span class="co"># Mengeluarkan variabel jmldewasa dan jmlanak</span></span>
-<span id="cb320-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb320-2" tabindex="-1"></a>data_analisis_final <span class="ot">&lt;-</span> data_analisis <span class="sc">|&gt;</span></span>
-<span id="cb320-3"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb320-3" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>jmldewasa, <span class="sc">-</span>jmlanak)</span>
-<span id="cb320-4"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb320-4" tabindex="-1"></a></span>
-<span id="cb320-5"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb320-5" tabindex="-1"></a><span class="co"># Cek ulang KMO</span></span>
-<span id="cb320-6"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb320-6" tabindex="-1"></a><span class="fu">KMO</span>(data_analisis_final)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Mengeluarkan variabel jmldewasa dan jmlanak</span></span>
+<span><span class="va">data_analisis_final</span> <span class="op">&lt;-</span> <span class="va">data_analisis</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">jmldewasa</span>, <span class="op">-</span><span class="va">jmlanak</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Cek ulang KMO</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/KMO.html">KMO</a></span><span class="op">(</span><span class="va">data_analisis_final</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Kaiser-Meyer-Olkin factor adequacy
 ## Call: KMO(r = data_analisis_final)
 ## Overall MSA =  0.65
@@ -272,26 +307,34 @@
 </div>
 </div>
 <div id="mengekstrak-dimensi-baru" class="section level2" number="10.7">
-<h2><span class="header-section-number">10.7</span> Mengekstrak Dimensi Baru</h2>
+<h2>
+<span class="header-section-number">10.7</span> Mengekstrak Dimensi Baru<a class="anchor" aria-label="anchor" href="#mengekstrak-dimensi-baru"><i class="fas fa-link"></i></a>
+</h2>
 <p>Langkah selanjutnya adalah menentukan berapa jumlah dimensi (faktor/komponen) yang akan dibentuk. Kita dapat menggunakan <strong>Analisis Paralel</strong> atau melihat <strong>Nilai Eigen</strong> (<em>Eigenvalues</em>) dan <strong>Scree Plot</strong>.</p>
 <div id="nilai-eigen-dan-total-variansi" class="section level3" number="10.7.1">
-<h3><span class="header-section-number">10.7.1</span> Nilai Eigen dan Total Variansi</h3>
+<h3>
+<span class="header-section-number">10.7.1</span> Nilai Eigen dan Total Variansi<a class="anchor" aria-label="anchor" href="#nilai-eigen-dan-total-variansi"><i class="fas fa-link"></i></a>
+</h3>
 <p>Kita akan melihat berapa banyak variansi yang bisa dijelaskan oleh setiap komponen.</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb322-1" tabindex="-1"></a><span class="co"># Melakukan PCA tanpa rotasi untuk melihat Eigenvalues</span></span>
-<span id="cb322-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb322-2" tabindex="-1"></a>analisis_awal <span class="ot">&lt;-</span> <span class="fu">principal</span>(data_analisis_final, <span class="at">nfactors =</span> <span class="dv">10</span>, <span class="at">rotate =</span> <span class="st">&quot;none&quot;</span>)</span>
-<span id="cb322-3"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb322-3" tabindex="-1"></a></span>
-<span id="cb322-4"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb322-4" tabindex="-1"></a><span class="co"># Menampilkan nilai eigen</span></span>
-<span id="cb322-5"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb322-5" tabindex="-1"></a>analisis_awal<span class="sc">$</span>values</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Melakukan PCA tanpa rotasi untuk melihat Eigenvalues</span></span>
+<span><span class="va">analisis_awal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/psych/man/principal.html">principal</a></span><span class="op">(</span><span class="va">data_analisis_final</span>, nfactors <span class="op">=</span> <span class="fl">10</span>, rotate <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menampilkan nilai eigen</span></span>
+<span><span class="va">analisis_awal</span><span class="op">$</span><span class="va">values</span></span></code></pre></div>
 <pre><code>##  [1] 2.4878770 1.6496907 1.2355641 1.0172985 0.8514614 0.8261586 0.6137405 0.5061041 0.4703792 0.3417258</code></pre>
 <p>Kriteria umum penentuan jumlah dimensi: 1. <strong>Kaiser’s Criterion</strong>: Ambil komponen dengan nilai eigen &gt; 1. 2. <strong>Cumulative Variance</strong>: Ambil jumlah komponen yang menjelaskan total variansi &gt; 60%.</p>
 <p>Dari nilai eigen di atas, terdapat 4 komponen dengan nilai &gt; 1 (2.488, 1.650, 1.236, 1.017).</p>
 </div>
 <div id="scree-plot" class="section level3" number="10.7.2">
-<h3><span class="header-section-number">10.7.2</span> <em>Scree Plot</em></h3>
+<h3>
+<span class="header-section-number">10.7.2</span> <em>Scree Plot</em><a class="anchor" aria-label="anchor" href="#scree-plot"><i class="fas fa-link"></i></a>
+</h3>
 <p>Grafik ini menunjukkan penurunan nilai eigen. Titik di mana grafik mulai melandai (siku) menunjukkan batas jumlah faktor.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb324-1" tabindex="-1"></a><span class="co"># Membuat Scree Plot</span></span>
-<span id="cb324-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb324-2" tabindex="-1"></a><span class="fu">scree</span>(data_analisis_final, <span class="at">pc =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="figures/mod09-scree-plot-1.png" width="672" /></p>
+<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membuat Scree Plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/VSS.scree.html">scree</a></span><span class="op">(</span><span class="va">data_analisis_final</span>, pc <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="figures/mod09-scree-plot-1.png" width="672"></div>
 <p><strong>Latihan 4:</strong></p>
 <ol style="list-style-type: decimal">
 <li>Berdasarkan <strong>Kaiser’s Criterion</strong> (Nilai Eigen &gt; 1) pada sub-bab 9.7.1, berapa komponen yang sebaiknya diekstrak?</li>
@@ -301,17 +344,22 @@
 </div>
 </div>
 <div id="melakukan-analisis-faktor-dan-rotasi" class="section level2" number="10.8">
-<h2><span class="header-section-number">10.8</span> Melakukan Analisis Faktor dan Rotasi</h2>
+<h2>
+<span class="header-section-number">10.8</span> Melakukan Analisis Faktor dan Rotasi<a class="anchor" aria-label="anchor" href="#melakukan-analisis-faktor-dan-rotasi"><i class="fas fa-link"></i></a>
+</h2>
 <p>Kita akan melakukan ekstraksi 4 faktor menggunakan metode <strong>Analisis Faktor</strong> (untuk pengelompokan variabel) dan <strong>PCA</strong> (untuk pembentukan variat), kemudian melakukan <strong>Rotasi Varimax</strong> agar pengelompokan variabel lebih tegas (nilai <em>loading</em> kontras).</p>
 <div id="analisis-faktor-common-factor-analysis" class="section level3" number="10.8.1">
-<h3><span class="header-section-number">10.8.1</span> Analisis Faktor (Common Factor Analysis)</h3>
+<h3>
+<span class="header-section-number">10.8.1</span> Analisis Faktor (Common Factor Analysis)<a class="anchor" aria-label="anchor" href="#analisis-faktor-common-factor-analysis"><i class="fas fa-link"></i></a>
+</h3>
 <p>Analisis ini bertujuan mengelompokkan variabel-variabel yang mirip (korelasi tinggi) ke dalam faktor laten.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb325-1" tabindex="-1"></a><span class="co"># Analisis Faktor dengan 4 faktor dan rotasi Varimax</span></span>
-<span id="cb325-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb325-2" tabindex="-1"></a><span class="co"># fm=&quot;pa&quot; (Principal Axis) adalah metode umum untuk Common Factor Analysis di R (mirip SPSS)</span></span>
-<span id="cb325-3"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb325-3" tabindex="-1"></a>af_result <span class="ot">&lt;-</span> <span class="fu">fa</span>(data_analisis_final, <span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>, <span class="at">fm =</span> <span class="st">&quot;pa&quot;</span>)</span>
-<span id="cb325-4"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb325-4" tabindex="-1"></a></span>
-<span id="cb325-5"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb325-5" tabindex="-1"></a><span class="co"># Menampilkan hasil loading faktor</span></span>
-<span id="cb325-6"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb325-6" tabindex="-1"></a><span class="fu">print</span>(af_result<span class="sc">$</span>loadings, <span class="at">cutoff =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Analisis Faktor dengan 4 faktor dan rotasi Varimax</span></span>
+<span><span class="co"># fm="pa" (Principal Axis) adalah metode umum untuk Common Factor Analysis di R (mirip SPSS)</span></span>
+<span><span class="va">af_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.html">fa</a></span><span class="op">(</span><span class="va">data_analisis_final</span>, nfactors <span class="op">=</span> <span class="fl">4</span>, rotate <span class="op">=</span> <span class="st">"varimax"</span>, fm <span class="op">=</span> <span class="st">"pa"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menampilkan hasil loading faktor</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">af_result</span><span class="op">$</span><span class="va">loadings</span>, cutoff <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Loadings:
 ##           PA1    PA2    PA3    PA4   
@@ -336,19 +384,25 @@
 <p><strong>Latihan 5:</strong></p>
 <p>Berdasarkan output di atas, tentukan variabel pembentuk faktor lainnya:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Faktor 2 (PA2)</strong>: Variabel apa saja yang memiliki <em>loading</em> tinggi di kolom ini?</li>
-<li><strong>Faktor 3 (PA3)</strong>: Variabel apa saja yang memiliki <em>loading</em> tinggi di kolom ini?</li>
-<li><strong>Faktor 4 (PA4)</strong>: Variabel apa saja yang memiliki <em>loading</em> tinggi di kolom ini?</li>
+<li>
+<strong>Faktor 2 (PA2)</strong>: Variabel apa saja yang memiliki <em>loading</em> tinggi di kolom ini?</li>
+<li>
+<strong>Faktor 3 (PA3)</strong>: Variabel apa saja yang memiliki <em>loading</em> tinggi di kolom ini?</li>
+<li>
+<strong>Faktor 4 (PA4)</strong>: Variabel apa saja yang memiliki <em>loading</em> tinggi di kolom ini?</li>
 </ol>
 </div>
 <div id="analisis-komponen-prinsip-pca" class="section level3" number="10.8.2">
-<h3><span class="header-section-number">10.8.2</span> Analisis Komponen Prinsip (PCA)</h3>
+<h3>
+<span class="header-section-number">10.8.2</span> Analisis Komponen Prinsip (PCA)<a class="anchor" aria-label="anchor" href="#analisis-komponen-prinsip-pca"><i class="fas fa-link"></i></a>
+</h3>
 <p>Jika tujuan kita adalah mereduksi data menjadi skor komponen untuk analisis lanjutan (misal regresi), kita menggunakan PCA.</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb327-1" tabindex="-1"></a><span class="co"># PCA dengan 4 komponen dan rotasi Varimax</span></span>
-<span id="cb327-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb327-2" tabindex="-1"></a>pca_result <span class="ot">&lt;-</span> <span class="fu">principal</span>(data_analisis_final, <span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">rotate =</span> <span class="st">&quot;varimax&quot;</span>)</span>
-<span id="cb327-3"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb327-3" tabindex="-1"></a></span>
-<span id="cb327-4"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb327-4" tabindex="-1"></a><span class="co"># Menampilkan hasil loading komponen (untuk interpretasi)</span></span>
-<span id="cb327-5"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb327-5" tabindex="-1"></a><span class="fu">print</span>(pca_result<span class="sc">$</span>loadings, <span class="at">cutoff =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># PCA dengan 4 komponen dan rotasi Varimax</span></span>
+<span><span class="va">pca_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/psych/man/principal.html">principal</a></span><span class="op">(</span><span class="va">data_analisis_final</span>, nfactors <span class="op">=</span> <span class="fl">4</span>, rotate <span class="op">=</span> <span class="st">"varimax"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menampilkan hasil loading komponen (untuk interpretasi)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pca_result</span><span class="op">$</span><span class="va">loadings</span>, cutoff <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
 ## Loadings:
 ##           RC1    RC3    RC2    RC4   
@@ -367,8 +421,9 @@
 ## SS loadings    1.840 1.753 1.626 1.171
 ## Proportion Var 0.184 0.175 0.163 0.117
 ## Cumulative Var 0.184 0.359 0.522 0.639</code></pre>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb329-1" tabindex="-1"></a><span class="co"># Menampilkan bobot skor komponen (weights) untuk pembentukan skor</span></span>
-<span id="cb329-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb329-2" tabindex="-1"></a><span class="fu">print</span>(pca_result<span class="sc">$</span>weights, <span class="at">digits =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menampilkan bobot skor komponen (weights) untuk pembentukan skor</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pca_result</span><span class="op">$</span><span class="va">weights</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##               RC1     RC3     RC2     RC4
 ## ongkos     0.0254  0.4485 -0.0730  0.0301
 ## bparkir   -0.1330  0.5089 -0.0205  0.0298
@@ -386,8 +441,9 @@
 <p>Maka persamaannya: <span class="math display">\[RC1 \approx 0.524(Z_{durasi}) + 0.451(Z_{jarak}) + \dots\]</span></p>
 <p><strong>Menghasilkan Component Score</strong></p>
 <p>Untuk mendapatkan nilai skor komponen setiap observasi secara otomatis, kita dapat mengakses objek <code>$scores</code> dari hasil PCA.</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb331-1" tabindex="-1"></a><span class="co"># Menampilkan 6 baris pertama dari skor komponen</span></span>
-<span id="cb331-2"><a href="analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca.html#cb331-2" tabindex="-1"></a><span class="fu">head</span>(pca_result<span class="sc">$</span>scores)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menampilkan 6 baris pertama dari skor komponen</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pca_result</span><span class="op">$</span><span class="va">scores</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##             RC1        RC3         RC2         RC4
 ## [1,] -0.1944617 -0.4804209  0.36717340 -0.54187967
 ## [2,] -0.7752196 -0.1911165  1.50812139 -1.14287093
@@ -400,45 +456,78 @@
 </div>
 </div>
 <div id="interpretasi-dan-penamaan-dimensi" class="section level2" number="10.9">
-<h2><span class="header-section-number">10.9</span> Interpretasi dan Penamaan Dimensi</h2>
+<h2>
+<span class="header-section-number">10.9</span> Interpretasi dan Penamaan Dimensi<a class="anchor" aria-label="anchor" href="#interpretasi-dan-penamaan-dimensi"><i class="fas fa-link"></i></a>
+</h2>
 <p>Langkah terakhir adalah memberi nama pada dimensi yang terbentuk berdasarkan variabel-variabel pembentuknya.</p>
 <p><strong>Latihan 7:</strong> Tuliskan seluruh kelompok dari analisis faktor dan juga seluruh persamaan komponen yang dihasilkan dari PCA!</p>
 <div id="aktivitas-mandiri-komprehensif-analisis-pca-mandiri-stp-14.3.capaian" class="section level3 unnumbered rmdexercise">
-<h3>Aktivitas Mandiri Komprehensif: Analisis PCA Mandiri [STP-14.3].{capaian}</h3>
+<h3>Aktivitas Mandiri Komprehensif: Analisis PCA Mandiri [STP-14.3].{capaian}<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-komprehensif-analisis-pca-mandiri-stp-14.3.capaian"><i class="fas fa-link"></i></a>
+</h3>
 <p>Gunakan dataset dengan variabel metrik yang berbeda:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Persiapan:</strong> Pilih variabel, cek normalitas, uji Bartlett/KMO</li>
-<li><strong>Ekstraksi:</strong> Hitung eigenvalues, buat scree plot, tentukan jumlah komponen</li>
-<li><strong>Analisis:</strong> Lakukan PCA dengan rotasi Varimax</li>
-<li><strong>Interpretasi:</strong> Identifikasi variabel pembentuk, beri nama komponen, tuliskan persamaan</li>
-<li><strong>Evaluasi:</strong> Hitung proporsi variansi yang dijelaskan</li>
+<li>
+<strong>Persiapan:</strong> Pilih variabel, cek normalitas, uji Bartlett/KMO</li>
+<li>
+<strong>Ekstraksi:</strong> Hitung eigenvalues, buat scree plot, tentukan jumlah komponen</li>
+<li>
+<strong>Analisis:</strong> Lakukan PCA dengan rotasi Varimax</li>
+<li>
+<strong>Interpretasi:</strong> Identifikasi variabel pembentuk, beri nama komponen, tuliskan persamaan</li>
+<li>
+<strong>Evaluasi:</strong> Hitung proporsi variansi yang dijelaskan</li>
 </ol>
 </div>
-<hr />
-
+<hr>
 </div>
 </div>
-  </main>
-
-  <div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
-    <nav id="toc" data-toggle="toc" aria-label="On this page">
-      <h2>On this page</h2>
-      <div id="book-on-this-page"></div>
+  <div class="chapter-nav">
+<div class="prev"><a href="analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda.html"><span class="header-section-number">9</span> Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a></div>
+<div class="next"><a href="referensi.html"><span class="header-section-number">11</span> Referensi</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca"><span class="header-section-number">10</span> Analisis Hubungan Multivariat Interdependensi - Analisis Faktor dan PCA</a></li>
+<li><a class="nav-link" href="#pendahuluan-5"><span class="header-section-number">10.1</span> Pendahuluan</a></li>
+<li><a class="nav-link" href="#studi-kasus"><span class="header-section-number">10.2</span> Studi Kasus</a></li>
+<li><a class="nav-link" href="#memuat-pustaka-libraries"><span class="header-section-number">10.3</span> Memuat Pustaka (Libraries)</a></li>
+<li><a class="nav-link" href="#asumsi-awal"><span class="header-section-number">10.4</span> Asumsi Awal</a></li>
+<li><a class="nav-link" href="#mempersiapkan-data"><span class="header-section-number">10.5</span> Mempersiapkan Data</a></li>
+<li>
+<a class="nav-link" href="#uji-kelayakan-data-asumsi"><span class="header-section-number">10.6</span> Uji Kelayakan Data (Asumsi)</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#uji-bartlett-of-sphericity"><span class="header-section-number">10.6.1</span> Uji Bartlett of Sphericity</a></li>
+<li><a class="nav-link" href="#uji-kmo-dan-msa"><span class="header-section-number">10.6.2</span> Uji KMO dan MSA</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#mengekstrak-dimensi-baru"><span class="header-section-number">10.7</span> Mengekstrak Dimensi Baru</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#nilai-eigen-dan-total-variansi"><span class="header-section-number">10.7.1</span> Nilai Eigen dan Total Variansi</a></li>
+<li><a class="nav-link" href="#scree-plot"><span class="header-section-number">10.7.2</span> Scree Plot</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#melakukan-analisis-faktor-dan-rotasi"><span class="header-section-number">10.8</span> Melakukan Analisis Faktor dan Rotasi</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#analisis-faktor-common-factor-analysis"><span class="header-section-number">10.8.1</span> Analisis Faktor (Common Factor Analysis)</a></li>
+<li><a class="nav-link" href="#analisis-komponen-prinsip-pca"><span class="header-section-number">10.8.2</span> Analisis Komponen Prinsip (PCA)</a></li>
+</ul>
+</li>
+<li>
+<a class="nav-link" href="#interpretasi-dan-penamaan-dimensi"><span class="header-section-number">10.9</span> Interpretasi dan Penamaan Dimensi</a><ul class="nav navbar-nav"><li><a class="nav-link" href="#aktivitas-mandiri-komprehensif-analisis-pca-mandiri-stp-14.3.capaian">Aktivitas Mandiri Komprehensif: Analisis PCA Mandiri [STP-14.3].{capaian}</a></li></ul>
+</li>
+</ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-          <li><a id="book-source" href="#">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="#">Edit this page <i class="fab fa-github"></i></a></li>
+          
         </ul>
-      </div>
+</div>
     </nav>
-  </div>
+</div>
 
 </div>
 </div> <!-- .container -->
 
-<footer class="bg-primary text-light mt-5">
-  <div class="container"><div class="row">
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
 
   <div class="col-12 col-md-6 mt-3">
     <p>"<strong>Modul Praktik Statistika Untuk Perencanaan</strong>: Penggunaan R dalam Pengolahan Data Kuantitatif" was written by Team Teaching Statistika Untuk Perencanaan, PWK ITERA. </p>
@@ -449,11 +538,7 @@
   </div>
 
 </div></div>
-</footer>
-
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
+</footer><!-- dynamically load mathjax for compatibility with self-contained --><script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
@@ -465,8 +550,7 @@
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
-</script>
-<script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
+</script><script type="text/x-mathjax-config">const popovers = document.querySelectorAll('a.footnote-ref[data-toggle="popover"]');
 for (let popover of popovers) {
   const div = document.createElement('div');
   div.setAttribute('style', 'position: absolute; top: 0, left:0; width:0, height:0, overflow: hidden; visibility: hidden;');
@@ -484,5 +568,4 @@ for (let popover of popovers) {
 }
 </script>
 </body>
-
 </html>
