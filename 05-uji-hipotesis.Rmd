@@ -128,7 +128,7 @@ Penjelasan lebih lanjut akan dibahas dalam subbab-subbab berikut.
 
 Dalam kasus ini, kita akan menguji hipotesis parameter rata-rata berupa **jarak mahasiswa yang berkuliah di universitas-universitas di Kota Bandar Lampung dan sekitarnya**. Berdasarkan `data_mahasiswa` , kita dapat menghitung rata-rata statistik jarak mahasiswa yang menjadi responden. Rata-rata statistik jarak tersebut kita gunakan untuk menguji hipotesis parameter rata-rata dengan suatu nilai.
 
-#### Merumuskan hipotesis kosong dan alternatif
+#### Merumuskan Hipotesis Kosong dan Alternatif
 
 Jika dimisalkan suatu nilai tersebut adalah 4 km, maka hipotesis yang diujinya menjadi *"rata-rata jarak tempat tinggal mahasiswa ke kampusnya masing-masing di Kota Bandar Lampung dan sekitarnya adalah 4 km."* Ini disebut **hipotesis kosong**, karena memuat kesamaan terhadap suatu nilai. Dalam bentuk matematis, hipotesis kosong tersebut ditulis sebagai berikut.
 
@@ -142,7 +142,7 @@ Sementara itu, hipotesis alternatif memiliki dua jenis: **berarah** dan **tidak 
 - $H_1: \mu_{\text{jarak}} < 4$ (berarah ke kiri)
 - $H_1: \mu_{\text{jarak}} > 4$ (berarah ke kanan)
 
-#### Memilih distribusi statistik, wilayah kritis, dan titik Kritis
+#### Memilih Distribusi Statistik, Wilayah Kritis, dan Titik Kritis
 
 Untuk menentukan distribusi statistik, wilayah kritis, dan titik kritis, kita perlu mempertimbangkan beberapa hal, yakni ukuran sampel, tingkat signifikansi, dan arah hipotesis.
 
@@ -252,7 +252,7 @@ Sementara itu, untuk ekor kanan, kita perlu menentukan nilai probabilitas yang d
 
 :::
 
-##### Titik Kritis untuk uji satu ekor (berarah)
+##### Titik Kritis untuk uji satu ekor (berarah) {#titik-kritis-satu-ekor}
 
 Menentukan nilai kritis untuk uji satu tidak jauh berbeda jika kita sudah memahami prinsip penentuan titik kritis pada uji dua ekor. Perbedaannya terletak pada nilai probabilitas yang digunakan. Pada uji dua ekor, kita membagi dua nilai $\alpha$ untuk menentukan nilai probabilitas pada masing-masing ekor. Sementara itu, pada uji satu ekor, kita tidak membagi dua nilai $\alpha$ karena seluruh nilai $\alpha$ ditempatkan pada satu ekor saja.
 
@@ -362,7 +362,7 @@ ggplot(df_normal, aes(x = x, y = y)) +
 :::
 
 
-#### Menghitung statistik uji
+#### Menghitung Statistik Uji
 
 Untuk menghitung nilai statistik uji di R, kita akan membuat sebuah **fungsi khusus**. Dengan adanya fungsi ini, kita tidak perlu lagi melakukan perhitungan manual setiap kali menguji hipotesis. Fungsi ini akan menerima masukan/argumen berupa **rata-rata sampel**, **rata-rata hipotesis/nilai acuan**, **simpangan baku sampel**, dan **ukuran sampel**, kemudian mengembalikan nilai statistik uji Z.
 
@@ -421,7 +421,7 @@ Jalankan perintah-perintah untuk menghasilkan variabel masukan pengujian hipotes
 :::
 
 
-#### Menarik kesimpulan
+#### Menarik Kesimpulan
 
 Langkah terakhir adalah menarik kesimpulan berdasarkan **perbandingan antara nilai statistik uji dengan titik kritis**. Berikut adalah kondisi-kondisi yang menyebabkan kita **gagal menolak** $H_0$:
 
