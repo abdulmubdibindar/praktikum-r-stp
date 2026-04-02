@@ -9,6 +9,8 @@ hasil-kerja-mhs
 
 # File sementara
 images/Cuplikan layar 2026-01-10 195525.png
+datasets/satukan_data_mahasiswa.R
+datasets/data_mahasiswa_raw.csv
 
 # Agent Architecture - Sensitive Files
 .env
