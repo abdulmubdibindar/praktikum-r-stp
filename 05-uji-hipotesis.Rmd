@@ -9,7 +9,7 @@ Setelah mempelajari modul ini, Anda diharapkan dapat menghasilkan uji hipotesis 
 
 Uji hipotesis adalah salah satu teknik dalam analisis statistik inferensial yang memperkirakan parameter melalui pernyataan-pernyataan dugaan atau **hipotesis**. Hipotesis di sini adalah pernyataan yang mengandung dugaan bahwa nilai parameter adalah sama dengan suatu nilai atau berbeda. Hipotesis yang sama dengan suatu nilai kita sebut dengan **hipotesis kosong *(null hypothesis)***, sementara yang berbeda disebut **hipotesis alternatif *(alternative hypothesis)***
 
-## Perangkat Lunak dan Pustaka (Libraries)
+## Perangkat Lunak dan Pustaka *(Libraries)*
 
 Seperti biasa, kita perlu memuat pustaka *(libraries)* yang diperlukan dalam pengolahan data kita.
 
