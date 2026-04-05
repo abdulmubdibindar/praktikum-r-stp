@@ -68,22 +68,40 @@ Kita akan menggunakan data yang sama dengan yang kita gunakan pada modul sebelum
 Pada praktikum uji hipotesis satu populasi, kita memuat dataset `data_mahasiswa.csv` menggunakan perintah `read_csv2()` dan langsung menggunakannya, karena populasi kita adalah "mahasiswa yang berkuliah di Kota Bandar Lampung dan sekitarnya". Akan tetapi, karena populasi kita sekarang bergeser pada **mahasiswa yang berkuliah di ITERA dan mahasiswa yang berkuliah di UINRIL** saja, maka kita perlu memuat dataset untuk **masing-masing kampus** ke dalam variabel-variabel yang berbeda menggunakan bantuan perintah `filter()`.
 
 ```{r mod05a-load-dataset, echo=TRUE, results='hide'}
-# Memuat dataset
+# Memuat dataset seluruh mahasiswa
 data_mahasiswa <- read_csv2("datasets/data_mahasiswa.csv")
 
-# Memuat data ITERA
+# Menyaring dataset seluruh mahasiswa untuk menghasilkan dataset ITERA
 data_itera <- data_mahasiswa |>
   filter(kampus == "ITERA")
 
-# Memuat data UINRIL
+# Menyaring dataset seluruh mahasiswa untuk menghasilkan dataset UINRIL
 data_uinril <- data_mahasiswa |>
   filter(kampus == "UINRIL")
 ```
+
+Mari kita biasakan untuk selalu mengecek dataset yang kita miliki dengan menggunakan perintah `glimpse()`.
+
+```{r mod05a-check-dataset, echo=TRUE, results='hold', collapse=TRUE}
+glimpse(data_itera)
+glimpse(data_uinril)
+```
+
+Data ITERA terdiri atas `r nrow(data_itera)` mahasiswa dan data UINRIL terdiri atas `r nrow(data_uinril)` mahasiswa. Kedua dataset memiliki 4 variabel yakni `jarak_km` yang berjenis *`r class(data_itera$jarak_km)`*, `jenis_tinggal` (*`r class(data_itera$jenis_tinggal)`*), `kampus` (*`r class(data_itera$kampus)`*), dan `tipe_tinggal_baku` (*`r class(data_itera$tipe_tinggal_baku)`*).
+
+```{r mod05a-unique-value-jenis_tinggal, include=FALSE}
+list_cat_jenis_tinggal <- as.vector(data_itera$jenis_tinggal |> unique())
+list_tinggal_baku <- as.vector(data_itera$tipe_tinggal_baku |> unique())
+```
+
+Kita dapat menganalisis perbedaan parameter rata-rata pada variabel `jarak_km` yang sudah berjenis *`r class(data_itera$jarak_km)`*. Untuk proporsi, kita dapat menggunakan variabel `jenis_tinggal` yang harus kita hitung frekuensinya terlebih dahulu. Variabel tersebut memiliki kategori-kategori **`r paste(list_cat_jenis_tinggal[1:6], collapse=", ")`** dan **`r list_cat_jenis_tinggal[7]`**. Kategori-kategori tersebut disederhanakan menjadi 2 kategori pada variabel `tipe_tinggal_baku`: **`r paste(list_tinggal_baku, collapse=" dan ")`**.
 
 ::: rmdexercise
 ### Aktivitas Mandiri 2 {.unnumbered}
 
 Untuk aktivitas mandiri Anda, kita akan menggunakan dataset UBL dan UNILA. Muatlah dataset UBL dan UNILA ke dalam variabel `data_ubl` dan `data_unila` menggunakan bantuan perintah `filter()` seperti yang telah dicontohkan.
+
+Jangan lupa mengecek dataset tersebut menggunakan perintah `glimpse()`.
 
 ```{r mod05a-load-dataset-exercise, include=FALSE, collapse=TRUE}
 # Memuat data UBL
@@ -168,8 +186,8 @@ $$
    
    ```r
    cat(
-    "H_0: \mu_{UBL} = \mu_{UNILA} \n",
-    "H_1: \mu_{UBL} ... \mu_{UNILA}"
+    "H_0: \\mu_{UBL} = \\mu_{UNILA}", "\n",
+    "H_1: \\mu_{UBL} ... \\mu_{UNILA}"
    )
    ```
 
@@ -178,6 +196,29 @@ $$
    - `\mu_{UBL}` adalah rata-rata jarak tempuh mahasiswa UBL dari rumah ke kampus
    - `\mu_{UNILA}` adalah rata-rata jarak tempuh mahasiswa UNILA dari rumah ke kampus
    - `...` adalah simbol yang sesuai dengan hasil perhitungan rata-rata
+
+```{r mod5a-exercise-3, include=FALSE, collapse=TRUE}
+# Menghitung rata-rata mahasiswa UBL
+mean_jarak_ubl <- mean(data_ubl$jarak_km)
+
+# Menghitung rata-rata mahasiswa UNILA
+mean_jarak_unila <- mean(data_unila$jarak_km)
+
+# Menampilkan hasil perhitungan rata-rata
+cat(
+  "Rata-rata jarak mahasiswa UBL dari rumah ke kampus:",
+  mean_jarak_ubl, "\n",
+  "Rata-rata jarak mahasiswa UNILA dari rumah ke kampus:",
+  mean_jarak_unila
+)
+
+# Menuliskan hipotesis nol dan alternatif
+cat(
+  "H_0: \\mu_{UBL} = \\mu_{UNILA}", "\n",
+  "H_1: \\mu_{UBL} > \\mu_{UNILA}"
+)
+```
+
 :::
 
 ### Memilih Distribusi Statistik, Wilayah Kritis, dan Titik Kritis
@@ -212,7 +253,7 @@ Pada langkah ini, kita akan menghitung statistik uji ($Z$) berdasarkan data ring
 
 Fungsi berikut digunakan untuk menghitung statistik uji ($Z$) dari dua populasi independen.
 
-```{r mod05-create-function-mean-2pop, echo=TRUE, fig.cap="Fungsi untuk menghitung statistik uji (Z) dari dua populasi independen"}
+```{r mod05-create-function-mean-2pop, echo=TRUE}
 ht_mean_2pop_ind <- function(xbar1, xbar2, sd1, sd2, n1, n2) {
   # Indentasi diberikan untuk memudahkan
   # pembacaan karena banyaknya tanda kurung
@@ -237,7 +278,7 @@ $$
 Perhatikan bahwa pada fungsi **`ht_mean_2pop_ind`** kita mengurangkan `xbar1` dengan `xbar2` (`xbar1 - xbar2`) dan menuliskan hipotesis kita dalam bentuk pengurangan dengan $\mu_\text{ITERA} - \mu_\text{UINRIL}$. Keduanya **harus selaras**, artinya kita harus ingat bahwa **`xbar1` kita adalah $\mu_\text{ITERA}$ dan `xbar2` kita adalah $\mu_\text{UINRIL}$**.
 
 ::: rmdexercise
-### Aktivitas Mandiri 4 {.unnumbered}
+#### Aktivitas Mandiri 4 {.unnumbered}
 
 Tuliskan fungsi untuk menghitung statistik uji (Z) dari dua populasi independen seperti contoh di atas dan jalankan di file R Anda.
 
@@ -248,9 +289,9 @@ Tuliskan fungsi untuk menghitung statistik uji (Z) dari dua populasi independen 
 Setelah mendapatkan ringkasan data, kita harus menyimpan nilai rata-rata, simpangan baku, dan ukuran sampel ke dalam variabel khusus. Variabel-variabel ini akan dipakai langsung sebagai input fungsi uji hipotesis. Dengan mendeklarasikannya lebih dulu, proses penghitungan menjadi lebih rapi dan mudah diikuti.
 
 ```{r mod05-declare-variables-mean-2pop, echo=TRUE, results='hold'}
-# Menghitung rata-rata, simpangan baku, serta ukuran sampel
+# Menghitung simpangan baku, serta ukuran sampel
 # dataset kampus UINRIL
-mean_jarak_uinril <- mean(data_uinril$jarak_km)
+# Rata-rata sudah kita hitung sebelumnya
 sd_jarak_uinril <- sd(data_uinril$jarak_km)
 n_jarak_uinril <- nrow(data_uinril)
 
@@ -261,9 +302,9 @@ cat(
   "km dengan simpangan bakunya sebesar", sd_jarak_uinril, "km."
 )
 
-# Menghitung rata-rata, simpangan baku, serta ukuran sampel
+# Menghitung simpangan baku, serta ukuran sampel
 # dataset kampus ITERA
-mean_jarak_itera <- mean(data_itera$jarak_km)
+# Rata-rata sudah kita hitung sebelumnya
 sd_jarak_itera <- sd(data_itera$jarak_km)
 n_jarak_itera <- nrow(data_itera)
 
@@ -277,10 +318,35 @@ cat(
 ```
 
 ::: rmdexercise
-### Aktivitas Mandiri 5 {.unnumbered}
+#### Aktivitas Mandiri 5 {.unnumbered}
 
 1. Hitung rata-rata, simpangan baku, serta ukuran sampel dataset UBL dan UNILA menggunakan perintah `mean()`, `sd()`, dan `nrow()`.
 2. Tampilkan variabel uji untuk dataset UBL dan UNILA menggunakan perintah `cat()` seperti contoh di atas.
+
+```{r mod05a-exercise-declare-variables-mean-2pop, include=FALSE}
+# Menghitung rata-rata, simpangan baku, dan ukuran sampel dataset UBL dan UNILA
+mean_jarak_ubl <- mean(data_ubl$jarak_km)
+sd_jarak_ubl <- sd(data_ubl$jarak_km)
+n_jarak_ubl <- nrow(data_ubl)
+
+mean_jarak_unila <- mean(data_unila$jarak_km)
+sd_jarak_unila <- sd(data_unila$jarak_km)
+n_jarak_unila <- nrow(data_unila)
+
+# Menampilkan variabel uji untuk dataset UBL dan UNILA
+cat(
+  "Rata-rata jarak tempuh mahasiswa UBL sebanyak",
+  n_jarak_ubl, "orang dari rumah ke kampus:", mean_jarak_ubl,
+  "km dengan simpangan bakunya sebesar", sd_jarak_ubl, "km."
+)
+
+cat(
+  "\n", "\n",
+  "Rata-rata jarak tempuh mahasiswa UNILA sebanyak",
+  n_jarak_unila, "orang dari rumah ke kampus:", mean_jarak_unila,
+  "km dengan simpangan bakunya sebesar", sd_jarak_unila, "km."
+)
+```
 
 :::
 
@@ -292,19 +358,40 @@ Setelah mengetahui titik kritis, kita hitung nilai statistik uji (Z) dari data y
 # Hasil perhitungan statistik uji rata-rata independen jarak ke kampus
 # mahasiswa ITERA dan UINRIL
 z_mean_itera_uinril <- ht_mean_2pop_ind(
-  mean_jarak_itera, mean_jarak_uinril,
-  sd_jarak_itera, sd_jarak_uinril,
-  n_jarak_itera, n_jarak_uinril
+  xbar1 = mean_jarak_itera,
+  xbar2 = mean_jarak_uinril,
+  sd1 = sd_jarak_itera,
+  sd2 = sd_jarak_uinril,
+  n1 = n_jarak_itera,
+  n2 = n_jarak_uinril
+)
+```
+
+::: rmdnote
+
+Penulisan fungsi dapat dilakukan dengan menyebutkan nama variabelnya (seperti contoh di atas) atau tanpa menyebutkan nama variabelnya (seperti contoh pada subbab sebelumnya). Alasan kita menggunakan bentuk yang pertama adalah supaya kita lebih meminimalisasi kesalahan dalam pendefinisian nilai.
+
+:::
+
+#### Menampilkan hasil statistik uji
+cat("Statistik uji Z untuk rata-rata jarak tempuh mahasiswa ITERA dan UINRIL:", z_mean_itera_uinril)
+
+::: rmdexercise
+#### Aktivitas Mandiri 6 {.unnumbered}
+
+Hitung statistik uji (Z) untuk dataset UBL dan UNILA menggunakan fungsi `ht_mean_2pop_ind` yang telah dibuat dan simpan menjadi variabel `z_mean_unila_ubl`. **(Jangan lupa menentukan mana yang menjadi `xbar1` atau `xbar2` dengan benar!)**
+
+```{r mod05-exercise-calc-z-mean-unila-ubl, include=FALSE}
+# Menghitung statistik uji (Z) untuk dataset UBL dan UNILA
+z_mean_unila_ubl <- ht_mean_2pop_ind(
+  mean_jarak_ubl, mean_jarak_unila,
+  sd_jarak_ubl, sd_jarak_unila,
+  n_jarak_ubl, n_jarak_unila
 )
 
 # Menampilkan hasil statistik uji
-cat("Statistik uji Z untuk rata-rata jarak tempuh mahasiswa ITERA dan UINRIL:", z_mean_itera_uinril)
+cat("Statistik uji Z untuk rata-rata jarak tempuh mahasiswa UNILA dan UBL:", z_mean_unila_ubl)
 ```
-
-::: rmdexercise
-### Aktivitas Mandiri 6 {.unnumbered}
-
-Hitung statistik uji (Z) untuk dataset UBL dan UNILA menggunakan fungsi `ht_mean_2pop_ind` yang telah dibuat dan simpan menjadi variabel `z_mean_unila_ubl`. 
 :::
 
 
@@ -312,7 +399,7 @@ Hitung statistik uji (Z) untuk dataset UBL dan UNILA menggunakan fungsi `ht_mean
 
 Langkah terakhir adalah membandingkan nilai statistik uji dengan titik kritis. Jika $Z$ hitung lebih kecil dari $Z$ kritis, maka $H_0$ gagal ditolak, artinya perbedaan rata-rata jarak antara dua populasi kemungkinan hanyalah kebetulan. Jika $Z$ hitung lebih besar dari $Z$ kritis, maka $H_0$ ditolak, yang berarti terdapat cukup bukti untuk menyatakan adanya perbedaan.
 
-```{r mod05a-drawing-conclusion-mean-2pop, echo=TRUE, results='hide'}
+```{r mod05a-drawing-conclusion-mean-2pop, echo=TRUE}
 # Menentukan jenis pengujian
 jenis_uji <- "satu ekor kanan"
 
@@ -325,7 +412,8 @@ if (jenis_uji == "dua ekor") {
     tolak_h0 <- FALSE
     cat(
       "Gagal menolak hipotesis kosong.",
-      "Perbedaan rata-rata jarak ke kampus sampel ITERA dan UINRIL", "hanyalah kebetulan."
+      "Perbedaan rata-rata jarak ke kampus sampel ITERA dan UINRIL",
+      "hanyalah kebetulan."
     )
   } else {
     tolak_h0 <- TRUE
@@ -339,13 +427,15 @@ if (jenis_uji == "dua ekor") {
     tolak_h0 <- FALSE
     cat(
       "Gagal menolak hipotesis kosong.",
-      "Perbedaan rata-rata jarak ke kampus sampel ITERA dan UINRIL", "hanyalah kebetulan."
+      "Perbedaan rata-rata jarak ke kampus sampel ITERA dan UINRIL",
+      "hanyalah kebetulan."
     )
   } else {
     tolak_h0 <- TRUE
     cat(
       "Tolak hipotesis kosong.",
-      "Perbedaan rata-rata jarak ke kampus sampel ITERA dan UINRIL signifikan. Rata-rata jarak ke kampus mahasiswa ITERA lebih kecil dari UINRIL."
+      "Perbedaan rata-rata jarak ke kampus sampel ITERA dan UINRIL signifikan.",
+      "Rata-rata jarak ke kampus mahasiswa ITERA lebih kecil dari UINRIL."
     )
   }
 } else if (jenis_uji == "satu ekor kanan") {
@@ -353,13 +443,15 @@ if (jenis_uji == "dua ekor") {
     tolak_h0 <- FALSE
     cat(
       "Gagal menolak hipotesis kosong.",
-      "Perbedaan rata-rata jarak ke kampus sampel ITERA dan UINRIL", "hanyalah kebetulan."
+      "Perbedaan rata-rata jarak ke kampus sampel ITERA dan UINRIL",
+      "hanyalah kebetulan."
     )
   } else {
     tolak_h0 <- TRUE
     cat(
       "Tolak hipotesis kosong.",
-      "Perbedaan rata-rata jarak ke kampus sampel ITERA dan UINRIL signifikan. Rata-rata jarak ke kampus mahasiswa ITERA lebih besar dari UINRIL."
+      "Perbedaan rata-rata jarak ke kampus sampel ITERA dan UINRIL signifikan.",
+      "Rata-rata jarak ke kampus mahasiswa ITERA lebih besar dari UINRIL."
     )
   }
 }
@@ -368,123 +460,552 @@ if (jenis_uji == "dua ekor") {
 ::: rmdexercise
 ### Aktivitas Mandiri 7 {.unnumbered}
 
-1. Tentukan apakah pengujian hipotesis rata-rata jarak tempuh mahasiswa UBL dan UNILA menggunakan two-tailed test atau one-tailed test. Jika one-tailed test, tentukan apakah satu ekor kiri atau kanan.
+1. Tentukan apakah pengujian hipotesis rata-rata jarak tempuh mahasiswa UBL dan UNILA menggunakan two-tailed test atau one-tailed test. Jika one-tailed test, tentukan apakah satu ekor kiri atau kanan. Gunakan $\alpha$ = `0.07`.
 2. Bagaimana kesimpulan kita terhadap hipotesis kosong dan alternatif? Jalankan kode di atas untuk mendapatkan kesimpulan.
+
+```{r mod05-exercise-drawing-conclusion-mean-2pop, include=FALSE}
+# Menentukan jenis pengujian`
+jenis_uji <- "satu ekor kanan"
+
+# Menentukan tingkat signifikansi
+alpha <- 0.07
+
+# Menentukan apakah hipotesis kosong ditolak atau gagal ditolak
+if (jenis_uji == "dua ekor") {
+  if (abs(z_mean_unila_ubl) < abs(qnorm(alpha / 2))) {
+    tolak_h0 <- FALSE
+    cat(
+      "Gagal menolak hipotesis kosong.",
+      "Perbedaan rata-rata jarak ke kampus sampel UNILA dan UBL",
+      "hanyalah kebetulan."
+    )
+  } else {
+    tolak_h0 <- TRUE
+    cat(
+      "Tolak hipotesis kosong.",
+      "Perbedaan rata-rata jarak ke kampus sampel UNILA dan UBL signifikan."
+    )
+  }
+} else if (jenis_uji == "satu ekor kiri") {
+  if (z_mean_unila_ubl > qnorm(alpha)) {
+    tolak_h0 <- FALSE
+    cat(
+      "Gagal menolak hipotesis kosong.",
+      "Perbedaan rata-rata jarak ke kampus sampel UNILA dan UBL",
+      "hanyalah kebetulan."
+    )
+  } else {
+    tolak_h0 <- TRUE
+    cat(
+      "Tolak hipotesis kosong.",
+      "Perbedaan rata-rata jarak ke kampus sampel UNILA dan UBL signifikan.",
+      "Rata-rata jarak ke kampus mahasiswa UBL lebih kecil dari UNILA."
+    )
+  }
+} else if (jenis_uji == "satu ekor kanan") {
+  if (z_mean_unila_ubl < qnorm(1 - alpha)) {
+    tolak_h0 <- FALSE
+    cat(
+      "Gagal menolak hipotesis kosong.",
+      "Perbedaan rata-rata jarak ke kampus sampel UNILA dan UBL",
+      "hanyalah kebetulan."
+    )
+  } else {
+    tolak_h0 <- TRUE
+    cat(
+      "Tolak hipotesis kosong.",
+      "Perbedaan rata-rata jarak ke kampus sampel UNILA dan UBL signifikan.",
+      "Rata-rata jarak ke kampus mahasiswa UBL lebih besar dari UNILA."
+    )
+  }
+}
+```
 
 :::
 
-## Uji Hipotesis Dua Populasi Independen Parameter Proporsi
 
-Pada bagian ini kita akan melakukan uji hipotesis terhadap proporsi dua populasi yang independen. Berbeda dengan rata-rata, proporsi digunakan ketika data berbentuk kategori (misalnya pilihan tinggal di kos/asrama atau tinggal bersama keluarga). Prinsip pengujian tetap sama, yaitu membandingkan apakah perbedaan proporsi antar populasi signifikan atau hanya karena kebetulan sampel.
 
-##### Membuat fungsi
+## Uji Hipotesis Dua Populasi Independen untuk Parameter Proporsi
 
-Sama seperti sebelumnya, langkah pertama adalah membuat fungsi khusus untuk menghitung nilai statistik uji pada uji hipotesis proporsi dua populasi independen. Fungsi ini menerima input berupa proporsi sampel masing-masing populasi (p_hat1 dan p_hat2) serta ukuran sampelnya (n1 dan n2). Di dalam fungsi, dihitung terlebih dahulu proporsi gabungan (p_gab) yang mewakili keseluruhan sampel. Kemudian dihitung standard error (SE), dan akhirnya didapatkan nilai Z hitung.
+Selain rata-rata, kita juga sering kali membandingkan **proporsi** dari dua populasi. Sebagai contoh, kita ingin menguji perbandingan **proporsi mahasiswa yang tinggal di kos/asrama dari ITERA dengan mahasiswa dari UINRIL**. 
 
-```{r mod05-create-function-prop-2pop, echo=TRUE}
-# Membuat fungsi uji hipotesis (hypothesis testing, ht) untuk rata-rata (mean)
-# dengan 1 populasi (2pop) Independen (In)
-# Keterangan input:
-#   - xbar1 : statistik rata-rata populasi #1
-#   - xbar2 : statistik rata-rata populasi #2
-#   - sd1   : statistik simpangan baku populasi #1
-#   - sd2   : statistik simpangan baku populasi #2
-#   - n1    : ukuran sampel dari populasi #1
-#   - n2    : ukuran sampel dari populasi #2
-ht_prop_2pop_ind <- function(p_hat1, p_hat2, n1, n2) {
-  p_gab <- ((n1 * p_hat1 + n2 * p_hat2)) / (n1 + n2) # Total proporsi yang diuji
-  # untuk kedua populasi
-  se <- sqrt(
-    (p_gab * (1 - p_gab)) * ( # Indentasi diberikan untuk memudahkan pembacaan
-      (1 / n1) + (1 / n2) # karena banyaknya kurung
-    )
-  )
-  z_hitung <- (p_hat1 - p_hat2) / se # menghitung nilai Z dari statistik
+### Memuat Dataset {#proporsi-independen-memuat-dataset}
+
+Dataset yang akan kita gunakan sama seperti bagian sebelumnya, yaitu `data_itera` dan `data_uinril` yang sudah kita muat. Namun, karena ini adalah pengujian parameter proporsi, kita perlu melihat ringkasan datanya guna menghitung **jumlah mahasiswa yang tinggal di kos/asrama** dari setiap kampus serta proporsinya. Mari kita periksa kondisi proporsi tempat tinggal dari masing-masing dataset terlebih dahulu.
+
+```{r mod05a-check-data-kos-asrama, echo=TRUE, results='hold', collapse=TRUE}
+# Meringkas dataset untuk mendapatkan proporsi Kos/Asrama di ITERA
+summary_tempat_tinggal_itera <- data_itera |>
+  group_by("Tipe tinggal" = tipe_tinggal_baku) |>
+  summarize("Jumlah" = n()) |>
+  mutate("proporsi" = Jumlah / sum(Jumlah))
+
+print("Ringkasan tempat tinggal mahasiswa ITERA:")
+print(summary_tempat_tinggal_itera)
+
+# Meringkas dataset untuk mendapatkan proporsi Kos/Asrama di UINRIL
+summary_tempat_tinggal_uinril <- data_uinril |>
+  group_by("Tipe tinggal" = tipe_tinggal_baku) |>
+  summarize("Jumlah" = n()) |>
+  mutate("proporsi" = Jumlah / sum(Jumlah))
+
+print("Ringkasan tempat tinggal mahasiswa UINRIL:")
+print(summary_tempat_tinggal_uinril)
+```
+
+Dapat kita lihat bahwa proporsi mahasiswa yang tinggal di kos/asrama ITERA adalah sebesar `r summary_tempat_tinggal_itera |> filter(.data[["Tipe tinggal"]] == "Kos/Asrama") |> pull(proporsi)` dan proporsi mahasiswa yang tinggal di kos/asrama UINRIL adalah sebesar `r summary_tempat_tinggal_uinril |> filter(.data[["Tipe tinggal"]] == "Kos/Asrama") |> pull(proporsi)`.
+
+::: rmdexercise
+### Aktivitas Mandiri 8 {.unnumbered}
+
+Ringkaslah dataset `data_ubl` dan `data_unila` untuk menghitung jumlah masing-masing tipe tempat tinggal mahasiswa beserta proporsinya, seperti contoh yang telah dilakukan pada ITERA dan UINRIL.
+
+```{r mod05a-exercise-inspect-data-prop-2pop, include=FALSE, collapse=TRUE}
+# Meringkas dataset untuk mendapatkan proporsi Kos/Asrama di UBL
+summary_tempat_tinggal_ubl <- data_ubl |>
+  group_by("Tipe tinggal" = tipe_tinggal_baku) |>
+  summarize("Jumlah" = n()) |>
+  mutate("proporsi" = Jumlah / sum(Jumlah))
+
+# Meringkas dataset untuk mendapatkan proporsi Kos/Asrama di UNILA
+summary_tempat_tinggal_unila <- data_unila |>
+  group_by("Tipe tinggal" = tipe_tinggal_baku) |>
+  summarize("Jumlah" = n()) |>
+  mutate("proporsi" = Jumlah / sum(Jumlah))
+```
+
+:::
+
+### Merumuskan Hipotesis Kosong dan Alternatif
+
+Untuk pengujian dua proporsi, seperti halnya parameter rata-rata, hipotesis kosong menyatakan proporsi populasi pertama sama dengan populasi kedua (atau selisihnya adalah nol), sementara alternatifnya menyatakan perbedaan. Berdasarkan konteks penelitian, sekarang kita atur agar **hipotesis alternatifnya berarah lebih kecil (satu sisi kiri)**.
+
+Dari subbab \@ref(proporsi-independen-memuat-dataset) kita dapat melihat bahwa proporsi mahasiswa mengekos di **ITERA lebih besar dibandingkan UINRIL**. Oleh karena itu, hipotesis alternatif kita hendaklah $H_1: P_\text{UINRIL} < P_\text{ITERA}$
+
+$$
+\begin{align}
+&H_0 : P_\text{UINRIL} - P_\text{ITERA} = 0 \\
+&H_1 : P_\text{UINRIL} - P_\text{ITERA} < 0
+\end{align}
+$$
+
+::: rmdexercise
+### Aktivitas Mandiri 9 {.unnumbered}
+
+Tuliskan hipotesis kosong dan alternatif (dalam bentuk persamaan selisih seperti di atas) sehingga hipotesis alternatifnya berarah lebih kecil (satu sisi kiri). Periksa proporsinya dengan perintah seperti pada subbab \@ref(proporsi-independen-memuat-dataset).
+:::
+
+### Memilih Distribusi Statistik, Wilayah Kritis, dan Titik Kritis
+
+Distribusi statistik yang dipakai untuk pengujian proporsi sampel besar adalah distribusi normal standar ($Z$). Karena kita menggunakan pengujian alternatif yang berarah lebih kecil ($<$), letak wilayah kritisnya hanya ada di bagian kiri ekor kurva normal. Kali ini, kita akan menggunakan wilayah kritis sebesar $\alpha = 0.10$.
+
+Cara menemukan titik kritisnya untuk pengujian satu ekor ke kiri dengan $\alpha = 0.10$ adalah dengan fungsi `qnorm()`.
+
+```{r mod05a-critical-value-prop-2pop-left, echo=TRUE}
+# Menentukan tingkat signifikansi
+alpha <- 0.10
+
+# Menentukan nilai kritis untuk uji satu ekor berarah lebih kecil (sisi kiri)
+z_crit_prop_1tail_kiri <- qnorm(alpha)
+
+cat("Nilai kritis untuk pengujian ini adalah:", z_crit_prop_1tail_kiri)
+```
+
+::: rmdexercise
+### Aktivitas Mandiri 10 {.unnumbered}
+
+Carilah titik kritis dengan tingkat signifikansi $\alpha = 0.05$ untuk pengujian satu arah kiri.
+
+```{r mod05a-exercise-critical-value-prop-2pop, include=FALSE, collapse=TRUE}
+alpha <- 0.05
+z_crit_prop_ubl_unila <- qnorm(alpha)
+```
+:::
+
+### Menghitung Statistik Uji
+
+Bagian ini mirip dengan prosedur uji parameter rata-rata, kita butuh menghitung statistik uji dengan membuat fungsi khusus terlebih dahulu.
+
+#### Membuat Fungsi untuk Menghitung Statistik Uji
+
+Fungsi ini membutuhkan proporsi sampel ($p_1$ dan $p_2$) serta ukuran sampel dari masing-masing populasi ($n_1$ dan $n_2$). Fungsi ini akan menghitung proporsi gabungan terlebih dahulu, kemudian menghitung *standard error*, lalu mencari nilai probabilitas perhitungan ($Z$).
+
+```{r mod05a-create-function-prop-2pop, echo=TRUE}
+# Fungsi uji hipotesis (ht) proporsi dua populasi independen
+ht_prop_2pop_ind <- function(p1_hat, p2_hat, n1, n2) {
+  # Proporsi gabungan
+  p_pool <- (p1_hat * n1 + p2_hat * n2) / (n1 + n2)
+
+  # Standard error
+  se <- sqrt(p_pool * (1 - p_pool) * ((1 / n1) + (1 / n2)))
+
+  # Menghitung Z
+  z_hitung <- (p1_hat - p2_hat) / se
   return(z_hitung)
 }
 ```
 
-##### Mendeklarasikan variabel uji
+Lagi-lagi, fungsi ini didasarkan pada rumus statistik uji proporsi dua populasi independen sebagai berikut.
 
-Setelah fungsi dibuat, kita perlu menyiapkan data yang akan diuji. Pertama, data mahasiswa dikelompokkan berdasarkan kampus dan tipe_tinggal_baku. Selanjutnya dihitung proporsi tiap kategori (misalnya proporsi mahasiswa yang tinggal di kos/asrama). Data kemudian diubah dari format long ke wide sehingga tiap kategori menjadi variabel. Dari hasil ini kita bisa mengambil proporsi masing-masing populasi, serta ukuran sampel total pada tiap kampus.
+$$
+Z = \frac{p_1 - p_2}{\sqrt{p(1-p)(\frac{1}{n_1} + \frac{1}{n_2})}}
+$$
 
-```{r mod05-declare-variables-prop-2pop, echo=TRUE}
-summarize_tempat_tinggal_2pop <- data_mahasiswa |>
-  group_by(kampus, tipe_tinggal_baku) |>
-  summarize(Jumlah = n()) |>
-  mutate(proporsi = Jumlah / sum(Jumlah)) |> # menghitung proporsi tiap kategori.
-  select(-Jumlah) |>
-  spread(tipe_tinggal_baku, proporsi) # mengubah data long menjadi wide (kolom                                          # kategori jadi variabel).
+dengan:
 
-summarize_tempat_tinggal_2pop
+- $p_1$ adalah proporsi sampel populasi pertama (`p1_hat` pada fungsi)
+- $p_2$ adalah proporsi sampel populasi kedua (`p2_hat` pada fungsi)
+- $n_1$ adalah ukuran sampel populasi pertama (`n1` pada fungsi)
+- $n_2$ adalah ukuran sampel populasi kedua (`n2` pada fungsi)
+- $p$ adalah proporsi gabungan (`p_pool` pada fungsi)
 
-proporsi_kos_asrama_itera <- summarize_tempat_tinggal_2pop$`Kos/Asrama`[1]
-proporsi_kos_asrama_uinril <- summarize_tempat_tinggal_2pop$`Kos/Asrama`[3]
+::: rmdimportant
+Ingat, $p_1$ atau `p1_hat` pada fungsi adalah proporsi sampel populasi pertama, yang sesuai dengan hipotesis alternatif kasus kita, adalah proporsi mahasiswa kos/asrama UINRIL, sedangkan $p_2$ atau `p2_hat` adalah proporsi mahasiswa kos/asrama ITERA.
+:::
 
-n_kos_asrama_2pop <- data_mahasiswa |>
-  count(kampus)
+::: rmdexercise
+#### Aktivitas Mandiri 11 {.unnumbered}
 
-n_kos_asrama_itera <- n_kos_asrama_2pop$n[1]
-n_kos_asrama_uinril <- n_kos_asrama_2pop$n[3]
+Tuliskan fungsi untuk menghitung statistik uji proporsi dua populasi independen ke dalam _script_ R Anda.
+:::
+
+#### Mendeklarasikan Variabel Masukan
+
+Mari kita deklarasikan dan simpan nilai $p_1$ (proporsi mahasiswa UINRIL yang tinggal di Kos/Asrama) dan $p_2$ (proporsi mahasiswa ITERA yang tinggal di Kos/Asrama) sebagai masukan untuk masing-masing ITERA dan UINRIL yang disarikan dari tabel ringkasan sebelumnya.
+
+```{r mod05a-declare-variables-prop-2pop, echo=TRUE, results='hold'}
+# Mengambil nilai proporsi mahasiswa UINRIL yang tinggal di Kos/Asrama
+p_kos_uinril <- summary_tempat_tinggal_uinril |>
+  filter(`Tipe tinggal` == "Kos/Asrama") |>
+  pull(proporsi)
+
+# Mengambil nilai proporsi mahasiswa ITERA yang tinggal di Kos/Asrama
+p_kos_itera <- summary_tempat_tinggal_itera |>
+  filter(`Tipe tinggal` == "Kos/Asrama") |>
+  pull(proporsi)
+
+cat(
+  "UINRIL: \nProporsi Kos/Asrama:", p_kos_uinril, "\n\n",
+  "ITERA: \nProporsi Kos/Asrama:", p_kos_itera
+)
 ```
 
-####*Two-tailed Test*
+#### Menghitung Statistik Uji
 
-```{r mod05-test-prop-2pop-twotail, echo=TRUE}
-# Gunakan CI = 93%, artinya alpha = 7% = 0.07
-alpha <- 0.07
+Setelah nilai semua variabel masukan didapatkan, eksekusi fungsi statistik uji proporsi dua populasi independen yang telah kita buat.
 
-# Hitung Z kritis 2-tailed
-z_crit_2tail <- abs(qnorm(alpha / 2))
-
-# Hitung statistik uji proporsi 2 populasi
-# Asumsi: Menggunakan data proporsi kos/asrama ITERA vs UINRIL yang sudah disiapkan sebelumnya
-z_prop_2pop <- abs(ht_prop_2pop_ind(
-  proporsi_kos_asrama_uinril, proporsi_kos_asrama_itera,
-  n_kos_asrama_uinril, n_kos_asrama_itera
-))
-
-cat("Titik Kritis:", z_crit_2tail, "\nZ Hitung:", z_prop_2pop, "\n")
-
-if (z_prop_2pop < z_crit_2tail) {
-  cat("Hipotesis nol gagal ditolak.")
-} else {
-  cat("Hipotesis nol ditolak.")
-}
-```
-
-#### *One-tailed Test*
-
-```{r mod05-test-prop-2pop-onetail, echo=TRUE}
-# Gunakan CI = 96%, artinya alpha = 4% = 0.04
-alpha <- 0.04
-tail <- "kiri" # Asumsi uji lebih kecil (UINRIL < ITERA misalnya)
-
-# Hitung Z kritis 1-tailed
-if (tail == "kiri") {
-  z_crit_1tail <- qnorm(alpha)
-} else {
-  z_crit_1tail <- qnorm(1 - alpha)
-}
-
-# Hitung statistik uji (tidak absolut)
-z_prop_2pop <- ht_prop_2pop_ind(
-  proporsi_kos_asrama_uinril, proporsi_kos_asrama_itera,
-  n_kos_asrama_uinril, n_kos_asrama_itera
+```{r mod05a-test-statistic-prop-2pop, echo=TRUE}
+# Menghitung nilai statistik uji Z
+z_prop_itera_uinril <- ht_prop_2pop_ind(
+  p1_hat = p_kos_itera,
+  p2_hat = p_kos_uinril,
+  n1 = length(data_itera$kampus),
+  n2 = length(data_uinril$kampus)
 )
 
-cat("Titik Kritis:", z_crit_1tail, "\nZ Hitung:", z_prop_2pop, "\n")
+cat("Statistik uji Z proporsi untuk ITERA dan UINRIL adalah:", z_prop_itera_uinril)
+```
 
-if (z_prop_2pop < z_crit_1tail) {
-  cat("Hipotesis nol ditolak (Signifikan).")
-} else {
-  cat("Hipotesis nol gagal ditolak.")
+::: rmdexercise
+#### Aktivitas Mandiri 12 {.unnumbered}
+
+1. Deklarasikan variabel masukan berupa proporsi mahasiswa yang kos/asrama baik untuk kampus UBL maupun UNILA.
+2. Gunakan fungsi `ht_prop_2pop_ind` yang telah Anda buat untuk menghitung nilai statistik uji Z untuk kedua kampus tersebut dan simpan di dalam variabel `z_prop_ubl_unila`. **(Jangan sampai terbalik antara peletakan inputan UBL dan UNILA)**
+
+```{r mod05a-exercise-declare-z-prop, include=FALSE, collapse=TRUE}
+p_kos_ubl <- summary_tempat_tinggal_ubl |>
+  filter(`Tipe tinggal` == "Kos/Asrama") |>
+  pull(proporsi)
+p_kos_unila <- summary_tempat_tinggal_unila |>
+  filter(`Tipe tinggal` == "Kos/Asrama") |>
+  pull(proporsi)
+
+z_prop_ubl_unila <- ht_prop_2pop_ind(
+  p1_hat = p_kos_ubl,
+  p2_hat = p_kos_unila,
+  n1 = length(data_ubl$kampus),
+  n2 = length(data_unila$kampus)
+)
+
+cat("Z Hitung UBL-UNILA:", z_prop_ubl_unila)
+```
+:::
+
+### Menarik Kesimpulan
+
+Kita tarik simpulan hasil pengujian hipotesis dan bahas interpretasinya dengan cara menggunakan patokan `if-else` bertingkat seperti bagian sebelumnya.
+
+```{r mod05a-drawing-conclusion-prop-2pop, echo=TRUE}
+# Menentukan jenis pengujian
+jenis_uji <- "satu ekor kiri"
+
+# Menentukan tingkat signifikansi
+alpha <- 0.10
+
+if (jenis_uji == "dua ekor") {
+  if (abs(z_prop_itera_uinril) < abs(qnorm(alpha / 2))) {
+    tolak_h0 <- FALSE
+    cat("Gagal menolak hipotesis kosong. Perbedaan proporsi mahasiswa yang tinggal di kos/asrama ITERA dan UINRIL hanyalah kebetulan belaka.")
+  } else {
+    tolak_h0 <- TRUE
+    cat("Menolak hipotesis kosong. Terdapat perbedaan signifikan terkait proporsi mahasiswa yang tinggal di kos/asrama antara ITERA dan UINRIL.")
+  }
+} else if (jenis_uji == "satu ekor kiri") {
+  if (z_prop_itera_uinril > qnorm(alpha)) {
+    tolak_h0 <- FALSE
+    cat("Gagal menolak hipotesis kosong. Perbedaan proporsi hanyalah kebetulan.")
+  } else {
+    tolak_h0 <- TRUE
+    cat("Menolak hipotesis kosong. Terdapat bukti pengujian yang signifikan bahwa proporsi mahasiswa ITERA yang kos/asrama lebih kecil dibanding UINRIL.")
+  }
+} else if (jenis_uji == "satu ekor kanan") {
+  if (z_prop_itera_uinril < qnorm(1 - alpha)) {
+    tolak_h0 <- FALSE
+    cat("Gagal menolak hipotesis kosong. Perbedaan proporsi hanyalah kebetulan.")
+  } else {
+    tolak_h0 <- TRUE
+    cat("Menolak hipotesis kosong. Terdapat bukti pengujian yang signifikan bahwa proporsi mahasiswa ITERA yang kos/asrama lebih besar dibanding UINRIL.")
+  }
 }
 ```
 
-## Uji Hipotesis 2 Populasi Dependen
+::: rmdexercise
+### Aktivitas Mandiri 13 {.unnumbered}
 
-Menguji hipotesis 2 populasi yang dependen pada dasarnya sama persis dengan uji hipotesis 1 populasi, karena statistik yang diuji adalah **perbedaan nilai sampel**. Biasanya berbentuk "sebelum-sesudah". Contoh: mengukur nilai mahasiswa sebelum dan sesudah diberi pelatihan. Bedanya dengan independen : kita tidak bandingkan dua kelompok berbeda, tapi pasangan data dari kelompok yang sama dalam dua kondisi.
+Tariklah kesimpulan untuk hasil pengujian parameter proporsi Anda (UBL vs UNILA). Ingat bahwa tujuan Anda adalah membuktikan "apakah proporsi anak kos/asrama UBL lebih kecil dari UNILA" dengan tingkat signifikansi $\alpha = 0.05$.
+
+```{r mod05a-exercise-drawing-conclusion-prop-2pop, include=FALSE, collapse=TRUE}
+jenis_uji <- "satu ekor kiri"
+alpha <- 0.05
+
+if (jenis_uji == "dua ekor") {
+  if (abs(z_prop_ubl_unila) < abs(qnorm(alpha / 2))) {
+    tolak_h0 <- FALSE
+    cat("Gagal menolak hipotesis kosong. Perbedaan proporsi mahasiswa UBL dan UNILA hanyalah kebetulan.")
+  } else {
+    tolak_h0 <- TRUE
+    cat("Menolak hipotesis kosong. Terdapat perbedaan signifikan proporsi antara UBL dan UNILA.")
+  }
+} else if (jenis_uji == "satu ekor kiri") {
+  if (z_prop_ubl_unila > qnorm(alpha)) {
+    tolak_h0 <- FALSE
+    cat("Gagal menolak hipotesis kosong. Perbedaan proporsi hanyalah kebetulan.")
+  } else {
+    tolak_h0 <- TRUE
+    cat("Menolak hipotesis kosong. Terdapat bukti pengujian yang signifikan bahwa proporsi mahasiswa UBL yang kos/asrama lebih kecil dibanding UNILA.")
+  }
+} else if (jenis_uji == "satu ekor kanan") {
+  if (z_prop_ubl_unila < qnorm(1 - alpha)) {
+    tolak_h0 <- FALSE
+    cat("Gagal menolak hipotesis kosong. Perbedaan proporsi hanyalah kebetulan.")
+  } else {
+    tolak_h0 <- TRUE
+    cat("Menolak hipotesis kosong. Terdapat bukti pengujian yang signifikan bahwa proporsi mahasiswa UBL yang kos/asrama lebih besar dibanding UNILA.")
+  }
+}
+```
+:::
+
+## Uji Hipotesis Dua Populasi Dependen
+
+Menguji hipotesis dua populasi yang dependen pada dasarnya sama persis dengan uji hipotesis satu populasi, karena statistik yang diuji adalah **perbedaan nilai sampel**. Biasanya berbentuk "sebelum-sesudah". Contoh: mengukur nilai mahasiswa sebelum dan sesudah diberi pelatihan. Bedanya dengan independen : kita tidak bandingkan dua kelompok berbeda, tapi pasangan data dari kelompok yang sama dalam dua kondisi.
 
 Perbedaan nilai sampel jumlah nilainya hanya 1, sehingga bisa diperlakukan seperti halnya perhitungan uji hipotesis 1 populasi. Simpangan baku yang diketahui pun adalah simpangan baku **perbedaan nilainya, sehingga jumlah nilainya hanya 1 juga**.
+
+### Memuat Dataset
+
+Untuk memahami konsep uji hipotesis 2 populasi dependen, kita akan menghasilkan dataset sendiri dengan bantuan kemampuan menghasilkan angka acak yang dimiliki R. Misalkan kita mengukur biaya transportasi harian mahasiswa **sebelum** dan **sesudah adanya program bus kampus**. Populasi pertama adalah *seluruh mahasiswa ITERA **sebelum** adanya program bus kampus*, sedangkan populasi kedua adalah *seluruh mahasiswa ITERA **sesudah** adanya program bus kampus*.
+
+Kita akan menghasilkan dataset buatan sendiri sebagai berikut. Anggap kita ingin melakukan pengambilan sampel dari 200 orang mahasiswa. Dataset yang kita hasilkan adalah sebagai berikut.
+
+```{r mod05a-generate-dependent-data, echo=TRUE, results='hold'}
+# Mengatur seed agar hasil acak dapat dibuat ulang di kemudian hari
+set.seed(123)
+
+# Ukuran sampel
+n <- 200
+
+# Menghasilkan data biaya transportasi harian mahasiswa sebelum adanya program bus kampus
+biaya_sebelum <- runif(n, min = 2000, max = 25000)
+
+# Menghasilkan data biaya transportasi harian mahasiswa sesudah adanya program bus kampus
+biaya_sesudah <- runif(n, min = 2000, max = 25000)
+
+# Menggabungkan kedua data menjadi satu dataframe
+data_biaya <- data.frame(
+  mahasiswa = 1:n,
+  biaya_sebelum = biaya_sebelum,
+  biaya_sesudah = biaya_sesudah
+)
+
+# Menampilkan beberapa baris pertama dari data
+head(data_biaya)
+```
+
+Penjelasan kode: 
+
+- `set.seed(123)` digunakan untuk mengatur *seed* yang merupakan "pengontrol" keacakan dalam komputer sehingga hasil yang kita dapat bisa dibuat ulang oleh orang lain. Ini akan digunakan oleh fungsi `runif()`.
+- `n <- 200` digunakan untuk menentukan ukuran sampel yang kita inginkan.
+- `biaya_sebelum <- runif(n, min = 2000, max = 25000)` digunakan untuk menghasilkan data biaya transportasi harian mahasiswa sebelum adanya program bus kampus. Fungsi `runif()` digunakan untuk menghasilkan angka acak.
+- `biaya_sesudah <- runif(n, min = 2000, max = 25000)` digunakan untuk menghasilkan data biaya transportasi harian mahasiswa sesudah adanya program bus kampus.
+- `data_biaya <- data.frame(mahasiswa = 1:n, biaya_sebelum = biaya_sebelum, biaya_sesudah = biaya_sesudah)` digunakan untuk menggabungkan jumlah mahasiswa dan kedua data menjadi satu dataframe.
+- `head(data_biaya)` digunakan untuk menampilkan beberapa baris pertama dari data.
+
+### Menyatakan Hipotesis Kosong dan Alternatif
+
+Hipotesis kosong dan alternatif untuk uji hipotesis 2 populasi dependen berfokus pada **rata-rata perbedaan nilai ($\mu_d$)** antara variabel sebelum dan sesudah. Oleh karena itu, nilainya hanya ada satu, yakni $\mu_d$. Ini membuat prinsip perhitungannya mirip seperti uji hipotesis satu populasi, hanya saja kali ini kita menggunakan data perbedaan nilai.
+
+Misalkan kita ingin membuktikan apakah biaya transportasi harian mahasiswa **berkurang** setelah adanya program bus kampus. Dengan demikian, hipotesis kosong dan alternatifnya adalah sebagai berikut.
+
+- $H_0: \mu_d = 0$
+- $H_1: \mu_d < 0$
+
+### Memilih Distribusi Statistik, Wilayah Kritis, dan Titik Kritis
+
+Karena kita ingin membuktikan apakah biaya transportasi harian mahasiswa **berkurang** setelah adanya program bus kampus, maka kita akan menggunakan uji hipotesis 2 populasi dependen satu ekor kiri. Dengan demikian, distribusi statistik yang digunakan adalah distribusi normal ($Z$), wilayah kritisnya adalah $\alpha$ yang akan kita gunakan, yakni 20% ($\alpha = 0.20$), dan titik kritisnya kita cari menggunakan fungsi `qnorm()` sebagai berikut. 
+
+```{r mod05a-critical-region-dependent, echo=TRUE, results='hold'}
+# Menentukan wilayah kritis dan titik kritis
+alpha <- 0.20
+z_kritis <- qnorm(alpha)
+
+# Menampilkan wilayah kritis dan titik kritis
+cat("Wilayah kritis: Z < ", z_kritis, "\n")
+cat("Titik kritis: ", z_kritis, "\n")
+```
+
+### Menghitung Statistik Uji
+
+#### Membuat Fungsi Uji Hipotesis Dua Populasi Dependen
+
+Fungsi berikut digunakan untuk menghitung statistik uji ($Z$) dari dua populasi dependen.
+
+```{r mod05a-create-function-mean-2pop, echo=TRUE}
+ht_mean_2pop_dep <- function(xbar_delta, sd_delta, n) {
+  # menghitung standard error untuk dua populasi dependen
+  se <- sqrt(
+    (
+      (sd_delta^2) / (n - 1)
+    )
+  )
+  # menghitung nilai Z dari statistik
+  z_hitung <- (xbar_delta) / se
+  return(z_hitung)
+}
+```
+
+Fungsi ini pada dasarnya bentuk sintaks program R dari rumus perhitungan statistik uji Z untuk dua populasi independen berikut.
+
+$$
+Z = \frac{\bar{x}_d}{\sqrt{\frac{s_d^2}{n - 1}}}
+$$
+
+
+#### Mendeklarasikan Statistik Uji
+
+Sebelum menghitung statistik uji, kita perlu menghitung perbedaan nilai antara biaya transportasi harian mahasiswa sebelum dan sesudah adanya program bus kampus. Kita akan menggunakan fungsi `mutate()` untuk mendeklarasikan perbedaan nilai antara biaya transportasi harian mahasiswa sebelum dan sesudah adanya program bus kampus.
+
+```{r mod05a-calculate-dependent-data, echo=TRUE, results='hold'}
+# Menghitung perbedaan nilai antara biaya transportasi harian mahasiswa sebelum dan sesudah adanya program bus kampus
+data_biaya <- data_biaya |>
+  mutate(
+    perbedaan = biaya_sebelum - biaya_sesudah
+  )
+
+# Menampilkan beberapa baris pertama dari data
+head(data_biaya)
+```
+
+Penjelasan kode: 
+
+- `data_biaya <- data_biaya |>` digunakan untuk menambahkan kolom baru pada dataframe `data_biaya`.
+- `mutate()` digunakan untuk menambahkan kolom baru pada dataframe `data_biaya`.
+- `perbedaan = biaya_sebelum - biaya_sesudah` digunakan untuk menghitung perbedaan nilai antara biaya transportasi harian mahasiswa sebelum dan sesudah adanya program bus kampus.
+- `head(data_biaya)` digunakan untuk menampilkan beberapa baris pertama dari data.
+
+#### Menghitung Statistik Uji
+
+Setelah mengetahui titik kritis, kita hitung nilai statistik uji (Z) dari data yang dimiliki. Nilai ini diperoleh dengan memasukkan rata-rata, simpangan baku, dan ukuran sampel ke fungsi `ht_mean_2pop_dep` yang telah kita buat.
+
+```{r mod05a-calculate-zstat-dependent, echo=TRUE}
+# Menghitung statistik uji (Z)
+z_hitung_2pop_dep <- ht_mean_2pop_dep(
+  xbar_delta = mean(data_biaya$perbedaan),
+  sd_delta = sd(data_biaya$perbedaan),
+  n = nrow(data_biaya)
+)
+
+# Menampilkan statistik uji (Z)
+cat("Statistik uji (Z): ", z_hitung_2pop_dep, "\n")
+```
+
+### Menarik Kesimpulan
+
+Langkah terakhir adalah membandingkan nilai statistik uji dengan titik kritis. Karena kasus kita menggunakan uji satu ekor kiri, maka jika $Z_{hitung}$ lebih besar dari $Z_{kritis}$, maka $H_0$ **gagal ditolak**, artinya perbedaan rata-rata biaya transportasi harian mahasiswa sebelum dan sesudah adanya program bus kampus kemungkinan hanyalah kebetulan. Jika $Z_{hitung}$ lebih kecil dari $Z_{kritis}$, maka $H_0$ **ditolak**, yang berarti terdapat cukup bukti untuk menyatakan bahwa biaya transportasi harian mahasiswa **berkurang** setelah adanya program bus kampus.
+
+```{r mod05a-drawing-conclusion-mean-2pop-dependent, echo=TRUE, results='hide'}
+# Menghitung nilai statistik uji Z (sudah dilakukan sebelumnya)
+z_hitung_2pop_dep
+
+# Menentukan jenis pengujian
+jenis_uji <- "satu ekor kiri"
+
+# Menentukan tingkat signifikansi
+alpha <- 0.20
+
+# Menentukan apakah hipotesis kosong ditolak atau gagal ditolak
+if (jenis_uji == "dua ekor") {
+  if (abs(z_hitung_2pop_dep) < abs(qnorm(alpha / 2))) {
+    tolak_h0 <- FALSE
+    cat(
+      "gagal menolak hipotesis kosong. Perbedaan rata-rata sampel",
+      round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan"
+    )
+  } else {
+    tolak_h0 <- TRUE
+    cat(
+      "menolak hipotesis kosong. Rata-rata jarak pada sampel mahasiswa sebesar",
+      round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan"
+    )
+  }
+} else if (jenis_uji == "satu ekor kiri") {
+  if (z_hitung_2pop_dep > qnorm(alpha)) {
+    tolak_h0 <- FALSE
+    cat(
+      "gagal menolak hipotesis kosong. Perbedaan rata-rata sampel",
+      round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan"
+    )
+  } else {
+    tolak_h0 <- TRUE
+    cat(
+      "menolak hipotesis kosong. Rata-rata jarak pada sampel mahasiswa sebesar",
+      round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan"
+    )
+  }
+} else if (jenis_uji == "satu ekor kanan") {
+  if (z_hitung_2pop_dep < qnorm(1 - alpha)) {
+    tolak_h0 <- FALSE
+    cat(
+      "gagal menolak hipotesis kosong. Perbedaan rata-rata sampel",
+      round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan"
+    )
+  } else {
+    tolak_h0 <- TRUE
+    cat(
+      "menolak hipotesis kosong. Rata-rata jarak pada sampel mahasiswa sebesar",
+      round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan"
+    )
+  }
+}
+```
+
+::: rmdexercise
+#### Aktivitas Mandiri 14 {.unnumbered}
+
+1. Buatlah dataset fiktif yang berisi nilai penjualan harian 120 warung (dalam skala jutaan rupiah) dengan rentang `2.5` hingga `25.0` sebelum dan sesudah adanya *exit* tol.
+2. Lakukan pengujian hipotesis untuk membuktikan apakah ada perbedaan rata-rata nilai penjualan harian warung sebelum dan sesudah adanya *exit* tol menggunakan tingkat kepercayaan 99% ($\alpha = 0{,}01$).
+3. Hitunglah titik kritis dan statistik ujinya menggunakan R, lalu tarik kesimpulan dari pengujian tersebut.
+
+:::
+
 
