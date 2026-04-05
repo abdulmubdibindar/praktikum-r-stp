@@ -44,9 +44,9 @@ install.packages("rmarkdown")
 
 :::
 
-## Memuat Data
+## Memuat Dataset
 
-Kita akan menggunakan data gabungan keempat kampus (UBL, UNILA, UINRIL, dan ITERA) yang berisikan variabel jarak tempuh (km) dan jenis tempat tinggal saja. Pada kesempatan ini, kita akan mempelajari perintah baru untuk membuka file CSV, yakni `read_csv2()`. File CSV memiliki dua jenis pemisah (*delimiter*), yaitu titik koma (;) dan koma (,). Adanya pemisah berupa titik koma ini ini dimaksudkan untuk mengakomodasi penulisan angka desimal yang menggunakan koma (,) yang digunakan di berbagai negara, termasuk Indonesia. Adapun file CSV bawaan yang menggunakan pemisah koma (,) adalah file CSV yang dibuat untuk penulisan angka desimal menggunakan titik (.) yang lazim digunakan pada negara-negara berbahasa Inggris, seperti Amerika Serikat dan Inggris.
+Kita akan menggunakan dataset gabungan keempat kampus (UBL, UNILA, UINRIL, dan ITERA) yang berisikan variabel jarak tempuh (km) dan jenis tempat tinggal saja. Pada kesempatan ini, kita akan mempelajari perintah baru untuk membuka file CSV, yakni `read_csv2()`. File CSV memiliki dua jenis pemisah (*delimiter*), yaitu titik koma (;) dan koma (,). Adanya pemisah berupa titik koma ini ini dimaksudkan untuk mengakomodasi penulisan angka desimal yang menggunakan koma (,) yang digunakan di berbagai negara, termasuk Indonesia. Adapun file CSV bawaan yang menggunakan pemisah koma (,) adalah file CSV yang dibuat untuk penulisan angka desimal menggunakan titik (.) yang lazim digunakan pada negara-negara berbahasa Inggris, seperti Amerika Serikat dan Inggris.
 
 Perintah `read_csv2()` digunakan untuk membuka file CSV yang menggunakan titik koma (;) sebagai pemisah (*delimiter*). Dataset yang kita gunakan, `data_mahasiswa.csv`, menggunakan titik koma (;) sebagai pemisah (*delimiter*). Dengan demikian, kita harus menggunakan perintah `read_csv2()` untuk membuka file CSV ini.
 
@@ -66,11 +66,22 @@ Muatlah dataset `data_mahasiswa.csv` ke dalam RStudio Anda menggunakan perintah 
 data_mahasiswa <- read_csv2("datasets/data_mahasiswa.csv")
 ```
 
+Sebelum melanjutkan analisis, ada baiknya kita memeriksa kondisi data kita terlebih dahulu dengan `glimpse()`.
+
+```{r mod05-inspect-data-mean, echo=TRUE, collapse=TRUE}
+# Memeriksa kondisi data
+glimpse(data_mahasiswa)
+```
+
+Kita memiliki empat variabel: `kampus`, `jarak_km`, `jenis_tinggal` dan `tipe_tinggal_baku`. Variabel `kampus` adalah variabel yang menandakan kampus dari mahasiswa yang menjadi objek sampel kita. Variabel `jarak_km` adalah jarak tempat tinggal mereka ke kampus masing-masing. Sementara itu variabel `jenis_tinggal` adalah jenis tempat tinggal yang berupa `r unique(data_mahasiswa$jenis_tinggal)` dan distandarkan menjadi `r unique(data_mahasiswa$tipe_tinggal_baku)`.
+
+Tipe data juga sudah sesuai. Variabel `jarak_km` sudah bertipe *double* (`<dbl>`) sehingga dapat kita olah lebih lanjut.
+
 ## Perkenalan: LaTeX dalam R Markdown
 
 RStudio memiliki bentuk file lain selain `.R`, yakni `.Rmd` atau "R Markdown". File ini adalah gabungan kemampuan eksekusi kode R dengan penulisan teks dari [Markdown](https://daringfireball.net/projects/markdown/). Kemampuan penulisan teks tersebut mencakup kemampuan menampilkan persamaan atau simbol matematis.
 
-Untuk menyisipkan persamaan matematis menggunakan [LaTeX](https://latex-project.org/), kita dapat menggunakan perintah **Insert \> LaTeX Math \> Inline Math/Display Math. Inline Math akan menyisipkan simbol matematis di dalam paragraf, sementara Display Math membuat persamaan di bagian terpisah dari paragraf.
+Untuk menyisipkan persamaan matematis menggunakan [LaTeX](https://latex-project.org/), kita dapat menggunakan perintah **Insert \> LaTeX Math \> Inline Math/Display Math**. **Inline Math** akan menyisipkan simbol matematis di dalam paragraf, sementara **Display Math** membuat persamaan di bagian terpisah dari paragraf.
 
 Dalam mode *Source*, Inline Math disisipkan pada dua tanda `$` di awal dan akhir, lalu menuliskan simbolnya di antara `$` tersebut. Sementara itu, untuk Display Math kita perlu mengetikkan `$$` di awal dan akhir sehingga terlihat seperti berikut.
 
@@ -445,26 +456,44 @@ alpha <- 0.05
 if (jenis_uji == "dua ekor") {
   if (abs(z_mean_jarak) < abs(qnorm(alpha / 2))) {
     tolak_h0 <- FALSE
-    cat("gagal menolak hipotesis kosong. Perbedaan rata-rata sampel", round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan")
+    cat(
+      "gagal menolak hipotesis kosong. Perbedaan rata-rata sampel",
+      round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan"
+    )
   } else {
     tolak_h0 <- TRUE
-    cat("menolak hipotesis kosong. Rata-rata jarak pada sampel mahasiswa sebesar", round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan")
+    cat(
+      "menolak hipotesis kosong. Rata-rata jarak pada sampel mahasiswa sebesar",
+      round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan"
+    )
   }
 } else if (jenis_uji == "satu ekor kiri") {
   if (z_mean_jarak > qnorm(alpha)) {
     tolak_h0 <- FALSE
-    cat("gagal menolak hipotesis kosong. Perbedaan rata-rata sampel", round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan")
+    cat(
+      "gagal menolak hipotesis kosong. Perbedaan rata-rata sampel",
+      round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan"
+    )
   } else {
     tolak_h0 <- TRUE
-    cat("menolak hipotesis kosong. Rata-rata jarak pada sampel mahasiswa sebesar", round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan")
+    cat(
+      "menolak hipotesis kosong. Rata-rata jarak pada sampel mahasiswa sebesar",
+      round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan"
+    )
   }
 } else if (jenis_uji == "satu ekor kanan") {
   if (z_mean_jarak < qnorm(1 - alpha)) {
     tolak_h0 <- FALSE
-    cat("gagal menolak hipotesis kosong. Perbedaan rata-rata sampel", round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan")
+    cat(
+      "gagal menolak hipotesis kosong. Perbedaan rata-rata sampel",
+      round(sample_mean, 2), "dengan", pop_mean, "hanyalah kebetulan"
+    )
   } else {
     tolak_h0 <- TRUE
-    cat("menolak hipotesis kosong. Rata-rata jarak pada sampel mahasiswa sebesar", round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan")
+    cat(
+      "menolak hipotesis kosong. Rata-rata jarak pada sampel mahasiswa sebesar",
+      round(sample_mean, 2), "km menunjukkan perbedaan yang signifikan"
+    )
   }
 }
 ```
