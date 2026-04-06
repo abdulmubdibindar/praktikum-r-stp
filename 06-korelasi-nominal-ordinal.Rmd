@@ -57,6 +57,7 @@ library(gtsummary)
 library(rcompanion)
 library(RCPA3)
 library(vcdExtra)
+library(DescTools)
 ```
 
 Untuk mengecek apakah pustaka-pustaka tersebut sudah terpasang, kita bisa menggunakan perintah berikut:
@@ -68,6 +69,7 @@ installed.packages("gtsummary")
 installed.packages("rcompanion")
 installed.packages("RCPA3")
 installed.packages("vcdExtra")
+installed.packages("DescTools")
 ```
 
 **Perhatikan dengan seksama** bahwa perintah ini mengandung akhiran "`ed`" di akhir kata "`install`". Perintah ini sangat berbeda dengan `install.packages()` yang biasa kita gunakan untuk memasang pustaka.
@@ -287,8 +289,14 @@ table(
 
 ### Aktivitas Mandiri 1 {.unnumbered}
 
-1. Buatlah dataset *subset* dari `data_mahasiswa` untuk mahasiswa kampus ITERA saja dengan menggunakan perintah `filter()`!
+1. Buatlah dataset *subset* dari `data_mahasiswa` untuk mahasiswa kampus ITERA saja dengan menggunakan perintah `filter()`! Simpan ke dalam variabel `data_itera`.
 2. Buatlah tabel silang antara variabel `Tingkat Semester` dan `Uang Saku` dari dataset *subset* yang telah dibuat pada poin 1, baik dengan `tbl_cross()` maupun dengan `table()`!
+
+```{r mod06-exercise-1, include=FALSE}
+data_itera <- data_mahasiswa |>
+  filter(Kampus_PT == 'ITERA')
+```
+
 
 :::
 
@@ -356,10 +364,10 @@ chisq_tempat_tinggal_kend$expected
 Kita akan menghitung nilai koefisien V Cramer untuk menyatakan korelasi antara jenis kendaraan yang digunakan sebagai moda ke kampus dan jenis tempat tinggal mahasiswa menggunakan rumus berikut dan berdasarkan nilai $\chi^2$ yang kita dapatkan dari tes sebelumnya.
 
 $$
-V = \sqrt{\frac{\chi^2}{n \times min(c−1,r−1)}}​​
+V = \sqrt{\frac{\chi^2}{n \times min(c−1,r−1)}}
 $$
 
-```{r mod06-calculate-cramer-v, echo=TRUE}
+```{r mod06-calculate-cramer-v, echo=TRUE, fig.cap="Perhitungan nilai V Cramer menggunakan kalkulasi rumus secara langsung"}
 # Menyimpan nilai Chi-squared menggunakan metode "as.numeric"
 chisq_tempat_tinggal_kend <- as.numeric(chisq_tempat_tinggal_kend$statistic)
 
@@ -387,11 +395,17 @@ v_tempat_tinggal_kend
 
 Koefisien V dipilih karena tabel silang kita terdiri atas banyak kategori dan juga berdimensi persegi panjang (6x7 kategori).
 
-**Kesimpulan:** Hasil dari perhitungan koefisien V adalah **0,253**. Angka ini menunjukkan hubungan yang sedikit lemah, karena berada di bawah nilai tengah-tengah yaitu 0,5. Artinya, hubungan antara jenis tempat tinggal dengan jenis kendaraan yang sering digunakan ke kampus tidak begitu kuat.
+**Kesimpulan:** Hasil dari perhitungan koefisien V adalah **`r v_tempat_tinggal_kend`**. Angka ini menunjukkan hubungan yang sedikit lemah, karena berada di bawah nilai tengah-tengah yaitu 0,5. Artinya, hubungan antara jenis tempat tinggal dengan jenis kendaraan yang sering digunakan ke kampus tidak begitu kuat.
 
 #### Cara Langsung dengan Pustaka `rcompanion`
 
 kita dapat menggunakan pustaka `rcompanion` untuk menghitung koefisien V Cramer, yaitu dengan perintah `cramerV()`. Perintah ini mengambil langsung vektor kolom variabel yang kita akan analisis, sehingga menggunakan notasi `$` untuk mengakses kolom `` `jenis tempat tinggal` `` dan `` `kendaraan utama` ``.
+
+::: rmdnote
+
+Untuk menggunakan koefisien $\phi$ kita dapat menggunakan perintah `phi()`. Sementara itu, untuk koefisien kontingensi $C$ kita dapat menggunakan perintah `ContCoeff()` yang membutuhkan pustaka `DescTools`.
+
+:::
 
 ```{r mod06-use-rcompanion, echo=TRUE, collapse=TRUE}
 v_tempat_tinggal_kend <- cramerV(
@@ -405,23 +419,71 @@ cat(
 )
 ```
 
+Bandingkan dengan nilai V dari perhitungan semi-manual, apakah hasilnya sama?
+
+::: rmdexercise
+
+### Aktivitas Mandiri 2 {-}
+
+Analisislah korelasi antara variabel `jenis tempat tinggal` dengan `kendaraan utama` dari dataset `data_itera` menggunakan koefisien korelasi berbasis $\chi^2$ dan simpan ke dalam variabel `v_itera_tempat_tinggal_kendaraan`.
+
+```{r mod06-exercise-2, include=FALSE}
+v_itera_tempat_tinggal_kendaraan <- cramerV(
+  data_itera$`jenis tempat tinggal`,
+  data_itera$`kendaraan utama`
+)
+```
+
+:::
+
 ### Koefisien Korelasi Variabel Nominal Berbasis *Error*
 
-Untuk analisis korelasi variabel nominal berbasis *error* yang menggunakan koefisien $\lambda$ kita dapat menggunakan perintah `lambda()` yang ada di dalam pustaka `RCPA3`. Terlebih dahulu tentunya lakukan instalasi pustaka tersebut dengan perintah `install.packages('RCPA3')`.
+Untuk analisis korelasi variabel nominal berbasis *error* yang menggunakan koefisien $\lambda$ kita dapat menggunakan perintah `lambda()` yang ada di dalam pustaka `RCPA3`. Perintah `lambda()` mengambil masukan berupa tabel silang seperti yang kita buat pada perhitungan $\chi^2$, yakni perintah `table()`. Karena koefisien $\lambda$ merupakan koefisien korelasi variabel nominal yang memperhitungkan variabel independen, penentuan variabel yang menjadi independen dilakukan **sejak kita memformat tabel silang**, yakni **variabel dependen ditempatkan pada baris** dan **independen pada kolom**. Untuk memastikan, mari kita muat ulang tabel silang kita dengan memanggil kembali nama variabelnya.
 
-Perintah `lambda()` mengambil masukan berupa tabel silang seperti yang kita buat pada perhitungan $\chi^2$, yakni perintah `table()` .
+```{r mod06-recall-table, echo=TRUE, collapse=TRUE}
+print(tempat_tinggal_kend)
+```
+
+Ternyata kita sudah mengatur sedemikian rupa agar variabel independen kita, `jenis tempat tinggal`, berada di kolom. Artinya, urutan kita menempatkan variabel di argumen `table()` sangat berpengaruh: **variabel pertama akan menempati baris**, sementara **yang kedua menempati kolom**. Karena susunan ini sudah sesuai dengan perintah `lambda()`, kita bisa melanjutkan analisis kita.
 
 ```{r mod06-calculate-lambda, echo=TRUE}
 # Menghitung koefisien lambda
 lambda_tempat_tinggal_kend <- lambda(
   tempat_tinggal_kend,
+  # digits menandakan berapa desimal angka yang kita hasilkan
+  digits = 3,
+  # detailed menandakan apakah kita memperlihatkan nilai-nilai error yang dihitung
+  detailed = TRUE
+)
+
+lambda_tempat_tinggal_kend
+```
+
+Nilai `r lambda_tempat_tinggal_kend` ini menunjukkan bahwa dengan mempertimbangkan variabel independen berupa `jenis tempat tinggal`, error dalam memprediksi variabel dependen berupa `kendaraan utama` berkurang sebesar `r lambda_tempat_tinggal_kend*100`%, yang mana bukan angka yang signifikan besarnya. Artinya, hubungan antara jenis kendaraan dengan jenis tempat tinggal yang kita analisis sangat-sangat lemah.
+
+::: rmdexercise
+
+### Aktivitas Mandiri 3 {-}
+
+Analisislah korelasi antara variabel `jenis tempat tinggal` dengan `kendaraan utama` dari dataset `data_itera` menggunakan koefisien korelasi $\lambda$ dan simpan ke dalam variabel `lambda_itera_tempat_tinggal_kendaraan`.
+
+```{r mod06-exercise-3, include = FALSE}
+# Menyimpan tabel itera
+tempat_tinggal_kend_itera <- table(
+  data_itera$`kendaraan utama`,
+  data_itera$`jenis tempat tinggal`
+)
+
+lambda_itera_tempat_tinggal_kendaraan <- lambda(
+  tempat_tinggal_kend_itera,
   digits = 3,
   detailed = TRUE
 )
 
-# digits menandakan berapa desimal angka yang kita hasilkan
-# detailed menandakan apakah kita memperlihatkan nilai-nilai error yang dihitung
+lambda_itera_tempat_tinggal_kendaraan
 ```
+
+:::
 
 ## Analisis Korelasi Antarvariabel Ordinal
 
@@ -429,19 +491,15 @@ Dalam analisis korelasi variabel ordinal, kita tidak hanya dapat mengukur kebera
 
 Arah hubungan ditunjukkan oleh **tanda koefisien** dan kekuatannya ditunjukkan oleh **besar angka koefisien.** Oleh karena itu, nilai korelasi pada variabel ordinal berkisar antara $-1$ hingga $+1$ dengan tanda $-$ untuk menandakan hubungan berlawanan dan $+$ untuk hubungan searah.
 
-Kita dapat menggunakan perintah `GKgamma()` dari pustaka `vcdExtra`. Lakukan instalasi pustaka terlebih dahulu dengan perintah `install.packages('vcdExtra')`.
+Kita akan mempelajari penggunaan perintah dalam R untuk menghitung koefisien korelasi Gamma ($\gamma$) dan Somer's d.
 
-Perintah `GKgamma()` mengambil masukan sama seperti `chisq.test()`, yakni tabel silang yang dihasilkan dari perintah `table()`.
+### Koefisien Gamma ($\gamma$)
 
-Dalam praktikum ini, kita akan menganalisis kekuatan dan arah hubungan antara Uang Saku dan Tingkat Semester. Apakah mahasiswa dengan tingkat semester makin tinggi uang sakunya makin tinggi pula, atau sebaliknya?
+Kita dapat menggunakan perintah `GKgamma()` dari pustaka `vcdExtra` untuk mengukur koefisien ($\gamma$). Perintah `GKgamma()` mengambil masukan yang sama seperti `chisq.test()`, yakni tabel silang yang dihasilkan dari perintah `table()`.
 
-```{r mod06-install-vcdextra, eval=FALSE, echo=TRUE}
-install.packages("vcdExtra")
-```
+Dalam praktikum ini, kita akan menganalisis kekuatan dan arah hubungan antara variabel `Uang Saku` dan `Tingkat Semester`. Apakah mahasiswa dengan tingkat semester makin tinggi uang sakunya makin tinggi pula, atau sebaliknya?
 
-```{r mod06-calculate-gamma, echo=TRUE}
-library(vcdExtra)
-
+```{r mod06-calculate-gamma, echo=TRUE, collapse=TRUE}
 # Membuat variabel table() sebagai masukan
 uang_saku_tingkat_semester <- table(
   data_mahasiswa$`Uang Saku`,
@@ -455,7 +513,14 @@ gamma_uang_saku_tingkat_semester <- GKgamma(uang_saku_tingkat_semester)
 gamma_uang_saku_tingkat_semester
 ```
 
-Seperti halnya nilai variabel hasil perhitungan `chisq.test()`, hasil perhitungan `GKgamma()` juga terdiri atas banyak variabel. Nilai gamma sendiri dapat kita akses dengan `.$gamma`.
+Nilai $\gamma$ sebesar `r gamma_uang_saku_tingkat_semester$gamma` menunjukkan bahwa kekuatan hubungan antara uang saku dengan tingkat semester adalah sangat-sangat lemah. 
+
+Seperti halnya nilai variabel hasil perhitungan `chisq.test()`, hasil perhitungan `GKgamma()` juga terdiri atas banyak variabel. Nilai gamma sendiri dapat kita akses dengan `.$gamma`. Walaupun ada tanda negatif pada nilai tersebut yang artinya adalah ada hubungan berlawanan arah antara tingkat uang saku dengan tingkat semester. Semakin tinggi semester, semakin rendah uang saku yang diterima mahasiswa. Akan tetapi, pernyataan itu tidak bisa dijadikan pegangan karena besar nilai koefisiennya yang sangat kecil.
+
+```{r mod06-show-gamma, echo=TRUE, collapse=TRUE}
+# Mengakses nilai gamma
+gamma_uang_saku_tingkat_semester$gamma
+```
 
 Nilai lain yang penting bagi kita adalah nilai `.$C` dan `.$D` . Nilai-nilai tersebut adalah nilai operasi dalam sel tabel silang yang merupakan penyusun dalam perhitungan koefisien tersebut mengikuti rumus berikut:
 
@@ -463,30 +528,38 @@ $$
 G = \frac{C-D}{C+D}
 $$
 
-```{r mod06-display-gamma-components, echo=TRUE}
+```{r mod06-display-gamma-components, echo=TRUE, results='hold'}
 # Menampilkan nilai C dan D
 print(gamma_uang_saku_tingkat_semester$C)
 print(gamma_uang_saku_tingkat_semester$D)
 ```
 
+### Koefisien Somer's d
+
+Koefisien Somer's d menghitung korelasi dengan mempertimbangkan salah satunya sebagai variabel independen. Oleh karena itu, kita perlu menentukan variabel mana yang menjadi independen dan mana yang menjadi dependen. Dalam praktikum ini, kita akan menganalisis hubungan antara variabel `Uang Saku` dan `Tingkat Semester`. Kita akan menentukan bahwa `Tingkat Semester` sebagai variabel independen dan `Uang Saku` sebagai variabel dependen karena lebih masuk akal bahwa tingkat semester mempengaruhi uang saku, bukan sebaliknya.
+
+```{r mod06-somers-d-calculation, echo=TRUE, collapse=TRUE}
+# Menetapkan variabel dependen dan independen
+# Variabel dependen kita sebut 'y', independen kita sebut 'x'
+x <- data_mahasiswa$`Tingkat Semester`
+y <- data_mahasiswa$`Uang Saku`
+
+# Menghitung koefisien d Somer
+somerd_uang_saku_tingkat_semester <- SomersDelta(
+  x, y, direction = "column"
+)
+
+somerd_uang_saku_tingkat_semester
+```
+
+Perintah tersebut menghitung koefisien d Somer dengan variabel independen yang berada pada kolom (`direction = "column"`). Secara bawaan, fungsi `SomersDelta()` menganggap variabel independen berada pada baris (`direction = "row"`). Jika kita mendefinisikan variabel x dan y secara bersamaan, kita harus mendefinisikan `direction = "column"` secara eksplisit.
+
+Nilai koefisien d Somer tersebut juga menunjukkan kesimpulan yang sama dengan koefisien $\gamma$.
+
 ::: {.rmdexercise}
-### Aktivitas Mandiri 3: Analisis Korelasi Komprehensif [STP-9.2, STP-10.2].{capaian} {-}
+### Aktivitas Mandiri 4 {-}
 
-**A. Korelasi Nominal [STP-9.2]:**
+Hitunglah korelasi antara `Tingkat Semester` dan `Uang Saku` pada dataset `data_itera` menggunakan koefisien $\gamma$ dan d Somer. Simpan kedua variabel berturut-turut pada `gamma_lat_itera` dan `somerd_lat_itera`.
 
-1. **Fakultas vs Prodi:**
-   - Hitung V Cramer dan Lambda
-   - Interpretasikan kekuatan hubungan
-
-2. **Jenis Kelamin vs Kendaraan Utama:**
-   - Hitung kedua koefisien
-   - Bandingkan dengan hubungan Fak ultas-Prodi
-  
-**B. Korelasi Ordinal [STP-10.2]:**
-
-3. **Tingkat Semester vs Uang Saku:**
-   - Hitung koefisien Gamma
-   - Interpretasikan arah dan kekuatan hubungan
 :::
 
-------------------------------------------------------------------------
