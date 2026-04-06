@@ -139,7 +139,7 @@
 <span class="header-section-number">10.3</span> Memuat Pustaka <em>(Libraries)</em><a class="anchor" aria-label="anchor" href="#memuat-pustaka-libraries"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kita membutuhkan paket <code>tidyverse</code> untuk manipulasi data dan <code>psych</code> untuk melakukan uji KMO, Bartlett, serta fungsi analisis faktor dan PCA.</p>
-<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb306"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://personality-project.org/r/psych/">psych</a></span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -155,7 +155,7 @@
 <strong>Normalitas</strong>: Variabel berdistribusi normal multivariat.</li>
 </ol>
 <p>Kita dapat melakukan inspeksi visual menggunakan matriks diagram pencar (<em>scatter plot matrix</em>). Di sini kita menggunakan fungsi <code>pairs.panels</code> dari paket <code>psych</code> yang memberikan informasi lengkap berupa scatter plot, histogram, dan nilai korelasi.</p>
-<div class="sourceCode" id="cb313"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membaca data (Kita muat di sini untuk keperluan inspeksi awal)</span></span>
 <span><span class="co"># Jika data belum dimuat, baris ini akan memuatnya.</span></span>
 <span><span class="va">data_cfd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"datasets/Data Praktikum 09.csv"</span><span class="op">)</span></span>
@@ -219,7 +219,7 @@
 <span class="header-section-number">10.5</span> Mempersiapkan Data<a class="anchor" aria-label="anchor" href="#mempersiapkan-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kita memastikan kembali variabel yang akan digunakan dalam analisis ini.</p>
-<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Memilih variabel yang akan dianalisis</span></span>
 <span><span class="va">data_analisis</span> <span class="op">&lt;-</span> <span class="va">data_cfd</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span></span>
@@ -231,18 +231,18 @@
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data_analisis</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 319
 ## Columns: 12
-## $ ongkos    &lt;dbl&gt; 464.40, 464.40, 464.40, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 10000.00, 30000.00, 0.00, 0.00, 154.80, 0.00, 0.…
-## $ bparkir   &lt;dbl&gt; 2000, 2000, 3000, 0, 0, 0, 0, 0, 0, 0, 2000, 5000, 0, 0, 0, 0, 0, 0, 0, 3000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ durasi    &lt;dbl&gt; 20, 10, 15, 30, 5, 30, 5, 30, 5, 9, 30, 30, 10, 30, 2, 30, 60, 30, 30, 30, 20, 5, 45, 60, 20, 10, 7, 20, 60, 30, 6…
-## $ bareng    &lt;dbl&gt; 2, 0, 2, 5, 2, 0, 0, 0, 0, 0, 2, 3, 1, 0, 10, 3, 2, 3, 3, 2, 1, 1, 0, 1, 1, 1, 3, 0, 0, 1, 0, 2, 2, 1, 0, 2, 0, 3,…
-## $ toplajur  &lt;dbl&gt; 4, 4, 4, 8, 2, 4, 4, 4, 0, 2, 8, 6, 4, 4, 2, 4, 6, 4, 4, 4, 4, 4, 8, 4, 4, 4, 2, 4, 6, 6, 6, 6, 4, 8, 4, 6, 3, 4, …
-## $ usia      &lt;dbl&gt; 45, 46, 50, 25, 22, 63, 22, 60, 20, 19, 16, 46, 22, 28, 50, 28, 17, 28, 25, 43, 34, 17, 70, 32, 57, 37, 18, 43, 20…
-## $ jmlmotor  &lt;dbl&gt; 2, 2, 3, 0, 2, 1, 1, 2, 1, 0, 2, 1, 1, 4, 5, 1, 3, 1, 1, 1, 1, 1, 1, 1, 2, 1, 0, 1, 1, 1, 2, 3, 4, 2, 1, 2, 3, 4, …
-## $ jmlmobil  &lt;dbl&gt; 0, 1, 0, 0, 3, 1, 1, 1, 0, 0, 2, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 6, 0, 1, 0, 0, 0, 0, 2, …
-## $ jmlsepeda &lt;dbl&gt; 2, 4, 0, 2, 3, 2, 1, 1, 0, 0, 0, 2, 0, 2, 6, 1, 4, 1, 1, 0, 1, 0, 3, 3, 1, 0, 1, 1, 1, 1, 1, 2, 0, 3, 2, 1, 1, 2, …
-## $ jmldewasa &lt;dbl&gt; 4, 4, 4, 3, 5, 2, 2, 4, 1, 1, 3, 1, 5, 2, 2, 3, 5, 12, 5, 2, 1, 2, 5, 2, 6, 2, 12, 3, 3, 2, 1, 4, 2, 7, 5, 3, 2, 3…
-## $ jmlanak   &lt;dbl&gt; 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 2, 2, 0, 0, 0, 0, 3, 3, 0, 1, 0, 0, 0, 1, 2, 0, 0, 0, 1, 0, 2, 0, 2, 0, 0, 1, 1, 0, …
-## $ jarak     &lt;dbl&gt; 3000, 3000, 3000, 7000, 280, 7000, 600, 7200, 0, 500, 5000, 4000, 2000, 5000, 1000, 5000, 6800, 5000, 5000, 6000, …</code></pre>
+## $ ongkos    &lt;dbl&gt; 464.40, 464.40, 464.40, 0.00, 0.00, 0.00, 0.00, 0.0…
+## $ bparkir   &lt;dbl&gt; 2000, 2000, 3000, 0, 0, 0, 0, 0, 0, 0, 2000, 5000, …
+## $ durasi    &lt;dbl&gt; 20, 10, 15, 30, 5, 30, 5, 30, 5, 9, 30, 30, 10, 30,…
+## $ bareng    &lt;dbl&gt; 2, 0, 2, 5, 2, 0, 0, 0, 0, 0, 2, 3, 1, 0, 10, 3, 2,…
+## $ toplajur  &lt;dbl&gt; 4, 4, 4, 8, 2, 4, 4, 4, 0, 2, 8, 6, 4, 4, 2, 4, 6, …
+## $ usia      &lt;dbl&gt; 45, 46, 50, 25, 22, 63, 22, 60, 20, 19, 16, 46, 22,…
+## $ jmlmotor  &lt;dbl&gt; 2, 2, 3, 0, 2, 1, 1, 2, 1, 0, 2, 1, 1, 4, 5, 1, 3, …
+## $ jmlmobil  &lt;dbl&gt; 0, 1, 0, 0, 3, 1, 1, 1, 0, 0, 2, 1, 0, 0, 1, 0, 0, …
+## $ jmlsepeda &lt;dbl&gt; 2, 4, 0, 2, 3, 2, 1, 1, 0, 0, 0, 2, 0, 2, 6, 1, 4, …
+## $ jmldewasa &lt;dbl&gt; 4, 4, 4, 3, 5, 2, 2, 4, 1, 1, 3, 1, 5, 2, 2, 3, 5, …
+## $ jmlanak   &lt;dbl&gt; 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 2, 2, 0, 0, 0, 0, 3, …
+## $ jarak     &lt;dbl&gt; 3000, 3000, 3000, 7000, 280, 7000, 600, 7200, 0, 50…</code></pre>
 <p><strong>Latihan 1:</strong></p>
 <p>Berdasarkan output <code>glimpse</code> di atas, jawablah pertanyaan berikut:</p>
 <ol style="list-style-type: decimal">
@@ -260,7 +260,7 @@
 <span class="header-section-number">10.6.1</span> Uji Bartlett of Sphericity<a class="anchor" aria-label="anchor" href="#uji-bartlett-of-sphericity"><i class="fas fa-link"></i></a>
 </h3>
 <p>Uji ini melihat apakah terdapat korelasi antarvariabel dalam data. Syarat: Nilai <span class="math inline">\(p &lt; 0,05\)</span>.</p>
-<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Uji Bartlett</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/cortest.bartlett.html">cortest.bartlett</a></span><span class="op">(</span><span class="va">data_analisis</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## $chisq
@@ -279,18 +279,20 @@
 <span class="header-section-number">10.6.2</span> Uji KMO dan MSA<a class="anchor" aria-label="anchor" href="#uji-kmo-dan-msa"><i class="fas fa-link"></i></a>
 </h3>
 <p>Nilai KMO keseluruhan harus <span class="math inline">\(&gt; 0,5\)</span>. Selain itu, nilai MSA per variabel (diagonal pada matriks anti-image correlation) juga harus <span class="math inline">\(&gt; 0,5\)</span>.</p>
-<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb312"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Uji KMO</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/KMO.html">KMO</a></span><span class="op">(</span><span class="va">data_analisis</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Kaiser-Meyer-Olkin factor adequacy
 ## Call: KMO(r = data_analisis)
 ## Overall MSA =  0.63
 ## MSA for each item = 
-##    ongkos   bparkir    durasi    bareng  toplajur      usia  jmlmotor  jmlmobil jmlsepeda jmldewasa   jmlanak     jarak 
-##      0.66      0.65      0.60      0.63      0.81      0.62      0.61      0.61      0.57      0.48      0.44      0.64</code></pre>
+##    ongkos   bparkir    durasi    bareng  toplajur      usia  jmlmotor 
+##      0.66      0.65      0.60      0.63      0.81      0.62      0.61 
+##  jmlmobil jmlsepeda jmldewasa   jmlanak     jarak 
+##      0.61      0.57      0.48      0.44      0.64</code></pre>
 <p>Berdasarkan hasil di atas: - Nilai KMO Keseluruhan (<em>Overall MSA</em>) = 0,63 (Layak, &gt; 0,5). - Namun, jika dilihat per variabel (<em>MSA for each item</em>), terdapat variabel dengan nilai &lt; 0,5 yaitu <code>jmldewasa</code> (0,48) dan <code>jmlanak</code> (0,44).</p>
 <p>Sesuai prosedur, kita harus mengeluarkan variabel yang tidak memenuhi syarat MSA.</p>
-<div class="sourceCode" id="cb320"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb314"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Mengeluarkan variabel jmldewasa dan jmlanak</span></span>
 <span><span class="va">data_analisis_final</span> <span class="op">&lt;-</span> <span class="va">data_analisis</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">jmldewasa</span>, <span class="op">-</span><span class="va">jmlanak</span><span class="op">)</span></span>
@@ -301,8 +303,10 @@
 ## Call: KMO(r = data_analisis_final)
 ## Overall MSA =  0.65
 ## MSA for each item = 
-##    ongkos   bparkir    durasi    bareng  toplajur      usia  jmlmotor  jmlmobil jmlsepeda     jarak 
-##      0.66      0.65      0.60      0.63      0.82      0.62      0.64      0.62      0.58      0.64</code></pre>
+##    ongkos   bparkir    durasi    bareng  toplajur      usia  jmlmotor 
+##      0.66      0.65      0.60      0.63      0.82      0.62      0.64 
+##  jmlmobil jmlsepeda     jarak 
+##      0.62      0.58      0.64</code></pre>
 <p>Sekarang seluruh variabel memiliki MSA &gt; 0,5 dan KMO keseluruhan naik menjadi 0,68. Data siap diekstraksi.</p>
 </div>
 </div>
@@ -316,13 +320,14 @@
 <span class="header-section-number">10.7.1</span> Nilai Eigen dan Total Variansi<a class="anchor" aria-label="anchor" href="#nilai-eigen-dan-total-variansi"><i class="fas fa-link"></i></a>
 </h3>
 <p>Kita akan melihat berapa banyak variansi yang bisa dijelaskan oleh setiap komponen.</p>
-<div class="sourceCode" id="cb322"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb316"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Melakukan PCA tanpa rotasi untuk melihat Eigenvalues</span></span>
 <span><span class="va">analisis_awal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/psych/man/principal.html">principal</a></span><span class="op">(</span><span class="va">data_analisis_final</span>, nfactors <span class="op">=</span> <span class="fl">10</span>, rotate <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Menampilkan nilai eigen</span></span>
 <span><span class="va">analisis_awal</span><span class="op">$</span><span class="va">values</span></span></code></pre></div>
-<pre><code>##  [1] 2.4878770 1.6496907 1.2355641 1.0172985 0.8514614 0.8261586 0.6137405 0.5061041 0.4703792 0.3417258</code></pre>
+<pre><code>##  [1] 2.4878770 1.6496907 1.2355641 1.0172985 0.8514614 0.8261586
+##  [7] 0.6137405 0.5061041 0.4703792 0.3417258</code></pre>
 <p>Kriteria umum penentuan jumlah dimensi: 1. <strong>Kaiser’s Criterion</strong>: Ambil komponen dengan nilai eigen &gt; 1. 2. <strong>Cumulative Variance</strong>: Ambil jumlah komponen yang menjelaskan total variansi &gt; 60%.</p>
 <p>Dari nilai eigen di atas, terdapat 4 komponen dengan nilai &gt; 1 (2.488, 1.650, 1.236, 1.017).</p>
 </div>
@@ -331,7 +336,7 @@
 <span class="header-section-number">10.7.2</span> <em>Scree Plot</em><a class="anchor" aria-label="anchor" href="#scree-plot"><i class="fas fa-link"></i></a>
 </h3>
 <p>Grafik ini menunjukkan penurunan nilai eigen. Titik di mana grafik mulai melandai (siku) menunjukkan batas jumlah faktor.</p>
-<div class="sourceCode" id="cb324"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb318"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat Scree Plot</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/psych/man/VSS.scree.html">scree</a></span><span class="op">(</span><span class="va">data_analisis_final</span>, pc <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <div class="inline-figure"><img src="figures/mod09-scree-plot-1.png" width="672"></div>
@@ -353,7 +358,7 @@
 <span class="header-section-number">10.8.1</span> Analisis Faktor (Common Factor Analysis)<a class="anchor" aria-label="anchor" href="#analisis-faktor-common-factor-analysis"><i class="fas fa-link"></i></a>
 </h3>
 <p>Analisis ini bertujuan mengelompokkan variabel-variabel yang mirip (korelasi tinggi) ke dalam faktor laten.</p>
-<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb319"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Analisis Faktor dengan 4 faktor dan rotasi Varimax</span></span>
 <span><span class="co"># fm="pa" (Principal Axis) adalah metode umum untuk Common Factor Analysis di R (mirip SPSS)</span></span>
 <span><span class="va">af_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/psych/man/fa.html">fa</a></span><span class="op">(</span><span class="va">data_analisis_final</span>, nfactors <span class="op">=</span> <span class="fl">4</span>, rotate <span class="op">=</span> <span class="st">"varimax"</span>, fm <span class="op">=</span> <span class="st">"pa"</span><span class="op">)</span></span>
@@ -397,7 +402,7 @@
 <span class="header-section-number">10.8.2</span> Analisis Komponen Prinsip (PCA)<a class="anchor" aria-label="anchor" href="#analisis-komponen-prinsip-pca"><i class="fas fa-link"></i></a>
 </h3>
 <p>Jika tujuan kita adalah mereduksi data menjadi skor komponen untuk analisis lanjutan (misal regresi), kita menggunakan PCA.</p>
-<div class="sourceCode" id="cb327"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb321"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># PCA dengan 4 komponen dan rotasi Varimax</span></span>
 <span><span class="va">pca_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/psych/man/principal.html">principal</a></span><span class="op">(</span><span class="va">data_analisis_final</span>, nfactors <span class="op">=</span> <span class="fl">4</span>, rotate <span class="op">=</span> <span class="st">"varimax"</span><span class="op">)</span></span>
 <span></span>
@@ -421,7 +426,7 @@
 ## SS loadings    1.840 1.753 1.626 1.171
 ## Proportion Var 0.184 0.175 0.163 0.117
 ## Cumulative Var 0.184 0.359 0.522 0.639</code></pre>
-<div class="sourceCode" id="cb329"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb323"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menampilkan bobot skor komponen (weights) untuk pembentukan skor</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">pca_result</span><span class="op">$</span><span class="va">weights</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##               RC1     RC3     RC2     RC4
@@ -441,7 +446,7 @@
 <p>Maka persamaannya: <span class="math display">\[RC1 \approx 0.524(Z_{durasi}) + 0.451(Z_{jarak}) + \dots\]</span></p>
 <p><strong>Menghasilkan Component Score</strong></p>
 <p>Untuk mendapatkan nilai skor komponen setiap observasi secara otomatis, kita dapat mengakses objek <code>$scores</code> dari hasil PCA.</p>
-<div class="sourceCode" id="cb331"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb325"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menampilkan 6 baris pertama dari skor komponen</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pca_result</span><span class="op">$</span><span class="va">scores</span><span class="op">)</span></span></code></pre></div>
 <pre><code>##             RC1        RC3         RC2         RC4

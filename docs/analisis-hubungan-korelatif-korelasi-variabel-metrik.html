@@ -112,17 +112,17 @@
 <p>Untuk dua variabel metrik, selain <strong>kekuatan</strong> dan juga <strong>arah hubungan</strong>, kita juga dapat menganalisis <strong>pola</strong> hubungan tersebut, yakni persebaran titik-titik data secara <strong>grafis</strong>.</p>
 <p>Dalam praktikum ini kita akan mempraktikkan perhitungan dua jenis koefisien: <strong>Spearman’s rho</strong> (<span class="math inline">\(\rho\)</span>) dan <strong>Pearson’s r.</strong></p>
 </div>
-<div id="pustaka-libraries-yang-diperlukan-dan-memuat-data-1" class="section level2" number="8.2">
+<div id="pustaka-libraries-yang-diperlukan-dan-memuat-data" class="section level2" number="8.2">
 <h2>
-<span class="header-section-number">8.2</span> Pustaka <em>(Libraries)</em> yang Diperlukan dan Memuat Data<a class="anchor" aria-label="anchor" href="#pustaka-libraries-yang-diperlukan-dan-memuat-data-1"><i class="fas fa-link"></i></a>
+<span class="header-section-number">8.2</span> Pustaka <em>(Libraries)</em> yang Diperlukan dan Memuat Data<a class="anchor" aria-label="anchor" href="#pustaka-libraries-yang-diperlukan-dan-memuat-data"><i class="fas fa-link"></i></a>
 </h2>
 <p>Seperti biasa, kita perlu memuat pustaka <em>(libraries)</em> yang diperlukan dalam pengolahan data kita. Dalam analisis korelasi variabel metrik kita tidak lagi menggunakan tabel silang, tetapi kita langsung menganalisis kolom-kolom yang ada di dataset kita.</p>
-<div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb271"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span></code></pre></div>
 <p><strong>Memuat dataset</strong></p>
 <p>Kita akan menggunakan dataset keempat kampus di Kota Bandar Lampung dan sekitarnya sebagai bahan. Tulis ulang dan jalankan baris perintah berikut untuk mengolah data keempat kampus</p>
-<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb272"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membaca data</span></span>
 <span><span class="va">data_mahasiswa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"datasets/Data Praktikum 07.csv"</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Mengatur Faktor untuk Variabel Kategoris: Opsional</strong></p>
@@ -136,7 +136,7 @@
 <p><strong>Membuat Diagram Pencar</strong></p>
 <p>Membuat diagram pencar dapat dilakukan dengan menerapkan perintah <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> dari pustaka <code>ggplot2</code>yang dimuat bersama pustaka <code>tidyverse</code>.</p>
 <p>Kita akan melihat pola sebaran data kita dilihat dari variabel jarak dari kampus (<code>jarak</code>) dengan biaya yang dikeluarkan untuk transportasi selama sepekan (<code>biaya sepekan</code>). Variabel-variabel yang akan kita lihat hubungannya itu kita masukkan ke <code>x</code> dan <code>y</code> yang adalah dalam perintah <code><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes()</a></code>.</p>
-<div class="sourceCode" id="cb279"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb273"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
 <span><span class="va">scatter_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">data_mahasiswa</span>,</span>
@@ -174,7 +174,7 @@
 </ul>
 <p>Kita akan menggunakan koefisien korelasi <span class="math inline">\(\rho\)</span> Spearman ini untuk menganalisis hubungan antara jarak tempat tinggal dengan biaya yang dikeluarkan per pekan.</p>
 <p>Koefisien korelasi untuk variabel metrik di R dapat dianalisis dengan perintah <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> yang mengambil masukan berupa vektor data angka variabel-variabel yang kita analisis. Adapun jenis korelasi dapat kita pilih dengan menambahkan argumen <code>method =</code> yang dapat bernilai <code>"spearman",</code> <code>"kendall"</code>, atau <code>"pearson"</code>, sesuai dengan metode yang kita gunakan.</p>
-<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb274"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Mengatur variabel x dan y</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">jarak</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">`biaya sepekan`</span></span>
@@ -189,20 +189,20 @@
 </h2>
 <p>Untuk analisis menggunakan koefisien korelasi Pearson’s r, kita akan memodifikasi sedikit data kita. Kita akan melihat hubungan antara jumlah perjalanan di hari kerja <em>(weekdays)</em> dengan jarak tempat tinggal ke kampus <strong>untuk pengguna transportasi online saja</strong>. Dengan demikian, kita perlu membuat dataset terpisah dari dataset utama kita.</p>
 <p>Terlebih dahulu, kita perlu membuat variabel khusus <code>jumlah_perjalanan_weekdays</code> yang merupakan penjumlahan dari kolom-kolom <code>Jumlah Perjalanan Senin</code> hingga <code>Jumlah Perjalanan Jumat</code>. Perhatikan cara pembuatannya yang menggunakan perintah <code><a href="https://rdrr.io/r/base/colSums.html">rowSums()</a></code> dan <code><a href="https://dplyr.tidyverse.org/reference/across.html">across()</a></code> yang merupakan perintah khusus untuk operasi-operasi antarkolom. Tanda <code>:</code> bermakna “pilih kolom dari jumlah perjalanan hari senin sampai kolom jumlah perjalanan hari jumat”. Hal ini memungkinkan karena dalam dataset kita kolom-kolom tersebut posisinya berdekatan.</p>
-<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb276"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat kolom jumlah perjalanan weekdays</span></span>
 <span><span class="va">data_mahasiswa</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>`jumlah_perjalanan_weekdays` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colSums.html">rowSums</a></span><span class="op">(</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html">across</a></span><span class="op">(</span><span class="va">`Jumlah Perjalanan Senin`</span><span class="op">:</span><span class="va">`Jumlah Perjalanan Jumat`</span><span class="op">)</span></span>
 <span>  <span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Setelah itu, barulah kita membuat dataset khusus pengguna layanan online saja. Kita menggunakan perintah <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> dengan operator <code>==</code> yang bermakna <em>saringlah data dengan nilai</em> <code>`kendaraan utama`</code> <em>sama dengan</em> <code>"Layanan online"</code><em>.</em></p>
-<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb277"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Memilih responden mahasiswa pengguna angkutan daring saja</span></span>
 <span><span class="co"># dan membuatnya menjadi dataset baru</span></span>
 <span><span class="va">data_mahasiswa_online</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">`kendaraan utama`</span> <span class="op">==</span> <span class="st">"Layanan online"</span><span class="op">)</span></span></code></pre></div>
 <p>Kita dapat mengecek hasilnya dengan melakukan perintah <code><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by()</a></code> dan <code><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarize()</a></code>. Hasilnya akan menampilkan <code>kendaraan utama</code> kita hanya bernilai <code>"Layanan online"</code></p>
-<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb278"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menampilkan hasil filter</span></span>
 <span><span class="va">data_mahasiswa_online</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">`kendaraan utama`</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -212,7 +212,7 @@
 ##   &lt;chr&gt;              &lt;int&gt;
 ## 1 Layanan online       188</code></pre>
 <p>Kemudian, kita bisa menghitung koefisien korelasi Pearson’s <span class="math inline">\(r\)</span>-nya.</p>
-<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Mengatur variabel x dan y</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">jarak</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`jumlah_perjalanan_weekdays`</span></span>
@@ -222,7 +222,7 @@
 <p>Interpretasi hasil koefisien tersebut sama dengan interpretasi koefisien korelasi variabel ordinal, yakni tanda menunjukkan arah hubungan sementara besar angka menunjukkan kekuatan hubungan.</p>
 <p><strong>Latihan: Interpretasikan nilai korelasi r tersebut</strong></p>
 <p>Kita akan menelaah hubungan antara dua variabel tersebut berdasarkan tampilan visualnya dari diagram pencar <em>(scatterplot)</em>.</p>
-<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jumlah perjalanan weekdays dan jarak tempat tinggal pengguna online</span></span>
 <span><span class="va">scatter_plot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
 <span>  data <span class="op">=</span> <span class="va">data_mahasiswa_online</span>,</span>
@@ -276,7 +276,7 @@
       <ul class="nav navbar-nav">
 <li><a class="nav-link" href="#analisis-hubungan-korelatif-korelasi-variabel-metrik"><span class="header-section-number">8</span> Analisis Hubungan Korelatif: Korelasi Variabel Metrik</a></li>
 <li><a class="nav-link" href="#pendahuluan-3"><span class="header-section-number">8.1</span> Pendahuluan</a></li>
-<li><a class="nav-link" href="#pustaka-libraries-yang-diperlukan-dan-memuat-data-1"><span class="header-section-number">8.2</span> Pustaka (Libraries) yang Diperlukan dan Memuat Data</a></li>
+<li><a class="nav-link" href="#pustaka-libraries-yang-diperlukan-dan-memuat-data"><span class="header-section-number">8.2</span> Pustaka (Libraries) yang Diperlukan dan Memuat Data</a></li>
 <li><a class="nav-link" href="#pola-hubungan-data"><span class="header-section-number">8.3</span> Pola Hubungan Data</a></li>
 <li><a class="nav-link" href="#analisis-korelasi-spearmans-rho"><span class="header-section-number">8.4</span> Analisis Korelasi Spearman’s \(\rho\)</a></li>
 <li>

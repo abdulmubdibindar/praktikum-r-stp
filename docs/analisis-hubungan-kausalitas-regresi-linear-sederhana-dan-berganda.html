@@ -148,17 +148,17 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <span class="header-section-number">9.3</span> Memuat Pustaka <em>(Libraries)</em> yang Diperlukan<a class="anchor" aria-label="anchor" href="#memuat-pustaka-libraries-yang-diperlukan"><i class="fas fa-link"></i></a>
 </h2>
 <p>Seperti biasa, kita perlu memuat pustaka <em>(libraries)</em> yang diperlukan dalam pengolahan data kita. Seperti halnya juga analisis korelasi variabel metrik, kita tidak lagi menggunakan tabel silang, tetapi kita langsung menganalisis kolom-kolom yang ada di dataset kita.</p>
-<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># untuk mengolah data terstruktur</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span> <span class="co"># untuk membaca file csv</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span> <span class="co"># untuk memproduksi tabel hasil pembuatan regresi dengan cepat dan rapi</span></span></code></pre></div>
 </div>
-<div id="memuat-dataset" class="section level2" number="9.4">
+<div id="memuat-dataset-4" class="section level2" number="9.4">
 <h2>
-<span class="header-section-number">9.4</span> Memuat Dataset<a class="anchor" aria-label="anchor" href="#memuat-dataset"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4</span> Memuat Dataset<a class="anchor" aria-label="anchor" href="#memuat-dataset-4"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kita akan menggunakan dataset keempat kampus di Kota Bandar Lampung dan sekitarnya sebagai bahan. Kemudian kita akan menyaring objek-objek yang memiliki nilai variabel <code>kendaraan utama</code> sama dengan <code>'Layanan online'</code>.</p>
-<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membaca data dari file csv</span></span>
 <span><span class="va">data_mahasiswa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"datasets/Data Praktikum 08.csv"</span><span class="op">)</span></span>
 <span></span>
@@ -174,7 +174,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <p>Pola hubungan akan kita analisis dengan membuat diagram pencar <em>(scatter plot)</em> antara variabel dependen dengan variabel independennya.</p>
 <p><strong>Menghitung Koefisien Pearson’s</strong> <span class="math inline">\(r\)</span></p>
 <p>Menghitung koefisien korelasi Pearson’s <span class="math inline">\(r\)</span> dapat kita lakukan dengan perintah <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> dengan atribut <code>method = "pearson"</code> setelah terlebih dahulu menyimpan nilai masing-masing variabel ke dalam suatu vektor.</p>
-<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menyimpan vektor jarak dan biaya (perjalanan) sepekan ke dalam variabel</span></span>
 <span><span class="co"># 'x' dan 'y'</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">jarak</span></span>
@@ -188,7 +188,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 </blockquote>
 <p><strong>Membuat Diagram Pencar</strong></p>
 <p>Membuat diagram pencar dapat dilakukan dengan menerapkan perintah <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> dari pustaka <code>ggplot2</code> yang dimuat bersama pustaka <code>tidyverse</code>.</p>
-<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
 <span><span class="co"># untuk mahasiswa yang pakai layanan online</span></span>
 <span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
@@ -215,13 +215,13 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <div class="inline-figure"><img src="figures/mod08-create-initial-scatterplot-1.png" width="672"></div>
 <p>Setelah Anda melakukan pembuatan diagram pencar tersebut, Anda akan menyadari bahwa kita memiliki <em>outlier</em> (pencilan), yakni objek yang memiliki nilai jarak dari tempat tinggal ke kampus mencapai hampir 25 km.</p>
 <p>Keberadaan pencilan ini akan mengganggu hasil analisis kita. Mari kita buktikan dengan menghilangkan data pencilan tersebut.</p>
-<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menghilangkan observasi pencilan dengan menyaring observasi dengan</span></span>
 <span><span class="co"># jarak &lt; 15 km</span></span>
 <span><span class="va">data_mahasiswa_online</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">jarak</span> <span class="op">&lt;</span> <span class="fl">15</span><span class="op">)</span></span></code></pre></div>
 <p>Di sini kita akan menghitung ulang nilai koefisien korelasi kita.</p>
-<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menghitung korelasi antara biaya sepekan dengan jarak dari dataset yang</span></span>
 <span><span class="co"># sudah dihilangkan pencilannya</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">jarak</span></span>
@@ -233,7 +233,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <p><strong>Jawablah:</strong> Bagaimana perbedaan nilai koefisiennya?</p>
 </blockquote>
 <p>Kita pun dapat memeriksa hasil perbaikan dataset kita dari diagram pencar yang baru berikut.</p>
-<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
 <span><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan</span></span>
 <span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
@@ -269,7 +269,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <span class="header-section-number">9.6.1</span> Penyusunan Model<a class="anchor" aria-label="anchor" href="#penyusunan-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>Untuk membuat persamaan model regresi linear, kita akan menggunakan perintah <code>lm</code> yang sudah disediakan secara bawaan oleh R. Hasil dari perintah ini dapat kita simpan sebagai variabel tertentu.</p>
-<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat model regresi linear</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">data_mahasiswa_online</span><span class="op">)</span></span></code></pre></div>
 <p>Argumen yang kita gunakan adalah <code>var_dependen ~ var_independen</code> serta nama dataset yang kita gunakan. Tanda <code>~</code> (disebut <em>tilde</em>) dapat kita masukkan dengan menekan <code>Shift</code> + <code>`</code> yang ada di sebelah kiri tombol angka 1 di <em>keyboard</em> kita.</p>
@@ -280,7 +280,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <span class="header-section-number">9.6.2</span> Penampilan Model<a class="anchor" aria-label="anchor" href="#penampilan-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>Untuk menampilkan hasil penyusunan model regresi linear, kita akan menggunakan perintah <code>summary</code> yang juga sudah disediakan secara bawaan oleh R.</p>
-<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menampilkan hasil model regresi linear</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
@@ -309,26 +309,26 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <li><p>Nilai-nilai uji kualitas model seperti <code>Residual standard error</code> <em>(standard error</em> estimasi), <em>Multiple R-squared</em> dan <em>Adjusted R-squared</em> (koefisien determinasi), serta <em>F-statistic</em> (uji signifikansi model).</p></li>
 </ul>
 <p>Selain menggunakan <code>summary</code>, kita juga dapat menggunakan perintah <code>tbl_regression</code>, perintah yang disediakan oleh paket/<em>library</em> <code>gtsummary</code>. Hasil dari perintah ini adalah tabel yang sudah diformat sesuai dengan <em>templat</em> artikel ilmiah.</p>
-<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menampilkan hasil model regresi linear dengan tbl_regression</span></span>
 <span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
-<div id="gyzehufyvy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gyzehufyvy table {
+<div id="owcigidbvz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#owcigidbvz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gyzehufyvy thead, #gyzehufyvy tbody, #gyzehufyvy tfoot, #gyzehufyvy tr, #gyzehufyvy td, #gyzehufyvy th {
+#owcigidbvz thead, #owcigidbvz tbody, #owcigidbvz tfoot, #owcigidbvz tr, #owcigidbvz td, #owcigidbvz th {
   border-style: none;
 }
 
-#gyzehufyvy p {
+#owcigidbvz p {
   margin: 0;
   padding: 0;
 }
 
-#gyzehufyvy .gt_table {
+#owcigidbvz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -354,12 +354,12 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-left-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_caption {
+#owcigidbvz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gyzehufyvy .gt_title {
+#owcigidbvz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -371,7 +371,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-bottom-width: 0;
 }
 
-#gyzehufyvy .gt_subtitle {
+#owcigidbvz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -383,7 +383,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-top-width: 0;
 }
 
-#gyzehufyvy .gt_heading {
+#owcigidbvz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -395,13 +395,13 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-right-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_bottom_border {
+#owcigidbvz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_col_headings {
+#owcigidbvz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -416,7 +416,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-right-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_col_heading {
+#owcigidbvz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -436,7 +436,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   overflow-x: hidden;
 }
 
-#gyzehufyvy .gt_column_spanner_outer {
+#owcigidbvz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -448,15 +448,15 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 4px;
 }
 
-#gyzehufyvy .gt_column_spanner_outer:first-child {
+#owcigidbvz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gyzehufyvy .gt_column_spanner_outer:last-child {
+#owcigidbvz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gyzehufyvy .gt_column_spanner {
+#owcigidbvz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -468,11 +468,11 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   width: 100%;
 }
 
-#gyzehufyvy .gt_spanner_row {
+#owcigidbvz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gyzehufyvy .gt_group_heading {
+#owcigidbvz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -498,7 +498,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   text-align: left;
 }
 
-#gyzehufyvy .gt_empty_group_heading {
+#owcigidbvz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -513,15 +513,15 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   vertical-align: middle;
 }
 
-#gyzehufyvy .gt_from_md > :first-child {
+#owcigidbvz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gyzehufyvy .gt_from_md > :last-child {
+#owcigidbvz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gyzehufyvy .gt_row {
+#owcigidbvz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -540,7 +540,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   overflow-x: hidden;
 }
 
-#gyzehufyvy .gt_stub {
+#owcigidbvz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -553,7 +553,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 5px;
 }
 
-#gyzehufyvy .gt_stub_row_group {
+#owcigidbvz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -567,15 +567,15 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   vertical-align: top;
 }
 
-#gyzehufyvy .gt_row_group_first td {
+#owcigidbvz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gyzehufyvy .gt_row_group_first th {
+#owcigidbvz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gyzehufyvy .gt_summary_row {
+#owcigidbvz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -585,16 +585,16 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 5px;
 }
 
-#gyzehufyvy .gt_first_summary_row {
+#owcigidbvz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_first_summary_row.thick {
+#owcigidbvz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gyzehufyvy .gt_last_summary_row {
+#owcigidbvz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -604,7 +604,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-bottom-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_grand_summary_row {
+#owcigidbvz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -614,7 +614,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 5px;
 }
 
-#gyzehufyvy .gt_first_grand_summary_row {
+#owcigidbvz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -624,7 +624,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-top-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_last_grand_summary_row_top {
+#owcigidbvz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -634,11 +634,11 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-bottom-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_striped {
+#owcigidbvz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gyzehufyvy .gt_table_body {
+#owcigidbvz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -647,7 +647,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-bottom-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_footnotes {
+#owcigidbvz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -661,7 +661,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-right-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_footnote {
+#owcigidbvz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -670,7 +670,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 5px;
 }
 
-#gyzehufyvy .gt_sourcenotes {
+#owcigidbvz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -684,7 +684,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-right-color: #D3D3D3;
 }
 
-#gyzehufyvy .gt_sourcenote {
+#owcigidbvz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -692,72 +692,72 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 5px;
 }
 
-#gyzehufyvy .gt_left {
+#owcigidbvz .gt_left {
   text-align: left;
 }
 
-#gyzehufyvy .gt_center {
+#owcigidbvz .gt_center {
   text-align: center;
 }
 
-#gyzehufyvy .gt_right {
+#owcigidbvz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gyzehufyvy .gt_font_normal {
+#owcigidbvz .gt_font_normal {
   font-weight: normal;
 }
 
-#gyzehufyvy .gt_font_bold {
+#owcigidbvz .gt_font_bold {
   font-weight: bold;
 }
 
-#gyzehufyvy .gt_font_italic {
+#owcigidbvz .gt_font_italic {
   font-style: italic;
 }
 
-#gyzehufyvy .gt_super {
+#owcigidbvz .gt_super {
   font-size: 65%;
 }
 
-#gyzehufyvy .gt_footnote_marks {
+#owcigidbvz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gyzehufyvy .gt_asterisk {
+#owcigidbvz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gyzehufyvy .gt_indent_1 {
+#owcigidbvz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gyzehufyvy .gt_indent_2 {
+#owcigidbvz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gyzehufyvy .gt_indent_3 {
+#owcigidbvz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gyzehufyvy .gt_indent_4 {
+#owcigidbvz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gyzehufyvy .gt_indent_5 {
+#owcigidbvz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#gyzehufyvy .katex-display {
+#owcigidbvz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#gyzehufyvy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#owcigidbvz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -781,30 +781,30 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 </div>
 <p>Jika kalian menemukan pertanyaan untuk menginstal sebuah paket di <em>console</em>, yakni <code>broom.helpers</code>, pilih saja “Yes” untuk mengunduh dan menginstalnya.</p>
 <p>Secara bawaan, tabel tidak menampilkan nilai konstanta <em>(intercept)</em>, menampilkan nilai <em>confidence level</em> 95%, dan menampilkan nilai dari variabel independen sesuai variabel yang kita tetapkan sebelumnya, dalam hal ini adalah <code>x</code>. Untuk menggantinya, kita dapat melakukan penyesuaian perintah sebagai berikut.</p>
-<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression</a></span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
 <span>  intercept <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># mengatur intercept-nya ditampilkan</span></span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.99</span>, <span class="co"># mengatur nilai confidence level menjadi 99%</span></span>
 <span>  label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">x</span> <span class="op">~</span> <span class="st">"Jarak tempuh ke kampus, km"</span><span class="op">)</span> <span class="co"># Mengganti tulisan "x" saja menjadi yang</span></span>
 <span><span class="op">)</span> <span class="co"># lebih bermakna</span></span></code></pre></div>
-<div id="omohigndci" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#omohigndci table {
+<div id="qcotaekotb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qcotaekotb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#omohigndci thead, #omohigndci tbody, #omohigndci tfoot, #omohigndci tr, #omohigndci td, #omohigndci th {
+#qcotaekotb thead, #qcotaekotb tbody, #qcotaekotb tfoot, #qcotaekotb tr, #qcotaekotb td, #qcotaekotb th {
   border-style: none;
 }
 
-#omohigndci p {
+#qcotaekotb p {
   margin: 0;
   padding: 0;
 }
 
-#omohigndci .gt_table {
+#qcotaekotb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -830,12 +830,12 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-left-color: #D3D3D3;
 }
 
-#omohigndci .gt_caption {
+#qcotaekotb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#omohigndci .gt_title {
+#qcotaekotb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -847,7 +847,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-bottom-width: 0;
 }
 
-#omohigndci .gt_subtitle {
+#qcotaekotb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -859,7 +859,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-top-width: 0;
 }
 
-#omohigndci .gt_heading {
+#qcotaekotb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -871,13 +871,13 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-right-color: #D3D3D3;
 }
 
-#omohigndci .gt_bottom_border {
+#qcotaekotb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#omohigndci .gt_col_headings {
+#qcotaekotb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -892,7 +892,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-right-color: #D3D3D3;
 }
 
-#omohigndci .gt_col_heading {
+#qcotaekotb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -912,7 +912,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   overflow-x: hidden;
 }
 
-#omohigndci .gt_column_spanner_outer {
+#qcotaekotb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -924,15 +924,15 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 4px;
 }
 
-#omohigndci .gt_column_spanner_outer:first-child {
+#qcotaekotb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#omohigndci .gt_column_spanner_outer:last-child {
+#qcotaekotb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#omohigndci .gt_column_spanner {
+#qcotaekotb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -944,11 +944,11 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   width: 100%;
 }
 
-#omohigndci .gt_spanner_row {
+#qcotaekotb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#omohigndci .gt_group_heading {
+#qcotaekotb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -974,7 +974,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   text-align: left;
 }
 
-#omohigndci .gt_empty_group_heading {
+#qcotaekotb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -989,15 +989,15 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   vertical-align: middle;
 }
 
-#omohigndci .gt_from_md > :first-child {
+#qcotaekotb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#omohigndci .gt_from_md > :last-child {
+#qcotaekotb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#omohigndci .gt_row {
+#qcotaekotb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1016,7 +1016,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   overflow-x: hidden;
 }
 
-#omohigndci .gt_stub {
+#qcotaekotb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1029,7 +1029,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 5px;
 }
 
-#omohigndci .gt_stub_row_group {
+#qcotaekotb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1043,15 +1043,15 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   vertical-align: top;
 }
 
-#omohigndci .gt_row_group_first td {
+#qcotaekotb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#omohigndci .gt_row_group_first th {
+#qcotaekotb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#omohigndci .gt_summary_row {
+#qcotaekotb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1061,16 +1061,16 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 5px;
 }
 
-#omohigndci .gt_first_summary_row {
+#qcotaekotb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#omohigndci .gt_first_summary_row.thick {
+#qcotaekotb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#omohigndci .gt_last_summary_row {
+#qcotaekotb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1080,7 +1080,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-bottom-color: #D3D3D3;
 }
 
-#omohigndci .gt_grand_summary_row {
+#qcotaekotb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1090,7 +1090,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 5px;
 }
 
-#omohigndci .gt_first_grand_summary_row {
+#qcotaekotb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1100,7 +1100,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-top-color: #D3D3D3;
 }
 
-#omohigndci .gt_last_grand_summary_row_top {
+#qcotaekotb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1110,11 +1110,11 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-bottom-color: #D3D3D3;
 }
 
-#omohigndci .gt_striped {
+#qcotaekotb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#omohigndci .gt_table_body {
+#qcotaekotb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1123,7 +1123,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-bottom-color: #D3D3D3;
 }
 
-#omohigndci .gt_footnotes {
+#qcotaekotb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1137,7 +1137,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-right-color: #D3D3D3;
 }
 
-#omohigndci .gt_footnote {
+#qcotaekotb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1146,7 +1146,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 5px;
 }
 
-#omohigndci .gt_sourcenotes {
+#qcotaekotb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1160,7 +1160,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   border-right-color: #D3D3D3;
 }
 
-#omohigndci .gt_sourcenote {
+#qcotaekotb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1168,72 +1168,72 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
   padding-right: 5px;
 }
 
-#omohigndci .gt_left {
+#qcotaekotb .gt_left {
   text-align: left;
 }
 
-#omohigndci .gt_center {
+#qcotaekotb .gt_center {
   text-align: center;
 }
 
-#omohigndci .gt_right {
+#qcotaekotb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#omohigndci .gt_font_normal {
+#qcotaekotb .gt_font_normal {
   font-weight: normal;
 }
 
-#omohigndci .gt_font_bold {
+#qcotaekotb .gt_font_bold {
   font-weight: bold;
 }
 
-#omohigndci .gt_font_italic {
+#qcotaekotb .gt_font_italic {
   font-style: italic;
 }
 
-#omohigndci .gt_super {
+#qcotaekotb .gt_super {
   font-size: 65%;
 }
 
-#omohigndci .gt_footnote_marks {
+#qcotaekotb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#omohigndci .gt_asterisk {
+#qcotaekotb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#omohigndci .gt_indent_1 {
+#qcotaekotb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#omohigndci .gt_indent_2 {
+#qcotaekotb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#omohigndci .gt_indent_3 {
+#qcotaekotb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#omohigndci .gt_indent_4 {
+#qcotaekotb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#omohigndci .gt_indent_5 {
+#qcotaekotb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#omohigndci .katex-display {
+#qcotaekotb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#omohigndci div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qcotaekotb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1290,7 +1290,7 @@ y = β_0 + β_1x
 y = 93 - 5,3x
 \]</span></p>
 <p>Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik data kita. Ini merupakan persamaan garis terbaik dari seluruh kemungkinan persamaan garis yang ada, yang kita tentukan dengan meminimalkan kuadrat terkecil.</p>
-<div class="sourceCode" id="cb303"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
 <span><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,</span></span>
 <span><span class="co"># ditambah garis dari persamaan regresi</span></span>
@@ -1336,7 +1336,7 @@ y = β_0 + β_1x
 y = 93 - 5,3x
 \]</span></p>
 <p>Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik data kita. Ini merupakan persamaan garis terbaik dari seluruh kemungkinan persamaan garis yang ada, yang kita tentukan dengan meminimalkan kuadrat terkecil.</p>
-<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
 <span><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,</span></span>
 <span><span class="co"># ditambah garis dari persamaan regresi</span></span>
@@ -1428,7 +1428,7 @@ y = 93 - 5,3x
 <span class="header-section-number">9.6.4</span> Melakukan Prediksi<a class="anchor" aria-label="anchor" href="#melakukan-prediksi"><i class="fas fa-link"></i></a>
 </h3>
 <p>Kita melakukan prediksi dengan menggunakan perintah <code>predict</code>. Misalkan kita ingin melakukan prediksi biaya perjalanan sepekan untuk mahasiswa yang tinggal di jarak 90 dan 120 km dari kampus</p>
-<div class="sourceCode" id="cb305"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bahan_pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">120</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">bahan_pred</span><span class="op">)</span></span></code></pre></div>
@@ -1446,11 +1446,11 @@ y = 93 - 5,3x
 </h2>
 <p>Dalam bagian ini kita hanya akan mempelajari penggunaan variabel <em>dummy</em> untuk meningkatkan kekuatan prediksi kita. Di akhir, Anda akan menafsirkan hal-hal yang sudah Anda pelajari pada bagian regresi linear.</p>
 <p>Kita akan menggunakan variabel <code>jenis tempat tinggal</code> untuk variabel <em>dummy</em>. Pertama, kita akan mengatur jenis nilai pada kolom <code>jenis tempat tinggal</code> menggunakan perintah <code>factor</code>.</p>
-<div class="sourceCode" id="cb307"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat nilai kolom menjadi variabel kategoris dengan 'factor'</span></span>
 <span><span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`jenis tempat tinggal`</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`jenis tempat tinggal`</span><span class="op">)</span></span></code></pre></div>
 <p>Kedua, kita akan membuat model seperti halnya yang kita lakukan dalam analisis regresi linear sederhana. Kita akan menggunakan nama yang lebih representatif.</p>
-<div class="sourceCode" id="cb308"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat variabel-variabel</span></span>
 <span><span class="va">jarak</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="co"># variabel 'x' saja diubah menjadi 'jarak'</span></span>
 <span><span class="va">biaya</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="co"># variabel 'y' saja diubah menjadi 'biaya'</span></span>
@@ -1590,7 +1590,7 @@ y = 93 - 5,3x
 <span class="header-section-number">9.7.3</span> Prediksi Model<a class="anchor" aria-label="anchor" href="#prediksi-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dari persamaan model regresi linear kita, kita juga dapat memprediksi nilai biaya perjalanan sepekan untuk mahasiswa-mahasiswa dengan kondisi lain. Misalnya kita ingin memprediksi biaya sepekan transportasi mahasiswa yang tinggal di Rumah saudara berjarak 7,9 km dari kampus dan di Rumah kontrakan bersama yang berjarak 10 km dari kampus.</p>
-<div class="sourceCode" id="cb310"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menyusun dataset untuk diprediksi</span></span>
 <span><span class="va">mhs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  jarak <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7.9</span>, <span class="fl">10</span><span class="op">)</span>,</span>
@@ -1642,7 +1642,7 @@ y = 93 - 5,3x
 <li><a class="nav-link" href="#pendahuluan-4"><span class="header-section-number">9.1</span> Pendahuluan</a></li>
 <li><a class="nav-link" href="#penjelasan-kasus"><span class="header-section-number">9.2</span> Penjelasan Kasus</a></li>
 <li><a class="nav-link" href="#memuat-pustaka-libraries-yang-diperlukan"><span class="header-section-number">9.3</span> Memuat Pustaka (Libraries) yang Diperlukan</a></li>
-<li><a class="nav-link" href="#memuat-dataset"><span class="header-section-number">9.4</span> Memuat Dataset</a></li>
+<li><a class="nav-link" href="#memuat-dataset-4"><span class="header-section-number">9.4</span> Memuat Dataset</a></li>
 <li><a class="nav-link" href="#pola-hubungan-data-1"><span class="header-section-number">9.5</span> Pola Hubungan Data</a></li>
 <li>
 <a class="nav-link" href="#model-regresi-linear-sederhana"><span class="header-section-number">9.6</span> Model Regresi Linear Sederhana</a><ul class="nav navbar-nav">

@@ -183,13 +183,20 @@
 <div class="sourceCode" id="cb153"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menampilkan ringkasan data</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##     kampus             jarak_km        jenis_tinggal      tipe_tinggal_baku 
-##  Length:1600        Min.   : 0.06352   Length:1600        Length:1600       
-##  Class :character   1st Qu.: 1.31127   Class :character   Class :character  
-##  Mode  :character   Median : 2.90884   Mode  :character   Mode  :character  
-##                     Mean   : 3.62552                                        
-##                     3rd Qu.: 5.14000                                        
-##                     Max.   :43.54519</code></pre>
+<pre><code>##     kampus             jarak_km        jenis_tinggal     
+##  Length:1600        Min.   : 0.06352   Length:1600       
+##  Class :character   1st Qu.: 1.31127   Class :character  
+##  Mode  :character   Median : 2.90884   Mode  :character  
+##                     Mean   : 3.62552                     
+##                     3rd Qu.: 5.14000                     
+##                     Max.   :43.54519                     
+##  tipe_tinggal_baku 
+##  Length:1600       
+##  Class :character  
+##  Mode  :character  
+##                    
+##                    
+## </code></pre>
 <div class="sourceCode" id="cb155"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menampilkan frekuensi jenis tempat tinggal yang sudah dibakukan</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">tipe_tinggal_baku</span><span class="op">)</span></span></code></pre></div>
