@@ -1,12 +1,12 @@
 # Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda
 
+::: rmdcapaian
 Setelah mempelajari modul ini, Anda diharapkan dapat:
 
 1. mampu menghasilkan regresi linear sederhana dengan perangkat lunak komputer [STP-13.3]{.capaian}
 2. mampu menghasilkan persamaan regresi linear berganda dengan perangkat lunak komputer [STP-14.3]{.capaian}
 
-
----
+:::
 
 ## Pendahuluan
 
@@ -17,7 +17,7 @@ Analisis regresi linear mewajibkan tingkat pengukuran minimal untuk variabel dep
 Analisis regresi linear menghasilkan persamaan yang disebut **persamaan regresi linear**. Bentuk umum persamaan regresi linear tersebut adalah sebagai berikut.
 
 $$
-y = β_0 + β_1x
+y = \beta_0 + \beta_1x
 $$
 
 dengan
@@ -30,7 +30,7 @@ dengan
 Persamaan regresi linear di atas adalah untuk **analisis regresi linear sederhana**, yakni analisis regresi linear yang melibatkan dua variabel saja. Untuk **regresi linear berganda**, kita hanya perlu menambahkan pasangan $\beta$ dan $x$ lainnya, sehingga bentuk umum untuk persamaan regresi linear berganda adalah seperti berikut.
 
 $$
-y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
+y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_kx_k
 $$
 
 dengan
@@ -48,10 +48,10 @@ Untuk **regresi linear berganda**, kita akan melibatkan satu variabel tambahan s
 
 Seperti biasa, kita perlu memuat pustaka *(libraries)* yang diperlukan dalam pengolahan data kita. Seperti halnya juga analisis korelasi variabel metrik, kita tidak lagi menggunakan tabel silang, tetapi kita langsung menganalisis kolom-kolom yang ada di dataset kita.
 
-```{r mod08-load-libraries, echo=TRUE}
-library(tidyverse) # untuk mengolah data terstruktur
-library(readr) # untuk membaca file csv
-library(gtsummary) # untuk memproduksi tabel hasil pembuatan regresi dengan cepat dan rapi
+```{r mod08-load-libraries, echo=TRUE, result='hide'}
+library(tidyverse)
+library(readr)
+library(gtsummary)
 ```
 
 ## Memuat Dataset
