@@ -1,37 +1,39 @@
 # Analisis Hubungan Korelatif: Korelasi Variabel Metrik
 
+::: rmdcapaian
+
+### Capaian Pembelajaran {.unnumbered}
+
 Setelah mempelajari modul ini, Anda diharapkan mampu menghasilkan koefisien korelasi variabel di tingkat metrik dengan perangkat lunak komputer. [STP-11.2]{.capaian}
 
-
----
+:::
 
 ## Pendahuluan
 
-Analisis korelasi adalah salah satu teknik analisis yang termasuk ke dalam lingkup statistika bivariat, statistika yang analisisnya melibatkan dua variabel **sekaligus**. Pada praktikum sebelumnya kita sudah mengenal koefisien-koefisien berikut untuk menganalisis korelasi antara dua variabel nominal dan ordinal:
+Analisis korelasi adalah salah satu teknik analisis yang termasuk ke dalam lingkup **statistika bivariat**, statistika yang analisisnya melibatkan **dua variabel** **sekaligus**. Pada praktikum sebelumnya kita sudah mengenal koefisien-koefisien berikut untuk menganalisis korelasi antara dua variabel nominal dan ordinal:
 
 -   V Cramer dan $\lambda$ (lambda) untuk dua variabel nominal
--   Gamma (G) untuk dua variabel ordinal
+-   Gamma ($\gamma$) dan d-Somer untuk dua variabel ordinal
 
 Dalam praktikum ini kita akan mempraktikkan analisis korelasi pada **dua variabel** **metrik.** Pada praktikum sebelumnya kita mengetahui bahwa dari koefisien-koefisien korelasi kita dapat mengetahui:
 
 -   **kekuatan** untuk dua variabel nominal
-
 -   **kekuatan** dan **arah** untuk dua variabel ordinal
 
 Untuk dua variabel metrik, selain **kekuatan** dan juga **arah hubungan**, kita juga dapat menganalisis **pola** hubungan tersebut, yakni persebaran titik-titik data secara **grafis**.
 
 Dalam praktikum ini kita akan mempraktikkan perhitungan dua jenis koefisien: **Spearman's rho** ($\rho$) dan **Pearson's r.**
 
-## Pustaka *(Libraries)* yang Diperlukan dan Memuat Data
+## Memuat Pustaka *(Libraries)* yang Diperlukan
 
 Seperti biasa, kita perlu memuat pustaka *(libraries)* yang diperlukan dalam pengolahan data kita. Dalam analisis korelasi variabel metrik kita tidak lagi menggunakan tabel silang, tetapi kita langsung menganalisis kolom-kolom yang ada di dataset kita.
 
-```{r mod07-load-libraries, echo=TRUE}
+```{r mod07-load-libraries, echo=TRUE, results='hide'}
 library(tidyverse)
 library(readr)
 ```
 
-**Memuat dataset**
+## Memuat Dataset
 
 Kita akan menggunakan dataset keempat kampus di Kota Bandar Lampung dan sekitarnya sebagai bahan. Tulis ulang dan jalankan baris perintah berikut untuk mengolah data keempat kampus
 
@@ -40,30 +42,43 @@ Kita akan menggunakan dataset keempat kampus di Kota Bandar Lampung dan sekitarn
 data_mahasiswa <- read_csv2("datasets/Data Praktikum 07.csv")
 ```
 
-**Mengatur Faktor untuk Variabel Kategoris: Opsional**
+::: rmdexercise
 
-Karena kita hanya akan berkutat dengan variabel-variabel metrik, maka kita bisa saja melewatkan tahap ini.
+## Aktivitas Mandiri 1 {-}
+
+Buat dataset baru dari `data_mahasiswa` yang tadi dimuat sehingga berisi hanya mahasiswa UBL (`` filter(Kampus_PT == 'UBL') ``).
+
+```{r mod07-exercise-1, include=FALSE}
+# muat dataset ubl
+data_ubl <- data_mahasiswa |>
+  filter(Kampus_PT == "UBL")
+#
+```
+
+:::
 
 ## Pola Hubungan Data
 
 Dalam analisis korelasi variabel-variabel metrik kita dapat menganalisis satu lagi sifat hubungan dalam dua variabel yang kita perhitungkan: **pola hubungan data.** Pola hubungan adalah bentuk sebaran titik-titik yang dapat kita lihat dengan diagram pencar *(scatter plot)*.
 
-**Membuat Diagram Pencar**
-
 Membuat diagram pencar dapat dilakukan dengan menerapkan perintah `geom_point()` dari pustaka `ggplot2`yang dimuat bersama pustaka `tidyverse`.
 
-Kita akan melihat pola sebaran data kita dilihat dari variabel jarak dari kampus (`jarak`) dengan biaya yang dikeluarkan untuk transportasi selama sepekan (`biaya sepekan`). Variabel-variabel yang akan kita lihat hubungannya itu kita masukkan ke `x` dan `y` yang adalah dalam perintah `aes()`.
+Kita akan melihat pola sebaran data kita dilihat dari variabel jarak dari kampus (`jarak`) dengan biaya yang dikeluarkan untuk transportasi selama sepekan (`biaya sepekan`). Variabel-variabel yang akan kita lihat hubungannya itu kita masukkan ke `x` dan `y` yang adalah dalam perintah `aes()`. Sementara itu, `aes()` di `geom_point()` digunakan untuk mengatur tampilan titik-titik data, seperti ukuran (`size`) dan transparansi titik (`alpha`).
 
-```{r mod07-create-scatterplot, echo=TRUE}
+```{r mod07-create-scatterplot, echo=TRUE, results='asis'}
 # Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
 scatter_plot <- ggplot(
   data = data_mahasiswa,
   mapping = aes(
     x = jarak, # variabel di sumbu X
-    y = `biaya sepekan`
+    y = `biaya sepekan`,
+    size = 2,
+    alpha = 0.01
   )
 ) + # variabel di sumbu Y
-  geom_point(aes(color = `jenis tempat tinggal`)) + # perintah untuk menampilkan diagram pencar
+  geom_point(
+    aes()
+  ) + # perintah untuk menampilkan diagram pencar
   labs(
     title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
     y = "Biaya transportasi sepekan (ribu rupiah)",
@@ -76,22 +91,54 @@ scatter_plot
 
 Dari diagram yang dihasilkan kita dapat menarik interpretasi hubungan antara kedua variabel secara visual:
 
--   Tidak ada kecenderungan arah hubungan antara jarak tempat tinggal ke kampus dengan biaya transportasi per pekan
--   Terdapat responden yang tinggal dekat dengan kampus (\<10 km) tetapi biayanya tetap tinggi (\>Rp200 ribu), juga yang tinggal jauh dari kampus (20-40 km) tetapi biayanya rendah (\<Rp200 ribu)
+- **Tidak ada kecenderungan arah hubungan antara jarak tempat tinggal ke kampus dengan biaya transportasi per pekan** karena tidak terlihat adanya pola pada persebaran titik-titik data yang membentuk garis lurus seperti yang ditunjukkan oleh [gambar ini]('https://abdulmubdibindar.github.io/buku-ajar-stp/korelasi-antarvariabel-metrik.html#fig:fig-pola-hubungan').
+- Terdapat responden yang tinggal dekat dengan kampus (\<10 km) tetapi biayanya tetap tinggi (\>Rp200 ribu), juga yang tinggal jauh dari kampus (20-40 km) tetapi biayanya rendah (\<Rp200 ribu). Ini bisa dilihat pada titik-titik data yang berada di pojok kiri atas dan kanan bawah diagram.
 
 Dari hasil diagram ini kita sudah bisa menduga bahwa hubungan antara jarak tempat tinggal ke kampus dengan biaya yang dikeluarkan tidak terlalu erat dan arahnya tidak beraturan.
 
 Akan tetapi, untuk lebih jelas, kita perlu meninjaunya lewat angka koefisien korelasi.
 
+::: rmdexercise
+
+## Aktivitas Mandiri 2 {-}
+
+Buatlah diagram pencar untuk variabel `biaya sepekan` dengan `jarak` untuk mahasiswa UBL saja dengan menyimpannya pada variabel `scatter_plot_lat`. Tuliskan interpretasi Anda terhadap hubungan kedua variabel tersebut.
+
+```{r mod07-create-scatterplot, include=FALSE}
+# Membuat diagram pencar antara variabel biaya dan jumlah perjalanan weekdays sepekan
+scatter_plot_lat <- ggplot(
+  data = data_ubl,
+  mapping = aes(
+    x = `jarak`, # variabel di sumbu X
+    y = `biaya sepekan`,
+    size = 2,
+    alpha = 0.01
+  )
+) + # variabel di sumbu Y
+  geom_point(
+    aes()
+  ) + # perintah untuk menampilkan diagram pencar
+  labs(
+    title = "Jarak Tempat Tinggal vs. Biaya Transportasi Sepekan Mahasiswa UBL",
+    y = "Biaya transportasi sepekan (ribu rupiah)",
+    x = "Jarak dari tempat tinggal ke kampus (km)"
+  )
+
+# Menampilkan diagram
+scatter_plot_lat
+```
+
+:::
+
+
 ## Analisis Korelasi Spearman's $\rho$
 
 Setidaknya ada dua kondisi yang menganjurkan kita menganalisis korelasi suatu pasangan variabel metrik dengan koefisien $\rho$ Spearman:
 
--   Koefisien $\rho$ Spearman biasanya digunakan untuk menganalisis korelasi dua variabel peringkat *(rank)*. Dengan kata lain, koefisien ini lebih cocok dikenakan pada variabel-variabel dengan tingkat pengukuran **interval**, seperti peringkat, *rating* atau data lain yang tidak memiliki titik nol absolut yang bermakna.
+- Koefisien $\rho$ Spearman biasanya digunakan untuk menganalisis korelasi dua variabel peringkat *(rank)*. Dengan kata lain, koefisien ini lebih cocok dikenakan pada variabel-variabel dengan tingkat pengukuran **interval**, seperti peringkat, *rating* atau data lain yang tidak memiliki titik nol absolut yang bermakna.
+- Kita **tidak menemukan adanya hubungan linear** antara dua variabel metrik yang kita analisis. Jika menurut pola data kita ditemukan hubungan linear, kita dianjurkan menggunakan koefisien $\rho$ Spearman ini.
 
--   Kita **tidak menemukan adanya hubungan linear** antara dua variabel metrik yang kita analisis. Jika menurut pola data kita ditemukan hubungan linear, kita dianjurkan menggunakan koefisien $\rho$ Spearman ini.
-
-Kita akan menggunakan koefisien korelasi $\rho$ Spearman ini untuk menganalisis hubungan antara jarak tempat tinggal dengan biaya yang dikeluarkan per pekan.
+Kita akan menggunakan koefisien korelasi $\rho$ Spearman ini untuk menganalisis hubungan antara jarak tempat tinggal (`jarak`) dengan biaya yang dikeluarkan per pekan (`biaya sepekan`).
 
 Koefisien korelasi untuk variabel metrik di R dapat dianalisis dengan perintah `cor()` yang mengambil masukan berupa vektor data angka variabel-variabel yang kita analisis. Adapun jenis korelasi dapat kita pilih dengan menambahkan argumen `method =` yang dapat bernilai `"spearman",` `"kendall"`, atau `"pearson"`, sesuai dengan metode yang kita gunakan.
 
@@ -104,6 +151,22 @@ cor(x, y, method = "spearman")
 ```
 
 Sebagaimana koefisien-koefisien korelasi lainnya, nilai $\rho$ Spearman berkisar antara $-1$ hingga $+1$ yang menyatakan hubungan berlawanan yang kuat hingga hubungan searah yang kuat. Secara umum, tanda positif pada koefisien tersebut menunjukkan hubungan yang searah antara biaya transportasi sepekan dengan jarak tempuh ke kampus. Akan tetapi, dilihat dari besar nilainya, sulit mengatakan bahwa terdapat hubungan yang kuat antara jarak tempuh ke kampus dengan biaya perjalanan sepekan.
+
+::: rmdexercise
+
+## Aktivitas Mandiri 3 {-}
+
+Analisislah korelasi antara variabel `biaya sepekan` dengan `jarak` untuk mahasiswa UBL saja. Bagaimana kekuatan dan arah korelasi kedua variabel tersebut?
+
+```{r mod07-correlation-spearman, include=FALSE}
+# Mengatur variabel x dan y
+x <- data_ubl$jarak
+y <- data_ubl$`biaya sepekan`
+
+cor(x, y, method = "spearman")
+```
+
+:::
 
 ## Analisis Korelasi Pearson's *r*
 
@@ -154,7 +217,8 @@ Interpretasi hasil koefisien tersebut sama dengan interpretasi koefisien korelas
 Kita akan menelaah hubungan antara dua variabel tersebut berdasarkan tampilan visualnya dari diagram pencar *(scatterplot)*.
 
 ```{r mod07-scatterplot-online, echo=TRUE}
-# Membuat diagram pencar antara variabel jumlah perjalanan weekdays dan jarak tempat tinggal pengguna online
+# Membuat diagram pencar antara variabel jumlah perjalanan weekdays dan
+# jarak tempat tinggal pengguna online
 scatter_plot <- ggplot(
   data = data_mahasiswa_online,
   mapping = aes(
