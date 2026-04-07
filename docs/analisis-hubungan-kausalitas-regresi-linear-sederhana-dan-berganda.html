@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Modul 9 Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda | Modul Praktik Statistika Untuk Perencanaan</title>
 <meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA">
-<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta name="generator" content="bookdown 0.45 with bs4_book()">
 <meta property="og:title" content="Modul 9 Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda | Modul Praktik Statistika Untuk Perencanaan">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
@@ -24,7 +24,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -1309,8 +1308,8 @@ y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_kx_k
 <p>Bentuk umum:</p>
 <p><span class="math display">\[
 y = \beta_0 + \beta_1x
-\]</span>
-seperti halnya yang sudah kita pelajari:</p>
+\]</span></p>
+<p>seperti halnya yang sudah kita pelajari:</p>
 <ul>
 <li>
 <span class="math inline">\(\beta_0\)</span> adalah konstanta</li>
@@ -1373,7 +1372,7 @@ seperti halnya yang sudah kita pelajari:</p>
 <p>Nilai koefisien juga bermakna <strong>besar gradien garis persamaan regresi linear kita</strong> yang mencerminkan <strong>kemiringan garis persamaan regresi linear</strong> tersebut. Semakin besar nilai koefisien, semakin curam garis persamaan regresi linear kita.</p>
 <div class="rmdexercise">
 <p><span class="tajuksaya"><strong>Pertanyaan Bonus</strong></span></p>
-<p>Mengapa mahasiswa yang tinggal lebih jauh dari kampus biaya perjalanan sepekannya lebih kecil? Bukankah biaya transportasi makin jauh malah makin mahal? Apa kira-kira penyebab kecilnya biaya perjalanan tersebut?</p>
+<p>Mengapa mahasiswa yang tinggal lebih jauh dari kampus biaya perjalanan sepekannya lebih kecil? Bukankah biaya transportasi, apalagi transportasi daring, makin jauh malah makin mahal? Apa kira-kira penyebab kecilnya biaya perjalanan tersebut?</p>
 </div>
 </div>
 <div id="tafsiran-uji-kualitas-model" class="section level4" number="9.6.3.3">
@@ -1383,7 +1382,29 @@ seperti halnya yang sudah kita pelajari:</p>
 <p>Mari kita panggil kembali ringkasan model kita dengan perintah <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>:</p>
 <div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menampilkan ringkasan model</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Call:</span></span>
+<span><span class="co">## lm(formula = y ~ x, data = data_mahasiswa_online)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Residuals:</span></span>
+<span><span class="co">##     Min      1Q  Median      3Q     Max </span></span>
+<span><span class="co">## -79.255 -30.717  -3.562  26.758 120.787 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Coefficients:</span></span>
+<span><span class="co">##             Estimate Std. Error t value</span></span>
+<span><span class="co">## (Intercept)   92.557      4.598  20.129</span></span>
+<span><span class="co">## x             -5.321      1.205  -4.414</span></span>
+<span><span class="co">##             Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)  &lt; 2e-16 ***</span></span>
+<span><span class="co">## x           1.72e-05 ***</span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  </span></span>
+<span><span class="co">## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Residual standard error: 38.11 on 185 degrees of freedom</span></span>
+<span><span class="co">## Multiple R-squared:  0.09528,    Adjusted R-squared:  0.09039 </span></span>
+<span><span class="co">## F-statistic: 19.48 on 1 and 185 DF,  p-value: 1.721e-05</span></span></code></pre></div>
 <p>Uji kualitas model kita terdiri atas <strong>standard error dari residual</strong> (<code>Residual standard error</code>), <strong>koefisien determinasi atau <span class="math inline">\(R^2\)</span></strong> (<code>Multiple R-squared</code>), dan <strong>uji signifikansi persamaan menggunakan statistik <span class="math inline">\(F\)</span> (<code>F-statistic</code>)</strong> yang merupakan hasil ANOVA <em>(analysis of variance)</em>.</p>
 <ul>
 <li><p><code>Residual standard error</code> adalah <strong><em>standard error</em> dari residual</strong> yang mencerminkan nilai rata-rata galat (residu), yaitu selisih nilai variabel dependen yang dihitung (biaya perjalanan sepekan hasil prediksi dari model) dengan nilai variabel dependen yang kita peroleh dari data.</p></li>
@@ -1399,9 +1420,9 @@ seperti halnya yang sudah kita pelajari:</p>
 </h4>
 <p>Jawablah pertanyaan-pertanyaan berikut untuk membantu Anda menafsirkan model yang telah dibuat:</p>
 <ol style="list-style-type: decimal">
-<li>Nilai <code>Residual standard error</code> harus dikalikan dengan 1000 terlebih dahulu untuk mengetahui rata-rata galat antara biaya perjalanan dari data yang sebenarnya dengan hasil perhitungan model. Berapakah besar galat biaya perjalanan sepekan antara data dengan hasi perhitungan?</li>
-<li>Berapa persen variansi biaya perjalanan sepekan yang dijelaskan oleh variansi jarak perjalanan ke kampus?</li>
-<li>Apakah penjelasan variabel jarak perjalanan ke kampus terhadap biaya perjalanan sepekan hanya terjadi secara kebetulan di sampel kita?</li>
+<li>Nilai <code>Residual standard error</code> harus dikalikan dengan 1000 terlebih dahulu untuk mengetahui rata-rata galat antara biaya perjalanan dari data yang sebenarnya, untuk para pengguna angkutan daring, dengan hasil perhitungan model. Berapakah besar galat biaya perjalanan sepekan antara data dengan hasi perhitungan?</li>
+<li>Berapa persen variansi biaya perjalanan sepekan untuk para pengguna angkutan daring yang dijelaskan oleh variansi jarak perjalanan ke kampus?</li>
+<li>Apakah penjelasan variabel jarak perjalanan ke kampus terhadap biaya perjalanan sepekan untuk pengguna transportasi daring hanya terjadi secara kebetulan di sampel kita?</li>
 </ol>
 </div>
 <div id="tafsiran-uji-kualitas-variabel" class="section level4" number="9.6.3.4">
@@ -1418,7 +1439,8 @@ seperti halnya yang sudah kita pelajari:</p>
 <h3>
 <span class="header-section-number">9.6.4</span> Melakukan Prediksi<a class="anchor" aria-label="anchor" href="#melakukan-prediksi"><i class="fas fa-link"></i></a>
 </h3>
-<p>Kita melakukan prediksi dengan menggunakan perintah <code>predict</code>. Misalkan kita ingin melakukan prediksi biaya perjalanan sepekan untuk mahasiswa yang tinggal di jarak 90 dan 120 km dari kampus</p>
+<p>Kita melakukan prediksi dengan menggunakan perintah <code>predict</code>. Perintah ini mengambil masukan berupa model yang kita buat dan sebuah <em>data frame</em> atau <em>tibble</em>.</p>
+<p>Perintah berikut adalah untuk melakukan prediksi biaya perjalanan sepekan untuk mahasiswa pengguna transportasi daring yang tinggal di jarak 90 dan 120 dari kampus.</p>
 <div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bahan_pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">120</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -1426,9 +1448,15 @@ seperti halnya yang sudah kita pelajari:</p>
 <pre><code>##         1         2 
 ## -386.3117 -545.9345</code></pre>
 <ul>
-<li><p>Perintah <code>tibble</code> adalah perintah untuk membuat dataset berisi kolom <code>x</code> yang terdiri atas 2 nilai: 90 km dan 120 km. Kita menyimpan dataset contoh tersebut ke dalam variabel bernama <code>bahan_pred</code></p></li>
-<li><p>Dalam membuat dataset untuk prediksi kita harus memperhatikan nama variabel/nama kolom yang kita berikan dalam perintah <code>tibble</code>. Nama kolom yang akan kita prediksi harus <strong>sama persis</strong> dengan nama variabel yang kita nyatakan dalam perintah <code>lm</code>.</p></li>
+<li>Perintah <code>tibble</code> adalah perintah untuk membuat <em>tibble</em> berisi kolom bernama <code>x</code> yang terdiri atas nilai 90 dan 120 km, sesuai yang ditentukan sebelumnya. Kita menyimpan <em>tibble</em> tersebut ke dalam variabel bernama <code>bahan_pred</code>
+</li>
+<li>Dalam membuat dataset untuk prediksi kita harus memperhatikan nama variabel/nama kolom yang kita berikan dalam perintah <code><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble()</a></code>. Nama kolom yang akan kita prediksi harus <strong>sama persis</strong> dengan nama variabel yang kita nyatakan dalam perintah <code>lm</code>.</li>
 </ul>
+<div id="aktivitas-mandiri-5-2" class="section level4 unnumbered rmdexercise">
+<h4>Aktivitas Mandiri 5<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-5-2"><i class="fas fa-link"></i></a>
+</h4>
+<p>Lakukan prediksi untuk mahasiswa yang tinggal di jarak <code>5.0</code> dan <code>6.5</code>, dan <code>10.4</code> km menggunakan persamaan regresi yang sudah dibuat sebelumnya. Simpan <em>tibble</em> dengan nama <code>bahan_pred_lat</code>.</p>
+</div>
 </div>
 </div>
 <div id="model-regresi-linear-berganda" class="section level2" number="9.7">
@@ -1466,16 +1494,33 @@ seperti halnya yang sudah kita pelajari:</p>
 <span><span class="co">## -73.743 -23.421  -2.143  19.424 114.322 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Coefficients:</span></span>
-<span><span class="co">##                              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span><span class="co">## (Intercept)                    98.103      8.104  12.105  &lt; 2e-16 ***</span></span>
-<span><span class="co">## jarak                          -4.954      1.118  -4.431 1.63e-05 ***</span></span>
-<span><span class="co">## lingKos sendiri               -20.779      8.787  -2.365   0.0191 *  </span></span>
-<span><span class="co">## lingRumah mengontrak bersama  -17.198     10.409  -1.652   0.1002    </span></span>
-<span><span class="co">## lingRumah mengontrak pribadi   27.744     16.031   1.731   0.0852 .  </span></span>
-<span><span class="co">## lingRumah pribadi              20.348      9.866   2.062   0.0406 *  </span></span>
-<span><span class="co">## lingRumah saudara              10.365     12.689   0.817   0.4151    </span></span>
+<span><span class="co">##                              Estimate</span></span>
+<span><span class="co">## (Intercept)                    98.103</span></span>
+<span><span class="co">## jarak                          -4.954</span></span>
+<span><span class="co">## lingKos sendiri               -20.779</span></span>
+<span><span class="co">## lingRumah mengontrak bersama  -17.198</span></span>
+<span><span class="co">## lingRumah mengontrak pribadi   27.744</span></span>
+<span><span class="co">## lingRumah pribadi              20.348</span></span>
+<span><span class="co">## lingRumah saudara              10.365</span></span>
+<span><span class="co">##                              Std. Error t value</span></span>
+<span><span class="co">## (Intercept)                       8.104  12.105</span></span>
+<span><span class="co">## jarak                             1.118  -4.431</span></span>
+<span><span class="co">## lingKos sendiri                   8.787  -2.365</span></span>
+<span><span class="co">## lingRumah mengontrak bersama     10.409  -1.652</span></span>
+<span><span class="co">## lingRumah mengontrak pribadi     16.031   1.731</span></span>
+<span><span class="co">## lingRumah pribadi                 9.866   2.062</span></span>
+<span><span class="co">## lingRumah saudara                12.689   0.817</span></span>
+<span><span class="co">##                              Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)                   &lt; 2e-16 ***</span></span>
+<span><span class="co">## jarak                        1.63e-05 ***</span></span>
+<span><span class="co">## lingKos sendiri                0.0191 *  </span></span>
+<span><span class="co">## lingRumah mengontrak bersama   0.1002    </span></span>
+<span><span class="co">## lingRumah mengontrak pribadi   0.0852 .  </span></span>
+<span><span class="co">## lingRumah pribadi              0.0406 *  </span></span>
+<span><span class="co">## lingRumah saudara              0.4151    </span></span>
 <span><span class="co">## ---</span></span>
-<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## Signif. codes:  </span></span>
+<span><span class="co">## 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Residual standard error: 34.23 on 180 degrees of freedom</span></span>
 <span><span class="co">## Multiple R-squared:  0.2899, Adjusted R-squared:  0.2663 </span></span>
@@ -1596,6 +1641,35 @@ seperti halnya yang sudah kita pelajari:</p>
 <h4>
 <span class="header-section-number">9.7.3.1</span> Persamaan model<a class="anchor" aria-label="anchor" href="#persamaan-model"><i class="fas fa-link"></i></a>
 </h4>
+<p>Masih sama seperti pada regresi linear sederhana, perintah untuk menampilkan koefisien &amp; konstanta pada persamaan regresi linear berganda adalah <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code>.</p>
+<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menampilkan koefisien model regresi linear berganda</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">mdl</span><span class="op">)</span></span></code></pre></div>
+<pre><code>##                  (Intercept) 
+##                    98.103039 
+##                        jarak 
+##                    -4.954165 
+##              lingKos sendiri 
+##                   -20.778944 
+## lingRumah mengontrak bersama 
+##                   -17.197766 
+## lingRumah mengontrak pribadi 
+##                    27.744112 
+##            lingRumah pribadi 
+##                    20.348009 
+##            lingRumah saudara 
+##                    10.364947</code></pre>
+<p>Seperti yang sudah kita pelajari, persamaan regresi linear berganda pada dasarnya adalah <strong>persamaan regresi linear sederhana yang memiliki lebih dari satu variabel independen</strong>. Artinya, berdasarkan bentuk umum persamaan regresi linear sederhana, kita cukup menambahkan variabel-variabel independen lainnya beserta koefisiennya ke dalam persamaan.</p>
+<p>Kita juga dapat menggunakan penamaan variabel lain selain <code>x</code> dan <code>y</code> untuk memudahkan interpretasi. Untuk kasus ini, kita bisa menggunakan kata <span class="math inline">\(biaya\)</span> untuk menggantikan <span class="math inline">\(y\)</span>, <span class="math inline">\(jarak\)</span> untuk menggantikan <span class="math inline">\(x_1\)</span>, <span class="math inline">\(lingKos_sendiri\)</span> untuk menggantikan <span class="math inline">\(x_2\)</span>, dan seterusnya.</p>
+</div>
+<div id="aktivitas-mandiri-6-2" class="section level4 unnumbered rmdexercise">
+<h4>Aktivitas Mandiri 6<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-6-2"><i class="fas fa-link"></i></a>
+</h4>
+</div>
+<div id="makna-nilai-konstanta-dan-koefisien" class="section level4" number="9.7.3.2">
+<h4>
+<span class="header-section-number">9.7.3.2</span> Makna Nilai Konstanta dan Koefisien<a class="anchor" aria-label="anchor" href="#makna-nilai-konstanta-dan-koefisien"><i class="fas fa-link"></i></a>
+</h4>
 </div>
 </div>
 <div id="prediksi-model" class="section level3" number="9.7.4">
@@ -1603,7 +1677,7 @@ seperti halnya yang sudah kita pelajari:</p>
 <span class="header-section-number">9.7.4</span> Prediksi Model<a class="anchor" aria-label="anchor" href="#prediksi-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dari persamaan model regresi linear kita, kita juga dapat memprediksi nilai biaya perjalanan sepekan untuk mahasiswa-mahasiswa dengan kondisi lain. Misalnya kita ingin memprediksi biaya sepekan transportasi mahasiswa yang tinggal di Rumah saudara berjarak 7,9 km dari kampus dan di Rumah kontrakan bersama yang berjarak 10 km dari kampus.</p>
-<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menyusun dataset untuk diprediksi</span></span>
 <span><span class="va">mhs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  jarak <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7.9</span>, <span class="fl">10</span><span class="op">)</span>,</span>

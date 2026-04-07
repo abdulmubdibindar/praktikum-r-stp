@@ -49,7 +49,7 @@ struktur-data-dasar
 vektor
 list
 tipe-data
-data-frame-dan-tibble
+data-frame-tibble
 sec-operator-pipa
 manajemen-data-inputoutput
 membaca-data
@@ -208,6 +208,7 @@ penjelasan-variabel-dummy
 interpretasi-variabel-dummy
 penafsiran-model
 persamaan-model
+makna-nilai-konstanta-dan-koefisien
 prediksi-model
 analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca
 pendahuluan-5

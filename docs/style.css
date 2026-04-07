@@ -105,3 +105,10 @@ h3 .capaian {
   border: 1px solid #90caf9;
   font-weight: 500;
 }
+
+.tajuksaya {
+    display: block;
+    margin-bottom: 0.5em;
+    font-size: 1.1em;
+    font-weight: 700;
+}
