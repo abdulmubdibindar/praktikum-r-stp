@@ -46,7 +46,7 @@ data_mahasiswa <- read_csv2("datasets/Data Praktikum 07.csv")
 
 ## Aktivitas Mandiri 1 {-}
 
-Buat dataset baru dari `data_mahasiswa` yang tadi dimuat sehingga berisi hanya mahasiswa UBL (`` filter(Kampus_PT == 'UBL') ``).
+Buat dataset baru dari `data_mahasiswa` yang tadi dimuat sehingga berisi hanya mahasiswa UBL (`` filter(Kampus_PT == 'UBL') ``). Simpan ke dalam variabel `data_ubl`.
 
 ```{r mod07-exercise-1, include=FALSE}
 # muat dataset ubl
@@ -72,7 +72,7 @@ scatter_plot <- ggplot(
   mapping = aes(
     x = jarak, # variabel di sumbu X
     y = `biaya sepekan`,
-    size = 2,
+    size = 0.8,
     alpha = 0.01
   )
 ) + # variabel di sumbu Y
@@ -104,7 +104,7 @@ Akan tetapi, untuk lebih jelas, kita perlu meninjaunya lewat angka koefisien kor
 
 Buatlah diagram pencar untuk variabel `biaya sepekan` dengan `jarak` untuk mahasiswa UBL saja dengan menyimpannya pada variabel `scatter_plot_lat`. Tuliskan interpretasi Anda terhadap hubungan kedua variabel tersebut.
 
-```{r mod07-create-scatterplot, include=FALSE}
+```{r mod07-exercise-create-scatterplot, include=FALSE}
 # Membuat diagram pencar antara variabel biaya dan jumlah perjalanan weekdays sepekan
 scatter_plot_lat <- ggplot(
   data = data_ubl,
@@ -150,7 +150,7 @@ y <- data_mahasiswa$`biaya sepekan`
 cor(x, y, method = "spearman")
 ```
 
-Sebagaimana koefisien-koefisien korelasi lainnya, nilai $\rho$ Spearman berkisar antara $-1$ hingga $+1$ yang menyatakan hubungan berlawanan yang kuat hingga hubungan searah yang kuat. Secara umum, tanda positif pada koefisien tersebut menunjukkan hubungan yang searah antara biaya transportasi sepekan dengan jarak tempuh ke kampus. Akan tetapi, dilihat dari besar nilainya, sulit mengatakan bahwa terdapat hubungan yang kuat antara jarak tempuh ke kampus dengan biaya perjalanan sepekan.
+Sebagaimana koefisien-koefisien korelasi lainnya, nilai $\rho$ Spearman berkisar antara $-1$ hingga $+1$ yang menyatakan hubungan berlawanan yang kuat hingga hubungan searah yang kuat. Secara umum, tanda **positif** pada koefisien tersebut menunjukkan hubungan yang **searah** antara biaya transportasi sepekan dengan jarak tempuh ke kampus. Akan tetapi, dilihat dari besar nilainya, sulit mengatakan bahwa terdapat hubungan yang kuat antara jarak tempuh ke kampus dengan biaya perjalanan sepekan.
 
 ::: rmdexercise
 
@@ -158,7 +158,7 @@ Sebagaimana koefisien-koefisien korelasi lainnya, nilai $\rho$ Spearman berkisar
 
 Analisislah korelasi antara variabel `biaya sepekan` dengan `jarak` untuk mahasiswa UBL saja. Bagaimana kekuatan dan arah korelasi kedua variabel tersebut?
 
-```{r mod07-correlation-spearman, include=FALSE}
+```{r mod07-exercise-correlation-spearman, include=FALSE}
 # Mengatur variabel x dan y
 x <- data_ubl$jarak
 y <- data_ubl$`biaya sepekan`
@@ -179,7 +179,8 @@ Terlebih dahulu, kita perlu membuat variabel khusus `jumlah_perjalanan_weekdays`
 data_mahasiswa <- data_mahasiswa |>
   mutate(`jumlah_perjalanan_weekdays` = rowSums(
     across(`Jumlah Perjalanan Senin`:`Jumlah Perjalanan Jumat`)
-  ))
+    )
+    )
 ```
 
 Setelah itu, barulah kita membuat dataset khusus pengguna layanan online saja. Kita menggunakan perintah `filter()` dengan operator `==` yang bermakna *saringlah data dengan nilai* `` `kendaraan utama` `` *sama dengan* `"Layanan online"`*.*
@@ -193,16 +194,16 @@ data_mahasiswa_online <- data_mahasiswa |>
 
 Kita dapat mengecek hasilnya dengan melakukan perintah `group_by()` dan `summarize()`. Hasilnya akan menampilkan `kendaraan utama` kita hanya bernilai `"Layanan online"`
 
-```{r mod07-check-filter-result, echo=TRUE}
+```{r mod07-check-filter-result, echo=TRUE, collapse=TRUE}
 # Menampilkan hasil filter
 data_mahasiswa_online |>
   group_by(`kendaraan utama`) |>
   summarize("jumlah" = n())
 ```
 
-Kemudian, kita bisa menghitung koefisien korelasi Pearson's $r$-nya.
+Kemudian, kita akan menghitung koefisien korelasi Pearson's $r$-nya.
 
-```{r mod07-correlation-pearson, echo=TRUE}
+```{r mod07-correlation-pearson, echo=TRUE, collapse=TRUE}
 # Mengatur variabel x dan y
 x <- data_mahasiswa_online$jarak
 y <- data_mahasiswa_online$`jumlah_perjalanan_weekdays`
@@ -212,46 +213,78 @@ cor(x, y, method = "pearson")
 
 Interpretasi hasil koefisien tersebut sama dengan interpretasi koefisien korelasi variabel ordinal, yakni tanda menunjukkan arah hubungan sementara besar angka menunjukkan kekuatan hubungan.
 
-**Latihan: Interpretasikan nilai korelasi r tersebut**
+::: {.rmdexercise}
+## Aktivitas Mandiri 4 {-}
 
-Kita akan menelaah hubungan antara dua variabel tersebut berdasarkan tampilan visualnya dari diagram pencar *(scatterplot)*.
+1. Buat variabel `jumlah_perjalanan_weekdays` untuk dataset `data_ubl`.
+2. Buat diagram pencar antara variabel tersebut dengan variabel `jarak`, simpan ke dalam `scatter_plot_lat2`
+3. Hitung korelasi $r$ Pearson untuk kedua variabel tersebut dan interpretasikan maknanya.
 
-```{r mod07-scatterplot-online, echo=TRUE}
-# Membuat diagram pencar antara variabel jumlah perjalanan weekdays dan
-# jarak tempat tinggal pengguna online
-scatter_plot <- ggplot(
-  data = data_mahasiswa_online,
+```{r mod07-exercise-create-scatterplot-2, include=FALSE}
+# membuat variabel jumlah weekdays
+data_ubl <- data_ubl |>
+  mutate(`jumlah_perjalanan_weekdays` = rowSums(
+    across(`Jumlah Perjalanan Senin`:`Jumlah Perjalanan Jumat`)
+  ))
+
+# Membuat diagram pencar antara variabel biaya dan jumlah perjalanan weekdays sepekan
+scatter_plot_lat2 <- ggplot(
+  data = data_ubl,
   mapping = aes(
-    x = jarak, # variabel di sumbu X
-    y = `jumlah_perjalanan_weekdays`
+    x = `jarak`, # variabel di sumbu X
+    y = `jumlah_perjalanan_weekdays`,
+    size = 2,
+    alpha = 0.01
   )
 ) + # variabel di sumbu Y
-  geom_point() + # perintah untuk menampilkan diagram pencar
+  geom_point(
+    aes()
+  ) + # perintah untuk menampilkan diagram pencar
   labs(
-    title = "jumlah_perjalanan_weekdays vs Jarak Tempat Tinggal dari Kampus",
-    subtitle = "Pengguna layanan daring",
-    y = "jumlah_perjalanan_weekdays",
-    x = "Jarak dari kampus (km)"
+    title = "Jarak Tempat Tinggal vs. Jumlah Perjalanan Weekdays Mahasiswa UBL",
+    y = "Jumlah Perjalanan Weekdays",
+    x = "Jarak dari tempat tinggal ke kampus (km)"
   )
 
-# Menampilkan scatter plot
-scatter_plot
+# Menampilkan diagram
+scatter_plot_lat2
 ```
 
-Perhatikan bentuk sebaran titik-titik dalam diagram pencarnya. Secara sekilas, sebaran titik-titik tersebut membentuk formasi kemiringan ke bawah, akan tetapi kerapatannya kecil.
+```{r mod06-exercise-calc-pearson, echo=FALSE, results='hide'}
+# Menghitung korelasi Pearson antara jarak dengan jumlah_perjalanan_weekdays
+x_lat2 <- data_ubl$jarak
+y_lat2 <- data_ubl$jumlah_perjalanan_weekdays
 
-::: {.rmdexercise}
-### Aktivitas Mandiri 3: Analisis Korelasi Metrik Komprehensif [STP-11.2].{capaian} {-}
+cor(
+  x = x_lat2,
+  y = y_lat2,
+  method = "pearson"
+)
+```
 
-1. **Pilih 3 Pasang Variabel Metrik:**
-   - Buat scatter plot untuk setiap pasangan
-   - Pilih Pearson atau Spearman berdasarkan pola
-   - Hitung koefisien korelasi
-   - Interpretasikan arah dan kekuatan
+```{r mod06-coba-online-ubl, include=FALSE}
+# filter layanan online UBL
+data_ubl_ol <- data_ubl |>
+  filter(`kendaraan utama` == 'Layanan online')
 
-2. **Jelaskan Pemilihan Metode:**
-   - Mengapa Pearson atau Spearman untuk setiap pasangan?
-   - Pertimbangkan: pola linear vs monoton, outlier, distribusi data
+# scatter plot
+ggplot(
+  data = data_ubl_ol,
+  mapping = aes(
+    x = jarak,
+    y = jumlah_perjalanan_weekdays,
+    alpha = 0.2
+    )
+) +
+  geom_point()
+
+cor(
+  x = data_ubl_ol$jarak,
+  y = data_ubl_ol$jumlah_perjalanan_weekdays,
+  method = 'pearson'
+)
+```
+
+
 :::
 
-------------------------------------------------------------------------
