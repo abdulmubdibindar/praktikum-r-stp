@@ -93,6 +93,7 @@
 <h1>
 <span class="header-section-number">Modul 9</span> Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda<a class="anchor" aria-label="anchor" href="#analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda"><i class="fas fa-link"></i></a>
 </h1>
+<div class="rmdcapaian">
 <p>Setelah mempelajari modul ini, Anda diharapkan dapat:</p>
 <ol style="list-style-type: decimal">
 <li>mampu menghasilkan regresi linear sederhana dengan perangkat lunak komputer <span class="capaian">STP-13.3</span>
@@ -100,23 +101,23 @@
 <li>mampu menghasilkan persamaan regresi linear berganda dengan perangkat lunak komputer <span class="capaian">STP-14.3</span>
 </li>
 </ol>
-<hr>
+</div>
 <div id="pendahuluan-4" class="section level2" number="9.1">
 <h2>
 <span class="header-section-number">9.1</span> Pendahuluan<a class="anchor" aria-label="anchor" href="#pendahuluan-4"><i class="fas fa-link"></i></a>
 </h2>
-<p>Analisis regresi linear adalah analisis statistik untuk menyatakan hubungan sebab-akibat (kausalitas) antar minimal dua variabel. Analisis regresi linear yang melibatkan <em>dua variabel saja</em> (<em>satu variabel dependen</em> dan <em>satu variabel independen</em>), kita sebut sebagai <strong>regresi linear sederhana</strong>, sedangkan analisis regresi linar yang melibatkan lebih dari dua variabel (<em>satu variabel dependen</em> dan <em>lebih dari satu variabel independen</em>) kita sebut sebagai <strong>regresi linear berganda <em>(multiple linear regression)</em></strong></p>
-<p>Analisis regresi linear mewajibkan tingkat pengukuran minimal untuk variabel dependennya adalah <strong>metrik</strong>. Sementara itu, variabel independennya dapat berupa metrik atau bukan (ordinal/nominal).</p>
+<p>Analisis regresi linear adalah analisis statistik untuk menyatakan <strong>hubungan sebab-akibat (kausalitas)</strong> antar <em>minimal</em> dua variabel. Analisis regresi linear yang melibatkan <strong>dua variabel saja</strong> (<em>satu variabel dependen</em> dan <em>satu variabel independen</em>), kita sebut sebagai <strong>regresi linear sederhana</strong>, sedangkan analisis regresi linar yang melibatkan <strong>lebih dari dua variabel</strong> (<em>satu variabel dependen</em> dan <em>lebih dari satu variabel independen</em>) kita sebut sebagai <strong>regresi linear berganda <em>(multiple linear regression)</em></strong></p>
+<p>Analisis regresi linear mewajibkan tingkat pengukuran minimal untuk variabel dependennya adalah <strong>metrik</strong>. Sementara itu, variabel independennya dapat berupa <strong>metrik atau bukan (ordinal/nominal)</strong>.</p>
 <p>Analisis regresi linear menghasilkan persamaan yang disebut <strong>persamaan regresi linear</strong>. Bentuk umum persamaan regresi linear tersebut adalah sebagai berikut.</p>
 <p><span class="math display">\[
-y = β_0 + β_1x
+y = \beta_0 + \beta_1x
 \]</span></p>
 <p>dengan</p>
 <ul>
 <li>
-<span class="math inline">\(y\)</span> adalah variabel dependen (disebut juga <em>variabel respons</em> atau <em>predicted variable</em>)</li>
+<span class="math inline">\(y\)</span> adalah variabel dependen (disebut juga <strong>variabel respons</strong> atau <strong>predicted variable</strong>)</li>
 <li>
-<span class="math inline">\(x\)</span> adalah variabel independen (disebut juga <em>variabel eksplanatory</em> atau <em>predictor variable</em>)</li>
+<span class="math inline">\(x\)</span> adalah variabel independen (disebut juga <strong>variabel explanatory</strong> atau <strong>predictor variable</strong>)</li>
 <li>
 <span class="math inline">\(\beta_0\)</span> adalah konstanta yang menjadi <em>intercept</em>, yaitu nilai <span class="math inline">\(y\)</span> ketika <span class="math inline">\(x=0\)</span>
 </li>
@@ -125,7 +126,7 @@ y = β_0 + β_1x
 </ul>
 <p>Persamaan regresi linear di atas adalah untuk <strong>analisis regresi linear sederhana</strong>, yakni analisis regresi linear yang melibatkan dua variabel saja. Untuk <strong>regresi linear berganda</strong>, kita hanya perlu menambahkan pasangan <span class="math inline">\(\beta\)</span> dan <span class="math inline">\(x\)</span> lainnya, sehingga bentuk umum untuk persamaan regresi linear berganda adalah seperti berikut.</p>
 <p><span class="math display">\[
-y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
+y = \beta_0 + \beta_1x_1 + \beta_2x_2 + ... + \beta_kx_k
 \]</span></p>
 <p>dengan</p>
 <ul>
@@ -141,30 +142,34 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <span class="header-section-number">9.2</span> Penjelasan Kasus<a class="anchor" aria-label="anchor" href="#penjelasan-kasus"><i class="fas fa-link"></i></a>
 </h2>
 <p>Dalam praktikum kali ini, kita akan memodelkan hubungan kausal antara dua variabel metrik: <strong>jarak tempat tinggal ke kampus</strong> dan <strong>biaya perjalanan sepekan</strong> untuk mahasiswa-mahasiswi yang menggunakan <strong>kendaraan layanan online saja</strong>. Harga perjalanan menggunakan layanan <em>online</em> tentunya dipengaruhi oleh jarak tempuh kendaraan tersebut. Hubungan kausal ini menjadi kasus untuk <strong>regresi linear sederhana</strong>.</p>
-<p>Untuk <strong>regresi linear berganda</strong>, kita akan melibatkan satu variabel tambahan sebagai variabel independen, yakni variabel berjenis kategoris , sehingga kita memiliki total variabel sejumlah 3 buah (1 variabel dependen, 2 variabel independen).</p>
+<p>Untuk <strong>regresi linear berganda</strong>, kita akan melibatkan satu variabel tambahan sebagai variabel independen, yakni variabel berjenis kategoris, sehingga kita memiliki total variabel sejumlah 3 buah (1 variabel dependen, 2 variabel independen).</p>
 </div>
-<div id="memuat-pustaka-libraries-yang-diperlukan" class="section level2" number="9.3">
+<div id="memuat-pustaka-libraries-yang-diperlukan-1" class="section level2" number="9.3">
 <h2>
-<span class="header-section-number">9.3</span> Memuat Pustaka <em>(Libraries)</em> yang Diperlukan<a class="anchor" aria-label="anchor" href="#memuat-pustaka-libraries-yang-diperlukan"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.3</span> Memuat Pustaka <em>(Libraries)</em> yang Diperlukan<a class="anchor" aria-label="anchor" href="#memuat-pustaka-libraries-yang-diperlukan-1"><i class="fas fa-link"></i></a>
 </h2>
 <p>Seperti biasa, kita perlu memuat pustaka <em>(libraries)</em> yang diperlukan dalam pengolahan data kita. Seperti halnya juga analisis korelasi variabel metrik, kita tidak lagi menggunakan tabel silang, tetapi kita langsung menganalisis kolom-kolom yang ada di dataset kita.</p>
-<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># untuk mengolah data terstruktur</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span> <span class="co"># untuk membaca file csv</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span> <span class="co"># untuk memproduksi tabel hasil pembuatan regresi dengan cepat dan rapi</span></span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ddsjoberg/gtsummary">gtsummary</a></span><span class="op">)</span></span></code></pre></div>
+<p>Pastikan juga kalian mengunduh dan menginstal pustaka <code>broom.helpers</code> yang akan kita gunakan untuk menampilkan <em>summary</em> model.</p>
+<div class="sourceCode" id="cb281"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"broom.helpers"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="memuat-dataset-4" class="section level2" number="9.4">
+<div id="memuat-dataset-5" class="section level2" number="9.4">
 <h2>
-<span class="header-section-number">9.4</span> Memuat Dataset<a class="anchor" aria-label="anchor" href="#memuat-dataset-4"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.4</span> Memuat Dataset<a class="anchor" aria-label="anchor" href="#memuat-dataset-5"><i class="fas fa-link"></i></a>
 </h2>
 <p>Kita akan menggunakan dataset keempat kampus di Kota Bandar Lampung dan sekitarnya sebagai bahan. Kemudian kita akan menyaring objek-objek yang memiliki nilai variabel <code>kendaraan utama</code> sama dengan <code>'Layanan online'</code>.</p>
-<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb282"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membaca data dari file csv</span></span>
 <span><span class="va">data_mahasiswa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html">read_csv2</a></span><span class="op">(</span><span class="st">"datasets/Data Praktikum 08.csv"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Memisahkan data mahasiswa yang menggunakan kendaraan online sebagai moda utama</span></span>
 <span><span class="va">data_mahasiswa_online</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">`kendaraan utama`</span> <span class="op">==</span> <span class="st">"Layanan online"</span><span class="op">)</span></span></code></pre></div>
+<p>Mari biasakan untuk melihat datanya, seperti jumlah objek dan nama-nama variabelnya dengan perintah <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>.</p>
 </div>
 <div id="pola-hubungan-data-1" class="section level2" number="9.5">
 <h2>
@@ -172,23 +177,31 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 </h2>
 <p>Sebagai pendahuluan, kita akan mengidentifikasi kekuatan, arah, dan pola hubungan antara variabel dependen dan independen kita (biaya perjalanan sepekan dan jarak tempat tinggal-kampus). Untuk itu kita dapat menghitung koefisien korelasi untuk hubungan variabel metrik juga, yakni koefisien korelasi Pearson’s <span class="math inline">\(r\)</span>.</p>
 <p>Pola hubungan akan kita analisis dengan membuat diagram pencar <em>(scatter plot)</em> antara variabel dependen dengan variabel independennya.</p>
-<p><strong>Menghitung Koefisien Pearson’s</strong> <span class="math inline">\(r\)</span></p>
+<div id="menghitung-koefisien-pearsons-r" class="section level3" number="9.5.1">
+<h3>
+<span class="header-section-number">9.5.1</span> Menghitung Koefisien Pearson’s <span class="math inline">\(r\)</span><a class="anchor" aria-label="anchor" href="#menghitung-koefisien-pearsons-r"><i class="fas fa-link"></i></a>
+</h3>
 <p>Menghitung koefisien korelasi Pearson’s <span class="math inline">\(r\)</span> dapat kita lakukan dengan perintah <code><a href="https://rdrr.io/r/stats/cor.html">cor()</a></code> dengan atribut <code>method = "pearson"</code> setelah terlebih dahulu menyimpan nilai masing-masing variabel ke dalam suatu vektor.</p>
-<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb283"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menyimpan vektor jarak dan biaya (perjalanan) sepekan ke dalam variabel</span></span>
 <span><span class="co"># 'x' dan 'y'</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">jarak</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`biaya sepekan`</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, use <span class="op">=</span> <span class="st">"complete.obs"</span>, method <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] -0.1813941</code></pre>
-<blockquote>
-<p><strong>Jawablah:</strong> Tuliskan interpretasi kalian terhadap koefisien korelasi antara variabel jarak tempuh dengan biaya perjalanan sepekan.</p>
+</div>
+<div id="aktivitas-mandiri-1-4" class="section level3 unnumbered rmdexercise">
+<h3>Aktivitas Mandiri 1<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-1-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Tuliskan interpretasi kalian terhadap koefisien korelasi antara variabel jarak tempuh dengan biaya perjalanan sepekan tersebut.</p>
 <p><em>Petunjuk: ulas kekuatan serta arah hubungannya serta maknai secara kontekstual ulasan tersebut</em></p>
-</blockquote>
-<p><strong>Membuat Diagram Pencar</strong></p>
+</div>
+<div id="membuat-diagram-pencar" class="section level3" number="9.5.2">
+<h3>
+<span class="header-section-number">9.5.2</span> Membuat Diagram Pencar<a class="anchor" aria-label="anchor" href="#membuat-diagram-pencar"><i class="fas fa-link"></i></a>
+</h3>
 <p>Membuat diagram pencar dapat dilakukan dengan menerapkan perintah <code><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point()</a></code> dari pustaka <code>ggplot2</code> yang dimuat bersama pustaka <code>tidyverse</code>.</p>
-<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb284"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
 <span><span class="co"># untuk mahasiswa yang pakai layanan online</span></span>
 <span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
@@ -200,6 +213,7 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <span><span class="op">)</span> <span class="op">+</span> <span class="co"># variabel di sumbu Y</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
 <span>    color <span class="op">=</span> <span class="st">"navy"</span>, <span class="co"># perintah untuk menampilkan diagram pencar dengan warna biru</span></span>
+<span>    alpha <span class="op">=</span> <span class="fl">0.01</span>, <span class="co"># mengatur transparansi titik</span></span>
 <span>    size <span class="op">=</span> <span class="fl">1.5</span>, <span class="co"># mengatur ukuran titik</span></span>
 <span>    shape <span class="op">=</span> <span class="fl">15</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span> <span class="co"># mengatur bentuk titik menjadi persegi</span></span>
@@ -215,25 +229,27 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <div class="inline-figure"><img src="figures/mod08-create-initial-scatterplot-1.png" width="672"></div>
 <p>Setelah Anda melakukan pembuatan diagram pencar tersebut, Anda akan menyadari bahwa kita memiliki <em>outlier</em> (pencilan), yakni objek yang memiliki nilai jarak dari tempat tinggal ke kampus mencapai hampir 25 km.</p>
 <p>Keberadaan pencilan ini akan mengganggu hasil analisis kita. Mari kita buktikan dengan menghilangkan data pencilan tersebut.</p>
-<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb285"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menghilangkan observasi pencilan dengan menyaring observasi dengan</span></span>
 <span><span class="co"># jarak &lt; 15 km</span></span>
 <span><span class="va">data_mahasiswa_online</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">jarak</span> <span class="op">&lt;</span> <span class="fl">15</span><span class="op">)</span></span></code></pre></div>
 <p>Di sini kita akan menghitung ulang nilai koefisien korelasi kita.</p>
-<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb286"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menghitung korelasi antara biaya sepekan dengan jarak dari dataset yang</span></span>
 <span><span class="co"># sudah dihilangkan pencilannya</span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">jarak</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`biaya sepekan`</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html">cor</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, method <span class="op">=</span> <span class="st">"pearson"</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] -0.3086803</code></pre>
-<blockquote>
-<p><strong>Jawablah:</strong> Bagaimana perbedaan nilai koefisiennya?</p>
-</blockquote>
+</div>
+<div id="aktivitas-mandiri-2-4" class="section level3 unnumbered rmdexercise">
+<h3>Aktivitas Mandiri 2<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-2-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Tuliskan interpretasi kalian terhadap perbedaan nilai koefisiennya.</p>
+</div>
 <p>Kita pun dapat memeriksa hasil perbaikan dataset kita dari diagram pencar yang baru berikut.</p>
-<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb287"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
 <span><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan</span></span>
 <span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
@@ -244,7 +260,8 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span> <span class="op">+</span> <span class="co"># variabel di sumbu Y</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="st">"navy"</span>, <span class="co"># perintah untuk menampilkan diagram pencar</span></span>
+<span>    color <span class="op">=</span> <span class="st">"navy"</span>, <span class="co"># mengatur warna titik</span></span>
+<span>    alpha <span class="op">=</span> <span class="fl">0.5</span>, <span class="co"># mengatur transparansi</span></span>
 <span>    size <span class="op">=</span> <span class="fl">1.5</span>, <span class="co"># mengatur ukuran titik</span></span>
 <span>    shape <span class="op">=</span> <span class="fl">15</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span> <span class="co"># mengatur bentuk titik menjadi persegi</span></span>
@@ -268,48 +285,43 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 <h3>
 <span class="header-section-number">9.6.1</span> Penyusunan Model<a class="anchor" aria-label="anchor" href="#penyusunan-model"><i class="fas fa-link"></i></a>
 </h3>
-<p>Untuk membuat persamaan model regresi linear, kita akan menggunakan perintah <code>lm</code> yang sudah disediakan secara bawaan oleh R. Hasil dari perintah ini dapat kita simpan sebagai variabel tertentu.</p>
-<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<p>Untuk membuat persamaan model regresi linear, kita akan menggunakan perintah <code><a href="https://rdrr.io/r/stats/lm.html">lm()</a></code> yang sudah disediakan secara bawaan oleh R. Hasil dari perintah ini dapat kita simpan sebagai variabel tertentu.</p>
+<div class="sourceCode" id="cb288"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat model regresi linear</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, data <span class="op">=</span> <span class="va">data_mahasiswa_online</span><span class="op">)</span></span></code></pre></div>
 <p>Argumen yang kita gunakan adalah <code>var_dependen ~ var_independen</code> serta nama dataset yang kita gunakan. Tanda <code>~</code> (disebut <em>tilde</em>) dapat kita masukkan dengan menekan <code>Shift</code> + <code>`</code> yang ada di sebelah kiri tombol angka 1 di <em>keyboard</em> kita.</p>
 <p>Sebelumnya kita sudah mendefinisikan <code>y</code> dan <code>x</code> sebagai variabel untuk vektor biaya transportasi sepekan dan vektor jarak, sehingga kita bisa langsung menggunakannya di atas. Dataset yang kita gunakan adalah dataset mahasiswa yang menggunakan layanan <em>online</em> sebagai moda transportasi utama yang kita simpan dalam <code>data_mahasiswa_online</code>.</p>
+</div>
+<div id="aktivitas-mandiri-3-4" class="section level3 unnumbered rmdexercise">
+<h3>Aktivitas Mandiri 3<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-3-4"><i class="fas fa-link"></i></a>
+</h3>
+<p>Definisikan model tersebut dan jawablah:</p>
+<ol style="list-style-type: decimal">
+<li>Berdasarkan jumlah variabel independen dan dependennya, apa nama jenis analisis regresi linear ini?</li>
+<li>Variabel manakah yang menjadi variabel dependen dan independen?</li>
+</ol>
 </div>
 <div id="penampilan-model" class="section level3" number="9.6.2">
 <h3>
 <span class="header-section-number">9.6.2</span> Penampilan Model<a class="anchor" aria-label="anchor" href="#penampilan-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>Untuk menampilkan hasil penyusunan model regresi linear, kita akan menggunakan perintah <code>summary</code> yang juga sudah disediakan secara bawaan oleh R.</p>
-<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb289"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menampilkan hasil model regresi linear</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = y ~ x, data = data_mahasiswa_online)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -79.255 -30.717  -3.562  26.758 120.787 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   92.557      4.598  20.129  &lt; 2e-16 ***
-## x             -5.321      1.205  -4.414 1.72e-05 ***
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 38.11 on 185 degrees of freedom
-## Multiple R-squared:  0.09528,    Adjusted R-squared:  0.09039 
-## F-statistic: 19.48 on 1 and 185 DF,  p-value: 1.721e-05</code></pre>
-<p>Yang ditampilkan dengan perintah tersebut antara lain adalah sebagai berikut. Penjelasan lebih lanjutnya akan diberikan di subbagian selanjutnya.</p>
+<p>Yang ditampilkan dengan perintah tersebut antara lain adalah sebagai berikut.</p>
 <ul>
-<li><p><code>Call</code> : bentuk persamaan model yang sudah kita input sebelumnya</p></li>
-<li><p><code>Residuals</code> : informasi residual model</p></li>
-<li><p><code>Coefficients</code> : tabel yang menunjukkan angka-angka dalam persamaan model yang dihasilkan</p></li>
-<li><p>Nilai-nilai uji kualitas model seperti <code>Residual standard error</code> <em>(standard error</em> estimasi), <em>Multiple R-squared</em> dan <em>Adjusted R-squared</em> (koefisien determinasi), serta <em>F-statistic</em> (uji signifikansi model).</p></li>
+<li>
+<code>Call</code> : bentuk persamaan model yang sudah kita input sebelumnya</li>
+<li>
+<code>Residuals</code> : informasi residual model</li>
+<li>
+<code>Coefficients</code> : tabel yang menunjukkan angka-angka dalam persamaan model yang dihasilkan</li>
+<li>Nilai-nilai uji kualitas model seperti <code>Residual standard error</code> <em>(standard error</em> estimasi), <em>Multiple R-squared</em> dan <em>Adjusted R-squared</em> (koefisien determinasi), serta <em>F-statistic</em> (uji signifikansi model).</li>
 </ul>
+<p>Penjelasan lebih detil akan diberikan di subbagian selanjutnya.</p>
 <p>Selain menggunakan <code>summary</code>, kita juga dapat menggunakan perintah <code>tbl_regression</code>, perintah yang disediakan oleh paket/<em>library</em> <code>gtsummary</code>. Hasil dari perintah ini adalah tabel yang sudah diformat sesuai dengan <em>templat</em> artikel ilmiah.</p>
-<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb290"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menampilkan hasil model regresi linear dengan tbl_regression</span></span>
 <span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <div id="owcigidbvz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -779,9 +791,8 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
     </tr></tfoot>
 </table></div>
 </div>
-<p>Jika kalian menemukan pertanyaan untuk menginstal sebuah paket di <em>console</em>, yakni <code>broom.helpers</code>, pilih saja “Yes” untuk mengunduh dan menginstalnya.</p>
 <p>Secara bawaan, tabel tidak menampilkan nilai konstanta <em>(intercept)</em>, menampilkan nilai <em>confidence level</em> 95%, dan menampilkan nilai dari variabel independen sesuai variabel yang kita tetapkan sebelumnya, dalam hal ini adalah <code>x</code>. Untuk menggantinya, kita dapat melakukan penyesuaian perintah sebagai berikut.</p>
-<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb291"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression</a></span><span class="op">(</span></span>
 <span>  <span class="va">model</span>,</span>
 <span>  intercept <span class="op">=</span> <span class="cn">TRUE</span>, <span class="co"># mengatur intercept-nya ditampilkan</span></span>
@@ -1270,27 +1281,55 @@ y = β_0 + β_1x_1 + β_2x_2 + ... + β_kx_k
 </h3>
 <p>Yang kita akan tafsirkan dari model kita di antaranya adalah:</p>
 <ul>
-<li><p>persamaan model</p></li>
-<li><p>makna nilai konstanta dan koefisien</p></li>
-<li><p>uji kualitas model (ANOVA, <code>F-statistic</code>)</p></li>
-<li><p>uji kualitas variabel (<code>Pr(&gt;|t|)</code>)</p></li>
+<li>persamaan model</li>
+<li>makna nilai konstanta dan koefisien</li>
+<li>uji kualitas model (ANOVA, <code>F-statistic</code>)</li>
+<li>uji kualitas variabel (<code>Pr(&gt;|t|)</code>)</li>
 </ul>
 <div id="tafsiran-persamaan-model" class="section level4" number="9.6.3.1">
 <h4>
 <span class="header-section-number">9.6.3.1</span> Tafsiran persamaan model<a class="anchor" aria-label="anchor" href="#tafsiran-persamaan-model"><i class="fas fa-link"></i></a>
 </h4>
-<p>Persamaan model dapat kita tafsirkan berdasarkan keluaran dari <code>summary</code> berupa <code>Coefficients</code> atau hasil dari <code>tbl_regression</code> milik <code>gtsummary</code>.</p>
-<p>Berdasarkan keluaran kedua perintah tersebut, kita dapat mengetahui bagaimana persamaan regresi linearnya dengan mengganti bentuk umum persamaan regresi linear dengan angka-angka yang dihasilkan di <code>model</code>.</p>
+<p>Persamaan model dapat kita tafsirkan berdasarkan keluaran dari perintah <code>coef(model)</code>.</p>
+<div class="sourceCode" id="cb292"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Membuat nilai koefisien model</span></span>
+<span><span class="va">koef</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Menampilkan koefisien variabel model</span></span>
+<span><span class="va">koef</span></span></code></pre></div>
+<p>Hasil fungsi tersebut juga dapat kita temukan pada;</p>
+<ul>
+<li>
+<code>Coefficients</code> dari <code>summary(model)</code> atau</li>
+<li>
+<code>tbl_regression(model)</code>.</li>
+</ul>
+<p>Dalam keluaran perintah <code><a href="https://rdrr.io/r/stats/coef.html">coef()</a></code> kita dapat mengidentifikasi nilai <span class="math inline">\(\beta_0\)</span> atau konstanta melalui nilai di bawah <code>(Intercept)</code> dan nilai <span class="math inline">\(\beta_1\)</span> atau koefisien melalui nilai di bawah <code>x</code>. Ini sama saja dengan nilai-nilai di bawah kolom <code>Estimate</code> pada keluaran perintah <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> atau nilai-nilai di bawah kolom <strong>Beta</strong> pada keluaran <code><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_regression.html">tbl_regression()</a></code>.</p>
+<p>Berdasarkan keluaran-keluaran perintah tersebut, kita dapat mengetahui bagaimana persamaan regresi linearnya dengan mengganti bentuk umum persamaan regresi linear dengan angka-angka yang dihasilkan di <code>model</code>.</p>
 <p>Bentuk umum:</p>
 <p><span class="math display">\[
-y = β_0 + β_1x
-\]</span></p>
-<p>Dengan mengambil hasil dari <em>summary(model)</em>, kita dapat menuliskan persamaan regresi linear kita menjadi:</p>
-<p><span class="math display">\[
-y = 93 - 5,3x
-\]</span></p>
+y = \beta_0 + \beta_1x
+\]</span>
+seperti halnya yang sudah kita pelajari:</p>
+<ul>
+<li>
+<span class="math inline">\(\beta_0\)</span> adalah konstanta</li>
+<li>
+<span class="math inline">\(\beta_1\)</span> adalah koefisien</li>
+</ul>
+</div>
+<div id="aktivitas-mandiri-4-4" class="section level4 unnumbered rmdexercise">
+<h4>Aktivitas Mandiri 4<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-4-4"><i class="fas fa-link"></i></a>
+</h4>
+<p>Tuliskan persamaan model tersebut dengan perintah <code><a href="https://rdrr.io/r/base/cat.html">cat()</a></code> seperti berikut dan gantilah <code>[beta_0]</code> dan <code>[beta_1]</code> menjadi angka koefisien dan konstanta yang tepat.</p>
+<div class="sourceCode" id="cb293"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Persamaan model dari biaya sepekan terhadap jarak adalah"</span>,</span>
+<span>  <span class="st">"y = [beta_0] + [beta_1]x"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+</div>
 <p>Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik data kita. Ini merupakan persamaan garis terbaik dari seluruh kemungkinan persamaan garis yang ada, yang kita tentukan dengan meminimalkan kuadrat terkecil.</p>
-<div class="sourceCode" id="cb297"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb294"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
 <span><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,</span></span>
 <span><span class="co"># ditambah garis dari persamaan regresi</span></span>
@@ -1307,8 +1346,8 @@ y = 93 - 5,3x
 <span>    shape <span class="op">=</span> <span class="fl">15</span></span>
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
-<span>    intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
-<span>    slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
+<span>    intercept <span class="op">=</span> <span class="va">koef</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="co"># ingat bahwa ini memanggil elemen pertama dari vektor 'koef'</span></span>
+<span>    slope <span class="op">=</span> <span class="va">koef</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
 <span>    color <span class="op">=</span> <span class="st">"red"</span></span>
 <span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
@@ -1322,96 +1361,48 @@ y = 93 - 5,3x
 <span><span class="va">scp</span></span></code></pre></div>
 <div class="inline-figure"><img src="figures/mod08-visualize-regression-line-1-1.png" width="672"></div>
 <ul>
-<li><p><code>coef(model)[1]</code> mengacu pada keluaran fungsi <code>coef</code> dari variabel <code>model</code> kita yang pertama (<code>[1]</code>), yakni angka <em>intercept</em>/konstantanya. Ini menjadi nilai dari atribut <code>intercept</code> yang terletak dalam fungsi <code>geom_abline</code></p></li>
-<li><p><code>coef(model)[2]</code> mengacu pada keluaran fungsi <code>coef</code> dari variabel <code>model</code> kita yang kedua ([<code>2]</code>), yakni angka koefisien variabel independen kita. Ini menjadi nilai dari atribut <code>slope</code> yang terletak dalam fungsi <code>geom_abline</code> karena nilai koefisien variabel independen menunjukkan kemiringan garis persamaan regresi linear kita</p></li>
+<li><p><code>koef[1]</code> mengacu pada elemen pertama dari vektor <code>koef</code> yang menyimpan nilai <em>intercept</em>/konstanta. Ini menjadi nilai dari atribut <code>intercept</code> yang terletak dalam fungsi <code>geom_abline</code></p></li>
+<li><p><code>koef[2]</code> mengacu pada elemen kedua dari vektor <code>koef</code> yang menyimpan nilai koefisien variabel independen kita. Ini menjadi nilai dari atribut <code>slope</code> yang terletak dalam fungsi <code>geom_abline</code> karena nilai koefisien variabel independen menunjukkan kemiringan garis persamaan regresi linear kita</p></li>
 </ul>
-<p>Persamaan model dapat kita tafsirkan berdasarkan keluaran dari <code>summary</code> berupa <code>Coefficients</code> atau hasil dari <code>tbl_regression</code> milik <code>gtsummary</code>.</p>
-<p>Berdasarkan keluaran kedua perintah tersebut, kita dapat mengetahui bagaimana persamaan regresi linearnya dengan mengganti bentuk umum persamaan regresi linear dengan angka-angka yang dihasilkan di <code>model</code>.</p>
-<p>Bentuk umum:</p>
-<p><span class="math display">\[
-y = β_0 + β_1x
-\]</span></p>
-<p>Dengan mengambil hasil dari <em>summary(model)</em>, kita dapat menuliskan persamaan regresi linear kita menjadi:</p>
-<p><span class="math display">\[
-y = 93 - 5,3x
-\]</span></p>
-<p>Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik data kita. Ini merupakan persamaan garis terbaik dari seluruh kemungkinan persamaan garis yang ada, yang kita tentukan dengan meminimalkan kuadrat terkecil.</p>
-<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan</span></span>
-<span><span class="co"># untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,</span></span>
-<span><span class="co"># ditambah garis dari persamaan regresi</span></span>
-<span><span class="va">scp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span></span>
-<span>  data <span class="op">=</span> <span class="va">data_mahasiswa_online</span>,</span>
-<span>  mapping <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
-<span>    x <span class="op">=</span> <span class="va">jarak</span>, <span class="co"># variabel di sumbu X</span></span>
-<span>    y <span class="op">=</span> <span class="va">`biaya sepekan`</span></span>
-<span>  <span class="op">)</span></span>
-<span><span class="op">)</span> <span class="op">+</span> <span class="co"># variabel di sumbu Y</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span></span>
-<span>    color <span class="op">=</span> <span class="st">"navy"</span>,</span>
-<span>    size <span class="op">=</span> <span class="fl">1.5</span>,</span>
-<span>    shape <span class="op">=</span> <span class="fl">15</span></span>
-<span>  <span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span></span>
-<span>    intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span>
-<span>    slope <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/coef.html">coef</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span>
-<span>    color <span class="op">=</span> <span class="st">"red"</span></span>
-<span>  <span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span></span>
-<span>    title <span class="op">=</span> <span class="st">"Jarak tempat tinggal vs. Biaya Transportasi Sepekan"</span>,</span>
-<span>    subtitle <span class="op">=</span> <span class="st">"Mahasiswa dengan Moda Transportasi Layanan Online"</span>,</span>
-<span>    y <span class="op">=</span> <span class="st">"Biaya transportasi sepekan (ribu rupiah)"</span>,</span>
-<span>    x <span class="op">=</span> <span class="st">"Jarak dari tempat tinggal ke kampus (km)"</span></span>
-<span>  <span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Menampilkan diagram pencar</span></span>
-<span><span class="va">scp</span></span></code></pre></div>
-<div class="inline-figure"><img src="figures/mod08-visualize-regression-line-2-1.png" width="672"></div>
-<ul>
-<li><p><code>coef(model)[1]</code> mengacu pada keluaran fungsi <code>coef</code> dari variabel <code>model</code> kita yang pertama (<code>[1]</code>), yakni angka <em>intercept</em>/konstantanya. Ini menjadi nilai dari atribut <code>intercept</code> yang terletak dalam fungsi <code>geom_abline</code></p></li>
-<li><p><code>coef(model)[2]</code> mengacu pada keluaran fungsi <code>coef</code> dari variabel <code>model</code> kita yang kedua ([<code>2]</code>), yakni angka koefisien variabel independen kita. Ini menjadi nilai dari atribut <code>slope</code> yang terletak dalam fungsi <code>geom_abline</code> karena nilai koefisien variabel independen menunjukkan kemiringan garis persamaan regresi linear kita</p></li>
-</ul>
-</div>
 <div id="tafsiran-nilai-konstanta-dan-koefisien" class="section level4" number="9.6.3.2">
 <h4>
 <span class="header-section-number">9.6.3.2</span> Tafsiran nilai konstanta dan koefisien<a class="anchor" aria-label="anchor" href="#tafsiran-nilai-konstanta-dan-koefisien"><i class="fas fa-link"></i></a>
 </h4>
-<p>Persamaan regresi linear ini bermakna nilai konstanta sebesar 93 berarti bahwa dengan tinggal di kampus (<span class="math inline">\(x=0\)</span>), mahasiswa masih akan mengeluarkan biaya sebesar 93.000 rupiah (ingat bahwa variabel <code>biaya sepekan</code> menggunakan satuan ribuan rupiah) untuk mengakses kampus selama sepekan. Kita bisa pahami hal tersebut sebagai perkiraan harga sewa penginapan di kampus.</p>
-<p>Sementara itu, nilai koefisien sebesar <span class="math inline">\(-5,3\)</span> berarti bahwa penambahan jarak sebesar 1 km akan <strong>mengurangi</strong> biaya transportasi sepekan sebesar 5.300 rupiah. Artinya, makin jauh 1 km seorang mahasiswa tinggal dari kampus, makin kecil pula biaya transportasi sepekannya sebesar 5.300 rupiah.</p>
-<blockquote>
-<p><strong>Pertanyaan bonus:</strong> Mengapa mahasiswa yang tinggal lebih jauh dari kampus biaya perjalanan sepekannya lebih kecil? Bukankah biaya transportasi makin jauh malah makin mahal?</p>
-</blockquote>
+<p>Nilai konstanta berarti bahwa <strong>dengan tinggal di kampus (<span class="math inline">\(x=0\)</span>), mahasiswa masih akan mengeluarkan biaya sebesar <code>[beta_0]</code> <span class="math inline">\(\times 1000\)</span> rupiah</strong> (ingat bahwa variabel <code>biaya sepekan</code> menggunakan satuan ribuan rupiah) untuk mengakses kampus selama sepekan. Kita bisa pahami hal tersebut <strong>sebagai perkiraan biaya perjalanan mahasiswa yang tinggal di asrama</strong>, misalnya.</p>
+<p>Sementara itu, nilai koefisien sebesar <code>[beta_1]</code> berarti bahwa <strong>penambahan jarak sebesar 1 km akan mengurangi biaya transportasi sepekan sebesar <code>[beta_1]</code><span class="math inline">\(\times 1000\)</span> rupiah</strong>. Artinya, makin jauh 1 km seorang mahasiswa tinggal dari kampus, makin kecil pula biaya transportasi sepekannya sebesar <code>[beta_1]</code><span class="math inline">\(\times 1000\)</span> rupiah.</p>
+<p>Nilai koefisien juga bermakna <strong>besar gradien garis persamaan regresi linear kita</strong> yang mencerminkan <strong>kemiringan garis persamaan regresi linear</strong> tersebut. Semakin besar nilai koefisien, semakin curam garis persamaan regresi linear kita.</p>
+<div class="rmdexercise">
+<p><span class="tajuksaya"><strong>Pertanyaan Bonus</strong></span></p>
+<p>Mengapa mahasiswa yang tinggal lebih jauh dari kampus biaya perjalanan sepekannya lebih kecil? Bukankah biaya transportasi makin jauh malah makin mahal? Apa kira-kira penyebab kecilnya biaya perjalanan tersebut?</p>
+</div>
 </div>
 <div id="tafsiran-uji-kualitas-model" class="section level4" number="9.6.3.3">
 <h4>
 <span class="header-section-number">9.6.3.3</span> Tafsiran uji kualitas model<a class="anchor" aria-label="anchor" href="#tafsiran-uji-kualitas-model"><i class="fas fa-link"></i></a>
 </h4>
-<p>Uji kualitas model kita terdiri atas <em>standard error</em> dari residual, koefisien determinasi atau <span class="math inline">\(R^2\)</span>, dan uji signifikansi persamaan menggunakan statistik <span class="math inline">\(F\)</span> (<code>F-statistic</code>) yang merupakan hasil ANOVA <em>(analysis of variance)</em>.</p>
+<p>Mari kita panggil kembali ringkasan model kita dengan perintah <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code>:</p>
+<div class="sourceCode" id="cb295"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Menampilkan ringkasan model</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
+<p>Uji kualitas model kita terdiri atas <strong>standard error dari residual</strong> (<code>Residual standard error</code>), <strong>koefisien determinasi atau <span class="math inline">\(R^2\)</span></strong> (<code>Multiple R-squared</code>), dan <strong>uji signifikansi persamaan menggunakan statistik <span class="math inline">\(F\)</span> (<code>F-statistic</code>)</strong> yang merupakan hasil ANOVA <em>(analysis of variance)</em>.</p>
 <ul>
+<li><p><code>Residual standard error</code> adalah <strong><em>standard error</em> dari residual</strong> yang mencerminkan nilai rata-rata galat (residu), yaitu selisih nilai variabel dependen yang dihitung (biaya perjalanan sepekan hasil prediksi dari model) dengan nilai variabel dependen yang kita peroleh dari data.</p></li>
 <li>
-<p><em>Standard error</em> dari residual mencerminkan rata-rata galat (residu), yaitu selisih nilai variabel dependen yang dihitung (biaya perjalanan sepekan hasil prediksi dari model) dengan nilai variabel dependen yang kita peroleh dari data.</p>
-<ul>
-<li>Hasil <code>summary</code> menunjukkan angka 38,11 yang artinya rata-rata kesalahan prediksi dari model kita adalah sebesar 38.110 rupiah.</li>
-</ul>
-</li>
-<li>
-<p>Koefisien determinasi atau <span class="math inline">\(R^2\)</span> menyatakan kesesuaian <em>(fit)</em> dari model kita, yakni seberapa banyak proporsi variansi data variabel dependen kita (biaya perjalanan sepekan) dijelaskan oleh variabel independennya (jarak dari kampus ke tempat tinggal).</p>
+<p><code>Multiple R-squared</code> adalah <strong>koefisien determinasi atau <span class="math inline">\(R^2\)</span></strong> yang menyatakan <strong>keakuratan prediksi</strong> dari model kita, yang angkanya bermakna seberapa banyak proporsi variansi data variabel dependen kita (biaya perjalanan sepekan) dijelaskan oleh variabel independennya (jarak dari kampus ke tempat tinggal). Makin tinggi nilai <span class="math inline">\(R^2\)</span> dari model kita, makin tinggi <strong>daya penjelas</strong> dari variabel independen kita terhadap data variabel dependen. Dengan kata lain, <span class="math inline">\(R^2\)</span> menjawab pertanyaan “seberapa kuat model mampu menerka variasi pada variabel dependen?”</p>
 <p>Sisa dari angka <span class="math inline">\(R^2\)</span> ini adalah banyak variansi yang tidak dijelaskan oleh variabel independen, artinya dijelaskan oleh variabel lainnya yang tidak ada dalam model dan juga keacakan (misal dalam pengambilan data atau kejadian acak).</p>
-<ul>
-<li><p>Hasil <code>summary</code> menunjukkan angka 0,095 yang berarti hanya 9,5% variansi biaya perjalanan sepekan dijelaskan oleh variansi jarak perjalanan ke kampus.</p></li>
-<li><p>Makin tinggi nilai <span class="math inline">\(R^2\)</span> dari model kita, makin besar proporsi variansi variabel dependen kita dijelaskan oleh variabel independennya.</p></li>
-<li><p>Hal ini menunjukkan bahwa pengaruh dari variabel independen kita terhadap variabel dependennya kuat</p></li>
-</ul>
 </li>
-<li>
-<p>Koefisien uji signifikansi (<span class="math inline">\(F\)</span>) (<code>F-statistics</code>) adalah uji hipotesis ANOVA <em>(analysis of variance)</em> yang membuktikan hipotesis nol bahwa tidak ada hubungan antara variabel dependen dengan variabel independen yang kita modelkan. Penerimaan hipotesis nol ini ditandai dari nilai signifikansi (<code>p-value</code>) yang lebih kecil dari 5% (<code>0.05</code>).</p>
-<ul>
-<li><p>Hasil <code>summary</code> menunjukkan bahwa nilai <code>p-value</code> kita adalah <code>1,721e-05</code>. Angka tersebut menyatakan notasi ilmiah <span class="math inline">\(1,721\times10^{-5}\)</span> yang berarti bahwa nilai <code>p-value</code> kita sangat-sangat lebih kecil dari <code>0.05.</code></p></li>
-<li><p>Ini artinya kita tidak dapat menerima hipotesis nol kita yang menyatakan tidak ada hubungan antara variabel biaya perjalanan sepekan (variabel dependen) dengan variabel jarak tempuh ke kampus (variabel independen).</p></li>
+<li><p><code>F-statistics</code> adalah <strong>uji hipotesis ANOVA <em>(analysis of variance)</em></strong> yang membuktikan <strong>hipotesis nol bahwa tidak ada hubungan antara variabel dependen dengan variabel independen secara statistik</strong> yang kita modelkan. Kegagalan menolak hipotesis nol ini ditandai dari nilai signifikansi (<code>p-value</code>) yang lebih kecil dari 5% (<code>0.05</code>). Jika demikian, <strong>penjelasan variabel dependen oleh variabel independen hanya terjadi secara kebetulan di sampel kita</strong>, tidak bisa disimpulkan berlaku pada populasi. Sebaliknya, jika hipotesis nol ditolak, maka penjelasan variabel dependen oleh variabel independen signifikan secara statistik dan bisa disimpulkan berlaku pada populasi.</p></li>
 </ul>
-</li>
-</ul>
-<p><strong>Simpulan tafsiran kualitas model</strong>: kita sudah melihat bahwa hubungan kausal antara variabel jarak ke kampus terhadap biaya perjalanan sepekan adalah terbalik dengan besar kemiringan 5,3. Hubungan kausal tersebut benar-benar ada berdasarkan hasil dari koefisien uji signifikansi (ANOVA) yang <em>p-value-</em>nya &lt;0,05. Akan tetapi, hubungan tersebut tidak cukup kuat karena nilai koefisien determinasi yang kecil, yakni hanya 9% saja.</p>
+</div>
+<div id="aktivitas-mandiri-4-5" class="section level4 unnumbered rmdexercise">
+<h4>Aktivitas Mandiri 4<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-4-5"><i class="fas fa-link"></i></a>
+</h4>
+<p>Jawablah pertanyaan-pertanyaan berikut untuk membantu Anda menafsirkan model yang telah dibuat:</p>
+<ol style="list-style-type: decimal">
+<li>Nilai <code>Residual standard error</code> harus dikalikan dengan 1000 terlebih dahulu untuk mengetahui rata-rata galat antara biaya perjalanan dari data yang sebenarnya dengan hasil perhitungan model. Berapakah besar galat biaya perjalanan sepekan antara data dengan hasi perhitungan?</li>
+<li>Berapa persen variansi biaya perjalanan sepekan yang dijelaskan oleh variansi jarak perjalanan ke kampus?</li>
+<li>Apakah penjelasan variabel jarak perjalanan ke kampus terhadap biaya perjalanan sepekan hanya terjadi secara kebetulan di sampel kita?</li>
+</ol>
 </div>
 <div id="tafsiran-uji-kualitas-variabel" class="section level4" number="9.6.3.4">
 <h4>
@@ -1428,7 +1419,7 @@ y = 93 - 5,3x
 <span class="header-section-number">9.6.4</span> Melakukan Prediksi<a class="anchor" aria-label="anchor" href="#melakukan-prediksi"><i class="fas fa-link"></i></a>
 </h3>
 <p>Kita melakukan prediksi dengan menggunakan perintah <code>predict</code>. Misalkan kita ingin melakukan prediksi biaya perjalanan sepekan untuk mahasiswa yang tinggal di jarak 90 dan 120 km dari kampus</p>
-<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb296"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">bahan_pred</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">90</span>, <span class="fl">120</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/predict.html">predict</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">bahan_pred</span><span class="op">)</span></span></code></pre></div>
@@ -1444,13 +1435,17 @@ y = 93 - 5,3x
 <h2>
 <span class="header-section-number">9.7</span> Model Regresi Linear Berganda<a class="anchor" aria-label="anchor" href="#model-regresi-linear-berganda"><i class="fas fa-link"></i></a>
 </h2>
-<p>Dalam bagian ini kita hanya akan mempelajari penggunaan variabel <em>dummy</em> untuk meningkatkan kekuatan prediksi kita. Di akhir, Anda akan menafsirkan hal-hal yang sudah Anda pelajari pada bagian regresi linear.</p>
+<p>Dalam bagian ini kita hanya akan mempelajari penggunaan <strong>variabel <em>dummy</em></strong> untuk meningkatkan kekuatan prediksi kita. Di akhir, Anda akan menafsirkan hal-hal yang sudah Anda pelajari pada bagian regresi linear.</p>
 <p>Kita akan menggunakan variabel <code>jenis tempat tinggal</code> untuk variabel <em>dummy</em>. Pertama, kita akan mengatur jenis nilai pada kolom <code>jenis tempat tinggal</code> menggunakan perintah <code>factor</code>.</p>
-<div class="sourceCode" id="cb301"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb298"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat nilai kolom menjadi variabel kategoris dengan 'factor'</span></span>
 <span><span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`jenis tempat tinggal`</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">data_mahasiswa_online</span><span class="op">$</span><span class="va">`jenis tempat tinggal`</span><span class="op">)</span></span></code></pre></div>
-<p>Kedua, kita akan membuat model seperti halnya yang kita lakukan dalam analisis regresi linear sederhana. Kita akan menggunakan nama yang lebih representatif.</p>
-<div class="sourceCode" id="cb302"><pre class="downlit sourceCode r">
+<div id="penyusunan-model-1" class="section level4" number="9.7.0.1">
+<h4>
+<span class="header-section-number">9.7.0.1</span> Penyusunan model<a class="anchor" aria-label="anchor" href="#penyusunan-model-1"><i class="fas fa-link"></i></a>
+</h4>
+<p>Kedua, kita akan membuat model seperti halnya yang kita lakukan dalam analisis regresi linear sederhana. Kita akan menggunakan nama yang lebih representatif untuk variabel-variabelnya.</p>
+<div class="sourceCode" id="cb299"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Membuat variabel-variabel</span></span>
 <span><span class="va">jarak</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="co"># variabel 'x' saja diubah menjadi 'jarak'</span></span>
 <span><span class="va">biaya</span> <span class="op">&lt;-</span> <span class="va">y</span> <span class="co"># variabel 'y' saja diubah menjadi 'biaya'</span></span>
@@ -1461,31 +1456,32 @@ y = 93 - 5,3x
 <span><span class="va">mdl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">biaya</span> <span class="op">~</span> <span class="va">jarak</span> <span class="op">+</span> <span class="va">ling</span>, data <span class="op">=</span> <span class="va">data_mahasiswa_online</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Melihat hasil pemodelan</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mdl</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## 
-## Call:
-## lm(formula = biaya ~ jarak + ling, data = data_mahasiswa_online)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -73.743 -23.421  -2.143  19.424 114.322 
-## 
-## Coefficients:
-##                              Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)                    98.103      8.104  12.105  &lt; 2e-16 ***
-## jarak                          -4.954      1.118  -4.431 1.63e-05 ***
-## lingKos sendiri               -20.779      8.787  -2.365   0.0191 *  
-## lingRumah mengontrak bersama  -17.198     10.409  -1.652   0.1002    
-## lingRumah mengontrak pribadi   27.744     16.031   1.731   0.0852 .  
-## lingRumah pribadi              20.348      9.866   2.062   0.0406 *  
-## lingRumah saudara              10.365     12.689   0.817   0.4151    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-## 
-## Residual standard error: 34.23 on 180 degrees of freedom
-## Multiple R-squared:  0.2899, Adjusted R-squared:  0.2663 
-## F-statistic: 12.25 on 6 and 180 DF,  p-value: 1.538e-11</code></pre>
+<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">mdl</span><span class="op">)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Call:</span></span>
+<span><span class="co">## lm(formula = biaya ~ jarak + ling, data = data_mahasiswa_online)</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Residuals:</span></span>
+<span><span class="co">##     Min      1Q  Median      3Q     Max </span></span>
+<span><span class="co">## -73.743 -23.421  -2.143  19.424 114.322 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Coefficients:</span></span>
+<span><span class="co">##                              Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span><span class="co">## (Intercept)                    98.103      8.104  12.105  &lt; 2e-16 ***</span></span>
+<span><span class="co">## jarak                          -4.954      1.118  -4.431 1.63e-05 ***</span></span>
+<span><span class="co">## lingKos sendiri               -20.779      8.787  -2.365   0.0191 *  </span></span>
+<span><span class="co">## lingRumah mengontrak bersama  -17.198     10.409  -1.652   0.1002    </span></span>
+<span><span class="co">## lingRumah mengontrak pribadi   27.744     16.031   1.731   0.0852 .  </span></span>
+<span><span class="co">## lingRumah pribadi              20.348      9.866   2.062   0.0406 *  </span></span>
+<span><span class="co">## lingRumah saudara              10.365     12.689   0.817   0.4151    </span></span>
+<span><span class="co">## ---</span></span>
+<span><span class="co">## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Residual standard error: 34.23 on 180 degrees of freedom</span></span>
+<span><span class="co">## Multiple R-squared:  0.2899, Adjusted R-squared:  0.2663 </span></span>
+<span><span class="co">## F-statistic: 12.25 on 6 and 180 DF,  p-value: 1.538e-11</span></span></code></pre></div>
 <p>Selanjutnya, kita akan menafsirkan hasil dari summary model ini.</p>
+</div>
 <div id="penjelasan-variabel-dummy" class="section level3" number="9.7.1">
 <h3>
 <span class="header-section-number">9.7.1</span> Penjelasan Variabel <em>Dummy</em><a class="anchor" aria-label="anchor" href="#penjelasan-variabel-dummy"><i class="fas fa-link"></i></a>
@@ -1504,76 +1500,77 @@ y = 93 - 5,3x
 <code>lingRumah saudara</code>.</li>
 </ol>
 <p>Nama variabel-variabel tersebut tak lain adalah gabungan kata <code>ling</code> dengan tiap-tiap kategori dalam variabel <code>jenis tempat tinggal</code>.</p>
-<p>Perhatikan bahwa kita jadi memiliki 5 variabel <em>dummy</em> dari satu variabel kategoris <code>jenis tempat tinggal</code> yang terdiri atas 6 kategori nilai: “Kos bersama-sama”, “Kos sendiri”, “Rumah mengontrak bersama”, “Rumah mengontrak pribadi”, “Rumah pribadi”, dan “Rumah saudara.”</p>
-<p>Variabel <em>dummy</em> adalah variabel yang bernilai 0 (nol) atau 1 (satu) saja. Nol artinya variabel <em>dummy</em> tersebut bernilai “salah” atau “tidak”, sedangkan satu artinya variabel <em>dummy</em> tersebut bernilai “benar” atau “ya.”</p>
-<p>Variabel-variabel <em>dummy</em> yang 5 buah ini hanya akan bernilai 1 atau 0 sesuai dengan kategori dari variabel <code>jenis tempat tinggal</code> suatu objek. Perhatikan bahwa kita tidak punya “<code>lingKos sendiri</code>” dalam variabel <em>dummy</em> kita. Ini artinya apabila kategori <code>jenis tempat tinggal</code> suatu objek adalah “Kos sendiri”, <strong>kelima variabel <em>dummy</em> akan bernilai 0.</strong></p>
+<p>Perhatikan bahwa kita jadi memiliki 5 variabel <em>dummy</em> dari satu variabel kategoris <code>jenis tempat tinggal</code> yang terdiri atas 6 kategori nilai: <strong>Kos bersama-sama</strong>, <strong>Kos sendiri</strong>, <strong>Rumah mengontrak bersama</strong>, <strong>Rumah mengontrak pribadi</strong>, <strong>Rumah pribadi</strong>, dan <strong>Rumah saudara</strong>.</p>
+<p>Variabel <em>dummy</em> adalah <strong>variabel yang hanya bernilai 0 (nol) atau 1 (satu)</strong>. Nilai 0 berarti variabel <em>dummy</em> tersebut bernilai “salah” atau “tidak”, sedangkan nilai 1 berarti variabel <em>dummy</em> tersebut bernilai “benar” atau “ya.”</p>
+<p>Variabel-variabel <em>dummy</em> yang 5 buah ini hanya akan bernilai 1 atau 0 <strong>sesuai dengan kategori dari variabel <code>jenis tempat tinggal</code> suatu objek</strong>. Perhatikan bahwa kita tidak punya “<code>lingKos bersama-sama</code>” dalam variabel <em>dummy</em> kita. Ini artinya apabila kategori <code>jenis tempat tinggal</code> suatu objek adalah “Kos bersama-sama”, <strong>kelima variabel <em>dummy</em> akan bernilai 0.</strong></p>
 <p>Tabel berikut merangkum nilai-nilai variabel <em>dummy</em> untuk setiap kategori nilai variabel <code>jenis tempat tinggal</code>.</p>
-<div class="inline-table"><table class="table table-sm">
-<caption>Nilai variabel dummy untuk setiap kategori</caption>
+<div class="inline-table"><table style="width:100%;" class="table table-sm">
+<caption>
+<span id="tab:mod08-dummy-table">Tabel 9.1: </span>Nilai variabel dummy untuk setiap kategori</caption>
 <colgroup>
-<col width="17%">
-<col width="12%">
+<col width="18%">
+<col width="11%">
 <col width="21%">
 <col width="21%">
 <col width="13%">
 <col width="13%">
 </colgroup>
 <thead><tr class="header">
-<th>Kategori</th>
-<th><code>lingKos sendiri</code></th>
-<th><code>lingRumah mengontrak bersama</code></th>
-<th><code>lingRumah mengontrak pribadi</code></th>
-<th><code>lingRumah pribadi</code></th>
-<th><code>lingRumah saudara</code></th>
+<th align="left">Kategori</th>
+<th align="right">lingKos_sendiri</th>
+<th align="right">lingRumah_mengontrak_bersama</th>
+<th align="right">lingRumah_mengontrak_pribadi</th>
+<th align="right">lingRumah_pribadi</th>
+<th align="right">lingRumah_saudara</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>Kos sendiri</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
+<td align="left">Kos sendiri</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>Rumah mengontrak bersama</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
+<td align="left">Rumah mengontrak bersama</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>Rumah mengontrak pribadi</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
+<td align="left">Rumah mengontrak pribadi</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>Rumah pribadi</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
+<td align="left">Rumah pribadi</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>Rumah saudara</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
+<td align="left">Rumah saudara</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
-<td>Kos bersama</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
+<td align="left">Kos bersama-sama</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
 </tr>
 </tbody>
 </table></div>
@@ -1585,12 +1582,28 @@ y = 93 - 5,3x
 <p>Dalam menginterpretasi variable <em>dummy</em> kita tidak bisa menggunakan <code>Pr(&gt;|t|)</code> semata, karena variabel <em>dummy</em> pada hakikatnya sepaket. Jadi, walaupun nilai <code>Pr(&gt;|t|)</code> sebuah variabel <em>dummy</em> adalah &gt;0,05 ia akan tetap berada dalam persamaan regresi linear.</p>
 <p>Interpretasi koefisien variabel <em>dummy</em> adalah dengan memahami bahwa nilai variabel dependen berubah sesuai nilai koefisien apabila variabel <em>dummy</em> tersebut bernilai <strong>benar</strong> atau <strong>1</strong>. Artinya, jika mahasiswa tinggal di kosan sendirian (<code>lingKos sendiri = 1</code>), maka biaya transportasi sepekan berkurang sebesar <code>20.779</code> yang juga berarti sebesar 20,7 ribu rupiah. Jika mahasiswa tinggal di rumah pribadi (<code>lingRumah pribadi = 1</code>) maka biaya transportasi sepekan bertambah sebesar <code>20.348</code> atau 20,3 ribu rupiah.</p>
 </div>
-<div id="prediksi-model" class="section level3" number="9.7.3">
+<div id="penafsiran-model" class="section level3" number="9.7.3">
 <h3>
-<span class="header-section-number">9.7.3</span> Prediksi Model<a class="anchor" aria-label="anchor" href="#prediksi-model"><i class="fas fa-link"></i></a>
+<span class="header-section-number">9.7.3</span> Penafsiran Model<a class="anchor" aria-label="anchor" href="#penafsiran-model"><i class="fas fa-link"></i></a>
+</h3>
+<p>Seperti halnya pada regresi linear sederhana, yang akan kita tafsirkan dari model kita di antaranya:</p>
+<ul>
+<li>persamaan model</li>
+<li>makna nilai konstanta dan koefisien</li>
+<li>uji kualitas model (ANOVA, <code>F-statistic</code>), dan ditambah dengan, khusus untuk regresi linear berganda, uji kualitas variabel (<code>Pr(&gt;|t|)</code>)</li>
+</ul>
+<div id="persamaan-model" class="section level4" number="9.7.3.1">
+<h4>
+<span class="header-section-number">9.7.3.1</span> Persamaan model<a class="anchor" aria-label="anchor" href="#persamaan-model"><i class="fas fa-link"></i></a>
+</h4>
+</div>
+</div>
+<div id="prediksi-model" class="section level3" number="9.7.4">
+<h3>
+<span class="header-section-number">9.7.4</span> Prediksi Model<a class="anchor" aria-label="anchor" href="#prediksi-model"><i class="fas fa-link"></i></a>
 </h3>
 <p>Dari persamaan model regresi linear kita, kita juga dapat memprediksi nilai biaya perjalanan sepekan untuk mahasiswa-mahasiswa dengan kondisi lain. Misalnya kita ingin memprediksi biaya sepekan transportasi mahasiswa yang tinggal di Rumah saudara berjarak 7,9 km dari kampus dan di Rumah kontrakan bersama yang berjarak 10 km dari kampus.</p>
-<div class="sourceCode" id="cb304"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb300"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menyusun dataset untuk diprediksi</span></span>
 <span><span class="va">mhs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html">tibble</a></span><span class="op">(</span></span>
 <span>  jarak <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7.9</span>, <span class="fl">10</span><span class="op">)</span>,</span>
@@ -1609,27 +1622,8 @@ y = 93 - 5,3x
 <li>Apa saja yang meningkatkan dan menurunkan biaya perjalanan sepekan mahasiswa?</li>
 </ol>
 </blockquote>
+
 </div>
-<div id="aktivitas-mandiri-4-analisis-regresi-komprehensif-stp-13.3-stp-14.3.capaian" class="section level3 unnumbered rmdexercise">
-<h3>Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3].{capaian}<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-4-analisis-regresi-komprehensif-stp-13.3-stp-14.3.capaian"><i class="fas fa-link"></i></a>
-</h3>
-<p><strong>A. Regresi Linear Sederhana [STP-13.3]:</strong></p>
-<p>Model: <code>jumlah perjalanan weekdays</code> vs <code>jarak</code>
-1. Buat model sederhana
-2. Tuliskan persamaan regresi
-3. Interpretasikan intercept dan slope
-4. Uji kualitas model (F-statistic, R²)</p>
-<p><strong>B. Regresi Linear Berganda [STP-14.3]:</strong></p>
-<p>Model: <code>jumlah perjalanan weekdays</code> ~ <code>jarak</code> + <code>umur</code> + <code>jenis tempat tinggal</code>
-1. Buat model berganda
-2. Tuliskan persamaan lengkap
-3. Identifikasi variabel signifikan
-4. Bandingkan R²</p>
-<p><strong>C. Interpretasi:</strong>
-- Faktor yang meningkatkan/menurunkan jumlah perjalanan?
-- Proporsi variansi yang dijelaskan?</p>
-</div>
-<hr>
 </div>
 </div>
   <div class="chapter-nav">
@@ -1641,12 +1635,20 @@ y = 93 - 5,3x
 <li><a class="nav-link" href="#analisis-hubungan-kausalitas-regresi-linear-sederhana-dan-berganda"><span class="header-section-number">9</span> Analisis Hubungan Kausalitas: Regresi Linear Sederhana dan Berganda</a></li>
 <li><a class="nav-link" href="#pendahuluan-4"><span class="header-section-number">9.1</span> Pendahuluan</a></li>
 <li><a class="nav-link" href="#penjelasan-kasus"><span class="header-section-number">9.2</span> Penjelasan Kasus</a></li>
-<li><a class="nav-link" href="#memuat-pustaka-libraries-yang-diperlukan"><span class="header-section-number">9.3</span> Memuat Pustaka (Libraries) yang Diperlukan</a></li>
-<li><a class="nav-link" href="#memuat-dataset-4"><span class="header-section-number">9.4</span> Memuat Dataset</a></li>
-<li><a class="nav-link" href="#pola-hubungan-data-1"><span class="header-section-number">9.5</span> Pola Hubungan Data</a></li>
+<li><a class="nav-link" href="#memuat-pustaka-libraries-yang-diperlukan-1"><span class="header-section-number">9.3</span> Memuat Pustaka (Libraries) yang Diperlukan</a></li>
+<li><a class="nav-link" href="#memuat-dataset-5"><span class="header-section-number">9.4</span> Memuat Dataset</a></li>
+<li>
+<a class="nav-link" href="#pola-hubungan-data-1"><span class="header-section-number">9.5</span> Pola Hubungan Data</a><ul class="nav navbar-nav">
+<li><a class="nav-link" href="#menghitung-koefisien-pearsons-r"><span class="header-section-number">9.5.1</span> Menghitung Koefisien Pearson’s \(r\)</a></li>
+<li><a class="nav-link" href="#aktivitas-mandiri-1-4">Aktivitas Mandiri 1</a></li>
+<li><a class="nav-link" href="#membuat-diagram-pencar"><span class="header-section-number">9.5.2</span> Membuat Diagram Pencar</a></li>
+<li><a class="nav-link" href="#aktivitas-mandiri-2-4">Aktivitas Mandiri 2</a></li>
+</ul>
+</li>
 <li>
 <a class="nav-link" href="#model-regresi-linear-sederhana"><span class="header-section-number">9.6</span> Model Regresi Linear Sederhana</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#penyusunan-model"><span class="header-section-number">9.6.1</span> Penyusunan Model</a></li>
+<li><a class="nav-link" href="#aktivitas-mandiri-3-4">Aktivitas Mandiri 3</a></li>
 <li><a class="nav-link" href="#penampilan-model"><span class="header-section-number">9.6.2</span> Penampilan Model</a></li>
 <li><a class="nav-link" href="#penafsiraninterpretasi-model"><span class="header-section-number">9.6.3</span> Penafsiran/interpretasi Model</a></li>
 <li><a class="nav-link" href="#melakukan-prediksi"><span class="header-section-number">9.6.4</span> Melakukan Prediksi</a></li>
@@ -1656,8 +1658,8 @@ y = 93 - 5,3x
 <a class="nav-link" href="#model-regresi-linear-berganda"><span class="header-section-number">9.7</span> Model Regresi Linear Berganda</a><ul class="nav navbar-nav">
 <li><a class="nav-link" href="#penjelasan-variabel-dummy"><span class="header-section-number">9.7.1</span> Penjelasan Variabel Dummy</a></li>
 <li><a class="nav-link" href="#interpretasi-variabel-dummy"><span class="header-section-number">9.7.2</span> Interpretasi Variabel Dummy</a></li>
-<li><a class="nav-link" href="#prediksi-model"><span class="header-section-number">9.7.3</span> Prediksi Model</a></li>
-<li><a class="nav-link" href="#aktivitas-mandiri-4-analisis-regresi-komprehensif-stp-13.3-stp-14.3.capaian">Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3].{capaian}</a></li>
+<li><a class="nav-link" href="#penafsiran-model"><span class="header-section-number">9.7.3</span> Penafsiran Model</a></li>
+<li><a class="nav-link" href="#prediksi-model"><span class="header-section-number">9.7.4</span> Prediksi Model</a></li>
 </ul>
 </li>
 </ul>
