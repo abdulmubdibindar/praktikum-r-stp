@@ -301,6 +301,7 @@ Bentuk umum:
 $$
 y = \beta_0 + \beta_1x
 $$
+
 seperti halnya yang sudah kita pelajari:
 
 - $\beta_0$ adalah konstanta
@@ -372,7 +373,7 @@ Nilai koefisien juga bermakna **besar gradien garis persamaan regresi linear kit
 
 [**Pertanyaan Bonus**]{.tajuksaya}
 
-Mengapa mahasiswa yang tinggal lebih jauh dari kampus biaya perjalanan sepekannya lebih kecil? Bukankah biaya transportasi makin jauh malah makin mahal? Apa kira-kira penyebab kecilnya biaya perjalanan tersebut?
+Mengapa mahasiswa yang tinggal lebih jauh dari kampus biaya perjalanan sepekannya lebih kecil? Bukankah biaya transportasi, apalagi transportasi daring, makin jauh malah makin mahal? Apa kira-kira penyebab kecilnya biaya perjalanan tersebut?
 
 :::
 
@@ -380,7 +381,7 @@ Mengapa mahasiswa yang tinggal lebih jauh dari kampus biaya perjalanan sepekanny
 
 Mari kita panggil kembali ringkasan model kita dengan perintah `summary()`:
 
-```{r mod08-model-summary-2, echo=TRUE, results='hide'}
+```{r mod08-model-summary-2, echo=TRUE, collapse=TRUE}
 # Menampilkan ringkasan model
 summary(model)
 ```
@@ -401,9 +402,9 @@ Uji kualitas model kita terdiri atas **standard error dari residual** (`Residual
 
 Jawablah pertanyaan-pertanyaan berikut untuk membantu Anda menafsirkan model yang telah dibuat:
 
-1. Nilai `Residual standard error` harus dikalikan dengan 1000 terlebih dahulu untuk mengetahui rata-rata galat antara biaya perjalanan dari data yang sebenarnya dengan hasil perhitungan model. Berapakah besar galat biaya perjalanan sepekan antara data dengan hasi perhitungan?
-2. Berapa persen variansi biaya perjalanan sepekan yang dijelaskan oleh variansi jarak perjalanan ke kampus?
-3. Apakah penjelasan variabel jarak perjalanan ke kampus terhadap biaya perjalanan sepekan hanya terjadi secara kebetulan di sampel kita?
+1. Nilai `Residual standard error` harus dikalikan dengan 1000 terlebih dahulu untuk mengetahui rata-rata galat antara biaya perjalanan dari data yang sebenarnya, untuk para pengguna angkutan daring, dengan hasil perhitungan model. Berapakah besar galat biaya perjalanan sepekan antara data dengan hasi perhitungan?
+2. Berapa persen variansi biaya perjalanan sepekan untuk para pengguna angkutan daring yang dijelaskan oleh variansi jarak perjalanan ke kampus?
+3. Apakah penjelasan variabel jarak perjalanan ke kampus terhadap biaya perjalanan sepekan untuk pengguna transportasi daring hanya terjadi secara kebetulan di sampel kita?
 
 :::
 
@@ -419,7 +420,9 @@ Nilai `Pr(>|t|)` variabel `x` adalah `1,721e-05` yang berarti koefisien senilai 
 
 ### Melakukan Prediksi
 
-Kita melakukan prediksi dengan menggunakan perintah `predict`. Misalkan kita ingin melakukan prediksi biaya perjalanan sepekan untuk mahasiswa yang tinggal di jarak 90 dan 120 km dari kampus
+Kita melakukan prediksi dengan menggunakan perintah `predict`. Perintah ini mengambil masukan berupa model yang kita buat dan sebuah *data frame* atau *tibble*. 
+
+Perintah berikut adalah untuk melakukan prediksi biaya perjalanan sepekan untuk mahasiswa pengguna transportasi daring yang tinggal di jarak 90 dan 120 dari kampus.
 
 ```{r mod08-predict-simple-model, echo=TRUE}
 bahan_pred <- tibble(x = c(90, 120))
@@ -427,9 +430,16 @@ bahan_pred <- tibble(x = c(90, 120))
 predict(model, bahan_pred)
 ```
 
--   Perintah `tibble` adalah perintah untuk membuat dataset berisi kolom `x` yang terdiri atas 2 nilai: 90 km dan 120 km. Kita menyimpan dataset contoh tersebut ke dalam variabel bernama `bahan_pred`
+-   Perintah `tibble` adalah perintah untuk membuat *tibble* berisi kolom bernama `x` yang terdiri atas nilai 90 dan 120 km, sesuai yang ditentukan sebelumnya. Kita menyimpan *tibble* tersebut ke dalam variabel bernama `bahan_pred`
+-   Dalam membuat dataset untuk prediksi kita harus memperhatikan nama variabel/nama kolom yang kita berikan dalam perintah `tibble()`. Nama kolom yang akan kita prediksi harus **sama persis** dengan nama variabel yang kita nyatakan dalam perintah `lm`.
 
--   Dalam membuat dataset untuk prediksi kita harus memperhatikan nama variabel/nama kolom yang kita berikan dalam perintah `tibble`. Nama kolom yang akan kita prediksi harus **sama persis** dengan nama variabel yang kita nyatakan dalam perintah `lm`.
+::: rmdexercise
+
+#### Aktivitas Mandiri 5 {-}
+
+Lakukan prediksi untuk mahasiswa yang tinggal di jarak `5.0` dan `6.5`, dan `10.4` km menggunakan persamaan regresi yang sudah dibuat sebelumnya. Simpan *tibble* dengan nama `bahan_pred_lat`. 
+
+:::
 
 ## Model Regresi Linear Berganda
 
@@ -487,7 +497,11 @@ Tabel berikut merangkum nilai-nilai variabel *dummy* untuk setiap kategori nilai
 library(tibble)
 
 dummy_tbl <- tribble(
-  ~Kategori, ~lingKos_sendiri, ~lingRumah_mengontrak_bersama, ~lingRumah_mengontrak_pribadi, ~lingRumah_pribadi, ~lingRumah_saudara,
+  ~Kategori, ~lingKos_sendiri,
+  ~lingRumah_mengontrak_bersama,
+  ~lingRumah_mengontrak_pribadi,
+  ~lingRumah_pribadi,
+  ~lingRumah_saudara,
   "Kos sendiri", 1, 0, 0, 0, 0,
   "Rumah mengontrak bersama", 0, 1, 0, 0, 0,
   "Rumah mengontrak pribadi", 0, 0, 1, 0, 0,
@@ -515,7 +529,26 @@ Seperti halnya pada regresi linear sederhana, yang akan kita tafsirkan dari mode
 
 #### Persamaan model
 
+Masih sama seperti pada regresi linear sederhana, perintah untuk menampilkan koefisien & konstanta pada persamaan regresi linear berganda adalah `coef()`.
 
+```{r mod08-model-mult-regression, echo=TRUE}
+# Menampilkan koefisien model regresi linear berganda
+coef(mdl)
+```
+
+Seperti yang sudah kita pelajari, persamaan regresi linear berganda pada dasarnya adalah **persamaan regresi linear sederhana yang memiliki lebih dari satu variabel independen**. Artinya, berdasarkan bentuk umum persamaan regresi linear sederhana, kita cukup menambahkan variabel-variabel independen lainnya beserta koefisiennya ke dalam persamaan.
+
+Kita juga dapat menggunakan penamaan variabel lain selain `x` dan `y` untuk memudahkan interpretasi. Untuk kasus ini, kita bisa menggunakan kata $biaya$ untuk menggantikan $y$, $jarak$ untuk menggantikan $x_1$, $lingKos_sendiri$ untuk menggantikan $x_2$, dan seterusnya.
+
+::: rmdexercise
+
+#### Aktivitas Mandiri 6 {-}
+
+
+
+:::
+
+#### Makna Nilai Konstanta dan Koefisien
 
 ### Prediksi Model
 
