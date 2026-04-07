@@ -10,9 +10,9 @@ Setelah mempelajari modul ini, Anda diharapkan dapat:
 
 ## Pendahuluan
 
-Analisis regresi linear adalah analisis statistik untuk menyatakan hubungan sebab-akibat (kausalitas) antar minimal dua variabel. Analisis regresi linear yang melibatkan *dua variabel saja* (*satu variabel dependen* dan *satu variabel independen*), kita sebut sebagai **regresi linear sederhana**, sedangkan analisis regresi linar yang melibatkan lebih dari dua variabel (*satu variabel dependen* dan *lebih dari satu variabel independen*) kita sebut sebagai **regresi linear berganda *(multiple linear regression)***
+Analisis regresi linear adalah analisis statistik untuk menyatakan **hubungan sebab-akibat (kausalitas)** antar *minimal* dua variabel. Analisis regresi linear yang melibatkan **dua variabel saja** (*satu variabel dependen* dan *satu variabel independen*), kita sebut sebagai **regresi linear sederhana**, sedangkan analisis regresi linar yang melibatkan **lebih dari dua variabel** (*satu variabel dependen* dan *lebih dari satu variabel independen*) kita sebut sebagai **regresi linear berganda *(multiple linear regression)***
 
-Analisis regresi linear mewajibkan tingkat pengukuran minimal untuk variabel dependennya adalah **metrik**. Sementara itu, variabel independennya dapat berupa metrik atau bukan (ordinal/nominal).
+Analisis regresi linear mewajibkan tingkat pengukuran minimal untuk variabel dependennya adalah **metrik**. Sementara itu, variabel independennya dapat berupa **metrik atau bukan (ordinal/nominal)**.
 
 Analisis regresi linear menghasilkan persamaan yang disebut **persamaan regresi linear**. Bentuk umum persamaan regresi linear tersebut adalah sebagai berikut.
 
@@ -22,8 +22,8 @@ $$
 
 dengan
 
--   $y$ adalah variabel dependen (disebut juga *variabel respons* atau *predicted variable*)
--   $x$ adalah variabel independen (disebut juga *variabel eksplanatory* atau *predictor variable*)
+-   $y$ adalah variabel dependen (disebut juga **variabel respons** atau **predicted variable**)
+-   $x$ adalah variabel independen (disebut juga **variabel explanatory** atau **predictor variable**)
 -   $\beta_0$ adalah konstanta yang menjadi *intercept*, yaitu nilai $y$ ketika $x=0$
 -   $\beta_1$ adalah koefisien yang menyatakan seberapa besar perubahan $y$ ketika satu unit nilai $x$ berubah.
 
@@ -42,7 +42,7 @@ dengan
 
 Dalam praktikum kali ini, kita akan memodelkan hubungan kausal antara dua variabel metrik: **jarak tempat tinggal ke kampus** dan **biaya perjalanan sepekan** untuk mahasiswa-mahasiswi yang menggunakan **kendaraan layanan online saja**. Harga perjalanan menggunakan layanan *online* tentunya dipengaruhi oleh jarak tempuh kendaraan tersebut. Hubungan kausal ini menjadi kasus untuk **regresi linear sederhana**.
 
-Untuk **regresi linear berganda**, kita akan melibatkan satu variabel tambahan sebagai variabel independen, yakni variabel berjenis kategoris , sehingga kita memiliki total variabel sejumlah 3 buah (1 variabel dependen, 2 variabel independen).
+Untuk **regresi linear berganda**, kita akan melibatkan satu variabel tambahan sebagai variabel independen, yakni variabel berjenis kategoris, sehingga kita memiliki total variabel sejumlah 3 buah (1 variabel dependen, 2 variabel independen).
 
 ## Memuat Pustaka *(Libraries)* yang Diperlukan
 
@@ -53,6 +53,13 @@ library(tidyverse)
 library(readr)
 library(gtsummary)
 ```
+
+Pastikan juga kalian mengunduh dan menginstal pustaka `broom.helpers` yang akan kita gunakan untuk menampilkan *summary* model.
+
+```{r mod08-install-broom, echo=TRUE, results='hide'}
+install.packages("broom.helpers")
+```
+
 
 ## Memuat Dataset
 
@@ -67,17 +74,26 @@ data_mahasiswa_online <- data_mahasiswa |>
   filter(`kendaraan utama` == "Layanan online")
 ```
 
+Mari biasakan untuk melihat datanya, seperti jumlah objek dan nama-nama variabelnya dengan perintah `glimpse()`.
+
+```{r mod08-inspect-kampus-layanan-online, results='hide'}
+data_mahasiswa_online |>
+  select(Kampus_PT, `kendaraan utama`) |>
+  group_by(Kampus_PT) |>
+  summarize("jumlah" = n())
+```
+
 ## Pola Hubungan Data
 
 Sebagai pendahuluan, kita akan mengidentifikasi kekuatan, arah, dan pola hubungan antara variabel dependen dan independen kita (biaya perjalanan sepekan dan jarak tempat tinggal-kampus). Untuk itu kita dapat menghitung koefisien korelasi untuk hubungan variabel metrik juga, yakni koefisien korelasi Pearson's $r$.
 
 Pola hubungan akan kita analisis dengan membuat diagram pencar *(scatter plot)* antara variabel dependen dengan variabel independennya.
 
-**Menghitung Koefisien Pearson's** $r$
+### Menghitung Koefisien Pearson's $r$
 
 Menghitung koefisien korelasi Pearson's $r$ dapat kita lakukan dengan perintah `cor()` dengan atribut `method = "pearson"` setelah terlebih dahulu menyimpan nilai masing-masing variabel ke dalam suatu vektor.
 
-```{r mod08-calculate-correlation, echo=TRUE}
+```{r mod08-calculate-correlation, echo=TRUE, results='hide'}
 # Menyimpan vektor jarak dan biaya (perjalanan) sepekan ke dalam variabel
 # 'x' dan 'y'
 x <- data_mahasiswa_online$jarak
@@ -86,11 +102,17 @@ y <- data_mahasiswa_online$`biaya sepekan`
 cor(x, y, use = "complete.obs", method = "pearson")
 ```
 
-> **Jawablah:** Tuliskan interpretasi kalian terhadap koefisien korelasi antara variabel jarak tempuh dengan biaya perjalanan sepekan.
->
-> *Petunjuk: ulas kekuatan serta arah hubungannya serta maknai secara kontekstual ulasan tersebut*
+::: rmdexercise
 
-**Membuat Diagram Pencar**
+### Aktivitas Mandiri 1 {-}
+
+Tuliskan interpretasi kalian terhadap koefisien korelasi antara variabel jarak tempuh dengan biaya perjalanan sepekan tersebut.
+
+*Petunjuk: ulas kekuatan serta arah hubungannya serta maknai secara kontekstual ulasan tersebut*
+
+:::
+
+### Membuat Diagram Pencar
 
 Membuat diagram pencar dapat dilakukan dengan menerapkan perintah `geom_point()` dari pustaka `ggplot2` yang dimuat bersama pustaka `tidyverse`.
 
@@ -106,6 +128,7 @@ scp <- ggplot(
 ) + # variabel di sumbu Y
   geom_point(
     color = "navy", # perintah untuk menampilkan diagram pencar dengan warna biru
+    alpha = 0.01, # mengatur transparansi titik
     size = 1.5, # mengatur ukuran titik
     shape = 15
   ) + # mengatur bentuk titik menjadi persegi
@@ -133,7 +156,7 @@ data_mahasiswa_online <- data_mahasiswa_online |>
 
 Di sini kita akan menghitung ulang nilai koefisien korelasi kita.
 
-```{r mod08-recalculate-correlation, echo=TRUE}
+```{r mod08-recalculate-correlation, echo=TRUE, results='hide'}
 # Menghitung korelasi antara biaya sepekan dengan jarak dari dataset yang
 # sudah dihilangkan pencilannya
 x <- data_mahasiswa_online$jarak
@@ -142,7 +165,13 @@ y <- data_mahasiswa_online$`biaya sepekan`
 cor(x, y, method = "pearson")
 ```
 
-> **Jawablah:** Bagaimana perbedaan nilai koefisiennya?
+::: rmdexercise
+
+### Aktivitas Mandiri 2 {-}
+
+Tuliskan interpretasi kalian terhadap perbedaan nilai koefisiennya.
+
+:::
 
 Kita pun dapat memeriksa hasil perbaikan dataset kita dari diagram pencar yang baru berikut.
 
@@ -157,7 +186,8 @@ scp <- ggplot(
   )
 ) + # variabel di sumbu Y
   geom_point(
-    color = "navy", # perintah untuk menampilkan diagram pencar
+    color = "navy", # mengatur warna titik
+    alpha = 0.5, # mengatur transparansi
     size = 1.5, # mengatur ukuran titik
     shape = 15
   ) + # mengatur bentuk titik menjadi persegi
@@ -178,7 +208,7 @@ Dalam bagian ini kita akan mempelajari cara menyusun, menampilkan, menafsirkan/m
 
 ### Penyusunan Model
 
-Untuk membuat persamaan model regresi linear, kita akan menggunakan perintah `lm` yang sudah disediakan secara bawaan oleh R. Hasil dari perintah ini dapat kita simpan sebagai variabel tertentu.
+Untuk membuat persamaan model regresi linear, kita akan menggunakan perintah `lm()` yang sudah disediakan secara bawaan oleh R. Hasil dari perintah ini dapat kita simpan sebagai variabel tertentu.
 
 ```{r mod08-create-simple-model, echo=TRUE}
 # Membuat model regresi linear
@@ -189,24 +219,34 @@ Argumen yang kita gunakan adalah `var_dependen ~ var_independen` serta nama data
 
 Sebelumnya kita sudah mendefinisikan `y` dan `x` sebagai variabel untuk vektor biaya transportasi sepekan dan vektor jarak, sehingga kita bisa langsung menggunakannya di atas. Dataset yang kita gunakan adalah dataset mahasiswa yang menggunakan layanan *online* sebagai moda transportasi utama yang kita simpan dalam `data_mahasiswa_online`.
 
+::: rmdexercise
+
+### Aktivitas Mandiri 3 {-}
+
+Definisikan model tersebut dan jawablah:
+
+1. Berdasarkan jumlah variabel independen dan dependennya, apa nama jenis analisis regresi linear ini?
+2. Variabel manakah yang menjadi variabel dependen dan independen?
+
+:::
+
 ### Penampilan Model
 
 Untuk menampilkan hasil penyusunan model regresi linear, kita akan menggunakan perintah `summary` yang juga sudah disediakan secara bawaan oleh R.
 
-```{r mod08-display-model-summary, echo=TRUE}
+```{r mod08-display-model-summary, echo=TRUE, results='hide'}
 # Menampilkan hasil model regresi linear
 summary(model)
 ```
 
-Yang ditampilkan dengan perintah tersebut antara lain adalah sebagai berikut. Penjelasan lebih lanjutnya akan diberikan di subbagian selanjutnya.
+Yang ditampilkan dengan perintah tersebut antara lain adalah sebagai berikut.
 
--   `Call` : bentuk persamaan model yang sudah kita input sebelumnya
+- `Call` : bentuk persamaan model yang sudah kita input sebelumnya
+- `Residuals` : informasi residual model
+- `Coefficients` : tabel yang menunjukkan angka-angka dalam persamaan model yang dihasilkan
+- Nilai-nilai uji kualitas model seperti `Residual standard error` *(standard error* estimasi), *Multiple R-squared* dan *Adjusted R-squared* (koefisien determinasi), serta *F-statistic* (uji signifikansi model).
 
--   `Residuals` : informasi residual model
-
--   `Coefficients` : tabel yang menunjukkan angka-angka dalam persamaan model yang dihasilkan
-
--   Nilai-nilai uji kualitas model seperti `Residual standard error` *(standard error* estimasi), *Multiple R-squared* dan *Adjusted R-squared* (koefisien determinasi), serta *F-statistic* (uji signifikansi model).
+Penjelasan lebih detil akan diberikan di subbagian selanjutnya.
 
 Selain menggunakan `summary`, kita juga dapat menggunakan perintah `tbl_regression`, perintah yang disediakan oleh paket/*library* `gtsummary`. Hasil dari perintah ini adalah tabel yang sudah diformat sesuai dengan *templat* artikel ilmiah.
 
@@ -214,8 +254,6 @@ Selain menggunakan `summary`, kita juga dapat menggunakan perintah `tbl_regressi
 # Menampilkan hasil model regresi linear dengan tbl_regression
 tbl_regression(model)
 ```
-
-Jika kalian menemukan pertanyaan untuk menginstal sebuah paket di *console*, yakni `broom.helpers`, pilih saja "Yes" untuk mengunduh dan menginstalnya.
 
 Secara bawaan, tabel tidak menampilkan nilai konstanta *(intercept)*, menampilkan nilai *confidence level* 95%, dan menampilkan nilai dari variabel independen sesuai variabel yang kita tetapkan sebelumnya, dalam hal ini adalah `x`. Untuk menggantinya, kita dapat melakukan penyesuaian perintah sebagai berikut.
 
@@ -233,30 +271,56 @@ tbl_regression(
 Yang kita akan tafsirkan dari model kita di antaranya adalah:
 
 -   persamaan model
-
 -   makna nilai konstanta dan koefisien
-
 -   uji kualitas model (ANOVA, `F-statistic`)
-
 -   uji kualitas variabel (`Pr(>|t|)`)
 
 #### Tafsiran persamaan model
 
-Persamaan model dapat kita tafsirkan berdasarkan keluaran dari `summary` berupa `Coefficients` atau hasil dari `tbl_regression` milik `gtsummary`.
+Persamaan model dapat kita tafsirkan berdasarkan keluaran dari perintah `coef(model)`.
 
-Berdasarkan keluaran kedua perintah tersebut, kita dapat mengetahui bagaimana persamaan regresi linearnya dengan mengganti bentuk umum persamaan regresi linear dengan angka-angka yang dihasilkan di `model`.
+```{r mod08-coef-explanation, echo=TRUE, results='hide'}
+# Membuat nilai koefisien model
+koef <- coef(model)
+
+# Menampilkan koefisien variabel model
+koef
+```
+
+Hasil fungsi tersebut juga dapat kita temukan pada;
+
+- `Coefficients` dari `summary(model)` atau 
+- `tbl_regression(model)`.
+
+Dalam keluaran perintah `coef()` kita dapat mengidentifikasi nilai $\beta_0$ atau konstanta melalui nilai di bawah `(Intercept)` dan nilai $\beta_1$ atau koefisien melalui nilai di bawah `x`. Ini sama saja dengan nilai-nilai di bawah kolom `Estimate` pada keluaran perintah `summary()` atau nilai-nilai di bawah kolom **Beta** pada keluaran `tbl_regression()`.
+
+Berdasarkan keluaran-keluaran perintah tersebut, kita dapat mengetahui bagaimana persamaan regresi linearnya dengan mengganti bentuk umum persamaan regresi linear dengan angka-angka yang dihasilkan di `model`.
 
 Bentuk umum:
 
 $$
-y = β_0 + β_1x
+y = \beta_0 + \beta_1x
 $$
+seperti halnya yang sudah kita pelajari:
 
-Dengan mengambil hasil dari *summary(model)*, kita dapat menuliskan persamaan regresi linear kita menjadi:
+- $\beta_0$ adalah konstanta
+- $\beta_1$ adalah koefisien
 
-$$
-y = 93 - 5,3x
-$$
+
+::: rmdexercise
+
+#### Aktivitas Mandiri 4 {-}
+
+Tuliskan persamaan model tersebut dengan perintah `cat()` seperti berikut dan gantilah `[beta_0]` dan `[beta_1]` menjadi angka koefisien dan konstanta yang tepat.
+
+```r
+cat(
+  "Persamaan model dari biaya sepekan terhadap jarak adalah",
+  "y = [beta_0] + [beta_1]x"
+)
+```
+
+:::
 
 Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik data kita. Ini merupakan persamaan garis terbaik dari seluruh kemungkinan persamaan garis yang ada, yang kita tentukan dengan meminimalkan kuadrat terkecil.
 
@@ -277,8 +341,8 @@ scp <- ggplot(
     shape = 15
   ) +
   geom_abline(aes(
-    intercept = coef(model)[1],
-    slope = coef(model)[2],
+    intercept = koef[1], # ingat bahwa ini memanggil elemen pertama dari vektor 'koef'
+    slope = koef[2],
     color = "red"
   )) +
   labs(
@@ -292,97 +356,56 @@ scp <- ggplot(
 scp
 ```
 
--   `coef(model)[1]` mengacu pada keluaran fungsi `coef` dari variabel `model` kita yang pertama (`[1]`), yakni angka *intercept*/konstantanya. Ini menjadi nilai dari atribut `intercept` yang terletak dalam fungsi `geom_abline`
+- `koef[1]` mengacu pada elemen pertama dari vektor `koef` yang menyimpan nilai *intercept*/konstanta. Ini menjadi nilai dari atribut `intercept` yang terletak dalam fungsi `geom_abline`
 
--   `coef(model)[2]` mengacu pada keluaran fungsi `coef` dari variabel `model` kita yang kedua ([`2]`), yakni angka koefisien variabel independen kita. Ini menjadi nilai dari atribut `slope` yang terletak dalam fungsi `geom_abline` karena nilai koefisien variabel independen menunjukkan kemiringan garis persamaan regresi linear kita
-
-Persamaan model dapat kita tafsirkan berdasarkan keluaran dari `summary` berupa `Coefficients` atau hasil dari `tbl_regression` milik `gtsummary`.
-
-Berdasarkan keluaran kedua perintah tersebut, kita dapat mengetahui bagaimana persamaan regresi linearnya dengan mengganti bentuk umum persamaan regresi linear dengan angka-angka yang dihasilkan di `model`.
-
-Bentuk umum:
-
-$$
-y = β_0 + β_1x
-$$
-
-Dengan mengambil hasil dari *summary(model)*, kita dapat menuliskan persamaan regresi linear kita menjadi:
-
-$$
-y = 93 - 5,3x
-$$
-
-Dari persamaan model ini kita dapat menggambar garis yang melewati titik-titik data kita. Ini merupakan persamaan garis terbaik dari seluruh kemungkinan persamaan garis yang ada, yang kita tentukan dengan meminimalkan kuadrat terkecil.
-
-```{r mod08-visualize-regression-line-2, echo=TRUE}
-# Membuat diagram pencar antara variabel jarak dan biaya transportasi sepekan
-# untuk mahasiswa yang pakai layanan online, setelah pencilan dihilangkan,
-# ditambah garis dari persamaan regresi
-scp <- ggplot(
-  data = data_mahasiswa_online,
-  mapping = aes(
-    x = jarak, # variabel di sumbu X
-    y = `biaya sepekan`
-  )
-) + # variabel di sumbu Y
-  geom_point(
-    color = "navy",
-    size = 1.5,
-    shape = 15
-  ) +
-  geom_abline(aes(
-    intercept = coef(model)[1],
-    slope = coef(model)[2],
-    color = "red"
-  )) +
-  labs(
-    title = "Jarak tempat tinggal vs. Biaya Transportasi Sepekan",
-    subtitle = "Mahasiswa dengan Moda Transportasi Layanan Online",
-    y = "Biaya transportasi sepekan (ribu rupiah)",
-    x = "Jarak dari tempat tinggal ke kampus (km)"
-  )
-
-# Menampilkan diagram pencar
-scp
-```
-
--   `coef(model)[1]` mengacu pada keluaran fungsi `coef` dari variabel `model` kita yang pertama (`[1]`), yakni angka *intercept*/konstantanya. Ini menjadi nilai dari atribut `intercept` yang terletak dalam fungsi `geom_abline`
-
--   `coef(model)[2]` mengacu pada keluaran fungsi `coef` dari variabel `model` kita yang kedua ([`2]`), yakni angka koefisien variabel independen kita. Ini menjadi nilai dari atribut `slope` yang terletak dalam fungsi `geom_abline` karena nilai koefisien variabel independen menunjukkan kemiringan garis persamaan regresi linear kita
+- `koef[2]` mengacu pada elemen kedua dari vektor `koef` yang menyimpan nilai koefisien variabel independen kita. Ini menjadi nilai dari atribut `slope` yang terletak dalam fungsi `geom_abline` karena nilai koefisien variabel independen menunjukkan kemiringan garis persamaan regresi linear kita
 
 #### Tafsiran nilai konstanta dan koefisien
 
-Persamaan regresi linear ini bermakna nilai konstanta sebesar 93 berarti bahwa dengan tinggal di kampus ($x=0$), mahasiswa masih akan mengeluarkan biaya sebesar 93.000 rupiah (ingat bahwa variabel `biaya sepekan` menggunakan satuan ribuan rupiah) untuk mengakses kampus selama sepekan. Kita bisa pahami hal tersebut sebagai perkiraan harga sewa penginapan di kampus.
+Nilai konstanta berarti bahwa **dengan tinggal di kampus ($x=0$), mahasiswa masih akan mengeluarkan biaya sebesar `[beta_0]` $\times 1000$ rupiah** (ingat bahwa variabel `biaya sepekan` menggunakan satuan ribuan rupiah) untuk mengakses kampus selama sepekan. Kita bisa pahami hal tersebut **sebagai perkiraan biaya perjalanan mahasiswa yang tinggal di asrama**, misalnya.
 
-Sementara itu, nilai koefisien sebesar $-5,3$ berarti bahwa penambahan jarak sebesar 1 km akan **mengurangi** biaya transportasi sepekan sebesar 5.300 rupiah. Artinya, makin jauh 1 km seorang mahasiswa tinggal dari kampus, makin kecil pula biaya transportasi sepekannya sebesar 5.300 rupiah.
+Sementara itu, nilai koefisien sebesar `[beta_1]` berarti bahwa **penambahan jarak sebesar 1 km akan mengurangi biaya transportasi sepekan sebesar `[beta_1]`$\times 1000$ rupiah**. Artinya, makin jauh 1 km seorang mahasiswa tinggal dari kampus, makin kecil pula biaya transportasi sepekannya sebesar `[beta_1]`$\times 1000$ rupiah.
 
-> **Pertanyaan bonus:** Mengapa mahasiswa yang tinggal lebih jauh dari kampus biaya perjalanan sepekannya lebih kecil? Bukankah biaya transportasi makin jauh malah makin mahal?
+Nilai koefisien juga bermakna **besar gradien garis persamaan regresi linear kita** yang mencerminkan **kemiringan garis persamaan regresi linear** tersebut. Semakin besar nilai koefisien, semakin curam garis persamaan regresi linear kita.
+
+::: rmdexercise
+
+[**Pertanyaan Bonus**]{.tajuksaya}
+
+Mengapa mahasiswa yang tinggal lebih jauh dari kampus biaya perjalanan sepekannya lebih kecil? Bukankah biaya transportasi makin jauh malah makin mahal? Apa kira-kira penyebab kecilnya biaya perjalanan tersebut?
+
+:::
 
 #### Tafsiran uji kualitas model
 
-Uji kualitas model kita terdiri atas *standard error* dari residual, koefisien determinasi atau $R^2$, dan uji signifikansi persamaan menggunakan statistik $F$ (`F-statistic`) yang merupakan hasil ANOVA *(analysis of variance)*.
+Mari kita panggil kembali ringkasan model kita dengan perintah `summary()`:
 
--   *Standard error* dari residual mencerminkan rata-rata galat (residu), yaitu selisih nilai variabel dependen yang dihitung (biaya perjalanan sepekan hasil prediksi dari model) dengan nilai variabel dependen yang kita peroleh dari data.
+```{r mod08-model-summary-2, echo=TRUE, results='hide'}
+# Menampilkan ringkasan model
+summary(model)
+```
 
-    -   Hasil `summary` menunjukkan angka 38,11 yang artinya rata-rata kesalahan prediksi dari model kita adalah sebesar 38.110 rupiah.
+Uji kualitas model kita terdiri atas **standard error dari residual** (`Residual standard error`), **koefisien determinasi atau $R^2$** (`Multiple R-squared`), dan **uji signifikansi persamaan menggunakan statistik $F$ (`F-statistic`)** yang merupakan hasil ANOVA *(analysis of variance)*.
 
--   Koefisien determinasi atau $R^2$ menyatakan kesesuaian *(fit)* dari model kita, yakni seberapa banyak proporsi variansi data variabel dependen kita (biaya perjalanan sepekan) dijelaskan oleh variabel independennya (jarak dari kampus ke tempat tinggal).
+- `Residual standard error` adalah ***standard error* dari residual** yang mencerminkan nilai rata-rata galat (residu), yaitu selisih nilai variabel dependen yang dihitung (biaya perjalanan sepekan hasil prediksi dari model) dengan nilai variabel dependen yang kita peroleh dari data.
+- `Multiple R-squared` adalah **koefisien determinasi atau $R^2$** yang menyatakan **keakuratan prediksi** dari model kita, yang angkanya bermakna seberapa banyak proporsi variansi data variabel dependen kita (biaya perjalanan sepekan) dijelaskan oleh variabel independennya (jarak dari kampus ke tempat tinggal). Makin tinggi nilai $R^2$ dari model kita, makin tinggi **daya penjelas** dari variabel independen kita terhadap data variabel dependen. Dengan kata lain, $R^2$ menjawab pertanyaan "seberapa kuat model mampu menerka variasi pada variabel dependen?"
 
-    Sisa dari angka $R^2$ ini adalah banyak variansi yang tidak dijelaskan oleh variabel independen, artinya dijelaskan oleh variabel lainnya yang tidak ada dalam model dan juga keacakan (misal dalam pengambilan data atau kejadian acak).
+  Sisa dari angka $R^2$ ini adalah banyak variansi yang tidak dijelaskan oleh variabel independen, artinya dijelaskan oleh variabel lainnya yang tidak ada dalam model dan juga keacakan (misal dalam pengambilan data atau kejadian acak).
+  
 
-    -   Hasil `summary` menunjukkan angka 0,095 yang berarti hanya 9,5% variansi biaya perjalanan sepekan dijelaskan oleh variansi jarak perjalanan ke kampus.
+- `F-statistics` adalah **uji hipotesis ANOVA *(analysis of variance)*** yang membuktikan **hipotesis nol bahwa tidak ada hubungan antara variabel dependen dengan variabel independen secara statistik** yang kita modelkan. Kegagalan menolak hipotesis nol ini ditandai dari nilai signifikansi (`p-value`) yang lebih kecil dari 5% (`0.05`). Jika demikian, **penjelasan variabel dependen oleh variabel independen hanya terjadi secara kebetulan di sampel kita**, tidak bisa disimpulkan berlaku pada populasi. Sebaliknya, jika hipotesis nol ditolak, maka penjelasan variabel dependen oleh variabel independen signifikan secara statistik dan bisa disimpulkan berlaku pada populasi.
 
-    -   Makin tinggi nilai $R^2$ dari model kita, makin besar proporsi variansi variabel dependen kita dijelaskan oleh variabel independennya.
+::: rmdexercise
 
-    -   Hal ini menunjukkan bahwa pengaruh dari variabel independen kita terhadap variabel dependennya kuat
+#### Aktivitas Mandiri 4 {-}
 
--   Koefisien uji signifikansi ($F$) (`F-statistics`) adalah uji hipotesis ANOVA *(analysis of variance)* yang membuktikan hipotesis nol bahwa tidak ada hubungan antara variabel dependen dengan variabel independen yang kita modelkan. Penerimaan hipotesis nol ini ditandai dari nilai signifikansi (`p-value`) yang lebih kecil dari 5% (`0.05`).
+Jawablah pertanyaan-pertanyaan berikut untuk membantu Anda menafsirkan model yang telah dibuat:
 
-    -   Hasil `summary` menunjukkan bahwa nilai `p-value` kita adalah `1,721e-05`. Angka tersebut menyatakan notasi ilmiah $1,721\times10^{-5}$ yang berarti bahwa nilai `p-value` kita sangat-sangat lebih kecil dari `0.05.`
+1. Nilai `Residual standard error` harus dikalikan dengan 1000 terlebih dahulu untuk mengetahui rata-rata galat antara biaya perjalanan dari data yang sebenarnya dengan hasil perhitungan model. Berapakah besar galat biaya perjalanan sepekan antara data dengan hasi perhitungan?
+2. Berapa persen variansi biaya perjalanan sepekan yang dijelaskan oleh variansi jarak perjalanan ke kampus?
+3. Apakah penjelasan variabel jarak perjalanan ke kampus terhadap biaya perjalanan sepekan hanya terjadi secara kebetulan di sampel kita?
 
-    -   Ini artinya kita tidak dapat menerima hipotesis nol kita yang menyatakan tidak ada hubungan antara variabel biaya perjalanan sepekan (variabel dependen) dengan variabel jarak tempuh ke kampus (variabel independen).
-
-**Simpulan tafsiran kualitas model**: kita sudah melihat bahwa hubungan kausal antara variabel jarak ke kampus terhadap biaya perjalanan sepekan adalah terbalik dengan besar kemiringan 5,3. Hubungan kausal tersebut benar-benar ada berdasarkan hasil dari koefisien uji signifikansi (ANOVA) yang *p-value-*nya \<0,05. Akan tetapi, hubungan tersebut tidak cukup kuat karena nilai koefisien determinasi yang kecil, yakni hanya 9% saja.
+:::
 
 #### Tafsiran uji kualitas variabel
 
@@ -410,7 +433,7 @@ predict(model, bahan_pred)
 
 ## Model Regresi Linear Berganda
 
-Dalam bagian ini kita hanya akan mempelajari penggunaan variabel *dummy* untuk meningkatkan kekuatan prediksi kita. Di akhir, Anda akan menafsirkan hal-hal yang sudah Anda pelajari pada bagian regresi linear.
+Dalam bagian ini kita hanya akan mempelajari penggunaan **variabel *dummy*** untuk meningkatkan kekuatan prediksi kita. Di akhir, Anda akan menafsirkan hal-hal yang sudah Anda pelajari pada bagian regresi linear.
 
 Kita akan menggunakan variabel `jenis tempat tinggal` untuk variabel *dummy*. Pertama, kita akan mengatur jenis nilai pada kolom `jenis tempat tinggal` menggunakan perintah `factor`.
 
@@ -419,9 +442,11 @@ Kita akan menggunakan variabel `jenis tempat tinggal` untuk variabel *dummy*. Pe
 data_mahasiswa_online$`jenis tempat tinggal` <- factor(data_mahasiswa_online$`jenis tempat tinggal`)
 ```
 
-Kedua, kita akan membuat model seperti halnya yang kita lakukan dalam analisis regresi linear sederhana. Kita akan menggunakan nama yang lebih representatif.
+#### Penyusunan model
 
-```{r mod08-create-multiple-model, echo=TRUE}
+Kedua, kita akan membuat model seperti halnya yang kita lakukan dalam analisis regresi linear sederhana. Kita akan menggunakan nama yang lebih representatif untuk variabel-variabelnya.
+
+```{r mod08-create-multiple-model, echo=TRUE, collapse=TRUE}
 # Membuat variabel-variabel
 jarak <- x # variabel 'x' saja diubah menjadi 'jarak'
 biaya <- y # variabel 'y' saja diubah menjadi 'biaya'
@@ -449,30 +474,48 @@ Dalam persamaan model kita tersebut, variabel `ling` atau `jenis tempat tinggal`
 
 Nama variabel-variabel tersebut tak lain adalah gabungan kata `ling` dengan tiap-tiap kategori dalam variabel `jenis tempat tinggal`.
 
-Perhatikan bahwa kita jadi memiliki 5 variabel *dummy* dari satu variabel kategoris `jenis tempat tinggal` yang terdiri atas 6 kategori nilai: "Kos bersama-sama", "Kos sendiri", "Rumah mengontrak bersama", "Rumah mengontrak pribadi", "Rumah pribadi", dan "Rumah saudara."
+Perhatikan bahwa kita jadi memiliki 5 variabel *dummy* dari satu variabel kategoris `jenis tempat tinggal` yang terdiri atas 6 kategori nilai: **Kos bersama-sama**, **Kos sendiri**, **Rumah mengontrak bersama**, **Rumah mengontrak pribadi**, **Rumah pribadi**, dan **Rumah saudara**.
 
-Variabel *dummy* adalah variabel yang bernilai 0 (nol) atau 1 (satu) saja. Nol artinya variabel *dummy* tersebut bernilai "salah" atau "tidak", sedangkan satu artinya variabel *dummy* tersebut bernilai "benar" atau "ya."
+Variabel *dummy* adalah **variabel yang hanya bernilai 0 (nol) atau 1 (satu)**. Nilai 0 berarti variabel *dummy* tersebut bernilai "salah" atau "tidak", sedangkan nilai 1 berarti variabel *dummy* tersebut bernilai "benar" atau "ya."
 
-Variabel-variabel *dummy* yang 5 buah ini hanya akan bernilai 1 atau 0 sesuai dengan kategori dari variabel `jenis tempat tinggal` suatu objek. Perhatikan bahwa kita tidak punya "`lingKos sendiri`" dalam variabel *dummy* kita. Ini artinya apabila kategori `jenis tempat tinggal` suatu objek adalah "Kos sendiri", **kelima variabel *dummy* akan bernilai 0.**
+Variabel-variabel *dummy* yang 5 buah ini hanya akan bernilai 1 atau 0 **sesuai dengan kategori dari variabel `jenis tempat tinggal` suatu objek**. Perhatikan bahwa kita tidak punya "`lingKos bersama-sama`" dalam variabel *dummy* kita. Ini artinya apabila kategori `jenis tempat tinggal` suatu objek adalah "Kos bersama-sama", **kelima variabel *dummy* akan bernilai 0.**
 
 Tabel berikut merangkum nilai-nilai variabel *dummy* untuk setiap kategori nilai variabel `jenis tempat tinggal`.
 
-| Kategori                 | `lingKos sendiri` | `lingRumah mengontrak bersama` | `lingRumah mengontrak pribadi` | `lingRumah pribadi` | `lingRumah saudara` |
-| ------------------------ | ----------------- | ------------------------------ | ------------------------------ | ------------------- | ------------------- |
-| Kos sendiri              | 1                 | 0                              | 0                              | 0                   | 0                   |
-| Rumah mengontrak bersama | 0                 | 1                              | 0                              | 0                   | 0                   |
-| Rumah mengontrak pribadi | 0                 | 0                              | 1                              | 0                   | 0                   |
-| Rumah pribadi            | 0                 | 0                              | 0                              | 1                   | 0                   |
-| Rumah saudara            | 0                 | 0                              | 0                              | 0                   | 1                   |
-| Kos bersama              | 0                 | 0                              | 0                              | 0                   | 0                   |
+```{r mod08-dummy-table, echo=FALSE}
+# Membuat tabel dummy variabel
+library(tibble)
 
-: Nilai variabel dummy untuk setiap kategori
+dummy_tbl <- tribble(
+  ~Kategori, ~lingKos_sendiri, ~lingRumah_mengontrak_bersama, ~lingRumah_mengontrak_pribadi, ~lingRumah_pribadi, ~lingRumah_saudara,
+  "Kos sendiri", 1, 0, 0, 0, 0,
+  "Rumah mengontrak bersama", 0, 1, 0, 0, 0,
+  "Rumah mengontrak pribadi", 0, 0, 1, 0, 0,
+  "Rumah pribadi", 0, 0, 0, 1, 0,
+  "Rumah saudara", 0, 0, 0, 0, 1,
+  "Kos bersama-sama", 0, 0, 0, 0, 0
+)
+
+knitr::kable(dummy_tbl, caption = "Nilai variabel dummy untuk setiap kategori")
+```
 
 ### Interpretasi Variabel *Dummy*
 
 Dalam menginterpretasi variable *dummy* kita tidak bisa menggunakan `Pr(>|t|)` semata, karena variabel *dummy* pada hakikatnya sepaket. Jadi, walaupun nilai `Pr(>|t|)` sebuah variabel *dummy* adalah \>0,05 ia akan tetap berada dalam persamaan regresi linear.
 
 Interpretasi koefisien variabel *dummy* adalah dengan memahami bahwa nilai variabel dependen berubah sesuai nilai koefisien apabila variabel *dummy* tersebut bernilai **benar** atau **1**. Artinya, jika mahasiswa tinggal di kosan sendirian (`lingKos sendiri = 1`), maka biaya transportasi sepekan berkurang sebesar `20.779` yang juga berarti sebesar 20,7 ribu rupiah. Jika mahasiswa tinggal di rumah pribadi (`lingRumah pribadi = 1`) maka biaya transportasi sepekan bertambah sebesar `20.348` atau 20,3 ribu rupiah.
+
+### Penafsiran Model
+
+Seperti halnya pada regresi linear sederhana, yang akan kita tafsirkan dari model kita di antaranya:
+
+-   persamaan model
+-   makna nilai konstanta dan koefisien
+-   uji kualitas model (ANOVA, `F-statistic`), dan ditambah dengan, khusus untuk regresi linear berganda, uji kualitas variabel (`Pr(>|t|)`) 
+
+#### Persamaan model
+
+
 
 ### Prediksi Model
 
@@ -495,28 +538,5 @@ predict(mdl, mhs)
 > b.  Tafsirlah kualitas model kita, mulai uji kualitas model ($F$), $R^2$, serta uji kualitas setiap variabel
 > c.  Apa saja yang meningkatkan dan menurunkan biaya perjalanan sepekan mahasiswa?
 
-::: {.rmdexercise}
-### Aktivitas Mandiri 4: Analisis Regresi Komprehensif [STP-13.3, STP-14.3].{capaian} {-}
 
-**A. Regresi Linear Sederhana [STP-13.3]:**
 
-Model: `jumlah perjalanan weekdays` vs `jarak`
-1. Buat model sederhana
-2. Tuliskan persamaan regresi
-3. Interpretasikan intercept dan slope
-4. Uji kualitas model (F-statistic, R²)
-
-**B. Regresi Linear Berganda [STP-14.3]:**
-
-Model: `jumlah perjalanan weekdays` ~ `jarak` + `umur` + `jenis tempat tinggal`
-1. Buat model berganda
-2. Tuliskan persamaan lengkap
-3. Identifikasi variabel signifikan
-4. Bandingkan R²
-
-**C. Interpretasi:**
-- Faktor yang meningkatkan/menurunkan jumlah perjalanan?
-- Proporsi variansi yang dijelaskan?
-:::
-
-------------------------------------------------------------------------
