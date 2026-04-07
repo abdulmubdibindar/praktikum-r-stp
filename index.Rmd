@@ -41,7 +41,7 @@ Selamat datang di modul daring Praktikum Statistika untuk Perencanaan. Modul ini
 Modul praktikum ini akan mendampingi Anda mempelajari pengolahan statistik menggunakan bahasa pemrograman R. Untuk itu, modul ini terbagi menjadi **9 modul** yang disusun secara bertahap, dimulai dari pengenalan dasar hingga analisis multivariat:
 
 | Modul |                   Topik                    |                                      Deskripsi Singkat                                       |
-| :---: | :----------------------------------------: | :------------------------------------------------------------------------------------------: |
+| :---: | :----------------------------------------  | :------------------------------------------------------------------------------------------  |
 |   1   |        Pengolahan Data Terstruktur         | Dasar *data wrangling*: Impor, seleksi, standardisasi, penggabungan, dan ekspor data/dataset |
 |   2   |           Statistika Deskriptif            |                 Perhitungan proporsi, mean, median, standar deviasi, dan IQV                 |
 |   3   |              Visualisasi Data              |        Pembuatan grafik dengan `ggplot2`: bar chart, histogram, boxplot, scatter plot        |
@@ -355,7 +355,7 @@ Setelah itu, RStudio akan membuat file **`Praktikum STP 2026.Rproj`** di dalam f
 Setelah struktur direktori dan Project sudah siap, langkah selanjutnya adalah **mengunduh dataset-dataset praktikum** yang akan digunakan sepanjang semester. Semua dataset praktikum disimpan di *repository* GitHub dan dapat diunduh secara gratis.
 
 ::: rmdnote
-**Mengapa Dataset Disimpan di GitHub? {.header}**
+**Mengapa Dataset Disimpan di GitHub? {.tajuksaya}**
 
 Dataset praktikum disimpan di GitHub agar:
 - Semua mahasiswa mendapatkan dataset yang **sama** dan **terbaru**
@@ -719,7 +719,7 @@ Saat mengolah data, kalian akan sering menemukan singkatan tipe data berikut:
 -   **`chr` (Character)**: Teks atau *string*. Ditandai dengan tanda kutip.
 -   **`fct` (Factor)**: Data kategorik (bisa nominal atau ordinal). Factor menyimpan nilai sebagai angka di belakang layar namun menampilkan label teks, yang berguna untuk analisis statistik dan plot.
 
-### Data Frame dan Tibble
+### Data Frame dan Tibble {#data-frame-tibble}
 
 Data dalam R biasanya disimpan dalam bentuk tabel yang disebut *Data Frame*. Di era modern (tidyverse), kita sering menggunakan versi yang lebih canggih disebut **Tibble**. Strukturnya mirip spreadsheet: baris mewakili observasi, kolom mewakili variabel.
 
