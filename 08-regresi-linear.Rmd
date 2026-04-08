@@ -700,7 +700,7 @@ predict(mdl, mhs)
 
 ### Aktivitas Mandiri 9 {-}
 
-Prediksilah biaya perjalanan mahasiswa yang tinggal di Kos-kosan pribadi berjarak 1,5 km dari kampus.
+Prediksilah biaya perjalanan mahasiswa yang tinggal di Kos-kosan pribadi berjarak 1,5 km dari kampus. Simpan *tibble* dengan nama `mhs_exerc`.
 
 ```{r mod08-predict-am9, include=FALSE}
 # menyusun dataset untuk diprediksi
