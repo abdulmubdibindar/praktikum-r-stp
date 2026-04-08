@@ -203,12 +203,14 @@ tafsiran-uji-kualitas-model
 tafsiran-uji-kualitas-variabel
 melakukan-prediksi
 model-regresi-linear-berganda
+persiapan-data
 penyusunan-model-1
 penjelasan-variabel-dummy
 interpretasi-variabel-dummy
 penafsiran-model
 persamaan-model
 makna-nilai-konstanta-dan-koefisien
+uji-kualitas-model
 prediksi-model
 analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca
 pendahuluan-5

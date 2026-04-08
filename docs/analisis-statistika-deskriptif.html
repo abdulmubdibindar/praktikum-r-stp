@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Modul 2 Analisis Statistika Deskriptif | Modul Praktik Statistika Untuk Perencanaan</title>
 <meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA">
-<meta name="generator" content="bookdown 0.45 with bs4_book()">
+<meta name="generator" content="bookdown 0.46 with bs4_book()">
 <meta property="og:title" content="Modul 2 Analisis Statistika Deskriptif | Modul Praktik Statistika Untuk Perencanaan">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
@@ -24,6 +24,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -162,8 +163,8 @@
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data_kendaraan</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 379
 ## Columns: 2
-## $ kepemilikan.mobil &lt;dbl&gt; 1, 2, 1, 1, 4, 1, 1,…
-## $ kepemilikan.motor &lt;dbl&gt; 2, 1, 2, 4, 4, 2, 1,…</code></pre>
+## $ kepemilikan.mobil &lt;dbl&gt; 1, 2, 1, 1, 4, 1, 1, 1, 1, 1, NA, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 2, 0, 0, 0, 0, 0, …
+## $ kepemilikan.motor &lt;dbl&gt; 2, 1, 2, 4, 4, 2, 1, 1, 1, 1, 1, 2, 0, 1, 1, 1, 0, 1, 0, 2, 2, 1, 1, 0, 1, 0, 1, 3…</code></pre>
 <p><strong>CARA 2: MENGGUNAKAN PIPE OPERATOR</strong></p>
 <div class="sourceCode" id="cb83"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Seleksi kolom dan langsung lihat hasilnya — tanpa variabel sementara</span></span>
@@ -172,8 +173,8 @@
 <span>  <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 379
 ## Columns: 2
-## $ kepemilikan.mobil &lt;dbl&gt; 1, 2, 1, 1, 4, 1, 1,…
-## $ kepemilikan.motor &lt;dbl&gt; 2, 1, 2, 4, 4, 2, 1,…</code></pre>
+## $ kepemilikan.mobil &lt;dbl&gt; 1, 2, 1, 1, 4, 1, 1, 1, 1, 1, NA, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 2, 0, 0, 0, 0, 0, …
+## $ kepemilikan.motor &lt;dbl&gt; 2, 1, 2, 4, 4, 2, 1, 1, 1, 1, 1, 2, 0, 1, 1, 1, 0, 1, 0, 2, 2, 1, 1, 0, 1, 0, 1, 3…</code></pre>
 <p>Dalam cara 1, kita <strong>terpaksa</strong> membuat variabel perantara <code>data_kendaraan</code> hanya untuk meneruskan hasil <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> ke <code><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse()</a></code>. Variabel ini tidak kita butuhkan untuk keperluan lain — hanya agar kedua langkah bisa terhubung. Operator pipa (<code>|&gt;</code>) memungkinkan kita merangkai kedua proses itu secara langsung, tanpa variabel perantara, dengan alur yang mengalir dari atas ke bawah.</p>
 <p>Berikut adalah penjelasan cara-2:</p>
 <ul>
@@ -275,34 +276,20 @@
 <div class="sourceCode" id="cb86"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Melihat ringkasan dataset sebelum variabel kategoris diubah menjadi factor</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">data_ubl</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##     kampus          jenis_kelamin     
-##  Length:335         Length:335        
-##  Class :character   Class :character  
-##  Mode  :character   Mode  :character  
-##                                       
-##                                       
-##                                       
-##       umur       tingkat_semester  
-##  Min.   :18.00   Length:335        
-##  1st Qu.:20.00   Class :character  
-##  Median :21.00   Mode  :character  
-##  Mean   :20.74                     
-##  3rd Qu.:22.00                     
-##  Max.   :23.00                     
-##  biaya_dalam_sepekan jumlah_perjalanan_senin
-##  Min.   :  5.00      Min.   :1.000          
-##  1st Qu.: 50.00      1st Qu.:2.000          
-##  Median : 70.00      Median :2.000          
-##  Mean   : 97.93      Mean   :2.684          
-##  3rd Qu.:120.00      3rd Qu.:4.000          
-##  Max.   :600.00      Max.   :8.000          
-##      jarak         
-##  Min.   : 0.06352  
-##  1st Qu.: 1.31127  
-##  Median : 2.71347  
-##  Mean   : 3.37000  
-##  3rd Qu.: 4.71515  
-##  Max.   :43.54519</code></pre>
+<pre><code>##     kampus          jenis_kelamin           umur       tingkat_semester   biaya_dalam_sepekan
+##  Length:335         Length:335         Min.   :18.00   Length:335         Min.   :  5.00     
+##  Class :character   Class :character   1st Qu.:20.00   Class :character   1st Qu.: 50.00     
+##  Mode  :character   Mode  :character   Median :21.00   Mode  :character   Median : 70.00     
+##                                        Mean   :20.74                      Mean   : 97.93     
+##                                        3rd Qu.:22.00                      3rd Qu.:120.00     
+##                                        Max.   :23.00                      Max.   :600.00     
+##  jumlah_perjalanan_senin     jarak         
+##  Min.   :1.000           Min.   : 0.06352  
+##  1st Qu.:2.000           1st Qu.: 1.31127  
+##  Median :2.000           Median : 2.71347  
+##  Mean   :2.684           Mean   : 3.37000  
+##  3rd Qu.:4.000           3rd Qu.: 4.71515  
+##  Max.   :8.000           Max.   :43.54519</code></pre>
 <p>Dari <em>output</em> tersebut, perhatikan dua pola yang berbeda:</p>
 <ul>
 <li><p>Variabel angka seperti <code>umur</code> atau <code>biaya_dalam_sepekan</code> menampilkan <code>Min.</code>, <code>1st Qu.</code>, <code>Median</code>, <code>Mean</code>, <code>3rd Qu.</code>, dan <code>Max.</code> — ini adalah ukuran-ukuran pemusatan dan penyebaran data numerik.</p></li>
@@ -330,13 +317,13 @@
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data_ubl</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 335
 ## Columns: 7
-## $ kampus                  &lt;chr&gt; "UBL", "UBL", …
-## $ jenis_kelamin           &lt;fct&gt; Perempuan, Lak…
-## $ umur                    &lt;dbl&gt; 21, 20, 21, 22…
-## $ tingkat_semester        &lt;chr&gt; "4 (Semester 7…
-## $ biaya_dalam_sepekan     &lt;dbl&gt; 25, 200, 50, 2…
-## $ jumlah_perjalanan_senin &lt;dbl&gt; 2, 3, 1, 2, 3,…
-## $ jarak                   &lt;dbl&gt; 4.2237967, 2.7…</code></pre>
+## $ kampus                  &lt;chr&gt; "UBL", "UBL", "UBL", "UBL", "UBL", "UBL", "UBL", "UBL", "UBL", "UBL", "UBL",…
+## $ jenis_kelamin           &lt;fct&gt; Perempuan, Laki-Laki, Laki-Laki, Laki-Laki, Perempuan, Perempuan, Perempuan,…
+## $ umur                    &lt;dbl&gt; 21, 20, 21, 22, 21, 22, 22, 22, 22, 22, 22, 19, 22, 23, 22, 23, 22, 20, 22, …
+## $ tingkat_semester        &lt;chr&gt; "4 (Semester 7 - Semester 8)", "3 (Semester 5 - Semester 6)", "4 (Semester 7…
+## $ biaya_dalam_sepekan     &lt;dbl&gt; 25, 200, 50, 20, 40, 70, 35, 50, 350, 50, 30, 35, 50, 200, 40, 100, 600, 50,…
+## $ jumlah_perjalanan_senin &lt;dbl&gt; 2, 3, 1, 2, 3, 2, 4, 4, 3, 2, 4, 2, 2, 2, 1, 1, 4, 4, 4, 2, 5, 4, 2, 3, 3, 3…
+## $ jarak                   &lt;dbl&gt; 4.2237967, 2.7033310, 3.2370722, 3.0023362, 2.9253306, 2.0588294, 12.0078709…</code></pre>
 <p>Berikut adalah penjelasan dari perintah pembuatan factor di atas:</p>
 <div class="sourceCode" id="cb92"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>jenis_kelamin <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">jenis_kelamin</span>, levels <span class="op">=</span> <span class="va">jk</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -360,12 +347,8 @@
 <code class="sourceCode R"><span><span class="co"># Cara #1</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">data_ubl</span><span class="op">$</span><span class="va">tingkat_semester</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## 
-## 1 (Semester 1 – Semester 2) 
-##                          35 
-## 2 (Semester 3 – Semester 4) 
-##                          50 
-## 3 (Semester 5 - Semester 6) 
-##                          65 
+## 1 (Semester 1 – Semester 2) 2 (Semester 3 – Semester 4) 3 (Semester 5 - Semester 6) 
+##                          35                          50                          65 
 ## 4 (Semester 7 - Semester 8) 
 ##                         185</code></pre>
 <p><strong>Cara #2: Perintah <code><a href="https://dplyr.tidyverse.org/reference/count.html">count()</a></code> dari <em>tidyverse</em></strong></p>
@@ -390,9 +373,7 @@
 <code class="sourceCode R"><span><span class="co">## Mengambil nama-nama kategori dari table() dan menyimpannya sebagai vektor</span></span>
 <span><span class="va">tingkat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">data_ubl</span><span class="op">$</span><span class="va">tingkat_semester</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">tingkat</span></span></code></pre></div>
-<pre><code>## [1] "1 (Semester 1 – Semester 2)"
-## [2] "2 (Semester 3 – Semester 4)"
-## [3] "3 (Semester 5 - Semester 6)"
+<pre><code>## [1] "1 (Semester 1 – Semester 2)" "2 (Semester 3 – Semester 4)" "3 (Semester 5 - Semester 6)"
 ## [4] "4 (Semester 7 - Semester 8)"</code></pre>
 <p>Dengan cara ini, kita tidak perlu mengetik ulang nilai-nilai kategorinya secara manual. Cukup jalankan <code>names(table(...))</code>, dan nilai-nilai itu langsung tersimpan ke variabel vektor kita.</p>
 <div class="rmdwarning">
@@ -421,9 +402,7 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">tingkat_semester</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">tingkat_semester</span><span class="op">)</span></span>
 <span><span class="va">tingkat</span></span></code></pre></div>
-<pre><code>## [1] "1 (Semester 1 – Semester 2)"
-## [2] "2 (Semester 3 – Semester 4)"
-## [3] "3 (Semester 5 - Semester 6)"
+<pre><code>## [1] "1 (Semester 1 – Semester 2)" "2 (Semester 3 – Semester 4)" "3 (Semester 5 - Semester 6)"
 ## [4] "4 (Semester 7 - Semester 8)"</code></pre>
 <p>Berdasarkan hasil kedua cara, urutan kategori kita sudah sesuai dengan urutan tingkatan semester. Oleh karena itu, kita bisa langsung mengaplikasikan vektor <code>tingkat</code> ke dalam variabel <code>tingkat_semester</code>.</p>
 <p>Penting untuk diingat bahwa variabel <code>tingkat_semester</code> adalah variabel ordinal, sehingga perlu menggunakan atribut <code>ordered = TRUE</code> agar urutan tingkatan semester sama seperti yang kita tetapkan.</p>
@@ -441,13 +420,13 @@
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data_ubl</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 335
 ## Columns: 7
-## $ kampus                  &lt;chr&gt; "UBL", "UBL", …
-## $ jenis_kelamin           &lt;fct&gt; Perempuan, Lak…
-## $ umur                    &lt;dbl&gt; 21, 20, 21, 22…
-## $ tingkat_semester        &lt;ord&gt; 4 (Semester 7 …
-## $ biaya_dalam_sepekan     &lt;dbl&gt; 25, 200, 50, 2…
-## $ jumlah_perjalanan_senin &lt;dbl&gt; 2, 3, 1, 2, 3,…
-## $ jarak                   &lt;dbl&gt; 4.2237967, 2.7…</code></pre>
+## $ kampus                  &lt;chr&gt; "UBL", "UBL", "UBL", "UBL", "UBL", "UBL", "UBL", "UBL", "UBL", "UBL", "UBL",…
+## $ jenis_kelamin           &lt;fct&gt; Perempuan, Laki-Laki, Laki-Laki, Laki-Laki, Perempuan, Perempuan, Perempuan,…
+## $ umur                    &lt;dbl&gt; 21, 20, 21, 22, 21, 22, 22, 22, 22, 22, 22, 19, 22, 23, 22, 23, 22, 20, 22, …
+## $ tingkat_semester        &lt;ord&gt; 4 (Semester 7 - Semester 8), 3 (Semester 5 - Semester 6), 4 (Semester 7 - Se…
+## $ biaya_dalam_sepekan     &lt;dbl&gt; 25, 200, 50, 20, 40, 70, 35, 50, 350, 50, 30, 35, 50, 200, 40, 100, 600, 50,…
+## $ jumlah_perjalanan_senin &lt;dbl&gt; 2, 3, 1, 2, 3, 2, 4, 4, 3, 2, 4, 2, 2, 2, 1, 1, 4, 4, 4, 2, 5, 4, 2, 3, 3, 3…
+## $ jarak                   &lt;dbl&gt; 4.2237967, 2.7033310, 3.2370722, 3.0023362, 2.9253306, 2.0588294, 12.0078709…</code></pre>
 <p>Sekarang, tipe data untuk variabel-variabel kategoris kita tadi sudah menampilkan <code>&lt;fct&gt;</code> yang berarti “factor”. Variabel ordinal diidentifikasi dengan tipe <code>&lt;ord&gt;</code>.</p>
 <p>Kita dapat mengecek urutan factor kita dengan perintah <code><a href="https://rdrr.io/r/base/levels.html">levels()</a></code> berikut.</p>
 <div class="sourceCode" id="cb104"><pre class="downlit sourceCode r">
@@ -456,49 +435,26 @@
 <pre><code>## [1] "Laki-Laki" "Perempuan"</code></pre>
 <div class="sourceCode" id="cb106"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/levels.html">levels</a></span><span class="op">(</span><span class="va">data_ubl</span><span class="op">$</span><span class="va">tingkat_semester</span><span class="op">)</span></span></code></pre></div>
-<pre><code>## [1] "1 (Semester 1 – Semester 2)"
-## [2] "2 (Semester 3 – Semester 4)"
-## [3] "3 (Semester 5 - Semester 6)"
+<pre><code>## [1] "1 (Semester 1 – Semester 2)" "2 (Semester 3 – Semester 4)" "3 (Semester 5 - Semester 6)"
 ## [4] "4 (Semester 7 - Semester 8)"</code></pre>
 <p>Sekarang, mari kita buktikan apa yang terjadi pada <code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code> setelah kita mengubah variabel kategoris menjadi <em>factor</em>. Bandingkan dengan hasil sebelumnya!</p>
 <div class="sourceCode" id="cb108"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Melihat ringkasan dataset SETELAH variabel kategoris diubah menjadi factor</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">data_ubl</span><span class="op">)</span></span></code></pre></div>
-<pre><code>##     kampus            jenis_kelamin
-##  Length:335         Laki-Laki:167  
-##  Class :character   Perempuan:168  
-##  Mode  :character                  
-##                                    
-##                                    
-##                                    
-##       umur      
-##  Min.   :18.00  
-##  1st Qu.:20.00  
-##  Median :21.00  
-##  Mean   :20.74  
-##  3rd Qu.:22.00  
-##  Max.   :23.00  
-##                     tingkat_semester
-##  1 (Semester 1 – Semester 2): 35    
-##  2 (Semester 3 – Semester 4): 50    
-##  3 (Semester 5 - Semester 6): 65    
-##  4 (Semester 7 - Semester 8):185    
-##                                     
-##                                     
-##  biaya_dalam_sepekan jumlah_perjalanan_senin
-##  Min.   :  5.00      Min.   :1.000          
-##  1st Qu.: 50.00      1st Qu.:2.000          
-##  Median : 70.00      Median :2.000          
-##  Mean   : 97.93      Mean   :2.684          
-##  3rd Qu.:120.00      3rd Qu.:4.000          
-##  Max.   :600.00      Max.   :8.000          
-##      jarak         
-##  Min.   : 0.06352  
-##  1st Qu.: 1.31127  
-##  Median : 2.71347  
-##  Mean   : 3.37000  
-##  3rd Qu.: 4.71515  
-##  Max.   :43.54519</code></pre>
+<pre><code>##     kampus            jenis_kelamin      umur                          tingkat_semester biaya_dalam_sepekan
+##  Length:335         Laki-Laki:167   Min.   :18.00   1 (Semester 1 – Semester 2): 35     Min.   :  5.00     
+##  Class :character   Perempuan:168   1st Qu.:20.00   2 (Semester 3 – Semester 4): 50     1st Qu.: 50.00     
+##  Mode  :character                   Median :21.00   3 (Semester 5 - Semester 6): 65     Median : 70.00     
+##                                     Mean   :20.74   4 (Semester 7 - Semester 8):185     Mean   : 97.93     
+##                                     3rd Qu.:22.00                                       3rd Qu.:120.00     
+##                                     Max.   :23.00                                       Max.   :600.00     
+##  jumlah_perjalanan_senin     jarak         
+##  Min.   :1.000           Min.   : 0.06352  
+##  1st Qu.:2.000           1st Qu.: 1.31127  
+##  Median :2.000           Median : 2.71347  
+##  Mean   :2.684           Mean   : 3.37000  
+##  3rd Qu.:4.000           3rd Qu.: 4.71515  
+##  Max.   :8.000           Max.   :43.54519</code></pre>
 <p>Perhatikan perbedaannya: variabel-variabel yang tadi hanya menampilkan <code>Length</code>, <code>Class</code>, dan <code>Mode</code>, sekarang sudah menampilkan <strong>frekuensi tiap nilai</strong> karena R sudah mengenali nilai-nilai yang mungkin ada di variabel tersebut. Inilah kegunaan utama <em>factor</em> — selain memperbaiki analisis, ia juga membuat ringkasan data kita menjadi jauh lebih informatif.</p>
 <div id="aktivitas-mandiri-3-membuat-factor-untuk-variabel-kategoris-unila" class="section level3 unnumbered rmdexercise">
 <h3>Aktivitas Mandiri 3: Membuat Factor untuk Variabel Kategoris UNILA<a class="anchor" aria-label="anchor" href="#aktivitas-mandiri-3-membuat-factor-untuk-variabel-kategoris-unila"><i class="fas fa-link"></i></a>
@@ -559,55 +515,55 @@
 <span>  <span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_flex_table.html">as_flex_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="tabwid">
-<style>.cl-1f246494{}.cl-1f16438c{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-1f1643a0{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-1f1643aa{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-1f1c52cc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1f1c52e0{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1f1c52ea{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1f1c52eb{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1f1c52f4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1f1c52fe{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-1f1c7e5a{width:2.432in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7e64{width:1.075in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7e6e{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7e78{width:1.075in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7e82{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7e8c{width:1.075in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7e8d{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7e96{width:1.075in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7ea0{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7eaa{width:1.075in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7eab{width:2.432in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1f1c7eb4{width:1.075in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-1f246494">
+<style>.cl-3a16c596{}.cl-3a0ea65e{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3a0ea672{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-3a0ea673{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3a120aba{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a120ac4{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a120ac5{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a120ace{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a120acf{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a120ad0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a122b1c{width:2.432in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b1d{width:1.075in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b26{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b27{width:1.075in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b30{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b31{width:1.075in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b3a{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b3b{width:1.075in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b3c{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b44{width:1.075in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b45{width:2.432in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a122b4e{width:1.075in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-3a16c596">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-1f1c7e5a"><p class="cl-1f1c52cc"><span class="cl-1f16438c">Characteristic</span></p></th>
-<th class="cl-1f1c7e64"><p class="cl-1f1c52e0"><span class="cl-1f16438c">N = 335</span><span class="cl-1f1643a0">1</span></p></th>
+<th class="cl-3a122b1c"><p class="cl-3a120aba"><span class="cl-3a0ea65e">Characteristic</span></p></th>
+<th class="cl-3a122b1d"><p class="cl-3a120ac4"><span class="cl-3a0ea65e">N = 335</span><span class="cl-3a0ea672">1</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1f1c7e6e"><p class="cl-1f1c52ea"><span class="cl-1f1643aa">jenis_kelamin</span></p></td>
-<td class="cl-1f1c7e78"><p class="cl-1f1c52eb"><span class="cl-1f1643aa"></span></p></td>
+<td class="cl-3a122b26"><p class="cl-3a120ac5"><span class="cl-3a0ea673">jenis_kelamin</span></p></td>
+<td class="cl-3a122b27"><p class="cl-3a120ace"><span class="cl-3a0ea673"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1f1c7e82"><p class="cl-1f1c52f4"><span class="cl-1f1643aa">Laki-Laki</span></p></td>
-<td class="cl-1f1c7e8c"><p class="cl-1f1c52eb"><span class="cl-1f1643aa">167 (50%)</span></p></td>
+<td class="cl-3a122b30"><p class="cl-3a120acf"><span class="cl-3a0ea673">Laki-Laki</span></p></td>
+<td class="cl-3a122b31"><p class="cl-3a120ace"><span class="cl-3a0ea673">167 (50%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1f1c7e82"><p class="cl-1f1c52f4"><span class="cl-1f1643aa">Perempuan</span></p></td>
-<td class="cl-1f1c7e8c"><p class="cl-1f1c52eb"><span class="cl-1f1643aa">168 (50%)</span></p></td>
+<td class="cl-3a122b30"><p class="cl-3a120acf"><span class="cl-3a0ea673">Perempuan</span></p></td>
+<td class="cl-3a122b31"><p class="cl-3a120ace"><span class="cl-3a0ea673">168 (50%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1f1c7e8d"><p class="cl-1f1c52ea"><span class="cl-1f1643aa">kampus</span></p></td>
-<td class="cl-1f1c7e96"><p class="cl-1f1c52eb"><span class="cl-1f1643aa"></span></p></td>
+<td class="cl-3a122b3a"><p class="cl-3a120ac5"><span class="cl-3a0ea673">kampus</span></p></td>
+<td class="cl-3a122b3b"><p class="cl-3a120ace"><span class="cl-3a0ea673"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1f1c7e82"><p class="cl-1f1c52f4"><span class="cl-1f1643aa">UBL</span></p></td>
-<td class="cl-1f1c7e8c"><p class="cl-1f1c52eb"><span class="cl-1f1643aa">335 (100%)</span></p></td>
+<td class="cl-3a122b30"><p class="cl-3a120acf"><span class="cl-3a0ea673">UBL</span></p></td>
+<td class="cl-3a122b31"><p class="cl-3a120ace"><span class="cl-3a0ea673">335 (100%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1f1c7e6e"><p class="cl-1f1c52ea"><span class="cl-1f1643aa">tingkat_semester</span></p></td>
-<td class="cl-1f1c7e78"><p class="cl-1f1c52eb"><span class="cl-1f1643aa"></span></p></td>
+<td class="cl-3a122b26"><p class="cl-3a120ac5"><span class="cl-3a0ea673">tingkat_semester</span></p></td>
+<td class="cl-3a122b27"><p class="cl-3a120ace"><span class="cl-3a0ea673"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1f1c7e82"><p class="cl-1f1c52f4"><span class="cl-1f1643aa">1 (Semester 1 – Semester 2)</span></p></td>
-<td class="cl-1f1c7e8c"><p class="cl-1f1c52eb"><span class="cl-1f1643aa">35 (10%)</span></p></td>
+<td class="cl-3a122b30"><p class="cl-3a120acf"><span class="cl-3a0ea673">1 (Semester 1 – Semester 2)</span></p></td>
+<td class="cl-3a122b31"><p class="cl-3a120ace"><span class="cl-3a0ea673">35 (10%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1f1c7e82"><p class="cl-1f1c52f4"><span class="cl-1f1643aa">2 (Semester 3 – Semester 4)</span></p></td>
-<td class="cl-1f1c7e8c"><p class="cl-1f1c52eb"><span class="cl-1f1643aa">50 (15%)</span></p></td>
+<td class="cl-3a122b30"><p class="cl-3a120acf"><span class="cl-3a0ea673">2 (Semester 3 – Semester 4)</span></p></td>
+<td class="cl-3a122b31"><p class="cl-3a120ace"><span class="cl-3a0ea673">50 (15%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1f1c7e82"><p class="cl-1f1c52f4"><span class="cl-1f1643aa">3 (Semester 5 - Semester 6)</span></p></td>
-<td class="cl-1f1c7e8c"><p class="cl-1f1c52eb"><span class="cl-1f1643aa">65 (19%)</span></p></td>
+<td class="cl-3a122b30"><p class="cl-3a120acf"><span class="cl-3a0ea673">3 (Semester 5 - Semester 6)</span></p></td>
+<td class="cl-3a122b31"><p class="cl-3a120ace"><span class="cl-3a0ea673">65 (19%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1f1c7ea0"><p class="cl-1f1c52f4"><span class="cl-1f1643aa">4 (Semester 7 - Semester 8)</span></p></td>
-<td class="cl-1f1c7eaa"><p class="cl-1f1c52eb"><span class="cl-1f1643aa">185 (55%)</span></p></td>
+<td class="cl-3a122b3c"><p class="cl-3a120acf"><span class="cl-3a0ea673">4 (Semester 7 - Semester 8)</span></p></td>
+<td class="cl-3a122b44"><p class="cl-3a120ace"><span class="cl-3a0ea673">185 (55%)</span></p></td>
 </tr>
 </tbody>
-<tfoot><tr style="overflow-wrap:break-word;"><td colspan="2" class="cl-1f1c7eab"><p class="cl-1f1c52fe"><span class="cl-1f1643a0">1</span><span class="cl-1f1643aa">n (%)</span></p></td></tr></tfoot>
+<tfoot><tr style="overflow-wrap:break-word;"><td colspan="2" class="cl-3a122b45"><p class="cl-3a120ad0"><span class="cl-3a0ea672">1</span><span class="cl-3a0ea673">n (%)</span></p></td></tr></tfoot>
 </table></div>
 </div>
 <p>Untuk menampilkan ukuran lainnya, kita dapat memanfaatkan atribut <code>statistic</code> dan ukuran yang termasuk ke dalam ukuran frekuensi:</p>
@@ -637,55 +593,55 @@
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_flex_table.html">as_flex_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="tabwid">
-<style>.cl-202d0972{}.cl-201d036a{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-201d037e{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-201d0388{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-20242dd4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20242de8{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20242de9{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20242dfc{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20242e06{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20242e07{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-20246b00{width:2.432in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b14{width:0.825in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b15{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b1e{width:0.825in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b28{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b32{width:0.825in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b33{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b3c{width:0.825in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b46{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b50{width:0.825in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b5a{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b64{width:0.825in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b6e{width:2.432in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-20246b6f{width:0.825in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-202d0972">
+<style>.cl-3a8c455a{}.cl-3a85a01a{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3a85a024{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-3a85a02e{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3a8872a4{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a8872a5{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a8872ae{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a8872af{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a8872b8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a8872b9{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3a888d2a{width:2.432in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d34{width:0.825in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d35{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d3e{width:0.825in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d3f{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d40{width:0.825in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d41{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d48{width:0.825in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d49{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d52{width:0.825in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d53{width:2.432in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d54{width:0.825in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d5c{width:2.432in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3a888d5d{width:0.825in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-3a8c455a">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-20246b00"><p class="cl-20242dd4"><span class="cl-201d036a">Characteristic</span></p></th>
-<th class="cl-20246b14"><p class="cl-20242de8"><span class="cl-201d036a">N = 335</span><span class="cl-201d037e">1</span></p></th>
+<th class="cl-3a888d2a"><p class="cl-3a8872a4"><span class="cl-3a85a01a">Characteristic</span></p></th>
+<th class="cl-3a888d34"><p class="cl-3a8872a5"><span class="cl-3a85a01a">N = 335</span><span class="cl-3a85a024">1</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20246b15"><p class="cl-20242de9"><span class="cl-201d0388">jenis_kelamin</span></p></td>
-<td class="cl-20246b1e"><p class="cl-20242dfc"><span class="cl-201d0388"></span></p></td>
+<td class="cl-3a888d35"><p class="cl-3a8872ae"><span class="cl-3a85a02e">jenis_kelamin</span></p></td>
+<td class="cl-3a888d3e"><p class="cl-3a8872af"><span class="cl-3a85a02e"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20246b28"><p class="cl-20242e06"><span class="cl-201d0388">Laki-Laki</span></p></td>
-<td class="cl-20246b32"><p class="cl-20242dfc"><span class="cl-201d0388">0.500</span></p></td>
+<td class="cl-3a888d3f"><p class="cl-3a8872b8"><span class="cl-3a85a02e">Laki-Laki</span></p></td>
+<td class="cl-3a888d40"><p class="cl-3a8872af"><span class="cl-3a85a02e">0.500</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20246b33"><p class="cl-20242e06"><span class="cl-201d0388">Perempuan</span></p></td>
-<td class="cl-20246b3c"><p class="cl-20242dfc"><span class="cl-201d0388">0.500</span></p></td>
+<td class="cl-3a888d41"><p class="cl-3a8872b8"><span class="cl-3a85a02e">Perempuan</span></p></td>
+<td class="cl-3a888d48"><p class="cl-3a8872af"><span class="cl-3a85a02e">0.500</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20246b33"><p class="cl-20242de9"><span class="cl-201d0388">kampus</span></p></td>
-<td class="cl-20246b3c"><p class="cl-20242dfc"><span class="cl-201d0388"></span></p></td>
+<td class="cl-3a888d41"><p class="cl-3a8872ae"><span class="cl-3a85a02e">kampus</span></p></td>
+<td class="cl-3a888d48"><p class="cl-3a8872af"><span class="cl-3a85a02e"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20246b28"><p class="cl-20242e06"><span class="cl-201d0388">UBL</span></p></td>
-<td class="cl-20246b32"><p class="cl-20242dfc"><span class="cl-201d0388">1.000</span></p></td>
+<td class="cl-3a888d3f"><p class="cl-3a8872b8"><span class="cl-3a85a02e">UBL</span></p></td>
+<td class="cl-3a888d40"><p class="cl-3a8872af"><span class="cl-3a85a02e">1.000</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20246b15"><p class="cl-20242de9"><span class="cl-201d0388">tingkat_semester</span></p></td>
-<td class="cl-20246b1e"><p class="cl-20242dfc"><span class="cl-201d0388"></span></p></td>
+<td class="cl-3a888d35"><p class="cl-3a8872ae"><span class="cl-3a85a02e">tingkat_semester</span></p></td>
+<td class="cl-3a888d3e"><p class="cl-3a8872af"><span class="cl-3a85a02e"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20246b46"><p class="cl-20242e06"><span class="cl-201d0388">1 (Semester 1 – Semester 2)</span></p></td>
-<td class="cl-20246b50"><p class="cl-20242dfc"><span class="cl-201d0388">0.100</span></p></td>
+<td class="cl-3a888d49"><p class="cl-3a8872b8"><span class="cl-3a85a02e">1 (Semester 1 – Semester 2)</span></p></td>
+<td class="cl-3a888d52"><p class="cl-3a8872af"><span class="cl-3a85a02e">0.100</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20246b46"><p class="cl-20242e06"><span class="cl-201d0388">2 (Semester 3 – Semester 4)</span></p></td>
-<td class="cl-20246b50"><p class="cl-20242dfc"><span class="cl-201d0388">0.150</span></p></td>
+<td class="cl-3a888d49"><p class="cl-3a8872b8"><span class="cl-3a85a02e">2 (Semester 3 – Semester 4)</span></p></td>
+<td class="cl-3a888d52"><p class="cl-3a8872af"><span class="cl-3a85a02e">0.150</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20246b46"><p class="cl-20242e06"><span class="cl-201d0388">3 (Semester 5 - Semester 6)</span></p></td>
-<td class="cl-20246b50"><p class="cl-20242dfc"><span class="cl-201d0388">0.190</span></p></td>
+<td class="cl-3a888d49"><p class="cl-3a8872b8"><span class="cl-3a85a02e">3 (Semester 5 - Semester 6)</span></p></td>
+<td class="cl-3a888d52"><p class="cl-3a8872af"><span class="cl-3a85a02e">0.190</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-20246b5a"><p class="cl-20242e06"><span class="cl-201d0388">4 (Semester 7 - Semester 8)</span></p></td>
-<td class="cl-20246b64"><p class="cl-20242dfc"><span class="cl-201d0388">0.550</span></p></td>
+<td class="cl-3a888d53"><p class="cl-3a8872b8"><span class="cl-3a85a02e">4 (Semester 7 - Semester 8)</span></p></td>
+<td class="cl-3a888d54"><p class="cl-3a8872af"><span class="cl-3a85a02e">0.550</span></p></td>
 </tr>
 </tbody>
-<tfoot><tr style="overflow-wrap:break-word;"><td colspan="2" class="cl-20246b6e"><p class="cl-20242e07"><span class="cl-201d037e">1</span><span class="cl-201d0388">%</span></p></td></tr></tfoot>
+<tfoot><tr style="overflow-wrap:break-word;"><td colspan="2" class="cl-3a888d5c"><p class="cl-3a8872b9"><span class="cl-3a85a024">1</span><span class="cl-3a85a02e">%</span></p></td></tr></tfoot>
 </table></div>
 </div>
 <p>Berikut adalah penjelasan sintaks dari setiap bagian kode di atas:</p>
@@ -723,55 +679,55 @@
 <span>  <span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_flex_table.html">as_flex_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="tabwid">
-<style>.cl-210dab76{}.cl-21013422{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-21013436{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-21013440{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-210617f8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-2106180c{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-21061816{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-21061817{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-21061820{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-21061821{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-210649c6{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-210649da{width:1.406in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-210649e4{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-210649e5{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-210649f8{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-210649f9{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21064a02{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21064a0c{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21064a16{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21064a20{width:1.406in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-210dab76">
+<style>.cl-3b008140{}.cl-3af9e0d8{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3af9e0e2{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-3af9e0e3{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3afc9ada{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3afc9ae4{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3afc9ae5{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3afc9aee{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3afc9aef{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3afc9af0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3afcb772{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3afcb77c{width:1.406in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3afcb77d{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3afcb77e{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3afcb786{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3afcb787{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3afcb790{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3afcb791{width:1.406in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3afcb79a{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3afcb79b{width:1.406in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-3b008140">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-210649c6"><p class="cl-210617f8"><span class="cl-21013422">Characteristic</span></p></th>
-<th class="cl-210649da"><p class="cl-2106180c"><span class="cl-21013422">N = 335</span><span class="cl-21013436">1</span></p></th>
+<th class="cl-3afcb772"><p class="cl-3afc9ada"><span class="cl-3af9e0d8">Characteristic</span></p></th>
+<th class="cl-3afcb77c"><p class="cl-3afc9ae4"><span class="cl-3af9e0d8">N = 335</span><span class="cl-3af9e0e2">1</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-210649e4"><p class="cl-21061816"><span class="cl-21013440">jumlah_perjalanan_senin</span></p></td>
-<td class="cl-210649e5"><p class="cl-21061817"><span class="cl-21013440"></span></p></td>
+<td class="cl-3afcb77d"><p class="cl-3afc9ae5"><span class="cl-3af9e0e3">jumlah_perjalanan_senin</span></p></td>
+<td class="cl-3afcb77e"><p class="cl-3afc9aee"><span class="cl-3af9e0e3"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-210649f8"><p class="cl-21061820"><span class="cl-21013440">1</span></p></td>
-<td class="cl-210649f9"><p class="cl-21061817"><span class="cl-21013440">45 (13%)</span></p></td>
+<td class="cl-3afcb786"><p class="cl-3afc9aef"><span class="cl-3af9e0e3">1</span></p></td>
+<td class="cl-3afcb787"><p class="cl-3afc9aee"><span class="cl-3af9e0e3">45 (13%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-210649f8"><p class="cl-21061820"><span class="cl-21013440">2</span></p></td>
-<td class="cl-210649f9"><p class="cl-21061817"><span class="cl-21013440">131 (39%)</span></p></td>
+<td class="cl-3afcb786"><p class="cl-3afc9aef"><span class="cl-3af9e0e3">2</span></p></td>
+<td class="cl-3afcb787"><p class="cl-3afc9aee"><span class="cl-3af9e0e3">131 (39%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-210649f8"><p class="cl-21061820"><span class="cl-21013440">3</span></p></td>
-<td class="cl-210649f9"><p class="cl-21061817"><span class="cl-21013440">71 (21%)</span></p></td>
+<td class="cl-3afcb786"><p class="cl-3afc9aef"><span class="cl-3af9e0e3">3</span></p></td>
+<td class="cl-3afcb787"><p class="cl-3afc9aee"><span class="cl-3af9e0e3">71 (21%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-210649f8"><p class="cl-21061820"><span class="cl-21013440">4</span></p></td>
-<td class="cl-210649f9"><p class="cl-21061817"><span class="cl-21013440">72 (21%)</span></p></td>
+<td class="cl-3afcb786"><p class="cl-3afc9aef"><span class="cl-3af9e0e3">4</span></p></td>
+<td class="cl-3afcb787"><p class="cl-3afc9aee"><span class="cl-3af9e0e3">72 (21%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-210649f8"><p class="cl-21061820"><span class="cl-21013440">5</span></p></td>
-<td class="cl-210649f9"><p class="cl-21061817"><span class="cl-21013440">9 (2.7%)</span></p></td>
+<td class="cl-3afcb786"><p class="cl-3afc9aef"><span class="cl-3af9e0e3">5</span></p></td>
+<td class="cl-3afcb787"><p class="cl-3afc9aee"><span class="cl-3af9e0e3">9 (2.7%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-210649f8"><p class="cl-21061820"><span class="cl-21013440">6</span></p></td>
-<td class="cl-210649f9"><p class="cl-21061817"><span class="cl-21013440">4 (1.2%)</span></p></td>
+<td class="cl-3afcb786"><p class="cl-3afc9aef"><span class="cl-3af9e0e3">6</span></p></td>
+<td class="cl-3afcb787"><p class="cl-3afc9aee"><span class="cl-3af9e0e3">4 (1.2%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-210649f8"><p class="cl-21061820"><span class="cl-21013440">7</span></p></td>
-<td class="cl-210649f9"><p class="cl-21061817"><span class="cl-21013440">2 (0.6%)</span></p></td>
+<td class="cl-3afcb786"><p class="cl-3afc9aef"><span class="cl-3af9e0e3">7</span></p></td>
+<td class="cl-3afcb787"><p class="cl-3afc9aee"><span class="cl-3af9e0e3">2 (0.6%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-210649f8"><p class="cl-21061820"><span class="cl-21013440">8</span></p></td>
-<td class="cl-210649f9"><p class="cl-21061817"><span class="cl-21013440">1 (0.3%)</span></p></td>
+<td class="cl-3afcb786"><p class="cl-3afc9aef"><span class="cl-3af9e0e3">8</span></p></td>
+<td class="cl-3afcb787"><p class="cl-3afc9aee"><span class="cl-3af9e0e3">1 (0.3%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-21064a02"><p class="cl-21061816"><span class="cl-21013440">jarak</span></p></td>
-<td class="cl-21064a0c"><p class="cl-21061817"><span class="cl-21013440">2.71 (1.31, 4.74)</span></p></td>
+<td class="cl-3afcb790"><p class="cl-3afc9ae5"><span class="cl-3af9e0e3">jarak</span></p></td>
+<td class="cl-3afcb791"><p class="cl-3afc9aee"><span class="cl-3af9e0e3">2.71 (1.31, 4.74)</span></p></td>
 </tr>
 </tbody>
-<tfoot><tr style="overflow-wrap:break-word;"><td colspan="2" class="cl-21064a16"><p class="cl-21061821"><span class="cl-21013436">1</span><span class="cl-21013440">n (%); Median (Q1, Q3)</span></p></td></tr></tfoot>
+<tfoot><tr style="overflow-wrap:break-word;"><td colspan="2" class="cl-3afcb79a"><p class="cl-3afc9af0"><span class="cl-3af9e0e2">1</span><span class="cl-3af9e0e3">n (%); Median (Q1, Q3)</span></p></td></tr></tfoot>
 </table></div>
 </div>
 <p>Perlu diperhatikan, <code>tbl_summary</code> menampilkan persentase tiap nilai <code>jumlah_perjalanan_senin</code> seolah-olah variabel kategoris — hal ini terjadi karena nilainya bertipe numerik dengan sedikit kategori unik. Untuk memaksanya ditampilkan sebagai variabel kontinu, kita gunakan atribut <code>type</code>.</p>
@@ -789,23 +745,23 @@
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_flex_table.html">as_flex_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="tabwid">
-<style>.cl-21d964dc{}.cl-21cb660c{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-21cb6620{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-21cb662a{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-21d0a7ac{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-21d0a7c0{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-21d0a7ca{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-21d0a7d4{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-21d0a7de{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-21d0de2a{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21d0de34{width:0.965in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21d0de3e{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21d0de48{width:0.965in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21d0de52{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21d0de5c{width:0.965in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21d0de66{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-21d0de7a{width:0.965in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-21d964dc">
+<style>.cl-3b60e09e{}.cl-3b5a41ee{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3b5a41f8{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-3b5a420c{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3b5cef8e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3b5cef98{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3b5cef99{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3b5cefa2{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3b5cefa3{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3b5d1b1c{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3b5d1b30{width:0.965in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3b5d1b3a{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3b5d1b3b{width:0.965in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3b5d1b44{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3b5d1b45{width:0.965in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3b5d1b4e{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3b5d1b58{width:0.965in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-3b60e09e">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-21d0de2a"><p class="cl-21d0a7ac"><span class="cl-21cb660c">Characteristic</span></p></th>
-<th class="cl-21d0de34"><p class="cl-21d0a7c0"><span class="cl-21cb660c">N = 335</span><span class="cl-21cb6620">1</span></p></th>
+<th class="cl-3b5d1b1c"><p class="cl-3b5cef8e"><span class="cl-3b5a41ee">Characteristic</span></p></th>
+<th class="cl-3b5d1b30"><p class="cl-3b5cef98"><span class="cl-3b5a41ee">N = 335</span><span class="cl-3b5a41f8">1</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-21d0de3e"><p class="cl-21d0a7ca"><span class="cl-21cb662a">jumlah_perjalanan_senin</span></p></td>
-<td class="cl-21d0de48"><p class="cl-21d0a7d4"><span class="cl-21cb662a">2</span></p></td>
+<td class="cl-3b5d1b3a"><p class="cl-3b5cef99"><span class="cl-3b5a420c">jumlah_perjalanan_senin</span></p></td>
+<td class="cl-3b5d1b3b"><p class="cl-3b5cefa2"><span class="cl-3b5a420c">2</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-21d0de52"><p class="cl-21d0a7ca"><span class="cl-21cb662a">jarak</span></p></td>
-<td class="cl-21d0de5c"><p class="cl-21d0a7d4"><span class="cl-21cb662a">3.37, 2.71</span></p></td>
+<td class="cl-3b5d1b44"><p class="cl-3b5cef99"><span class="cl-3b5a420c">jarak</span></p></td>
+<td class="cl-3b5d1b45"><p class="cl-3b5cefa2"><span class="cl-3b5a420c">3.37, 2.71</span></p></td>
 </tr>
 </tbody>
-<tfoot><tr style="overflow-wrap:break-word;"><td colspan="2" class="cl-21d0de66"><p class="cl-21d0a7de"><span class="cl-21cb6620">1</span><span class="cl-21cb662a">Median; Mean, Median</span></p></td></tr></tfoot>
+<tfoot><tr style="overflow-wrap:break-word;"><td colspan="2" class="cl-3b5d1b4e"><p class="cl-3b5cefa3"><span class="cl-3b5a41f8">1</span><span class="cl-3b5a420c">Median; Mean, Median</span></p></td></tr></tfoot>
 </table></div>
 </div>
 <p>Pilihan <code>statistics</code> yang termasuk ke dalam ukuran pemusatan di antaranya adalah <code>{mean}</code> dan <code>{median}</code>.</p>
@@ -848,27 +804,27 @@
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_flex_table.html">as_flex_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="tabwid">
-<style>.cl-231bc7b8{}.cl-2304c1bc{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-2304c1d0{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-2304c1da{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-230f0726{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-230f0744{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-230f0758{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-230f0762{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-230f076c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-230f5eba{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-230f5ec4{width:2.808in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-230f5ece{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-230f5ee2{width:2.808in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-230f5ee3{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-230f5eec{width:2.808in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-230f5f00{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-230f5f0a{width:2.808in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-231bc7b8">
+<style>.cl-3bd41a96{}.cl-3bcd0f44{font-family:'Arial';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3bcd0f4e{font-family:'Arial';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-3bcd0f58{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3bd007a8{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3bd007b2{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3bd007bc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3bd007bd{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3bd007c6{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3bd02314{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3bd0231e{width:2.808in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3bd0231f{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3bd02328{width:2.808in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3bd02329{width:1.984in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3bd02332{width:2.808in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3bd02333{width:1.984in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3bd0233c{width:2.808in;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(255, 255, 255, 0.00);border-top: 0 solid rgba(255, 255, 255, 0.00);border-left: 0 solid rgba(255, 255, 255, 0.00);border-right: 0 solid rgba(255, 255, 255, 0.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-3bd41a96">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-230f5eba"><p class="cl-230f0726"><span class="cl-2304c1bc">Characteristic</span></p></th>
-<th class="cl-230f5ec4"><p class="cl-230f0744"><span class="cl-2304c1bc">N = 335</span><span class="cl-2304c1d0">1</span></p></th>
+<th class="cl-3bd02314"><p class="cl-3bd007a8"><span class="cl-3bcd0f44">Characteristic</span></p></th>
+<th class="cl-3bd0231e"><p class="cl-3bd007b2"><span class="cl-3bcd0f44">N = 335</span><span class="cl-3bcd0f4e">1</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-230f5ece"><p class="cl-230f0758"><span class="cl-2304c1da">biaya_dalam_sepekan</span></p></td>
-<td class="cl-230f5ee2"><p class="cl-230f0762"><span class="cl-2304c1da">[5], 50, 70, 120, [600] (77)</span></p></td>
+<td class="cl-3bd0231f"><p class="cl-3bd007bc"><span class="cl-3bcd0f58">biaya_dalam_sepekan</span></p></td>
+<td class="cl-3bd02328"><p class="cl-3bd007bd"><span class="cl-3bcd0f58">[5], 50, 70, 120, [600] (77)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-230f5ece"><p class="cl-230f0758"><span class="cl-2304c1da">jumlah_perjalanan_senin</span></p></td>
-<td class="cl-230f5ee2"><p class="cl-230f0762"><span class="cl-2304c1da">[1], 2, 2, 4, [8] (1)</span></p></td>
+<td class="cl-3bd0231f"><p class="cl-3bd007bc"><span class="cl-3bcd0f58">jumlah_perjalanan_senin</span></p></td>
+<td class="cl-3bd02328"><p class="cl-3bd007bd"><span class="cl-3bcd0f58">[1], 2, 2, 4, [8] (1)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-230f5ee3"><p class="cl-230f0758"><span class="cl-2304c1da">jarak</span></p></td>
-<td class="cl-230f5eec"><p class="cl-230f0762"><span class="cl-2304c1da">[0.06], 1.31, 2.71, 4.74, [43.55] (3.57)</span></p></td>
+<td class="cl-3bd02329"><p class="cl-3bd007bc"><span class="cl-3bcd0f58">jarak</span></p></td>
+<td class="cl-3bd02332"><p class="cl-3bd007bd"><span class="cl-3bcd0f58">[0.06], 1.31, 2.71, 4.74, [43.55] (3.57)</span></p></td>
 </tr>
 </tbody>
-<tfoot><tr style="overflow-wrap:break-word;"><td colspan="2" class="cl-230f5f00"><p class="cl-230f076c"><span class="cl-2304c1d0">1</span><span class="cl-2304c1da">[Min], Q1, Median, Q3, [Max] (SD)</span></p></td></tr></tfoot>
+<tfoot><tr style="overflow-wrap:break-word;"><td colspan="2" class="cl-3bd02333"><p class="cl-3bd007c6"><span class="cl-3bcd0f4e">1</span><span class="cl-3bcd0f58">[Min], Q1, Median, Q3, [Max] (SD)</span></p></td></tr></tfoot>
 </table></div>
 </div>
 <div class="sourceCode" id="cb116"><pre class="downlit sourceCode r">
