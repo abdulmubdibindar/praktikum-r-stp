@@ -583,7 +583,7 @@ koef_mult
 
 Seperti yang sudah kita pelajari, persamaan regresi linear berganda pada dasarnya adalah **persamaan regresi linear sederhana yang memiliki lebih dari satu variabel independen**. Artinya, berdasarkan bentuk umum persamaan regresi linear sederhana, kita cukup menambahkan variabel-variabel independen lainnya beserta koefisiennya ke dalam persamaan.
 
-Kita juga dapat menggunakan penamaan variabel lain selain `x` dan `y` untuk memudahkan interpretasi. Untuk kasus ini, kita bisa menggunakan kata $biaya$ untuk menggantikan $y$, $jarak$ untuk menggantikan $x_1$, $lingKos_sendiri$ untuk menggantikan $x_2$, dan seterusnya.
+Kita juga dapat menggunakan penamaan variabel lain selain `x` dan `y` untuk memudahkan interpretasi. Untuk kasus ini, kita bisa menggunakan kata $biaya$ untuk menggantikan $y$, $jarak$ untuk menggantikan $x_1$, $lingKos_{sendiri}$ untuk menggantikan $x_2$, dan seterusnya.
 
 ::: rmdexercise
 
