@@ -76,6 +76,11 @@ data_mahasiswa_online <- data_mahasiswa |>
 
 Mari biasakan untuk melihat datanya, seperti jumlah objek dan nama-nama variabelnya dengan perintah `glimpse()`.
 
+```{r mod08-glimpse-dataset-online, echo=TRUE, collapse=TRUE}
+glimpse(data_mahasiswa_online)
+```
+
+
 ```{r mod08-inspect-kampus-layanan-online, results='hide'}
 data_mahasiswa_online |>
   select(Kampus_PT, `kendaraan utama`) |>
@@ -128,7 +133,7 @@ scp <- ggplot(
 ) + # variabel di sumbu Y
   geom_point(
     color = "navy", # perintah untuk menampilkan diagram pencar dengan warna biru
-    alpha = 0.01, # mengatur transparansi titik
+    alpha = 0.2, # mengatur transparansi titik
     size = 1.5, # mengatur ukuran titik
     shape = 15
   ) + # mengatur bentuk titik menjadi persegi
@@ -169,7 +174,7 @@ cor(x, y, method = "pearson")
 
 ### Aktivitas Mandiri 2 {-}
 
-Tuliskan interpretasi kalian terhadap perbedaan nilai koefisiennya.
+Tuliskan interpretasi kalian terhadap perbedaan nilai koefisien $r$ sebelum dan setelah pencilan dihilangkan.
 
 :::
 
@@ -187,7 +192,7 @@ scp <- ggplot(
 ) + # variabel di sumbu Y
   geom_point(
     color = "navy", # mengatur warna titik
-    alpha = 0.5, # mengatur transparansi
+    alpha = 0.2, # mengatur transparansi
     size = 1.5, # mengatur ukuran titik
     shape = 15
   ) + # mengatur bentuk titik menjadi persegi
@@ -234,7 +239,7 @@ Definisikan model tersebut dan jawablah:
 
 Untuk menampilkan hasil penyusunan model regresi linear, kita akan menggunakan perintah `summary` yang juga sudah disediakan secara bawaan oleh R.
 
-```{r mod08-display-model-summary, echo=TRUE, results='hide'}
+```{r mod08-display-model-summary, echo=TRUE, collapse=TRUE}
 # Menampilkan hasil model regresi linear
 summary(model)
 ```
@@ -260,10 +265,13 @@ Secara bawaan, tabel tidak menampilkan nilai konstanta *(intercept)*, menampilka
 ```{r mod08-display-model-table-custom, echo=TRUE}
 tbl_regression(
   model,
-  intercept = TRUE, # mengatur intercept-nya ditampilkan
-  conf.level = 0.99, # mengatur nilai confidence level menjadi 99%
-  label = list(x ~ "Jarak tempuh ke kampus, km") # Mengganti tulisan "x" saja menjadi yang
-) # lebih bermakna
+  # mengatur intercept-nya ditampilkan
+  intercept = TRUE,
+  # mengatur nilai confidence level menjadi 99%
+  conf.level = 0.99,
+  # Mengganti tulisan "x" saja menjadi yang lebih bermakna
+  label = list(x ~ "Jarak tempuh ke kampus, km")
+)
 ```
 
 ### Penafsiran/interpretasi Model
@@ -273,18 +281,17 @@ Yang kita akan tafsirkan dari model kita di antaranya adalah:
 -   persamaan model
 -   makna nilai konstanta dan koefisien
 -   uji kualitas model (ANOVA, `F-statistic`)
--   uji kualitas variabel (`Pr(>|t|)`)
 
 #### Tafsiran persamaan model
 
 Persamaan model dapat kita tafsirkan berdasarkan keluaran dari perintah `coef(model)`.
 
 ```{r mod08-coef-explanation, echo=TRUE, results='hide'}
-# Membuat nilai koefisien model
-koef <- coef(model)
+# Membuat nilai koefisien model regresi linear sederhana
+koef_simple <- coef(model)
 
-# Menampilkan koefisien variabel model
-koef
+# Menampilkan koefisien variabel model regresi linear sederhana
+koef_simple
 ```
 
 Hasil fungsi tersebut juga dapat kita temukan pada;
@@ -292,9 +299,9 @@ Hasil fungsi tersebut juga dapat kita temukan pada;
 - `Coefficients` dari `summary(model)` atau 
 - `tbl_regression(model)`.
 
-Dalam keluaran perintah `coef()` kita dapat mengidentifikasi nilai $\beta_0$ atau konstanta melalui nilai di bawah `(Intercept)` dan nilai $\beta_1$ atau koefisien melalui nilai di bawah `x`. Ini sama saja dengan nilai-nilai di bawah kolom `Estimate` pada keluaran perintah `summary()` atau nilai-nilai di bawah kolom **Beta** pada keluaran `tbl_regression()`.
+Perintah `coef()` menghasilkan **vektor** yang menyimpan nilai *intercept* dan koefisien dari variabel independen. Ini sama saja dengan nilai-nilai di bawah kolom `Estimate` pada keluaran perintah `summary()` atau nilai-nilai di bawah kolom **Beta** pada keluaran `tbl_regression()`.
 
-Berdasarkan keluaran-keluaran perintah tersebut, kita dapat mengetahui bagaimana persamaan regresi linearnya dengan mengganti bentuk umum persamaan regresi linear dengan angka-angka yang dihasilkan di `model`.
+Berdasarkan keluaran-keluaran perintah tersebut, kita dapat mengetahui bagaimana persamaan regresi linearnya dengan mengganti $\beta_0$ dan $\beta_1$ pada bentuk umum persamaan regresi linear dengan angka-angka pada `koef_simple`.
 
 Bentuk umum:
 
@@ -307,19 +314,47 @@ seperti halnya yang sudah kita pelajari:
 - $\beta_0$ adalah konstanta
 - $\beta_1$ adalah koefisien
 
+Untuk menampilkan nilai *intercept* dan koefisien variabel independen dari variabel koefisien `koef_simple` yang sudah kita buat, kita hanya tinggal mengakses elemen-elemen vektor tersebut seperti berikut.
+
+```{r mod08-gao-access-koef, echo=TRUE, results='hold'}
+# Menampilkan nilai intercept
+koef_simple[1]
+
+cat("----------")
+
+# Menampilkan nilai koefisien untuk x (jarak)
+koef_simple[2]
+```
+
 
 ::: rmdexercise
 
 #### Aktivitas Mandiri 4 {-}
 
-Tuliskan persamaan model tersebut dengan perintah `cat()` seperti berikut dan gantilah `[beta_0]` dan `[beta_1]` menjadi angka koefisien dan konstanta yang tepat.
+Tuliskan persamaan model tersebut dengan perintah `cat()` seperti berikut dan gantilah `...` dengan angka yang tepat untuk memanggil konstanta (*intercept*) dan koefisiennya. Hasilnya adalah pernyataan seperti berikut.
+
+```{r mod08-exercise-demo-am4, echo=FALSE}
+cat(
+  "Persamaan model dari biaya sepekan terhadap jarak adalah",
+  "y = ", koef_simple[1], " + ", koef_simple[2], "x"
+)
+```
+
 
 ```r
 cat(
   "Persamaan model dari biaya sepekan terhadap jarak adalah",
-  "y = [beta_0] + [beta_1]x"
+  "y = ", koef_simple[...], " + ", koef_simple[...], "x"
 )
 ```
+
+```{r mod08-exercise-am-4, include=FALSE}
+cat(
+  "Persamaan model dari biaya sepekan terhadap jarak adalah",
+  "y = ", koef_simple[x], " + ", koef_simple[x], "x"
+)
+```
+
 
 :::
 
@@ -338,12 +373,17 @@ scp <- ggplot(
 ) + # variabel di sumbu Y
   geom_point(
     color = "navy",
+    alpha = 0.2,
     size = 1.5,
     shape = 15
   ) +
   geom_abline(aes(
-    intercept = koef[1], # ingat bahwa ini memanggil elemen pertama dari vektor 'koef'
-    slope = koef[2],
+    # ingat bahwa ini memanggil elemen pertama dari vektor 'koef'
+    # yang merupakan nilai koefisien/intercept
+    intercept = koef_simple[1],
+    # sementara itu, elemen kedua dari vektor 'koef' adalah nilai koefisien
+    # variabel independen kita
+    slope = koef_simple[2],
     color = "red"
   )) +
   labs(
@@ -398,7 +438,7 @@ Uji kualitas model kita terdiri atas **standard error dari residual** (`Residual
 
 ::: rmdexercise
 
-#### Aktivitas Mandiri 4 {-}
+#### Aktivitas Mandiri 5 {-}
 
 Jawablah pertanyaan-pertanyaan berikut untuk membantu Anda menafsirkan model yang telah dibuat:
 
@@ -435,13 +475,15 @@ predict(model, bahan_pred)
 
 ::: rmdexercise
 
-#### Aktivitas Mandiri 5 {-}
+#### Aktivitas Mandiri 6 {-}
 
 Lakukan prediksi untuk mahasiswa yang tinggal di jarak `5.0` dan `6.5`, dan `10.4` km menggunakan persamaan regresi yang sudah dibuat sebelumnya. Simpan *tibble* dengan nama `bahan_pred_lat`. 
 
 :::
 
 ## Model Regresi Linear Berganda
+
+### Persiapan Data
 
 Dalam bagian ini kita hanya akan mempelajari penggunaan **variabel *dummy*** untuk meningkatkan kekuatan prediksi kita. Di akhir, Anda akan menafsirkan hal-hal yang sudah Anda pelajari pada bagian regresi linear.
 
@@ -452,7 +494,7 @@ Kita akan menggunakan variabel `jenis tempat tinggal` untuk variabel *dummy*. Pe
 data_mahasiswa_online$`jenis tempat tinggal` <- factor(data_mahasiswa_online$`jenis tempat tinggal`)
 ```
 
-#### Penyusunan model
+### Penyusunan model
 
 Kedua, kita akan membuat model seperti halnya yang kita lakukan dalam analisis regresi linear sederhana. Kita akan menggunakan nama yang lebih representatif untuk variabel-variabelnya.
 
@@ -532,8 +574,11 @@ Seperti halnya pada regresi linear sederhana, yang akan kita tafsirkan dari mode
 Masih sama seperti pada regresi linear sederhana, perintah untuk menampilkan koefisien & konstanta pada persamaan regresi linear berganda adalah `coef()`.
 
 ```{r mod08-model-mult-regression, echo=TRUE}
+# Menyimpan koefisien model regresi linear berganda
+koef_mult <- coef(mdl)
+
 # Menampilkan koefisien model regresi linear berganda
-coef(mdl)
+koef_mult
 ```
 
 Seperti yang sudah kita pelajari, persamaan regresi linear berganda pada dasarnya adalah **persamaan regresi linear sederhana yang memiliki lebih dari satu variabel independen**. Artinya, berdasarkan bentuk umum persamaan regresi linear sederhana, kita cukup menambahkan variabel-variabel independen lainnya beserta koefisiennya ke dalam persamaan.
@@ -542,13 +587,60 @@ Kita juga dapat menggunakan penamaan variabel lain selain `x` dan `y` untuk memu
 
 ::: rmdexercise
 
-#### Aktivitas Mandiri 6 {-}
+#### Aktivitas Mandiri 7 {-}
 
+Tuliskan persamaan model tersebut dengan perintah `cat()` seperti berikut dan gantilah `...` dengan angka yang tepat untuk memanggil konstanta (*intercept*) dan koefisien-koefisiennya. Hasilnya adalah pernyataan seperti berikut.
 
+```{r mod08-exercise-demo-am7, echo=FALSE}
+cat(
+  "Persamaan model dari biaya sepekan terhadap jarak adalah",
+  "y = ", koef_mult[1], " + ",
+  koef_mult[2], "jarak +",
+  koef_mult[3], "lingKos_sendiri +",
+  koef_mult[4], "lingRumah_mengontrak_bersama +",
+  koef_mult[5], "lingRumah_mengontrak_pribadi +",
+  koef_mult[6], "lingRumah_pribadi +",
+  koef_mult[7], "lingRumah_saudara"
+)
+```
+
+```r
+cat(
+  "Persamaan model dari biaya sepekan terhadap jarak adalah",
+  "y = ", koef_mult[...], " + ", 
+  koef_mult[...], "jarak +",
+  koef_mult[...], "lingKos_sendiri +",
+  koef_mult[...], "lingRumah_mengontrak_bersama +",
+  koef_mult[...], "lingRumah_mengontrak_pribadi +",
+  koef_mult[...], "lingRumah_pribadi +",
+  koef_mult[...], "lingRumah_saudara"
+)
+```
+
+```{r mod08-exercise-am-7, include=FALSE}
+cat(
+  "Persamaan model dari biaya sepekan terhadap jarak adalah",
+  "y = ", koef_mult[1], " + ",
+  koef_mult[2], "jarak +",
+  koef_mult[3], "lingKos_sendiri +",
+  koef_mult[4], "lingRumah_mengontrak_bersama +",
+  koef_mult[5], "lingRumah_mengontrak_pribadi +",
+  koef_mult[6], "lingRumah_pribadi +",
+  koef_mult[7], "lingRumah_saudara"
+)
+```
 
 :::
 
 #### Makna Nilai Konstanta dan Koefisien
+
+Untuk persamaan linear berganda, kita tidak hanya mempertimbangkan pengaruh satu variabel independen seperti halnya pada regresi linear sederhana. Dengan adanya variabel independen lain, maka kita bisa menghitung pengaruh variabel independen lain tersebut.
+
+Dalam kasus ini, penambahan jarak sebanyak 1 km akan meningkatkan biaya perjalanan sepekan mahasiswa sebesar `[beta_1]` $\times 1000$ rupiah, dengan asumsi `[ling]` tetap. Sementara itu, mahasiswa yang tinggal di `[ling]` akan meningkatkan biaya perjalanan sepekan mahasiswa sebesar `[beta_2]` $\times 1000$ rupiah, dengan asumsi `[jarak]` tetap.
+
+#### Uji Kualitas Model
+
+
 
 ### Prediksi Model
 
