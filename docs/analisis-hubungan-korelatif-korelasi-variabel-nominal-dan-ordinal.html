@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Modul 7 Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal | Modul Praktik Statistika Untuk Perencanaan</title>
 <meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA">
-<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta name="generator" content="bookdown 0.45 with bs4_book()">
 <meta property="og:title" content="Modul 7 Analisis Hubungan Korelatif: Korelasi Variabel Nominal dan Ordinal | Modul Praktik Statistika Untuk Perencanaan">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
@@ -24,7 +24,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -313,28 +312,28 @@
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">)</span></span></code></pre></div>
 <pre><code>## Rows: 1,557
 ## Columns: 22
-## $ Kampus_PT                  &lt;fct&gt; ITERA, ITERA, ITERA, ITERA, ITERA, ITERA, ITERA, ITERA, ITERA, ITERA, ITE…
-## $ `Nomor urut`               &lt;dbl&gt; 17, 211, 342, 42, 56, 254, 267, 289, 330, 259, 48, 169, 225, 242, 319, 42…
-## $ `Jenis Kelamin`            &lt;fct&gt; Perempuan, Perempuan, Perempuan, Perempuan, Laki-laki, Perempuan, Perempu…
-## $ Umur                       &lt;dbl&gt; 20, 20, 22, 21, 22, 22, 21, 21, 20, 23, 19, 23, 21, 19, 22, 23, 23, 21, 2…
-## $ Fakultas                   &lt;fct&gt; FTIK, FTIK, FTI, FTIK, FTIK, FTIK, FTIK, FTIK, FTI, FTIK, FTIK, FTIK, FTI…
-## $ Prodi                      &lt;fct&gt; Perencanaan Wilayah dan Kota, Perencanaan Wilayah dan Kota, Teknik Pertam…
-## $ `Tingkat Semester`         &lt;ord&gt; Semester 3-4, Semester 5-6, Semester 7-8, Semester 7-8, Semester 7-8, Sem…
-## $ `Uang Saku`                &lt;ord&gt; "1 - 2 Jt", "2,1 - 3 Jt", "2,1 - 3 Jt", "2,1 - 3 Jt", "1 - 2 Jt", "3,1 - …
-## $ `jumlah mobil`             &lt;dbl&gt; 1, 0, 3, 3, 1, 3, 3, 3, 3, 2, 1, 0, 3, 2, 2, 2, 1, 0, 2, 0, 1, 2, 1, 0, 2…
-## $ `jumlah motor`             &lt;dbl&gt; 0, 1, 2, 3, 0, 2, 2, 3, 2, 2, 0, 1, 1, 2, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 1…
-## $ `jumlah sepeda`            &lt;dbl&gt; 1, 1, 3, 3, 0, 2, 3, 4, 2, 2, 1, 0, 1, 2, 1, 2, 1, 0, 0, 0, 0, 0, 1, 0, 1…
-## $ `kendaraan utama`          &lt;fct&gt; Sepeda motor pribadi, Mobil pribadi, Mobil pribadi, Mobil pribadi, Sepeda…
-## $ `jenis tempat tinggal`     &lt;fct&gt; Kos sendiri, Rumah pribadi, Rumah pribadi, Rumah pribadi, Rumah mengontra…
-## $ jarak                      &lt;dbl&gt; 3.47, 4.88, 3.09, 5.46, 3.70, 6.18, 4.87, 5.08, 3.82, 7.51, 7.89, 6.78, 6…
-## $ `biaya sepekan`            &lt;dbl&gt; 400, 280, 225, 200, 200, 200, 200, 200, 200, 180, 150, 150, 150, 150, 150…
-## $ `Jumlah Perjalanan Senin`  &lt;dbl&gt; 2, 4, 2, 0, 4, 0, 3, 4, 2, 0, 1, 4, 2, 0, 3, 2, 2, 0, 3, 2, 4, 4, 3, 2, 3…
-## $ `Jumlah Perjalanan Selasa` &lt;dbl&gt; 3, 4, 2, 3, 3, 0, 4, 4, 2, 2, 1, 3, 2, 2, 2, 0, 2, 3, 4, 2, 4, 4, 3, 1, 4…
-## $ `Jumlah Perjalanan Rabu`   &lt;dbl&gt; 3, 5, 0, 4, 3, 3, 4, 4, 0, 2, 1, 2, 2, 2, 4, 2, 2, 2, 3, 2, 4, 4, 3, 3, 2…
-## $ `Jumlah Perjalanan Kamis`  &lt;dbl&gt; 0, 4, 2, 3, 2, 0, 4, 4, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 4, 2, 4, 4, 4, 0, 2…
-## $ `Jumlah Perjalanan Jumat`  &lt;dbl&gt; 0, 5, 0, 3, 2, 2, 4, 5, 2, 2, 1, 3, 3, 4, 4, 2, 2, 0, 4, 4, 5, 7, 5, 1, 2…
-## $ `Jumlah Perjalanan Sabtu`  &lt;dbl&gt; 2, 0, 3, 0, 3, 3, 0, 2, 2, 0, 1, 2, 2, 0, 0, 2, 2, 2, 4, 0, 0, 0, 4, 1, 0…
-## $ `Jumlah Perjalanan Ahad`   &lt;dbl&gt; 4, 3, 0, 2, 2, 0, 3, 2, 2, 0, 1, 2, 0, 0, 2, 0, 2, 2, 2, 2, 0, 0, 5, 0, 0…</code></pre>
+## $ Kampus_PT                  &lt;fct&gt; ITERA, ITERA, ITERA, ITERA, ITERA, ITERA, IT…
+## $ `Nomor urut`               &lt;dbl&gt; 17, 211, 342, 42, 56, 254, 267, 289, 330, 25…
+## $ `Jenis Kelamin`            &lt;fct&gt; Perempuan, Perempuan, Perempuan, Perempuan, …
+## $ Umur                       &lt;dbl&gt; 20, 20, 22, 21, 22, 22, 21, 21, 20, 23, 19, …
+## $ Fakultas                   &lt;fct&gt; FTIK, FTIK, FTI, FTIK, FTIK, FTIK, FTIK, FTI…
+## $ Prodi                      &lt;fct&gt; Perencanaan Wilayah dan Kota, Perencanaan Wi…
+## $ `Tingkat Semester`         &lt;ord&gt; Semester 3-4, Semester 5-6, Semester 7-8, Se…
+## $ `Uang Saku`                &lt;ord&gt; "1 - 2 Jt", "2,1 - 3 Jt", "2,1 - 3 Jt", "2,1…
+## $ `jumlah mobil`             &lt;dbl&gt; 1, 0, 3, 3, 1, 3, 3, 3, 3, 2, 1, 0, 3, 2, 2,…
+## $ `jumlah motor`             &lt;dbl&gt; 0, 1, 2, 3, 0, 2, 2, 3, 2, 2, 0, 1, 1, 2, 1,…
+## $ `jumlah sepeda`            &lt;dbl&gt; 1, 1, 3, 3, 0, 2, 3, 4, 2, 2, 1, 0, 1, 2, 1,…
+## $ `kendaraan utama`          &lt;fct&gt; Sepeda motor pribadi, Mobil pribadi, Mobil p…
+## $ `jenis tempat tinggal`     &lt;fct&gt; Kos sendiri, Rumah pribadi, Rumah pribadi, R…
+## $ jarak                      &lt;dbl&gt; 3.47, 4.88, 3.09, 5.46, 3.70, 6.18, 4.87, 5.…
+## $ `biaya sepekan`            &lt;dbl&gt; 400, 280, 225, 200, 200, 200, 200, 200, 200,…
+## $ `Jumlah Perjalanan Senin`  &lt;dbl&gt; 2, 4, 2, 0, 4, 0, 3, 4, 2, 0, 1, 4, 2, 0, 3,…
+## $ `Jumlah Perjalanan Selasa` &lt;dbl&gt; 3, 4, 2, 3, 3, 0, 4, 4, 2, 2, 1, 3, 2, 2, 2,…
+## $ `Jumlah Perjalanan Rabu`   &lt;dbl&gt; 3, 5, 0, 4, 3, 3, 4, 4, 0, 2, 1, 2, 2, 2, 4,…
+## $ `Jumlah Perjalanan Kamis`  &lt;dbl&gt; 0, 4, 2, 3, 2, 0, 4, 4, 2, 2, 1, 2, 2, 2, 2,…
+## $ `Jumlah Perjalanan Jumat`  &lt;dbl&gt; 0, 5, 0, 3, 2, 2, 4, 5, 2, 2, 1, 3, 3, 4, 4,…
+## $ `Jumlah Perjalanan Sabtu`  &lt;dbl&gt; 2, 0, 3, 0, 3, 3, 0, 2, 2, 0, 1, 2, 2, 0, 0,…
+## $ `Jumlah Perjalanan Ahad`   &lt;dbl&gt; 4, 3, 0, 2, 2, 0, 3, 2, 2, 0, 1, 2, 0, 0, 2,…</code></pre>
 </div>
 <div id="pembuatan-tabel-silang" class="section level2" number="7.5">
 <h2>
@@ -361,114 +360,114 @@
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/as_flex_table.html">as_flex_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <div class="tabwid">
-<style>.cl-24f115da{}.cl-24e955de{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-24ec4f14{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-24ec4f1e{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-24ec4f28{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-24ec4f29{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-24ec4f32{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-24ec75a2{width:2.967in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75ac{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75b6{width:1.61in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75b7{width:1.041in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75c0{width:2.264in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75c1{width:2.128in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75ca{width:1.279in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75d4{width:1.372in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75d5{width:0.668in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75de{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75df{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75e8{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75e9{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75f2{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75f3{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75fc{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec75fd{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7606{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7607{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7610{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec761a{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec761b{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec761c{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7624{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7625{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec762e{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec762f{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7630{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7638{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7639{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7642{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7643{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec764c{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7656{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7657{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7658{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7660{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec766a{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec766b{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7674{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7675{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec767e{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec767f{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7688{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7689{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7692{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7693{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec7694{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec769c{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec769d{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76a6{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76a7{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76b0{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76b1{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76b2{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76ba{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76bb{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76c4{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76c5{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76ce{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76cf{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76d0{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-24ec76d8{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-24f115da">
+<style>.cl-e39366d6{}.cl-e385cb52{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-e38a8f8e{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e38a8fa2{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:2pt;padding-top:2pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e38a8fac{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e38a8fb6{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e38a8fb7{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:15pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-e38ac8d2{width:2.967in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac8e6{width:0.812in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac8fa{width:1.61in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac8fb{width:1.041in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac90e{width:2.264in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac90f{width:2.128in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac918{width:1.279in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac922{width:1.372in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac936{width:0.668in;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 1pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac940{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac94a{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac954{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac95e{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac968{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac969{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac972{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac97c{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac986{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac99a{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac99b{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac9a4{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac9b8{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac9c2{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac9cc{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac9d6{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac9e0{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac9e1{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac9ea{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac9fe{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38ac9ff{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca08{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca12{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca1c{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca26{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca30{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca3a{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca3b{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca44{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca45{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca4e{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca58{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca62{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca6c{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca80{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca8a{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca94{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca95{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38aca9e{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acaa8{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acab2{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acabc{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acabd{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acad0{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acad1{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acada{width:2.967in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acaee{width:0.812in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acaef{width:1.61in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acaf8{width:1.041in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acb02{width:2.264in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acb0c{width:2.128in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acb16{width:1.279in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acb17{width:1.372in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-e38acb20{width:0.668in;background-color:transparent;vertical-align: top;border-bottom: 1pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<div class="inline-table"><table data-quarto-disable-processing="true" class="cl-e39366d6">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-24ec75a2"><p class="cl-24ec4f14"><span class="cl-24e955de"> </span></p></th>
-<th colspan="7" class="cl-24ec75ac"><p class="cl-24ec4f1e"><span class="cl-24e955de">Jenis Tempat Tinggal</span></p></th>
-<th class="cl-24ec75d5"><p class="cl-24ec4f1e"><span class="cl-24e955de"> </span></p></th>
+<th class="cl-e38ac8d2"><p class="cl-e38a8f8e"><span class="cl-e385cb52"> </span></p></th>
+<th colspan="7" class="cl-e38ac8e6"><p class="cl-e38a8fa2"><span class="cl-e385cb52">Jenis Tempat Tinggal</span></p></th>
+<th class="cl-e38ac936"><p class="cl-e38a8fa2"><span class="cl-e385cb52"> </span></p></th>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<th class="cl-24ec75a2"><p class="cl-24ec4f14"><span class="cl-24e955de"></span></p></th>
-<th class="cl-24ec75ac"><p class="cl-24ec4f1e"><span class="cl-24e955de">Asrama</span></p></th>
-<th class="cl-24ec75b6"><p class="cl-24ec4f1e"><span class="cl-24e955de">Kos bersama-sama</span></p></th>
-<th class="cl-24ec75b7"><p class="cl-24ec4f1e"><span class="cl-24e955de">Kos sendiri</span></p></th>
-<th class="cl-24ec75c0"><p class="cl-24ec4f1e"><span class="cl-24e955de">Rumah mengontrak bersama</span></p></th>
-<th class="cl-24ec75c1"><p class="cl-24ec4f1e"><span class="cl-24e955de">Rumah mengontrak pribadi</span></p></th>
-<th class="cl-24ec75ca"><p class="cl-24ec4f1e"><span class="cl-24e955de">Rumah pribadi</span></p></th>
-<th class="cl-24ec75d4"><p class="cl-24ec4f1e"><span class="cl-24e955de">Rumah saudara</span></p></th>
-<th class="cl-24ec75d5"><p class="cl-24ec4f1e"><span class="cl-24e955de">Total</span></p></th>
+<th class="cl-e38ac8d2"><p class="cl-e38a8f8e"><span class="cl-e385cb52"></span></p></th>
+<th class="cl-e38ac8e6"><p class="cl-e38a8fa2"><span class="cl-e385cb52">Asrama</span></p></th>
+<th class="cl-e38ac8fa"><p class="cl-e38a8fa2"><span class="cl-e385cb52">Kos bersama-sama</span></p></th>
+<th class="cl-e38ac8fb"><p class="cl-e38a8fa2"><span class="cl-e385cb52">Kos sendiri</span></p></th>
+<th class="cl-e38ac90e"><p class="cl-e38a8fa2"><span class="cl-e385cb52">Rumah mengontrak bersama</span></p></th>
+<th class="cl-e38ac90f"><p class="cl-e38a8fa2"><span class="cl-e385cb52">Rumah mengontrak pribadi</span></p></th>
+<th class="cl-e38ac918"><p class="cl-e38a8fa2"><span class="cl-e385cb52">Rumah pribadi</span></p></th>
+<th class="cl-e38ac922"><p class="cl-e38a8fa2"><span class="cl-e385cb52">Rumah saudara</span></p></th>
+<th class="cl-e38ac936"><p class="cl-e38a8fa2"><span class="cl-e385cb52">Total</span></p></th>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-24ec75de"><p class="cl-24ec4f28"><span class="cl-24e955de">Jenis Kendaraan Utama</span></p></td>
-<td class="cl-24ec75df"><p class="cl-24ec4f29"><span class="cl-24e955de"></span></p></td>
-<td class="cl-24ec75e8"><p class="cl-24ec4f29"><span class="cl-24e955de"></span></p></td>
-<td class="cl-24ec75e9"><p class="cl-24ec4f29"><span class="cl-24e955de"></span></p></td>
-<td class="cl-24ec75f2"><p class="cl-24ec4f29"><span class="cl-24e955de"></span></p></td>
-<td class="cl-24ec75f3"><p class="cl-24ec4f29"><span class="cl-24e955de"></span></p></td>
-<td class="cl-24ec75fc"><p class="cl-24ec4f29"><span class="cl-24e955de"></span></p></td>
-<td class="cl-24ec75fd"><p class="cl-24ec4f29"><span class="cl-24e955de"></span></p></td>
-<td class="cl-24ec7606"><p class="cl-24ec4f29"><span class="cl-24e955de"></span></p></td>
+<td class="cl-e38ac940"><p class="cl-e38a8fac"><span class="cl-e385cb52">Jenis Kendaraan Utama</span></p></td>
+<td class="cl-e38ac94a"><p class="cl-e38a8fb6"><span class="cl-e385cb52"></span></p></td>
+<td class="cl-e38ac954"><p class="cl-e38a8fb6"><span class="cl-e385cb52"></span></p></td>
+<td class="cl-e38ac95e"><p class="cl-e38a8fb6"><span class="cl-e385cb52"></span></p></td>
+<td class="cl-e38ac968"><p class="cl-e38a8fb6"><span class="cl-e385cb52"></span></p></td>
+<td class="cl-e38ac969"><p class="cl-e38a8fb6"><span class="cl-e385cb52"></span></p></td>
+<td class="cl-e38ac972"><p class="cl-e38a8fb6"><span class="cl-e385cb52"></span></p></td>
+<td class="cl-e38ac97c"><p class="cl-e38a8fb6"><span class="cl-e385cb52"></span></p></td>
+<td class="cl-e38ac986"><p class="cl-e38a8fb6"><span class="cl-e385cb52"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-24ec7607"><p class="cl-24ec4f32"><span class="cl-24e955de">Berjalan kaki</span></p></td>
-<td class="cl-24ec7610"><p class="cl-24ec4f29"><span class="cl-24e955de">23</span></p></td>
-<td class="cl-24ec761a"><p class="cl-24ec4f29"><span class="cl-24e955de">20</span></p></td>
-<td class="cl-24ec761b"><p class="cl-24ec4f29"><span class="cl-24e955de">39</span></p></td>
-<td class="cl-24ec761c"><p class="cl-24ec4f29"><span class="cl-24e955de">17</span></p></td>
-<td class="cl-24ec7624"><p class="cl-24ec4f29"><span class="cl-24e955de">11</span></p></td>
-<td class="cl-24ec7625"><p class="cl-24ec4f29"><span class="cl-24e955de">0</span></p></td>
-<td class="cl-24ec762e"><p class="cl-24ec4f29"><span class="cl-24e955de">1</span></p></td>
-<td class="cl-24ec762f"><p class="cl-24ec4f29"><span class="cl-24e955de">111</span></p></td>
+<td class="cl-e38ac99a"><p class="cl-e38a8fb7"><span class="cl-e385cb52">Berjalan kaki</span></p></td>
+<td class="cl-e38ac99b"><p class="cl-e38a8fb6"><span class="cl-e385cb52">23</span></p></td>
+<td class="cl-e38ac9a4"><p class="cl-e38a8fb6"><span class="cl-e385cb52">20</span></p></td>
+<td class="cl-e38ac9b8"><p class="cl-e38a8fb6"><span class="cl-e385cb52">39</span></p></td>
+<td class="cl-e38ac9c2"><p class="cl-e38a8fb6"><span class="cl-e385cb52">17</span></p></td>
+<td class="cl-e38ac9cc"><p class="cl-e38a8fb6"><span class="cl-e385cb52">11</span></p></td>
+<td class="cl-e38ac9d6"><p class="cl-e38a8fb6"><span class="cl-e385cb52">0</span></p></td>
+<td class="cl-e38ac9e0"><p class="cl-e38a8fb6"><span class="cl-e385cb52">1</span></p></td>
+<td class="cl-e38ac9e1"><p class="cl-e38a8fb6"><span class="cl-e385cb52">111</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-24ec7607"><p class="cl-24ec4f32"><span class="cl-24e955de">Layanan online</span></p></td>
-<td class="cl-24ec7610"><p class="cl-24ec4f29"><span class="cl-24e955de">0</span></p></td>
-<td class="cl-24ec761a"><p class="cl-24ec4f29"><span class="cl-24e955de">19</span></p></td>
-<td class="cl-24ec761b"><p class="cl-24ec4f29"><span class="cl-24e955de">86</span></p></td>
-<td class="cl-24ec761c"><p class="cl-24ec4f29"><span class="cl-24e955de">28</span></p></td>
-<td class="cl-24ec7624"><p class="cl-24ec4f29"><span class="cl-24e955de">6</span></p></td>
-<td class="cl-24ec7625"><p class="cl-24ec4f29"><span class="cl-24e955de">37</span></p></td>
-<td class="cl-24ec762e"><p class="cl-24ec4f29"><span class="cl-24e955de">12</span></p></td>
-<td class="cl-24ec762f"><p class="cl-24ec4f29"><span class="cl-24e955de">188</span></p></td>
+<td class="cl-e38ac99a"><p class="cl-e38a8fb7"><span class="cl-e385cb52">Layanan online</span></p></td>
+<td class="cl-e38ac99b"><p class="cl-e38a8fb6"><span class="cl-e385cb52">0</span></p></td>
+<td class="cl-e38ac9a4"><p class="cl-e38a8fb6"><span class="cl-e385cb52">19</span></p></td>
+<td class="cl-e38ac9b8"><p class="cl-e38a8fb6"><span class="cl-e385cb52">86</span></p></td>
+<td class="cl-e38ac9c2"><p class="cl-e38a8fb6"><span class="cl-e385cb52">28</span></p></td>
+<td class="cl-e38ac9cc"><p class="cl-e38a8fb6"><span class="cl-e385cb52">6</span></p></td>
+<td class="cl-e38ac9d6"><p class="cl-e38a8fb6"><span class="cl-e385cb52">37</span></p></td>
+<td class="cl-e38ac9e0"><p class="cl-e38a8fb6"><span class="cl-e385cb52">12</span></p></td>
+<td class="cl-e38ac9e1"><p class="cl-e38a8fb6"><span class="cl-e385cb52">188</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-24ec7630"><p class="cl-24ec4f32"><span class="cl-24e955de">Menumpang dengan teman/keluarga</span></p></td>
-<td class="cl-24ec7638"><p class="cl-24ec4f29"><span class="cl-24e955de">0</span></p></td>
-<td class="cl-24ec7639"><p class="cl-24ec4f29"><span class="cl-24e955de">18</span></p></td>
-<td class="cl-24ec7642"><p class="cl-24ec4f29"><span class="cl-24e955de">24</span></p></td>
-<td class="cl-24ec7643"><p class="cl-24ec4f29"><span class="cl-24e955de">40</span></p></td>
-<td class="cl-24ec764c"><p class="cl-24ec4f29"><span class="cl-24e955de">0</span></p></td>
-<td class="cl-24ec7656"><p class="cl-24ec4f29"><span class="cl-24e955de">11</span></p></td>
-<td class="cl-24ec7657"><p class="cl-24ec4f29"><span class="cl-24e955de">4</span></p></td>
-<td class="cl-24ec7658"><p class="cl-24ec4f29"><span class="cl-24e955de">97</span></p></td>
+<td class="cl-e38ac9ea"><p class="cl-e38a8fb7"><span class="cl-e385cb52">Menumpang dengan teman/keluarga</span></p></td>
+<td class="cl-e38ac9fe"><p class="cl-e38a8fb6"><span class="cl-e385cb52">0</span></p></td>
+<td class="cl-e38ac9ff"><p class="cl-e38a8fb6"><span class="cl-e385cb52">18</span></p></td>
+<td class="cl-e38aca08"><p class="cl-e38a8fb6"><span class="cl-e385cb52">24</span></p></td>
+<td class="cl-e38aca12"><p class="cl-e38a8fb6"><span class="cl-e385cb52">40</span></p></td>
+<td class="cl-e38aca1c"><p class="cl-e38a8fb6"><span class="cl-e385cb52">0</span></p></td>
+<td class="cl-e38aca26"><p class="cl-e38a8fb6"><span class="cl-e385cb52">11</span></p></td>
+<td class="cl-e38aca30"><p class="cl-e38a8fb6"><span class="cl-e385cb52">4</span></p></td>
+<td class="cl-e38aca3a"><p class="cl-e38a8fb6"><span class="cl-e385cb52">97</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-24ec7660"><p class="cl-24ec4f32"><span class="cl-24e955de">Mobil pribadi</span></p></td>
-<td class="cl-24ec766a"><p class="cl-24ec4f29"><span class="cl-24e955de">0</span></p></td>
-<td class="cl-24ec766b"><p class="cl-24ec4f29"><span class="cl-24e955de">6</span></p></td>
-<td class="cl-24ec7674"><p class="cl-24ec4f29"><span class="cl-24e955de">15</span></p></td>
-<td class="cl-24ec7675"><p class="cl-24ec4f29"><span class="cl-24e955de">5</span></p></td>
-<td class="cl-24ec767e"><p class="cl-24ec4f29"><span class="cl-24e955de">3</span></p></td>
-<td class="cl-24ec767f"><p class="cl-24ec4f29"><span class="cl-24e955de">110</span></p></td>
-<td class="cl-24ec7688"><p class="cl-24ec4f29"><span class="cl-24e955de">13</span></p></td>
-<td class="cl-24ec7689"><p class="cl-24ec4f29"><span class="cl-24e955de">152</span></p></td>
+<td class="cl-e38aca3b"><p class="cl-e38a8fb7"><span class="cl-e385cb52">Mobil pribadi</span></p></td>
+<td class="cl-e38aca44"><p class="cl-e38a8fb6"><span class="cl-e385cb52">0</span></p></td>
+<td class="cl-e38aca45"><p class="cl-e38a8fb6"><span class="cl-e385cb52">6</span></p></td>
+<td class="cl-e38aca4e"><p class="cl-e38a8fb6"><span class="cl-e385cb52">15</span></p></td>
+<td class="cl-e38aca58"><p class="cl-e38a8fb6"><span class="cl-e385cb52">5</span></p></td>
+<td class="cl-e38aca62"><p class="cl-e38a8fb6"><span class="cl-e385cb52">3</span></p></td>
+<td class="cl-e38aca6c"><p class="cl-e38a8fb6"><span class="cl-e385cb52">110</span></p></td>
+<td class="cl-e38aca80"><p class="cl-e38a8fb6"><span class="cl-e385cb52">13</span></p></td>
+<td class="cl-e38aca8a"><p class="cl-e38a8fb6"><span class="cl-e385cb52">152</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-24ec7692"><p class="cl-24ec4f32"><span class="cl-24e955de">Sepeda</span></p></td>
-<td class="cl-24ec7693"><p class="cl-24ec4f29"><span class="cl-24e955de">0</span></p></td>
-<td class="cl-24ec7694"><p class="cl-24ec4f29"><span class="cl-24e955de">0</span></p></td>
-<td class="cl-24ec769c"><p class="cl-24ec4f29"><span class="cl-24e955de">8</span></p></td>
-<td class="cl-24ec769d"><p class="cl-24ec4f29"><span class="cl-24e955de">8</span></p></td>
-<td class="cl-24ec76a6"><p class="cl-24ec4f29"><span class="cl-24e955de">0</span></p></td>
-<td class="cl-24ec76a7"><p class="cl-24ec4f29"><span class="cl-24e955de">1</span></p></td>
-<td class="cl-24ec76b0"><p class="cl-24ec4f29"><span class="cl-24e955de">1</span></p></td>
-<td class="cl-24ec76b1"><p class="cl-24ec4f29"><span class="cl-24e955de">18</span></p></td>
+<td class="cl-e38aca94"><p class="cl-e38a8fb7"><span class="cl-e385cb52">Sepeda</span></p></td>
+<td class="cl-e38aca95"><p class="cl-e38a8fb6"><span class="cl-e385cb52">0</span></p></td>
+<td class="cl-e38aca9e"><p class="cl-e38a8fb6"><span class="cl-e385cb52">0</span></p></td>
+<td class="cl-e38acaa8"><p class="cl-e38a8fb6"><span class="cl-e385cb52">8</span></p></td>
+<td class="cl-e38acab2"><p class="cl-e38a8fb6"><span class="cl-e385cb52">8</span></p></td>
+<td class="cl-e38acabc"><p class="cl-e38a8fb6"><span class="cl-e385cb52">0</span></p></td>
+<td class="cl-e38acabd"><p class="cl-e38a8fb6"><span class="cl-e385cb52">1</span></p></td>
+<td class="cl-e38acad0"><p class="cl-e38a8fb6"><span class="cl-e385cb52">1</span></p></td>
+<td class="cl-e38acad1"><p class="cl-e38a8fb6"><span class="cl-e385cb52">18</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-24ec7692"><p class="cl-24ec4f32"><span class="cl-24e955de">Sepeda motor pribadi</span></p></td>
-<td class="cl-24ec7693"><p class="cl-24ec4f29"><span class="cl-24e955de">2</span></p></td>
-<td class="cl-24ec7694"><p class="cl-24ec4f29"><span class="cl-24e955de">57</span></p></td>
-<td class="cl-24ec769c"><p class="cl-24ec4f29"><span class="cl-24e955de">296</span></p></td>
-<td class="cl-24ec769d"><p class="cl-24ec4f29"><span class="cl-24e955de">125</span></p></td>
-<td class="cl-24ec76a6"><p class="cl-24ec4f29"><span class="cl-24e955de">23</span></p></td>
-<td class="cl-24ec76a7"><p class="cl-24ec4f29"><span class="cl-24e955de">394</span></p></td>
-<td class="cl-24ec76b0"><p class="cl-24ec4f29"><span class="cl-24e955de">94</span></p></td>
-<td class="cl-24ec76b1"><p class="cl-24ec4f29"><span class="cl-24e955de">991</span></p></td>
+<td class="cl-e38aca94"><p class="cl-e38a8fb7"><span class="cl-e385cb52">Sepeda motor pribadi</span></p></td>
+<td class="cl-e38aca95"><p class="cl-e38a8fb6"><span class="cl-e385cb52">2</span></p></td>
+<td class="cl-e38aca9e"><p class="cl-e38a8fb6"><span class="cl-e385cb52">57</span></p></td>
+<td class="cl-e38acaa8"><p class="cl-e38a8fb6"><span class="cl-e385cb52">296</span></p></td>
+<td class="cl-e38acab2"><p class="cl-e38a8fb6"><span class="cl-e385cb52">125</span></p></td>
+<td class="cl-e38acabc"><p class="cl-e38a8fb6"><span class="cl-e385cb52">23</span></p></td>
+<td class="cl-e38acabd"><p class="cl-e38a8fb6"><span class="cl-e385cb52">394</span></p></td>
+<td class="cl-e38acad0"><p class="cl-e38a8fb6"><span class="cl-e385cb52">94</span></p></td>
+<td class="cl-e38acad1"><p class="cl-e38a8fb6"><span class="cl-e385cb52">991</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-24ec76b2"><p class="cl-24ec4f28"><span class="cl-24e955de">Total</span></p></td>
-<td class="cl-24ec76ba"><p class="cl-24ec4f29"><span class="cl-24e955de">25</span></p></td>
-<td class="cl-24ec76bb"><p class="cl-24ec4f29"><span class="cl-24e955de">120</span></p></td>
-<td class="cl-24ec76c4"><p class="cl-24ec4f29"><span class="cl-24e955de">468</span></p></td>
-<td class="cl-24ec76c5"><p class="cl-24ec4f29"><span class="cl-24e955de">223</span></p></td>
-<td class="cl-24ec76ce"><p class="cl-24ec4f29"><span class="cl-24e955de">43</span></p></td>
-<td class="cl-24ec76cf"><p class="cl-24ec4f29"><span class="cl-24e955de">553</span></p></td>
-<td class="cl-24ec76d0"><p class="cl-24ec4f29"><span class="cl-24e955de">125</span></p></td>
-<td class="cl-24ec76d8"><p class="cl-24ec4f29"><span class="cl-24e955de">1,557</span></p></td>
+<td class="cl-e38acada"><p class="cl-e38a8fac"><span class="cl-e385cb52">Total</span></p></td>
+<td class="cl-e38acaee"><p class="cl-e38a8fb6"><span class="cl-e385cb52">25</span></p></td>
+<td class="cl-e38acaef"><p class="cl-e38a8fb6"><span class="cl-e385cb52">120</span></p></td>
+<td class="cl-e38acaf8"><p class="cl-e38a8fb6"><span class="cl-e385cb52">468</span></p></td>
+<td class="cl-e38acb02"><p class="cl-e38a8fb6"><span class="cl-e385cb52">223</span></p></td>
+<td class="cl-e38acb0c"><p class="cl-e38a8fb6"><span class="cl-e385cb52">43</span></p></td>
+<td class="cl-e38acb16"><p class="cl-e38a8fb6"><span class="cl-e385cb52">553</span></p></td>
+<td class="cl-e38acb17"><p class="cl-e38a8fb6"><span class="cl-e385cb52">125</span></p></td>
+<td class="cl-e38acb20"><p class="cl-e38a8fb6"><span class="cl-e385cb52">1,557</span></p></td>
 </tr>
 </tbody>
 </table></div>
@@ -499,14 +498,23 @@
 <span>  <span class="va">data_mahasiswa</span><span class="op">$</span><span class="va">`kendaraan utama`</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">##                           </span></span>
-<span><span class="co">##                            Berjalan kaki Layanan online Menumpang dengan teman/keluarga Mobil pribadi Sepeda</span></span>
-<span><span class="co">##   Asrama                              23              0                               0             0      0</span></span>
-<span><span class="co">##   Kos bersama-sama                    20             19                              18             6      0</span></span>
-<span><span class="co">##   Kos sendiri                         39             86                              24            15      8</span></span>
-<span><span class="co">##   Rumah mengontrak bersama            17             28                              40             5      8</span></span>
-<span><span class="co">##   Rumah mengontrak pribadi            11              6                               0             3      0</span></span>
-<span><span class="co">##   Rumah pribadi                        0             37                              11           110      1</span></span>
-<span><span class="co">##   Rumah saudara                        1             12                               4            13      1</span></span>
+<span><span class="co">##                            Berjalan kaki Layanan online</span></span>
+<span><span class="co">##   Asrama                              23              0</span></span>
+<span><span class="co">##   Kos bersama-sama                    20             19</span></span>
+<span><span class="co">##   Kos sendiri                         39             86</span></span>
+<span><span class="co">##   Rumah mengontrak bersama            17             28</span></span>
+<span><span class="co">##   Rumah mengontrak pribadi            11              6</span></span>
+<span><span class="co">##   Rumah pribadi                        0             37</span></span>
+<span><span class="co">##   Rumah saudara                        1             12</span></span>
+<span><span class="co">##                           </span></span>
+<span><span class="co">##                            Menumpang dengan teman/keluarga Mobil pribadi Sepeda</span></span>
+<span><span class="co">##   Asrama                                                 0             0      0</span></span>
+<span><span class="co">##   Kos bersama-sama                                      18             6      0</span></span>
+<span><span class="co">##   Kos sendiri                                           24            15      8</span></span>
+<span><span class="co">##   Rumah mengontrak bersama                              40             5      8</span></span>
+<span><span class="co">##   Rumah mengontrak pribadi                               0             3      0</span></span>
+<span><span class="co">##   Rumah pribadi                                         11           110      1</span></span>
+<span><span class="co">##   Rumah saudara                                          4            13      1</span></span>
 <span><span class="co">##                           </span></span>
 <span><span class="co">##                            Sepeda motor pribadi</span></span>
 <span><span class="co">##   Asrama                                      2</span></span>
@@ -584,21 +592,37 @@
 <span><span class="co">## 30 </span></span>
 <span><span class="co">## Nilai Probabilitas: [1] 1.963807e-107</span></span>
 <span><span class="co">## Tabel Frekuensi yang Diharapkan:                                  </span></span>
-<span><span class="co">##                                       Asrama Kos bersama-sama Kos sendiri Rumah mengontrak bersama</span></span>
-<span><span class="co">##   Berjalan kaki                    1.7822736         8.554913   33.364162                15.897881</span></span>
-<span><span class="co">##   Layanan online                   3.0186256        14.489403   56.508671                26.926140</span></span>
-<span><span class="co">##   Menumpang dengan teman/keluarga  1.5574823         7.475915   29.156069                13.892742</span></span>
-<span><span class="co">##   Mobil pribadi                    2.4405909        11.714836   45.687861                21.770071</span></span>
-<span><span class="co">##   Sepeda                           0.2890173         1.387283    5.410405                 2.578035</span></span>
-<span><span class="co">##   Sepeda motor pribadi            15.9120103        76.377649  297.872832               141.935132</span></span>
+<span><span class="co">##                                       Asrama Kos bersama-sama Kos sendiri</span></span>
+<span><span class="co">##   Berjalan kaki                    1.7822736         8.554913   33.364162</span></span>
+<span><span class="co">##   Layanan online                   3.0186256        14.489403   56.508671</span></span>
+<span><span class="co">##   Menumpang dengan teman/keluarga  1.5574823         7.475915   29.156069</span></span>
+<span><span class="co">##   Mobil pribadi                    2.4405909        11.714836   45.687861</span></span>
+<span><span class="co">##   Sepeda                           0.2890173         1.387283    5.410405</span></span>
+<span><span class="co">##   Sepeda motor pribadi            15.9120103        76.377649  297.872832</span></span>
 <span><span class="co">##                                  </span></span>
-<span><span class="co">##                                   Rumah mengontrak pribadi Rumah pribadi Rumah saudara</span></span>
-<span><span class="co">##   Berjalan kaki                                  3.0655106     39.423892      8.911368</span></span>
-<span><span class="co">##   Layanan online                                 5.1920360     66.771997     15.093128</span></span>
-<span><span class="co">##   Menumpang dengan teman/keluarga                2.6788696     34.451509      7.787412</span></span>
-<span><span class="co">##   Mobil pribadi                                  4.1978163     53.985870     12.202954</span></span>
-<span><span class="co">##   Sepeda                                         0.4971098      6.393064      1.445087</span></span>
-<span><span class="co">##   Sepeda motor pribadi                          27.3686577    351.973667     79.560051</span></span></code></pre></div>
+<span><span class="co">##                                   Rumah mengontrak bersama</span></span>
+<span><span class="co">##   Berjalan kaki                                  15.897881</span></span>
+<span><span class="co">##   Layanan online                                 26.926140</span></span>
+<span><span class="co">##   Menumpang dengan teman/keluarga                13.892742</span></span>
+<span><span class="co">##   Mobil pribadi                                  21.770071</span></span>
+<span><span class="co">##   Sepeda                                          2.578035</span></span>
+<span><span class="co">##   Sepeda motor pribadi                          141.935132</span></span>
+<span><span class="co">##                                  </span></span>
+<span><span class="co">##                                   Rumah mengontrak pribadi Rumah pribadi</span></span>
+<span><span class="co">##   Berjalan kaki                                  3.0655106     39.423892</span></span>
+<span><span class="co">##   Layanan online                                 5.1920360     66.771997</span></span>
+<span><span class="co">##   Menumpang dengan teman/keluarga                2.6788696     34.451509</span></span>
+<span><span class="co">##   Mobil pribadi                                  4.1978163     53.985870</span></span>
+<span><span class="co">##   Sepeda                                         0.4971098      6.393064</span></span>
+<span><span class="co">##   Sepeda motor pribadi                          27.3686577    351.973667</span></span>
+<span><span class="co">##                                  </span></span>
+<span><span class="co">##                                   Rumah saudara</span></span>
+<span><span class="co">##   Berjalan kaki                        8.911368</span></span>
+<span><span class="co">##   Layanan online                      15.093128</span></span>
+<span><span class="co">##   Menumpang dengan teman/keluarga      7.787412</span></span>
+<span><span class="co">##   Mobil pribadi                       12.202954</span></span>
+<span><span class="co">##   Sepeda                               1.445087</span></span>
+<span><span class="co">##   Sepeda motor pribadi                79.560051</span></span></code></pre></div>
 <p>Kita akan menghitung nilai koefisien V Cramer untuk menyatakan korelasi antara jenis kendaraan yang digunakan sebagai moda ke kampus dan jenis tempat tinggal mahasiswa menggunakan rumus berikut dan berdasarkan nilai <span class="math inline">\(\chi^2\)</span> yang kita dapatkan dari tes sebelumnya.</p>
 <p><span class="math display">\[
 V = \sqrt{\frac{\chi^2}{n \times min(c−1,r−1)}}
@@ -666,21 +690,37 @@ V = \sqrt{\frac{\chi^2}{n \times min(c−1,r−1)}}
 <div class="sourceCode" id="cb263"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">tempat_tinggal_kend</span><span class="op">)</span></span>
 <span><span class="co">##                                  </span></span>
-<span><span class="co">##                                   Asrama Kos bersama-sama Kos sendiri Rumah mengontrak bersama</span></span>
-<span><span class="co">##   Berjalan kaki                       23               20          39                       17</span></span>
-<span><span class="co">##   Layanan online                       0               19          86                       28</span></span>
-<span><span class="co">##   Menumpang dengan teman/keluarga      0               18          24                       40</span></span>
-<span><span class="co">##   Mobil pribadi                        0                6          15                        5</span></span>
-<span><span class="co">##   Sepeda                               0                0           8                        8</span></span>
-<span><span class="co">##   Sepeda motor pribadi                 2               57         296                      125</span></span>
+<span><span class="co">##                                   Asrama Kos bersama-sama Kos sendiri</span></span>
+<span><span class="co">##   Berjalan kaki                       23               20          39</span></span>
+<span><span class="co">##   Layanan online                       0               19          86</span></span>
+<span><span class="co">##   Menumpang dengan teman/keluarga      0               18          24</span></span>
+<span><span class="co">##   Mobil pribadi                        0                6          15</span></span>
+<span><span class="co">##   Sepeda                               0                0           8</span></span>
+<span><span class="co">##   Sepeda motor pribadi                 2               57         296</span></span>
 <span><span class="co">##                                  </span></span>
-<span><span class="co">##                                   Rumah mengontrak pribadi Rumah pribadi Rumah saudara</span></span>
-<span><span class="co">##   Berjalan kaki                                         11             0             1</span></span>
-<span><span class="co">##   Layanan online                                         6            37            12</span></span>
-<span><span class="co">##   Menumpang dengan teman/keluarga                        0            11             4</span></span>
-<span><span class="co">##   Mobil pribadi                                          3           110            13</span></span>
-<span><span class="co">##   Sepeda                                                 0             1             1</span></span>
-<span><span class="co">##   Sepeda motor pribadi                                  23           394            94</span></span></code></pre></div>
+<span><span class="co">##                                   Rumah mengontrak bersama</span></span>
+<span><span class="co">##   Berjalan kaki                                         17</span></span>
+<span><span class="co">##   Layanan online                                        28</span></span>
+<span><span class="co">##   Menumpang dengan teman/keluarga                       40</span></span>
+<span><span class="co">##   Mobil pribadi                                          5</span></span>
+<span><span class="co">##   Sepeda                                                 8</span></span>
+<span><span class="co">##   Sepeda motor pribadi                                 125</span></span>
+<span><span class="co">##                                  </span></span>
+<span><span class="co">##                                   Rumah mengontrak pribadi Rumah pribadi</span></span>
+<span><span class="co">##   Berjalan kaki                                         11             0</span></span>
+<span><span class="co">##   Layanan online                                         6            37</span></span>
+<span><span class="co">##   Menumpang dengan teman/keluarga                        0            11</span></span>
+<span><span class="co">##   Mobil pribadi                                          3           110</span></span>
+<span><span class="co">##   Sepeda                                                 0             1</span></span>
+<span><span class="co">##   Sepeda motor pribadi                                  23           394</span></span>
+<span><span class="co">##                                  </span></span>
+<span><span class="co">##                                   Rumah saudara</span></span>
+<span><span class="co">##   Berjalan kaki                               1</span></span>
+<span><span class="co">##   Layanan online                             12</span></span>
+<span><span class="co">##   Menumpang dengan teman/keluarga             4</span></span>
+<span><span class="co">##   Mobil pribadi                              13</span></span>
+<span><span class="co">##   Sepeda                                      1</span></span>
+<span><span class="co">##   Sepeda motor pribadi                       94</span></span></code></pre></div>
 <p>Ternyata kita sudah mengatur sedemikian rupa agar variabel independen kita, <code>jenis tempat tinggal</code>, berada di kolom. Artinya, urutan kita menempatkan variabel di argumen <code><a href="https://rdrr.io/r/base/table.html">table()</a></code> sangat berpengaruh: <strong>variabel pertama akan menempati baris</strong>, sementara <strong>yang kedua menempati kolom</strong>. Karena susunan ini sudah sesuai dengan perintah <code><a href="https://rdrr.io/pkg/RCPA3/man/lambda.html">lambda()</a></code>, kita bisa melanjutkan analisis kita.</p>
 <div class="sourceCode" id="cb264"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Menghitung koefisien lambda</span></span>

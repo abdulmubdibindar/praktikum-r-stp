@@ -229,3 +229,6 @@ analisis-faktor-common-factor-analysis
 analisis-komponen-prinsip-pca
 interpretasi-dan-penamaan-dimensi
 referensi
+tafsiran-nilai-konstanta-dan-koefisien-1
+tafsiran-uji-kualitas-model-1
+tafsiran-model

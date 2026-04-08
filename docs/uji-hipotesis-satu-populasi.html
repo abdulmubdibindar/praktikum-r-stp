@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Modul 5 Uji Hipotesis Satu Populasi | Modul Praktik Statistika Untuk Perencanaan</title>
 <meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA">
-<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta name="generator" content="bookdown 0.45 with bs4_book()">
 <meta property="og:title" content="Modul 5 Uji Hipotesis Satu Populasi | Modul Praktik Statistika Untuk Perencanaan">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
@@ -24,7 +24,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -149,10 +148,10 @@
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data_mahasiswa</span><span class="op">)</span></span>
 <span><span class="co">## Rows: 1,600</span></span>
 <span><span class="co">## Columns: 4</span></span>
-<span><span class="co">## $ kampus            &lt;chr&gt; "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UINRIL", "U…</span></span>
-<span><span class="co">## $ jarak_km          &lt;dbl&gt; 19.27, 0.58, 0.56, 1.05, 1.69, 7.91, 2.58, 2.32, 0.77, 6.56, 0.63, 0.53, 0.91, 2.5…</span></span>
-<span><span class="co">## $ jenis_tinggal     &lt;chr&gt; "Rumah Bersama Saudara", "Kos Sendiri", "Kos Sendiri", "Kos Sendiri", "Rumah Mengo…</span></span>
-<span><span class="co">## $ tipe_tinggal_baku &lt;chr&gt; "Rumah Keluarga/Pribadi", "Kos/Asrama", "Kos/Asrama", "Kos/Asrama", "Rumah Keluarg…</span></span></code></pre></div>
+<span><span class="co">## $ kampus            &lt;chr&gt; "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UI…</span></span>
+<span><span class="co">## $ jarak_km          &lt;dbl&gt; 19.27, 0.58, 0.56, 1.05, 1.69, 7.91, 2.58, 2.32, 0.77…</span></span>
+<span><span class="co">## $ jenis_tinggal     &lt;chr&gt; "Rumah Bersama Saudara", "Kos Sendiri", "Kos Sendiri"…</span></span>
+<span><span class="co">## $ tipe_tinggal_baku &lt;chr&gt; "Rumah Keluarga/Pribadi", "Kos/Asrama", "Kos/Asrama",…</span></span></code></pre></div>
 <p>Kita memiliki empat variabel: <code>kampus</code>, <code>jarak_km</code>, <code>jenis_tinggal</code> dan <code>tipe_tinggal_baku</code>. Variabel <code>kampus</code> adalah variabel yang menandakan kampus dari mahasiswa yang menjadi objek sampel kita. Variabel <code>jarak_km</code> adalah jarak tempat tinggal mereka ke kampus masing-masing. Sementara itu variabel <code>jenis_tinggal</code> adalah jenis tempat tinggal yang berupa Rumah Bersama Saudara, Kos Sendiri, Rumah Mengontrak Bersama-sama, Rumah Pribadi/Rumah Keluarga, Kos Bersama-sama, Rumah Mengontrak Pribadi, Asrama, Rumah pribadi/rumah keluarga, Rumah mengontrak pribadi, Rumah mengontrak bersama-sama, Kos bersama-sama, Rumah bersama saudara, Kos sendiri, Rumah ngontrak bersama-sama, Rumah ngontrak pribadi dan distandarkan menjadi Rumah Keluarga/Pribadi, Kos/Asrama.</p>
 <p>Tipe data juga sudah sesuai. Variabel <code>jarak_km</code> sudah bertipe <em>double</em> (<code>&lt;dbl&gt;</code>) sehingga dapat kita olah lebih lanjut.</p>
 </div>

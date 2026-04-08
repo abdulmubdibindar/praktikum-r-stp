@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Modul 6 Uji Hipotesis Dua Populasi | Modul Praktik Statistika Untuk Perencanaan</title>
 <meta name="author" content="Team Teaching Statistika Untuk Perencanaan, PWK ITERA">
-<meta name="generator" content="bookdown 0.46 with bs4_book()">
+<meta name="generator" content="bookdown 0.45 with bs4_book()">
 <meta property="og:title" content="Modul 6 Uji Hipotesis Dua Populasi | Modul Praktik Statistika Untuk Perencanaan">
 <meta property="og:type" content="book">
 <meta name="twitter:card" content="summary">
@@ -24,7 +24,6 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
-          margin-bottom: 0em;
         }
     .hanging div.csl-entry {
       margin-left:2em;
@@ -171,16 +170,16 @@
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="va">data_uinril</span><span class="op">)</span></span>
 <span><span class="co">## Rows: 427</span></span>
 <span><span class="co">## Columns: 4</span></span>
-<span><span class="co">## $ kampus            &lt;chr&gt; "ITERA", "ITERA", "ITERA", "ITERA", "ITERA", "ITERA", "ITERA", "ITERA", "ITERA", "…</span></span>
-<span><span class="co">## $ jarak_km          &lt;dbl&gt; 6.69, 2.82, 5.17, 6.95, 5.57, 4.75, 8.27, 3.70, 3.77, 2.08, 6.63, 4.40, 10.69, 3.7…</span></span>
-<span><span class="co">## $ jenis_tinggal     &lt;chr&gt; "Rumah pribadi/rumah keluarga", "Kos Sendiri", "Kos Sendiri", "Kos Sendiri", "Ruma…</span></span>
-<span><span class="co">## $ tipe_tinggal_baku &lt;chr&gt; "Rumah Keluarga/Pribadi", "Kos/Asrama", "Kos/Asrama", "Kos/Asrama", "Rumah Keluarg…</span></span>
+<span><span class="co">## $ kampus            &lt;chr&gt; "ITERA", "ITERA", "ITERA", "ITERA", "ITERA", "ITERA",…</span></span>
+<span><span class="co">## $ jarak_km          &lt;dbl&gt; 6.69, 2.82, 5.17, 6.95, 5.57, 4.75, 8.27, 3.70, 3.77,…</span></span>
+<span><span class="co">## $ jenis_tinggal     &lt;chr&gt; "Rumah pribadi/rumah keluarga", "Kos Sendiri", "Kos S…</span></span>
+<span><span class="co">## $ tipe_tinggal_baku &lt;chr&gt; "Rumah Keluarga/Pribadi", "Kos/Asrama", "Kos/Asrama",…</span></span>
 <span><span class="co">## Rows: 400</span></span>
 <span><span class="co">## Columns: 4</span></span>
-<span><span class="co">## $ kampus            &lt;chr&gt; "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UINRIL", "U…</span></span>
-<span><span class="co">## $ jarak_km          &lt;dbl&gt; 19.27, 0.58, 0.56, 1.05, 1.69, 7.91, 2.58, 2.32, 0.77, 6.56, 0.63, 0.53, 0.91, 2.5…</span></span>
-<span><span class="co">## $ jenis_tinggal     &lt;chr&gt; "Rumah Bersama Saudara", "Kos Sendiri", "Kos Sendiri", "Kos Sendiri", "Rumah Mengo…</span></span>
-<span><span class="co">## $ tipe_tinggal_baku &lt;chr&gt; "Rumah Keluarga/Pribadi", "Kos/Asrama", "Kos/Asrama", "Kos/Asrama", "Rumah Keluarg…</span></span></code></pre></div>
+<span><span class="co">## $ kampus            &lt;chr&gt; "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UINRIL", "UI…</span></span>
+<span><span class="co">## $ jarak_km          &lt;dbl&gt; 19.27, 0.58, 0.56, 1.05, 1.69, 7.91, 2.58, 2.32, 0.77…</span></span>
+<span><span class="co">## $ jenis_tinggal     &lt;chr&gt; "Rumah Bersama Saudara", "Kos Sendiri", "Kos Sendiri"…</span></span>
+<span><span class="co">## $ tipe_tinggal_baku &lt;chr&gt; "Rumah Keluarga/Pribadi", "Kos/Asrama", "Kos/Asrama",…</span></span></code></pre></div>
 <p>Data ITERA terdiri atas 427 mahasiswa dan data UINRIL terdiri atas 400 mahasiswa. Kedua dataset memiliki 4 variabel yakni <code>jarak_km</code> yang berjenis <em>numeric</em>, <code>jenis_tinggal</code> (<em>character</em>), <code>kampus</code> (<em>character</em>), dan <code>tipe_tinggal_baku</code> (<em>character</em>).</p>
 <p>Kita dapat menganalisis perbedaan parameter rata-rata pada variabel <code>jarak_km</code> yang sudah berjenis <em>numeric</em>. Untuk proporsi, kita dapat menggunakan variabel <code>jenis_tinggal</code> yang harus kita hitung frekuensinya terlebih dahulu. Variabel tersebut memiliki kategori-kategori <strong>Rumah pribadi/rumah keluarga, Kos Sendiri, Rumah mengontrak bersama-sama, Kos bersama-sama, Rumah bersama saudara, Rumah mengontrak pribadi</strong> dan <strong>Asrama</strong>. Kategori-kategori tersebut disederhanakan menjadi 2 kategori pada variabel <code>tipe_tinggal_baku</code>: <strong>Rumah Keluarga/Pribadi dan Kos/Asrama</strong>.</p>
 </div>
