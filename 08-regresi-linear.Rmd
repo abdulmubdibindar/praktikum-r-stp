@@ -320,7 +320,7 @@ Untuk menampilkan nilai *intercept* dan koefisien variabel independen dari varia
 # Menampilkan nilai intercept
 koef_simple[1]
 
-cat("----------")
+cat("----------\n")
 
 # Menampilkan nilai koefisien untuk x (jarak)
 koef_simple[2]
