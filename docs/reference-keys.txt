@@ -200,7 +200,6 @@ penafsiraninterpretasi-model
 tafsiran-persamaan-model
 tafsiran-nilai-konstanta-dan-koefisien
 tafsiran-uji-kualitas-model
-tafsiran-uji-kualitas-variabel
 melakukan-prediksi
 model-regresi-linear-berganda
 persiapan-data
@@ -209,8 +208,9 @@ penjelasan-variabel-dummy
 interpretasi-variabel-dummy
 penafsiran-model
 persamaan-model
-makna-nilai-konstanta-dan-koefisien
-uji-kualitas-model
+tafsiran-nilai-konstanta-dan-koefisien-1
+tafsiran-model
+tafsiran-uji-kualitas-variabel
 prediksi-model
 analisis-hubungan-multivariat-interdependensi---analisis-faktor-dan-pca
 pendahuluan-5
@@ -229,6 +229,3 @@ analisis-faktor-common-factor-analysis
 analisis-komponen-prinsip-pca
 interpretasi-dan-penamaan-dimensi
 referensi
-tafsiran-nilai-konstanta-dan-koefisien-1
-tafsiran-uji-kualitas-model-1
-tafsiran-model
