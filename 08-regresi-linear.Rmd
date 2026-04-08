@@ -56,7 +56,7 @@ library(gtsummary)
 
 Pastikan juga kalian mengunduh dan menginstal pustaka `broom.helpers` yang akan kita gunakan untuk menampilkan *summary* model.
 
-```{r mod08-install-broom, echo=TRUE, results='hide'}
+```{r mod08-install-broom, echo=TRUE, results='hide', message=FALSE}
 install.packages("broom.helpers")
 ```
 
@@ -81,7 +81,7 @@ glimpse(data_mahasiswa_online)
 ```
 
 
-```{r mod08-inspect-kampus-layanan-online, results='hide'}
+```{r mod08-inspect-kampus-layanan-online, include=FALSE}
 data_mahasiswa_online |>
   select(Kampus_PT, `kendaraan utama`) |>
   group_by(Kampus_PT) |>
@@ -403,9 +403,9 @@ scp
 
 #### Tafsiran nilai konstanta dan koefisien
 
-Nilai konstanta berarti bahwa **dengan tinggal di kampus ($x=0$), mahasiswa masih akan mengeluarkan biaya sebesar `[beta_0]` $\times 1000$ rupiah** (ingat bahwa variabel `biaya sepekan` menggunakan satuan ribuan rupiah) untuk mengakses kampus selama sepekan. Kita bisa pahami hal tersebut **sebagai perkiraan biaya perjalanan mahasiswa yang tinggal di asrama**, misalnya.
+Nilai konstanta berarti bahwa **dengan tinggal di kampus ($x=0$), mahasiswa masih akan mengeluarkan biaya sebesar `koef_simple[1]` $\times 1000$ rupiah** (ingat bahwa variabel `biaya sepekan` menggunakan satuan ribuan rupiah) untuk mengakses kampus selama sepekan. Kita bisa pahami hal tersebut **sebagai perkiraan biaya perjalanan mahasiswa yang tinggal di asrama**, misalnya.
 
-Sementara itu, nilai koefisien sebesar `[beta_1]` berarti bahwa **penambahan jarak sebesar 1 km akan mengurangi biaya transportasi sepekan sebesar `[beta_1]`$\times 1000$ rupiah**. Artinya, makin jauh 1 km seorang mahasiswa tinggal dari kampus, makin kecil pula biaya transportasi sepekannya sebesar `[beta_1]`$\times 1000$ rupiah.
+Sementara itu, nilai koefisien sebesar `koef_simple[2]` berarti bahwa **penambahan jarak sebesar 1 km akan mengurangi biaya transportasi sepekan sebesar `koef_simple[2]`$\times 1000$ rupiah**. Artinya, makin jauh 1 km seorang mahasiswa tinggal dari kampus, makin kecil pula biaya transportasi sepekannya sebesar `koef_simple[2]`$\times 1000$ rupiah.
 
 Nilai koefisien juga bermakna **besar gradien garis persamaan regresi linear kita** yang mencerminkan **kemiringan garis persamaan regresi linear** tersebut. Semakin besar nilai koefisien, semakin curam garis persamaan regresi linear kita.
 
@@ -426,7 +426,7 @@ Mari kita panggil kembali ringkasan model kita dengan perintah `summary()`:
 summary(model)
 ```
 
-Uji kualitas model kita terdiri atas **standard error dari residual** (`Residual standard error`), **koefisien determinasi atau $R^2$** (`Multiple R-squared`), dan **uji signifikansi persamaan menggunakan statistik $F$ (`F-statistic`)** yang merupakan hasil ANOVA *(analysis of variance)*.
+Uji kualitas model kita terdiri atas **standard error dari residual** (`Residual standard error`), **koefisien determinasi atau $R^2$** (`Multiple R-squared`), dan **uji signifikansi persamaan menggunakan statistik** $F$ (`F-statistic`) yang merupakan hasil ANOVA *(analysis of variance)*.
 
 - `Residual standard error` adalah ***standard error* dari residual** yang mencerminkan nilai rata-rata galat (residu), yaitu selisih nilai variabel dependen yang dihitung (biaya perjalanan sepekan hasil prediksi dari model) dengan nilai variabel dependen yang kita peroleh dari data.
 - `Multiple R-squared` adalah **koefisien determinasi atau $R^2$** yang menyatakan **keakuratan prediksi** dari model kita, yang angkanya bermakna seberapa banyak proporsi variansi data variabel dependen kita (biaya perjalanan sepekan) dijelaskan oleh variabel independennya (jarak dari kampus ke tempat tinggal). Makin tinggi nilai $R^2$ dari model kita, makin tinggi **daya penjelas** dari variabel independen kita terhadap data variabel dependen. Dengan kata lain, $R^2$ menjawab pertanyaan "seberapa kuat model mampu menerka variasi pada variabel dependen?"
@@ -447,16 +447,6 @@ Jawablah pertanyaan-pertanyaan berikut untuk membantu Anda menafsirkan model yan
 3. Apakah penjelasan variabel jarak perjalanan ke kampus terhadap biaya perjalanan sepekan untuk pengguna transportasi daring hanya terjadi secara kebetulan di sampel kita?
 
 :::
-
-#### Tafsiran uji kualitas variabel
-
-Uji kualitas variabel adalah pengujian terhadap signifikansi atau kepentingan variabel independen kita. Hasil pengujian ini diperlihatkan oleh angka *p-value* dari uji t (`t value`)-nya, yakni yang ada di kolom `Pr(>|t|)`.
-
-Apabila nilai `Pr(>|t|)` kita \>0,05 maka variabel independen kita dianggap **tidak signifikan**, karena artinya nilai koefisien yang ada di kolom `Estimate` **sebenarnya adalah nol** sehingga **bisa dikeluarkan dari persamaan regresi linear**.
-
-Sebaliknya, jika nilai `Pr(>|t|)` kita \<0,05 maka variabel independen kita dianggap **signifikan**, artinya nilai koefisien yang ada di kolom `Estimate` **sebenarnya adalah nilai koefisien tersebut.**
-
-Nilai `Pr(>|t|)` variabel `x` adalah `1,721e-05` yang berarti koefisien senilai `-5.321` adalah **signifikan**.
 
 ### Melakukan Prediksi
 
@@ -632,19 +622,68 @@ cat(
 
 :::
 
-#### Makna Nilai Konstanta dan Koefisien
+#### Tafsiran Nilai Konstanta dan Koefisien
 
-Untuk persamaan linear berganda, kita tidak hanya mempertimbangkan pengaruh satu variabel independen seperti halnya pada regresi linear sederhana. Dengan adanya variabel independen lain, maka kita bisa menghitung pengaruh variabel independen lain tersebut.
+Untuk persamaan linear berganda, kita tidak hanya mempertimbangkan pengaruh satu variabel independen seperti halnya pada regresi linear sederhana. Dengan adanya variabel independen lain, maka kita bisa menghitung pengaruh variabel independen lain tersebut **secara bersamaan**.
 
-Dalam kasus ini, penambahan jarak sebanyak 1 km akan meningkatkan biaya perjalanan sepekan mahasiswa sebesar `[beta_1]` $\times 1000$ rupiah, dengan asumsi `[ling]` tetap. Sementara itu, mahasiswa yang tinggal di `[ling]` akan meningkatkan biaya perjalanan sepekan mahasiswa sebesar `[beta_2]` $\times 1000$ rupiah, dengan asumsi `[jarak]` tetap.
+Dalam kasus ini, penambahan $jarak$ sebanyak 1 km akan meningkatkan biaya perjalanan sepekan mahasiswa sebesar `koef_mult[2]` $\times 1000$ rupiah, dengan asumsi variabel-variabel $ling...$ tetap. Jika variabel-variabel *dummy* $ling...$ berubah, kita bisa langsung menghitungnya juga.
 
-#### Uji Kualitas Model
+Untuk variabel *dummy*, dalam kasus ini variabel $lingKos\_sendiri$, $lingRumah\_mengontrak\_bersama$, dan seterusnya, biaya perjalanan sepekan akan berubah jika variabelnya **bernilai 1**. Misalnya, jika mahasiswa tinggal di **Rumah saudara**, maka nilai variabel $lingRumah\_saudara = 1$ sementara yang lain 0. Pengaruhnya adalah biaya perjalanan sepekan berubah sebesar `koef_mult[7]` $\times 1000$ rupiah, sesuai koefisiennya.
 
+#### Tafsiran Uji Kualitas Model {#tafsiran-model}
 
+Sama seperti regresi sederhana, kita panggil ringkasan model berganda kita dengan `summary()`:
+
+```{r mod08-model-summary-3, echo=TRUE, collapse=TRUE}
+# Menampilkan ringkasan model berganda
+summary(mdl)
+```
+
+Untuk mengukur seberapa "bagus" model berganda kita, ada tiga hal utama yang perlu kita perhatikan di bagian bawah keluaran tersebut:
+
+- `Residual standard error`: Bisa kita bayangkan sebagai **"rata-rata melesetnya"** prediksi model kita dari data asli. Semakin kecil angkanya, berarti model kita semakin akurat dalam "menebak" biaya perjalanan mahasiswa.
+- `Adjusted R-squared`: Ini adalah **"koefisien determinasi yang lebih jujur"**. Dalam regresi berganda, nilai `Multiple R-squared` **akan selalu naik setiap kali kita menambah variabel baru** (meskipun variabel itu tidak penting). Nah, `Adjusted R-squared` akan mengoreksi hal ini. Jika kita menambah variabel yang "sampah" atau tidak berguna, nilai ini justru bisa turun. Jadi, gunakan angka `Adjusted R-squared` untuk melihat seberapa besar (%) variansi biaya perjalanan yang bisa dijelaskan oleh kombinasi jarak dan jenis tempat tinggal.
+- `F-statistic`: Ini adalah **"lampu hijau"** untuk model kita secara keseluruhan. Statistik ini menjawab pertanyaan: *"Apakah minimal ada satu saja variabel independen kita (jarak atau tempat tinggal) yang memang punya pengaruh nyata?"* Jika nilai signifikansinya (`p-value`) di bawah 0,05, maka model kita secara keseluruhan dianggap **signifikan** (bermakna) dan bukan sekadar kebetulan.
+
+#### Tafsiran uji kualitas variabel
+
+Uji kualitas variabel adalah pengujian terhadap signifikansi atau kepentingan variabel independen kita secara individual. Sebagaimana yang telah dijelaskan pada pembahasan `Adjusted R-squared` di subbab \@ref(tafsiran-model), adanya penambahan variabel "sampah" pun akan meningkatkan nilai `Multiple R-squared`. Untuk mengidentifikasi mana variabel "sampah" tersebut, kita menggunakan pengujian kualitas variabel secara individual ini.
+
+Hasil pengujian kualitas variabel ini diperlihatkan oleh angka *p-value* dari uji t (`t value`)-nya, yakni yang ada di kolom `Pr(>|t|)`.
+
+Apabila nilai `Pr(>|t|)` kita \>0,05 maka variabel independen kita dianggap **tidak signifikan**, karena artinya nilai koefisien yang ada di kolom `Estimate` **sebenarnya adalah nol** sehingga **bisa dikeluarkan dari persamaan regresi linear**.
+
+Sebaliknya, jika nilai `Pr(>|t|)` kita \<0,05 maka variabel independen kita dianggap **signifikan**, artinya nilai koefisien yang ada di kolom `Estimate` **sebenarnya adalah nilai koefisien tersebut.**
+
+Nilai `Pr(>|t|)` variabel `x` adalah `1,721e-05` yang berarti koefisien senilai `-5.321` adalah **signifikan**.
+
+::: rmdexercise
+
+#### Aktivitas Mandiri 8 {-}
+
+Gunakan hasil `summary(mdl)` yang baru saja muncul untuk menjawab teka-teki kualitas model berikut:
+
+1. Lihat nilai **Adjusted R-squared**. Berapa persen variasi biaya perjalanan mahasiswa yang berhasil dijelaskan oleh model berganda ini (jarak + tempat tinggal)? Apakah lebih besar dari model sederhana sebelumnya yang hanya pakai jarak saja?
+2. Perhatikan bagian paling bawah, yaitu `F-statistic`. Apakah `p-value`-nya masih di bawah 0,05? Apa artinya bagi kebermaknaan model berganda kita di populasi mahasiswa?
+3. Jika Anda harus memilih, mana yang lebih baik digunakan untuk memprediksi biaya perjalanan mahasiswa: model yang hanya melihat **jarak** saja, atau model yang melihat **jarak dan tempat tinggal** sekaligus? Mengapa? (Petunjuk: Bandingkan nilai *Adjusted R-squared*-nya).
+4. Perhatikan kolom `Pr(>|t|)` untuk setiap variabel independen. Variabel mana saja yang signifikan (p-value < 0,05) dan mana yang tidak?
+5. Tuliskan persamaan regresi linear bergandanya sehingga hanya berisi variabel-variabel yang signifikan saja dalam bentuk perintah `cat()` seperti berikut:
+
+```r
+cat(
+  "Persamaan model dari biaya sepekan terhadap jarak adalah",
+  "y = ", koef_mult[...], " + ", 
+  koef_mult[...], "[var_1] +",
+  koef_mult[...], "[var_2] +",
+  ...
+)
+```
+
+:::
 
 ### Prediksi Model
 
-Dari persamaan model regresi linear kita, kita juga dapat memprediksi nilai biaya perjalanan sepekan untuk mahasiswa-mahasiswa dengan kondisi lain. Misalnya kita ingin memprediksi biaya sepekan transportasi mahasiswa yang tinggal di Rumah saudara berjarak 7,9 km dari kampus dan di Rumah kontrakan bersama yang berjarak 10 km dari kampus.
+Seperti halnya regresi linear sederhana, dari persamaan model regresi linear berganda kita, kita juga dapat memprediksi nilai biaya perjalanan sepekan untuk mahasiswa-mahasiswa dengan kondisi lain. Misalnya kita ingin memprediksi biaya sepekan transportasi mahasiswa yang **tinggal di Rumah saudara** berjarak **7,9 km dari kampus** dan di **Rumah kontrakan bersama** yang berjarak **10 km dari kampus**.
 
 ```{r mod08-predict-multiple-model, echo=TRUE}
 # Menyusun dataset untuk diprediksi
@@ -657,11 +696,22 @@ mhs <- tibble(
 predict(mdl, mhs)
 ```
 
-> **Jawablah:**
->
-> a.  Bagaimana persamaan model regresi linear berganda kita?
-> b.  Tafsirlah kualitas model kita, mulai uji kualitas model ($F$), $R^2$, serta uji kualitas setiap variabel
-> c.  Apa saja yang meningkatkan dan menurunkan biaya perjalanan sepekan mahasiswa?
+::: rmdexercise
 
+### Aktivitas Mandiri 9 {-}
 
+Prediksilah biaya perjalanan mahasiswa yang tinggal di Kos-kosan pribadi berjarak 1,5 km dari kampus.
+
+```{r mod08-predict-am9, include=FALSE}
+# menyusun dataset untuk diprediksi
+mhs_exerc <- tibble(
+  jarak = c(1.5),
+  ling = c("Kos sendiri")
+)
+
+# melihat hasil prediksi
+predict(mdl, mhs_exerc)
+```
+
+:::
 
